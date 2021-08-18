@@ -1,0 +1,47 @@
+<section class="enroll-packs-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Enrollment Packs</h2>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="enroll-packs">
+    <div class="container">
+        <div class="row">
+
+            <div *ngFor="let data of EnrollmentPacksData" class="col-md-4">
+                <div class="grid-pack">
+                    <div class="grid-pack-header">
+                        <h3 class="pack-info-name">
+                            {{data.itemDescription}}
+                        </h3>
+                        <p class="price-pack">
+                            ${{data.price}}
+                        </p>
+                        <p class="pv-value">
+                            PV-0.00
+                        </p>
+                    </div>
+                    <div class="pack-image-product">
+                        <img [src]="'data:image/jpg;base64,'+data.productImage.fileContents" class="img-responsive"
+                            style="width:100%" />
+                    </div>
+                    <div class="pack-info" [innerHtml]="data.longDetail1">
+                    </div>
+                    <div class="pack-cta">
+                        <button class="btn btn-info">Add To Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="continue">
+            <button class="btn btn-info">Continue</button>
+        </div>
+        <br>
+    </div>
+</section>

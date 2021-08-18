@@ -1,0 +1,204 @@
+section.enrollment-info {
+    padding: 70px 0px;
+    background-color: #fff;
+}
+
+.content-video-enrollment {
+    text-align: center;
+}
+
+.content-video-enrollment .enrollment-btn {
+    margin: 14px 0 0 0;
+}
+
+.content-video-enrollment .enrollment-btn p {
+    font-weight: 600;
+}
+
+.enrollment-btn p a {
+    background-color: #1cb1c5;
+    padding: 10px 15px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.enrollment-btn p a:hover {
+    background-color: #000;
+    text-decoration: none;
+}
+
+ul.list-items {
+    padding: 0;
+    list-style-type: none;
+}
+
+ul.list-items li {
+    position: relative;
+    padding-left: 25px;
+}
+
+ul.list-items li:before {
+    width: 14px;
+    height: 14px;
+    content: '';
+    position: absolute;
+    background-color: #1cb1c5;
+    left: 0px;
+    top: 5px;
+}
+
+ul.list-items li:after {
+    width: 8px;
+    height: 8px;
+    content: '';
+    position: absolute;
+    background-color: #ffffff;
+    left: 3px;
+    top: 8px;
+    border-top-right-radius: 70px;
+}
+
+.content-enrollment h3 {
+    font-family: 'g-bold';
+}
+
+.content-enrollment p strong {
+    font-family: 'g-bold';
+}
+.listing-content h4 {
+    font-family: 'g-demibold';
+    font-size: 18px;
+}
+
+
+.enrollconfig_modal .modal-header h4 {
+    font-family: 'g-demibold';
+    font-size: 20px;
+}
+
+.enrollconfig_modal .modal-body {
+    padding: 25px 0px 0;
+}
+.option-enroll {
+    margin-bottom: 30px;
+}
+
+.enrollconfig_modal .modal-body h4 {
+    font-size: 20px;
+    font-family: 'g-demibold';
+    padding: 0 15px;
+}
+
+.enrollconfig_modal .modal-body .option-enroll p {
+    font-size: 15px;
+}
+
+
+.enrollconfig_modal .modal-body .option-enroll ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.enrollconfig_modal .modal-body .option-enroll ul li {
+    display: inline-block;
+}
+
+.enrollconfig_modal .modal-body .option-enroll ul li a {
+    background-color: #1cb1c5;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 2px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.enrollconfig_modal .modal-body .option-enroll ul li:not(:first-child) {
+    margin-left: 15px;
+}
+
+.enrollconfig_modal .modal-body .option-enroll ul li a:hover {
+    background-color: #3c3c3c;
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.enrollconfig_modal .modal-footer .enrollment-btn p a {
+    background-color: #3c3c3c !important;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.enrollconfig_modal .modal-footer .enrollment-btn p a:hover {
+    background-color: #1cb1c5 !important;
+    border-radius: 3px;
+}
+
+
+.enrollconfig_modal button.close {
+    font-size: 55px;
+    position: absolute;
+    right: 18px;
+    top: 0px;
+    padding: 0;
+    margin: 0;
+}
+.enrollconfig_modal button.close:focus-visible,.enrollconfig_modal button.close:focus {
+    outline: none;
+    box-shadow: none;
+    border:none
+}
+
+.option-enroll {
+    padding: 0px 20px;
+}
+
+.enroll-member {
+    padding: 20px 20px;
+    background-color: #f5f5f5;
+    margin-top: 30px;
+}
+
+.enroll-member h5 {
+    font-family: 'g-demibold';
+}
+
+.enroll-member p {
+    font-size: 16px;
+}
+
+.enroll-member form.member-search {
+    max-width: 340px;
+    position: relative;
+}
+
+.enroll-member form.member-search input {
+    height: 42px;
+    width: 100%;
+    padding: 5px 8px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    padding-right: 55px;
+}
+
+.enroll-member form.member-search button {
+    background-color: #1cb1c5;
+    border: 1px solid #1cb1c5;
+    height: 42px;
+    color: #fff;
+    font-size: 14px;
+    position: absolute;
+    right: 0;
+    padding: 0 12px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.enroll-member form.member-search .form-group {
+    width: 100%;
+}
+
+.enroll-member form.member-search input:focus {
+    outline: none;
+}

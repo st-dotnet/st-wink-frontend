@@ -1,0 +1,13 @@
+.topbar {
+  background-color: #2196f3;
+  padding: 12px 8px;
+}
+
+.topbar p {
+  margin: 0px;
+  text-align: center;
+  color: #fff;
+  max-width: 250px;
+  margin: 0 auto;
+  font-family: "g-regular";
+}

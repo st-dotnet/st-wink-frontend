@@ -1,0 +1,111 @@
+section.banner-top {
+  padding: 0px 0;
+}
+
+section.banner-top img {
+  width: 100%;
+  height: fit-content;
+}
+
+.content-wrapper {
+  padding: 0;
+}
+
+section.about-content h4 {
+  font-family: 'g-bold';
+  font-size: 35px;
+}
+
+section.about-content .content-wrapper p {
+  font-family: 'g-regular';
+}
+
+
+section.about-content .about-address p {
+  margin: 0 0 3px 0;
+  font-size: 15px;
+}
+
+section.about-content .about-address p.addr-title {
+  font-family: 'g-demibold';
+}
+
+section.about-content {
+  padding: 50px 0 50px 0;
+}
+
+.about-address p a {
+  text-decoration: none;
+  color: #1cb1c5;
+}
+
+.contactfom-wrapper {
+  background: #fff;
+  padding: 40px;
+  text-align: center;
+  max-width: 840px;
+  margin: 0 auto 0;
+  box-shadow: 0px 0px 9px #dedede;
+  border-radius: 3px;
+}
+
+.contactfom-wrapper h4 {
+  margin: 0 0 40px 0;
+  font-size: 30px;
+  font-family: 'g-demibold';
+}
+
+.contactfom-wrapper .form-group {
+  margin-bottom: 18px;
+  width: 100%;
+  float: left;
+  padding: 0px 0px;
+}
+
+.contactfom-wrapper .form-group input {
+  border-radius: 2px;
+  height: 45px;
+  font-family: 'g-regular';
+}
+
+.contactfom-wrapper .form-group:last-child {
+  width: 100%;
+}
+
+.contactfom-wrapper .form-group:nth-child(5) {
+  width: 100%;
+}
+
+section.contact-form {padding: 0 0 60px;}
+
+.contactfom-wrapper button.btn-submit {
+  background-color: #1cb1c5;
+  color: #fff;
+  font-family: 'g-bold';
+  text-transform: uppercase;
+  font-size: 16px;
+  max-width: 150px;
+  padding: 10px 0;
+}
+
+.contactfom-wrapper .form-group textarea {
+  min-height: 170px;
+}
+
+.btn-right-sub {
+  text-align: right;
+}
+@media (max-width:767px)
+{
+  .contactfom-wrapper {
+      max-width: 100% !important;
+  }
+
+  .contactfom-wrapper .form-group {
+      width: 100% !important;
+  }
+  .btn-right-sub {
+      text-align: center;
+  }
+
+}

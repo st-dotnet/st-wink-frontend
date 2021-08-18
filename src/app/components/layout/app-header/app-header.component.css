@@ -1,0 +1,160 @@
+header nav {
+  border-bottom: 1px solid #f1f1f1;
+  box-shadow: 0px 0px 5px #c1c1c1;
+}
+
+div#main-menu {
+  justify-content: space-between !important;
+}
+
+div#main-menu li a {
+  font-family: "g-demibold";
+  text-transform: uppercase;
+  color: #2aa8bf;
+}
+
+div#main-menu li {
+  margin-right: 10px;
+}
+
+ul.right-menu {
+  list-style-type: none;
+  margin: 0;
+}
+
+ul.right-menu li {
+  display: inline-block;
+}
+
+ul.right-menu li a {
+  text-decoration: none;
+}
+
+header a.navbar-brand img {
+  max-width: 90px;
+}
+
+ul.right-menu li a.log-links {
+  cursor: pointer;
+}
+
+.navbar-toggler i {
+  font-size: 26px;
+  color: #707070;
+}
+
+
+div#main-menu.active {
+  position: absolute;
+  top: 130px;
+  background-color: #fff;
+  width: 100%;
+  z-index: 999;
+  left: 0px;
+  padding: 10px;
+}
+
+ul.right-menu li {
+  position: relative;
+}
+
+ul.right-menu li a {
+  position: relative;
+}
+
+ul.right-menu li a span.cart-info {
+  width: 9px;
+  height: 9px;
+  background-color: #ff0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 7px;
+  font-size: 9px;
+  font-family: 'g-medium';
+  border: 2px solid #ffffff;
+  position: absolute;
+  top: -6px;
+  left: 8px;
+  color: #fff;
+}
+
+ul.right-menu li.cart-item {
+  margin: 0 15px 0 0px !important;
+}
+
+
+ul.right-menu li a i {
+  font-size: 17px;
+}
+
+@media(min-width:992px)
+{
+    .logo-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    #main-menu.show-mob {
+      display: none;
+  }
+}
+
+a.nav-link.active {
+  background: #2aa8bf;
+  color: #ffffff !important;
+  border-radius: 4px;
+}
+
+@media (max-width:991px)
+{
+  div#main-menu.showmenu {
+    position: absolute;
+    top: 58px;
+    background-color: #ffffff;
+    z-index: 2;
+    left: 0px;
+    width: 100%;
+    transition: all ease 0.5s;
+}
+header .logo-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+header button.navbar-toggler i {
+  color: #2aa8bf !important;
+}
+
+div#main-menu.showmenu ul li a {
+    background-color: #fff;
+    padding: 10px 10px;
+    border-bottom: 1px solid #f5f5f5;
+    border-radius: 0px;
+}
+
+div#main-menu.showmenu ul li a.active {
+    color: #1cb1c5 !important;
+}
+
+div#main-menu.showmenu ul.right-menu {
+    padding: 20px 6px;
+}
+
+
+div#main-menu.showmenu .logo-center {
+    display: none;
+}
+
+div#main-menu.showmenu ul.right-menu li a {
+    padding: 0 8px 0;
+    border: none;
+}
+
+}
+
+

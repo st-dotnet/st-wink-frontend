@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="51.984" height="74" viewBox="0 0 51.984 74">
+  <defs>
+    <filter id="chevron-right-solid" x="0" y="0" width="51.984" height="74" filterUnits="userSpaceOnUse">
+      <feOffset dy="4" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.451"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#chevron-right-solid)">
+    <path id="chevron-right-solid-2" data-name="chevron-right-solid" d="M60.578,67.833,35.655,92.756a3.078,3.078,0,0,1-4.353,0L28.4,89.849a3.078,3.078,0,0,1-.005-4.347L48.142,65.657,28.391,45.813a3.078,3.078,0,0,1,.005-4.347L31.3,38.559a3.078,3.078,0,0,1,4.353,0L60.577,63.481A3.078,3.078,0,0,1,60.578,67.833Z" transform="translate(-18.49 -32.66)" fill="#fff"/>
+  </g>
+</svg>

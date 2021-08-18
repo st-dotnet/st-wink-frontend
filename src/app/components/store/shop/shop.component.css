@@ -1,0 +1,433 @@
+
+section.shop-banner {
+  position: relative;
+  background-image: url('../../../../assets/banner-shop.png');
+  background-size: 100%;
+  width: 100%;
+  min-height: 500px;
+  background-position: center;
+  display: flex;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+.container-banner {
+  max-width: 1140px;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+section.shop-banner .content-banner {
+  height: 100%;
+  max-width: 480px;
+  float: right;
+  margin-top: 150px;
+}
+
+section.shop-banner img {
+  width: 100%;
+}
+
+section.shop-banner .content-banner h3 {
+  color: #000000;
+  font-size: 30px;
+  font-family: 'g-demibold';
+  text-transform: capitalize;
+}
+
+section.shop-banner .content-banner p {
+  font-size: 20px;
+}
+
+section.shop-banner .content-banner p a.btn-blue {
+  background-color: #1cb1c5;
+  color: #fff;
+  border-radius: 163px;
+  font-family: 'g-regular';
+  padding: 9px 30px;
+  text-transform: uppercase;
+}
+
+section.products {
+  padding: 70px 10px;
+}
+
+section.products h3 {
+  font-family: 'g-regular';
+  font-size: 28px;
+  margin: 0 0 30px 0;
+  color: #000000;
+}
+
+.prod-wrapp .card-body .product-details h5 {
+  font-family: 'g-demibold';
+  font-size: 18px;
+  color: #000000;
+  min-height: 40px;
+}
+
+.prod-wrapp .card-body .product-details h6 {
+  color: #000000;
+  font-size: 14px;
+  font-family: 'g-regular';
+}
+
+.prod-wrapp .card-body .product-details .reviews-product {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.prod-wrapp .card-body .product-details .reviews-product ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.prod-wrapp .card-body .product-details .reviews-product ul li {
+  display: inline-block;
+}
+
+.prod-wrapp .card-body .product-details .reviews-product ul li img {
+  max-width: 20px;
+}
+
+.prod-wrapp .card-body .product-details span.more-info {
+  float: right;
+}
+
+.prod-wrapp .card-body .product-details span.more-info a.btn-add {
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  border: 2px solid #333333;
+  position: relative;
+  color: #333333;
+}
+
+.prod-wrapp .card-body .product-details span.more-info a.btn-add i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 14px;
+}
+.reviews-product p {
+  font-size: 13px;
+  margin: 0;
+}
+
+.reviews-product ul {
+  margin-bottom: 0px;
+}
+
+.reviews-product {
+  margin-bottom: 10px;
+}
+
+.prod-wrapp .card {
+  margin-bottom: 30px;
+}
+
+.product-filters {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+
+.product-filters form.form-inline {
+  width: 100%;
+}
+
+.product-filters form.form-inline .select-filters {
+  margin-left: 20px;
+}
+
+.product-filters form.form-inline .form-group {
+  max-width: 260px;
+  display: block;
+  flex: none;
+  flex-grow: revert;
+  width: 100%;
+  position: relative;
+}
+
+.product-filters form.form-inline .form-group select {
+  width: 100%;
+  height: 50px;
+  background: #ffffffb3;
+  border: none;
+  color: #000;
+  -webkit-appearance: none;
+}
+
+.product-filters form.form-inline .form-group i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  font-size: 20px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.product-filters form.form-inline .form-group i svg {margin: -12px 0 0 0;}
+
+
+/* Product View Modal CSS */
+
+.product-info p {
+  font-size: 14px;
+}
+.model-productview button.close:focus-visible, .model-productview button.close:focus {
+  outline: none;
+  box-shadow: none;
+  border:none
+}
+
+
+.model-productview .modal-body {
+  padding: 0px;
+}
+
+.model-productview .modal-body button.close {
+  position: absolute;
+  z-index: 1;
+  opacity: 1;
+  left: 10px;
+  top: 10px;
+}
+
+.model-productview .modal-body .card {
+  margin: 0px;
+  border: none;
+}
+
+/* Radio Bundle */
+.prod-bundle-select {
+  padding: 20px 0;
+  border: 1px solid #d8d8d8;
+  border-left: none;
+  border-right: none;
+  margin: 20px 0 0;
+}
+
+.prod-bundle-select h3 {
+  font-family: 'g-regular';
+  font-size: 20px;
+  color: rgba(0 0 0/0.7);
+  margin-bottom: 18px;
+}
+
+.prod-bundle-select .radio-bundle label {
+  border: 1px solid #d6d6d6;
+  padding: 9px 18px;
+  max-width: 195px;
+  border-radius: 50px;
+  text-align: center;
+  min-width: 96px;
+  font-size: 16px;
+}
+
+.prod-bundle-select .radio-bundle input {
+  position: absolute;
+  opacity: 0;
+}
+
+.prod-bundle-select .radio-bundle input:checked ~ label {
+  border: 1px solid #1CB1C5;
+  color: #1CB1C5;
+  background-color: rgba(28 177 197/0.1);
+}
+.prod-bundle-select.delivery-radio {border-top: none;}
+
+.custom-shiping {
+  padding: 15px 0;
+}
+
+.custom-shiping h3 {
+  font-family: 'g-regular';
+  font-size: 20px;
+  color: rgba(0 0 0/0.7);
+  margin-bottom: 18px;
+}
+
+.custom-shiping .choose-shipping {
+  display: flex;
+}
+
+.custom-shiping .choose-shipping .form-group:not(:first-child) {
+  margin-left: 20px;
+}
+
+.custom-shiping .choose-shipping .form-group select {
+  padding: 0 30px 0 10px;
+  -webkit-appearance: none;
+}
+
+.custom-shiping .choose-shipping .form-group {
+  position: relative;
+}
+
+.custom-shiping .choose-shipping .form-group svg {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  fill: #707070;
+  width: 10px;
+  height: 7px;
+  pointer-events: none;
+}
+.cart-btn {
+  width: 100%;
+}
+
+.cart-btn button.btn-cart {
+  background-color: #1CB1C5;
+  display: block;
+  width: 100%;
+  border-radius: 40px;
+  color: #fff;
+  font-size: 20px;
+  font-family: 'g-regular';
+  box-shadow: 0px 4px 5px rgb(0 0 0 / 19%);
+}
+
+.product-view-image {
+  position: relative;
+}
+
+.product-view-image a.btn-learn {
+  position: absolute;
+  right: 10px;
+  bottom: 14px;
+  background-color: #fff;
+  border-radius: 40px;
+  padding: 4px 17px;
+  box-shadow: 1px 0px 10px #524f4f7a;
+}
+
+.product-view-image a.btn-learn:hover {
+  color: #1cb1c5;
+}
+
+a.btn-add:hover {
+  border-color: #1cb1c5 !important;
+  color: #1cb1c5 !important;
+}
+
+
+
+/* MEDIA */
+@media (max-width:1366px)
+{
+  section.shop-banner {
+      min-height: 420px;
+  }
+}
+@media (max-width:1199px)
+{
+  section.shop-banner .content-banner {
+      height: 100%;
+      max-width: 400px;
+      float: right;
+      margin-top: 150px;
+      padding: 0 20px;
+  }
+}
+
+@media (max-width:991px)
+{
+  section.shop-banner {
+      background-image: url('../../../../assets/banner-shop768.png') !important;
+      min-height: 600px !important;
+      background-position: top;
+  }
+
+  section.shop-banner .content-banner {
+      float: left !important;
+      max-width: 300px !important;
+      margin-top: 220px !important;
+  }
+
+  section.shop-banner .content-banner h3 {
+      font-size: 40px !important;
+  }
+  .product-filters {
+      padding: 0 10px;
+  }
+
+  .product-filters form {
+      width: 100%;
+  }
+
+  .product-filters form .form-group {
+      max-width: calc(50% - 15px) !important;
+  }
+  .prod-list-item {
+      flex: 0 0 33%;
+      max-width: 33%;
+  }
+}
+
+@media (max-width:767px)
+{
+  section.shop-banner {
+      min-height: auto !important;
+      background-image: url('../../../../assets/banner-mob.png') !important;
+      padding-bottom:110px;
+  }
+  section.shop-banner .content-banner {
+      margin-top: 200px !important;
+
+  }
+  .prod-wrapp .prod-list-item {
+      width: 100%;
+      max-width: 50%;
+      flex: 0 0 50%;
+  }
+
+  .prod-wrapp .prod-list-item .product-details .reviews-product {
+      display: block !important;
+  }
+
+  .prod-wrapp .prod-list-item .product-details .reviews-product ul {
+      margin-bottom: 10px;
+  }
+}
+
+@media (max-width:500px)
+{
+  .product-filters form.form-inline {
+      display: block;
+  }
+
+  .product-filters form.form-inline .form-group {
+      max-width: 100% !important;
+  }
+
+  .product-filters form.form-inline .select-filters {
+      margin: 0px !important;
+  }
+  section.shop-banner {
+      height: 100% !important;
+      background-size: cover;
+      padding-bottom:160px;
+  }
+  section.shop-banner .content-banner h3 {
+      font-size: 28px !important;
+      max-width: 200px;
+  }
+  section.shop-banner .content-banner p {
+      font-size: 18px;
+  }
+  .prod-wrapp .prod-list-item {
+      width: 100%;
+      max-width: 100%;
+      flex: 0 0 100%;
+  }
+}
+

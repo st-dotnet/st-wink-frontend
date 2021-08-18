@@ -1,0 +1,65 @@
+<footer>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-3">
+          <div class="footer-menus">
+              <h4>Wink Naturals</h4>
+              <ul>
+                  <li><a [routerLink]="['']">Home</a></li>
+                  <li><a [routerLink]="['/store']">Shop</a></li>
+                  <li><a [routerLink]="['/about']">About</a></li>
+                  <li><a [routerLink]="['/blog']">Blog</a></li>
+                  <li><a [routerLink]="['/enrollment']">Join</a></li>
+                  <li *ngIf="!user"><a [routerLink]="['/sign-in']" class="log-links">Log In</a></li>
+              </ul>
+          </div>
+          </div>
+          <div class="col-md-3">
+              <div class="footer-menus">
+                  <h4>Contact Us</h4>
+                  <ul class="contact Us">
+                      <li><a href="mailto:hello@winknaturals.com">hello@winknaturals.com</a></li>
+                      <li><a href="tel:18887995656">1(888)799-5656</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="footer-menus">
+                  <h4>Follow Us</h4>
+                  <p class="link-wink">@winknaturals</p>
+                   <ul class="social-ico">
+                       <li><a href="https://www.facebook.com/winknaturals"><i class="fab fa-facebook-f"></i></a></li>
+                       <li><a href="https://www.instagram.com/winknaturals"><i class="fab fa-instagram"></i></a></li>
+                       <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                   </ul>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="footer-menus">
+                  <h4>Referred By</h4>
+                   <div class="info-refered"><span><i class="fa fa-user"></i></span> Amanda Walsh,ID #42</div>
+                   </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+              <p class="footer-logo"><a href="#"><img src="../../assets/footer-logo.png"/></a></p>
+              <p class="copyright">© 2021 Wink Naturals All rights reserved</p>
+
+              <ul class="bottom-footer-links">
+                  <li><a href="#">Terms & Conditions</a></li>
+                  <li>
+                      <ul>
+                          <li><a href="#">Compensation Plan</a></li>
+                          <li><a href="#">Usage Policy</a></li>
+                      </ul>
+                  </li>
+
+              </ul>
+
+          </div>
+      </div>
+
+  </div>
+</footer>

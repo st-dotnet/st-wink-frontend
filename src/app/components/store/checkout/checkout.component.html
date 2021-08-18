@@ -1,0 +1,662 @@
+<section class="backlink-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-12 back-link mb-4">
+           <a href=""><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="angle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" class="svg-inline--fa fa-angle-left fa-w-6 fa-3x"><path fill="currentColor" d="M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z" class=""></path></svg>Back to CART</a>
+            </div>
+         <div class="visible-lg col-lg-5">
+            <div class="sidebar-checkout">
+                <div class="cart-sidebar">
+                    <div class="sidebar-head"><h2>Cart Summary</h2><span class="amount-summary"> $40.00 </span></div>
+                </div>
+            </div>
+         </div>
+        </div>
+    </div>
+</section>
+
+<section class="checkout-page grid-checkout">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-5 col-lg-push-7">
+                <div [className]="sidebartoggle ?  'showsidebar toggle-sidebar hidden-lg' : 'hidesidebar toggle-sidebar hidden-lg'">
+                    <div class="cart-sidebar sidebar-collapse">
+                        <div class="sidebar-head">
+                        <h2><a (click)="toggleShow()"> <span class="arrow-down">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="11.2" height="6.6" viewBox="0 0 11.2 6.6">
+                                <path id="Path_2040" data-name="Path 2040" d="M541.8,7l-3.9,3.9L534,7a.967.967,0,0,0-1.4,0,.967.967,0,0,0,0,1.4l4.6,4.6a.967.967,0,0,0,1.4,0l4.6-4.6A.99.99,0,1,0,541.8,7Z" transform="translate(-532.3 -6.7)" fill="#1cb1c5"/>
+                              </svg>
+                            </span>Cart Summary</a>
+                    </h2>
+                    <span class="amount-summary"> $40.00 </span></div>
+                    </div>
+                </div>
+                <div *ngIf="sidebartoggle" class="sidebar-ui">
+                    <ngb-accordion activeIds="enter-payment">
+                        <ngb-panel id="refered-sidebar">
+                            <ng-template ngbPanelTitle>
+                                <div class="heading-step1" >
+                                    <h4>Referred By</h4>
+                                    <span class="vali-promo">Not Referred</span>
+                                    <span class="arrow-stepp">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
+                                            <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
+                                        </svg>                                                      
+                                    </span>
+                                </div>
+                            </ng-template>
+                        <ng-template ngbPanelContent>
+                           <div class="content-card steps-inner promo-checkout">
+                              <div class="col-md-12 p-0 mb-3">
+                                  <div class="form-group">
+                                    <input type="text" value="" name="promo-enter" class="form-control" placeholder="Promo Code"/>
+                                    <span class="vali-promo">Not Applied</span>
+                                      <span class="btn-add-promo">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><path _ngcontent-shj-c146="" id="Path_2014" data-name="Path 2014" d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z" transform="translate(-194.9 -3)"></path>
+                                        </svg>
+                                    </span>
+                                  </div>
+                              </div>
+                           </div>
+                        </ng-template>
+                        </ngb-panel>
+    
+                        <ngb-panel id="promo-sidebar">
+                            <ng-template ngbPanelTitle>
+                                <div class="heading-step1" >
+                                    <h4>Promo Code</h4>
+                                    <span class="vali-promo">Not Applied</span>
+                                    <span class="arrow-stepp">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
+                                            <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
+                                        </svg>                                                      
+                                    </span>
+                                </div>
+                            </ng-template>
+                        <ng-template ngbPanelContent>
+                           <div class="content-card steps-inner promo-checkout">
+                              <div class="col-md-12 p-0 mb-3">
+                                  <div class="form-group">
+                                    <input type="text" value="" name="promo-enter" class="form-control" placeholder="Promo Code"/>
+                                    <span class="vali-promo">Not Applied</span>
+                                      <span class="btn-add-promo">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><path _ngcontent-shj-c146="" id="Path_2014" data-name="Path 2014" d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z" transform="translate(-194.9 -3)"></path>
+                                        </svg>
+                                    </span>
+                                  </div>
+                              </div>
+                           </div>
+                        </ng-template>
+                        </ngb-panel>
+    
+                        <ngb-panel id="otp-sidebar">
+                            <ng-template ngbPanelTitle>
+                                <div class="heading-step1" >
+                                    <h4>One-Time Purchase</h4>
+                                    <span class="arrow-stepp">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
+                                            <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
+                                        </svg>                                                      
+                                    </span>
+                                </div>
+                            </ng-template>
+                        <ng-template ngbPanelContent>
+                           <div class="content-card steps-inner otp-data-sidebar">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>(2) Pre & Pro Biotic</td>
+                                    <td>$49.98</td>
+                                </tr>
+                                <tr>
+                                    <td>(1) Kids Sleep Melts</td>
+                                    <td>$24.99</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>Subtotal</td>
+                                    <td>$74.97</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                           </div>
+                        </ng-template>
+                        </ngb-panel>
+    
+                        <ngb-panel id="subsc-purchse">
+                            <ng-template ngbPanelTitle>
+                                <div class="heading-step1" >
+                                    <h4>Subscription Purchase</h4>
+                                  
+                                    <span class="arrow-stepp">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
+                                            <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
+                                        </svg>                                                      
+                                    </span>
+                                </div>
+                            </ng-template>
+                        <ng-template ngbPanelContent>
+                           <div class="content-card steps-inner subsc-purchse-sidebar">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>(1) Pre & Pro Biotic</td>
+                                        <td>$49.98</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td>10% Bundle Discount</td>
+                                        <td>-$2.47</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Subtotal</td>
+                                        <td>$74.97</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+    
+                           </div>
+                        </ng-template>
+                        </ngb-panel>
+    
+                        <ngb-panel id="today-order-sidebar">
+                            <ng-template ngbPanelTitle>
+                                <div class="heading-step1" >
+                                    <h4>Today's Order</h4>
+                                    <span class="arrow-stepp">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
+                                            <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
+                                        </svg>                                                      
+                                    </span>
+                                </div>
+                            </ng-template>
+                        <ng-template ngbPanelContent>
+                           <div class="content-card steps-inner today-order">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>One-Time Purchase</td>
+                                        <td>$49.98</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Subscription Purchase</td>
+                                        <td>$49.98</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td>You Saved</td>
+                                        <td>-$2.47</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total</td>
+                                        <td>$74.97</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                           </div>
+                        </ng-template>
+                        </ngb-panel>
+                    </ngb-accordion>
+                </div>
+       
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-7 col-lg-pull-5">
+                <div class="checkout-steps-3">
+                        <ngb-accordion [closeOthers]="true" activeIds="checkoutstep1" class="panel-stepbar">
+                            <ngb-panel id="checkoutstep1" class="panel-step1">
+                                <ng-template ngbPanelTitle>
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24"> <defs> <clipPath id="clip-path"> <rect width="24" height="24" fill="none"/> </clipPath> </defs> <g id="Icon_Check_Circle_Rounded" data-name="Icon / Check Circle / Rounded" clip-path="url(#clip-path)"> <rect id="Box" width="24" height="24" fill="none"/> <path id="Path_2034" data-name="Path 2034" d="M247.2,14.3l-3.6-3.6a.967.967,0,0,1,0-1.4.967.967,0,0,1,1.4,0l2.9,2.9,6.9-6.9a.99.99,0,0,1,1.4,1.4l-7.6,7.6A.967.967,0,0,1,247.2,14.3ZM249.9,0a10,10,0,1,0,10,10A10.029,10.029,0,0,0,249.9,0Z" transform="translate(-238 2)" fill="#1cc584"/> </g> </svg>
+                                    <span>1 of 3 - Enter Shipping</span>
+                                </ng-template>
+                            <ng-template ngbPanelContent>
+                                <ngb-accordion activeIds="subscr-schedule">
+                                    <ngb-panel id="subscr-schedule">
+                                        <ng-template ngbPanelTitle>
+                                            <div class="heading-step1" >
+                                                <h4>Subscription Schedule</h4>
+                                                <p>Start Date:<span class="data-span">4/14/20</span></p>
+                                                <span class="arrow-stepp">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
+                                                        <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
+                                                    </svg>                                                      
+                                                </span>
+                                            </div>
+                                        </ng-template>
+                                    <ng-template ngbPanelContent>
+                                       <div class="content-card steps-inner">
+                                           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                                       </div>
+                                    </ng-template>
+                                    </ngb-panel>
+                                    <ngb-panel id="shipping-address">
+                                        <ng-template ngbPanelTitle>
+                                            <div class="heading-step1">
+                                                <h4>Shipping Address</h4>
+                                                <span class="arrow-stepp">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
+                                                        <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
+                                                    </svg>                                                      
+                                                </span>
+                                            </div>
+                                        </ng-template>
+                                    <ng-template ngbPanelContent>
+                                       <div class="content-card steps-inner shipping-address-form">
+                                           <form>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" placeholder="First Name" name="fname" class="form-control"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" placeholder="Last Name" name="lname" class="form-control"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" placeholder="Street Address" name="street_address" class="form-control"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="text" placeholder="City" name="city" class="form-control"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="text" placeholder="State" name="state" class="form-control"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" placeholder="ZIP" name="zipcode" class="form-control"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" placeholder="Country" name="country" class="form-control"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                              
+                                           </form>
+                                       </div>
+                                    </ng-template>
+                                    </ngb-panel>
+                                    <ngb-panel id="shipping-method">
+                                        <ng-template ngbPanelTitle>
+                                            <div class="heading-step1">
+                                                <h4>Shipping Method</h4>
+                                                <span class="arrow-stepp">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
+                                                        <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
+                                                    </svg>                                                      
+                                                </span>
+                                            </div>
+                                        </ng-template>
+                                    <ng-template ngbPanelContent>
+                                            <div class="content-card steps-inner shipping-method">
+                                                <div class="method-shipp">
+                                                    <ul>
+                                                        <li>
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                                                                <label class="custom-control-label" for="customRadio1">
+                                                                    <div class="shipping-list-item">
+                                                                        <h4>Get it today (Utah only)</h4>
+                                                                        <p>$0.00 Will Call Pickup</p>
+                                                                    </div>
+                                                                </label>
+                                                              </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                                                                <label class="custom-control-label" for="customRadio2">
+                                                                    <div class="shipping-list-item">
+                                                                        <h4>Get it by Fri, Feb 22nd</h4>
+                                                                        <p>FREE Shipping</p>
+                                                                    </div>
+                                                                </label>
+                                                              </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                                                                <label class="custom-control-label" for="customRadio3">
+                                                                    <div class="shipping-list-item">
+                                                                        <h4>Get it by Wed, Feb 19th</h4>
+                                                                        <p>$8.99 Shipping</p>
+                                                                    </div>
+                                                                </label>
+                                                              </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                    </ng-template>
+                                    </ngb-panel>
+                               
+                                </ngb-accordion>
+                                <div class="cta-continue">
+                                    <button class="btn btn-continue">
+                                        Save and continue
+                                    </button>
+                                </div>
+                            </ng-template>
+                           
+                            </ngb-panel> 
+                            <ngb-panel id="checkoutstep2">
+                            <ng-template ngbPanelTitle>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24"> <defs> <clipPath id="clip-path"> <rect width="24" height="24" fill="none"/> </clipPath> </defs> <g id="Icon_Check_Circle_Rounded" data-name="Icon / Check Circle / Rounded" clip-path="url(#clip-path)"> <rect id="Box" width="24" height="24" fill="none"/> <path id="Path_2034" data-name="Path 2034" d="M247.2,14.3l-3.6-3.6a.967.967,0,0,1,0-1.4.967.967,0,0,1,1.4,0l2.9,2.9,6.9-6.9a.99.99,0,0,1,1.4,1.4l-7.6,7.6A.967.967,0,0,1,247.2,14.3ZM249.9,0a10,10,0,1,0,10,10A10.029,10.029,0,0,0,249.9,0Z" transform="translate(-238 2)" fill="#1cc584"/> </g> </svg>
+                                <span>2 of 3 - Payment</span>
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                                <ngb-accordion activeIds="enter-payment">
+                                    <ngb-panel id="promo-code">
+                                        <ng-template ngbPanelTitle>
+                                            <div class="heading-step1" >
+                                                <h4>Promo Code</h4>
+                                                <span class="arrow-stepp">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
+                                                        <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
+                                                    </svg>                                                      
+                                                </span>
+                                            </div>
+                                        </ng-template>
+                                    <ng-template ngbPanelContent>
+                                       <div class="content-card steps-inner promo-checkout">
+                                          <div class="col-md-12 p-0 mb-3">
+                                              <div class="form-group">
+                                                <input type="text" value="" name="promo-enter" class="form-control" placeholder="Promo Code"/>
+                                                <span class="vali-promo">Not Applied</span>
+                                                  <span class="btn-add-promo">
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><path _ngcontent-shj-c146="" id="Path_2014" data-name="Path 2014" d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z" transform="translate(-194.9 -3)"></path>
+                                                    </svg>
+                                                </span>
+                                              </div>
+                                          </div>
+                                       </div>
+                                    </ng-template>
+                                    </ngb-panel>
+                                    <ngb-panel id="loyalty-info">
+                                        <ng-template ngbPanelTitle>
+                                            <div class="heading-step1">
+                                                <h4>Loyalty Rewards</h4>
+                                                <span class="arrow-stepp">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
+                                                        <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
+                                                    </svg>                                                      
+                                                </span>
+                                            </div>
+                                        </ng-template>
+                                    <ng-template ngbPanelContent>
+                                       <div class="content-card steps-inner shipping-address-form">
+                                        <div class="loyalty-desc">
+                                            <div class="r-available">Rewards Available:<span class="value-r-available">$25</span></div>
+                                            <div class="r-applied">Rewards Applied:<span class="value-r-applied">$0</span></div>
+                                            <div class="loya-conver">
+                                                <span class="loyal-conv-modal" (click)="open(loyal_conversion)">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25">
+                                                        <g id="Group_183" data-name="Group 183" transform="translate(-830 -877)">
+                                                          <g id="Ellipse_13" data-name="Ellipse 13" transform="translate(830 878)" fill="none" stroke="#1cb1c5" stroke-width="2">
+                                                            <circle cx="12" cy="12" r="12" stroke="none"/>
+                                                            <circle cx="12" cy="12" r="11" fill="none"/>
+                                                          </g>
+                                                          <text id="_" data-name="?" transform="translate(837 897)" fill="#1cb1c5" font-size="18.6" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">?</tspan></text>
+                                                        </g>
+                                                      </svg>
+                                                      
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 loyalty-form p-0 mb-3">
+                                            <div class="form-group">
+                                              <input type="text" value="" name="promo-enter" class="form-control" placeholder="Loyalty points"/>
+                                              <span class="vali-promo">Points Not Applied</span>
+                                                <span class="btn-add-promo">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><path _ngcontent-shj-c146="" id="Path_2014" data-name="Path 2014" d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z" transform="translate(-194.9 -3)"></path>
+                                                  </svg>
+                                              </span>
+                                            </div>
+                                        </div>
+                                       </div>
+                                    </ng-template>
+                                    </ngb-panel>
+                                    <ngb-panel id="card-info">
+                                        <ng-template ngbPanelTitle>
+                                            <div class="heading-step1">
+                                                <h4>Card</h4>
+                                                <span class="arrow-stepp">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
+                                                        <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
+                                                    </svg>                                                      
+                                                </span>
+                                            </div>
+                                        </ng-template>
+                                    <ng-template ngbPanelContent>
+                                       <div class="content-card steps-inner shipping-address-form">
+                                           <ul class="card-mat">
+                                               <li><img src="../../assets/card-ui-1.png"/></li>
+                                               <li><img src="../../assets/card-ui-2.png"/></li>
+                                               <li><img src="../../assets/card-ui-3.png"/></li>
+                                               <li><img src="../../assets/card-ui-4.png"/></li>
+                                               <li><span class="more-card">and more</span></li>
+                                           </ul>
+                                           <form class="card-infoo">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" placeholder="Name on card" name="card-name" class="form-control"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="number" placeholder="Card number" name="card-number" class="form-control"/>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                              <div class="row">
+                                                  <div class="col-md-3"><div class="form-group">
+                                                    <input type="text" placeholder="Month" name="card-month" class="form-control"/>
+                                                </div></div>
+                                                  <div class="col-md-3"> <div class="form-group">
+                                                    <input type="text" placeholder="Year" name="card-year" class="form-control"/>
+                                                </div></div>
+                                                  <div class="col-md-3"><div class="form-group">
+                                                    <input type="text" placeholder="CVV" name="card-cvv" class="form-control"/>
+                                                </div></div>
+                                                
+                                              </div>
+                                           </form>
+                                       </div>
+                                    </ng-template>
+                                    </ngb-panel>
+                                    <ngb-panel id="billing-method">
+                                        <ng-template ngbPanelTitle>
+                                            <div class="heading-step1">
+                                                <h4>Billing Address</h4>
+                                                <span class="arrow-stepp">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
+                                                        <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
+                                                    </svg>                                                      
+                                                </span>
+                                            </div>
+                                        </ng-template>
+                                    <ng-template ngbPanelContent>
+                                            <div class="content-card steps-inner shipping-method">
+                                                <div class="method-shipp">
+                                                    <ul>
+                                                        <li>
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                                                                <label class="custom-control-label" for="customRadio1">
+                                                                    <div class="shipping-list-item">
+                                                                        <h4>Same as shipping address</h4>
+                                                                    </div>
+                                                                </label>
+                                                              </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                                                                <label class="custom-control-label" for="customRadio2">
+                                                                    <div class="shipping-list-item">
+                                                                        <h4>Use different address</h4>
+                                                                    </div>
+                                                                </label>
+                                                              </div>
+                                                        </li>
+                                                        
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
+                                    </ng-template>
+                                    </ngb-panel>
+                               
+                                </ngb-accordion>
+                                <div class="cta-continue">
+                                    <button class="btn btn-continue">
+                                        Save and continue
+                                    </button>
+                                </div>
+                            </ng-template>
+                            </ngb-panel>
+                            
+                            <ngb-panel id="checkoutstep3">
+                                <ng-template ngbPanelTitle>
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24"> <defs> <clipPath id="clip-path"> <rect width="24" height="24" fill="none"/> </clipPath> </defs> <g id="Icon_Check_Circle_Rounded" data-name="Icon / Check Circle / Rounded" clip-path="url(#clip-path)"> <rect id="Box" width="24" height="24" fill="none"/> <path id="Path_2034" data-name="Path 2034" d="M247.2,14.3l-3.6-3.6a.967.967,0,0,1,0-1.4.967.967,0,0,1,1.4,0l2.9,2.9,6.9-6.9a.99.99,0,0,1,1.4,1.4l-7.6,7.6A.967.967,0,0,1,247.2,14.3ZM249.9,0a10,10,0,1,0,10,10A10.029,10.029,0,0,0,249.9,0Z" transform="translate(-238 2)" fill="#1cc584"/> </g> </svg>
+                                    <span>3 of 3 - Review Order</span>
+                                </ng-template>
+                            <ng-template ngbPanelContent>
+                                <ngb-accordion activeIds="enter-payment">
+                                    <ngb-panel id="notifi-review">
+                                                <ng-template ngbPanelTitle>
+                                                        <div class="heading-step1" >
+                                                            <h4>Does everything look correct?</h4>
+                                                            <p>Select <a href="">Place My Order</a> to continue</p>
+                                                        </div>
+                                            </ng-template>
+                                    </ngb-panel>
+
+                                    <ngb-panel id="promo-code">
+                                        <ng-template ngbPanelTitle>
+                                            <div class="heading-step1" >
+                                                <h4>Have a promo code?</h4>
+                                                <p>No code applied</p>
+                                                <span class="arrow-stepp">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
+                                                        <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
+                                                    </svg>                                                      
+                                                </span>
+                                            </div>
+                                        </ng-template>
+                             
+                                    </ngb-panel>
+                                    <ngb-panel id="loyalty-info">
+                                        <ng-template ngbPanelTitle>
+                                            <div class="heading-step1">
+                                                <h4>Loyalty points</h4>
+                                                <p>No points applied</p>
+                                                <span class="arrow-stepp">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
+                                                        <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
+                                                    </svg>                                                      
+                                                </span>
+                                            </div>
+                                        </ng-template>
+                                 
+                                    </ngb-panel>
+                                
+                                    <ngb-panel id="today-order">
+                                        <ng-template ngbPanelTitle>
+                                            <div class="heading-step1">
+                                                <h4>Today's Order</h4>
+                                            </div>
+                                        </ng-template>
+                                    <ng-template ngbPanelContent>
+                                            <div class="content-card steps-inner order-summary">
+                                                <div class="table-today-order">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Order Total</td>
+                                                            <td>$99.96</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Subtotal</td>
+                                                            <td>$99.96</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Shipping</td>
+                                                            <td>$6.96</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Tax</td>
+                                                            <td>$3.42</td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <td><p class="you-sav">You Saved</p></td>
+                                                            <td><p class="you-sav">-$1.23</p></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><p class="you-pay">You pay</p></td>
+                                                            <td><p class="you-pay">$99.96</p></td>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                                </div>
+                                            </div>
+                                    </ng-template>
+                                    </ngb-panel>
+                                </ngb-accordion>
+                                <div class="final-cta-bottom">
+                                    <div class="plce-order-cta">
+                                        <button type="button">Place My Order</button>
+                                    </div>
+                                    <div class="verified-batch">
+                                        <span class="batch-icon"><svg xmlns="http://www.w3.org/2000/svg" width="27" height="36.001" viewBox="0 0 27 36.001"><path _ngcontent-shi-c146="" id="Icon_awesome-award" data-name="Icon awesome-award" d="M6.829,25.5c-.611-.611-.293-.439-1.766-.833a5.073,5.073,0,0,1-1.788-.937L.084,31.549A1.125,1.125,0,0,0,1.169,33.1l3.7-.141,2.548,2.692A1.125,1.125,0,0,0,9.281,35.3l3.66-8.973A5.046,5.046,0,0,1,6.829,25.5Zm20.087,6.052-3.19-7.822a5.062,5.062,0,0,1-1.788.937c-1.481.4-1.157.224-1.766.833a5.047,5.047,0,0,1-6.112.829l3.66,8.973a1.125,1.125,0,0,0,1.858.349l2.549-2.692,3.7.141a1.125,1.125,0,0,0,1.085-1.549Zm-8.423-7.643c1.074-1.093,1.2-1,2.727-1.416a2.857,2.857,0,0,0,2-2.038c.526-2,.39-1.756,1.825-3.217a2.917,2.917,0,0,0,.733-2.783c-.525-2-.526-1.717,0-3.715a2.917,2.917,0,0,0-.733-2.783c-1.435-1.461-1.3-1.221-1.825-3.217a2.857,2.857,0,0,0-2-2.038c-1.96-.535-1.724-.4-3.161-1.857A2.8,2.8,0,0,0,15.325.1c-1.96.534-1.686.535-3.649,0A2.8,2.8,0,0,0,8.941.844C7.506,2.3,7.742,2.166,5.781,2.7a2.857,2.857,0,0,0-2,2.038c-.525,2-.39,1.756-1.825,3.217a2.915,2.915,0,0,0-.733,2.783c.525,1.994.526,1.716,0,3.714a2.919,2.919,0,0,0,.733,2.784c1.435,1.461,1.3,1.22,1.825,3.217a2.857,2.857,0,0,0,2,2.038c1.574.429,1.691.361,2.727,1.416a2.794,2.794,0,0,0,3.5.409,2.79,2.79,0,0,1,2.99,0A2.793,2.793,0,0,0,18.492,23.906ZM6.867,12.372A6.634,6.634,0,1,1,13.5,19.124a6.693,6.693,0,0,1-6.633-6.751Z" transform="translate(0 0.001)" fill="#333" opacity="0.5"></path></svg></span>
+                                        <span class="batch-text">Every order is backed by our 100% Happy Guarantee</span>
+                                    </div>
+                                </div>
+
+                            </ng-template>
+                            </ngb-panel>
+
+
+                        </ngb-accordion>
+                  </div>
+            </div>
+        
+        </div>
+    </div>
+</section>
+
+
+<ng-template #loyal_conversion let-modal>
+    <div [ngClass]="{'loyal_conversion_modal': true}">
+        
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      <div class="modal-body">
+     <div class="modal-content-conversion">
+         <div class="desc-loyalty">
+            <p>Loyalty Points are earned through the Loyalty Rewards Program. When subscriptions totaling $50+ are shipped monthly, up to 20% of the order value can be earned back in Loyalty Points! Points have a dollar for dollar value, and can be used on one-time purchases of any standard products.</p>
+            <p>Start earning rewards by creating your subscription today!</p>
+         </div>
+         <div class="link_conversion">
+             <a href="">Convert Subscription</a>
+         </div>
+     </div>
+      </div>
+    </div>
+  
+  </ng-template>
