@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://localhost:44336/'
+  apiUrl: 'https://winknaturalsreplicatedsite-stage.azurewebsites.net/api/'
 };

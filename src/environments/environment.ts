@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  // apiUrl: 'http://837fe3613ad8.ngrok.io/api/'
-  apiUrl: 'https://localhost:44336/api/',
-  productImageApiUrl: 'https://localhost:44336/api/Shopping/ProductImage/'
+  // apiUrl: 'https://localhost:44336/api/',
+  apiUrl: 'https://winknaturalsreplicatedsite-stage.azurewebsites.net/api/',
+  productImageApiUrl: 'https://localhost:44336/files/'
 };
 
 /*
