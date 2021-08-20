@@ -19,4 +19,9 @@ export class ShopService {
     return this.http.get<ShopProductModel[]>(`${environment.apiUrl}${this.shopEndpoint}GetProductList/${categoryID}`);
   }
 
+  GetProductDetail(itemCode: number) {
+    debugger
+    return this.http.get<ShopProductModel[]>(`${environment.apiUrl}${this.shopEndpoint}GetProductDetailById/${itemCode}`);
+  }
+
 }

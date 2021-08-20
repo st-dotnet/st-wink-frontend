@@ -72,9 +72,7 @@
       </div>
   </div>
 </section>
-
 <!--- SHop MOdal --->
-
 <ng-template #produt_view let-modal >
   <div class="model-productview">
       <form>
@@ -166,10 +164,9 @@
                           </div>
                       </div>
                               <div class="cart-btn">
-                                  <button type="submit" class="btn btn-cart">$24.99 ADD</button>
+                                  <button type="submit" (click)="addToCart(product)"class="btn btn-cart">${{product.price}}</button>
                               </div>
                   </div>
-
               </div>
 </div>
 
@@ -177,4 +174,3 @@
           </div>
           </form>
   </div>
-</ng-template>

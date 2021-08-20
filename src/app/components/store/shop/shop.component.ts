@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from '@environments/environment';
 import { Router } from '@angular/router';
 import { param } from 'jquery';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -15,61 +16,52 @@ import { param } from 'jquery';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-
   title = '';
   closeResult: string;
   webCategoryID: number = 3;
   categoryModels: CategoryModel[] = [];
-  shopProductModels: ShopProductModel[] = [];
-  //shopProductModel:ShopProductModel;
-  product:any;
+  shopProductModels: ShopProductModel[] = [];  
+  product: any;
   categoryId: number = 0;
   modalOptions: NgbModalOptions = {
     backdrop: 'static',
     backdropClass: 'customBackdrop',
     windowClass: 'prodview-modal'
   };
+  productCartItems: any[] = [];
 
   constructor(
     private sessionService: SessionService,
-    private modalService: NgbModal, private shopService: ShopService
-    ,private spinner:NgxSpinnerService,private router:Router ) {
+    private modalService: NgbModal, private shopService: ShopService,
+    private spinner: NgxSpinnerService, private router: Router,
+    private toastrService: ToastrService,) {
     this.sessionService.scrollToTop();
   }
 
   ngOnInit(): void {
     this.GetDDLCategoryById();
-
   }
 
   GetDDLCategoryById() {
-    
+    this.spinner.show();
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
       this.categoryModels = result;
       var data = this.categoryModels.filter(x => x.webCategoryDescription.toString() === "All Products");
       this.categoryId = data[0]?.webCategoryID;
       this.GetProductsList(this.categoryId);
-      this.spinner.show();
-      //console.log(this.categoryId);
     })
   }
+
   onCategoryChange(e: Event) {
-   
-    //this.categoryId = 0;
     this.categoryId = Number((e.target as HTMLInputElement)?.value);
-    this.GetProductsList(this.categoryId);
-    this.spinner.show();
-    //console.log(this.categoryId);
+    this.GetProductsList(this.categoryId);   
   }
 
-
-
-  open(content: any,product:any) {
-    debugger
-    this.product=product;
+  open(content: any, product: any) {
+    this.product = product;
     //this.router.navigate(['/product', { id: content }]);
-   this.modalService.open(content, this.modalOptions).result.then((result) => {
-      this.product=product;
+    this.modalService.open(content, this.modalOptions).result.then((result) => {
+      this.product = product;
       console.log(this.product.largeImageUrl)
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -88,28 +80,28 @@ export class ShopComponent implements OnInit {
   }
 
   GetProductsList(categoryID: number) {
-    this.shopProductModels=[];
+    this.shopProductModels = [];
     this.shopService.GetProductsList(categoryID).subscribe(result => {
       this.shopProductModels = result;
+      console.log("Product List", result);
       this.spinner.hide();
-      console.log(this.shopProductModels);
     })
   }
 
-  getImage(imageName: string){
-   // console.log(imageName);
-    // // this.spinner.show();
-    // setTimeout(() => {
-    //   this.spinner.hide();
-    // }, 5000);
-    // return `${environment.productImageApiUrl}${imageName}`;
-
+  getImage(imageName: string) {
     return `${environment.productImageApiUrl}${imageName}`;
   }
 
-  RedirectToProduct(product:any)
-  {
+  RedirectToProduct(product: any) {
     this.modalService.dismissAll();
-     this.router.navigate(['/store/product',product.itemID]);
+    this.router.navigate(['/store/product', product.itemCode]);
+  }
+  
+  addToCart(product: any) {
+    debugger
+    this.productCartItems.push(product);
+    this.sessionService.cartSession(this.productCartItems);
+    this.sessionService.setSessionObject('productCartItems', this.productCartItems);
+    this.toastrService.success('Product added successfully');
   }
 }

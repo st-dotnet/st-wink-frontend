@@ -3,7 +3,7 @@
       <div class="row">
           <div class="col-md-12">
               <ul class="breadcrumb">
-                  <li><a href="#">Shop</a></li>/
+                  <li><a [routerLink]="['/store']">Shop</a></li>/
                   <li><a href="#">Sleep</a></li>/
                   <li>Sleep</li>
               </ul>
@@ -19,29 +19,27 @@
               <div id="custCarousel" class="carousel slide" data-ride="carousel" align="center">
                   <!-- slides -->
                   <div class="carousel-inner">
-                      <div class="carousel-item active"><img src="../../../assets/kids_sleep_melt.jpg"/></div>
-                      <div class="carousel-item"><img src="../../../assets/kids_sleep_melt1.jpg"/></div>
-                      <div class="carousel-item"><img src="../../../assets/kids_sleep_melt2.jpg"/></div>
+                      <div class="carousel-item active"><img [src]="productDetail.image_03"/></div>
+                      <div class="carousel-item"><img [src]="productDetail.image_02"/></div>
+                      <div class="carousel-item"><img [src]="productDetail.image_01"/></div>
                   </div>
                   <ol class="carousel-indicators list-inline">
                       <li class="list-inline-item active">
-                          <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#custCarousel"><img src="../../../assets/kids_sleep_melt.jpg"/></a>
+                          <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#custCarousel"><img [src]="productDetail.image_03"/></a>
                       </li>
                       <li class="list-inline-item active">
-                          <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel"><img src="../../../assets/kids_sleep_melt1.jpg"/></a>
+                          <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel"><img [src]="productDetail.image_02"/></a>
                       </li>
                       <li class="list-inline-item active">
-                          <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel"><img src="../../../assets/kids_sleep_melt2.jpg"/></a>
+                          <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel"><img [src]="productDetail.image_01"/></a>
                       </li>
-
                   </ol>
               </div>
-
           </div>
           <div class="col-md-6 full-width">
                   <div class="model-productview">
                       <div class="product-details">
-                          <h5 class="card-title">Kids Sleep Melts</h5>
+                          <h5 class="card-title">{{productDetail.itemDescription}}</h5>
                           <div class="reviews-product">
                               <ul>
                                   <li><i class="fas fa-star"></i></li>
@@ -112,7 +110,7 @@
                               </div>
                           </div>
                                   <div class="cart-btn">
-                                      <button type="submit" (click)="addToCart(product)" class="btn btn-cart">$24.99 ADD</button>
+                                      <button type="submit" (click)="addToCart(product)" class="btn btn-cart">${{productDetail.price}}</button>
                                   </div>
                       </div>
                   </div>
@@ -127,7 +125,7 @@
           <div class="col-md-6 full-width">
                   <div class="model-productview">
                       <div class="product-details">
-                          <h5 class="card-title">Kids Sleep Melts</h5>
+                          <h5 class="card-title">{{productDetail.itemDescription}}</h5>
                           <div class="reviews-product">
                               <ul>
                                   <li><i class="fas fa-star"></i></li>
@@ -198,7 +196,7 @@
                               </div>
                           </div>
                                   <div class="cart-btn">
-                                      <button type="submit" (click)="addToCart(product)" class="btn btn-cart">$24.99 ADD</button>
+                                      <button type="submit" (click)="addToCart(product)" class="btn btn-cart">${{productDetail.price}}</button>
                                   </div>
                       </div>
                   </div>
@@ -212,7 +210,7 @@
       <div class="row">
           <div class="col-md-12">
               <div class="banners-enery">
-                <img src="../../../../assets/energy_sale.png"/>
+                <img src="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/Product+Pages/Protect+and+Whiten+Toothpaste/Desktop+Banner_P_and_W.jpg"/>
               </div>
           </div>
       </div>
