@@ -7,7 +7,7 @@ import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-
+ 
   sidebartoggle : boolean = true;
 
   title = 'ng-bootstrap-modal-demo';
@@ -26,6 +26,8 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.sidebartoggle = true;
   }
+
+  
 
   open(content) {
     this.modalService.open(content, this.modalOptions).result.then((result) => {

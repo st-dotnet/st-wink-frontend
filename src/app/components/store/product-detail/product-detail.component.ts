@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { param } from 'jquery';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { ShopService } from '@app/_services/shop.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -14,7 +15,8 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductDetailComponent implements OnInit {
   incredShow: Boolean = false;
   isShowDivIf = false;
-  productId: number;
+  itemCode: number;
+  productDetail: any;
   toggleDisplayDivIf() {
     this.isShowDivIf = !this.isShowDivIf;
   }
@@ -121,22 +123,31 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
      private sessionService: SessionService,
+     private shopService : ShopService,
      private activatedRoute: ActivatedRoute,
      private spinner: NgxSpinnerService,
      private toastrService: ToastrService,) {
-    this.sessionService.scrollToTop();
+     this.sessionService.scrollToTop();
+     this.activatedRoute.params.subscribe((params: Params) => {
+      this.itemCode = params['id'];     
+    });
   }
 
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params: Params) => {
-
-      this.productId = params['id'];
-    });
-    //console.log(this.productId)
+  ngOnInit(): void {    
+  this.getProductDetail(this.itemCode)
   }
 
   toggleShow() {
     this.incredShow = !this.incredShow;
+  }
+
+  getProductDetail(itemCode){
+    this.spinner.show();
+    this.shopService.GetProductDetail(itemCode).subscribe(result => {
+    this.productDetail=result;
+    this.spinner.hide();
+    console.log("ProductDetail", this.productDetail);
+    });
   }
 
   addToCart(product: any) {
@@ -147,4 +158,7 @@ export class ProductDetailComponent implements OnInit {
     this.toastrService.success('Product added successfully');
   }
 
+  getProductImage(imgUrl: string){
+  return imgUrl;
+  }
 }

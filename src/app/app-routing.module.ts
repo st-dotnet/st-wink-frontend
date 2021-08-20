@@ -22,7 +22,7 @@ const routes: Routes = [
       { path: '', loadChildren: homeModule },
       { path: '', loadChildren: authModule },
       { path: 'store', loadChildren: storeModule },
-
+      
       // otherwise redirect on the basis of authentication
       { path: '**', redirectTo: '' }
     ]
@@ -30,7 +30,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule { }

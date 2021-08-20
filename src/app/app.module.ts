@@ -14,6 +14,7 @@ import { AppHeaderComponent } from './components/layout/app-header/app-header.co
 import { AppFooterComponent } from './components/layout/app-footer/app-footer.component';
 import { AppNotificationBarComponent } from './components/layout/app-notification-bar/app-notification-bar.component';
 import { AppLayoutComponent } from './components/layout/app-layout/app-layout.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { AppLayoutComponent } from './components/layout/app-layout/app-layout.co
     SharedModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
