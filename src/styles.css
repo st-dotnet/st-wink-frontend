@@ -934,6 +934,73 @@ ul.conv-products input[type="checkbox"] ~ .custom-control-label::before {
 
 
 
+
+/*  Input Fields special   */
+
+.special-field {
+  position: relative;
+  max-width: 240px;
+}
+
+.special-field input {
+  border: 2px solid #dedede;
+  min-height: 45px;
+}
+
+.special-field.dataempty label {
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  background-color: #fff;
+  padding: 0 5px;
+  font-family: 'g-medium';
+  color: rgba(0 0 0/0.6);
+  margin: 0;
+  font-size: 16px;
+  transition: all ease 0.5s;
+  pointer-events: none;
+}
+
+.special-field.datafilled label ,.special-field input:focus ~ label {
+  position: absolute;
+  top: -9px;
+  left: 8px;
+  background-color: #fff;
+  padding: 0 5px;
+  font-family: 'g-medium';
+  color: #1cb1c5;
+  margin: 0;
+  font-size: 14px;
+  transition: all ease 0.5s;
+}
+
+.special-field span.btn-add-promo {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
+
+.special-field.datafilled input {
+  border-color: #1cb1c5 !important;
+}
+
+.special-field.datafilled span.btn-add-promo svg,
+.special-field input:focus span.btn-add-promo svg {
+  fill: #1cb1c5;
+  opacity: 1;
+}
+
+.special-field input:focus span.btn-add-promo svg g,
+.special-field.datafilled span.btn-add-promo svg g {
+  opacity: 1;
+}
+
+.special-field input:focus {
+  outline: none;
+  border-color: #1cb1c5 !important;
+  box-shadow: none;
+}
+
 /* MEDIA */
 @media (min-width: 1366px)
 {

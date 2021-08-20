@@ -8,6 +8,8 @@ import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  inputdata : string;
+  promocode_onetime : string;
   data_learn :boolean = false;
   closeResult: string;
   maxDate = new Date();
@@ -15,7 +17,19 @@ export class CartComponent implements OnInit {
     backdrop: 'static',
     backdropClass: 'customBackdrop'
   };
-  cartItems: any;
+
+  onTextChange(value)
+  {
+    
+    // this.inputdata = value;
+    // this.promocode_onetime = value;
+    // if(this.inputdata == '' || this.promocode_onetime == '')
+    // {
+      
+    // } 
+    // else if
+    
+  }
 
   constructor(private modalService: NgbModal,
     private sessionService: SessionService,) {
@@ -25,8 +39,6 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.filterItem("");
-    this.cartItems =JSON.parse(this.sessionService.getSessionItem('productCartItems'));
-    console.log("dsfsf",this.cartItems);   
   }
 
   open(content) {
@@ -59,7 +71,6 @@ export class CartComponent implements OnInit {
   filterTerm: string;
   isDataAvailable = false;
   toShowData = false;
-  showSearchBar = true;
   refId: any;
   refName: any;
 
@@ -151,16 +162,10 @@ export class CartComponent implements OnInit {
       debugger;
       this.refName = this.referrerRecords.filter(x => x.id == parseInt(data.id)).map(ele => ele.referrer_name);
       debugger;
-      this.toShowData = true;
-      debugger;
-      this.showSearchBar = false;
-      debugger;
+      this.toShowData = true;       
     }
     else {
-      this.toShowData = false;
-      debugger;
-      this.showSearchBar = true;
-      debugger;
+      this.toShowData = false;      
     }
 
   }

@@ -24,7 +24,7 @@
           <div class="col-md-12 col-lg-7">
               <div class="grid-box-shadow OTP">
             <h3>One-Time Purchase (2)</h3>
-            <div *ngFor="let cartItem of cartItems" class="cart-singleitem">
+            <div class="cart-singleitem">
               <div class="media">
                   <div class="media-left">
                     <a href="#">
@@ -35,7 +35,7 @@
                   <div class="media-body">
                       <div class="data-cart">
                           <div class="cart-details">
-                              <h4 class="media-heading">{{cartItem.productName}}</h4>
+                              <h4 class="media-heading">Pre & Pro Biotic</h4>
                               <p>SP-BIOTIC-030</p>
                           </div>
                           <div class="cart-quantity">
@@ -49,19 +49,50 @@
                                       <option>Qty 6</option>
                                   </select>
                               </div>
-                              <p class="price-product">{{cartItem.price}}</p>
+                              <p class="price-product">$49.00</p>
                           </div>
                       </div>
                   </div>
                 </div>
             </div>
 
-     
+            <div class="cart-singleitem">
+              <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <img class="media-object" src="../../assets/cart-sample.png" alt="...">
+                      <span class="remove-product"><a href=""><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-times fa-w-10 fa-3x"><path fill="currentColor" d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z" class=""></path></svg></a></span>
+                    </a>
+                  </div>
+                  <div class="media-body">
+                      <div class="data-cart">
+                          <div class="cart-details">
+                              <h4 class="media-heading">Pre & Pro Biotic</h4>
+                              <p>SP-BIOTIC-030</p>
+                          </div>
+                          <div class="cart-quantity">
+                              <div class="form-group">
+                                  <select class="form-control">
+                                      <option>Qty 1</option>
+                                      <option>Qty 2</option>
+                                      <option>Qty 3</option>
+                                      <option>Qty 4</option>
+                                      <option>Qty 5</option>
+                                      <option>Qty 6</option>
+                                  </select>
+                              </div>
+                              <p class="price-product">$54.00</p>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
 
             <div class="other-additional-product">
                 <div class="promo-code">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Promo code"/>
+                    <div [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                        <input type="text" [(ngModel)]="promocode_onetime"  class="form-control"/>
+                        <label class="form-label">Promo Code</label>
                         <span class="btn-add-promo">
                           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
                               <path id="Path_2014" data-name="Path 2014" d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z" transform="translate(-194.9 -3)"/>
@@ -120,8 +151,9 @@
 
             <div class="other-additional-product">
                 <div class="promo-code">
-                    <div class="form-group">
-                        <input type="text" class="form-control" bsDatepicker [maxDate]="maxDate" [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }" placeholder="Select start date"/>
+                    <div [className]="inputdata ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                        <input type="text" [(ngModel)]="inputdata"  class="form-control" bsDatepicker [maxDate]="maxDate" [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }"/>
+                        <label class="form-label">Select Start Date</label>
                         <span class="btn-add-promo">
                           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
                               <defs>
@@ -151,29 +183,41 @@
           </div>
           <div class="col-md-12 col-lg-5">
            <!--- Search BOX--->
-           <div class="grid-box-shadow search-box">
-               <div *ngIf="toShowData" class="data-refered-by">
-                   <span class="referedby-text">
-                       <p class="title-refered">Referred by</p>
-                       <p class="Refered-value">{{refName}}, ID #{{refId}}</p>
-                       </span>
-                       <span class="arrow" (click)="open(referr_user)">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
-                              <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)" fill="#1280c4"/>
-                          </svg>
-                  </span>
-               </div>
-               <div *ngIf="showSearchBar" class="search-bar-on">
-                  <div class="form-group">
-                      <input type="text" class="form-control" (click)="open(referr_user)"  value="" placeholder="Find referral (Optional)"/>
-                      <span class="search"><svg xmlns="http://www.w3.org/2000/svg" width="16.947" height="17.048" viewBox="0 0 16.947 17.048">
-                          <path id="Path_2019" data-name="Path 2019" d="M151.4,12a4.5,4.5,0,1,1,4.5-4.5A4.481,4.481,0,0,1,151.4,12Zm6,0h-.8l-.3-.3a6.593,6.593,0,0,0,1.5-5.3,6.471,6.471,0,0,0-5.6-5.3,6.53,6.53,0,0,0-2,12.9,6.593,6.593,0,0,0,5.3-1.5l.3.3v.8l4.2,4.2a1.061,1.061,0,0,0,1.5-1.5Z" transform="translate(-144.853 -1.052)"/>
-                        </svg>
+        
+
+        <div class="sidebar-ui">
+             <ngb-accordion activeIds="enter-payment">
+            <ngb-panel id="refered-sidebar">
+                <ng-template ngbPanelTitle>
+                    <div class="heading-step1" >
+                        <h4>Referred By</h4>
+                        <span *ngIf="!toShowData" class="vali-promo">Not Referred</span>
+                        <p *ngIf="toShowData" class="Refered-value mb-0">{{refName}}, ID #{{refId}}</p>
+                        <span class="arrow-stepp">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
+                                <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
+                            </svg>                                                      
                         </span>
-                  </div>
-              <span class="text-value">Customer ID, First or Last Name</span>
-               </div>
+                    </div>
+                </ng-template>
+            <ng-template ngbPanelContent>
+                <div class=" search-box">
+                    <div class="search-bar-on">
+                       <div class="form-group">
+                           <input type="text" class="form-control" (click)="open(referr_user)"  value="" placeholder="Find referral (Optional)"/>
+                           <span class="search"><svg xmlns="http://www.w3.org/2000/svg" width="16.947" height="17.048" viewBox="0 0 16.947 17.048">
+                               <path id="Path_2019" data-name="Path 2019" d="M151.4,12a4.5,4.5,0,1,1,4.5-4.5A4.481,4.481,0,0,1,151.4,12Zm6,0h-.8l-.3-.3a6.593,6.593,0,0,0,1.5-5.3,6.471,6.471,0,0,0-5.6-5.3,6.53,6.53,0,0,0-2,12.9,6.593,6.593,0,0,0,5.3-1.5l.3.3v.8l4.2,4.2a1.061,1.061,0,0,0,1.5-1.5Z" transform="translate(-144.853 -1.052)"/>
+                             </svg>
+                             </span>
+                       </div>
+                   <span class="text-value">Customer ID, First or Last Name</span>
+                    </div>
+             </div>
+            </ng-template>
+            </ngb-panel>
+        </ngb-accordion>
         </div>
+       
 
           <!--- GET FREE SHipping BOX--->
         <div class="grid-box-shadow">
