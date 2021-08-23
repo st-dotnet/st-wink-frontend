@@ -41,8 +41,8 @@ section.best-selller h3 {
     text-align: center;
     margin-bottom: 30px;
     font-family: 'g-regular';
-    font-size: 40px;
-    color: #707070;
+    font-size: 50px;
+    color: rgba(0 0 0/0.8);
 }
 
 .seller-wrapper {
@@ -61,7 +61,7 @@ section.best-selller h3 {
 
 .seller-wrapper .content-info-image h4 {
     font-family: 'g-demibold';
-    font-size: 20px;
+    font-size: 22px;
     max-width: 210px;   
     margin: 0 auto 6px;
     color: #fff;
@@ -140,10 +140,10 @@ section.safe-affective {
 section.impact-strengthen {padding: 60px 0;}
 
 section.impact-strengthen .content-safe h3 {
-    font-size: 40px;
-    color: #707070;
-    max-width: 375px !important;
+    color: rgba(0 0 0/0.8);
     line-height: 54px;
+    font-size: 44px !important;
+    max-width: 410px !important;
 }
 section.impact-strengthen p {
     text-align: center;
@@ -178,7 +178,7 @@ ul.rating-star li:not(:first-child) {
 
 
 section.testimonial-home {
-    background-color: #EFEFEF;
+    background-color: #E9EFF2;
     padding: 60px 0;
 }
 
@@ -196,15 +196,20 @@ section.testimonial-home h3 {
 }
 
 .testimonial-wrapper h4 {
-    font-size: 18px;
+    font-size: 24px;
+    color: rgba(0 0 0/0.8);
 }
 
 .testimonial-wrapper p.testimonial-text {
-    font-size: 12px;
+    font-size: 16px;
 }
 
 .testimonial-outer {
     padding: 10px;
+}
+
+.bottom-stars-info ul.rating-star li svg {
+    width: 20px !important;
 }
 
 .testimonial-wrapper .client-name h5 {
@@ -235,7 +240,7 @@ section.instagram-posts {
 
 section.instagram-posts h3 {
     text-align: center;
-    font-size: 40px;
+    font-size: 50px;
     font-family:'g-light';
     color: rgba(0 0 0/0.8) !important;
     margin-bottom: 50px;
@@ -361,5 +366,15 @@ ul.testimonial-images li {
 .content-safe {
     margin-top: 30px;
 }
-    
+footer .footer-menus h4 {
+    margin-bottom: 4px !important;
+}
+
+}
+
+@media (max-width:640px)
+{
+    section.instagram-posts h3 {
+        font-size: 28px !important;
+    }
 }
