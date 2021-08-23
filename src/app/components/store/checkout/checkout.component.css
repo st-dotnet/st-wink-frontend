@@ -290,3 +290,16 @@ div#subsc-purchse
 {
     border-bottom: none;
 }
+
+
+.search-bar-on .form-group {
+    position: relative;
+}
+
+.search-bar-on .form-group span.search {
+    position: absolute;
+    top: 4px;
+    right: 10px;
+}
+
+.search-bar-on .form-group span.search svg {width: 14px;}
