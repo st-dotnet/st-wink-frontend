@@ -37,7 +37,8 @@
                             <ng-template ngbPanelTitle>
                                 <div class="heading-step1" >
                                     <h4>Referred By</h4>
-                                    <span class="vali-promo">Not Referred</span>
+                                    <span *ngIf="!toShowData" class="vali-promo">Not Referred</span>
+                                    <p *ngIf="toShowData" class="Refered-value mb-0">{{refName}}, ID #{{refId}}</p>
                                     <span class="arrow-stepp">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
                                             <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
@@ -46,21 +47,20 @@
                                 </div>
                             </ng-template>
                         <ng-template ngbPanelContent>
-                           <div class="content-card steps-inner promo-checkout">
-                              <div class="col-md-12 p-0 mb-3">
-                                  <div class="form-group">
-                                    <input type="text" value="" name="promo-enter" class="form-control" placeholder="Promo Code"/>
-                                    <span class="vali-promo">Not Applied</span>
-                                      <span class="btn-add-promo">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><path _ngcontent-shj-c146="" id="Path_2014" data-name="Path 2014" d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z" transform="translate(-194.9 -3)"></path>
-                                        </svg>
-                                    </span>
-                                  </div>
-                              </div>
-                           </div>
+                            <div class=" search-box">
+                                <div class="search-bar-on">
+                                   <div class="form-group">
+                                       <input type="text" class="form-control" (click)="open(referr_user)"  value="" placeholder="Find referral (Optional)"/>
+                                       <span class="search"><svg xmlns="http://www.w3.org/2000/svg" width="16.947" height="17.048" viewBox="0 0 16.947 17.048">
+                                           <path id="Path_2019" data-name="Path 2019" d="M151.4,12a4.5,4.5,0,1,1,4.5-4.5A4.481,4.481,0,0,1,151.4,12Zm6,0h-.8l-.3-.3a6.593,6.593,0,0,0,1.5-5.3,6.471,6.471,0,0,0-5.6-5.3,6.53,6.53,0,0,0-2,12.9,6.593,6.593,0,0,0,5.3-1.5l.3.3v.8l4.2,4.2a1.061,1.061,0,0,0,1.5-1.5Z" transform="translate(-144.853 -1.052)"/>
+                                         </svg>
+                                         </span>
+                                   </div>
+                               <span class="text-value">Customer ID, First or Last Name</span>
+                                </div>
+                         </div>
                         </ng-template>
                         </ngb-panel>
-    
                         <ngb-panel id="promo-sidebar">
                             <ng-template ngbPanelTitle>
                                 <div class="heading-step1" >
@@ -672,5 +672,60 @@
      </div>
       </div>
     </div>
-  
   </ng-template>
+
+  <ng-template #referr_user let-modal>
+    <div [ngClass]="{'referrer_modal': true}">
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      <div class="modal-body">
+        <h3 class="referrer-title" id="modal-basic-title">Who referred you?</h3>
+        <div class="search-bar-on">
+            <div class="form-group">
+                <input type="text" #myInput class="form-control" value="" [(ngModel)]="filterTerm" (input)="filterItem(myInput.value)" placeholder="Find referral (Optional)"/>
+                <span class="search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16.947" height="17.048" viewBox="0 0 16.947 17.048">
+                       <path id="Path_2019" data-name="Path 2019" d="M151.4,12a4.5,4.5,0,1,1,4.5-4.5A4.481,4.481,0,0,1,151.4,12Zm6,0h-.8l-.3-.3a6.593,6.593,0,0,0,1.5-5.3,6.471,6.471,0,0,0-5.6-5.3,6.53,6.53,0,0,0-2,12.9,6.593,6.593,0,0,0,5.3-1.5l.3.3v.8l4.2,4.2a1.061,1.061,0,0,0,1.5-1.5Z" transform="translate(-144.853 -1.052)"/>
+                    </svg>
+                  </span>
+            </div>
+             <span class="text-value">Customer ID, First or Last Name</span>
+         </div>
+         <div class="search-results">
+             <h4>Search Results</h4>
+             <div class="referred-lists">
+                 <!--- Referrer People Grid --->
+                 <div class="data-all-referrer" *ngIf="isDataAvailable">
+                    <div  class="reffered-list-items" *ngFor="let referrer of selectedData">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                <img class="media-object" src="{{referrer.referrer_image}}" alt="...">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <div class="data-cart">
+                                    <div class="cart-details">
+                                        <h4 class="media-heading">{{referrer.referrer_name}}, ID #{{referrer.id}}</h4>
+                                        <div class="refrrer-info">
+                                            <p class="wink-link">Wink Link:<span class="wlink-data">{{referrer.wink_link}}</span></p>
+                                            <p class="location-referrer">{{referrer.referrer_location}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="link-select">
+                                    <a (click)="choose_referrer(referrer)">Select</a>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+                    <!--- Referrer People Grid --->
+                    <div *ngIf="!isDataAvailable"> No Records Available</div>
+             </div>
+         </div>
+      </div>
+    </div>
+  </ng-template>
+  

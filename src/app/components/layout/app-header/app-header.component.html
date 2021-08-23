@@ -69,8 +69,8 @@
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/enrollment']" [routerLinkActive]="['active']">Join</a>
           </li>
-          <li *ngIf="!user" class="nav-item"><a [routerLink]="['/sign-in']" class="log-links nav-link">SIGN IN</a></li>
-          <li *ngIf="user" class="nav-item"><a (click)="logout()" class="log-links nav-link">Log out</a></li>
+          <li class="cart-item"><a [routerLink]="['/store/cart']"><i class="fa fa-shopping-bag"></i><span *ngIf="cartItems" class="cart-info">{{cartItems}}</span></a></li>
+          <li *ngIf="user"><a (click)="logout()" class="log-links">Log out</a></li>
         </ul>
         <div class="logo-center">
           <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img

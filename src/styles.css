@@ -753,10 +753,11 @@ div#notifi-review-header+div#notifi-review {
 .sidebar-ui ngb-accordion.accordion .card-header button.btn-link[aria-expanded="true"] span.arrow-stepp svg
 {
   top: 3px;
-  transform: rotateZ(90deg);
+  transform: rotateZ(180deg);
   position: absolute;
   right: 5px;
 }
+
 .checkout-ste                                                                                                                                                                                                                                                                                                                                                                                    ps-3 ngb-accordion.accordion ngb-accordion.accordion .card-header button.btn-link[aria-expanded="false"] span.arrow-stepp svg,
 .sidebar-ui ngb-accordion.accordion .card-header button.btn-link[aria-expanded="false"] span.arrow-stepp svg
 {
@@ -1000,6 +1001,60 @@ ul.conv-products input[type="checkbox"] ~ .custom-control-label::before {
   border-color: #1cb1c5 !important;
   box-shadow: none;
 }
+
+
+
+/* CSS Enrollment Packs */
+
+.pack-info {
+  float: left;
+  padding: 20px 20px;
+}
+
+.pack-info h4 {
+  font-family: 'g-demibold';
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.pack-info ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.pack-info ul li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 14px;
+}
+
+.pack-info ul li:before {
+  width: 11px;
+  height: 11px;
+  content: '';
+  background-color: #17a2b8;
+  position: absolute;
+  left: 0px;
+  top: 6px;
+}
+
+.pack-info ul li:after {
+  width: 5px;
+  height: 5px;
+  content: '';
+  background-color: #ffffff;
+  position: absolute;
+  left: 3px;
+  top: 9px;
+  border-top-right-radius: 100%;
+}
+
+.pack-info ul li {
+  font-size: 15px;
+  font-family: 'g-regular';
+}
+
+
 
 /* MEDIA */
 @media (min-width: 1366px)
