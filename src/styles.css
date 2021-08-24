@@ -69,6 +69,14 @@ body
   font-family: 'g-regular' !important;
 }
 
+
+section,footer
+{
+  width:100%;
+  float: left;
+}
+
+
 .white-bg
 {
 background-color: #fff;
@@ -1064,6 +1072,18 @@ app-notification-bar .topbar span.icon-close {
   right: 15px;
 }
 
+
+
+
+section.top-owl-banner .owl-dots .owl-dot span {
+  background-color: rgba(255 255 255/0.4);
+}
+
+section.top-owl-banner .owl-dots .owl-dot.active span {
+background-color:#fff;  
+}
+
+
 /* MEDIA */
 @media (min-width: 1367px)
 {
@@ -1236,6 +1256,40 @@ section.checkout-page.grid-checkout {
     .main-content {
       padding-top: 120px;
   }
+}
+
+@media (max-width:767px)
+{
+  footer .footer-menus h4 {
+    margin-bottom: 6px !important;
+}
+section.best-selller h3 {
+  font-size: 35px !important;
+}
+
+.content-safe h3 {
+  font-size: 38px !important;
+  color: rgba(0 0 0/0.8) !important;
+  max-width: 170px;
+}
+
+section.impact-strengthen .content-safe h3 {
+  font-size: 23px !important;
+}
+
+section.testimonial-home h3 {
+  font-size: 33px !important;
+}
+section.testimonial-home .owl-nav .owl-next {
+  right: -22px;
+}
+
+section.testimonial-home .owl-nav .owl-prev {
+  left: -22px;
+}
+section.top-owl-banner .owl-dots {
+  bottom: 0px;
+}
 }
 
 @media (max-width:430px)
