@@ -70,12 +70,16 @@ body
 }
 
 
-section,footer
+section,footer,.main-content
 {
   width:100%;
   float: left;
 }
 
+app-layout {
+  display: flex;
+  flex-direction: column;
+}
 
 .white-bg
 {
@@ -942,8 +946,6 @@ ul.conv-products input[type="checkbox"] ~ .custom-control-label::before {
 }
 
 
-
-
 /*  Input Fields special   */
 
 .special-field {
@@ -1010,6 +1012,14 @@ ul.conv-products input[type="checkbox"] ~ .custom-control-label::before {
   box-shadow: none;
 }
 
+div#checkoutstep2 .special-field.dataempty.form-group {
+  width: 100%;
+  max-width: 100%;
+}
+
+div#checkoutstep2 .special-field.dataempty.form-group span.btn-add-promo {
+  top: 8px;
+}
 
 
 /* CSS Enrollment Packs */
