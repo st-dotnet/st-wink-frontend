@@ -252,6 +252,7 @@
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
                                                     <h4>Shipping Address</h4>
+                                                    <p>Clint Roberts 564 W 700 S STE 205 Pleas …</p>
                                                     <span class="arrow-stepp">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
                                                             <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
@@ -308,6 +309,7 @@
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
                                                     <h4>Shipping Method</h4>
+                                                    <p>$6.99 - USPS Ground Shipping - 1st Class</p>
                                                     <span class="arrow-stepp">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
                                                             <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
@@ -444,6 +446,53 @@
                                        </div>
                                     </ng-template>
                                     </ngb-panel>
+                                    
+                                    <ngb-panel id="cards-selection">
+                                        <ng-template ngbPanelTitle>
+                                            <div class="heading-step1">
+                                                <h4>Select Card</h4>
+                                                <span class="arrow-stepp">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
+                                                        <path id="Path_2044" data-name="Path 2044" d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z" transform="translate(-630.6 -4.4)"/>
+                                                    </svg>                                                      
+                                                </span>
+                                            </div>
+                                        </ng-template>
+                                    <ng-template ngbPanelContent>
+                                            <div class="content-card steps-inner shipping-method">
+                                                <div class="method-cardselect">
+                                                    <ul class="select-paycard">
+                                                        <li>
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="cardlitem1" name="cardlitem" class="custom-control-input">
+                                                                <label class="custom-control-label" for="cardlitem1">
+                                                                    <div class="shipping-list-item">
+                                                                        <h4>Visa ending in 111 <a href="" class="edit-cardopt">Edit</a></h4>
+                                                                        <div class="card-info">
+                                                                            <p class="name_oncard">john Doe</p>
+                                                                            <p class="card-expire">Expires 02/22</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </label>
+                                                              </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="cardlitem2" name="cardlitem" class="custom-control-input">
+                                                                <label class="custom-control-label" for="cardlitem2">
+                                                                    <div class="shipping-list-item">
+                                                                        <h4>Pay with new card</h4>
+                                                                    </div>
+                                                                </label>
+                                                              </div>
+                                                        </li>
+                                                        
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
+                                    </ng-template>
+                                    </ngb-panel>
                                     <ngb-panel id="card-info">
                                         <ng-template ngbPanelTitle>
                                             <div class="heading-step1">
@@ -489,6 +538,20 @@
                                                 </div></div>
                                                 
                                               </div>
+                                              <div class="row">
+                                                  <div class="col-md-12">
+                                                    <ul class="conv-products mk-primary">
+                                                        <li>
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="checkbox" id="customRadio1" name="customRadio" class="custom-control-input">
+                                                                <label class="custom-control-label" for="customRadio1">
+                                                                    Make primary card
+                                                                </label>
+                                                              </div>
+                                                        </li>
+                                                        </ul>
+                                                  </div>
+                                              </div>
                                            </form>
                                        </div>
                                     </ng-template>
@@ -510,8 +573,8 @@
                                                     <ul>
                                                         <li>
                                                             <div class="custom-control custom-radio">
-                                                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-                                                                <label class="custom-control-label" for="customRadio1">
+                                                                <input type="radio" id="customRadio1" (change)="sameshippingAddress()" checked  name="customRadio" class="custom-control-input">
+                                                                <label class="custom-control-label"  for="customRadio1">
                                                                     <div class="shipping-list-item">
                                                                         <h4>Same as shipping address</h4>
                                                                     </div>
@@ -520,7 +583,7 @@
                                                         </li>
                                                         <li>
                                                             <div class="custom-control custom-radio">
-                                                                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                                                                <input type="radio" id="customRadio2"  (change)="differentAddress()" type="radio" name="customRadio" class="custom-control-input">
                                                                 <label class="custom-control-label" for="customRadio2">
                                                                     <div class="shipping-list-item">
                                                                         <h4>Use different address</h4>
@@ -528,14 +591,50 @@
                                                                 </label>
                                                               </div>
                                                         </li>
-                                                        
                                                     </ul>
                                                 </div>
+                                                <ng-template [ngIf]="addrnew">
+                                                    <div class="different-address">
+                                                        <form class="newaddr-infoo"> 
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <input type="text" placeholder="Street address" name="street_address" class="form-control"/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <input type="number" placeholder="City" name="city_billing" class="form-control"/>
+                                                                    </div>
+                                                                </div> 
+                                                            
+                                                                  <div class="col-md-4">
+                                                                      <div class="form-group">
+                                                                         <input type="text" placeholder="State" name="state_billing" class="form-control"/>
+                                                                      </div>
+                                                                  </div>
+                                                                   <div class="col-md-4">
+                                                                       <div class="form-group">
+                                                                          <input type="text" placeholder="ZIP" name="zip_billing" class="form-control"/>
+                                                                       </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                      <div class="form-group">
+                                                                           <input type="text" placeholder="Country" name="country_billing" class="form-control"/>
+                                                                       </div>
+                                                                     </div>
+                                                                
+                                                              </div>
+                                                             
+                                                           </form>
+                                                    </div>
+                                                
+                                                </ng-template>
+                                                
                                             </div>
                                             
                                     </ng-template>
                                     </ngb-panel>
-                               
                                 </ngb-accordion>
                                 <div class="cta-continue">
                                     <button class="btn btn-continue">

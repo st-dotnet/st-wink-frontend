@@ -96,6 +96,84 @@ section.backlink-header .back-link a svg {
 
 .method-shipp ul li input:checked~.custom-control-label::before {background-color: #fff;border-color: #1CB1C5;}
 
+
+.method-cardselect ul {
+    padding: 0 15px;
+    list-style-type: none;
+}
+
+.method-cardselect ul li {margin-bottom: 20px;}
+
+.method-cardselect ul li .custom-control {
+    padding-left: 15px;
+}
+
+.method-cardselect ul.select-paycard {
+    margin-bottom: 0px;
+}
+
+.method-cardselect ul.select-paycard h4 {
+    font-size: 18px;
+    font-family: 'g-demibold';
+    color: #000;
+    margin: 0 0 3px 0;
+}
+
+.method-cardselect ul.select-paycard .card-info p {
+    margin: 0;
+    color: rgba(0 0 0/0.8);
+    font-size: 12px;
+    font-family: 'g-medium';
+}
+.method-cardselect ul h4 a.edit-cardopt {
+    font-size: 12px;
+    font-family: 'g-demibold';
+    color: #17b0cc;
+    margin: 0 0 3px 0;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.method-cardselect ul.select-paycard li:not(:first-child) {
+    border-top: 1px solid #e6e6e6;
+    padding-top: 20px;
+    margin-bottom: 0px !important;
+}
+
+.method-cardselect ul li label .cardselecting-list-item .card-info p {
+    margin: 0;
+    color: rgba(0 0 0/0.8);
+    font-size: 14px;
+}
+
+.method-cardselect ul li .custom-control input {
+    top: 5px;
+    left: 5px;
+}
+
+.method-cardselect ul li label:after {
+    background-color: #ffffff;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    left: -22px;
+    top: 9px;
+}
+
+.method-cardselect ul li label:before {
+    border: 2px solid #747474;
+    left: -25px;
+    top: 6px;
+}
+
+.method-cardselect ul li input:checked~.custom-control-label::after {
+    background-color: #1CB1C5;
+    background-image: none !important;
+}
+
+.method-cardselect ul li input:checked~.custom-control-label::before {background-color: #fff;border-color: #1CB1C5;}
+
+
 .cta-continue {
     text-align: center;
     margin: 30px 0 0px;
@@ -228,6 +306,9 @@ span.loyal-conv-modal {
 
 .table-today-order tbody tr:last-child td {padding-bottom: 15px;}
 
+form.newaddr-infoo input {
+    height: 45px;
+}
 
 p.you-sav {
     color: #1CC584;
@@ -303,3 +384,14 @@ div#subsc-purchse
 }
 
 .search-bar-on .form-group span.search svg {width: 14px;}
+
+
+ul.conv-products.mk-primary {
+    list-style: none;
+    padding: 0;
+}
+
+ul.conv-products.mk-primary label.custom-control-label {
+    font-family: 'g-demibold';
+    font-size: 16px;
+}
