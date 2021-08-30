@@ -1012,12 +1012,12 @@ ul.conv-products input[type="checkbox"] ~ .custom-control-label::before {
   box-shadow: none;
 }
 
-div#checkoutstep2 .special-field.dataempty.form-group {
+div#checkoutstep2 .special-field.dataempty.form-group,div#checkoutstep3 .special-field.dataempty.form-group {
   width: 100%;
   max-width: 100%;
 }
 
-div#checkoutstep2 .special-field.dataempty.form-group span.btn-add-promo {
+div#checkoutstep2 .special-field.dataempty.form-group span.btn-add-promo,div#checkoutstep3 .special-field.dataempty.form-group span.btn-add-promo {
   top: 8px;
 }
 
@@ -1093,6 +1093,12 @@ section.top-owl-banner .owl-dots .owl-dot.active span {
 background-color:#fff;  
 }
 
+
+
+ .btn-proceed button:focus,.btn-proceed a:focus {box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%) !important;}
+.btn-proceed a:focus {
+  outline: none;
+}
 
 /* MEDIA */
 @media (min-width: 1367px)
@@ -1270,6 +1276,10 @@ section.checkout-page.grid-checkout {
 
 @media (max-width:767px)
 {
+  .sidebar-ui {
+    padding: 0;
+}
+
   footer .footer-menus h4 {
     margin-bottom: 6px !important;
 }
