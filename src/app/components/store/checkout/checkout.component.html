@@ -300,7 +300,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
                                             </form>
                                         </div>
                                         </ng-template>
@@ -543,8 +542,8 @@
                                                     <ul class="conv-products mk-primary">
                                                         <li>
                                                             <div class="custom-control custom-radio">
-                                                                <input type="checkbox" id="customRadio1" name="customRadio" class="custom-control-input">
-                                                                <label class="custom-control-label" for="customRadio1">
+                                                                <input type="checkbox" id="card-primary" name="customRadio" class="custom-control-input">
+                                                                <label class="custom-control-label" for="card-primary">
                                                                     Make primary card
                                                                 </label>
                                                               </div>
@@ -623,16 +622,11 @@
                                                                            <input type="text" placeholder="Country" name="country_billing" class="form-control"/>
                                                                        </div>
                                                                      </div>
-                                                                
                                                               </div>
-                                                             
                                                            </form>
                                                     </div>
-                                                
                                                 </ng-template>
-                                                
                                             </div>
-                                            
                                     </ng-template>
                                     </ngb-panel>
                                 </ngb-accordion>
@@ -671,7 +665,21 @@
                                                 </span>
                                             </div>
                                         </ng-template>
-                             
+                             <ng-template ngbPanelContent>
+                                <div class="content-card steps-inner promo-checkout">
+                                    <div class="col-md-12 p-0 mb-3">
+                                        <div [className]="promocodepay ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                          <input type="text" [(ngModel)]="promocodepay" value="" name="promo-enter" class="form-control"/>
+                                          <label class="form-label">Promo Code</label>
+                                          <span class="vali-promo">Not Applied</span>
+                                            <span class="btn-add-promo">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><path _ngcontent-shj-c146="" id="Path_2014" data-name="Path 2014" d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z" transform="translate(-194.9 -3)"></path>
+                                              </svg>
+                                          </span>
+                                        </div>
+                                    </div>
+                                 </div>
+                             </ng-template>
                                     </ngb-panel>
                                     <ngb-panel id="loyalty-info">
                                         <ng-template ngbPanelTitle>
