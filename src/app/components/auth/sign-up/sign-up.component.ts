@@ -124,7 +124,7 @@ export class SignUpComponent implements OnInit {
     return re.test(String(email).toLowerCase());
   }
 
-  emailVerify(){
+  emailVerify(type:any){
     const emailModel ={
       userName : this.f.username.value,
       email : this.f.emailAddress.value
@@ -136,7 +136,7 @@ export class SignUpComponent implements OnInit {
         next: (result:any) => {
           debugger         
           if(result){
-            this.toastrService.error('UserName and Email Already existed');
+            this.toastrService.error(`${type} Already existed`);
            } 
           this.spinner.hide();
         },
@@ -145,7 +145,6 @@ export class SignUpComponent implements OnInit {
           this.spinner.hide();
           this.loading = false;
         },
-      });
-  
+      });  
   }
 }

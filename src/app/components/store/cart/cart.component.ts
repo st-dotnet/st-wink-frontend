@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SessionService } from '@app/_services';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-cart',
@@ -8,37 +10,111 @@ import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  inputdata : string;
-  promocode_onetime : string;
-  data_learn :boolean = false;
+  subscriptionPurchase = false;
+  inputdata: string;
+  promocode_onetime: string;
+  data_learn: boolean = false;
   closeResult: string;
+  cartItems: any[] = [];
   maxDate = new Date();
   modalOptions: NgbModalOptions = {
     backdrop: 'static',
     backdropClass: 'customBackdrop'
   };
-
-  onTextChange(value)
-  {
-    
-    // this.inputdata = value;
-    // this.promocode_onetime = value;
-    // if(this.inputdata == '' || this.promocode_onetime == '')
-    // {
-      
-    // } 
-    // else if
-    
+  cart: any[];
+  subtotalOneTimePrice: any = 0;
+  subtotalSubscriptionTimePrice: any = 0;
+  total = false;
+  selectDelivery: any[];
+  quantity: { id: string; name: string; value: string; }[];
+  years: { id: string; name: string; value: string; }[];
+  onTextChange(value) {
   }
+  quantityModel:any;
+  subscriptionModel:any;
 
   constructor(private modalService: NgbModal,
-    private sessionService: SessionService,) {
+    private sessionService: SessionService,
+    private spinner: NgxSpinnerService,
+    private router: Router) {
     this.sessionService.scrollToTop();
     this.maxDate.setDate(this.maxDate.getDate() - 1);
+
+    this.quantity = [
+      {
+        id: '1',
+        name: 'Qty 1',
+        value: 'Qty1'
+      },
+      {
+        id: '2',
+        name: 'Qty 2',
+        value: 'Qty2'
+      },
+      {
+        id: '3',
+        name: 'Qty 3',
+        value: 'Qty3'
+      },
+      {
+        id: '4',
+        name: 'Qty 4',
+        value: 'Qty4'
+      }
+    ]
+    this.years = [
+      {
+        id: '1',
+        name: 'Every Month',
+        value: 'everyMonth'
+      },
+      {
+        id: '2',
+        name: 'Every Week',
+        value: 'everyWeek'
+      },
+      {
+        id: '3',
+        name: 'Every Year',
+        value: 'everyYear'
+      }
+    ]
   }
+  
 
   ngOnInit(): void {
+    debugger
+    this.cartItems = this.sessionService.getSessionObject('productCartItems');
+    console.log(' All Cart Items', this.cartItems);
+    this.selectDelivery=this.cartItems.filter(x=>x.selectDelivery == 'subscribe');
+    this.cartItems=this.cartItems.filter(x=>x.selectDelivery != 'subscribe');
+    console.log('CartItems', this.cartItems);
+    console.log('selectDelivery', this.selectDelivery);
+    if (this.total == true) {
+      this.subtotalOneTimePrice = 0
+      this.subtotalSubscriptionTimePrice=0;
+    }
+    this.cartItems.forEach(element => { 
+      this.subtotalOneTimePrice += element.price;   
+    });
+    if(typeof this.subtotalOneTimePrice === 'string'){
+      this.subtotalOneTimePrice =parseInt(this.subtotalOneTimePrice);
+      this.subtotalOneTimePrice = this.subtotalOneTimePrice.toFixed(2);
+    }else{
+      this.subtotalOneTimePrice = this.subtotalOneTimePrice.toFixed(2);
+    }   
+    this.selectDelivery.forEach(element => { 
+      this.subtotalSubscriptionTimePrice += element.price;   
+    });
+    if(typeof this.subtotalSubscriptionTimePrice === 'string'){
+      this.subtotalSubscriptionTimePrice =parseInt(this.subtotalSubscriptionTimePrice);
+      this.subtotalSubscriptionTimePrice = this.subtotalSubscriptionTimePrice.toFixed(2);
+    }else{
+      this.subtotalSubscriptionTimePrice = this.subtotalSubscriptionTimePrice.toFixed(2);
+    }   
+  
     this.filterItem("");
+    
   }
 
   open(content) {
@@ -49,12 +125,10 @@ export class CartComponent implements OnInit {
     });
   }
 
-  learn_show()
-  {
+  learn_show() {
     this.data_learn = !this.data_learn;
     console.log(this.data_learn);
   }
-
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -135,14 +209,11 @@ export class CartComponent implements OnInit {
 
   selectedData = this.referrerRecords;
   filterItem(val) {
-    debugger;
     //value not empty
     if (val !== "") {
-      debugger;
       //Data filter method
       this.selectedData = this.referrerRecords.filter(x => (x.referrer_name.includes(val) || x.referrer_name.includes(val.toUpperCase()) || x.referrer_name.includes(val.toLowerCase())) || x.id == parseInt(val));
       if (this.selectedData.length == 0) {
-        debugger;
         this.isDataAvailable = false;
       }
     }
@@ -161,13 +232,40 @@ export class CartComponent implements OnInit {
       this.refId = data.id;
       debugger;
       this.refName = this.referrerRecords.filter(x => x.id == parseInt(data.id)).map(ele => ele.referrer_name);
-      debugger;
-      this.toShowData = true;       
+      this.toShowData = true;
     }
     else {
-      this.toShowData = false;      
+      this.toShowData = false;
     }
-
   }
 
+  removeItem(cartItem: any) {
+    debugger     
+    this.total = true;
+    this.spinner.show();    
+    this.cart = this.cartItems.filter(x => x.itemCode != cartItem.itemCode); 
+    this.selectDelivery.push(this.cart); 
+    this.sessionService.setSessionObject('productCartItems', this.selectDelivery  );
+    this.spinner.hide();
+    this.ngOnInit();
+  }
+
+  removeItemSubscription(subscriptionItem:any){
+    debugger
+    this.total = true;
+    this.spinner.show();    
+    this.cart= this.selectDelivery.filter(x => x.itemCode != subscriptionItem.itemCode);
+    this.cartItems.push(this.cart);     
+    this.sessionService.setSessionObject('productCartItems', this.cartItems);
+    this.spinner.hide();
+    this.ngOnInit();
+  }
+
+  checkOutItem() {
+    if (this.sessionService.getSessionItem('user')) {
+      this.router.navigate(["/store/checkout"]);
+    } else {
+      this.router.navigate(["/sign-in"]);
+    }
+  }
 }

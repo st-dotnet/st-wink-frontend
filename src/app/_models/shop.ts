@@ -11,8 +11,8 @@ export class CategoryModel
 
 export class ShopProductModel
 {
-    itemID!:number;
-    itemCode !:string;
+     itemID!:number;
+     itemCode !:string;
      itemDescription !:string;
      weight !:number;
      itemTypeID !:number;

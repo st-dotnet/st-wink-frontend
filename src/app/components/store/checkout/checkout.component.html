@@ -2,12 +2,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-7 col-md-12 back-link mb-4">
-           <a href=""><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="angle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" class="svg-inline--fa fa-angle-left fa-w-6 fa-3x"><path fill="currentColor" d="M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z" class=""></path></svg>Back to CART</a>
+           <a [routerLink]="['/store/cart']"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="angle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" class="svg-inline--fa fa-angle-left fa-w-6 fa-3x"><path fill="currentColor" d="M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z" class=""></path></svg>Back to CART</a>
             </div>
          <div class="visible-lg col-lg-5">
             <div class="sidebar-checkout">
                 <div class="cart-sidebar">
-                    <div class="sidebar-head"><h2>Cart Summary</h2><span class="amount-summary"> $40.00 </span></div>
+                    <div class="sidebar-head"><h2>Cart Summary</h2><span class="amount-summary"> $40.00</span></div>
                 </div>
             </div>
          </div>
@@ -28,7 +28,8 @@
                               </svg>
                             </span>Cart Summary</a>
                     </h2>
-                    <span class="amount-summary"> $40.00 </span></div>
+                    <span class="amount-summary"> $40.00 </span>
+                    </div>
                     </div>
                 </div>
                 <div *ngIf="sidebartoggle" class="sidebar-ui">

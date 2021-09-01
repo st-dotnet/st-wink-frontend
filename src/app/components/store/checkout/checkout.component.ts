@@ -26,10 +26,8 @@ export class CheckoutComponent implements OnInit {
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.sidebartoggle = true;    
+    this.sidebartoggle = true;
   }
-
-
 
   open(content) {
     this.modalService.open(content, this.modalOptions).result.then((result) => {
@@ -142,7 +140,7 @@ export class CheckoutComponent implements OnInit {
       debugger;
       //Data filter method
       this.selectedData = this.referrerRecords.filter(x => (x.referrer_name.includes(val) || x.referrer_name.includes(val.toUpperCase()) || x.referrer_name.includes(val.toLowerCase())) || x.id == parseInt(val));
-      if (this.selectedData.length == 0) {
+      if (this.selectedData.length == 0) {        
         debugger;
         this.isDataAvailable = false;
       }
@@ -170,12 +168,11 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  differentAddress(){
-    this.addrnew = true;   
+  differentAddress() {
+    this.addrnew = true;
   }
 
-  sameshippingAddress(){ 
-    this.addrnew = false; 
+  sameshippingAddress() {
+    this.addrnew = false;
   }
-
 }

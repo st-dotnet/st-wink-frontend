@@ -1249,7 +1249,10 @@ section.checkout-page.grid-checkout .container {
 section.checkout-page.grid-checkout {
   overflow: hidden;
 }
-
+section.best-selller .owl-nav 
+{
+display: block;
+}
 }
 
 
@@ -1317,4 +1320,10 @@ section.top-owl-banner .owl-dots {
   section.best-selller .owl-nav {
     display: block;
 }
+}
+
+.cart-singleitem .media-left img {
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
 }

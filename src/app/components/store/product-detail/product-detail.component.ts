@@ -12,11 +12,14 @@ import { ShopService } from '@app/_services/shop.service';
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
+
 export class ProductDetailComponent implements OnInit {
   incredShow: Boolean = false;
   isShowDivIf = false;
   itemCode: number;
   productDetail: any;
+  productItems: any[] = [];
+  productItem: any[];
   toggleDisplayDivIf() {
     this.isShowDivIf = !this.isShowDivIf;
   }
@@ -47,6 +50,7 @@ export class ProductDetailComponent implements OnInit {
     },
     nav: true
   }
+
   slide_reviews: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -96,6 +100,7 @@ export class ProductDetailComponent implements OnInit {
     },
     nav: true
   }
+
   banner_products: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -134,13 +139,14 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {    
-  this.getProductDetail(this.itemCode)
+  this.getProductDetail(this.itemCode);  
   }
 
   toggleShow() {
     this.incredShow = !this.incredShow;
   }
 
+  
   getProductDetail(itemCode){
     this.spinner.show();
     this.shopService.GetProductDetail(itemCode).subscribe(result => {
@@ -152,13 +158,23 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart(product: any) {
     debugger
-    this.productCartItems.push(product);
-    this.sessionService.cartSession(this.productCartItems);
-    this.sessionService.setSessionObject('productCartItems', this.productCartItems);
-    this.toastrService.success('Product added successfully');
-  }
-
-  getProductImage(imgUrl: string){
-  return imgUrl;
+    this.productItems =this.sessionService.getSessionObject('productCartItems');
+    if(this.productItems){
+      this.productItem=this.productItems.find(x => x.itemCode == product.itemCode);
+       if(!this.productItem){
+          this.productItems.push(product);
+          this.sessionService.cartSession(this.productItems);
+          this.sessionService.setSessionObject('productCartItems', this.productItems);
+          this.toastrService.success('Product added successfully');         
+        }else{
+          this.toastrService.error('Product already added into cart');        
+         }    
+    }    
+    else{
+      this.productCartItems.push(product);
+      this.sessionService.cartSession(this.productCartItems);
+      this.sessionService.setSessionObject('productCartItems', this.productCartItems);
+      this.toastrService.success('Product added successfully');
+    }       
   }
 }

@@ -30,8 +30,6 @@ export class AppHeaderComponent implements OnInit {
     this.isMobileMenu = !this.isMobileMenu
   }
 
-
-
   logout() {
     Swal.fire({
       title: 'Are you sure?',
@@ -44,9 +42,7 @@ export class AppHeaderComponent implements OnInit {
       if (result.value) {
         this.sessionService.logout();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-
       }
     })
   }
-
 }

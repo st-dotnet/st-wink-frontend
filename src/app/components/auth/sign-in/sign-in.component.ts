@@ -79,5 +79,4 @@ export class SignInComponent implements OnInit {
   showHidePassword() {
     this.showPassword = !this.showPassword;
   }
-
 }
