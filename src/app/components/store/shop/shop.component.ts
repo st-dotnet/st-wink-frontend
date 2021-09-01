@@ -8,7 +8,6 @@ import { environment } from '@environments/environment';
 import { Router } from '@angular/router';
 import { param } from 'jquery';
 import { ToastrService } from 'ngx-toastr';
-import { Common } from '@app/common/common';
 
 
 

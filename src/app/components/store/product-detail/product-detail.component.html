@@ -1,516 +1,339 @@
 <section class="breadcrumb-product">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <ul class="breadcrumb">
-          <li><a [routerLink]="['/store']">Shop</a></li>
-          /
-          <li><a href="#">Sleep</a></li>
-          /
-          <li>Sleep</li>
-        </ul>
-      </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a [routerLink]="['/store']">Shop</a></li>/
+                    <li><a href="#">Sleep</a></li>/
+                    <li>Sleep</li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
-</section>
-
-<section class="product-gallery">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 full-width banner_products-slides">
-        <div
-          id="custCarousel"
-          class="carousel slide"
-          data-ride="carousel"
-          align="center"
-        >
-          <!-- slides -->
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img [src]="productDetail.image_03" />
-            </div>
-            <div class="carousel-item">
-              <img [src]="productDetail.image_02" />
-            </div>
-            <div class="carousel-item">
-              <img [src]="productDetail.image_01" />
-            </div>
-          </div>
-          <ol class="carousel-indicators list-inline">
-            <li class="list-inline-item active">
-              <a
-                id="carousel-selector-0"
-                class="selected"
-                data-slide-to="0"
-                data-target="#custCarousel"
-                ><img [src]="productDetail.image_03"
-              /></a>
-            </li>
-            <li class="list-inline-item active">
-              <a
-                id="carousel-selector-1"
-                data-slide-to="1"
-                data-target="#custCarousel"
-                ><img [src]="productDetail.image_02"
-              /></a>
-            </li>
-            <li class="list-inline-item active">
-              <a
-                id="carousel-selector-2"
-                data-slide-to="2"
-                data-target="#custCarousel"
-                ><img [src]="productDetail.image_01"
-              /></a>
-            </li>
-          </ol>
-        </div>
-      </div>
-      <div class="col-md-6 full-width">
-        <div class="model-productview">
-          <div class="product-details">
-            <h5 class="card-title">{{ productDetail.itemDescription }}</h5>
-            <div class="reviews-product">
-              <ul>
-                <li><i class="fas fa-star"></i></li>
-                <li><i class="fas fa-star"></i></li>
-                <li><i class="fas fa-star"></i></li>
-                <li><i class="fas fa-star"></i></li>
-                <li><i class="fas fa-star"></i></li>
-              </ul>
-              <p>704 REVIEWS</p>
-            </div>
-            <h6 class="small">Perfect for ages 3+</h6>
-            <div class="product-info">
-              <p>
-                Take the battle out of bedtime! Our Kids Sleep Melts are
-                formulated with high-quality melatonin and natural ingredients
-                to help your little one get the kind of sleep they need.
-              </p>
-            </div>
-            <div class="prod-bundle-select">
-              <h3>Select Bundle</h3>
-              <div class="radio-bundle">
-                <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio1"
-                    value="option1"
-                  />
-                  <label class="form-check-label" for="inlineRadio1"
-                    >Single</label
-                  >
+  </section>
+  
+  <section class="product-gallery">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 full-width banner_products-slides">
+                <div id="custCarousel" class="carousel slide" data-ride="carousel" align="center">
+                    <!-- slides -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active"><img [src]="productDetail.image_03"/></div>
+                        <div class="carousel-item"><img [src]="productDetail.image_02"/></div>
+                        <div class="carousel-item"><img [src]="productDetail.image_01"/></div>
+                    </div>
+                    <ol class="carousel-indicators list-inline">
+                        <li class="list-inline-item active">
+                            <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#custCarousel"><img [src]="productDetail.image_03"/></a>
+                        </li>
+                        <li class="list-inline-item active">
+                            <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel"><img [src]="productDetail.image_02"/></a>
+                        </li>
+                        <li class="list-inline-item active">
+                            <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel"><img [src]="productDetail.image_01"/></a>
+                        </li>
+                    </ol>
                 </div>
-                <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio2"
-                    value="option2"
-                  />
-                  <label class="form-check-label" for="inlineRadio2"
-                    >2-pk (Save 5%)</label
-                  >
-                </div>
-              </div>
             </div>
-            <div class="prod-bundle-select mt-0 delivery-radio">
-              <h3>Select Delivery</h3>
-              <div class="radio-bundle">
-                <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="del-radio"
-                    id="inlineRadio3"
-                    value="option3"
-                  />
-                  <label class="form-check-label" for="inlineRadio3"
-                    >Single Delivery</label
-                  >
+            <div class="col-md-6 full-width">
+                    <div class="model-productview">
+                        <div class="product-details">
+                            <h5 class="card-title">{{productDetail.itemDescription}}</h5>
+                            <div class="reviews-product">
+                                <ul>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    </ul>
+                                    <p>704 REVIEWS</p>
+                            </div>
+                            <h6 class="small">Perfect for ages 3+</h6>
+                            <div class="product-info">
+                                <p>Take the battle out of bedtime! Our Kids Sleep Melts are formulated with high-quality melatonin and natural ingredients to help your little one get the kind of sleep they need.</p>
+                            </div>
+                            <div class="prod-bundle-select">
+                                <h3>Select Bundle</h3>
+                                        <div class="radio-bundle">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1">Single</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2">2-pk (Save 5%)</label>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="prod-bundle-select mt-0 delivery-radio">
+                                <h3>Select Delivery</h3>
+                                        <div class="radio-bundle">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="del-radio" id="inlineRadio3" value="option3">
+                                            <label class="form-check-label" for="inlineRadio3">Single Delivery</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="del-radio" id="inlineRadio4" value="option4">
+                                            <label class="form-check-label" for="inlineRadio4">Subscribe & Save 15%</label>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="custom-shiping">
+                                <h3>Customize Shipment</h3>
+                                <div class="choose-shipping">
+                                    <div class="form-group">
+                                        <select class="form-control">
+                                            <option>Qty 1</option>
+                                            <option>Qty 2</option>
+                                            <option>Qty 3</option>
+                                            <option>Qty 4</option>
+                                        </select>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
+                                            <path id="Path_2028" data-name="Path 2028" d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z" transform="translate(-342.315 -7.7)"/>
+                                            </svg>
+  
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control">
+                                            <option>Every Month</option>
+                                            <option>Every Week</option>
+                                            <option>Every Year</option>
+                                        </select>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
+                                            <path id="Path_2028" data-name="Path 2028" d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z" transform="translate(-342.315 -7.7)"/>
+                                            </svg>
+  
+                                    </div>
+  
+                                </div>
+                            </div>
+                                    <div class="cart-btn">
+                                        <button type="submit" (click)="addToCart(product)" class="btn btn-cart">${{productDetail.price}} ADD</button>
+                                    </div>
+                        </div>
+                    </div>
+             </div>
                 </div>
-                <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="del-radio"
-                    id="inlineRadio4"
-                    value="option4"
-                  />
-                  <label class="form-check-label" for="inlineRadio4"
-                    >Subscribe & Save 15%</label
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="custom-shiping">
-              <h3>Customize Shipment</h3>
-              <div class="choose-shipping">
-                <div class="form-group">
-                  <select class="form-control">
-                    <option>Qty 1</option>
-                    <option>Qty 2</option>
-                    <option>Qty 3</option>
-                    <option>Qty 4</option>
-                  </select>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 7.171 4.6"
-                  >
-                    <path
-                      id="Path_2028"
-                      data-name="Path 2028"
-                      d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
-                      transform="translate(-342.315 -7.7)"
-                    />
-                  </svg>
-                </div>
-                <div class="form-group">
-                  <select class="form-control">
-                    <option>Every Month</option>
-                    <option>Every Week</option>
-                    <option>Every Year</option>
-                  </select>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 7.171 4.6"
-                  >
-                    <path
-                      id="Path_2028"
-                      data-name="Path 2028"
-                      d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
-                      transform="translate(-342.315 -7.7)"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="cart-btn">
-              <button
-                type="submit"
-                (click)="addToCart(productDetail)"
-                class="btn btn-cart"
-              >
-                ${{ productDetail.price }}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-</section>
-<section class="product-gallery mob-ui visible-xs visible-sm">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 full-width">
-        <div class="model-productview">
-          <div class="product-details">
-            <h5 class="card-title">{{ productDetail.itemDescription }}</h5>
-            <div class="reviews-product">
-              <ul>
-                <li><i class="fas fa-star"></i></li>
-                <li><i class="fas fa-star"></i></li>
-                <li><i class="fas fa-star"></i></li>
-                <li><i class="fas fa-star"></i></li>
-                <li><i class="fas fa-star"></i></li>
-              </ul>
-              <p>704 REVIEWS</p>
-            </div>
-            <h6 class="small">Perfect for ages 3+</h6>
-            <div class="product-info">
-              <p>
-                Take the battle out of bedtime! Our Kids Sleep Melts are
-                formulated with high-quality melatonin and natural ingredients
-                to help your little one get the kind of sleep they need.
-              </p>
-            </div>
-            <div class="prod-bundle-select">
-              <h3>Select Bundle</h3>
-              <div class="radio-bundle">
-                <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio1"
-                    value="option1"
-                  />
-                  <label class="form-check-label" for="inlineRadio1"
-                    >Single</label
-                  >
+  </section>
+  <section class="product-gallery mob-ui visible-xs visible-sm">
+    <div class="container">
+        <div class="row">
+  
+            <div class="col-md-6 full-width">
+                    <div class="model-productview">
+                        <div class="product-details">
+                            <h5 class="card-title">{{productDetail.itemDescription}}</h5>
+                            <div class="reviews-product">
+                                <ul>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    </ul>
+                                    <p>704 REVIEWS</p>
+                            </div>
+                            <h6 class="small">Perfect for ages 3+</h6>
+                            <div class="product-info">
+                                <p>Take the battle out of bedtime! Our Kids Sleep Melts are formulated with high-quality melatonin and natural ingredients to help your little one get the kind of sleep they need.</p>
+                            </div>
+                            <div class="prod-bundle-select">
+                                <h3>Select Bundle</h3>
+                                        <div class="radio-bundle">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1">Single</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2">2-pk (Save 5%)</label>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="prod-bundle-select mt-0 delivery-radio">
+                                <h3>Select Delivery</h3>
+                                        <div class="radio-bundle">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="del-radio" id="inlineRadio3" value="option3">
+                                            <label class="form-check-label" for="inlineRadio3">Single Delivery</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="del-radio" id="inlineRadio4" value="option4">
+                                            <label class="form-check-label" for="inlineRadio4">Subscribe & Save 15%</label>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="custom-shiping">
+                                <h3>Customize Shipment</h3>
+                                <div class="choose-shipping">
+                                    <div class="form-group">
+                                        <select class="form-control">
+                                            <option>Qty 1</option>
+                                            <option>Qty 2</option>
+                                            <option>Qty 3</option>
+                                            <option>Qty 4</option>
+                                        </select>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
+                                            <path id="Path_2028" data-name="Path 2028" d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z" transform="translate(-342.315 -7.7)"/>
+                                            </svg>
+  
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control">
+                                            <option>Every Month</option>
+                                            <option>Every Week</option>
+                                            <option>Every Year</option>
+                                        </select>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
+                                            <path id="Path_2028" data-name="Path 2028" d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z" transform="translate(-342.315 -7.7)"/>
+                                            </svg>
+  
+                                    </div>
+  
+                                </div>
+                            </div>
+                                    <div class="cart-btn">
+                                        <button type="submit" (click)="addToCart(product)" class="btn btn-cart">${{productDetail.price}}</button>
+                                    </div>
+                        </div>
+                    </div>
+             </div>
                 </div>
-                <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio2"
-                    value="option2"
-                  />
-                  <label class="form-check-label" for="inlineRadio2"
-                    >2-pk (Save 5%)</label
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="prod-bundle-select mt-0 delivery-radio">
-              <h3>Select Delivery</h3>
-              <div class="radio-bundle">
-                <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="del-radio"
-                    id="inlineRadio3"
-                    value="option3"
-                  />
-                  <label class="form-check-label" for="inlineRadio3"
-                    >Single Delivery</label
-                  >
-                </div>
-                <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="del-radio"
-                    id="inlineRadio4"
-                    value="option4"
-                  />
-                  <label class="form-check-label" for="inlineRadio4"
-                    >Subscribe & Save 15%</label
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="custom-shiping">
-              <h3>Customize Shipment</h3>
-              <div class="choose-shipping">
-                <div class="form-group">
-                  <select class="form-control">
-                    <option>Qty 1</option>
-                    <option>Qty 2</option>
-                    <option>Qty 3</option>
-                    <option>Qty 4</option>
-                  </select>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 7.171 4.6"
-                  >
-                    <path
-                      id="Path_2028"
-                      data-name="Path 2028"
-                      d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
-                      transform="translate(-342.315 -7.7)"
-                    />
-                  </svg>
-                </div>
-                <div class="form-group">
-                  <select class="form-control">
-                    <option>Every Month</option>
-                    <option>Every Week</option>
-                    <option>Every Year</option>
-                  </select>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 7.171 4.6"
-                  >
-                    <path
-                      id="Path_2028"
-                      data-name="Path 2028"
-                      d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
-                      transform="translate(-342.315 -7.7)"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="cart-btn">
-              <button
-                type="submit"
-                (click)="addToCart(productDetail)"
-                class="btn btn-cart"
-              >
-                ${{ productDetail.price }}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-</section>
-
-<section class="energy_banner">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="banners-enery">
-          <img
-            src="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/Product+Pages/Protect+and+Whiten+Toothpaste/Desktop+Banner_P_and_W.jpg"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="video-description">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="desc-video">
-          <div class="info-video-product">
-            <h3>Sweet,Sweet Sleep</h3>
-            <p>
-              Elit ut aliquam purus sit amet luctus venenatis lectus magna
-              fringilla urna porttitor rhoncus dolor purus non enim praesent
-              elementum facilisis leo vel fringilla est ullamcorper eget nulla
-              facilisi etiam dignissim diam quis enim lobortis scelerisque
-              fermentum dui faucibus in ornare quam viverra orci sagittis eu
-              volutpat odio.
-            </p>
-            <p>
-              Facilisis mauris sit amet massa vitae tortor condimentum lacinia
-              quis vel eros donec ac odio tempor orci dapibus ultrices in
-              iaculis nunc.
-            </p>
-          </div>
-          <div class="video-product-code">
-            <iframe
-              allowtransparency="true"
-              title="Wistia video player"
-              allowFullscreen
-              frameborder="0"
-              scrolling="no"
-              class="wistia_embed"
-              name="wistia_embed"
-              src="https://fast.wistia.net/embed/iframe/3e5bf135vu"
-              width="100%"
-              height="100%"
-            ></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="why_love_it">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h3 class="head-ylove">Why you’ll love it</h3>
-        <div class="wrapper-whylove">
-          <img src="../../../assets/banner-why-love.png" />
-          <div class="slider-whylove">
-            <owl-carousel-o [options]="customOptions">
-              <ng-template carouselSlide>
-                <div class="slider-wrapper">
-                  <div class="text-slider">
-                    <p>Natural ingredients to promote safe sleep</p>
-                  </div>
+  </section>
+  
+  <section class="energy_banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="banners-enery">
+                  <img src="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/Product+Pages/Protect+and+Whiten+Toothpaste/Desktop+Banner_P_and_W.jpg"/>
                 </div>
-              </ng-template>
-              <ng-template carouselSlide>
-                <div class="slider-wrapper">
-                  <div class="text-slider">
-                    <p>Natural ingredients to promote safe sleep</p>
-                  </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  
+  <section class="video-description">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+  
+                <div class="desc-video">
+                    <div class="info-video-product">
+                        <h3>Sweet,Sweet Sleep</h3>
+                        <p>Elit ut aliquam purus sit amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non enim praesent elementum facilisis leo vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio.</p>
+                        <p>Facilisis mauris sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc.</p>
+                    </div>
+                    <div class="video-product-code">
+                      <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" src="https://fast.wistia.net/embed/iframe/3e5bf135vu" width="100%" height="100%"></iframe>
+                    </div>
                 </div>
-              </ng-template>
-              <ng-template carouselSlide>
-                <div class="slider-wrapper">
-                  <div class="text-slider">
-                    <p>Natural ingredients to promote safe sleep</p>
-                  </div>
+            </div>
+  
+        </div>
+    </div>
+  </section>
+  
+  <section class="why_love_it">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="head-ylove">Why you’ll love it</h3>
+                <div class="wrapper-whylove">
+                    <img src="../../../assets/banner-why-love.png"/>
+                    <div class="slider-whylove">
+                         <owl-carousel-o [options]="customOptions">
+                            <ng-template carouselSlide>
+                              <div class="slider-wrapper">
+                                  <div class="text-slider">
+                                      <p>Natural ingredients to promote safe sleep</p>
+                                    </div>
+                              </div>
+                            </ng-template>
+                            <ng-template carouselSlide>
+                              <div class="slider-wrapper">
+                                  <div class="text-slider">
+                                      <p>Natural ingredients to promote safe sleep</p>
+                                    </div>
+                              </div>
+                            </ng-template>
+                            <ng-template carouselSlide>
+                              <div class="slider-wrapper">
+                                  <div class="text-slider">
+                                      <p>Natural ingredients to promote safe sleep</p>
+                                    </div>
+                              </div>
+                            </ng-template>
+                          </owl-carousel-o>
+                      </div>
                 </div>
-              </ng-template>
-            </owl-carousel-o>
-          </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</section>
-
-<section class="deep-info">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h3 class="heading-section">What's in it?</h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4 col-full">
-        <div class="card">
-          <div class="card-body">
-            <div class="img-side">
-              <img src="../../../assets/ingred1.png" />
+  </section>
+  
+  <section class="deep-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="heading-section">What's in it?</h3>
             </div>
-            <div class="content-card-deepinfo">
-              <h4 class="title-ingred">Magnesium (Magnesium Chelate):</h4>
-              <p class="info-ingred">
-                Electrolyte; promotes muscle and nerve health* | 100 mg
-              </p>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="col-md-4 col-full">
-        <div class="card">
-          <div class="card-body">
-            <div class="img-side">
-              <img src="../../../assets/ingred2.png" />
+        <div class="row">
+            <div class="col-md-4 col-full">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="img-side">
+                            <img src="../../../assets/ingred1.png"/>
+                          </div>
+                        <div class="content-card-deepinfo">
+                            <h4 class="title-ingred">Magnesium (Magnesium Chelate):</h4>
+                            <p class="info-ingred">Electrolyte; promotes muscle and nerve health* | 100 mg</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="content-card-deepinfo">
-              <h4 class="title-ingred">Vitamin D3 (Cholecalciferol):</h4>
-              <p class="info-ingred">Promotes skin and bone health* | 10 mcg</p>
+            <div class="col-md-4 col-full">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="img-side">
+                          <img src="../../../assets/ingred2.png"/>
+                        </div>
+                        <div class="content-card-deepinfo">
+                            <h4 class="title-ingred">Vitamin D3 (Cholecalciferol):</h4>
+                            <p class="info-ingred">Promotes skin and bone health* | 10 mcg</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="col-md-4 col-full">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="img-side">
+                            <img src="../../../assets/ingred3.png"/>
+                          </div>
+                        <div class="content-card-deepinfo">
+                            <h4 class="title-ingred">Vitamin C (from Ascorbic Acid):</h4>
+                            <p class="info-ingred">Antioxidant; natural immune system support* | 1,500 mg per serving</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-md-4 col-full">
-        <div class="card">
-          <div class="card-body">
-            <div class="img-side">
-              <img src="../../../assets/ingred3.png" />
-            </div>
-            <div class="content-card-deepinfo">
-              <h4 class="title-ingred">Vitamin C (from Ascorbic Acid):</h4>
-              <p class="info-ingred">
-                Antioxidant; natural immune system support* | 1,500 mg per
-                serving
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
+  
+  <div class="row">
+    <div class="col-md-12">
         <div class="more-ingred">
-          <ul>
-            <li>
-              <div class="ingred-circle"></div>
-              <h5>vegan</h5>
-            </li>
-            <li>
-              <div class="ingred-circle"></div>
-              <h5>Gluten Free</h5>
-            </li>
-            <li>
-              <div class="ingred-circle"></div>
-              <h5>Soy Free</h5>
-            </li>
-            <li>
-              <div class="ingred-circle"></div>
-              <h5>Dairy Free</h5>
-            </li>
-          </ul>
+            <ul>
+                <li><div class="ingred-circle"></div><h5>vegan</h5></li>
+                <li><div class="ingred-circle"></div><h5>Gluten Free</h5></li>
+                <li><div class="ingred-circle"></div><h5>Soy Free</h5></li>
+                <li><div class="ingred-circle"></div><h5>Dairy Free</h5></li>
+            </ul>
         </div>
         <div class="ingred-selection">
           <div class="toggl-btn" (click)="toggleShow()">
@@ -518,933 +341,722 @@
           </div>
           <h4 class="ingred-selc-title">See ALL Ingredients</h4>
           <div class="see-more-ingred" *ngIf="incredShow">
-            <ul>
-              <li>
-                Caprylic Triglyceride - Coconut oil derived, replenishes skin
-              </li>
-              <li>Sunflower Seed Oil - Soothes skin irritation</li>
-              <li>Glyceryl Stearate - Skin conditioner</li>
-              <li>Oat Protein - Cleansing and conditioning agent</li>
-              <li>Shea Butter - Nourishes skin</li>
-              <li>
-                Coconut Oil - Antioxidant, antimicrobial, skin conditioner
-              </li>
-              <li>Benzyl Alcohol - Safe antibacterial</li>
-              <li>Macadamia Seed Oil - Moisturizer</li>
-              <li>Olive Fruit Oil - Antioxidant, moisturizer</li>
-              <li>Jojoba - For chapped or dry skin</li>
-            </ul>
+           <ul>
+                <li>Caprylic Triglyceride - Coconut oil derived, replenishes skin</li>
+                <li>Sunflower Seed Oil - Soothes skin irritation</li>
+                <li>Glyceryl Stearate - Skin conditioner</li>
+                <li>Oat Protein - Cleansing and conditioning agent</li>
+                <li>Shea Butter - Nourishes skin</li>
+                <li>Coconut Oil - Antioxidant, antimicrobial, skin conditioner</li>
+                <li>Benzyl Alcohol - Safe antibacterial</li>
+                <li>Macadamia Seed Oil - Moisturizer</li>
+                <li>Olive Fruit Oil - Antioxidant, moisturizer</li>
+                <li>Jojoba - For chapped or dry skin</li>
+           </ul>
           </div>
         </div>
-      </div>
     </div>
   </div>
-</section>
-
-<section class="white-bg how-use-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h3 class="title-head">How do I use it?</h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 full-width">
-        <div class="image-howuse">
-          <img src="../../../assets/h-use.png" />
-        </div>
-      </div>
-      <div class="col-md-6 full-width">
-        <div class="how-use-listing">
-          <ul>
-            <li>
-              Elit ut aliquam purus sit amet luctus venenatis lectus magna
-              fringilla.
-            </li>
-            <li>
-              Facilisis leo vel fringilla est ullamcorper eget nulla facilisi
-              etiam dignissim diam.
-            </li>
-            <li>Facilisis mauris sit amet massa vitae tortor condimentum.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
   </div>
-</section>
-
-<section class="product-detail">
+  </section>
+  
+  <section class="white-bg how-use-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="title-head">How do I use it?</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 full-width">
+                <div class="image-howuse">
+                    <img src="../../../assets/h-use.png"/>
+                </div>
+            </div>
+            <div class="col-md-6 full-width">
+                <div class="how-use-listing">
+                <ul>
+                <li>Elit ut aliquam purus sit amet luctus venenatis lectus magna fringilla.</li>
+                <li>Facilisis leo vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam.</li>
+                <li>Facilisis mauris sit amet massa vitae tortor condimentum.</li>
+                </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  
+  <section class="product-detail">
   <div class="info-details">
-    <h4>Details</h4>
-    <ul>
-      <li>30 melts per bottle = 30 night’s sleep</li>
-      <li>1 mg of melatonin per melt</li>
-      <li>Tastes like berries</li>
-    </ul>
-  </div>
-</section>
-
-<section class="client-reviews white-bg">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="client-testimonial-box">
-          <owl-carousel-o [options]="slide_reviews">
-            <ng-template carouselSlide>
-              <div class="slider-wrapper">
-                <div class="text-slider">
-                  <h4>Best Thing Ever</h4>
-                  <p>
-                    “Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.”
-                  </p>
-                  <div class="reviews-product">
-                    <ul>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                    </ul>
-                    <p class="client-name">-Jeff G</p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="slider-wrapper">
-                <div class="text-slider">
-                  <h4>Best Thing Ever</h4>
-                  <p>
-                    “Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.”
-                  </p>
-                  <div class="reviews-product">
-                    <ul>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                    </ul>
-                    <p class="client-name">-Jeff G</p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="slider-wrapper">
-                <div class="text-slider">
-                  <h4>Best Thing Ever</h4>
-                  <p>
-                    “Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.”
-                  </p>
-                  <div class="reviews-product">
-                    <ul>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                    </ul>
-                    <p class="client-name">-Jeff G</p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-          </owl-carousel-o>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="faq-section white-bg">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h3>Faqs</h3>
-        <div class="faq-info">
-          <ul>
-            <li>
-              <div class="faq-data">
-                <h4>
-                  Q: Elit ut aliquam purus sit amet luctus venenatis lectus
-                  magna fringilla?
-                </h4>
-                <p>
-                  A: Facilisis leo vel fringilla est ullamcorper eget nulla
-                  facilisi etiam dignissim diam.
-                </p>
-              </div>
-            </li>
-            <li>
-              <div class="faq-data">
-                <h4>
-                  Q: Facilisis mauris sit amet massa vitae tortor condimentum?
-                </h4>
-                <p>
-                  A: Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-              </div>
-            </li>
-            <li>
-              <div class="faq-data">
-                <h4>
-                  Q: Duis aute irure dolor in reprehenderit in voluptate velit
-                  esse cillum dolore eu fugiat nulla pariatur?
-                </h4>
-                <p>
-                  A: Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="more-info-shipping">
-          <p>
-            Warning: Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
-          <h4>Shipping & Returns:</h4>
-          <p>
-            We pride ourselves on our top-notch customer service. Most of our
-            orders are shipped within 24 hours. Orders placed over the weekend
-            will be packaged and sent out first thing on Monday morning.
-          </p>
-          <p>
-            Wink Naturals offers a 365-day, 100% Happy Guarantee on all products
-            we sell. If for any reason you are unhappy with your purchase,
-            please reach out to us by phone at 888-799-5656 or email at
-            hello@winknaturals.com and we will make it right! Orders returned
-            less than 30 days from the date of purchase will qualify for a 100%
-            refund of the amount paid for the order, less any shipping and
-            handling charges. Any order returned that is past 30 days from the
-            date of purchase will receive up to 100% of the amount paid refunded
-            in Product Credit to be used on any other product for sale in the
-            store. Shipping cost will be deducted from orders that are returned
-            for refund.
-          </p>
-          <div class="note-info-center">
-            <p>
-              *These statements have not been evaluated by the Food and Drug
-              Administration. This product is not intended to diagnose, treat,
-              cure or prevent any disease.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="white-bg reviews-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h3>More Products You’ll Love</h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="slider-product-reviews">
-          <owl-carousel-o [options]="product_reviews">
-            <ng-template carouselSlide>
-              <div class="review-wrapper">
-                <div class="reviews-image">
-                  <a href="#"
-                    ><img
-                      src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"
-                  /></a>
-                </div>
-                <div class="review-data">
-                  <h5><a href="">Kids Sleep Drops</a></h5>
-                  <div class="reviews-product">
-                    <ul>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                    </ul>
-                    <p>704 REVIEWS</p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="review-wrapper">
-                <div class="reviews-image">
-                  <a href="#"
-                    ><img
-                      src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"
-                  /></a>
-                </div>
-                <div class="review-data">
-                  <h5><a href="">Kids Sleep Drops</a></h5>
-                  <div class="reviews-product">
-                    <ul>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                    </ul>
-                    <p>704 REVIEWS</p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="review-wrapper">
-                <div class="reviews-image">
-                  <a href="#"
-                    ><img
-                      src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"
-                  /></a>
-                </div>
-                <div class="review-data">
-                  <h5><a href="">Kids Sleep Drops</a></h5>
-                  <div class="reviews-product">
-                    <ul>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                    </ul>
-                    <p>704 REVIEWS</p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="review-wrapper">
-                <div class="reviews-image">
-                  <a href="#"
-                    ><img
-                      src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"
-                  /></a>
-                </div>
-                <div class="review-data">
-                  <h5><a href="">Kids Sleep Drops</a></h5>
-                  <div class="reviews-product">
-                    <ul>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                    </ul>
-                    <p>704 REVIEWS</p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="review-wrapper">
-                <div class="reviews-image">
-                  <a href="#"
-                    ><img
-                      src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"
-                  /></a>
-                </div>
-                <div class="review-data">
-                  <h5><a href="">Kids Sleep Drops</a></h5>
-                  <div class="reviews-product">
-                    <ul>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                    </ul>
-                    <p>704 REVIEWS</p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="review-wrapper">
-                <div class="reviews-image">
-                  <a href="#"
-                    ><img
-                      src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"
-                  /></a>
-                </div>
-                <div class="review-data">
-                  <h5><a href="">Kids Sleep Drops</a></h5>
-                  <div class="reviews-product">
-                    <ul>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                    </ul>
-                    <p>704 REVIEWS</p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="review-wrapper">
-                <div class="reviews-image">
-                  <a href="#"
-                    ><img
-                      src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"
-                  /></a>
-                </div>
-                <div class="review-data">
-                  <h5><a href="">Kids Sleep Drops</a></h5>
-                  <div class="reviews-product">
-                    <ul>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                    </ul>
-                    <p>704 REVIEWS</p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="review-wrapper">
-                <div class="reviews-image">
-                  <a href="#"
-                    ><img
-                      src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"
-                  /></a>
-                </div>
-                <div class="review-data">
-                  <h5><a href="">Kids Sleep Drops</a></h5>
-                  <div class="reviews-product">
-                    <ul>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                    </ul>
-                    <p>704 REVIEWS</p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="review-wrapper">
-                <div class="reviews-image">
-                  <a href="#"
-                    ><img
-                      src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"
-                  /></a>
-                </div>
-                <div class="review-data">
-                  <h5><a href="">Kids Sleep Drops</a></h5>
-                  <div class="reviews-product">
-                    <ul>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                    </ul>
-                    <p>704 REVIEWS</p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="review-wrapper">
-                <div class="reviews-image">
-                  <a href="#"
-                    ><img
-                      src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"
-                  /></a>
-                </div>
-                <div class="review-data">
-                  <h5><a href="">Kids Sleep Drops</a></h5>
-                  <div class="reviews-product">
-                    <ul>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                    </ul>
-                    <p>704 REVIEWS</p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="review-wrapper">
-                <div class="reviews-image">
-                  <a href="#"
-                    ><img
-                      src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"
-                  /></a>
-                </div>
-                <div class="review-data">
-                  <h5><a href="">Kids Sleep Drops</a></h5>
-                  <div class="reviews-product">
-                    <ul>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                    </ul>
-                    <p>704 REVIEWS</p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-          </owl-carousel-o>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="reviews-customers white-bg">
-  <div class="container">
-    <div class="row reviews-head">
-      <div class="col-md-7 col-full-reviews">
-        <div class="rating-reviews">
-          <div class="rating-review-col">
-            <div class="reviews-product">
-              <ul>
-                <li><i class="fas fa-star"></i></li>
-                <li><i class="fas fa-star"></i></li>
-                <li><i class="fas fa-star"></i></li>
-                <li><i class="fas fa-star"></i></li>
-                <li><i class="fas fa-star"></i></li>
-              </ul>
-              <p>704 REVIEWS</p>
-            </div>
-            <div class="ques-txt">
-              <p><a href="#"> 0 Questions \ 0 Answers </a></p>
-            </div>
-          </div>
-
-          <div class="rating-display">
-            <div class="rating-info">
-              <div class="reviews-product">
+                <h4>Details</h4>
                 <ul>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
+                    <li>30 melts per bottle = 30 night’s sleep</li>
+                    <li>1 mg of melatonin per melt</li>
+                    <li>Tastes like berries</li>
                 </ul>
-                <span class="review-value">(704)</span>
-                <div class="bar-rating progress">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    style="width: 85%"
-                    aria-valuenow="85"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
             </div>
-            <div class="rating-info">
-              <div class="reviews-product">
-                <ul>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                </ul>
-                <span class="review-value">(704)</span>
-                <div class="bar-rating progress">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    style="width: 45%"
-                    aria-valuenow="45"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
+  
+  </section>
+  
+  <section class="client-reviews white-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="client-testimonial-box">
+                    <owl-carousel-o [options]="slide_reviews">
+                        <ng-template carouselSlide>
+                          <div class="slider-wrapper">
+                              <div class="text-slider">
+                                  <h4>Best Thing Ever</h4>
+                                  <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”</p>
+                                  <div class="reviews-product">
+                                    <ul>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <p class="client-name">-Jeff G</p>
+                                </div>
+                                </div>
+                          </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                          <div class="slider-wrapper">
+                              <div class="text-slider">
+                                  <h4>Best Thing Ever</h4>
+                                  <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”</p>
+                                  <div class="reviews-product">
+                                    <ul>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <p class="client-name">-Jeff G</p>
+                                </div>
+                                </div>
+                          </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                          <div class="slider-wrapper">
+                              <div class="text-slider">
+                                  <h4>Best Thing Ever</h4>
+                                  <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”</p>
+                                  <div class="reviews-product">
+                                    <ul>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <p class="client-name">-Jeff G</p>
+                                </div>
+                                </div>
+                          </div>
+                        </ng-template>
+  
+                      </owl-carousel-o>
                 </div>
-              </div>
             </div>
-            <div class="rating-info">
-              <div class="reviews-product">
-                <ul>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                </ul>
-                <span class="review-value">(304)</span>
-                <div class="bar-rating progress">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    style="width: 30%"
-                    aria-valuenow="30"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
-            </div>
-            <div class="rating-info">
-              <div class="reviews-product">
-                <ul>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                </ul>
-                <span class="review-value">(40)</span>
-                <div class="bar-rating progress">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    style="width: 20%"
-                    aria-valuenow="20"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
-            </div>
-            <div class="rating-info">
-              <div class="reviews-product">
-                <ul>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                </ul>
-                <span class="review-value">(30)</span>
-                <div class="bar-rating progress">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    style="width: 10%"
-                    aria-valuenow="10"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="col-md-5 col-full-reviews hidden-xs">
-        <div class="rating-btn-cta">
-          <ul>
-            <li>
-              <a><i class="far fa-edit"></i>Write A Review</a>
-            </li>
-            <li>
-              <a><i class="fas fa-comments-alt"></i>Ask A Question</a>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
-
-    <div class="row reviews-customer">
-      <div class="col-md-12">
-        <div class="reviews-wrapper">
-          <div class="toglle-opt">
-            <ul class="nav nav-pills" id="reviews-tabs" role="tablist">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  id="all-reviews-tab"
-                  data-toggle="pill"
-                  href="#all-reviews"
-                  role="tab"
-                  aria-controls="all-reviews"
-                  aria-selected="true"
-                  >Reviews <span class="total-reviews">(740)</span></a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  id="questions-ask-tab"
-                  data-toggle="pill"
-                  href="#questions-ask"
-                  role="tab"
-                  aria-controls="questions-ask"
-                  aria-selected="false"
-                  >Questions<span class="client-faq-total">(0)</span></a
-                >
-              </li>
-            </ul>
-            <div class="more-toggle-cta visible-xs">
-              <div class="toggle-btn">
-                <a (click)="toggleDisplayDivIf()"
-                  ><i class="fas fa-bars"></i
-                ></a>
-              </div>
-              <div
-                class="info"
-                [className]="toggleDisplayDivIf ? 'active' : 'unactive'"
-              >
-                <div class="collapse-mobile" *ngIf="isShowDivIf">
-                  <div class="rating-btn-cta">
+  </section>
+  
+  <section class="faq-section white-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>FAQS</h3>
+                <div class="faq-info">
                     <ul>
-                      <li>
-                        <a><i class="far fa-edit"></i>Write A Review</a>
-                      </li>
-                      <li>
-                        <a><i class="fas fa-comments-alt"></i>Ask A Question</a>
-                      </li>
+                        <li>
+                            <div class="faq-data">
+                                <h4>Q: Elit ut aliquam purus sit amet luctus venenatis lectus magna fringilla?</h4>
+                                <p>A: Facilisis leo vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="faq-data">
+                                <h4>Q: Facilisis mauris sit amet massa vitae tortor condimentum?</h4>
+                                <p>A: Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="faq-data">
+                                <h4>Q: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur?</h4>
+                                <p>A: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                        </li>
                     </ul>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
-
-          <div class="tab-content" id="reviews-tabsContent">
-            <div
-              class="tab-pane fade show active"
-              id="all-reviews"
-              role="tabpanel"
-              aria-labelledby="all-reviews-tab"
-            >
-              <div class="sort-filter">
-                <div class="form-group">
-                  <label>Sort</label>
-                  <div class="sort-opt">
-                    <div class="dropdown">
-                      <button
-                        class="btn btn-secondary dropdown-toggle"
-                        type="button"
-                        id="dropdownMenuButton"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        Select
-                      </button>
-                      <div
-                        class="dropdown-menu"
-                        aria-labelledby="dropdownMenuButton"
-                      >
-                        <a class="dropdown-item" href="#">Newest</a>
-                        <a class="dropdown-item" href="#">With Pictures</a>
-                        <a class="dropdown-item" href="#">Highest Rating</a>
-                        <a class="dropdown-item" href="#">Lowest Rating</a>
-                        <a class="dropdown-item" href="#">Most Votes</a>
-                        <a class="dropdown-item" href="#">Least Votes</a>
-                      </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="more-info-shipping">
+                    <p>Warning: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <h4>Shipping & Returns:</h4>
+                    <p>We pride ourselves on our top-notch customer service. Most of our orders are shipped within 24 hours. Orders placed over the weekend will be packaged and sent out first thing on Monday morning.</p>
+                    <p>Wink Naturals offers a 365-day, 100% Happy Guarantee on all products we sell. If for any reason you are unhappy with your purchase, please reach out to us by phone at 888-799-5656 or email at hello@winknaturals.com and we will make it right! Orders returned less than 30 days from the date of purchase will qualify for a 100% refund of the amount paid for the order, less any shipping and handling charges. Any order returned that is past 30 days from the date of purchase will receive up to 100% of the amount paid refunded in Product Credit to be used on any other product for sale in the store. Shipping cost will be deducted from orders that are returned for refund.</p>
+                    <div class="note-info-center">
+                        <p>*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease.</p>
                     </div>
-                  </div>
                 </div>
-              </div>
-
-              <div class="reviews-wrapper-listing">
-                <!-- Product Listing  Item --->
-                <div class="review-listing">
-                  <div class="r-listing-head">
-                    <div class="r-client-info">
-                      <div class="media">
-                        <div class="client-circ">
-                          <span class="txt-name"> T </span>
-                          <span class="verify-status">
-                            <i class="fas fa-check"></i>
-                          </span>
+  
+            </div>
+        </div>
+    </div>
+  </section>
+  
+  <section class="white-bg reviews-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>More Products You’ll Love</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="slider-product-reviews">
+                    <owl-carousel-o [options]="product_reviews">
+                        <ng-template carouselSlide>
+                        <div class="review-wrapper">
+                            <div class="reviews-image">
+                            <a href="#"><img src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"/></a>
+                            </div>
+                            <div class="review-data">
+                                <h5><a href="">Kids Sleep Drops</a></h5>
+                                <div class="reviews-product">
+                                    <ul>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <p>704 REVIEWS</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="media-body">
-                          <div class="r-tophead">
-                            <div class="reviews-client-given">
-                              <h5 class="client-name">
-                                Regina H.
-                                <span class="verify-txt">Verified Buyer</span>
-                              </h5>
-                              <ul>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                              </ul>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                        <div class="review-wrapper">
+                            <div class="reviews-image">
+                            <a href="#"><img src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"/></a>
                             </div>
-                            <div class="r-date-post hidden-xs">
-                              <span class="date-posted"> 01/05/2021 </span>
+                            <div class="review-data">
+                                <h5><a href="">Kids Sleep Drops</a></h5>
+                                <div class="reviews-product">
+                                    <ul>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <p>704 REVIEWS</p>
+                                </div>
                             </div>
-                          </div>
-                          <div class="client-feedback-description">
-                            <div class="client-tagline">
-                              <h4>Love this product!</h4>
-                              <p>
-                                This is absolutely a wonderful smelling Lotion
-                                with an overall calmness and I love using this
-                                on my kids after their baths!!! Highly recommend
-                                this product also!!!
-                              </p>
+                        </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                        <div class="review-wrapper">
+                            <div class="reviews-image">
+                            <a href="#"><img src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"/></a>
                             </div>
-                          </div>
-                          <div class="share-post">
-                            <ul>
-                              <li>
-                                <a href=""
-                                  ><svg
-                                    aria-hidden="true"
-                                    focusable="false"
-                                    data-prefix="far"
-                                    data-icon="external-link"
-                                    role="img"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 512 512"
-                                    class="
-                                      svg-inline--fa
-                                      fa-external-link fa-w-16 fa-2x
-                                    "
-                                  >
-                                    <path
-                                      fill="currentColor"
-                                      d="M497.6,0,334.4.17A14.4,14.4,0,0,0,320,14.57V47.88a14.4,14.4,0,0,0,14.69,14.4l73.63-2.72,2.06,2.06L131.52,340.49a12,12,0,0,0,0,17l23,23a12,12,0,0,0,17,0L450.38,101.62l2.06,2.06-2.72,73.63A14.4,14.4,0,0,0,464.12,192h33.31a14.4,14.4,0,0,0,14.4-14.4L512,14.4A14.4,14.4,0,0,0,497.6,0ZM432,288H416a16,16,0,0,0-16,16V458a6,6,0,0,1-6,6H54a6,6,0,0,1-6-6V118a6,6,0,0,1,6-6H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V304A16,16,0,0,0,432,288Z"
-                                      class=""
-                                    ></path></svg
-                                  ><span>Share</span></a
-                                >
-                              </li>
-                              <li class="date-mob visible-xs">
-                                <span class="date-posted">01/05/2021</span>
-                              </li>
-                              <li>
-                                Reviewed on:<a>Llama Lotion 2oz (2-Pack)</a>
-                              </li>
-                            </ul>
-
-                            <div class="post-likes">
-                              <span class="head-likes">
-                                Was This Review Helpful?
-                              </span>
-                              <span class="like-vid-value">
-                                <a href="#"><i class="fas fa-thumbs-up"></i></a>
-                                <span class="value-like">0</span>
-                              </span>
-                              <span class="like-vid-value">
-                                <a href="#"
-                                  ><i class="fas fa-thumbs-down"></i
-                                ></a>
-                                <span class="value-dislike">0</span>
-                              </span>
+                            <div class="review-data">
+                                <h5><a href="">Kids Sleep Drops</a></h5>
+                                <div class="reviews-product">
+                                    <ul>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <p>704 REVIEWS</p>
+                                </div>
                             </div>
-                          </div>
+                        </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                        <div class="review-wrapper">
+                            <div class="reviews-image">
+                            <a href="#"><img src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"/></a>
+                            </div>
+                            <div class="review-data">
+                                <h5><a href="">Kids Sleep Drops</a></h5>
+                                <div class="reviews-product">
+                                    <ul>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <p>704 REVIEWS</p>
+                                </div>
+                            </div>
+                        </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                        <div class="review-wrapper">
+                            <div class="reviews-image">
+                            <a href="#"><img src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"/></a>
+                            </div>
+                            <div class="review-data">
+                                <h5><a href="">Kids Sleep Drops</a></h5>
+                                <div class="reviews-product">
+                                    <ul>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <p>704 REVIEWS</p>
+                                </div>
+                            </div>
+                        </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                        <div class="review-wrapper">
+                            <div class="reviews-image">
+                            <a href="#"><img src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"/></a>
+                            </div>
+                            <div class="review-data">
+                                <h5><a href="">Kids Sleep Drops</a></h5>
+                                <div class="reviews-product">
+                                    <ul>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <p>704 REVIEWS</p>
+                                </div>
+                            </div>
+                        </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                        <div class="review-wrapper">
+                            <div class="reviews-image">
+                            <a href="#"><img src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"/></a>
+                            </div>
+                            <div class="review-data">
+                                <h5><a href="">Kids Sleep Drops</a></h5>
+                                <div class="reviews-product">
+                                    <ul>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <p>704 REVIEWS</p>
+                                </div>
+                            </div>
+                        </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                        <div class="review-wrapper">
+                            <div class="reviews-image">
+                            <a href="#"><img src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"/></a>
+                            </div>
+                            <div class="review-data">
+                                <h5><a href="">Kids Sleep Drops</a></h5>
+                                <div class="reviews-product">
+                                    <ul>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <p>704 REVIEWS</p>
+                                </div>
+                            </div>
+                        </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                        <div class="review-wrapper">
+                            <div class="reviews-image">
+                            <a href="#"><img src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"/></a>
+                            </div>
+                            <div class="review-data">
+                                <h5><a href="">Kids Sleep Drops</a></h5>
+                                <div class="reviews-product">
+                                    <ul>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <p>704 REVIEWS</p>
+                                </div>
+                            </div>
+                        </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                        <div class="review-wrapper">
+                            <div class="reviews-image">
+                            <a href="#"><img src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"/></a>
+                            </div>
+                            <div class="review-data">
+                                <h5><a href="">Kids Sleep Drops</a></h5>
+                                <div class="reviews-product">
+                                    <ul>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <p>704 REVIEWS</p>
+                                </div>
+                            </div>
+                        </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                        <div class="review-wrapper">
+                            <div class="reviews-image">
+                            <a href="#"><img src="https://cdn-yotpo-images-production.yotpo.com/Product/117456197/86144980/square.jpg?1623220724"/></a>
+                            </div>
+                            <div class="review-data">
+                                <h5><a href="">Kids Sleep Drops</a></h5>
+                                <div class="reviews-product">
+                                    <ul>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <p>704 REVIEWS</p>
+                                </div>
+                            </div>
+                        </div>
+                        </ng-template>
+                        </owl-carousel-o>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  <section class="reviews-customers white-bg">
+    <div class="container">
+        <div class="row reviews-head">
+            <div class="col-md-7 col-full-reviews">
+                <div class="rating-reviews">
+                    <div class="rating-review-col">
+                    <div class="reviews-product">
+                        <ul>
+                            <li><i class="fas fa-star"></i></li>
+                            <li><i class="fas fa-star"></i></li>
+                            <li><i class="fas fa-star"></i></li>
+                            <li><i class="fas fa-star"></i></li>
+                            <li><i class="fas fa-star"></i></li>
+                        </ul>
+                        <p>704 REVIEWS</p>
+                    </div>
+                        <div class="ques-txt">
+                            <p><a href="#"> 0 Questions \ 0 Answers </a></p>
+                        </div>
+                    </div>
+  
+                    <div class="rating-display">
+                        <div class="rating-info">
+                            <div class="reviews-product">
+                                <ul>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    </ul>
+                                    <span class="review-value">(704)</span>
+                                    <div class="bar-rating progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                      </div>
+  
+                            </div>
+                        </div>
+                        <div class="rating-info">
+                            <div class="reviews-product">
+                                <ul>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                </ul>
+                                <span class="review-value">(704)</span>
+                                <div class="bar-rating progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+  
+                            </div>
+                        </div>
+                        <div class="rating-info">
+                            <div class="reviews-product">
+                                <ul>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    </ul>
+                                    <span class="review-value">(304)</span>
+                                    <div class="bar-rating progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                      </div>
+  
+                            </div>
+                        </div>
+                        <div class="rating-info">
+                            <div class="reviews-product">
+                                <ul>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    </ul>
+                                    <span class="review-value">(40)</span>
+                                    <div class="bar-rating progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                      </div>
+  
+                            </div>
+                        </div>
+                        <div class="rating-info">
+                            <div class="reviews-product">
+                                <ul>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    </ul>
+                                    <span class="review-value">(30)</span>
+                                    <div class="bar-rating progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                      </div>
+  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+  
+            </div>
+            <div class="col-md-5 col-full-reviews hidden-xs">
+  
+                <div class="rating-btn-cta ">
+                    <ul>
+                        <li><a><i class="far fa-edit"></i>Write A Review</a></li>
+                        <li><a><i class="fas fa-comments-alt"></i>Ask A Question</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+  
+        <div class="row reviews-customer">
+            <div class="col-md-12">
+                <div class="reviews-wrapper">
+                    <div class="toglle-opt">
+                         <ul class="nav nav-pills " id="reviews-tabs" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link active" id="all-reviews-tab" data-toggle="pill" href="#all-reviews" role="tab" aria-controls="all-reviews" aria-selected="true">Reviews <span class="total-reviews">(740)</span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" id="questions-ask-tab" data-toggle="pill" href="#questions-ask" role="tab" aria-controls="questions-ask" aria-selected="false">Questions<span class="client-faq-total">(0)</span></a>
+                        </li>
+                      </ul>
+                      <div class="more-toggle-cta visible-xs">
+                        <div class="toggle-btn"><a (click)="toggleDisplayDivIf()"><i class="fas fa-bars"></i></a></div>
+                        <div class="info" [className]="toggleDisplayDivIf ?  'active' : 'unactive'">
+                            <div class="collapse-mobile" *ngIf="isShowDivIf">
+                                <div class="rating-btn-cta" >
+                                    <ul>
+                                        <li><a><i class="far fa-edit"></i>Write A Review</a></li>
+                                        <li><a><i class="fas fa-comments-alt"></i>Ask A Question</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+  
+                      <div class="tab-content" id="reviews-tabsContent">
+                        <div class="tab-pane fade show active" id="all-reviews" role="tabpanel" aria-labelledby="all-reviews-tab">
+                        <div class="sort-filter">
+                            <div class="form-group">
+                            <label>Sort</label>
+                                    <div class="sort-opt">
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                             Select
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#">Newest</a>
+                                                <a class="dropdown-item" href="#">With Pictures</a>
+                                                <a class="dropdown-item" href="#">Highest Rating</a>
+                                                <a class="dropdown-item" href="#">Lowest Rating</a>
+                                                <a class="dropdown-item" href="#">Most Votes</a>
+                                                <a class="dropdown-item" href="#">Least Votes</a>
+                                            </div>
+                                          </div>
+  
+                                    </div>
+                            </div>
+                        </div>
+  
+                        <div class="reviews-wrapper-listing">
+                           <!-- Product Listing  Item --->
+                            <div class="review-listing">
+                                <div class="r-listing-head">
+                                    <div class="r-client-info">
+                                        <div class="media">
+                                            <div class="client-circ">
+                                                <span class="txt-name">
+                                                    T
+                                                </span>
+                                                <span class="verify-status">
+                                                    <i class="fas fa-check"></i>
+                                                </span>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="r-tophead">
+                                                    <div class="reviews-client-given">
+                                                        <h5 class=" client-name">Regina H. <span class="verify-txt">Verified Buyer</span></h5>
+                                                        <ul>
+                                                            <li><i class="fas fa-star"></i></li>
+                                                            <li><i class="fas fa-star"></i></li>
+                                                            <li><i class="fas fa-star"></i></li>
+                                                            <li><i class="fas fa-star"></i></li>
+                                                            <li><i class="fas fa-star"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="r-date-post hidden-xs">
+                                                            <span class="date-posted">
+                                                                01/05/2021
+                                                            </span>
+                                                        </div>
+                                                </div>
+                                                <div class="bottom-info-reviews desk-show">
+                                                  <div class="client-feedback-description">
+                                                      <div class="client-tagline">
+                                                         <h4>Love this product!</h4>
+                                                         <p>This is absolutely a wonderful smelling Lotion with an overall calmness and I love using this on my kids after their baths!!! Highly recommend this product also!!!</p>
+                                                     </div>
+                                                 </div>
+                                                 <div class="share-post">
+                                                     <ul>
+                                                         <li>
+                                                             <a href=""><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="external-link" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-external-link fa-w-16 fa-2x"><path fill="currentColor" d="M497.6,0,334.4.17A14.4,14.4,0,0,0,320,14.57V47.88a14.4,14.4,0,0,0,14.69,14.4l73.63-2.72,2.06,2.06L131.52,340.49a12,12,0,0,0,0,17l23,23a12,12,0,0,0,17,0L450.38,101.62l2.06,2.06-2.72,73.63A14.4,14.4,0,0,0,464.12,192h33.31a14.4,14.4,0,0,0,14.4-14.4L512,14.4A14.4,14.4,0,0,0,497.6,0ZM432,288H416a16,16,0,0,0-16,16V458a6,6,0,0,1-6,6H54a6,6,0,0,1-6-6V118a6,6,0,0,1,6-6H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V304A16,16,0,0,0,432,288Z" class=""></path></svg><span>Share</span></a></li>
+                                                             <li class="date-mob visible-xs"><span class="date-posted">01/05/2021</span></li>
+                                                         <li>Reviewed on:<a>Llama Lotion 2oz (2-Pack)</a></li>
+                                                     </ul>
+    
+                                                     <div class="post-likes">
+                                                         <span class="head-likes">
+                                                          Was This Review Helpful?
+                                                         </span>
+                                                         <span class="like-vid-value">
+                                                             <a href="#"><i class="fas fa-thumbs-up"></i></a>
+                                                             <span class="value-like">0</span>
+                                                         </span>
+                                                         <span class="like-vid-value">
+                                                             <a href="#"><i class="fas fa-thumbs-down"></i></a>
+                                                             <span class="value-dislike">0</span>
+                                                         </span>
+                                                     </div>
+                                                 </div>
+                                                </div>
+                                             
+                                            </div>
+                                          </div>
+                                          <div class="mob-reviews-display">
+                                              <div class="bottom-info-reviews">
+                                                  <div class="client-feedback-description">
+                                                      <div class="client-tagline">
+                                                         <h4>Love this product!</h4>
+                                                         <p>This is absolutely a wonderful smelling Lotion with an overall calmness and I love using this on my kids after their baths!!! Highly recommend this product also!!!</p>
+                                                     </div>
+                                                 </div>
+                                                 <div class="share-post">
+                                                     <ul>
+                                                         <li>
+                                                             <a href=""><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="external-link" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-external-link fa-w-16 fa-2x"><path fill="currentColor" d="M497.6,0,334.4.17A14.4,14.4,0,0,0,320,14.57V47.88a14.4,14.4,0,0,0,14.69,14.4l73.63-2.72,2.06,2.06L131.52,340.49a12,12,0,0,0,0,17l23,23a12,12,0,0,0,17,0L450.38,101.62l2.06,2.06-2.72,73.63A14.4,14.4,0,0,0,464.12,192h33.31a14.4,14.4,0,0,0,14.4-14.4L512,14.4A14.4,14.4,0,0,0,497.6,0ZM432,288H416a16,16,0,0,0-16,16V458a6,6,0,0,1-6,6H54a6,6,0,0,1-6-6V118a6,6,0,0,1,6-6H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V304A16,16,0,0,0,432,288Z" class=""></path></svg><span>Share</span></a></li>
+                                                             <li class="date-mob visible-xs"><span class="date-posted">01/05/2021</span></li>
+                                                         <li>Reviewed on:<a>Llama Lotion 2oz (2-Pack)</a></li>
+                                                     </ul>
+    
+                                                     <div class="post-likes">
+                                                         <span class="head-likes">
+                                                          Was This Review Helpful?
+                                                         </span>
+                                                         <span class="like-vid-value">
+                                                             <a href="#"><i class="fas fa-thumbs-up"></i></a>
+                                                             <span class="value-like">0</span>
+                                                         </span>
+                                                         <span class="like-vid-value">
+                                                             <a href="#"><i class="fas fa-thumbs-down"></i></a>
+                                                             <span class="value-dislike">0</span>
+                                                         </span>
+                                                     </div>
+                                                 </div>
+                                                </div>
+                                          </div>
+                                    </div>
+  
+                                </div>
+  
+                            </div>
+                            <!-- Product Listing  Item end --->
+                        </div>
+                        <!-- Pagination Bar Bottom --->
+                            <div class="Pagination-bar-bottom">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" href="#"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="angle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" class="svg-inline--fa fa-angle-left fa-w-6 fa-2x"><path fill="currentColor" d="M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z" class=""></path></svg></a></li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" class="svg-inline--fa fa-angle-right fa-w-6 fa-2x"><path fill="currentColor" d="M187.8 264.5L41 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 392.7c-4.7-4.7-4.7-12.3 0-17L122.7 256 4.2 136.3c-4.7-4.7-4.7-12.3 0-17L24 99.5c4.7-4.7 12.3-4.7 17 0l146.8 148c4.7 4.7 4.7 12.3 0 17z" class=""></path></svg></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <!-- Pagination Bar Bottom end --->
+                        </div>
+                        <div class="tab-pane fade" id="questions-ask" role="tabpanel" aria-labelledby="questions-ask-tab">
+  
+                            <div class="no-question">
+                                <a href="#" class="btn be-post">BE THE FIRST TO ASK A QUESTION</a>
+                            </div>
+                        </div>
+                      </div>
                 </div>
-                <!-- Product Listing  Item end --->
-              </div>
-              <!-- Pagination Bar Bottom --->
-              <div class="Pagination-bar-bottom">
-                <nav aria-label="Page navigation example">
-                  <ul class="pagination">
-                    <li class="page-item">
-                      <a class="page-link" href="#"
-                        ><svg
-                          aria-hidden="true"
-                          focusable="false"
-                          data-prefix="far"
-                          data-icon="angle-left"
-                          role="img"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 192 512"
-                          class="svg-inline--fa fa-angle-left fa-w-6 fa-2x"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z"
-                            class=""
-                          ></path></svg
-                      ></a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#"
-                        ><svg
-                          aria-hidden="true"
-                          focusable="false"
-                          data-prefix="far"
-                          data-icon="angle-right"
-                          role="img"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 192 512"
-                          class="svg-inline--fa fa-angle-right fa-w-6 fa-2x"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M187.8 264.5L41 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 392.7c-4.7-4.7-4.7-12.3 0-17L122.7 256 4.2 136.3c-4.7-4.7-4.7-12.3 0-17L24 99.5c4.7-4.7 12.3-4.7 17 0l146.8 148c4.7 4.7 4.7 12.3 0 17z"
-                            class=""
-                          ></path></svg
-                      ></a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-              <!-- Pagination Bar Bottom end --->
             </div>
-            <div
-              class="tab-pane fade"
-              id="questions-ask"
-              role="tabpanel"
-              aria-labelledby="questions-ask-tab"
-            >
-              <div class="no-question">
-                <a href="#" class="btn be-post"
-                  >BE THE FIRST TO ASK A QUESTION</a
-                >
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
+  </section>
+  
+  <div class="bk-prod white-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bak-prod">
+                    <a href="#" class="btn bck-prod">Back To Products</a>
+                </div>
+            </div>
+        </div>
     </div>
   </div>
-</section>
-
-<div class="bk-prod white-bg">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="bak-prod">
-          <a href="#" class="btn bck-prod">Back To Products</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  
