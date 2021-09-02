@@ -17,6 +17,10 @@ section.backlink-header .back-link a svg {
     margin-right: 4px;
 }
 
+#promo-code .special-field.datafilled {
+    width: 100%;
+    max-width: 100%;
+}
 
 .grid-box-shadow
 {
