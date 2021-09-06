@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MustMatch } from '@app/_helpers/must-match.validator';
+import { ComponentCanDeactivate } from '@app/_helpers/pending-changes.guard';
 import { User } from '@app/_models/user';
 import { SessionService } from '@app/_services';
 import { AccountService } from '@app/_services/account.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -14,7 +16,7 @@ import { first } from 'rxjs/operators';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css'],
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, ComponentCanDeactivate {
   form!: FormGroup;
   loading = false;
   submitted = false;
@@ -68,6 +70,17 @@ export class SignUpComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() {
     return this.form.controls;
+  }
+
+  @HostListener('window:beforeunload')
+  canDeactivate(): Observable<boolean> | boolean {
+    debugger
+    let dirty=this.form.dirty;
+    if(dirty==false){ 
+      return true;
+    }else if(dirty==true){
+      return false;
+    }
   }
 
   onSubmit() {

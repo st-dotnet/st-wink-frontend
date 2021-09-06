@@ -301,6 +301,12 @@ section.products h3 {
   height: 7px;
   pointer-events: none;
 }
+
+.radio-bundle {
+  float: left;
+  display: contents;
+}
+
 .cart-btn {
   width: 100%;
 }

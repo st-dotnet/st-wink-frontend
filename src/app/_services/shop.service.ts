@@ -26,4 +26,9 @@ export class ShopService {
     debugger
     return this.http.get<ShopProductModel[]>(`${environment.apiUrl}${this.shopEndpoint}GetProductDetailById/${Product}`);
   }
+
+  checkOutItems(transactionalRequestModel: any) {
+    debugger
+    return this.http.post<ShopProductModel[]>(`${environment.apiUrl}${this.shopEndpoint}SubmitCheckout`, transactionalRequestModel);
+  }
 }

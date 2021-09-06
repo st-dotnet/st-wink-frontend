@@ -11,9 +11,9 @@
       </button>
       <div id="main-menu" class="show-mob">
         <ul class="right-menu ">
-          <li><a href="#"><i class="fa fa-search"></i></a></li>
-          <li><a href="#"><i class="fa fa-shopping-bag"></i></a></li>
-        </ul>
+        <li><a href="#"><i class="fa fa-search"></i></a></li>
+       <li class="cart-item"><a [routerLink]="['/store/cart']"><i class="fa fa-shopping-bag"></i><span *ngIf="cartItems" class="cart-info">{{cartItems}}</span></a></li>
+       </ul>
       </div>
     
       <div class="collapse navbar-collapse d" *ngIf="isDesktopMenu" id="main-menu">

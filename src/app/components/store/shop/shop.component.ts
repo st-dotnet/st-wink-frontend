@@ -35,7 +35,7 @@ export class ShopComponent implements OnInit {
   years: any[] = [];
   showSubscription = false;
   subscriptionModel:any;
-  quantityModel:any;
+  quantityValue:any;
   modalOptions: NgbModalOptions = {
     backdrop: 'static',
     backdropClass: 'customBackdrop',
@@ -213,24 +213,23 @@ export class ShopComponent implements OnInit {
   addToCart(product: any) {    
     debugger  
     this.productItems = this.sessionService.getSessionObject('productCartItems');  
+    if(this.quantityValue == undefined){
+      this.quantityValue = 'Qty1';
+    }
     const items ={
       bundle : this.bundle,
       selectDelivery : this.selectDelivery,
       subscriptionModel: this.subscriptionModel,
-      quantityModel: this.quantityModel
+      quantityModel: this.quantityValue
     }
     Object.entries(items).forEach(([key,value]) => { product[key] = value });   
     if (this.productItems) {
-      this.productItem = this.productItems.find(x => x.itemCode == product.itemCode);
-      if (!this.productItem) {
+      this.productItem = this.productItems.find(x => x.itemCode == product.itemCode);  
         this.productItems.push(product);
         //this.productItems.find(x=> x.itemcode == product.itemCode).push(items);
         this.sessionService.cartSession(this.productItems);
         this.sessionService.setSessionObject('productCartItems', this.productItems);
-        this.toastrService.success('Product added successfully');
-      } else {
-        this.toastrService.error('Product already added into cart');
-      }
+        this.toastrService.success('Product added successfully');     
     }
     else {
       Object.entries(items).forEach(([key,value]) => { product[key] = value });
@@ -250,6 +249,7 @@ export class ShopComponent implements OnInit {
       this.product.price= (productPrice-subscribePrice).toFixed(2);
     } else {
       this.bundle = bundle;
+      this.product.price=productPrice;
     }
   }
 
@@ -263,4 +263,20 @@ export class ShopComponent implements OnInit {
       this.selectDelivery = delivery;
     }
   }
+
+  // quantityModel(){
+  //   debugger
+  //  if(this.quantityValue == 'Qty1'){
+  //   this.product.price=this.product.price*1;
+  //  }
+  //  else if(this.quantityValue == 'Qty2'){
+  //   this.product.price=this.product.price*2;
+  //  }
+  //  else if(this.quantityValue == 'Qty3'){
+  //   this.product.price=this.product.price*3;
+  // }
+  // else if(this.quantityValue == 'Qty4'){
+  //   this.product.price=this.product.price*4;
+  // }
+  // }
 }

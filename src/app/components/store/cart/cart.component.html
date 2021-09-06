@@ -26,7 +26,7 @@
           <div class="sidebar-head">
             <h2>Cart Summary</h2>
             <span class="amount-summary">
-              ${{ this.subtotalOneTimePrice }}
+              ${{this.subtotalOneTimePrice}}
             </span>
           </div>
         </div>
@@ -80,7 +80,7 @@
                   </div>
                   <div class="cart-quantity">
                     <div class="form-group">
-                       <select [(ngModel)]="quantityModel"  [ngModelOptions]="{standalone: true}" class="form-control">
+                       <select (change)="quantityModel()" [(ngModel)]="quantityValue"  [ngModelOptions]="{standalone: true}" class="form-control">
                       <option class="dropdown-item" disabled selected value="undefined">{{cartItem.quantityModel}}</option>
                       <option *ngFor="let qty of quantity" [value]="qty.value">
                       {{qty.name}}

@@ -772,3 +772,9 @@ p.l-time span.time-icon svg {
       font-size: 18px;
   }
 }
+
+/* sandeep */
+.cart-singleitem img {
+  width: 80px;
+  height: 80px;
+}

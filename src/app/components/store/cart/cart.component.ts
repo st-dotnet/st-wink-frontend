@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ComponentCanDeactivate } from '@app/_helpers/pending-changes.guard';
 import { SessionService } from '@app/_services';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -26,11 +28,11 @@ export class CartComponent implements OnInit {
   subtotalSubscriptionTimePrice: any = 0;
   total = false;
   selectDelivery: any[];
-  quantity: { id: string; name: string; value: string; }[];
-  years: { id: string; name: string; value: string; }[];
+  quantity: any[];
+  years: any[];
   onTextChange(value) {
   }
-  quantityModel:any;
+  quantityValue:any;
   subscriptionModel:any;
 
   constructor(private modalService: NgbModal,
@@ -82,7 +84,7 @@ export class CartComponent implements OnInit {
   }
   
 
-  ngOnInit(): void {
+  ngOnInit() {
     debugger
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
     console.log(' All Cart Items', this.cartItems);
@@ -113,9 +115,10 @@ export class CartComponent implements OnInit {
       this.subtotalSubscriptionTimePrice = this.subtotalSubscriptionTimePrice.toFixed(2);
     }   
   
-    this.filterItem("");
-    
+    this.filterItem("");    
   }
+
+  
 
   open(content) {
     this.modalService.open(content, this.modalOptions).result.then((result) => {
@@ -263,9 +266,28 @@ export class CartComponent implements OnInit {
 
   checkOutItem() {
     if (this.sessionService.getSessionItem('user')) {
+      this.sessionService.setSessionObject('productCartItems', this.cartItems);
       this.router.navigate(["/store/checkout"]);
     } else {
+      let isTrue = true;
+      this.sessionService.setSessionItem('isTrue', isTrue);
       this.router.navigate(["/sign-in"]);
     }
+  }
+
+  quantityModel(){
+    debugger
+   if(this.quantityValue == 'Qty1'){
+    this.subtotalOneTimePrice=this.subtotalOneTimePrice*1;
+   }
+   else if(this.quantityValue == 'Qty2'){
+    this.subtotalOneTimePrice=this.subtotalOneTimePrice*2;
+   }
+   else if(this.quantityValue == 'Qty3'){
+    this.subtotalOneTimePrice=this.subtotalOneTimePrice*3;
+  }
+  else if(this.quantityValue == 'Qty4'){
+    this.subtotalOneTimePrice=this.subtotalOneTimePrice*4;
+  }
   }
 }

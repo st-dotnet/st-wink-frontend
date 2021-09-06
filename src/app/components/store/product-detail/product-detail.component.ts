@@ -145,7 +145,6 @@ export class ProductDetailComponent implements OnInit {
   toggleShow() {
     this.incredShow = !this.incredShow;
   }
-
   
   getProductDetail(itemCode){
     this.spinner.show();
@@ -160,15 +159,11 @@ export class ProductDetailComponent implements OnInit {
     debugger
     this.productItems =this.sessionService.getSessionObject('productCartItems');
     if(this.productItems){
-      this.productItem=this.productItems.find(x => x.itemCode == product.itemCode);
-       if(!this.productItem){
+      this.productItem=this.productItems.find(x => x.itemCode == product.itemCode);      
           this.productItems.push(product);
           this.sessionService.cartSession(this.productItems);
           this.sessionService.setSessionObject('productCartItems', this.productItems);
-          this.toastrService.success('Product added successfully');         
-        }else{
-          this.toastrService.error('Product already added into cart');        
-         }    
+          this.toastrService.success('Product added successfully');  
     }    
     else{
       this.productCartItems.push(product);
