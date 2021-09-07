@@ -26,7 +26,7 @@
           <div class="sidebar-head">
             <h2>Cart Summary</h2>
             <span class="amount-summary">
-              ${{this.subtotalOneTimePrice}}
+              ${{subtotalOneTimePrice}}
             </span>
           </div>
         </div>
@@ -41,7 +41,7 @@
       <div class="col-md-12 col-lg-7">
         <div class="grid-box-shadow OTP">
           <h3>One-Time Purchase (2)</h3>
-          <div *ngFor="let cartItem of cartItems" class="cart-singleitem">
+          <div *ngFor="let cartItem of oneTimePriceCartItems; let i=index;" class="cart-singleitem">
             <div class="media">
               <div class="media-left">
                 <a [href]="cartItem.image_03" target="_blank">
@@ -52,7 +52,7 @@
                   />
                 </a>
                 <span class="remove-product"
-                  ><a (click)="removeItem(cartItem)"
+                  ><a (click)="removeItem(cartItem, 0)"
                     ><svg
                       aria-hidden="true"
                       focusable="false"
@@ -80,12 +80,19 @@
                   </div>
                   <div class="cart-quantity">
                     <div class="form-group">
-                       <select (change)="quantityModel()" [(ngModel)]="quantityValue"  [ngModelOptions]="{standalone: true}" class="form-control">
+
+                       <!-- <select (change)="quantityModel(cartItem.bv)" [(ngModel)]="quantityValue"  [ngModelOptions]="{standalone: true}" class="form-control">
                       <option class="dropdown-item" disabled selected value="undefined">{{cartItem.quantityModel}}</option>
                       <option *ngFor="let qty of quantity" [value]="qty.value">
                       {{qty.name}}
                        </option>
-                    </select>
+                    </select> -->
+
+                    <select [formControlName]="i" (change)='quantityModel(cartItem.price)' [(ngModel)]="quantityValue"  [ngModelOptions]="{standalone: true}" class="form-control">
+                      <option class="dropdown-item" disabled selected value="undefined">{{cartItem.quantityModel}}</option>
+                        <option *ngFor="let qty of quantity" [value]="qty.value">{{qty.name}}</option>
+                     </select>
+
                     </div>
                     <p class="price-product">${{ cartItem.price }}</p>
                   </div>
@@ -127,14 +134,14 @@
               </div>
               <div class="subtotal">
                 <p>Subtotal</p>
-                <p>${{ this.subtotalOneTimePrice }}</p>
+                <p>${{ subTotalPrice }}</p>
               </div>
             </div>
           </div>
         </div>
         <div class="grid-box-shadow OTP mt-3 Subscription-box">
           <h3>Subscription Purchase (1)</h3>
-          <div *ngFor="let delivery of selectDelivery" class="cart-singleitem">
+          <div *ngFor="let delivery of subscriptionCartItems" class="cart-singleitem">
             <div class="media">
               <div class="media-left">
                 <a [href]="delivery.image_03" target="_blank">
@@ -145,7 +152,7 @@
                   />
                 </a>
                 <span class="remove-product"
-                  ><a (click)="removeItemSubscription(delivery)"
+                  ><a (click)="removeItem(delivery, 1)"
                     ><svg
                       aria-hidden="true"
                       focusable="false"

@@ -189,19 +189,18 @@
               </div>
               <div class="prod-bundle-select mt-0 delivery-radio">
                 <h3>Select Delivery</h3>
-                <div *ngFor="let deliver of delivery" class="radio-bundle">
+                <div *ngFor="let type of cartTypes; let i = index" class="radio-bundle">
                   <div class="form-check form-check-inline">
                     <input
                       class="form-check-input"
                       type="radio"
                       name="inlineRadioOptionsdelivery"
-                      id="{{deliver.id}}"
-                      value="{{deliver.value}}"
-                      (change)="checkDelivery(deliver.value)"                      
+                      id="{{i}}{{type}}"
+                      value="{{type}}"
+                      (change)="checkDelivery(type)"                      
                     />
-                    <label class="form-check-label" for="{{deliver.id}}"
-                      >{{deliver.name}}</label
-                    >
+                    <label class="form-check-label" for="{{i}}{{type}}"
+                      >{{type == 0 ? 'Single Delivery' : 'Subscribe & Save 15%'}}</label>
                   </div>                 
                 </div>
               </div>
@@ -258,6 +257,8 @@
               </div>
             </div>
           </div>
+
+
         </div>
       </div>
     </form>

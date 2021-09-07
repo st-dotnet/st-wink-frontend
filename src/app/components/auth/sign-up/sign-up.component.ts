@@ -2,7 +2,6 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MustMatch } from '@app/_helpers/must-match.validator';
-import { ComponentCanDeactivate } from '@app/_helpers/pending-changes.guard';
 import { User } from '@app/_models/user';
 import { SessionService } from '@app/_services';
 import { AccountService } from '@app/_services/account.service';
@@ -16,7 +15,7 @@ import { first } from 'rxjs/operators';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css'],
 })
-export class SignUpComponent implements OnInit, ComponentCanDeactivate {
+export class SignUpComponent implements OnInit {
   form!: FormGroup;
   loading = false;
   submitted = false;

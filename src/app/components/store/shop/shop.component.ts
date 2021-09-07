@@ -8,6 +8,7 @@ import { environment } from '@environments/environment';
 import { Router } from '@angular/router';
 import { param } from 'jquery';
 import { ToastrService } from 'ngx-toastr';
+import { CartTypeEnum } from '@app/_models/cart-type-enum';
 
 
 
@@ -27,15 +28,17 @@ export class ShopComponent implements OnInit {
   productCartItems: any[] = [];
   productItems: any[] = [];
   productItem: any[];
-  bundles: any[] = []; 
+  bundles: any[] = [];
   bundle: string;
   delivery: any[] = [];
-  selectDelivery: string;
+  selectDelivery: CartTypeEnum;
   quantity: any[] = [];
   years: any[] = [];
   showSubscription = false;
-  subscriptionModel:any;
-  quantityValue:any;
+  subscriptionModel: any;
+  quantityValue: any;
+  cartTypes: any[] = [];
+  productPrice:number=0;
   modalOptions: NgbModalOptions = {
     backdrop: 'static',
     backdropClass: 'customBackdrop',
@@ -114,6 +117,8 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    debugger
+    this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.GetDDLCategoryById();
   }
 
@@ -134,13 +139,17 @@ export class ShopComponent implements OnInit {
   }
 
   open(content: any, product: any) {
+    debugger;
     this.product = product;
-    this.showSubscription=false;
+    this.productPrice=product.price;
+    this.showSubscription = false;
+    this.quantityValue = 'Qty1'
     // this.subscriptionModel="";
     // this.quantityModel="";
     //this.router.navigate(['/product', { id: content }]);
     this.modalService.open(content, this.modalOptions).result.then((result) => {
-      this.product = product;
+      //this.product = product;
+     
       console.log(this.product.largeImageUrl)
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -157,7 +166,7 @@ export class ShopComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-0
+
   GetProductsList(categoryID: number) {
     this.shopProductModels = [];
     this.shopService.GetProductsList(categoryID).subscribe(result => {
@@ -210,29 +219,29 @@ export class ShopComponent implements OnInit {
   //   }
   // }
 
-  addToCart(product: any) {    
-    debugger  
-    this.productItems = this.sessionService.getSessionObject('productCartItems');  
-    if(this.quantityValue == undefined){
+  addToCart(product: any) {
+    debugger
+    this.productItems = this.sessionService.getSessionObject('productCartItems');
+    if (this.quantityValue == undefined) {
       this.quantityValue = 'Qty1';
     }
-    const items ={
-      bundle : this.bundle,
-      selectDelivery : this.selectDelivery,
+    const items = {
+      bundle: this.bundle,
+      selectDelivery: this.selectDelivery,
       subscriptionModel: this.subscriptionModel,
       quantityModel: this.quantityValue
     }
-    Object.entries(items).forEach(([key,value]) => { product[key] = value });   
+    Object.entries(items).forEach(([key, value]) => { product[key] = value });
     if (this.productItems) {
-      this.productItem = this.productItems.find(x => x.itemCode == product.itemCode);  
-        this.productItems.push(product);
-        //this.productItems.find(x=> x.itemcode == product.itemCode).push(items);
-        this.sessionService.cartSession(this.productItems);
-        this.sessionService.setSessionObject('productCartItems', this.productItems);
-        this.toastrService.success('Product added successfully');     
+      this.productItem = this.productItems.find(x => x.itemCode == product.itemCode);
+      this.productItems.push(product);
+      //this.productItems.find(x=> x.itemcode == product.itemCode).push(items);
+      this.sessionService.cartSession(this.productItems);
+      this.sessionService.setSessionObject('productCartItems', this.productItems);
+      this.toastrService.success('Product added successfully');
     }
     else {
-      Object.entries(items).forEach(([key,value]) => { product[key] = value });
+      Object.entries(items).forEach(([key, value]) => { product[key] = value });
       this.productCartItems.push(product);
       this.sessionService.cartSession(this.productCartItems);
       this.sessionService.setSessionObject('productCartItems', this.productCartItems);
@@ -240,28 +249,40 @@ export class ShopComponent implements OnInit {
     }
   }
 
-  checkBundle(bundle: string, productPrice:any) {
+  checkBundle(bundle: string, productPrice: any) {
     debugger
     this.bundle = bundle;
     if (bundle == "multiple") {
-      this.bundle = bundle;     
-      let subscribePrice= (productPrice/100)*5;
-      this.product.price= (productPrice-subscribePrice).toFixed(2);
+      this.bundle = bundle;
+      let subscribePrice = (productPrice / 100) * 5;
+      this.product.price = (productPrice - subscribePrice).toFixed(2);
     } else {
       this.bundle = bundle;
-      this.product.price=productPrice;
+      this.product.price = this.productPrice;
     }
   }
 
-  checkDelivery(delivery: string) {
+  checkDelivery(type: CartTypeEnum) {
     debugger
-    if (delivery == "subscribe") {
-      this.showSubscription = true;
-      this.selectDelivery = delivery;
-    } else {
-      this.showSubscription = false;
-      this.selectDelivery = delivery;
+    switch (type) {
+      case CartTypeEnum.OneTimePrice:
+        this.showSubscription = false;
+        this.selectDelivery = CartTypeEnum.OneTimePrice;
+        break;
+      case CartTypeEnum.Subscription:
+        this.showSubscription = true;
+        this.selectDelivery = CartTypeEnum.Subscription;
+        break;
+      default:
+        break;
     }
+    // if (delivery == "subscribe") {
+    //   this.showSubscription = true;
+    //   this.selectDelivery = delivery;
+    // } else {
+    //   this.showSubscription = false;
+    //   this.selectDelivery = delivery;
+    // }
   }
 
   // quantityModel(){
