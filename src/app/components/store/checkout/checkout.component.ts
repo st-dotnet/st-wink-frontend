@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChargeCreditCardTokenRequest, CreateAutoOrderRequest, CreateCustomerRequest, CreateOrderRequest, SetAccountCreditCardTokenRequest, TransactionalRequestModel } from '@app/_models/checkout';
 import { ShopService } from '@app/_services/shop.service';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
@@ -9,28 +10,36 @@ import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-
   addrnew = false;
-
   sidebartoggle: boolean = true;
-
   title = 'ng-bootstrap-modal-demo';
   closeResult: string;
+  checkoutForm: FormGroup;
   modalOptions: NgbModalOptions = {
     backdrop: 'static',
     backdropClass: 'customBackdrop'
   };
 
-  // isSecondPanelDisable=false;
-  // isThirdPanelDisable=false;
-  // isActive=false;
-
   constructor(private modalService: NgbModal,
-    private shopService : ShopService) { }
+    private shopService : ShopService,
+    private formBuilder: FormBuilder,) { }
 
   ngOnInit(): void {
     this.sidebartoggle = true;
+    this.checkoutForm = this.formBuilder.group(
+      {
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        streetAddress: ['', Validators.required],
+        state: ['', Validators.required],
+        city: ['', Validators.required],
+        country: ['', Validators.required],
+        zip: ['', Validators.required]
+      });
   }
+
+   // convenience getter for easy access to form fields
+   get f() { return this.checkoutForm.controls; }
 
   open(content) {
     this.modalService.open(content, this.modalOptions).result.then((result) => {
@@ -65,9 +74,6 @@ export class CheckoutComponent implements OnInit {
   //   }
   //   alert(this.isActive);
   // }
-
-
-
   // Referrer records below
 
   filterTerm: string;
@@ -177,6 +183,10 @@ export class CheckoutComponent implements OnInit {
 
   sameshippingAddress() {
     this.addrnew = false;
+  }
+  
+  onSubmit(){
+    debugger
   }
 
   OnCheckOut(){
@@ -423,7 +433,6 @@ export class CheckoutComponent implements OnInit {
    this.shopService.checkOutItems(transactionalRequestModel).subscribe(
     (result: any) => {
       console.log("Result", result);
-
     });
   }
 }

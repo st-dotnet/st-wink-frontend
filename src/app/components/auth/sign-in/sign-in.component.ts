@@ -16,7 +16,8 @@ export class SignInComponent implements OnInit {
   form: FormGroup;
   showPassword: boolean = false;
   loading = false;
-  submitted = false;
+  isTrue:any;
+  submitted:any;
 
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -64,7 +65,12 @@ export class SignInComponent implements OnInit {
           }
           // get return url from query parameters or default to home page
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
-          this.router.navigateByUrl(returnUrl);
+           this.isTrue = this.sessionService.getSessionItem('isTrue');
+          if(this.isTrue == "true"){
+            this.router.navigate(["/store/checkout"]);
+          }else{
+            this.router.navigateByUrl(returnUrl);
+          }         
           this.loading = false;
           this.spinner.hide();
         },
