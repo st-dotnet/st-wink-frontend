@@ -26,7 +26,7 @@ export class CartComponent implements OnInit {
   };
   cart: any[];
   subtotalOneTimePrice: any = 0;
-  subTotalPrice:any=0;
+  subTotalPrice: any = 0;
   subtotalSubscriptionTimePrice: any = 0;
   total = false;
   subscriptionCartItems: any[] = [];
@@ -90,11 +90,8 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     debugger
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
-    console.log(' All Cart Items', this.cartItems);
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
     this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
-    console.log('CartItems', this.cartItems);
-    console.log('subscriptionCartItems', this.subscriptionCartItems);
     if (this.total == true) {
       this.subtotalOneTimePrice = 0
       this.subtotalSubscriptionTimePrice = 0;
@@ -265,7 +262,7 @@ export class CartComponent implements OnInit {
         break;
     }
     this.total = true;
-     this.spinner.hide();
+    this.spinner.hide();
     // this.cart = this.cartItems.filter(x => x.itemCode != cartItem.itemCode);
     // // this.subscriptionCartItems.push(this.cart);
     // this.sessionService.setSessionObject('productCartItems', this.subscriptionCartItems);
@@ -300,27 +297,32 @@ export class CartComponent implements OnInit {
     }
   }
 
-  quantityModel(value:any) {
-
-    // var i=this.oneTimePriceCartItems.length;
-    // for(var j=1;j<=i;i++)
-    // {
-    //   console.log(j)
-    // }
-
+  quantityModel(cartitem: any, selectedvalue: any) {
     debugger
-    this.subTotalPrice=0;
-    if (this.quantityValue == 'Qty1') {
-      this.subTotalPrice = value * 1;
-    }
-    else if (this.quantityValue == 'Qty2') {
-      this.subTotalPrice = value * 2;
-    }
-    else if (this.quantityValue == 'Qty3') {
-      this.subTotalPrice = value * 3;
-    }
-    else if (this.quantityValue == 'Qty4') {
-      this.subTotalPrice = value * 4;
-    }
+    //oneTimePriceCartItems
+    // for (var i = 0; i <= this.oneTimePriceCartItems.length - 1; i++) {
+    //   if (this.oneTimePriceCartItems[i].itemCode == cartitem.itemCode) {
+    //     this.oneTimePriceCartItems[i].quantityModel = selectedvalue;
+    //   }
+    // }
+    // this.subTotalPrice = 0;
+    // for (var i = 0; i <= this.oneTimePriceCartItems.length-1; i++) {
+    //   if (this.oneTimePriceCartItems[i].quantityModel == 'Qty1') {
+    //     this.subTotalPrice = this.oneTimePriceCartItems[i].bv * 1;
+    //     this.oneTimePriceCartItems[i].bv = this.subTotalPrice;
+    //   }
+    //   if (this.oneTimePriceCartItems[i].quantityModel == 'Qty2') {
+    //     this.subTotalPrice = this.oneTimePriceCartItems[i].bv * 2;
+    //     this.oneTimePriceCartItems[i].bv = this.subTotalPrice;
+    //   }
+    //   if (this.oneTimePriceCartItems[i].quantityModel == 'Qty3') {
+    //     this.subTotalPrice = this.oneTimePriceCartItems[i].bv * 3;
+    //     this.oneTimePriceCartItems[i].bv = this.subTotalPrice;
+    //   }
+    //   if (this.oneTimePriceCartItems[i].quantityModel == 'Qty4') {
+    //     this.subTotalPrice = this.oneTimePriceCartItems[i].bv * 4;
+    //     this.oneTimePriceCartItems[i].bv = this.subTotalPrice;
+    //   }
+    // }
   }
 }
