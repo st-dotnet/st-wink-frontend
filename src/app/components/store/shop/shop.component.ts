@@ -117,7 +117,7 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger
+    //debugger
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.GetDDLCategoryById();
   }
@@ -168,6 +168,7 @@ export class ShopComponent implements OnInit {
   }
 
   GetProductsList(categoryID: number) {
+    //debugger;
     this.shopProductModels = [];
     this.shopService.GetProductsList(categoryID).subscribe(result => {
       this.shopProductModels = result;
@@ -220,7 +221,7 @@ export class ShopComponent implements OnInit {
   // }
 
   addToCart(product: any) {
-    debugger
+    //debugger
     this.productItems = this.sessionService.getSessionObject('productCartItems');
     if (this.quantityValue == undefined) {
       this.quantityValue = 'Qty1';
@@ -250,7 +251,7 @@ export class ShopComponent implements OnInit {
   }
 
   checkBundle(bundle: string, productPrice: any) {
-    debugger
+    //debugger
     this.bundle = bundle;
     if (bundle == "multiple") {
       this.bundle = bundle;
@@ -263,7 +264,7 @@ export class ShopComponent implements OnInit {
   }
 
   checkDelivery(type: CartTypeEnum) {
-    debugger
+   // debugger
     switch (type) {
       case CartTypeEnum.OneTimePrice:
         this.showSubscription = false;
