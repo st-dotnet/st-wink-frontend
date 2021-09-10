@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartTypeEnum } from '@app/_models/cart-type-enum';
 import { SessionService } from '@app/_services';
@@ -16,6 +17,7 @@ export class CartComponent implements OnInit {
   subscriptionPurchase = false;
   inputdata: string;
   promocode_onetime: string;
+  qtyselect: any;
   data_learn: boolean = false;
   closeResult: string;
   cartItems: any[] = [];
@@ -28,15 +30,19 @@ export class CartComponent implements OnInit {
   subtotalOneTimePrice: any = 0;
   subTotalPrice: any = 0;
   subtotalSubscriptionTimePrice: any = 0;
-  total = false;
+  total: boolean = false;
   subscriptionCartItems: any[] = [];
   oneTimePriceCartItems: any[] = [];
   quantity: any[];
   years: any[];
   onTextChange(value) {
   }
+
+  datapro: FormGroup;
+
   quantityValue: any;
   subscriptionModel: any;
+  //qtyselect: any;
 
   constructor(private modalService: NgbModal,
     private sessionService: SessionService,
@@ -60,12 +66,14 @@ export class CartComponent implements OnInit {
         id: '3',
         name: 'Qty 3',
         value: 'Qty3'
-      },
+      }
+      ,
       {
         id: '4',
         name: 'Qty 4',
         value: 'Qty4'
       }
+
     ]
     this.years = [
       {
@@ -115,6 +123,7 @@ export class CartComponent implements OnInit {
       this.subtotalSubscriptionTimePrice = this.subtotalSubscriptionTimePrice.toFixed(2);
     }
     this.filterItem("");
+    //this.qtyselect = 4;
   }
 
   open(content) {
@@ -295,34 +304,5 @@ export class CartComponent implements OnInit {
       this.sessionService.setSessionItem('isTrue', isTrue);
       this.router.navigate(["/sign-in"]);
     }
-  }
-
-  quantityModel(cartitem: any, selectedvalue: any) {
-    debugger
-    //oneTimePriceCartItems
-    // for (var i = 0; i <= this.oneTimePriceCartItems.length - 1; i++) {
-    //   if (this.oneTimePriceCartItems[i].itemCode == cartitem.itemCode) {
-    //     this.oneTimePriceCartItems[i].quantityModel = selectedvalue;
-    //   }
-    // }
-    // this.subTotalPrice = 0;
-    // for (var i = 0; i <= this.oneTimePriceCartItems.length-1; i++) {
-    //   if (this.oneTimePriceCartItems[i].quantityModel == 'Qty1') {
-    //     this.subTotalPrice = this.oneTimePriceCartItems[i].bv * 1;
-    //     this.oneTimePriceCartItems[i].bv = this.subTotalPrice;
-    //   }
-    //   if (this.oneTimePriceCartItems[i].quantityModel == 'Qty2') {
-    //     this.subTotalPrice = this.oneTimePriceCartItems[i].bv * 2;
-    //     this.oneTimePriceCartItems[i].bv = this.subTotalPrice;
-    //   }
-    //   if (this.oneTimePriceCartItems[i].quantityModel == 'Qty3') {
-    //     this.subTotalPrice = this.oneTimePriceCartItems[i].bv * 3;
-    //     this.oneTimePriceCartItems[i].bv = this.subTotalPrice;
-    //   }
-    //   if (this.oneTimePriceCartItems[i].quantityModel == 'Qty4') {
-    //     this.subTotalPrice = this.oneTimePriceCartItems[i].bv * 4;
-    //     this.oneTimePriceCartItems[i].bv = this.subTotalPrice;
-    //   }
-    // }
   }
 }

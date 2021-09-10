@@ -1100,6 +1100,10 @@ background-color:#fff;
   outline: none;
 }
 
+.radio-bundle {
+  display: inline;
+}
+
 /* MEDIA */
 @media (min-width: 1367px)
 {
@@ -1132,7 +1136,7 @@ background-color:#fff;
 
 @media (max-width:1199px)
 {
-  section.best-selller .owl-nav,section.best-selller .owl-dots {
+ section.best-selller .owl-dots {
     display: none;
 }
 .content-banner-slider h3 {
