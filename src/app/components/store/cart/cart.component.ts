@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartTypeEnum } from '@app/_models/cart-type-enum';
 import { SessionService } from '@app/_services';
@@ -16,6 +17,7 @@ export class CartComponent implements OnInit {
   subscriptionPurchase = false;
   inputdata: string;
   promocode_onetime: string;
+  qtyselect: any;
   data_learn: boolean = false;
   closeResult: string;
   cartItems: any[] = [];
@@ -26,17 +28,22 @@ export class CartComponent implements OnInit {
   };
   cart: any[];
   subtotalOneTimePrice: any = 0;
-  subTotalPrice:any=0;
+  singlecalc: any = 0;
+  subTotalPrice: any = 0;
   subtotalSubscriptionTimePrice: any = 0;
-  total = false;
+  total: boolean = false;
   subscriptionCartItems: any[] = [];
   oneTimePriceCartItems: any[] = [];
   quantity: any[];
   years: any[];
   onTextChange(value) {
   }
+
+  datapro: FormGroup;
+
   quantityValue: any;
   subscriptionModel: any;
+  //qtyselect: any;
 
   constructor(private modalService: NgbModal,
     private sessionService: SessionService,
@@ -60,12 +67,14 @@ export class CartComponent implements OnInit {
         id: '3',
         name: 'Qty 3',
         value: 'Qty3'
-      },
+      }
+      ,
       {
         id: '4',
         name: 'Qty 4',
         value: 'Qty4'
       }
+
     ]
     this.years = [
       {
@@ -118,6 +127,7 @@ export class CartComponent implements OnInit {
       this.subtotalSubscriptionTimePrice = this.subtotalSubscriptionTimePrice.toFixed(2);
     }
     this.filterItem("");
+    //this.qtyselect = 4;
   }
 
   open(content) {
@@ -265,7 +275,7 @@ export class CartComponent implements OnInit {
         break;
     }
     this.total = true;
-     this.spinner.hide();
+    this.spinner.hide();
     // this.cart = this.cartItems.filter(x => x.itemCode != cartItem.itemCode);
     // // this.subscriptionCartItems.push(this.cart);
     // this.sessionService.setSessionObject('productCartItems', this.subscriptionCartItems);
@@ -300,27 +310,66 @@ export class CartComponent implements OnInit {
     }
   }
 
-  quantityModel(value:any) {
+  // quantityModel(value: any) {
+  //   debugger
+  //   this.subTotalPrice = 0;
+  //   if (this.quantityValue == 'Qty1') {
+  //     this.subTotalPrice = value * 1;
+  //   }
+  //   else if (this.quantityValue == 'Qty2') {
+  //     this.subTotalPrice = value * 2;
+  //   }
+  //   else if (this.quantityValue == 'Qty3') {
+  //     this.subTotalPrice = value * 3;
+  //   }
+  //   else if (this.quantityValue == 'Qty4') {
+  //     this.subTotalPrice = value * 4;
+  //   }
+  // }
 
-    // var i=this.oneTimePriceCartItems.length;
-    // for(var j=1;j<=i;i++)
-    // {
-    //   console.log(j)
-    // }
 
+  quantityModel(cartItem, selectedvalue: any) {
     debugger
-    this.subTotalPrice=0;
-    if (this.quantityValue == 'Qty1') {
-      this.subTotalPrice = value * 1;
+    console.log(cartItem);
+      debugger
+      for (var i = 0; i <= this.oneTimePriceCartItems.length - 1; i++) {​​​​​​
+        if (this.oneTimePriceCartItems[i].itemCode == cartItem.itemCode) {​​​​​​
+          this.oneTimePriceCartItems[i].quantityModel = selectedvalue;
+        }​​​​​​
+      }​​​​​​
+      
+      for (var i = 0; i <= this.oneTimePriceCartItems.length-1; i++) {​​​​​​
+        debugger
+        if (this.oneTimePriceCartItems[i].quantityModel == 'Qty1') {​​​​​​
+          this.subTotalPrice = this.oneTimePriceCartItems[i].price * 1;
+          this.oneTimePriceCartItems[i].price = this.subTotalPrice;
+          this.singlecalc = this.subTotalPrice;
+          console.log(this.singlecalc);
+
+        }​​​​​​
+        debugger
+        if (this.oneTimePriceCartItems[i].quantityModel == 'Qty2') {​​​​​​
+          this.subTotalPrice = this.oneTimePriceCartItems[i].price * 2;
+          this.oneTimePriceCartItems[i].price = this.subTotalPrice;
+          this.singlecalc = this.subTotalPrice;
+          console.log(this.singlecalc);
+        }​​​​​​
+        debugger
+        if (this.oneTimePriceCartItems[i].quantityModel == 'Qty3') {​​​​​​
+          this.subTotalPrice = this.oneTimePriceCartItems[i].price * 3;
+          this.oneTimePriceCartItems[i].price = this.subTotalPrice;
+          this.singlecalc = this.subTotalPrice;
+          console.log(this.singlecalc);
+        }​​​​​​
+        if (this.oneTimePriceCartItems[i].quantityModel == 'Qty4') {​​​​​​
+          this.subTotalPrice = this.oneTimePriceCartItems[i].price * 4;
+          this.oneTimePriceCartItems[i].price = this.subTotalPrice;
+          this.singlecalc = this.subTotalPrice;
+          console.log(this.singlecalc);
+        }​​​​​​
+      }​​​​​​
+      
+      
     }
-    else if (this.quantityValue == 'Qty2') {
-      this.subTotalPrice = value * 2;
-    }
-    else if (this.quantityValue == 'Qty3') {
-      this.subTotalPrice = value * 3;
-    }
-    else if (this.quantityValue == 'Qty4') {
-      this.subTotalPrice = value * 4;
-    }
-  }
+  
 }
