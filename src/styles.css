@@ -80,7 +80,11 @@ app-layout {
   display: flex;
   flex-direction: column;
 }
-
+div#main-menu li a:hover,div#main-menu li a:focus {
+  background: #2aa8bf;
+  color: #ffffff !important;
+  border-radius: 4px;
+}
 .white-bg
 {
 background-color: #fff;

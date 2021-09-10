@@ -1,11 +1,13 @@
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CartTypeEnum } from '@app/_models/cart-type-enum';
 import { ChargeCreditCardTokenRequest, CreateAutoOrderRequest, CreateCustomerRequest, CreateOrderRequest, OrderDetailRequest, SetAccountCreditCardTokenRequest, TransactionalRequestModel } from '@app/_models/checkout';
 import { SessionService } from '@app/_services';
 import { ShopService } from '@app/_services/shop.service';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-checkout',
@@ -23,6 +25,7 @@ export class CheckoutComponent implements OnInit {
   loyalpointz: any;
   filterTerm: any;
   cartItems: any[] = [];
+  submitted = false;
   modalOptions: NgbModalOptions = {
     backdrop: 'static',
     backdropClass: 'customBackdrop'
@@ -37,7 +40,10 @@ export class CheckoutComponent implements OnInit {
   constructor(private modalService: NgbModal,
     private shopService: ShopService,
     private formBuilder: FormBuilder,
-    private sessionService: SessionService) { }
+    private sessionService: SessionService,
+    private router: Router,
+    private spinner: NgxSpinnerService,) {      
+     }
 
   ngOnInit(): void {
     debugger
@@ -64,7 +70,7 @@ export class CheckoutComponent implements OnInit {
           state: ['', Validators.required],
           city: ['', Validators.required],
           country: ['', Validators.required],
-          zip: ['', Validators.required]
+          zip: ['', [Validators.maxLength(5), Validators.minLength(5)]]
         }),
         isShipmentMethod: [''],
         promoCodePay: [''],
@@ -118,17 +124,6 @@ export class CheckoutComponent implements OnInit {
     this.sidebartoggle = !this.sidebartoggle;
     console.log(this.sidebartoggle);
   }
-
-  // changeTitle($event: NgbPanelChangeEvent, acc) {
-
-  //   if (!acc.isExpanded($event.panelId)) {
-  //     this.isActive = true;
-  //   } else {
-  //     this.isActive = false;
-  //   }
-  //   alert(this.isActive);
-  // }
-  // Referrer records below
 
   isDataAvailable = false;
   toShowData = false;
@@ -197,14 +192,11 @@ export class CheckoutComponent implements OnInit {
 
   selectedData = this.referrerRecords;
   filterItem(val) {
-    debugger;
     //value not empty
     if (val !== "") {
-      debugger;
       //Data filter method
       this.selectedData = this.referrerRecords.filter(x => (x.referrer_name.includes(val) || x.referrer_name.includes(val.toUpperCase()) || x.referrer_name.includes(val.toLowerCase())) || x.id == parseInt(val));
       if (this.selectedData.length == 0) {
-        debugger;
         this.isDataAvailable = false;
       }
     }
@@ -212,7 +204,6 @@ export class CheckoutComponent implements OnInit {
       this.selectedData = this.referrerRecords;
       debugger;
       this.isDataAvailable = true;
-      debugger;
     }
   }
 
@@ -238,6 +229,7 @@ export class CheckoutComponent implements OnInit {
   sameshippingAddress() {
     this.addrnew = false;
   }
+
   getQuantityVal(qty: string) {
     var value = 0;
     if (qty == "Qty1") {
@@ -257,9 +249,11 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit() {
     debugger;
+    this.submitted = true;
     if (this.checkoutForm.invalid) {
       return;
     }
+    this.spinner.show();
     this.cartItems.forEach(element => {
       this.orderDetails.push({
         descriptionOverride: '',
@@ -287,7 +281,7 @@ export class CheckoutComponent implements OnInit {
         advancedAutoOptions: ''
       });
     });
-    
+
     const createOrderRequest = new CreateOrderRequest();
     createOrderRequest.other14 = '';
     createOrderRequest.other15 = '';
@@ -320,18 +314,18 @@ export class CheckoutComponent implements OnInit {
     createOrderRequest.warehouseID = 0;
     createOrderRequest.shipMethodID = 0;
     createOrderRequest.priceType = 0;
-    createOrderRequest.firstName = '';
+    createOrderRequest.firstName = this.checkoutForm.value.shippingAddressFormGroup.firstName;
     createOrderRequest.middleName = '';
-    createOrderRequest.lastName = '';
+    createOrderRequest.lastName = this.checkoutForm.value.shippingAddressFormGroup.lastName;
     createOrderRequest.other11 = '';
     createOrderRequest.nameSuffix = '';
-    createOrderRequest.address1 = '';
+    createOrderRequest.address1 = this.checkoutForm.value.shippingAddressFormGroup.streetAddress;
     createOrderRequest.address2 = '';
     createOrderRequest.address3 = '';
-    createOrderRequest.city = '';
-    createOrderRequest.state = '';
-    createOrderRequest.zip = '';
-    createOrderRequest.country = '';
+    createOrderRequest.city = this.checkoutForm.value.shippingAddressFormGroup.city;
+    createOrderRequest.state = this.checkoutForm.value.shippingAddressFormGroup.state;
+    createOrderRequest.zip = this.checkoutForm.value.shippingAddressFormGroup.zip;
+    createOrderRequest.country = this.checkoutForm.value.shippingAddressFormGroup.country;
     createOrderRequest.county = '';
     createOrderRequest.email = '';
     createOrderRequest.phone = '';
@@ -445,7 +439,7 @@ export class CheckoutComponent implements OnInit {
     chargeCreditCardTokenRequest.otherData10 = '';
     chargeCreditCardTokenRequest.expirationMonth = 0;
     chargeCreditCardTokenRequest.creditCardType = 0;
-    chargeCreditCardTokenRequest.cvcCode = '';
+    chargeCreditCardTokenRequest.cvcCode = this.checkoutForm.value.CardFormGroup.cardCVV;
     chargeCreditCardTokenRequest.billingCountry = '';
     chargeCreditCardTokenRequest.billingZip = '';
     chargeCreditCardTokenRequest.billingState = '';
@@ -475,7 +469,7 @@ export class CheckoutComponent implements OnInit {
     createAutoOrderRequest.description = '';
     createAutoOrderRequest.overwriteExistingAutoOrder = true;
     createAutoOrderRequest.existingAutoOrderID = 0;
-    createAutoOrderRequest.details = [];
+    createAutoOrderRequest.details = this.orderDetails;
     createAutoOrderRequest.other16 = '';
     createAutoOrderRequest.frequency = 1;
     createAutoOrderRequest.startDate = "2021-09-01T09:28:10.207Z";
@@ -530,7 +524,8 @@ export class CheckoutComponent implements OnInit {
     this.shopService.checkOutItems(transactionalRequestModel).subscribe(
       (result: any) => {
         console.log("Result", result);
+        this.router.navigate(["/store/thankyou"]);
+        this.spinner.hide();
       });
-
   }
 }

@@ -330,8 +330,7 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                    formControlName="firstName" placeholder="First Name"
-                                                                    [ngModelOptions]="{standalone: true}"
+                                                                    formControlName="firstName" placeholder="First Name"                                                                  
                                                                     [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
                                                                 <div *ngIf="submitted && f.firstName.errors"
                                                                     class="invalid-feedback">
@@ -344,7 +343,6 @@
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
                                                                     formControlName="lastName" placeholder="Last Name"
-                                                                    [ngModelOptions]="{standalone: true}"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
                                                                 <div *ngIf="submitted && f.lastName.errors"
                                                                     class="invalid-feedback">
@@ -358,7 +356,6 @@
                                                                 <input type="text" class="form-control"
                                                                     formControlName="streetAddress"
                                                                     placeholder="Street Address"
-                                                                    [ngModelOptions]="{standalone: true}"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.streetAddress.errors }" />
                                                                 <div *ngIf="submitted && f.streetAddress.errors"
                                                                     class="invalid-feedback">
@@ -397,12 +394,15 @@
                                                             <div class="form-group">
                                                                 <input type="number" class="form-control"
                                                                     formControlName="zip" placeholder="Zip"
-                                                                    [ngModelOptions]="{standalone: true}"
+                                                                    [ngModelOptions]="{standalone: true}" maxlength="5" minlength="5"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.zip.errors }" />
-                                                                <div *ngIf="submitted && f.zip.errors"
+                                                                    <div *ngIf="submitted && f.zip.errors"
                                                                     class="invalid-feedback">
                                                                     <div *ngIf="f.zip.errors.required">Zip is
                                                                         required</div>
+                                                                        <div *ngIf="submitted && f.zip.errors" class="invalid-feedback">
+                                                                            Maximum and Minimum length must be 5
+                                                                        </div>
                                                                 </div>
                                                             </div>
                                                         </div>
