@@ -62,21 +62,8 @@
                       {{qty.name}}
                        </option>
                     </select> -->
-
-                      <!-- <select [formControlName]="i" (change)='quantityModel(cartItem.price)' [(ngModel)]="qtyselect"  [ngModelOptions]="{standalone: true}" class="form-control">
-                      <option class="dropdown-item" disabled selected value="undefined">{{cartItem.quantityModel}}</option>
-                        <option *ngFor="let qty of quantity" [value]="qty.id">{{qty.name}}</option>
-                     </select> -->
-                      <form>
-                        <select (change)='quantityModel(cartItem,$event.target.value)' [ngModelOptions]="{standalone: true}"
-                          [dataselect]="qtyselect" class="form-control" [value]="cartItem.quantityModel">
-                          <option class="dropdown-item" disabled selected value="">{{cartItem.quantityModel}}
-                          </option>
-                          <option *ngFor="let qty of quantity" [ngValue]="qty.id">{{qty.name}}</option>
-                        </select>
-                      </form>
                     </div>
-                    <p class="price-product">${{ cartItem.price }}</p>
+                    <p class="price-product">${{ cartItem.bv }}</p>
                   </div>
                 </div>
               </div>

@@ -28,7 +28,6 @@ export class CartComponent implements OnInit {
   };
   cart: any[];
   subtotalOneTimePrice: any = 0;
-  singlecalc: any = 0;
   subTotalPrice: any = 0;
   subtotalSubscriptionTimePrice: any = 0;
   total: boolean = false;
@@ -99,11 +98,8 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     debugger
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
-    console.log(' All Cart Items', this.cartItems);
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
     this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
-    console.log('CartItems', this.cartItems);
-    console.log('subscriptionCartItems', this.subscriptionCartItems);
     if (this.total == true) {
       this.subtotalOneTimePrice = 0
       this.subtotalSubscriptionTimePrice = 0;
@@ -309,67 +305,4 @@ export class CartComponent implements OnInit {
       this.router.navigate(["/sign-in"]);
     }
   }
-
-  // quantityModel(value: any) {
-  //   debugger
-  //   this.subTotalPrice = 0;
-  //   if (this.quantityValue == 'Qty1') {
-  //     this.subTotalPrice = value * 1;
-  //   }
-  //   else if (this.quantityValue == 'Qty2') {
-  //     this.subTotalPrice = value * 2;
-  //   }
-  //   else if (this.quantityValue == 'Qty3') {
-  //     this.subTotalPrice = value * 3;
-  //   }
-  //   else if (this.quantityValue == 'Qty4') {
-  //     this.subTotalPrice = value * 4;
-  //   }
-  // }
-
-
-  quantityModel(cartItem, selectedvalue: any) {
-    debugger
-    console.log(cartItem);
-      debugger
-      for (var i = 0; i <= this.oneTimePriceCartItems.length - 1; i++) {​​​​​​
-        if (this.oneTimePriceCartItems[i].itemCode == cartItem.itemCode) {​​​​​​
-          this.oneTimePriceCartItems[i].quantityModel = selectedvalue;
-        }​​​​​​
-      }​​​​​​
-      
-      for (var i = 0; i <= this.oneTimePriceCartItems.length-1; i++) {​​​​​​
-        debugger
-        if (this.oneTimePriceCartItems[i].quantityModel == 'Qty1') {​​​​​​
-          this.subTotalPrice = this.oneTimePriceCartItems[i].price * 1;
-          this.oneTimePriceCartItems[i].price = this.subTotalPrice;
-          this.singlecalc = this.subTotalPrice;
-          console.log(this.singlecalc);
-
-        }​​​​​​
-        debugger
-        if (this.oneTimePriceCartItems[i].quantityModel == 'Qty2') {​​​​​​
-          this.subTotalPrice = this.oneTimePriceCartItems[i].price * 2;
-          this.oneTimePriceCartItems[i].price = this.subTotalPrice;
-          this.singlecalc = this.subTotalPrice;
-          console.log(this.singlecalc);
-        }​​​​​​
-        debugger
-        if (this.oneTimePriceCartItems[i].quantityModel == 'Qty3') {​​​​​​
-          this.subTotalPrice = this.oneTimePriceCartItems[i].price * 3;
-          this.oneTimePriceCartItems[i].price = this.subTotalPrice;
-          this.singlecalc = this.subTotalPrice;
-          console.log(this.singlecalc);
-        }​​​​​​
-        if (this.oneTimePriceCartItems[i].quantityModel == 'Qty4') {​​​​​​
-          this.subTotalPrice = this.oneTimePriceCartItems[i].price * 4;
-          this.oneTimePriceCartItems[i].price = this.subTotalPrice;
-          this.singlecalc = this.subTotalPrice;
-          console.log(this.singlecalc);
-        }​​​​​​
-      }​​​​​​
-      
-      
-    }
-  
 }

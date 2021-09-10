@@ -24,7 +24,7 @@ export class TransactionalRequestModel {
       overwriteExistingOrder: boolean;
       existingOrderID: number;
       partyID: number | null;
-      details: any[];
+      details: OrderDetailRequest[];
       suppressPackSlipPrice: boolean;
       transferVolumeToKey: string;
       returnOrderKey: string;
@@ -251,4 +251,40 @@ export class SetAccountCreditCardTokenRequest {
       customerID: number;
       billingAddress: string;
       lastFour: string;
+}
+
+
+
+export class OrderDetailRequest {
+      descriptionOverride: string;
+      other10EachOverride: number | null;
+      other9EachOverride: number | null;
+      other8EachOverride: number | null;
+      other7EachOverride: number | null;
+      other6EachOverride: number | null;
+      other5EachOverride: number | null;
+      other4EachOverride: number | null;
+      other3EachOverride: number | null;
+      other2EachOverride: number | null;
+      other1EachOverride: number | null;
+      commissionableVolumeEachOverride: number | null;
+      businessVolumeEachOverride: number | null;
+      shippingPriceEachOverride: number | null;
+      taxableEachOverride: number | null;
+      priceEachOverride: number | null;
+      parentItemCode: string;
+      quantity: number;
+      parentOrderDetailID: string | null;
+      orderDetailID: string | null;
+      itemCode: string;
+      reference1: string;
+      advancedAutoOptions: AdvancedAutoOptionsRequest;
+}
+
+export class AdvancedAutoOptionsRequest {
+      processWhileDate: string | null;
+      skipUntilDate: string | null;
+      detailStartDate: string | null;
+      detailEndDate: string | null;
+      detailInterval: number | null;
 }
