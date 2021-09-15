@@ -42,11 +42,11 @@
             />
           </svg>
         </i>
-        <select class="form-control">
-          <option>Featured</option>
-          <option>Price: $ - $$</option>
-          <option>Price: $$ - $</option>
-          <option>Name: A - Z</option>
+        <select class="form-control" (change)="onProductFilter($event)">
+          <option  [value]="">Featured</option>
+          <option  [value]="1">Price: $ - $$</option>
+          <option  [value]="2">Price: $$ - $</option>
+          <option  [value]="3">Name: A - Z</option>
         </select>
       </div>
     </form>

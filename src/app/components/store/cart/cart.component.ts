@@ -4,9 +4,7 @@ import { CartTypeEnum } from '@app/_models/cart-type-enum';
 import { SessionService } from '@app/_services';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { stringify } from 'querystring';
-import { Observable } from 'rxjs';
-
+import { DatePipe } from '@angular/common'
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -14,30 +12,22 @@ import { Observable } from 'rxjs';
 })
 export class CartComponent implements OnInit {
   subscriptionPurchase = false;
-  inputdata: string;
+  inputdata: any;
   promocode_onetime: string;
   data_learn: boolean = false;
   closeResult: string;
   cartItems: any[] = [];
-  maxDate = new Date();
+  minDate = new Date();
   modalOptions: NgbModalOptions = {
     backdrop: 'static',
     backdropClass: 'customBackdrop'
   };
   oneTimePriceCartItemsCount: number = 0;
   subscriptionCartItemsCount: number = 0;
-
-  cartSummaryTotal:number=0;
+  cartSummaryTotal: number = 0;
   cart: any[];
-
   subtotalOneTimePrice: number = 0;
   subTotalSubscriptionPrice: number = 0;
-
-
-  // subscriptionSubTotalPrice:any=0;
-  // subtotalSubscriptionTimePrice: any = 0;
-
-
   total = false;
   subscriptionCartItems: any[] = [];
   oneTimePriceCartItems: any[] = [];
@@ -45,7 +35,6 @@ export class CartComponent implements OnInit {
   years: any[];
   onTextChange(value) {
   }
-  //quantityValue: any;
   subscriptionModel: any;
 
   constructor(private modalService: NgbModal,
@@ -53,43 +42,17 @@ export class CartComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router) {
     this.sessionService.scrollToTop();
-    this.maxDate.setDate(this.maxDate.getDate() - 1);
+    this.minDate.setDate(this.minDate.getDate() + 1);
     this.bindDropDown();
   }
 
-
   ngOnInit() {
-    debugger
+    debugger   
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
     this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
-
     this.oneTimePriceCartItemsCount = this.oneTimePriceCartItems.length;
     this.subscriptionCartItemsCount = this.subscriptionCartItems.length;
-    // if (this.total == true) {
-    //   this.subtotalOneTimePrice = 0
-    //   this.subtotalSubscriptionTimePrice = 0;
-    // }
-    // this.cartItems.forEach(element => {
-    //   this.subtotalOneTimePrice += element.price;
-    // });
-    // if (typeof this.subtotalOneTimePrice === 'string') {
-    //   this.subtotalOneTimePrice = parseFloat(this.subtotalOneTimePrice);
-    //   this.subtotalOneTimePrice = this.subtotalOneTimePrice.toFixed(2);
-    // } else {
-    //   this.subtotalOneTimePrice = this.subtotalOneTimePrice.toFixed(2);
-    // }
-    // this.subscriptionCartItems.forEach(element => {
-    //   this.subtotalSubscriptionTimePrice += element.price;
-    // });
-    // if (typeof this.subtotalSubscriptionTimePrice === 'string') {
-    //   this.subtotalSubscriptionTimePrice = parseInt(this.subtotalSubscriptionTimePrice);
-    //   this.subtotalSubscriptionTimePrice = this.subtotalSubscriptionTimePrice.toFixed(2);
-    // } else {
-    //   this.subtotalSubscriptionTimePrice = this.subtotalSubscriptionTimePrice.toFixed(2);
-    // }
-   
-    this.filterItem("");
     this.quantityForOneTime('', '');
     this.quantityForSubscriptionTime('', '');
   }
@@ -118,103 +81,12 @@ export class CartComponent implements OnInit {
   }
 
   // Referrer records below
-
   filterTerm: string;
   isDataAvailable = false;
   toShowData = false;
   refId: any;
   refName: any;
 
-  referrerRecords = [
-    {
-      "id": 1,
-      "referrer_name": "Amanda Rich",
-      "wink_link": "purecures",
-      "referrer_location": "Henderson, NV",
-      "referrer_image": "../../assets/user_referrer.jpg"
-    },
-    {
-      "id": 2,
-      "referrer_name": "Amanda Walsh",
-      "wink_link": "purecures",
-      "referrer_location": "Henderson, NV",
-      "referrer_image": "../../assets/user_referrer.jpg"
-    },
-    {
-      "id": 3,
-      "referrer_name": "John Carter",
-      "wink_link": "purecures",
-      "referrer_location": "Henderson, NV",
-      "referrer_image": "../../assets/user_referrer.jpg"
-    },
-    {
-      "id": 4,
-      "referrer_name": "Mark Brown",
-      "wink_link": "purecures",
-      "referrer_location": "Henderson, NV",
-      "referrer_image": "../../assets/user_referrer.jpg"
-    },
-    {
-      "id": 5,
-      "referrer_name": "Eliot Marshall",
-      "wink_link": "purecures",
-      "referrer_location": "Henderson, NV",
-      "referrer_image": "../../assets/user_referrer.jpg"
-    },
-    {
-      "id": 6,
-      "referrer_name": "Amanda Boyce",
-      "wink_link": "purecures",
-      "referrer_location": "Henderson, NV",
-      "referrer_image": "../../assets/user_referrer.jpg"
-    },
-    {
-      "id": 7,
-      "referrer_name": "James George",
-      "wink_link": "purecures",
-      "referrer_location": "Henderson, NV",
-      "referrer_image": "../../assets/user_referrer.jpg"
-    },
-    {
-      "id": 8,
-      "referrer_name": "Casper Max",
-      "wink_link": "purecures",
-      "referrer_location": "Henderson, NV",
-      "referrer_image": "../../assets/user_referrer.jpg"
-    },
-  ]
-
-  selectedData = this.referrerRecords;
-  filterItem(val) {
-    //value not empty
-    if (val !== "") {
-      //Data filter method
-      this.selectedData = this.referrerRecords.filter(x => (x.referrer_name.includes(val) || x.referrer_name.includes(val.toUpperCase()) || x.referrer_name.includes(val.toLowerCase())) || x.id == parseInt(val));
-      if (this.selectedData.length == 0) {
-        this.isDataAvailable = false;
-      }
-    }
-    else {
-      this.selectedData = this.referrerRecords;
-      debugger;
-      this.isDataAvailable = true;
-      debugger;
-    }
-  }
-
-  choose_referrer(data: any) {
-    debugger;
-    if (this.referrerRecords.filter(x => x.id == parseInt(data.id)).length > 0) {
-      debugger;
-      this.refId = data.id;
-      debugger;
-      this.refName = this.referrerRecords.filter(x => x.id == parseInt(data.id)).map(ele => ele.referrer_name);
-      this.toShowData = true;
-    }
-    else {
-      this.toShowData = false;
-    }
-  }
 
   removeItem(cartItem: any, type: any) {
     debugger
@@ -242,11 +114,6 @@ export class CartComponent implements OnInit {
     this.spinner.hide();
     this.quantityForOneTime('', '');
     this.quantityForSubscriptionTime('', '');
-    // this.cart = this.cartItems.filter(x => x.itemCode != cartItem.itemCode);
-    // // this.subscriptionCartItems.push(this.cart);
-    // this.sessionService.setSessionObject('productCartItems', this.subscriptionCartItems);
-    // this.spinner.hide();
-    // this.ngOnInit();
   }
 
   updateCartSession() {
@@ -255,7 +122,6 @@ export class CartComponent implements OnInit {
   }
 
   removeItemSubscription(subscriptionItem: any) {
-    debugger
     this.total = true;
     this.spinner.show();
     this.cart = this.subscriptionCartItems.filter(x => x.itemCode != subscriptionItem.itemCode);
@@ -269,6 +135,7 @@ export class CartComponent implements OnInit {
   }
 
   checkOutItem() {
+    this.sessionService.setSessionItem("startDate", this.inputdata);  
     if (this.sessionService.getSessionItem('user')) {
       this.sessionService.setSessionObject('productCartItems', this.cartItems);
       this.router.navigate(["/store/checkout"]);
@@ -280,10 +147,8 @@ export class CartComponent implements OnInit {
   }
 
   quantityForOneTime(cartitem: any, selectedvalue: any) {
-    debugger
-    this.cartSummaryTotal=0;
+    this.cartSummaryTotal = 0;
     this.bindDropDown();
-
     if (selectedvalue != '' && selectedvalue != undefined) {
       for (var i = 0; i <= this.oneTimePriceCartItems.length - 1; i++) {
         if (this.oneTimePriceCartItems[i].itemCode == cartitem.itemCode) {
@@ -292,15 +157,14 @@ export class CartComponent implements OnInit {
       }
     }
     this.subtotalOneTimePrice = this.getSubTotal(this.oneTimePriceCartItems);
-    this.cartSummaryTotal=this.subtotalOneTimePrice+this.subTotalSubscriptionPrice;
-    this.cartSummaryTotal=+this.cartSummaryTotal.toFixed(2)
+    this.sessionService.setSessionItem("unSubscriptionTotal", this.subtotalOneTimePrice)
+    this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPrice;
+    this.cartSummaryTotal = +this.cartSummaryTotal.toFixed(2)
   }
 
   quantityForSubscriptionTime(delivery: any, selectedvalue: any) {
-    debugger
-    this.cartSummaryTotal=0;
+    this.cartSummaryTotal = 0;
     this.bindDropDown();
-
     if (selectedvalue != '' && selectedvalue != undefined) {
       for (var i = 0; i <= this.subscriptionCartItems.length - 1; i++) {
         if (this.subscriptionCartItems[i].itemCode == delivery.itemCode) {
@@ -309,15 +173,14 @@ export class CartComponent implements OnInit {
       }
     }
     this.subTotalSubscriptionPrice = this.getSubTotal(this.subscriptionCartItems);
-    this.cartSummaryTotal=this.subtotalOneTimePrice+this.subTotalSubscriptionPrice;
-    this.cartSummaryTotal=+this.cartSummaryTotal.toFixed(2)
+    this.sessionService.setSessionItem("subscriptionTotal", this.subTotalSubscriptionPrice)
+    this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPrice;
+    this.cartSummaryTotal = +this.cartSummaryTotal.toFixed(2)
   }
 
   getSubTotal(ProductList: any[]) {
-    debugger;
     let multiplyprice = 0;
     let Temp = 0;
-
     for (var i = 0; i <= ProductList.length - 1; i++) {
       if (ProductList[i].quantityModel == 'Qty1') {
         multiplyprice = parseFloat(ProductList[i].price) * 1;

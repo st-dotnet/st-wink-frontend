@@ -36,17 +36,26 @@ export class CheckoutComponent implements OnInit {
   subtotalSubscriptionTimePrice: any = 0;
   TotalPrice: any;
   orderDetails: any[] = [];
+  subscriptionTotalPrice: any;
+  unSubscriptionTotalPrice: any;
+  minDate = new Date();
+  startDate: any;
 
   constructor(private modalService: NgbModal,
     private shopService: ShopService,
     private formBuilder: FormBuilder,
     private sessionService: SessionService,
     private router: Router,
-    private spinner: NgxSpinnerService,) {      
-     }
+    private spinner: NgxSpinnerService,) {
+    this.minDate.setDate(this.minDate.getDate() + 1);
+  }
 
   ngOnInit(): void {
     debugger
+    this.startDate = this.sessionService.getSessionItem('startDate');
+    this.subscriptionTotalPrice = this.sessionService.getSessionObject('subscriptionTotal');
+    this.unSubscriptionTotalPrice = this.sessionService.getSessionObject('unSubscriptionTotal');
+    this.TotalPrice = this.subscriptionTotalPrice + this.unSubscriptionTotalPrice;
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
     this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
@@ -58,7 +67,7 @@ export class CheckoutComponent implements OnInit {
       this.subtotalSubscriptionTimePrice += element.bv;
     });
     this.subtotalSubscriptionTimePrice = +this.subtotalSubscriptionTimePrice.toFixed(2);
-    this.TotalPrice = this.subtotalSubscriptionTimePrice + this.subtotalOneTimePrice;
+    //this.TotalPrice = this.subtotalSubscriptionTimePrice + this.subtotalOneTimePrice;
     this.sidebartoggle = true;
     this.checkoutForm = this.formBuilder.group(
       {
@@ -76,7 +85,7 @@ export class CheckoutComponent implements OnInit {
         promoCodePay: [''],
         loyalPointz: [''],
         isSelectCard: [''],
-        CardFormGroup: this.formBuilder.group({
+        cardFormGroup: this.formBuilder.group({
           cardName: [''],
           cardNumber: [''],
           expiryMonth: [''],
@@ -85,7 +94,7 @@ export class CheckoutComponent implements OnInit {
           newCustomRadio: [''],
           isMakePrimaryCard: ['']
         }),
-        newShippingAddressFromGroup: this.formBuilder.group({
+        newShippingAddressFormGroup: this.formBuilder.group({
           newStreetAddress: [''],
           newCity: [''],
           newState: [''],
@@ -437,17 +446,34 @@ export class CheckoutComponent implements OnInit {
     chargeCreditCardTokenRequest.merchantWarehouseIDOverride = 0;
     chargeCreditCardTokenRequest.maxAmount = 0;
     chargeCreditCardTokenRequest.otherData10 = '';
-    chargeCreditCardTokenRequest.expirationMonth = 0;
+    if (this.addrnew == false) {
+      chargeCreditCardTokenRequest.billingCountry = this.checkoutForm.value.shippingAddressFormGroup.country;
+      chargeCreditCardTokenRequest.billingZip = this.checkoutForm.value.shippingAddressFormGroup.zip;
+      chargeCreditCardTokenRequest.billingState = this.checkoutForm.value.shippingAddressFormGroup.state;
+      chargeCreditCardTokenRequest.billingCity = this.checkoutForm.value.shippingAddressFormGroup.city;
+      chargeCreditCardTokenRequest.billingAddress2 = '';
+      chargeCreditCardTokenRequest.billingAddress = this.checkoutForm.value.shippingAddressFormGroup.streetAddress;
+
+    } else{
+      chargeCreditCardTokenRequest.billingCountry = this.checkoutForm.value.newShippingAddressFromGroup.country;
+      chargeCreditCardTokenRequest.billingZip = this.checkoutForm.value.newShippingAddressFromGroup.zip;
+      chargeCreditCardTokenRequest.billingState = this.checkoutForm.value.newShippingAddressFromGroup.state;
+      chargeCreditCardTokenRequest.billingCity = this.checkoutForm.value.newShippingAddressFromGroup.city;
+      chargeCreditCardTokenRequest.billingAddress2 = '';
+      chargeCreditCardTokenRequest.billingAddress = this.checkoutForm.value.newShippingAddressFromGroup.streetAddress;
+
+    }
+    chargeCreditCardTokenRequest.expirationMonth = this.checkoutForm.value.CardFormGroup.expiryMonth;
     chargeCreditCardTokenRequest.creditCardType = 0;
     chargeCreditCardTokenRequest.cvcCode = this.checkoutForm.value.CardFormGroup.cardCVV;
-    chargeCreditCardTokenRequest.billingCountry = '';
-    chargeCreditCardTokenRequest.billingZip = '';
-    chargeCreditCardTokenRequest.billingState = '';
-    chargeCreditCardTokenRequest.billingCity = '';
+    chargeCreditCardTokenRequest.billingCountry = this.checkoutForm.value.shippingAddressFormGroup.country;
+    chargeCreditCardTokenRequest.billingZip = this.checkoutForm.value.shippingAddressFormGroup.zip;
+    chargeCreditCardTokenRequest.billingState = this.checkoutForm.value.shippingAddressFormGroup.state;
+    chargeCreditCardTokenRequest.billingCity = this.checkoutForm.value.shippingAddressFormGroup.city;
     chargeCreditCardTokenRequest.billingAddress2 = '';
-    chargeCreditCardTokenRequest.billingAddress = '';
+    chargeCreditCardTokenRequest.billingAddress = this.checkoutForm.value.shippingAddressFormGroup.streetAddress;
     chargeCreditCardTokenRequest.creditCardToken = '';
-    chargeCreditCardTokenRequest.expirationYear = 0;
+    chargeCreditCardTokenRequest.expirationYear = this.checkoutForm.value.CardFormGroup.expiryYear;
     chargeCreditCardTokenRequest.orderKey = '';
 
     const createAutoOrderRequest = new CreateAutoOrderRequest();
@@ -491,7 +517,6 @@ export class CheckoutComponent implements OnInit {
     createAutoOrderRequest.customerKey = '';
     createAutoOrderRequest.customFrequencyTy = 0;
 
-
     const setAccountCreditCardTokenRequest = new SetAccountCreditCardTokenRequest();
     setAccountCreditCardTokenRequest.tokenType = 0;
     setAccountCreditCardTokenRequest.movePrimaryToSecondary = true;
@@ -505,8 +530,8 @@ export class CheckoutComponent implements OnInit {
     setAccountCreditCardTokenRequest.useMainAddress = true;
     setAccountCreditCardTokenRequest.billingName = '';
     setAccountCreditCardTokenRequest.creditCardType = 0;
-    setAccountCreditCardTokenRequest.expirationYear = 0;
-    setAccountCreditCardTokenRequest.expirationMonth = 0;
+    setAccountCreditCardTokenRequest.expirationYear = this.checkoutForm.value.CardFormGroup.expiryYear;
+    setAccountCreditCardTokenRequest.expirationMonth = this.checkoutForm.value.CardFormGroup.expiryMonth;
     setAccountCreditCardTokenRequest.creditCardToken = '';
     setAccountCreditCardTokenRequest.creditCardAccountType = 1;
     setAccountCreditCardTokenRequest.customerID = 0;

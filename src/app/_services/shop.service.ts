@@ -31,4 +31,8 @@ export class ShopService {
     debugger
     return this.http.post<ShopProductModel[]>(`${environment.apiUrl}${this.shopEndpoint}SubmitCheckout`, transactionalRequestModel);
   }
+
+  filterProduct(filterValue: any,categoryId:any) {
+    return this.http.get<CategoryModel[]>(`${environment.apiUrl}${this.shopEndpoint}GetItemCategory/${filterValue}${categoryId}`);
+  }
 }

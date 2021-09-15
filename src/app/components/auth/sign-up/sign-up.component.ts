@@ -21,6 +21,7 @@ export class SignUpComponent implements OnInit {
   submitted = false;
   maxDate = new Date();
   maskMobileNo = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  isTrue: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -116,8 +117,15 @@ export class SignUpComponent implements OnInit {
       .register(model)
       .pipe(first())
       .subscribe({
-        next: () => {
-          this.router.navigate([''], { relativeTo: this.route });
+        next: (res) => {
+          console.log("Result", res);
+          debugger
+          this.isTrue = this.sessionService.getSessionItem('isTrue');
+          if(this.isTrue == "true"){
+            this.router.navigate(["/store/checkout"]);
+          }else{
+            this.router.navigate([''], { relativeTo: this.route });
+          }                 
           this.toastrService.success('User registration successfully');
           // this.toastrService.success('Please check your email in order to verify the registration');
           this.spinner.hide();

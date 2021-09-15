@@ -9,9 +9,6 @@ import { Router } from '@angular/router';
 import { param } from 'jquery';
 import { ToastrService } from 'ngx-toastr';
 import { CartTypeEnum } from '@app/_models/cart-type-enum';
-
-
-
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -38,7 +35,7 @@ export class ShopComponent implements OnInit {
   subscriptionModel: any;
   quantityValue: any;
   cartTypes: any[] = [];
-  productPrice:number=0;
+  productPrice: number = 0;
   modalOptions: NgbModalOptions = {
     backdrop: 'static',
     backdropClass: 'customBackdrop',
@@ -117,11 +114,10 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //debugger
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.GetDDLCategoryById();
   }
-
+  
   GetDDLCategoryById() {
     this.spinner.show();
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
@@ -141,16 +137,10 @@ export class ShopComponent implements OnInit {
   open(content: any, product: any) {
     debugger;
     this.product = product;
-    this.productPrice=product.price;
+    this.productPrice = product.price;
     this.showSubscription = false;
     this.quantityValue = 'Qty1'
-    // this.subscriptionModel="";
-    // this.quantityModel="";
-    //this.router.navigate(['/product', { id: content }]);
     this.modalService.open(content, this.modalOptions).result.then((result) => {
-      //this.product = product;
-     
-      console.log(this.product.largeImageUrl)
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -168,12 +158,12 @@ export class ShopComponent implements OnInit {
   }
 
   GetProductsList(categoryID: number) {
-    //debugger;
     this.shopProductModels = [];
     this.shopService.GetProductsList(categoryID).subscribe(result => {
       this.shopProductModels = result;
-      console.log("Product List", result);
+      // this.shopProductModels =_.sortBy(this.shopProductModels, [function(o) { return o.itemDescription; }]);
       this.spinner.hide();
+      console.log("product list",this.shopProductModels)
     })
   }
 
@@ -186,45 +176,20 @@ export class ShopComponent implements OnInit {
     this.router.navigate(['/store/product', product.itemCode]);
   }
 
-  // addToCart(product: any) {    
-  //   debugger
-  //   // const productModel = Common.addToCart(product);
-  //   // console.log("productModel", productModel);
-  //   // this.shopService.addToCart(productModel).subscribe(result => {
-  //   //   console.log("Result", result);
-  //   // });
-  //   this.productItems = this.sessionService.getSessionObject('productCartItems');
-  //   const items ={
-  //     bundle : this.bundle,
-  //     selectDelivery : this.selectDelivery,
-  //     s0ubs0cri0p01121tionModel: this.subscriptionModel,
-  //     quantityModel: this.quantityModel
-  //   }
-  //   // this.productItems.push(items);
-  //   if (this.productItems) {
-  //     this.productItem = this.productItems.find(x => x.itemCode == product.itemCode);
-  //     if (!this.productItem) {
-  //       this.productItems.push(product);
-  //       this.sessionService.cartSession(this.productItems);
-  //       this.sessionService.setSessionObject('productCartItems', this.productItems);
-  //       this.toastrService.success('Product added successfully');
-  //     } else {
-  //       this.toastrService.error('Product already added into cart');
-  //     }
-  //   }
-  //   else {
-  //     this.productCartItems.push(product);
-  //     this.sessionService.cartSession(this.productCartItems);
-  //     this.sessionService.setSessionObject('productCartItems', this.productCartItems);
-  //     this.toastrService.success('Product added successfully');
-  //   }
-  // }
-
   addToCart(product: any) {
-    //debugger
+    debugger
     this.productItems = this.sessionService.getSessionObject('productCartItems');
     if (this.quantityValue == undefined) {
       this.quantityValue = 'Qty1';
+    }
+    if (this.bundle == undefined) {
+      this.bundle = 'single';
+    }
+    if (this.selectDelivery == undefined) {
+      this.selectDelivery = 0;
+    }
+    if (this.subscriptionModel == undefined) {
+      this.subscriptionModel = 'singleDelivery';
     }
     const items = {
       bundle: this.bundle,
@@ -236,7 +201,6 @@ export class ShopComponent implements OnInit {
     if (this.productItems) {
       this.productItem = this.productItems.find(x => x.itemCode == product.itemCode);
       this.productItems.push(product);
-      //this.productItems.find(x=> x.itemcode == product.itemCode).push(items);
       this.sessionService.cartSession(this.productItems);
       this.sessionService.setSessionObject('productCartItems', this.productItems);
       this.toastrService.success('Product added successfully');
@@ -251,7 +215,6 @@ export class ShopComponent implements OnInit {
   }
 
   checkBundle(bundle: string, productPrice: any) {
-    //debugger
     this.bundle = bundle;
     if (bundle == "multiple") {
       this.bundle = bundle;
@@ -264,7 +227,6 @@ export class ShopComponent implements OnInit {
   }
 
   checkDelivery(type: CartTypeEnum) {
-   // debugger
     switch (type) {
       case CartTypeEnum.OneTimePrice:
         this.showSubscription = false;
@@ -277,28 +239,12 @@ export class ShopComponent implements OnInit {
       default:
         break;
     }
-    // if (delivery == "subscribe") {
-    //   this.showSubscription = true;
-    //   this.selectDelivery = delivery;
-    // } else {
-    //   this.showSubscription = false;
-    //   this.selectDelivery = delivery;
-    // }
   }
 
-  // quantityModel(){
-  //   debugger
-  //  if(this.quantityValue == 'Qty1'){
-  //   this.product.price=this.product.price*1;
-  //  }
-  //  else if(this.quantityValue == 'Qty2'){
-  //   this.product.price=this.product.price*2;
-  //  }
-  //  else if(this.quantityValue == 'Qty3'){
-  //   this.product.price=this.product.price*3;
-  // }
-  // else if(this.quantityValue == 'Qty4'){
-  //   this.product.price=this.product.price*4;
-  // }
-  // }
+  onProductFilter(event: any) {
+    debugger
+    const filterValue = parseInt(event.target.value);
+    this.shopService.filterProduct(filterValue, this.categoryId).subscribe((result: any) => {          
+    });
+  }
 }

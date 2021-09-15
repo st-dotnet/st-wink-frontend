@@ -35,9 +35,7 @@ export class ProductDetailComponent implements OnInit {
     this.isShowDivIf = !this.isShowDivIf;
   }
   productCartItems: any[] = [];
-  product: any;
-
- 
+  product: any; 
 
   customOptions: OwlOptions = {
     loop: true,
@@ -257,6 +255,15 @@ export class ProductDetailComponent implements OnInit {
     this.productItems =this.sessionService.getSessionObject('productCartItems');
     if (this.quantityValue == undefined) {
       this.quantityValue = 'Qty1';
+    }
+    if (this.bundle == undefined) {
+      this.bundle = 'single';
+    }
+    if (this.selectDelivery == undefined) {
+      this.selectDelivery = 0 ;
+    }
+    if (this.subscriptionModel == undefined) {
+      this.subscriptionModel = 'singleDelivery';
     }
     const items = {
       bundle: this.bundle,

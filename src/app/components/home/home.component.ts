@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
       }
     },
   }
+  
   bestsellers: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -61,6 +62,7 @@ export class HomeComponent implements OnInit {
     },
     nav: true
   }
+
   home_testimonials: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -92,6 +94,5 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
 

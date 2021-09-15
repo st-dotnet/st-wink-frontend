@@ -14,7 +14,7 @@
                 <div class="sidebar-checkout">
                     <div class="cart-sidebar">
                         <div class="sidebar-head">
-                            <h2>Cart Summary</h2><span class="amount-summary"> $40.00</span>
+                            <h2>Cart Summary</h2><span class="amount-summary"> ${{TotalPrice}}</span>
                         </div>
                     </div>
                 </div>
@@ -206,11 +206,11 @@
                                         <tbody>
                                             <tr>
                                                 <td>One-Time Purchase</td>
-                                                <td>${{subtotalOneTimePrice}}</td>
+                                                <td>${{unSubscriptionTotalPrice}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Subscription Purchase</td>
-                                                <td>${{subtotalSubscriptionTimePrice}}</td>
+                                                <td>${{subscriptionTotalPrice}}</td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
@@ -262,7 +262,7 @@
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
                                                     <h4>Subscription Schedule</h4>
-                                                    <p>Start Date:<span class="data-span">4/14/20</span></p>
+                                                    <p>Start Date:<span class="data-span">{{startDate | date: 'dd/MM/yyyy'}}</span></p>
                                                     <span class="arrow-stepp">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
                                                             height="11.2" viewBox="0 0 6.6 11.2">
@@ -279,7 +279,7 @@
                                                         id="subscr-schedule">
                                                         <!-- [(ngModel)]="inputdata"  --> <input type="text"
                                                             class="form-control" formControlName="SubsScheduleDate"
-                                                            bsDatepicker [maxDate]="maxDate"
+                                                            bsDatepicker   [minDate]="minDate" [(ngModel)] =startDate
                                                             [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }"
                                                             [ngModelOptions]="{standalone: true}" />
                                                         <label class="form-label">Select Start Date</label>
@@ -702,7 +702,7 @@
                                                         <li><img src="../../assets/card-ui-4.png" /></li>
                                                         <li><span class="more-card">and more</span></li>
                                                     </ul>
-                                                    <div class="card-infoo" formGroupName="CardFormGroup">
+                                                    <div class="card-infoo" formGroupName="cardFormGroup">
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
@@ -785,7 +785,7 @@
                                                         <ul>
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="customRadio1" checked
+                                                                    <input type="radio" id="customRadio1" 
                                                                         (change)="sameshippingAddress()"
                                                                         name="newCustomRadio"
                                                                         class="custom-control-input">
