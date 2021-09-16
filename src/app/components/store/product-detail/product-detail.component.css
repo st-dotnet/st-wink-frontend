@@ -474,7 +474,7 @@ section.faq-section .faq-info ul li p {
 
 .more-info-shipping h4 {
   font-size: 15px;
-  color: #5D656B;
+  color: rgba(0,0,0/0.8);
   font-weight: 600;
 }
 
@@ -1130,7 +1130,6 @@ div#questions-ask .no-question a.be-post {
 
   .share-post li:not(:first-child) {
       display: inline-block;
-      float:left;
   }
 
   .share-post ul li:nth-child(2) {
@@ -1246,6 +1245,35 @@ section.why_love_it .col-md-12 {
 .slider-whylove owl-carousel-o .owl-item .slider-wrapper {
   border-radius: 0px !important;
 }
+
+
+/* CSS sharepost*/
+.share-post {
+  padding: 0 !important;
+}
+
+.reviews-customer>div {
+  padding: 0;
+}
+
+.share-post ul li a,.share-post ul li {
+  font-size: 12px;
+}
+
+.share-post ul li span.date-posted {
+  font-size: 12px;
+}
+
+.share-post ul li.date-mob {
+ float:left;
+ margin-right: 3px;
+}
+
+.share-post ul li.date-mob+li {
+  margin: 0 0 0 4px !important;
+  padding: 0px 0 0px 3px !important;
+}
+
 
 }
 
