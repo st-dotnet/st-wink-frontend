@@ -11,7 +11,7 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
 // store routes
 const routes: Routes = [
   { path: '', redirectTo: 'products', pathMatch: 'full' },
-  { path: 'products', component: ShopComponent },
+  { path: 'products', component: ShopComponent},
   { path: 'product/:id', component: ProductDetailComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },

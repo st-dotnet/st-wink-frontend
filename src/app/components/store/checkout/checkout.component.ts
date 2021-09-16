@@ -40,6 +40,15 @@ export class CheckoutComponent implements OnInit {
   unSubscriptionTotalPrice: any;
   minDate = new Date();
   startDate: any;
+  paramsProductPrice: any;
+  cartSummary: number = 0;
+
+  subtotalOneTimePrices:number=0;
+
+  subscriptionPriceAfterDiscount:number=0;
+  subTotalSubscriptionPrice:number=0;
+
+  discount15Percent:number=0;
 
   constructor(private modalService: NgbModal,
     private shopService: ShopService,
@@ -55,18 +64,32 @@ export class CheckoutComponent implements OnInit {
     this.startDate = this.sessionService.getSessionItem('startDate');
     this.subscriptionTotalPrice = this.sessionService.getSessionObject('subscriptionTotal');
     this.unSubscriptionTotalPrice = this.sessionService.getSessionObject('unSubscriptionTotal');
-    this.TotalPrice = this.subscriptionTotalPrice + this.unSubscriptionTotalPrice;
+    this.paramsProductPrice = this.sessionService.getSessionObject('paramsProductPrice');
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
     this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
-    this.oneTimePriceCartItems.forEach(element => {
-      this.subtotalOneTimePrice += element.bv;
-    });
-    this.subtotalOneTimePrice = +this.subtotalOneTimePrice.toFixed(2);
-    this.subscriptionCartItems.forEach(element => {
-      this.subtotalSubscriptionTimePrice += element.bv;
-    });
-    this.subtotalSubscriptionTimePrice = +this.subtotalSubscriptionTimePrice.toFixed(2);
+
+    this.subtotalOneTimePrices =this.getSubTotal(this.oneTimePriceCartItems );
+    this.subtotalSubscriptionTimePrice=this.getSubTotal(this.subscriptionCartItems);
+
+    this.discount15Percent=this.paramsProductPrice.subTotalSubscriptionPrice-this.paramsProductPrice.priceAfterDiscount;;
+    this.subscriptionPriceAfterDiscount=this.paramsProductPrice.subTotalSubscriptionPrice- +this.discount15Percent.toFixed(2);
+    this.cartSummary=this.subscriptionPriceAfterDiscount+this.paramsProductPrice.subTotalOneTimePrice;
+
+    this.TotalPrice = this.cartSummary + this.discount15Percent;
+
+    // this.oneTimePriceCartItems.forEach(element => {
+    //   this.subtotalOneTimePrice += element.bv;
+    // });
+    // this.subtotalOneTimePrice = +this.subtotalOneTimePrice.toFixed(2);
+    
+    
+    // this.subscriptionCartItems.forEach(element => {
+    //   this.subtotalSubscriptionTimePrice += element.bv;
+    // });
+    // this.subtotalSubscriptionTimePrice = +this.subtotalSubscriptionTimePrice.toFixed(2);
+
+
     //this.TotalPrice = this.subtotalSubscriptionTimePrice + this.subtotalOneTimePrice;
     this.sidebartoggle = true;
     this.checkoutForm = this.formBuilder.group(
@@ -254,6 +277,17 @@ export class CheckoutComponent implements OnInit {
       value = 4;
     }
     return value;
+  }
+  getSubTotal(ProductList: any[]) {
+    debugger;
+    let multiplyprice = 0;
+    let Temp = 0;
+
+    for (var i = 0; i <= ProductList.length - 1; i++) {
+        multiplyprice = parseFloat(ProductList[i].price) * ProductList[i].quantityModel;
+        Temp = Temp + multiplyprice;
+    }
+    return +Temp;
   }
 
   onSubmit() {
@@ -454,7 +488,7 @@ export class CheckoutComponent implements OnInit {
       chargeCreditCardTokenRequest.billingAddress2 = '';
       chargeCreditCardTokenRequest.billingAddress = this.checkoutForm.value.shippingAddressFormGroup.streetAddress;
 
-    } else{
+    } else {
       chargeCreditCardTokenRequest.billingCountry = this.checkoutForm.value.newShippingAddressFromGroup.country;
       chargeCreditCardTokenRequest.billingZip = this.checkoutForm.value.newShippingAddressFromGroup.zip;
       chargeCreditCardTokenRequest.billingState = this.checkoutForm.value.newShippingAddressFromGroup.state;

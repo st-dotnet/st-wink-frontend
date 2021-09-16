@@ -125,7 +125,7 @@
                                 <select [(ngModel)]="quantityValue"  [ngModelOptions]="{standalone: true}" class="form-control">
                                   <option class="dropdown-item" disabled selected value="undefined">Select Quantity</option>
                                   <option *ngFor="let qty of quantity" [value]="qty.value">
-                                  {{qty.name}}
+                                  {{qty.value}}
                                    </option>
                                 </select>
                                 <svg

@@ -76,22 +76,22 @@ export class ShopComponent implements OnInit {
       {
         id: '1',
         name: 'Qty 1',
-        value: 'Qty1'
+        value: 1
       },
       {
         id: '2',
         name: 'Qty 2',
-        value: 'Qty2'
+        value: 2
       },
       {
         id: '3',
         name: 'Qty 3',
-        value: 'Qty3'
+        value: 3
       },
       {
         id: '4',
         name: 'Qty 4',
-        value: 'Qty4'
+        value: 4
       }
     ]
     this.years = [
@@ -139,7 +139,7 @@ export class ShopComponent implements OnInit {
     this.product = product;
     this.productPrice = product.price;
     this.showSubscription = false;
-    this.quantityValue = 'Qty1'
+    this.quantityValue = 1
     this.modalService.open(content, this.modalOptions).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -180,7 +180,7 @@ export class ShopComponent implements OnInit {
     debugger
     this.productItems = this.sessionService.getSessionObject('productCartItems');
     if (this.quantityValue == undefined) {
-      this.quantityValue = 'Qty1';
+      this.quantityValue = 1;
     }
     if (this.bundle == undefined) {
       this.bundle = 'single';
@@ -195,7 +195,10 @@ export class ShopComponent implements OnInit {
       bundle: this.bundle,
       selectDelivery: this.selectDelivery,
       subscriptionModel: this.subscriptionModel,
-      quantityModel: this.quantityValue
+      quantityModel: this.quantityValue,
+      calculatedPrice:0,
+      afterDiscountPrice:0,
+      discount:0
     }
     Object.entries(items).forEach(([key, value]) => { product[key] = value });
     if (this.productItems) {

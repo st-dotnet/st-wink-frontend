@@ -25,7 +25,7 @@
         <div class="cart-sidebar">
           <div class="sidebar-head">
             <h2>Cart Summary</h2>
-            <span class="amount-summary"> ${{ cartSummaryTotal }} </span>
+            <span class="amount-summary"> ${{ cartSummaryTotal | number:'.1-2' }} </span>
           </div>
         </div>
       </div>
@@ -100,11 +100,11 @@
                           *ngFor="let qty of quantity"
                           [value]="qty.value"
                         >
-                          {{ qty.name }}
+                          {{ qty.value }}
                         </option>
                       </select>
                     </div>
-                    <p class="price-product">${{ cartItem.price }}</p>
+                    <p class="price-product">${{ cartItem.price  | number:'2.1-2'  }}</p>
                   </div>
                 </div>
               </div>
@@ -144,7 +144,7 @@
               </div>
               <div class="subtotal">
                 <p>Subtotal</p>
-                <p>${{ subtotalOneTimePrice }}</p>
+                <p>${{ subtotalOneTimePrice | number:'.1-2' }}</p>
               </div>
             </div>
           </div>
@@ -235,7 +235,7 @@
                           *ngFor="let qty of quantity"
                           [value]="qty.value"
                         >
-                          {{ qty.name }}
+                          {{ qty.value }}
                         </option>
                       </select>
                     </div>
@@ -300,11 +300,11 @@
               </div>
               <div class="subscription-with-discount">
                 <p>15% Discount</p>
-                <p>-$1.23</p>
+                <p>-${{discount15Percent  | number:'2.1-2' }}</p>
               </div>
               <div class="subtotal">
                 <p>Subtotal</p>
-                <p>${{ subTotalSubscriptionPrice }}</p>
+                <p>${{ subTotalSubscriptionPriceAfterDiscount  | number:'2.1-2'  }}</p>
               </div>
             </div>
           </div>
@@ -465,11 +465,11 @@
             <ul>
               <li>
                 <span class="summry-value">Order Total</span
-                ><span class="value-summry">${{ cartSummaryTotal }}</span>
+                ><span class="value-summry">${{ orderTotal  | number:'2.1-2'  }}</span>
               </li>
               <li>
                 <span class="summry-value">Subtotal</span
-                ><span class="value-summry">${{ cartSummaryTotal }}</span>
+                ><span class="value-summry">${{ cartSummaryTotal  | number:'2.1-2'  }}</span>
               </li>
               <li>
                 <span class="summry-value">Shipping</span
@@ -484,11 +484,11 @@
           <div class="grand-total">
             <div class="save-you">
               <p class="saved-you">You saved</p>
-              <p class="you-saved-value">-$1.23</p>
+              <p class="you-saved-value">-${{discount15Percent  | number:'2.1-2' }}</p>
             </div>
             <div class="total-grand">
               <p class="saved-you">You Pay</p>
-              <p class="you-saved-value">${{ cartSummaryTotal }}</p>
+              <p class="you-saved-value">${{ cartSummaryTotal  | number:'2.1-2'  }}</p>
             </div>
           </div>
         </div>

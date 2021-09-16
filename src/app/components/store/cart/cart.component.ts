@@ -4,7 +4,9 @@ import { CartTypeEnum } from '@app/_models/cart-type-enum';
 import { SessionService } from '@app/_services';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { DatePipe } from '@angular/common'
+import { stringify } from 'querystring';
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -12,7 +14,7 @@ import { DatePipe } from '@angular/common'
 })
 export class CartComponent implements OnInit {
   subscriptionPurchase = false;
-  inputdata: any;
+  inputdata: string;
   promocode_onetime: string;
   data_learn: boolean = false;
   closeResult: string;
@@ -24,10 +26,21 @@ export class CartComponent implements OnInit {
   };
   oneTimePriceCartItemsCount: number = 0;
   subscriptionCartItemsCount: number = 0;
+
   cartSummaryTotal: number = 0;
   cart: any[];
+
   subtotalOneTimePrice: number = 0;
   subTotalSubscriptionPrice: number = 0;
+  discount15Percent: number = 0;
+  orderTotal: number = 0;
+  subTotalSubscriptionPriceAfterDiscount: number = 0;
+
+
+  // subscriptionSubTotalPrice:any=0;
+  // subtotalSubscriptionTimePrice: any = 0;
+
+
   total = false;
   subscriptionCartItems: any[] = [];
   oneTimePriceCartItems: any[] = [];
@@ -35,6 +48,7 @@ export class CartComponent implements OnInit {
   years: any[];
   onTextChange(value) {
   }
+  //quantityValue: any;
   subscriptionModel: any;
 
   constructor(private modalService: NgbModal,
@@ -46,15 +60,41 @@ export class CartComponent implements OnInit {
     this.bindDropDown();
   }
 
+
   ngOnInit() {
-    debugger   
+    debugger
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
     this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
+
     this.oneTimePriceCartItemsCount = this.oneTimePriceCartItems.length;
     this.subscriptionCartItemsCount = this.subscriptionCartItems.length;
-    this.quantityForOneTime('', '');
-    this.quantityForSubscriptionTime('', '');
+    // if (this.total == true) {
+    //   this.subtotalOneTimePrice = 0
+    //   this.subtotalSubscriptionTimePrice = 0;
+    // }
+    // this.cartItems.forEach(element => {
+    //   this.subtotalOneTimePrice += element.price;
+    // });
+    // if (typeof this.subtotalOneTimePrice === 'string') {
+    //   this.subtotalOneTimePrice = parseFloat(this.subtotalOneTimePrice);
+    //   this.subtotalOneTimePrice = this.subtotalOneTimePrice.toFixed(2);
+    // } else {
+//this.subtotalOneTimePrice = this.subtotalOneTimePrice.toFixed(2);
+    // }
+    // this.subscriptionCartItems.forEach(element => {
+    //   this.subtotalSubscriptionTimePrice += element.price;
+    // });
+    // if (typeof this.subtotalSubscriptionTimePrice === 'string') {
+    //   this.subtotalSubscriptionTimePrice = parseInt(this.subtotalSubscriptionTimePrice);
+    //   this.subtotalSubscriptionTimePrice = this.subtotalSubscriptionTimePrice.toFixed(2);
+    // } else {
+    //   this.subtotalSubscriptionTimePrice = this.subtotalSubscriptionTimePrice.toFixed(2);
+    // }
+
+    this.filterItem("");
+    this.quantityForOneTime('', 0);
+    this.quantityForSubscriptionTime('', 0);
   }
 
   open(content) {
@@ -81,12 +121,103 @@ export class CartComponent implements OnInit {
   }
 
   // Referrer records below
+
   filterTerm: string;
   isDataAvailable = false;
   toShowData = false;
   refId: any;
   refName: any;
 
+  referrerRecords = [
+    {
+      "id": 1,
+      "referrer_name": "Amanda Rich",
+      "wink_link": "purecures",
+      "referrer_location": "Henderson, NV",
+      "referrer_image": "../../assets/user_referrer.jpg"
+    },
+    {
+      "id": 2,
+      "referrer_name": "Amanda Walsh",
+      "wink_link": "purecures",
+      "referrer_location": "Henderson, NV",
+      "referrer_image": "../../assets/user_referrer.jpg"
+    },
+    {
+      "id": 3,
+      "referrer_name": "John Carter",
+      "wink_link": "purecures",
+      "referrer_location": "Henderson, NV",
+      "referrer_image": "../../assets/user_referrer.jpg"
+    },
+    {
+      "id": 4,
+      "referrer_name": "Mark Brown",
+      "wink_link": "purecures",
+      "referrer_location": "Henderson, NV",
+      "referrer_image": "../../assets/user_referrer.jpg"
+    },
+    {
+      "id": 5,
+      "referrer_name": "Eliot Marshall",
+      "wink_link": "purecures",
+      "referrer_location": "Henderson, NV",
+      "referrer_image": "../../assets/user_referrer.jpg"
+    },
+    {
+      "id": 6,
+      "referrer_name": "Amanda Boyce",
+      "wink_link": "purecures",
+      "referrer_location": "Henderson, NV",
+      "referrer_image": "../../assets/user_referrer.jpg"
+    },
+    {
+      "id": 7,
+      "referrer_name": "James George",
+      "wink_link": "purecures",
+      "referrer_location": "Henderson, NV",
+      "referrer_image": "../../assets/user_referrer.jpg"
+    },
+    {
+      "id": 8,
+      "referrer_name": "Casper Max",
+      "wink_link": "purecures",
+      "referrer_location": "Henderson, NV",
+      "referrer_image": "../../assets/user_referrer.jpg"
+    },
+  ]
+
+  selectedData = this.referrerRecords;
+  filterItem(val) {
+    //value not empty
+    if (val !== "") {
+      //Data filter method
+      this.selectedData = this.referrerRecords.filter(x => (x.referrer_name.includes(val) || x.referrer_name.includes(val.toUpperCase()) || x.referrer_name.includes(val.toLowerCase())) || x.id == parseInt(val));
+      if (this.selectedData.length == 0) {
+        this.isDataAvailable = false;
+      }
+    }
+    else {
+      this.selectedData = this.referrerRecords;
+      debugger;
+      this.isDataAvailable = true;
+      debugger;
+    }
+  }
+
+  choose_referrer(data: any) {
+    debugger;
+    if (this.referrerRecords.filter(x => x.id == parseInt(data.id)).length > 0) {
+      debugger;
+      this.refId = data.id;
+      debugger;
+      this.refName = this.referrerRecords.filter(x => x.id == parseInt(data.id)).map(ele => ele.referrer_name);
+      this.toShowData = true;
+    }
+    else {
+      this.toShowData = false;
+    }
+  }
 
   removeItem(cartItem: any, type: any) {
     debugger
@@ -98,22 +229,27 @@ export class CartComponent implements OnInit {
         // this.subscriptionCartItems.length > 0 ? this.oneTimePriceCartItems.push(...this.subscriptionCartItems) : '';
         this.oneTimePriceCartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.oneTimePriceCartItems) : this.sessionService.removeSessionItem('productCartItems');
         // this.subscriptionCartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.subscriptionCartItems) : '';
-        // this.updateCartSession();
+        this.updateCartSession();
         break;
       case 1:
         this.subscriptionCartItems = this.subscriptionCartItems.filter(x => x.itemCode != cartItem.itemCode);
         // this.oneTimePriceCartItems.length > 0 ? this.subscriptionCartItems.push(...this.oneTimePriceCartItems) : '';
         this.subscriptionCartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.subscriptionCartItems) : this.sessionService.removeSessionItem('productCartItems');
         // this.oneTimePriceCartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.oneTimePriceCartItems) : '';
-        // this.updateCartSession();
+        this.updateCartSession();
         break;
       default:
         break;
     }
     this.total = true;
     this.spinner.hide();
-    this.quantityForOneTime('', '');
-    this.quantityForSubscriptionTime('', '');
+    this.quantityForOneTime('', 0);
+    this.quantityForSubscriptionTime('', 0);
+    // this.cart = this.cartItems.filter(x => x.itemCode != cartItem.itemCode);
+    // // this.subscriptionCartItems.push(this.cart);
+    // this.sessionService.setSessionObject('productCartItems', this.subscriptionCartItems);
+    // this.spinner.hide();
+    // this.ngOnInit();
   }
 
   updateCartSession() {
@@ -122,22 +258,30 @@ export class CartComponent implements OnInit {
   }
 
   removeItemSubscription(subscriptionItem: any) {
+    debugger
     this.total = true;
     this.spinner.show();
     this.cart = this.subscriptionCartItems.filter(x => x.itemCode != subscriptionItem.itemCode);
     this.cartItems.push(this.cart);
     this.sessionService.setSessionObject('productCartItems', this.cartItems);
 
-    this.quantityForOneTime('', '');
-    this.quantityForSubscriptionTime('', '');
+    this.quantityForOneTime('', 0);
+    this.quantityForSubscriptionTime('', 0);
     this.spinner.hide();
     this.ngOnInit();
   }
 
   checkOutItem() {
-    this.sessionService.setSessionItem("startDate", this.inputdata);  
+    debugger;
     if (this.sessionService.getSessionItem('user')) {
       this.sessionService.setSessionObject('productCartItems', this.cartItems);
+      //this.discount15Percent;
+      const paramsProductPrice = {
+        priceAfterDiscount: this.subTotalSubscriptionPriceAfterDiscount,
+        subTotalSubscriptionPrice: this.subTotalSubscriptionPrice,
+        subTotalOneTimePrice: this.subtotalOneTimePrice
+      }
+      this.sessionService.setSessionObject("paramsProductPrice", paramsProductPrice);
       this.router.navigate(["/store/checkout"]);
     } else {
       let isTrue = true;
@@ -146,10 +290,11 @@ export class CartComponent implements OnInit {
     }
   }
 
-  quantityForOneTime(cartitem: any, selectedvalue: any) {
+  quantityForOneTime(cartitem: any, selectedvalue: number) {
+    debugger
     this.cartSummaryTotal = 0;
-    this.bindDropDown();
-    if (selectedvalue != '' && selectedvalue != undefined) {
+
+    if (selectedvalue != null && selectedvalue != undefined) {
       for (var i = 0; i <= this.oneTimePriceCartItems.length - 1; i++) {
         if (this.oneTimePriceCartItems[i].itemCode == cartitem.itemCode) {
           this.oneTimePriceCartItems[i].quantityModel = selectedvalue;
@@ -157,15 +302,23 @@ export class CartComponent implements OnInit {
       }
     }
     this.subtotalOneTimePrice = this.getSubTotal(this.oneTimePriceCartItems);
-    this.sessionService.setSessionItem("unSubscriptionTotal", this.subtotalOneTimePrice)
-    this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPrice;
-    this.cartSummaryTotal = +this.cartSummaryTotal.toFixed(2)
+
+
+
+
+    this.orderTotal = +this.subtotalOneTimePrice + this.subTotalSubscriptionPrice;
+    this.orderTotal = +this.orderTotal;
+    this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
+    this.cartSummaryTotal = +this.cartSummaryTotal;
   }
 
-  quantityForSubscriptionTime(delivery: any, selectedvalue: any) {
+
+
+  quantityForSubscriptionTime(delivery: any, selectedvalue: number) {
+    debugger
     this.cartSummaryTotal = 0;
-    this.bindDropDown();
-    if (selectedvalue != '' && selectedvalue != undefined) {
+
+    if (selectedvalue != null && selectedvalue != undefined) {
       for (var i = 0; i <= this.subscriptionCartItems.length - 1; i++) {
         if (this.subscriptionCartItems[i].itemCode == delivery.itemCode) {
           this.subscriptionCartItems[i].quantityModel = selectedvalue;
@@ -173,37 +326,30 @@ export class CartComponent implements OnInit {
       }
     }
     this.subTotalSubscriptionPrice = this.getSubTotal(this.subscriptionCartItems);
-    this.sessionService.setSessionItem("subscriptionTotal", this.subTotalSubscriptionPrice)
-    this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPrice;
-    this.cartSummaryTotal = +this.cartSummaryTotal.toFixed(2)
+
+
+    this.orderTotal = +this.subtotalOneTimePrice + this.subTotalSubscriptionPrice;
+    this.orderTotal = +this.orderTotal;
+    this.discount15Percent = (this.subTotalSubscriptionPrice * 15) / 100;
+    this.discount15Percent = +this.discount15Percent;
+
+    this.subTotalSubscriptionPriceAfterDiscount = +this.subTotalSubscriptionPrice - this.discount15Percent;
+    this.subTotalSubscriptionPriceAfterDiscount = +this.subTotalSubscriptionPriceAfterDiscount;
+    this.cartSummaryTotal = +this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
+    this.cartSummaryTotal = +this.cartSummaryTotal;
+
   }
 
   getSubTotal(ProductList: any[]) {
+    debugger;
     let multiplyprice = 0;
     let Temp = 0;
+
     for (var i = 0; i <= ProductList.length - 1; i++) {
-      if (ProductList[i].quantityModel == 'Qty1') {
-        multiplyprice = parseFloat(ProductList[i].price) * 1;
+        multiplyprice = parseFloat(ProductList[i].price) * ProductList[i].quantityModel;
         Temp = Temp + multiplyprice;
-        //this.oneTimePriceCartItems[i].bv = this.subTotalPrice;
-      }
-      if (ProductList[i].quantityModel == 'Qty2') {
-        multiplyprice = parseFloat(ProductList[i].price) * 2;
-        Temp = Temp + multiplyprice;
-        //this.oneTimePriceCartItems[i].bv = this.subTotalPrice;
-      }
-      if (ProductList[i].quantityModel == 'Qty3') {
-        multiplyprice = parseFloat(ProductList[i].price) * 3;
-        Temp = Temp + multiplyprice;
-        //this.oneTimePriceCartItems[i].bv = this.subTotalPrice;
-      }
-      if (ProductList[i].quantityModel == 'Qty4') {
-        multiplyprice = parseFloat(ProductList[i].price) * 4;
-        Temp = Temp + multiplyprice;
-        //this.oneTimePriceCartItems[i].bv = this.subTotalPrice;
-      }
     }
-    return +Temp.toFixed(2);
+    return +Temp;
   }
 
   bindDropDown() {
@@ -211,22 +357,39 @@ export class CartComponent implements OnInit {
       {
         id: '1',
         name: 'Qty 1',
-        value: 'Qty1'
+        value: 1
       },
       {
         id: '2',
         name: 'Qty 2',
-        value: 'Qty2'
+        value: 2
       },
       {
         id: '3',
         name: 'Qty 3',
-        value: 'Qty3'
+        value: 3
       },
       {
         id: '4',
         name: 'Qty 4',
-        value: 'Qty4'
+        value: 4
+      }
+    ]
+    this.years = [
+      {
+        id: '1',
+        name: 'Every Month',
+        value: 'everyMonth'
+      },
+      {
+        id: '2',
+        name: 'Every Week',
+        value: 'everyWeek'
+      },
+      {
+        id: '3',
+        name: 'Every Year',
+        value: 'everyYear'
       }
     ]
     this.years = [

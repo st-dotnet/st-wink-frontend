@@ -14,7 +14,7 @@
                 <div class="sidebar-checkout">
                     <div class="cart-sidebar">
                         <div class="sidebar-head">
-                            <h2>Cart Summary</h2><span class="amount-summary"> ${{TotalPrice}}</span>
+                            <h2>Cart Summary</h2><span class="amount-summary"> ${{cartSummary | number:'.1-2'}}</span>
                         </div>
                     </div>
                 </div>
@@ -137,13 +137,13 @@
                                         <tbody>
                                             <tr *ngFor="let item of oneTimePriceCartItems">
                                                 <td>{{item.itemDescription}}</td>
-                                                <td>${{item.price}}</td>
+                                                <td>${{item.price * item.quantityModel | number :'.1-2'}}</td>
                                             </tr>                                           
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <td>Subtotal</td>
-                                                <td>${{subtotalOneTimePrice}}</td>
+                                                <td>${{subtotalOneTimePrices| number :'.1-2'}}</td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -172,13 +172,17 @@
                                         <tbody>
                                             <tr *ngFor="let item of subscriptionCartItems">
                                                 <td>{{item.itemDescription}}</td>
-                                                <td>${{item.price}}</td>
+                                                <td>${{item.price * item.quantityModel | number :'.1-2'}}</td>
                                             </tr>                                           
                                         </tbody>
                                         <tfoot>
                                             <tr>
+                                                <td>You Saved</td>
+                                                <td>-${{discount15Percent | number:'.1-2'}}</td>
+                                            </tr>
+                                            <tr>
                                                 <td>Subtotal</td>
-                                                <td>${{subtotalSubscriptionTimePrice}}</td>
+                                                <td>${{subtotalSubscriptionTimePrice - discount15Percent  | number :'.1-2'}}</td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -206,21 +210,21 @@
                                         <tbody>
                                             <tr>
                                                 <td>One-Time Purchase</td>
-                                                <td>${{unSubscriptionTotalPrice}}</td>
+                                                <td>${{this.paramsProductPrice?.subTotalOneTimePrice | number :'.1-2'}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Subscription Purchase</td>
-                                                <td>${{subscriptionTotalPrice}}</td>
+                                                <td>${{subscriptionPriceAfterDiscount | number :'.1-2'}}</td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <td>You Saved</td>
-                                                <td>-$2.47</td>
+                                                <td>-${{discount15Percent | number:'.1-2'}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
-                                                <td>${{TotalPrice}}</td>
+                                                <td>${{cartSummary | number:'.1-2'}}</td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -977,11 +981,11 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td>Order Total</td>
-                                                                    <td>${{TotalPrice}}</td>
+                                                                    <td>${{TotalPrice | number:'.1-2'}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Subtotal</td>
-                                                                    <td>${{TotalPrice}}</td>
+                                                                    <td>${{cartSummary | number:'.1-2'}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Shipping</td>
@@ -998,7 +1002,7 @@
                                                                         <p class="you-sav">You Saved</p>
                                                                     </td>
                                                                     <td>
-                                                                        <p class="you-sav">-$1.23</p>
+                                                                        <p class="you-sav">-${{discount15Percent | number:'.1-2'}}</p>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -1006,7 +1010,7 @@
                                                                         <p class="you-pay">You pay</p>
                                                                     </td>
                                                                     <td>
-                                                                        <p class="you-pay">${{TotalPrice}}</p>
+                                                                        <p class="you-pay">${{cartSummary | number:'.1-2'}}</p>
                                                                     </td>
                                                                 </tr>
                                                             </tfoot>
