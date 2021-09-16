@@ -85,6 +85,11 @@ div#main-menu li a:hover,div#main-menu li a:focus {
   color: #ffffff !important;
   border-radius: 4px;
 }
+div#main-menu ul.right-menu li a:hover,div#main-menu ul.right-menu li a:focus {
+  background: transparent;
+  color: #2aa8bf !important;
+  border-radius: 4px;
+}
 .white-bg
 {
 background-color: #fff;
@@ -1106,6 +1111,51 @@ background-color:#fff;
 
 .radio-bundle {
   display: inline;
+}
+
+
+/* Search CSS */
+
+.searchbarzone {
+  padding: 6px 5px;
+  position: absolute;
+  background-color: #ffffffcc;
+  width: 100%;
+  top: 0px;
+  z-index: 11;
+}
+
+.searchbarzone form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.searchbarzone form .form-group {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.searchbarzone form .form-group label {
+  margin: 0 10px 0 0;
+  font-size: 18px;
+  font-family: 'g-demibold';
+}
+
+.searchbarzone form .form-group input {
+  height: 45px;
+}
+.searchbarzone span.icon-close {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+.owl-nav {
+  height: 45px;
 }
 
 /* MEDIA */
