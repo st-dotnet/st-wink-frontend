@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MustMatch } from '@app/_helpers/must-match.validator';
@@ -7,6 +7,7 @@ import { SessionService } from '@app/_services';
 import { AccountService } from '@app/_services/account.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -20,6 +21,7 @@ export class SignUpComponent implements OnInit {
   submitted = false;
   maxDate = new Date();
   maskMobileNo = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  isTrue: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -70,6 +72,17 @@ export class SignUpComponent implements OnInit {
     return this.form.controls;
   }
 
+  @HostListener('window:beforeunload')
+  canDeactivate(): Observable<boolean> | boolean {
+    debugger
+    let dirty=this.form.dirty;
+    if(dirty==false){ 
+      return true;
+    }else if(dirty==true){
+      return false;
+    }
+  }
+
   onSubmit() {
     this.submitted = true;
     debugger;
@@ -104,8 +117,15 @@ export class SignUpComponent implements OnInit {
       .register(model)
       .pipe(first())
       .subscribe({
-        next: () => {
-          this.router.navigate([''], { relativeTo: this.route });
+        next: (res) => {
+          console.log("Result", res);
+          debugger
+          this.isTrue = this.sessionService.getSessionItem('isTrue');
+          if(this.isTrue == "true"){
+            this.router.navigate(["/store/checkout"]);
+          }else{
+            this.router.navigate([''], { relativeTo: this.route });
+          }                 
           this.toastrService.success('User registration successfully');
           // this.toastrService.success('Please check your email in order to verify the registration');
           this.spinner.hide();
@@ -124,7 +144,7 @@ export class SignUpComponent implements OnInit {
     return re.test(String(email).toLowerCase());
   }
 
-  emailVerify(){
+  emailVerify(type:any){
     const emailModel ={
       userName : this.f.username.value,
       email : this.f.emailAddress.value
@@ -136,7 +156,7 @@ export class SignUpComponent implements OnInit {
         next: (result:any) => {
           debugger         
           if(result){
-            this.toastrService.error('UserName and Email Already existed');
+            this.toastrService.error(`${type} Already existed`);
            } 
           this.spinner.hide();
         },
@@ -145,7 +165,6 @@ export class SignUpComponent implements OnInit {
           this.spinner.hide();
           this.loading = false;
         },
-      });
-  
+      });  
   }
 }

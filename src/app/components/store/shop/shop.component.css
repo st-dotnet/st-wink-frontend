@@ -61,10 +61,15 @@ section.products h3 {
 }
 
 .prod-wrapp .card-body .product-details h5 {
-  font-family: 'g-demibold';
+  font-family: g-demibold;
   font-size: 18px;
-  color: #000000;
-  min-height: 40px;
+  color: #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  height: 45px;
 }
 
 .prod-wrapp .card-body .product-details h6 {
@@ -192,12 +197,27 @@ section.products h3 {
   padding: 0px;
 }
 
+.model-productview .modal-body {
+  overflow: hidden;
+}
+.model-productview .modal-body button.close svg {
+  position: absolute;
+  top: 7px;
+  left: 8px;
+  width: 19px;
+}
+
 .model-productview .modal-body button.close {
   position: absolute;
   z-index: 1;
   opacity: 1;
-  left: 10px;
-  top: 10px;
+  right: 10px;
+  top: 9px;
+  background-color: #1cb1c5;
+  border-radius: 20px;
+  width: 34px;
+  height: 35px;
+  box-shadow: 0px 0px 4px #ececec;
 }
 
 .model-productview .modal-body .card {
@@ -281,6 +301,12 @@ section.products h3 {
   height: 7px;
   pointer-events: none;
 }
+
+.radio-bundle {
+  float: left;
+  display: contents;
+}
+
 .cart-btn {
   width: 100%;
 }

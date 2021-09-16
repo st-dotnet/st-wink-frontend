@@ -69,6 +69,27 @@ body
   font-family: 'g-regular' !important;
 }
 
+
+section,footer,.main-content
+{
+  width:100%;
+  float: left;
+}
+
+app-layout {
+  display: flex;
+  flex-direction: column;
+}
+div#main-menu li a:hover,div#main-menu li a:focus {
+  background: #2aa8bf;
+  color: #ffffff !important;
+  border-radius: 4px;
+}
+div#main-menu ul.right-menu li a:hover,div#main-menu ul.right-menu li a:focus {
+  background: transparent;
+  color: #2aa8bf !important;
+  border-radius: 4px;
+}
 .white-bg
 {
 background-color: #fff;
@@ -753,10 +774,11 @@ div#notifi-review-header+div#notifi-review {
 .sidebar-ui ngb-accordion.accordion .card-header button.btn-link[aria-expanded="true"] span.arrow-stepp svg
 {
   top: 3px;
-  transform: rotateZ(90deg);
+  transform: rotateZ(180deg);
   position: absolute;
   right: 5px;
 }
+
 .checkout-ste                                                                                                                                                                                                                                                                                                                                                                                    ps-3 ngb-accordion.accordion ngb-accordion.accordion .card-header button.btn-link[aria-expanded="false"] span.arrow-stepp svg,
 .sidebar-ui ngb-accordion.accordion .card-header button.btn-link[aria-expanded="false"] span.arrow-stepp svg
 {
@@ -933,8 +955,6 @@ ul.conv-products input[type="checkbox"] ~ .custom-control-label::before {
 }
 
 
-
-
 /*  Input Fields special   */
 
 .special-field {
@@ -1001,18 +1021,176 @@ ul.conv-products input[type="checkbox"] ~ .custom-control-label::before {
   box-shadow: none;
 }
 
+div#checkoutstep2 .special-field.dataempty.form-group,div#checkoutstep3 .special-field.dataempty.form-group {
+  width: 100%;
+  max-width: 100%;
+}
+
+div#checkoutstep2 .special-field.dataempty.form-group span.btn-add-promo,div#checkoutstep3 .special-field.dataempty.form-group span.btn-add-promo {
+  top: 8px;
+}
+
+
+/* CSS Enrollment Packs */
+
+.pack-info {
+  float: left;
+  padding: 20px 20px;
+}
+
+.pack-info h4 {
+  font-family: 'g-demibold';
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.pack-info ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.pack-info ul li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 14px;
+}
+
+.pack-info ul li:before {
+  width: 11px;
+  height: 11px;
+  content: '';
+  background-color: #17a2b8;
+  position: absolute;
+  left: 0px;
+  top: 6px;
+}
+
+.pack-info ul li:after {
+  width: 5px;
+  height: 5px;
+  content: '';
+  background-color: #ffffff;
+  position: absolute;
+  left: 3px;
+  top: 9px;
+  border-top-right-radius: 100%;
+}
+
+.pack-info ul li {
+  font-size: 15px;
+  font-family: 'g-regular';
+}
+
+app-notification-bar .topbar {
+  position: relative;
+}
+
+app-notification-bar .topbar span.icon-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
+
+
+
+
+section.top-owl-banner .owl-dots .owl-dot span {
+  background-color: rgba(255 255 255/0.4);
+}
+
+section.top-owl-banner .owl-dots .owl-dot.active span {
+background-color:#fff;  
+}
+
+
+
+ .btn-proceed button:focus,.btn-proceed a:focus {box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%) !important;}
+.btn-proceed a:focus {
+  outline: none;
+}
+
+.radio-bundle {
+  display: inline;
+}
+
+
+/* Search CSS */
+
+.searchbarzone {
+  padding: 6px 5px;
+  position: absolute;
+  background-color: #ffffffcc;
+  width: 100%;
+  top: 0px;
+  z-index: 11;
+}
+
+.searchbarzone form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.searchbarzone form .form-group {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.searchbarzone form .form-group label {
+  margin: 0 10px 0 0;
+  font-size: 18px;
+  font-family: 'g-demibold';
+}
+
+.searchbarzone form .form-group input {
+  height: 45px;
+}
+.searchbarzone span.icon-close {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+.owl-nav {
+  height: 45px;
+}
+
 /* MEDIA */
+@media (min-width: 1367px)
+{
+  section.testimonial-home h3 {
+    font-size: 50px !important;
+  }
+  .testimonial-wrapper h4 {
+    font-size: 24px;
+    color: rgba(0 0 0/0.8);
+}
+}
 @media (min-width: 1366px)
 {
 .container, .container-lg, .container-md, .container-sm, .container-xl {
     max-width: 1300px !important;
 }
 }
+@media (max-width: 1366px)
+{
+
+.content-banner-slider a.btn-learn
+{
+  font-size: 14px !important;
+}
+.content-safe a {
+  font-size: 14px!important;
+}
+}
 
 
 @media (max-width:1199px)
 {
-  section.best-selller .owl-nav,section.best-selller .owl-dots {
+ section.best-selller .owl-dots {
     display: none;
 }
 .content-banner-slider h3 {
@@ -1152,11 +1330,113 @@ section.checkout-page.grid-checkout {
     .main-content {
       padding-top: 120px;
   }
+  .mob-reviews-display
+  {
+    display:none;
+  }
+  .desk-show
+  {
+    display:block;
+  }
 }
 
+
+@media (max-width:767px)
+{
+  .r-listing-head .media-body .r-date-post {
+    display: none;
+}
+
+.r-listing-head .mob-reviews-display .share-post ul li:first-child {
+    display: block;
+}
+
+.r-listing-head .mob-reviews-display .share-post ul li {
+    display: inline-block;
+}
+
+
+.r-listing-head .mob-reviews-display .share-post ul li {
+    font-size: 14px;
+}
+
+  .mob-reviews-display
+  {
+    display:block;
+  }
+  .desk-show
+  {
+    display:none;
+  }
+
+  .reviews-section owl-carousel-o .owl-nav {
+    max-width: 92%;
+    margin: 0 auto;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+  .sidebar-ui {
+    padding: 0;
+}
+
+  footer .footer-menus h4 {
+    margin-bottom: 6px !important;
+}
+section.best-selller h3 {
+  font-size: 35px !important;
+}
+
+.content-safe h3 {
+  font-size: 38px !important;
+  color: rgba(0 0 0/0.8) !important;
+  max-width: 170px;
+}
+
+section.impact-strengthen .content-safe h3 {
+  font-size: 23px !important;
+}
+
+section.testimonial-home h3 {
+  font-size: 33px !important;
+}
+section.testimonial-home .owl-nav .owl-next {
+  right: -22px;
+}
+
+section.testimonial-home .owl-nav .owl-prev {
+  left: -22px;
+}
+section.top-owl-banner .owl-dots {
+  bottom: 0px;
+}
+}
+
+@media (max-width:575px)
+{
+  ngb-modal-window.prodview-modal .modal-dialog {
+    margin: 25px auto 0;
+}
+section.why_love_it .owl-dots {
+  bottom: 0px;
+}
+  }
 @media (max-width:430px)
 {
   section.best-selller .owl-nav {
     display: block;
+}
+.prod-bundle-select .radio-bundle label {
+  padding: 0;
+  min-width: 60px !important;
+  max-width: 200px !important;
+  font-size: 15px !important;
+}
+
+.prod-bundle-select .radio-bundle .form-check:first-child {
+  margin-bottom: 10px;
+}
+.model-productview .card-body {
+  padding: 14px;
 }
 }

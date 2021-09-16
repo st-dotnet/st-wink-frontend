@@ -2,6 +2,11 @@
 section.breadcrumb-product {
   padding: 0;
   margin: 3px 0 0 0;
+  background-color: #f7f7f7;
+}
+
+section.deep-info {
+  background: #EDEFF2;
 }
 
 section.breadcrumb-product ul.breadcrumb {
@@ -392,10 +397,10 @@ section.product-detail {
   background-image: url('../../../../assets/product-brief.png');
   background-repeat: no-repeat;
   background-size: 100%;
-  min-height: 860px;
+  min-height: 700px;
   position: relative;
   background-size: cover !important;
-  background-position: center;
+  background-position: 0 -90px;
 }
 
 .info-details {
@@ -469,12 +474,14 @@ section.faq-section .faq-info ul li p {
 
 .more-info-shipping h4 {
   font-size: 15px;
-  color: #5D656B;
+  color: rgba(0,0,0/0.8);
+  font-weight: 600;
 }
 
 .more-info-shipping p {
   font-size: 14px;
   color: #5D656B;
+
 }
 
 .note-info-center {
@@ -980,8 +987,21 @@ div#questions-ask .no-question a.be-post {
   width: 100%;
 }
 
+.faq-data h4 {
+  font-family: 'g-demibold';
+}
+
+
+
 /* MEDIA QUERIES CSS */
 
+@media (min-width:1024px) and (max-width:1366px)
+{
+  section.product-detail {
+    background-position: 0 0px !important;
+    min-height: 600px !important;
+}
+}
 @media (max-width:1199px)
 {
   .rating-reviews {
@@ -1076,6 +1096,7 @@ div#questions-ask .no-question a.be-post {
   }
   section.product-detail {
       min-height: 640px !important;
+      background-position: center;
   }
 }
 
@@ -1109,7 +1130,6 @@ div#questions-ask .no-question a.be-post {
 
   .share-post li:not(:first-child) {
       display: inline-block;
-      float:left;
   }
 
   .share-post ul li:nth-child(2) {
@@ -1162,7 +1182,101 @@ div#questions-ask .no-question a.be-post {
       right: 0px;
       top: -26px;
   }
+  .model-productview {
+    padding: 18px !important;
 }
+
+.model-productview .form-check label {
+    font-size: 14px !important;
+    padding: 9px 15px !important;
+}
+
+.model-productview .form-check:first-child {
+    margin-right: 8px;
+}
+
+.model-productview .form-check:last-child {
+    margin: 0;
+}
+.wrapper-whylove {
+  height: 239px;
+  border-radius: 13px;
+  position: relative;
+  overflow: hidden;
+}
+
+.wrapper-whylove .slider-whylove {
+  left: 0px;
+  max-width: 100%;
+  bottom: 0px;
+}
+
+.wrapper-whylove .slider-whylove .text-slider p {
+  font-size: 14px;
+  max-width: 150px;
+}
+
+section.why_love_it .col-md-12 {
+  padding: 0;
+}
+
+.wrapper-whylove img {
+  position: absolute;
+  width: 215% !important;
+  left: 30px;
+  transform: translate(-50%,-50%);
+  top: 119px;
+}
+.slider-whylove owl-carousel-o .text-slider {
+  min-height: 59px !important;
+  padding-bottom: 27px !important;
+  border-radius: 0px !important;
+}
+
+.slider-whylove owl-carousel-o .owl-dots {
+  position: absolute;
+  bottom: -4px;
+}
+
+.slider-whylove owl-carousel-o .owl-item {
+  border-radius: 0px !important;
+}
+
+.slider-whylove owl-carousel-o .owl-item .slider-wrapper {
+  border-radius: 0px !important;
+}
+
+
+/* CSS sharepost*/
+.share-post {
+  padding: 0 !important;
+}
+
+.reviews-customer>div {
+  padding: 0;
+}
+
+.share-post ul li a,.share-post ul li {
+  font-size: 12px;
+}
+
+.share-post ul li span.date-posted {
+  font-size: 12px;
+}
+
+.share-post ul li.date-mob {
+ float:left;
+ margin-right: 3px;
+}
+
+.share-post ul li.date-mob+li {
+  margin: 0 0 0 4px !important;
+  padding: 0px 0 0px 3px !important;
+}
+
+
+}
+
 
 @media (max-width:480px)
 {
@@ -1179,4 +1293,12 @@ div#questions-ask .no-question a.be-post {
   section.reviews-customers {
       padding-top: 0px !important;
   }
+}
+
+@media (max-width:374px)
+{
+  .wrapper-whylove .slider-whylove {
+    bottom: 0px;
+  }
+  
 }

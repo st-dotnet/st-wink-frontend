@@ -20,7 +20,7 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <input type="email" class="form-control" (change)="emailVerify()" formControlName="emailAddress" placeholder="Email Address"
+              <input type="email" class="form-control" (change)="emailVerify('Email')" formControlName="emailAddress" placeholder="Email Address"
                 [ngClass]="{ 'is-invalid': submitted && f.emailAddress.errors }" />
               <div *ngIf="submitted && f.emailAddress.errors" class="invalid-feedback">
                 <div *ngIf="f.emailAddress.errors.required">Email is required</div>
@@ -29,7 +29,7 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <input type="text" class="form-control" (change)="emailVerify()" formControlName="username" placeholder="Username"
+              <input type="text" class="form-control" (change)="emailVerify('UserName')" formControlName="username" placeholder="Username"
                 [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
               <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                 <div *ngIf="f.username.errors.required">Username is required</div>

@@ -18,10 +18,21 @@ export class ShopService {
   GetProductsList(categoryID: number) {
     return this.http.get<ShopProductModel[]>(`${environment.apiUrl}${this.shopEndpoint}GetProductList/${categoryID}`);
   }
-
   GetProductDetail(itemCode: number) {
     debugger
     return this.http.get<ShopProductModel[]>(`${environment.apiUrl}${this.shopEndpoint}GetProductDetailById/${itemCode}`);
   }
+  addToCart(Product: any) {
+    debugger
+    return this.http.get<ShopProductModel[]>(`${environment.apiUrl}${this.shopEndpoint}GetProductDetailById/${Product}`);
+  }
 
+  checkOutItems(transactionalRequestModel: any) {
+    debugger
+    return this.http.post<ShopProductModel[]>(`${environment.apiUrl}${this.shopEndpoint}SubmitCheckout`, transactionalRequestModel);
+  }
+
+  filterProduct(filterValue: any,categoryId:any) {
+    return this.http.get<CategoryModel[]>(`${environment.apiUrl}${this.shopEndpoint}GetItemCategory/${filterValue}${categoryId}`);
+  }
 }
