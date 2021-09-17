@@ -15,8 +15,9 @@ export class ShopService {
   GetCategoryForShopById(webCategoryID: any) {
     return this.http.get<CategoryModel[]>(`${environment.apiUrl}${this.shopEndpoint}GetItemCategory/${webCategoryID}`);
   }
-  GetProductsList(categoryID: number) {
-    return this.http.get<ShopProductModel[]>(`${environment.apiUrl}${this.shopEndpoint}GetProductList/${categoryID}`);
+  GetProductsList(categoryId:number,filterValue:number) {
+    debugger;
+    return this.http.get<ShopProductModel[]>(`${environment.apiUrl}${this.shopEndpoint}GetProductList/${categoryId}/${filterValue}`);
   }
   GetProductDetail(itemCode: number) {
     debugger

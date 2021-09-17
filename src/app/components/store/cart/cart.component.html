@@ -53,7 +53,7 @@
                   />
                 </a>
                 <span class="remove-product"
-                  ><a (click)="removeItem(cartItem, 0)"
+                  ><a (click)="removeItem(cartItem, 0,cartItem.bundle)"
                     ><svg
                       aria-hidden="true"
                       focusable="false"
@@ -165,7 +165,7 @@
                   />
                 </a>
                 <span class="remove-product"
-                  ><a (click)="removeItem(delivery, 1)"
+                  ><a (click)="removeItem(delivery, 1,delivery.bundle)"
                     ><svg
                       aria-hidden="true"
                       focusable="false"

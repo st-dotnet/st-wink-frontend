@@ -36,6 +36,7 @@ export class ShopComponent implements OnInit {
   quantityValue: any;
   cartTypes: any[] = [];
   productPrice: number = 0;
+  filterValue:number=1;
   modalOptions: NgbModalOptions = {
     backdrop: 'static',
     backdropClass: 'customBackdrop',
@@ -124,14 +125,17 @@ export class ShopComponent implements OnInit {
       this.categoryModels = result;
       var data = this.categoryModels.filter(x => x.webCategoryDescription.toString() === "All Products");
       this.categoryId = data[0]?.webCategoryID;
-      this.GetProductsList(this.categoryId);
+     
+      this.GetProductsList(this.categoryId,this.filterValue);
     })
   }
+
+  
 
   onCategoryChange(e: Event) {
     this.spinner.show();
     this.categoryId = Number((e.target as HTMLInputElement)?.value);
-    this.GetProductsList(this.categoryId);
+    this.GetProductsList(this.categoryId,this.filterValue);
   }
 
   open(content: any, product: any) {
@@ -157,10 +161,12 @@ export class ShopComponent implements OnInit {
     }
   }
 
-  GetProductsList(categoryID: number) {
+  GetProductsList(categoryId:number,filterValue:number) {
+    debugger;
     this.shopProductModels = [];
-    this.shopService.GetProductsList(categoryID).subscribe(result => {
+    this.shopService.GetProductsList(categoryId,filterValue).subscribe(result => {
       this.shopProductModels = result;
+      console.log(result)
       // this.shopProductModels =_.sortBy(this.shopProductModels, [function(o) { return o.itemDescription; }]);
       this.spinner.hide();
       console.log("product list",this.shopProductModels)
@@ -246,8 +252,10 @@ export class ShopComponent implements OnInit {
 
   onProductFilter(event: any) {
     debugger
-    const filterValue = parseInt(event.target.value);
-    this.shopService.filterProduct(filterValue, this.categoryId).subscribe((result: any) => {          
-    });
+    this.spinner.show();
+     this.filterValue = parseInt(event.target.value);
+     this.GetProductsList(this.categoryId,this.filterValue);
+    //this.shopService.filterProduct(filterValue, this.categoryId).subscribe((result: any) => {          
+    //});
   }
 }
