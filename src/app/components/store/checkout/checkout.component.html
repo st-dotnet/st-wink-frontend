@@ -550,7 +550,7 @@
                                                     <div class="col-md-12 p-0 mb-3">
                                                         <div
                                                             [className]="promocodepay ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                            <input type="text" formControlName="promoCodePay" value=""
+                                                            <input type="text" formControlName="promoCodePays" value=""
                                                                 name="promo-enter" class="form-control" />
                                                             <label class="form-label">Promo Code</label>
                                                             <span class="vali-promo">Not Applied</span>
@@ -708,7 +708,7 @@
                                                 </div>
                                             </ng-template>
                                             <ng-template ngbPanelContent>
-                                                <div class="content-card steps-inner shipping-address-form">
+                                                <div class="content-card steps-inner shipping-address-form" formGroupName="cardFormGroup">
                                                     <ul class="card-mat">
                                                         <li><img src="../../assets/card-ui-1.png" /></li>
                                                         <li><img src="../../assets/card-ui-2.png" /></li>
@@ -716,7 +716,7 @@
                                                         <li><img src="../../assets/card-ui-4.png" /></li>
                                                         <li><span class="more-card">and more</span></li>
                                                     </ul>
-                                                    <div class="card-infoo" formGroupName="cardFormGroup">
+                                                    <div class="card-infoo" >
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
@@ -736,21 +736,21 @@
                                                         <div class="row">
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="expiryMonth"
+                                                                    <input type="number" formControlName="expiryMonth"
                                                                         placeholder="Month" name="expiryMonth"
                                                                         class="form-control" />
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="expiryYear"
+                                                                    <input type="number" formControlName="expiryYear"
                                                                         placeholder="expiryYear" name="expiryYear"
                                                                         class="form-control" />
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="cardCVV"
+                                                                    <input type="number" formControlName="cardCVV"
                                                                         placeholder="cardCVV" name="cardCVV"
                                                                         class="form-control" />
                                                                 </div>

@@ -104,17 +104,16 @@ export class CheckoutComponent implements OnInit {
           country: ['', Validators.required],
           zip: ['', [Validators.maxLength(5), Validators.minLength(5)]]
         }),
-        isShipmentMethod: [''],
-        promoCodePay: [''],
-        loyalPointz: [''],
-        isSelectCard: [''],
+        isShipmentMethod: ['', Validators.required],
+        promoCodePays: ['', Validators.required],
+        loyalPointz: ['', Validators.required],
+        isSelectCard: ['', Validators.required],
         cardFormGroup: this.formBuilder.group({
-          cardName: [''],
-          cardNumber: [''],
-          expiryMonth: [''],
-          expiryYear: [''],
-          cardCVV: [''],
-          newCustomRadio: [''],
+          cardName: ['', Validators.required],
+          cardNumber: ['', Validators.required],
+          expiryMonth: ['', Validators.required],
+          expiryYear: ['', Validators.required],
+          cardCVV: ['', Validators.required],
           isMakePrimaryCard: ['']
         }),
         newShippingAddressFormGroup: this.formBuilder.group({
@@ -296,6 +295,30 @@ export class CheckoutComponent implements OnInit {
     if (this.checkoutForm.invalid) {
       return;
     }
+let firstName=this.checkoutForm.get(['shippingAddressFormGroup','firstName']).value? this.checkoutForm.get(['shippingAddressFormGroup','firstName']).value:'';
+let lastName=this.checkoutForm.get(['shippingAddressFormGroup','lastName']).value? this.checkoutForm.get(['shippingAddressFormGroup','lastName']).value :'';
+let streetAddress=this.checkoutForm.get(['shippingAddressFormGroup','streetAddress']).value?this.checkoutForm.get(['shippingAddressFormGroup','streetAddress']).value:'';
+let city=this.checkoutForm.get(['shippingAddressFormGroup','city']).value ?this.checkoutForm.get(['shippingAddressFormGroup','city']).value:'';
+let state=this.checkoutForm.get(['shippingAddressFormGroup','state']).value?this.checkoutForm.get(['shippingAddressFormGroup','state']).value:'';
+let zip=this.checkoutForm.get(['shippingAddressFormGroup','zip']).value?this.checkoutForm.get(['shippingAddressFormGroup','zip']).value:'';
+let country=this.checkoutForm.get(['shippingAddressFormGroup','country']).value?this.checkoutForm.get(['shippingAddressFormGroup','country']).value:'';
+
+let newStreetAddress=this.checkoutForm.get(['newShippingAddressFormGroup','newStreetAddress']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newStreetAddress']).value:'';
+let newCity=this.checkoutForm.get(['newShippingAddressFormGroup','newCity']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newCity']).value:'';
+let newState=this.checkoutForm.get(['newShippingAddressFormGroup','newState']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newState']).value:'';
+let newZip=this.checkoutForm.get(['newShippingAddressFormGroup','newZip']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newZip']).value:'';
+let newCountry=this.checkoutForm.get(['newShippingAddressFormGroup','newCountry']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newCountry']).value:'';
+
+let data=this.checkoutForm.get(['CardFormGroup']).value;
+
+// let cardName=this.checkoutForm.get(['CardFormGroup','cardName']).value?this.checkoutForm.get(['CardFormGroup','cardName']).value:'';
+// let cardNumber=this.checkoutForm.get(['CardFormGroup','cardNumber']).value?this.checkoutForm.get(['CardFormGroup','cardNumber']).value:'';
+// let expiryMonth=this.checkoutForm.get(['CardFormGroup','expiryMonth']).value?this.checkoutForm.get(['CardFormGroup','expiryMonth']).value:'';
+// let expiryYear=this.checkoutForm.get(['CardFormGroup','expiryYear']).value?this.checkoutForm.get(['CardFormGroup','expiryYear']).value:'';
+// let cardCVV=this.checkoutForm.get(['CardFormGroup','cardCVV']).value?this.checkoutForm.get(['CardFormGroup','cardCVV']).value:'';
+// let isMakePrimaryCard=this.checkoutForm.get(['CardFormGroup','isMakePrimaryCard']).value?this.checkoutForm.get(['CardFormGroup','isMakePrimaryCard']).value:'';
+
+
     this.spinner.show();
     this.cartItems.forEach(element => {
       this.orderDetails.push({
@@ -357,18 +380,18 @@ export class CheckoutComponent implements OnInit {
     createOrderRequest.warehouseID = 0;
     createOrderRequest.shipMethodID = 0;
     createOrderRequest.priceType = 0;
-    createOrderRequest.firstName = this.checkoutForm.value.shippingAddressFormGroup.firstName;
+    createOrderRequest.firstName =  this.checkoutForm.get(['shippingAddressFormGroup','firstName']).value //  this.checkoutForm.value.shippingAddressFormGroup.firstName ? this.checkoutForm.value.shippingAddressFormGroup.firstName:'';
     createOrderRequest.middleName = '';
-    createOrderRequest.lastName = this.checkoutForm.value.shippingAddressFormGroup.lastName;
+    createOrderRequest.lastName = this.checkoutForm.value.shippingAddressFormGroup.lastName ? this.checkoutForm.value.shippingAddressFormGroup.lastName:'';
     createOrderRequest.other11 = '';
     createOrderRequest.nameSuffix = '';
-    createOrderRequest.address1 = this.checkoutForm.value.shippingAddressFormGroup.streetAddress;
+    createOrderRequest.address1 = this.checkoutForm.value.shippingAddressFormGroup.streetAddress ? this.checkoutForm.value.shippingAddressFormGroup.streetAddress:'';
     createOrderRequest.address2 = '';
     createOrderRequest.address3 = '';
-    createOrderRequest.city = this.checkoutForm.value.shippingAddressFormGroup.city;
-    createOrderRequest.state = this.checkoutForm.value.shippingAddressFormGroup.state;
-    createOrderRequest.zip = this.checkoutForm.value.shippingAddressFormGroup.zip;
-    createOrderRequest.country = this.checkoutForm.value.shippingAddressFormGroup.country;
+    createOrderRequest.city = this.checkoutForm.value.shippingAddressFormGroup.city ? this.checkoutForm.value.shippingAddressFormGroup.city : '';
+    createOrderRequest.state = this.checkoutForm.value.shippingAddressFormGroup.state ? this.checkoutForm.value.shippingAddressFormGroup.state : '';
+    createOrderRequest.zip = this.checkoutForm.value.shippingAddressFormGroup.zip ? this.checkoutForm.value.shippingAddressFormGroup.zip : '';
+    createOrderRequest.country = this.checkoutForm.value.shippingAddressFormGroup.country ? this.checkoutForm.value.shippingAddressFormGroup.country : '';
     createOrderRequest.county = '';
     createOrderRequest.email = '';
     createOrderRequest.phone = '';
@@ -481,33 +504,33 @@ export class CheckoutComponent implements OnInit {
     chargeCreditCardTokenRequest.maxAmount = 0;
     chargeCreditCardTokenRequest.otherData10 = '';
     if (this.addrnew == false) {
-      chargeCreditCardTokenRequest.billingCountry = this.checkoutForm.value.shippingAddressFormGroup.country;
-      chargeCreditCardTokenRequest.billingZip = this.checkoutForm.value.shippingAddressFormGroup.zip;
-      chargeCreditCardTokenRequest.billingState = this.checkoutForm.value.shippingAddressFormGroup.state;
-      chargeCreditCardTokenRequest.billingCity = this.checkoutForm.value.shippingAddressFormGroup.city;
+      chargeCreditCardTokenRequest.billingCountry = this.checkoutForm.value.shippingAddressFormGroup.country ? this.checkoutForm.value.shippingAddressFormGroup.country : '';
+      chargeCreditCardTokenRequest.billingZip = this.checkoutForm.value.shippingAddressFormGroup.zip ? this.checkoutForm.value.shippingAddressFormGroup.zip: '';
+      chargeCreditCardTokenRequest.billingState = this.checkoutForm.value.shippingAddressFormGroup.state ? this.checkoutForm.value.shippingAddressFormGroup.state : '';
+      chargeCreditCardTokenRequest.billingCity = this.checkoutForm.value.shippingAddressFormGroup.city ? this.checkoutForm.value.shippingAddressFormGroup.city :'';
       chargeCreditCardTokenRequest.billingAddress2 = '';
-      chargeCreditCardTokenRequest.billingAddress = this.checkoutForm.value.shippingAddressFormGroup.streetAddress;
+      chargeCreditCardTokenRequest.billingAddress = this.checkoutForm.value.shippingAddressFormGroup.streetAddress ? this.checkoutForm.value.shippingAddressFormGroup.streetAddress:'';
 
     } else {
-      chargeCreditCardTokenRequest.billingCountry = this.checkoutForm.value.newShippingAddressFromGroup.country;
-      chargeCreditCardTokenRequest.billingZip = this.checkoutForm.value.newShippingAddressFromGroup.zip;
-      chargeCreditCardTokenRequest.billingState = this.checkoutForm.value.newShippingAddressFromGroup.state;
-      chargeCreditCardTokenRequest.billingCity = this.checkoutForm.value.newShippingAddressFromGroup.city;
+      chargeCreditCardTokenRequest.billingCountry = this.checkoutForm.value.newShippingAddressFromGroup.country?this.checkoutForm.value.newShippingAddressFromGroup.country:'';
+      chargeCreditCardTokenRequest.billingZip = this.checkoutForm.value.newShippingAddressFromGroup.zip?this.checkoutForm.value.newShippingAddressFromGroup.zip:'';
+      chargeCreditCardTokenRequest.billingState = this.checkoutForm.value.newShippingAddressFromGroup.state?'':'';
+      chargeCreditCardTokenRequest.billingCity = this.checkoutForm.value.newShippingAddressFromGroup.city?this.checkoutForm.value.newShippingAddressFromGroup.city:'';
       chargeCreditCardTokenRequest.billingAddress2 = '';
-      chargeCreditCardTokenRequest.billingAddress = this.checkoutForm.value.newShippingAddressFromGroup.streetAddress;
+      chargeCreditCardTokenRequest.billingAddress = this.checkoutForm.value.newShippingAddressFromGroup.streetAddress?this.checkoutForm.value.newShippingAddressFromGroup.streetAddress:'';
 
     }
-    chargeCreditCardTokenRequest.expirationMonth = this.checkoutForm.value.CardFormGroup.expiryMonth;
+    chargeCreditCardTokenRequest.expirationMonth = this.checkoutForm.value.CardFormGroup.expiryMonth ? this.checkoutForm.value.CardFormGroup.expiryMonth:null;
     chargeCreditCardTokenRequest.creditCardType = 0;
-    chargeCreditCardTokenRequest.cvcCode = this.checkoutForm.value.CardFormGroup.cardCVV;
-    chargeCreditCardTokenRequest.billingCountry = this.checkoutForm.value.shippingAddressFormGroup.country;
-    chargeCreditCardTokenRequest.billingZip = this.checkoutForm.value.shippingAddressFormGroup.zip;
-    chargeCreditCardTokenRequest.billingState = this.checkoutForm.value.shippingAddressFormGroup.state;
-    chargeCreditCardTokenRequest.billingCity = this.checkoutForm.value.shippingAddressFormGroup.city;
+    chargeCreditCardTokenRequest.cvcCode = this.checkoutForm.value.CardFormGroup.cardCVV ? this.checkoutForm.value.CardFormGroup.cardCVV : null;
+    chargeCreditCardTokenRequest.billingCountry = this.checkoutForm.value.shippingAddressFormGroup.country?this.checkoutForm.value.shippingAddressFormGroup.country:'';
+    chargeCreditCardTokenRequest.billingZip = this.checkoutForm.value.shippingAddressFormGroup.zip?this.checkoutForm.value.shippingAddressFormGroup.zip:'';
+    chargeCreditCardTokenRequest.billingState = this.checkoutForm.value.shippingAddressFormGroup.state?this.checkoutForm.value.shippingAddressFormGroup.state:'';
+    chargeCreditCardTokenRequest.billingCity = this.checkoutForm.value.shippingAddressFormGroup.city?this.checkoutForm.value.shippingAddressFormGroup.city:'';
     chargeCreditCardTokenRequest.billingAddress2 = '';
-    chargeCreditCardTokenRequest.billingAddress = this.checkoutForm.value.shippingAddressFormGroup.streetAddress;
+    chargeCreditCardTokenRequest.billingAddress = this.checkoutForm.value.shippingAddressFormGroup.streetAddress?this.checkoutForm.value.shippingAddressFormGroup.streetAddress:'';
     chargeCreditCardTokenRequest.creditCardToken = '';
-    chargeCreditCardTokenRequest.expirationYear = this.checkoutForm.value.CardFormGroup.expiryYear;
+    chargeCreditCardTokenRequest.expirationYear = this.checkoutForm.value.CardFormGroup.expiryYear?this.checkoutForm.value.CardFormGroup.expiryYear:0;
     chargeCreditCardTokenRequest.orderKey = '';
 
     const createAutoOrderRequest = new CreateAutoOrderRequest();
@@ -564,8 +587,8 @@ export class CheckoutComponent implements OnInit {
     setAccountCreditCardTokenRequest.useMainAddress = true;
     setAccountCreditCardTokenRequest.billingName = '';
     setAccountCreditCardTokenRequest.creditCardType = 0;
-    setAccountCreditCardTokenRequest.expirationYear = this.checkoutForm.value.CardFormGroup.expiryYear;
-    setAccountCreditCardTokenRequest.expirationMonth = this.checkoutForm.value.CardFormGroup.expiryMonth;
+    setAccountCreditCardTokenRequest.expirationYear = this.checkoutForm.value.CardFormGroup.expiryYear?this.checkoutForm.value.CardFormGroup.expiryYear:null;
+    setAccountCreditCardTokenRequest.expirationMonth = this.checkoutForm.value.CardFormGroup.expiryMonth?this.checkoutForm.value.CardFormGroup.expiryMonth:null;
     setAccountCreditCardTokenRequest.creditCardToken = '';
     setAccountCreditCardTokenRequest.creditCardAccountType = 1;
     setAccountCreditCardTokenRequest.customerID = 0;
@@ -579,7 +602,7 @@ export class CheckoutComponent implements OnInit {
     transactionalRequestModel.chargeCreditCardTokenRequest = chargeCreditCardTokenRequest;
     transactionalRequestModel.createAutoOrderRequest = createAutoOrderRequest;
     transactionalRequestModel.setAccountCreditCardTokenRequest = setAccountCreditCardTokenRequest;
-
+    debugger;
     this.shopService.checkOutItems(transactionalRequestModel).subscribe(
       (result: any) => {
         console.log("Result", result);
