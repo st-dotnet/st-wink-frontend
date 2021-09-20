@@ -10,6 +10,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
+import { SearchproductComponent } from './search_product/searchproduct/searchproduct.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
     ProductDetailComponent,
     CartComponent,
     CheckoutComponent,
-    ThankYouComponent
+    ThankYouComponent,
+    SearchproductComponent
   ],
   imports: [
     SharedModule,

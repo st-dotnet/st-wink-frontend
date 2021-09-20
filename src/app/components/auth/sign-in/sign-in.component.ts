@@ -58,7 +58,8 @@ export class SignInComponent implements OnInit {
       .subscribe({
         next: (res: any) => {
           if (!res.token) {
-            this.toastrService.error(res.message);
+            debugger
+            this.toastrService.error(res.errorMessage);
             this.spinner.hide();
             this.loading = false;
             return false;
@@ -72,13 +73,14 @@ export class SignInComponent implements OnInit {
             this.router.navigateByUrl(returnUrl);
           }         
           this.loading = false;
-          this.spinner.hide();
+          this.spinner.hide();         
         },
         error: error => {
           this.spinner.hide();
-          this.toastrService.error(error);
+          this.toastrService.error();
           this.loading = false;
         }
+      
       });
   }
 

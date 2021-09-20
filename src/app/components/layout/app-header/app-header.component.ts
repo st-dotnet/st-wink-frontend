@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SessionService } from '@app/_services';
 import Swal from 'sweetalert2';
 
@@ -13,7 +14,9 @@ export class AppHeaderComponent implements OnInit {
   isMobileMenu: boolean = false;
   isDesktopMenu: boolean = false;
   cartItems: any = 0;
-  constructor(private sessionService: SessionService) {
+  searchText:any;
+  constructor(private sessionService: SessionService,
+    private router: Router) {
     this.sessionService.user$.subscribe(x => this.user = x);
     this.windowWidth = window.innerWidth;
   }
@@ -44,5 +47,11 @@ export class AppHeaderComponent implements OnInit {
       } else if (result.dismiss === Swal.DismissReason.cancel) {
       }
     })
+  }
+
+  searchProduct(){ 
+    debugger
+    this.sessionService.setSessionItem("searchItem", this.searchText);
+    this.router.navigate(["/store/search-products"]);
   }
 }

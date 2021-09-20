@@ -89,6 +89,27 @@ ul.right-menu li a i {
   font-size: 17px;
 }
 
+
+.searchOptions {
+  position: relative;
+}
+
+.search-ico {
+  position: absolute;
+  top: 7px;
+  right: 4px;
+  border:none;
+  background-color: transparent;
+}
+
+.search-ico i {
+  color: #b0b0b0;
+}
+
+.searchOptions input {
+  padding-right: 30px;
+}
+
 @media(min-width:992px)
 {
     .logo-center {
@@ -110,6 +131,10 @@ a.nav-link.active {
 
 @media (max-width:991px)
 {
+  div#main-menu li.mob-search {
+    margin: 0 !important;
+    padding: 8px 10px;
+}
   div#main-menu.showmenu {
     position: absolute;
     top: 58px;

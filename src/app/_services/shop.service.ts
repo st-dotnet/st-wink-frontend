@@ -31,9 +31,8 @@ export class ShopService {
   checkOutItems(transactionalRequestModel: any) {
     debugger
     return this.http.post<ShopProductModel[]>(`${environment.apiUrl}${this.shopEndpoint}SubmitCheckout`, transactionalRequestModel);
-  }
-
-  filterProduct(filterValue: any,categoryId:any) {
-    return this.http.get<CategoryModel[]>(`${environment.apiUrl}${this.shopEndpoint}GetItemCategory/${filterValue}${categoryId}`);
+  }  
+   searchProduct(query:string) {
+    return this.http.get<any>(`${environment.apiUrl}${this.shopEndpoint}SearchProducts/${query}`);
   }
 }

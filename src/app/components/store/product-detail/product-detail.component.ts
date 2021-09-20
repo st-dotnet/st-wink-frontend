@@ -31,6 +31,7 @@ export class ProductDetailComponent implements OnInit {
   quantity: any[] = [];
   years: any[] = [];
   quantityValue: any;
+  itemCodeTitle: any;
   toggleDisplayDivIf() {
     this.isShowDivIf = !this.isShowDivIf;
   }
@@ -232,6 +233,7 @@ export class ProductDetailComponent implements OnInit {
     this.shopService.GetProductDetail(itemCode).subscribe(result => {
     this.productDetail=result;
     this.productPrice=this.productDetail.price;
+    this.itemCodeTitle=this.productDetail.itemCode;
     this.spinner.hide();
     console.log("ProductDetail", this.productDetail);
     });
