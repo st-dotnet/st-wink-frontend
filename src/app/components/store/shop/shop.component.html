@@ -103,7 +103,7 @@
   </div>
 </section>
 <!--- SHop MOdal --->
-<ng-template #produt_view let-modal>
+<ng-template #produt_view let-modal  (click)="modal.dismiss('Cross click')">
   <div class="model-productview">
     <form>
       <div class="modal-body">
