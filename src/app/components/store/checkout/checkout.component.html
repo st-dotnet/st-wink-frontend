@@ -99,19 +99,24 @@
                             <ng-template ngbPanelContent>
                                 <div class="content-card steps-inner promo-checkout">
                                     <div class="col-md-12 p-0 mb-3">
-                                        <div class="form-group">
-                                            <input type="text" value="" name="promo-enter" class="form-control"
-                                                placeholder="Promo Code" />
-                                            <span class="vali-promo">Not Applied</span>
-                                            <span class="btn-add-promo">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                    viewBox="0 0 14 14">
-                                                    <path _ngcontent-shj-c146="" id="Path_2014" data-name="Path 2014"
-                                                        d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
-                                                        transform="translate(-194.9 -3)"></path>
-                                                </svg>
-                                            </span>
+                                        <div class="promo-code">
+                                            <div [className]="promocode_sidebar_checkout ?  'special-field datafilled form-group' : 'special-field dataempty form-group'">
+                                                <input type="text" value="" [(ngModel)]="promocode_sidebar_checkout"
+                                                    name="promo-enter" class="form-control" />
+                                                <label class="form-label">Promo Code</label>
+                                                <span class="vali-promo">Not Applied</span>
+                                                <span class="btn-add-promo">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                        viewBox="0 0 14 14">
+                                                        <path _ngcontent-shj-c146="" id="Path_2014"
+                                                            data-name="Path 2014"
+                                                            d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
+                                                            transform="translate(-194.9 -3)"></path>
+                                                    </svg>
+                                                </span>
+                                            </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </ng-template>
@@ -138,7 +143,7 @@
                                             <tr *ngFor="let item of oneTimePriceCartItems">
                                                 <td>{{item.itemDescription}}</td>
                                                 <td>${{item.price * item.quantityModel | number :'.1-2'}}</td>
-                                            </tr>                                           
+                                            </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -167,13 +172,13 @@
                                 </div>
                             </ng-template>
                             <ng-template ngbPanelContent>
-                                <div class ="content-card steps-inner subsc-purchse-sidebar">
+                                <div class="content-card steps-inner subsc-purchse-sidebar">
                                     <table>
                                         <tbody>
                                             <tr *ngFor="let item of subscriptionCartItems">
                                                 <td>{{item.itemDescription}}</td>
                                                 <td>${{item.price * item.quantityModel | number :'.1-2'}}</td>
-                                            </tr>                                           
+                                            </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -182,7 +187,8 @@
                                             </tr>
                                             <tr>
                                                 <td>Subtotal</td>
-                                                <td>${{subtotalSubscriptionTimePrice - discount15Percent  | number :'.1-2'}}</td>
+                                                <td>${{subtotalSubscriptionTimePrice - discount15Percent | number
+                                                    :'.1-2'}}</td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -210,7 +216,8 @@
                                         <tbody>
                                             <tr>
                                                 <td>One-Time Purchase</td>
-                                                <td>${{this.paramsProductPrice?.subTotalOneTimePrice | number :'.1-2'}}</td>
+                                                <td>${{this.paramsProductPrice?.subTotalOneTimePrice | number :'.1-2'}}
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Subscription Purchase</td>
@@ -266,7 +273,8 @@
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
                                                     <h4>Subscription Schedule</h4>
-                                                    <p>Start Date:<span class="data-span">{{startDate | date: 'dd/MM/yyyy'}}</span></p>
+                                                    <p>Start Date:<span class="data-span">{{startDate | date:
+                                                            'dd/MM/yyyy'}}</span></p>
                                                     <span class="arrow-stepp">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
                                                             height="11.2" viewBox="0 0 6.6 11.2">
@@ -279,11 +287,11 @@
                                             </ng-template>
                                             <ng-template ngbPanelContent>
                                                 <div class="content-card steps-inner">
-                                                    <div [className]="inputdata ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'"
+                                                    <div [className]="startDate ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'"
                                                         id="subscr-schedule">
                                                         <!-- [(ngModel)]="inputdata"  --> <input type="text"
                                                             class="form-control" formControlName="SubsScheduleDate"
-                                                            bsDatepicker   [minDate]="minDate" [(ngModel)] =startDate
+                                                            bsDatepicker [minDate]="minDate" [(ngModel)]=startDate
                                                             [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }"
                                                             [ngModelOptions]="{standalone: true}" />
                                                         <label class="form-label">Select Start Date</label>
@@ -334,7 +342,7 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                    formControlName="firstName" placeholder="First Name"                                                                  
+                                                                    formControlName="firstName" placeholder="First Name"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
                                                                 <div *ngIf="submitted && f.firstName.errors"
                                                                     class="invalid-feedback">
@@ -398,15 +406,17 @@
                                                             <div class="form-group">
                                                                 <input type="number" class="form-control"
                                                                     formControlName="zip" placeholder="Zip"
-                                                                    [ngModelOptions]="{standalone: true}" maxlength="5" minlength="5"
+                                                                    [ngModelOptions]="{standalone: true}" maxlength="5"
+                                                                    minlength="5"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.zip.errors }" />
-                                                                    <div *ngIf="submitted && f.zip.errors"
+                                                                <div *ngIf="submitted && f.zip.errors"
                                                                     class="invalid-feedback">
                                                                     <div *ngIf="f.zip.errors.required">Zip is
                                                                         required</div>
-                                                                        <div *ngIf="submitted && f.zip.errors" class="invalid-feedback">
-                                                                            Maximum and Minimum length must be 5
-                                                                        </div>
+                                                                    <div *ngIf="submitted && f.zip.errors"
+                                                                        class="invalid-feedback">
+                                                                        Maximum and Minimum length must be 5
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -789,7 +799,7 @@
                                                         <ul>
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="customRadio1" 
+                                                                    <input type="radio" id="customRadio1"
                                                                         (change)="sameshippingAddress()"
                                                                         name="newCustomRadio"
                                                                         class="custom-control-input">
@@ -909,65 +919,65 @@
                                             </ng-template>
                                         </ngb-panel>
 
-                                       
-                                            <ngb-panel id="promo-code">
-                                                <ng-template ngbPanelTitle>
-                                                    <div class="heading-step1">
-                                                        <h4>Have a promo code?</h4>
-                                                        <p>No code applied</p>
-                                                        <span class="arrow-stepp">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
-                                                                height="11.2" viewBox="0 0 6.6 11.2">
-                                                                <path id="Path_2044" data-name="Path 2044"
-                                                                    d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                                    transform="translate(-630.6 -4.4)" />
-                                                            </svg>
-                                                        </span>
-                                                    </div>
-                                                </ng-template>
-                                                <!-- <div class="forformcontrol" formGroupName="reviewFormGroup"> -->
-                                                <ng-template ngbPanelContent>
-                                                    <div class="content-card steps-inner promo-checkout">
-                                                        <div class="col-md-12 p-0 mb-3">
-                                                            <div
-                                                                [className]="promocodepay ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                                <input type="text" formControlName="promocodepay"
-                                                                    value="" name="promo-enter" class="form-control" />
-                                                                <label class="form-label">Promo Code</label>
-                                                                <span class="vali-promo">Not Applied</span>
-                                                                <span class="btn-add-promo">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14"
-                                                                        height="14" viewBox="0 0 14 14">
-                                                                        <path _ngcontent-shj-c146="" id="Path_2014"
-                                                                            data-name="Path 2014"
-                                                                            d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
-                                                                            transform="translate(-194.9 -3)"></path>
-                                                                    </svg>
-                                                                </span>
-                                                            </div>
+
+                                        <ngb-panel id="promo-code">
+                                            <ng-template ngbPanelTitle>
+                                                <div class="heading-step1">
+                                                    <h4>Have a promo code?</h4>
+                                                    <p>No code applied</p>
+                                                    <span class="arrow-stepp">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                            height="11.2" viewBox="0 0 6.6 11.2">
+                                                            <path id="Path_2044" data-name="Path 2044"
+                                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                                transform="translate(-630.6 -4.4)" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                            </ng-template>
+                                            <!-- <div class="forformcontrol" formGroupName="reviewFormGroup"> -->
+                                            <ng-template ngbPanelContent>
+                                                <div class="content-card steps-inner promo-checkout">
+                                                    <div class="col-md-12 p-0 mb-3">
+                                                        <div
+                                                            [className]="promocodepay ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                                            <input type="text" formControlName="promocodepay" value=""
+                                                                name="promo-enter" class="form-control" />
+                                                            <label class="form-label">Promo Code</label>
+                                                            <span class="vali-promo">Not Applied</span>
+                                                            <span class="btn-add-promo">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                    height="14" viewBox="0 0 14 14">
+                                                                    <path _ngcontent-shj-c146="" id="Path_2014"
+                                                                        data-name="Path 2014"
+                                                                        d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
+                                                                        transform="translate(-194.9 -3)"></path>
+                                                                </svg>
+                                                            </span>
                                                         </div>
                                                     </div>
-                                                </ng-template>
+                                                </div>
+                                            </ng-template>
                                             <!-- </div> -->
-                                            </ngb-panel>
-                                            <ngb-panel id="loyalty-info">
-                                                <ng-template ngbPanelTitle>
-                                                    <div class="heading-step1">
-                                                        <h4>Loyalty points</h4>
-                                                        <p>No points applied</p>
-                                                        <span class="arrow-stepp">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
-                                                                height="11.2" viewBox="0 0 6.6 11.2">
-                                                                <path id="Path_2044" data-name="Path 2044"
-                                                                    d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                                    transform="translate(-630.6 -4.4)" />
-                                                            </svg>
-                                                        </span>
-                                                    </div>
-                                                </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel id="loyalty-info">
+                                            <ng-template ngbPanelTitle>
+                                                <div class="heading-step1">
+                                                    <h4>Loyalty points</h4>
+                                                    <p>No points applied</p>
+                                                    <span class="arrow-stepp">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                            height="11.2" viewBox="0 0 6.6 11.2">
+                                                            <path id="Path_2044" data-name="Path 2044"
+                                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                                transform="translate(-630.6 -4.4)" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                            </ng-template>
 
-                                            </ngb-panel>
-                                       
+                                        </ngb-panel>
+
                                         <ngb-panel id="today-order">
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
@@ -1002,7 +1012,8 @@
                                                                         <p class="you-sav">You Saved</p>
                                                                     </td>
                                                                     <td>
-                                                                        <p class="you-sav">-${{discount15Percent | number:'.1-2'}}</p>
+                                                                        <p class="you-sav">-${{discount15Percent |
+                                                                            number:'.1-2'}}</p>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -1010,7 +1021,8 @@
                                                                         <p class="you-pay">You pay</p>
                                                                     </td>
                                                                     <td>
-                                                                        <p class="you-pay">${{cartSummary | number:'.1-2'}}</p>
+                                                                        <p class="you-pay">${{cartSummary |
+                                                                            number:'.1-2'}}</p>
                                                                     </td>
                                                                 </tr>
                                                             </tfoot>
