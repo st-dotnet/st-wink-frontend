@@ -24,7 +24,7 @@ export class ShopComponent implements OnInit {
   categoryId: number = 0;
   productCartItems: any[] = [];
   productItems: any[] = [];
-  productItem: any[];
+  productItem: any;
   bundles: any[] = [];
   bundle: string;
   delivery: any[] = [];
@@ -186,7 +186,7 @@ export class ShopComponent implements OnInit {
     debugger
     this.productItems = this.sessionService.getSessionObject('productCartItems');
     if (this.quantityValue == undefined) {
-      this.quantityValue = 1;
+      this.quantityValue = "1";
     }
     if (this.bundle == undefined) {
       this.bundle = 'single';
@@ -201,18 +201,61 @@ export class ShopComponent implements OnInit {
       bundle: this.bundle,
       selectDelivery: this.selectDelivery,
       subscriptionModel: this.subscriptionModel,
-      quantityModel: this.quantityValue,
+      quantityModel: +this.quantityValue,
       calculatedPrice:0,
       afterDiscountPrice:0,
-      discount:0
+      discount:0,
+      quantityLimit:4
     }
     Object.entries(items).forEach(([key, value]) => { product[key] = value });
-    if (this.productItems) {
-      this.productItem = this.productItems.find(x => x.itemCode == product.itemCode);
-      this.productItems.push(product);
+
+     if (this.productItems) {
+      this.productItem=this.productItems.find(item => item.itemCode == product.itemCode && item.bundle== product.bundle)
+      let oldvalue=this.productItem;
+      if(this.productItem !=null)
+      {
+        if(this.productItem.bundle=="single")
+        {
+          const index: number = this.productItems.indexOf(this.productItem);
+          if (index !== -1) {
+            this.productItems.splice(index, 1);
+          }
+          this.product.quantityModel=this.productItem.quantityModel + +product.quantityModel;
+
+          if(this.product.quantityModel>product.quantityLimit)
+          {
+            this.productItems.push(oldvalue);
+            this.toastrService.success('You Exceed your Quantity Limit 4');
+          }
+          else{ 
+            this.productItems.push(this.product);
+            this.toastrService.success('Product added successfully');
+          }
+         
+        }
+        else
+        { 
+          const index: number = this.productItems.indexOf(this.productItem);
+          if (index !== -1) {
+            this.productItems.splice(index, 1);
+          }
+          this.product.quantityModel=this.productItem.quantityModel + +product.quantityModel;
+          if(this.product.quantityModel>product.quantityLimit)
+          {
+            this.productItems.push(oldvalue);
+            this.toastrService.success('You exceed your quantity limit 4');
+          }
+          else{
+            this.productItems.push(product);
+            this.toastrService.success('Product added successfully');
+          }
+        }
+      }
+      else{
+          this.productItems.push(product);
+      }
       this.sessionService.cartSession(this.productItems);
       this.sessionService.setSessionObject('productCartItems', this.productItems);
-      this.toastrService.success('Product added successfully');
     }
     else {
       Object.entries(items).forEach(([key, value]) => { product[key] = value });

@@ -63,7 +63,10 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     debugger
-    this.getProductListFromLocalStorage();
+    this.cartItems = this.sessionService.getSessionObject('productCartItems');
+    this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
+    this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
+
     this.oneTimePriceCartItemsCount = this.oneTimePriceCartItems.length;
     this.subscriptionCartItemsCount = this.subscriptionCartItems.length;
     // if (this.total == true) {
@@ -100,14 +103,6 @@ export class CartComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-  }
-
-  getProductListFromLocalStorage()
-  {
-    debugger;
-    this.cartItems = this.sessionService.getSessionObject('productCartItems');
-    this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
-    this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
   }
 
   learn_show() {
@@ -230,27 +225,21 @@ export class CartComponent implements OnInit {
     this.sessionService.removeSessionItem('productCartItems');
     switch (type) {
       case 0:
-        this.cartItems = this.cartItems.filter(x => x.itemCode != cartItem.itemCode || x.bundle!=bundle);
+        this.cartItems = this.cartItems.filter(x =>(x.itemCode != cartItem.itemCode || x.bundle != bundle));
         // this.subscriptionCartItems.length > 0 ? this.oneTimePriceCartItems.push(...this.subscriptionCartItems) : '';
-        //this.oneTimePriceCartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.oneTimePriceCartItems) : this.sessionService.removeSessionItem('productCartItems');
-        // this.subscriptionCartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.subscriptionCartItems) : '';
         this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
-        this.getProductListFromLocalStorage();
-        this.spinner.hide();
+        // this.subscriptionCartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.subscriptionCartItems) : '';
+        this.updateCartSession();
         break;
       case 1:
-        this.cartItems = this.cartItems.filter(x => x.itemCode != cartItem.itemCode || x.bundle!=bundle);
+        this.cartItems = this.cartItems.filter(x =>(x.itemCode != cartItem.itemCode || x.bundle != bundle));
         // this.oneTimePriceCartItems.length > 0 ? this.subscriptionCartItems.push(...this.oneTimePriceCartItems) : '';
-        //this.subscriptionCartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.subscriptionCartItems) : this.sessionService.removeSessionItem('productCartItems');
-        // this.oneTimePriceCartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.oneTimePriceCartItems) : '';
         this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
-      
-        this.getProductListFromLocalStorage();
-        this.spinner.hide();
+        // this.oneTimePriceCartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.oneTimePriceCartItems) : '';
+        this.updateCartSession();
         break;
       default:
         break;
-       
     }
     this.total = true;
     this.spinner.hide();
@@ -264,8 +253,9 @@ export class CartComponent implements OnInit {
   }
 
   updateCartSession() {
-    debugger
     const items = this.sessionService.getSessionObject('productCartItems');
+    this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
+    this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
     this.sessionService.cartSession(items == null ? [] : items);
   }
 

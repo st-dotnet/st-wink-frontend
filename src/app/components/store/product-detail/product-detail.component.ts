@@ -289,11 +289,20 @@ export class ProductDetailComponent implements OnInit {
       quantityModel: this.quantityValue,
       calculatedPrice:0,
       afterDiscountPrice:0,
-      discount:0
+      discount:0,
+      quantityLimit:4
     }
     Object.entries(items).forEach(([key, value]) => { product[key] = value });
     if (this.productItems) {
       this.productItem = this.productItems.find(x => x.itemCode == product.itemCode);
+      // for(let i=0;i<=this.productItem.length;i++)
+      // {
+      //   let quantitysum=0;
+      //   if(this.productItem[i].itemCode== product.itemCode && this.productItem[i].quantityModel==product.quantityModel)
+      //   quantitysum=+this.productItem[i].quantityModel+ +product.quantityModel;
+      //   this.productItem[i].quantityModel=quantitysum.toString();
+      // }
+     
       this.productItems.push(product);
       //this.productItems.find(x=> x.itemcode == product.itemCode).push(items);
       this.sessionService.cartSession(this.productItems);
