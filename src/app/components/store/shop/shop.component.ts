@@ -47,7 +47,7 @@ export class ShopComponent implements OnInit {
     private sessionService: SessionService,
     private modalService: NgbModal, private shopService: ShopService,
     private spinner: NgxSpinnerService, private router: Router,
-    private toastrService: ToastrService,) {
+    private toastrService: ToastrService) {
     this.sessionService.scrollToTop();
     this.bundles = [
       {

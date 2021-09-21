@@ -18,11 +18,10 @@ const routes: Routes = [
     path: '',
     component: AppLayoutComponent,
     children: [
-      // { path: '', loadChildren: homeModule, canActivate: [AuthGuard] },
+      { path: '', loadChildren: homeModule, canActivate: [AuthGuard] },
       { path: '', loadChildren: homeModule },
       { path: '', loadChildren: authModule },
-      { path: 'store', loadChildren: storeModule },
-      
+      { path: 'store', loadChildren: storeModule },      
       // otherwise redirect on the basis of authentication
       { path: '**', redirectTo: '' }
     ]

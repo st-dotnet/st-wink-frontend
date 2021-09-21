@@ -8,6 +8,7 @@ import { SessionService } from '@app/_services';
 import { ShopService } from '@app/_services/shop.service';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-checkout',
@@ -55,7 +56,8 @@ export class CheckoutComponent implements OnInit {
     private formBuilder: FormBuilder,
     private sessionService: SessionService,
     private router: Router,
-    private spinner: NgxSpinnerService,) {
+    private spinner: NgxSpinnerService,
+    private toastrService: ToastrService,) {
     this.minDate.setDate(this.minDate.getDate() + 1);
   }
 
@@ -68,14 +70,11 @@ export class CheckoutComponent implements OnInit {
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
     this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
-
     this.subtotalOneTimePrices =this.getSubTotal(this.oneTimePriceCartItems );
     this.subtotalSubscriptionTimePrice=this.getSubTotal(this.subscriptionCartItems);
-
     this.discount15Percent=this.paramsProductPrice.subTotalSubscriptionPrice-this.paramsProductPrice.priceAfterDiscount;;
     this.subscriptionPriceAfterDiscount=this.paramsProductPrice.subTotalSubscriptionPrice- +this.discount15Percent.toFixed(2);
     this.cartSummary=this.subscriptionPriceAfterDiscount+this.paramsProductPrice.subTotalOneTimePrice;
-
     this.TotalPrice = this.cartSummary + this.discount15Percent;
 
     // this.oneTimePriceCartItems.forEach(element => {
@@ -96,7 +95,7 @@ export class CheckoutComponent implements OnInit {
       {
         SubsScheduleDate: [''],
         shippingAddressFormGroup: this.formBuilder.group({
-          firstName: [''],
+          firstName: ['', Validators.required],
           lastName: [''],
           streetAddress: [''],
           state: [''],
@@ -151,7 +150,6 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-
   toggleShow() {
     this.sidebartoggle = !this.sidebartoggle;
     console.log(this.sidebartoggle);
@@ -161,8 +159,7 @@ export class CheckoutComponent implements OnInit {
   toShowData = false;
   refId: any;
   refName: any;
-
-
+  
   referrerRecords = [
     {
       "id": 1,
@@ -296,6 +293,9 @@ export class CheckoutComponent implements OnInit {
     if (this.checkoutForm.invalid) {
       return;
     }
+    if(this.startDate == null){
+      return this.toastrService.error("Please select the start date")
+    }
 let firstName=this.checkoutForm.get(['shippingAddressFormGroup','firstName']).value? this.checkoutForm.get(['shippingAddressFormGroup','firstName']).value:'';
 let lastName=this.checkoutForm.get(['shippingAddressFormGroup','lastName']).value? this.checkoutForm.get(['shippingAddressFormGroup','lastName']).value :'';
 let streetAddress=this.checkoutForm.get(['shippingAddressFormGroup','streetAddress']).value?this.checkoutForm.get(['shippingAddressFormGroup','streetAddress']).value:'';
@@ -309,10 +309,10 @@ let newState=this.checkoutForm.get(['newShippingAddressFormGroup','newState']).v
 let newZip=this.checkoutForm.get(['newShippingAddressFormGroup','newZip']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newZip']).value:'';
 let newCountry=this.checkoutForm.get(['newShippingAddressFormGroup','newCountry']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newCountry']).value:'';
 let cardName=this.checkoutForm.get(['cardFormGroup','cardName']).value?this.checkoutForm.get(['cardFormGroup','cardName']).value:'';
-let cardNumber=this.checkoutForm.get(['cardFormGroup','cardNumber']).value?this.checkoutForm.get(['cardFormGroup','cardNumber']).value:'';
-let expiryMonth=this.checkoutForm.get(['cardFormGroup','expiryMonth']).value?this.checkoutForm.get(['cardFormGroup','expiryMonth']).value:'';
-let expiryYear=this.checkoutForm.get(['cardFormGroup','expiryYear']).value?this.checkoutForm.get(['cardFormGroup','expiryYear']).value:'';
-let cardCVV=this.checkoutForm.get(['cardFormGroup','cardCVV']).value?this.checkoutForm.get(['cardFormGroup','cardCVV']).value:'';
+let cardNumber=this.checkoutForm.get(['cardFormGroup','cardNumber']).value?this.checkoutForm.get(['cardFormGroup','cardNumber']).value:0;
+let expiryMonth=this.checkoutForm.get(['cardFormGroup','expiryMonth']).value?this.checkoutForm.get(['cardFormGroup','expiryMonth']).value:0;
+let expiryYear=this.checkoutForm.get(['cardFormGroup','expiryYear']).value?this.checkoutForm.get(['cardFormGroup','expiryYear']).value:0;
+let cardCVV=this.checkoutForm.get(['cardFormGroup','cardCVV']).value?this.checkoutForm.get(['cardFormGroup','cardCVV']).value:0;
 let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard']).value?this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard']).value:'';
     this.spinner.show();
     this.cartItems.forEach(element => {
@@ -370,7 +370,7 @@ let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard'
     createOrderRequest.notes = '';
     createOrderRequest.customerID = 0;
     createOrderRequest.orderStatus = 1;
-    createOrderRequest.orderDate = this.startDate;
+    createOrderRequest.orderDate = this.startDate ? this.startDate:'21-09-2021';
     createOrderRequest.currencyCode = '';
     createOrderRequest.warehouseID = 0;
     createOrderRequest.shipMethodID = 0;
@@ -411,7 +411,7 @@ let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard'
     createCustomerRequest.field3 = '';
     createCustomerRequest.field2 = '';
     createCustomerRequest.field1 = '';
-    createCustomerRequest.birthDate =this.startDate;
+    createCustomerRequest.birthDate = this.startDate ? this.startDate:'21-09-2021';
     createCustomerRequest.isSalesTaxExempt = false;
     createCustomerRequest.currencyCode = '';
     createCustomerRequest.salesTaxExemptExpireDate = '';
@@ -434,7 +434,7 @@ let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard'
     createCustomerRequest.checkThreshold = 0;
     createCustomerRequest.languageID = 0;
     createCustomerRequest.payableType = '';
-    createCustomerRequest.entryDate = this.startDate;
+    createCustomerRequest.entryDate = this.startDate ? this.startDate:'21-09-2021';
     createCustomerRequest.salesTaxID = '';
     createCustomerRequest.taxID = '';
     createCustomerRequest.manualCustomerID = 0;
@@ -506,7 +506,7 @@ let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard'
     createAutoOrderRequest.details = this.orderDetails;
     createAutoOrderRequest.other16 = '';
     createAutoOrderRequest.frequency = 1;
-    createAutoOrderRequest.startDate = this.startDate;
+    createAutoOrderRequest.startDate = this.startDate ? this.startDate:'21-09-2021';
     createAutoOrderRequest.stopDate = '';
     createAutoOrderRequest.specificDayInterval = 0;
     createAutoOrderRequest.currencyCode = '';
