@@ -32,6 +32,7 @@ export class ProductDetailComponent implements OnInit {
   delivery: any[] = [];
   years: any[] = [];
   quantityValue: number = 1;
+  itemCodeTitle: any;
   toggleDisplayDivIf() {
     this.isShowDivIf = !this.isShowDivIf;
   }
@@ -215,7 +216,7 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit(): void {    
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
-  this.getProductDetail(this.itemCode);  
+    this.getProductDetail(this.itemCode);  
   }
 
   toggleShow() {
@@ -228,6 +229,7 @@ export class ProductDetailComponent implements OnInit {
     this.shopService.GetProductDetail(itemCode).subscribe(result => {
     this.productDetail=result;
     this.productPrice=this.productDetail.price;
+    this.itemCodeTitle= this.productDetail.itemCode;
     this.spinner.hide();
     console.log("ProductDetail", this.productDetail);
     });
