@@ -342,64 +342,35 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                    formControlName="firstName" placeholder="First Name"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                                                                <div *ngIf="submitted && f.firstName.errors"
-                                                                    class="invalid-feedback">
-                                                                    <div *ngIf="f.firstName.errors.required">First
-                                                                        Name is required</div>
-                                                                </div>
+                                                                    formControlName="firstName" placeholder="First Name"/>                                                              
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                    formControlName="lastName" placeholder="Last Name"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                                                                <div *ngIf="submitted && f.lastName.errors"
-                                                                    class="invalid-feedback">
-                                                                    <div *ngIf="f.lastName.errors.required">Last
-                                                                        Name is required</div>
-                                                                </div>
+                                                                    formControlName="lastName" placeholder="Last Name"/>
+                                                               
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
                                                                     formControlName="streetAddress"
-                                                                    placeholder="Street Address"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.streetAddress.errors }" />
-                                                                <div *ngIf="submitted && f.streetAddress.errors"
-                                                                    class="invalid-feedback">
-                                                                    <div *ngIf="f.streetAddress.errors.required">
-                                                                        Street Address is required</div>
-                                                                </div>
+                                                                    placeholder="Street Address"/>                                                              
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
                                                                     formControlName="city" placeholder="City"
-                                                                    [ngModelOptions]="{standalone: true}"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
-                                                                <div *ngIf="submitted && f.city.errors"
-                                                                    class="invalid-feedback">
-                                                                    <div *ngIf="f.city.errors.required">City is
-                                                                        required</div>
-                                                                </div>
+                                                                    [ngModelOptions]="{standalone: true}" />                                                                
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
                                                                     formControlName="state" placeholder="State"
-                                                                    [ngModelOptions]="{standalone: true}"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.state.errors }" />
-                                                                <div *ngIf="submitted && f.state.errors"
-                                                                    class="invalid-feedback">
-                                                                    <div *ngIf="f.state.errors.required">First Name
-                                                                        is required</div>
-                                                                </div>
+                                                                    [ngModelOptions]="{standalone: true}"/>                                                              
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
@@ -407,30 +378,14 @@
                                                                 <input type="number" class="form-control"
                                                                     formControlName="zip" placeholder="Zip"
                                                                     [ngModelOptions]="{standalone: true}" maxlength="5"
-                                                                    minlength="5"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.zip.errors }" />
-                                                                <div *ngIf="submitted && f.zip.errors"
-                                                                    class="invalid-feedback">
-                                                                    <div *ngIf="f.zip.errors.required">Zip is
-                                                                        required</div>
-                                                                    <div *ngIf="submitted && f.zip.errors"
-                                                                        class="invalid-feedback">
-                                                                        Maximum and Minimum length must be 5
-                                                                    </div>
-                                                                </div>
+                                                                    minlength="5" />                                                              
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
                                                                     formControlName="country" placeholder="Country"
-                                                                    [ngModelOptions]="{standalone: true}"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.country.errors }" />
-                                                                <div *ngIf="submitted && f.country.errors"
-                                                                    class="invalid-feedback">
-                                                                    <div *ngIf="f.country.errors.required">First
-                                                                        Name is required</div>
-                                                                </div>
+                                                                    [ngModelOptions]="{standalone: true}" />                                                              
                                                             </div>
                                                         </div>
                                                     </div>

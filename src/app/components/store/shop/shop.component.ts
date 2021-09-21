@@ -38,7 +38,7 @@ export class ShopComponent implements OnInit {
   productPrice: number = 0;
   filterValue: number = 1;
   modalOptions: NgbModalOptions = {
-    backdrop: 'static',
+    // backdrop: 'static',
     backdropClass: 'customBackdrop',
     windowClass: 'prodview-modal'
   };
@@ -139,7 +139,7 @@ export class ShopComponent implements OnInit {
   }
 
   open(content: any, product: any) {
-
+debugger
     this.product = product;
     this.productPrice = product.price;
     this.showSubscription = false;
@@ -151,6 +151,7 @@ export class ShopComponent implements OnInit {
   }
 
   private getDismissReason(reason: any): string {
+    debugger
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -182,9 +183,8 @@ export class ShopComponent implements OnInit {
   }
 
   addToCart(product: any) {
-
+    debugger
     this.productItems = this.sessionService.getSessionObject('productCartItems');
-
     if (this.subscriptionModel == undefined) {
       this.subscriptionModel = 'singleDelivery';
     }
@@ -220,11 +220,13 @@ export class ShopComponent implements OnInit {
           else {
             this.productItems.push(this.product);
             this.toastrService.success('Product added successfully');
+            this.modalService.dismissAll();
           }
         }
         else {
           this.productItems.push(this.product);
           this.toastrService.success('Product added successfully');
+          this.modalService.dismissAll();
         }
       }
 
@@ -245,11 +247,13 @@ export class ShopComponent implements OnInit {
           else {
             this.productItems.push(this.product);
             this.toastrService.success('Product added successfully');
+            this.modalService.dismissAll();
           }
         }
         else {
           this.productItems.push(this.product);
           this.toastrService.success('Product added successfully');
+          this.modalService.dismissAll();
         }
       }
        if (this.product.bundle == 'multiple' && this.product.selectDelivery == 0) {
@@ -269,11 +273,13 @@ export class ShopComponent implements OnInit {
           else {
             this.productItems.push(this.product);
             this.toastrService.success('Product added successfully');
+            this.modalService.dismissAll();
           }
         }
         else {
           this.productItems.push(this.product);
           this.toastrService.success('Product added successfully');
+          this.modalService.dismissAll();
         }
       }
        if (this.product.bundle == 'multiple' && this.product.selectDelivery == 1) {
@@ -293,11 +299,14 @@ export class ShopComponent implements OnInit {
           else {
             this.productItems.push(this.product);
             this.toastrService.success('Product added successfully');
+            this.modalService.dismissAll();
           }
         }
         else {
           this.productItems.push(this.product);
           this.toastrService.success('Product added successfully');
+          this.closeResult = `Dismissed ${this.getDismissReason('Cross click')}`;
+          this.modalService.dismissAll();
         }
       }
       this.sessionService.cartSession(this.productItems);
@@ -309,6 +318,7 @@ export class ShopComponent implements OnInit {
       this.sessionService.cartSession(this.productCartItems);
       this.sessionService.setSessionObject('productCartItems', this.productCartItems);
       this.toastrService.success('Product added successfully');
+      this.modalService.dismissAll();
     }
   }
 

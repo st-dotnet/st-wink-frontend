@@ -27,7 +27,7 @@ export class CheckoutComponent implements OnInit {
   cartItems: any[] = [];
   submitted = false;
   modalOptions: NgbModalOptions = {
-    backdrop: 'static',
+    // backdrop: 'static',
     backdropClass: 'customBackdrop'
   };
   subscriptionCartItems: any[] = [];
@@ -96,24 +96,24 @@ export class CheckoutComponent implements OnInit {
       {
         SubsScheduleDate: [''],
         shippingAddressFormGroup: this.formBuilder.group({
-          firstName: ['', Validators.required],
-          lastName: ['', Validators.required],
-          streetAddress: ['', Validators.required],
-          state: ['', Validators.required],
-          city: ['', Validators.required],
-          country: ['', Validators.required],
-          zip: ['', [Validators.maxLength(5), Validators.minLength(5)]]
+          firstName: [''],
+          lastName: [''],
+          streetAddress: [''],
+          state: [''],
+          city: [''],
+          country: [''],
+          zip: ['']
         }),
-        isShipmentMethod: ['', Validators.required],
-        promoCodePays: ['', Validators.required],
-        loyalPointz: ['', Validators.required],
-        isSelectCard: ['', Validators.required],
+        isShipmentMethod: [''],
+        promoCodePays: ['', ],
+        loyalPointz: [''],
+        isSelectCard: [''],
         cardFormGroup: this.formBuilder.group({
-          cardName: ['', Validators.required],
-          cardNumber: ['', Validators.required],
-          expiryMonth: ['', Validators.required],
-          expiryYear: ['', Validators.required],
-          cardCVV: ['', Validators.required],
+          cardName: [''],
+          cardNumber: [''],
+          expiryMonth: [''],
+          expiryYear: [''],
+          cardCVV: [''],
           isMakePrimaryCard: ['']
         }),
         newShippingAddressFormGroup: this.formBuilder.group({
@@ -141,6 +141,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   private getDismissReason(reason: any): string {
+    debugger
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -302,23 +303,17 @@ let city=this.checkoutForm.get(['shippingAddressFormGroup','city']).value ?this.
 let state=this.checkoutForm.get(['shippingAddressFormGroup','state']).value?this.checkoutForm.get(['shippingAddressFormGroup','state']).value:'';
 let zip=this.checkoutForm.get(['shippingAddressFormGroup','zip']).value?this.checkoutForm.get(['shippingAddressFormGroup','zip']).value:'';
 let country=this.checkoutForm.get(['shippingAddressFormGroup','country']).value?this.checkoutForm.get(['shippingAddressFormGroup','country']).value:'';
-
 let newStreetAddress=this.checkoutForm.get(['newShippingAddressFormGroup','newStreetAddress']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newStreetAddress']).value:'';
 let newCity=this.checkoutForm.get(['newShippingAddressFormGroup','newCity']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newCity']).value:'';
 let newState=this.checkoutForm.get(['newShippingAddressFormGroup','newState']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newState']).value:'';
 let newZip=this.checkoutForm.get(['newShippingAddressFormGroup','newZip']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newZip']).value:'';
 let newCountry=this.checkoutForm.get(['newShippingAddressFormGroup','newCountry']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newCountry']).value:'';
-
-let data=this.checkoutForm.get(['CardFormGroup']).value;
-
-// let cardName=this.checkoutForm.get(['CardFormGroup','cardName']).value?this.checkoutForm.get(['CardFormGroup','cardName']).value:'';
-// let cardNumber=this.checkoutForm.get(['CardFormGroup','cardNumber']).value?this.checkoutForm.get(['CardFormGroup','cardNumber']).value:'';
-// let expiryMonth=this.checkoutForm.get(['CardFormGroup','expiryMonth']).value?this.checkoutForm.get(['CardFormGroup','expiryMonth']).value:'';
-// let expiryYear=this.checkoutForm.get(['CardFormGroup','expiryYear']).value?this.checkoutForm.get(['CardFormGroup','expiryYear']).value:'';
-// let cardCVV=this.checkoutForm.get(['CardFormGroup','cardCVV']).value?this.checkoutForm.get(['CardFormGroup','cardCVV']).value:'';
-// let isMakePrimaryCard=this.checkoutForm.get(['CardFormGroup','isMakePrimaryCard']).value?this.checkoutForm.get(['CardFormGroup','isMakePrimaryCard']).value:'';
-
-
+let cardName=this.checkoutForm.get(['cardFormGroup','cardName']).value?this.checkoutForm.get(['cardFormGroup','cardName']).value:'';
+let cardNumber=this.checkoutForm.get(['cardFormGroup','cardNumber']).value?this.checkoutForm.get(['cardFormGroup','cardNumber']).value:'';
+let expiryMonth=this.checkoutForm.get(['cardFormGroup','expiryMonth']).value?this.checkoutForm.get(['cardFormGroup','expiryMonth']).value:'';
+let expiryYear=this.checkoutForm.get(['cardFormGroup','expiryYear']).value?this.checkoutForm.get(['cardFormGroup','expiryYear']).value:'';
+let cardCVV=this.checkoutForm.get(['cardFormGroup','cardCVV']).value?this.checkoutForm.get(['cardFormGroup','cardCVV']).value:'';
+let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard']).value?this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard']).value:'';
     this.spinner.show();
     this.cartItems.forEach(element => {
       this.orderDetails.push({
@@ -375,23 +370,23 @@ let data=this.checkoutForm.get(['CardFormGroup']).value;
     createOrderRequest.notes = '';
     createOrderRequest.customerID = 0;
     createOrderRequest.orderStatus = 1;
-    createOrderRequest.orderDate = "2021-09-01T09:28:10.207Z";
+    createOrderRequest.orderDate = this.startDate;
     createOrderRequest.currencyCode = '';
     createOrderRequest.warehouseID = 0;
     createOrderRequest.shipMethodID = 0;
     createOrderRequest.priceType = 0;
-    createOrderRequest.firstName =  this.checkoutForm.get(['shippingAddressFormGroup','firstName']).value //  this.checkoutForm.value.shippingAddressFormGroup.firstName ? this.checkoutForm.value.shippingAddressFormGroup.firstName:'';
+    createOrderRequest.firstName =  firstName;
     createOrderRequest.middleName = '';
-    createOrderRequest.lastName = this.checkoutForm.value.shippingAddressFormGroup.lastName ? this.checkoutForm.value.shippingAddressFormGroup.lastName:'';
+    createOrderRequest.lastName = lastName;
     createOrderRequest.other11 = '';
     createOrderRequest.nameSuffix = '';
-    createOrderRequest.address1 = this.checkoutForm.value.shippingAddressFormGroup.streetAddress ? this.checkoutForm.value.shippingAddressFormGroup.streetAddress:'';
+    createOrderRequest.address1 = streetAddress
     createOrderRequest.address2 = '';
     createOrderRequest.address3 = '';
-    createOrderRequest.city = this.checkoutForm.value.shippingAddressFormGroup.city ? this.checkoutForm.value.shippingAddressFormGroup.city : '';
-    createOrderRequest.state = this.checkoutForm.value.shippingAddressFormGroup.state ? this.checkoutForm.value.shippingAddressFormGroup.state : '';
-    createOrderRequest.zip = this.checkoutForm.value.shippingAddressFormGroup.zip ? this.checkoutForm.value.shippingAddressFormGroup.zip : '';
-    createOrderRequest.country = this.checkoutForm.value.shippingAddressFormGroup.country ? this.checkoutForm.value.shippingAddressFormGroup.country : '';
+    createOrderRequest.city = city
+    createOrderRequest.state = state
+    createOrderRequest.zip = zip
+    createOrderRequest.country = country
     createOrderRequest.county = '';
     createOrderRequest.email = '';
     createOrderRequest.phone = '';
@@ -416,7 +411,7 @@ let data=this.checkoutForm.get(['CardFormGroup']).value;
     createCustomerRequest.field3 = '';
     createCustomerRequest.field2 = '';
     createCustomerRequest.field1 = '';
-    createCustomerRequest.birthDate = "2021-09-01T09:28:10.207Z"
+    createCustomerRequest.birthDate =this.startDate;
     createCustomerRequest.isSalesTaxExempt = false;
     createCustomerRequest.currencyCode = '';
     createCustomerRequest.salesTaxExemptExpireDate = '';
@@ -439,7 +434,7 @@ let data=this.checkoutForm.get(['CardFormGroup']).value;
     createCustomerRequest.checkThreshold = 0;
     createCustomerRequest.languageID = 0;
     createCustomerRequest.payableType = '';
-    createCustomerRequest.entryDate = "2021-09-01T09:28:10.207Z";
+    createCustomerRequest.entryDate = this.startDate;
     createCustomerRequest.salesTaxID = '';
     createCustomerRequest.taxID = '';
     createCustomerRequest.manualCustomerID = 0;
@@ -489,50 +484,6 @@ let data=this.checkoutForm.get(['CardFormGroup']).value;
     createCustomerRequest.otherZip = '';
     createCustomerRequest.manualCustomerKey = '';
 
-    const chargeCreditCardTokenRequest = new ChargeCreditCardTokenRequest();
-    chargeCreditCardTokenRequest.otherData9 = '';
-    chargeCreditCardTokenRequest.otherData8 = '';
-    chargeCreditCardTokenRequest.otherData7 = '';
-    chargeCreditCardTokenRequest.otherData6 = '';
-    chargeCreditCardTokenRequest.otherData5 = '';
-    chargeCreditCardTokenRequest.otherData4 = '';
-    chargeCreditCardTokenRequest.otherData3 = '';
-    chargeCreditCardTokenRequest.otherData2 = '';
-    chargeCreditCardTokenRequest.otherData1 = '';
-    chargeCreditCardTokenRequest.clientIPAddress = '';
-    chargeCreditCardTokenRequest.merchantWarehouseIDOverride = 0;
-    chargeCreditCardTokenRequest.maxAmount = 0;
-    chargeCreditCardTokenRequest.otherData10 = '';
-    if (this.addrnew == false) {
-      chargeCreditCardTokenRequest.billingCountry = this.checkoutForm.value.shippingAddressFormGroup.country ? this.checkoutForm.value.shippingAddressFormGroup.country : '';
-      chargeCreditCardTokenRequest.billingZip = this.checkoutForm.value.shippingAddressFormGroup.zip ? this.checkoutForm.value.shippingAddressFormGroup.zip: '';
-      chargeCreditCardTokenRequest.billingState = this.checkoutForm.value.shippingAddressFormGroup.state ? this.checkoutForm.value.shippingAddressFormGroup.state : '';
-      chargeCreditCardTokenRequest.billingCity = this.checkoutForm.value.shippingAddressFormGroup.city ? this.checkoutForm.value.shippingAddressFormGroup.city :'';
-      chargeCreditCardTokenRequest.billingAddress2 = '';
-      chargeCreditCardTokenRequest.billingAddress = this.checkoutForm.value.shippingAddressFormGroup.streetAddress ? this.checkoutForm.value.shippingAddressFormGroup.streetAddress:'';
-
-    } else {
-      chargeCreditCardTokenRequest.billingCountry = this.checkoutForm.value.newShippingAddressFromGroup.country?this.checkoutForm.value.newShippingAddressFromGroup.country:'';
-      chargeCreditCardTokenRequest.billingZip = this.checkoutForm.value.newShippingAddressFromGroup.zip?this.checkoutForm.value.newShippingAddressFromGroup.zip:'';
-      chargeCreditCardTokenRequest.billingState = this.checkoutForm.value.newShippingAddressFromGroup.state?'':'';
-      chargeCreditCardTokenRequest.billingCity = this.checkoutForm.value.newShippingAddressFromGroup.city?this.checkoutForm.value.newShippingAddressFromGroup.city:'';
-      chargeCreditCardTokenRequest.billingAddress2 = '';
-      chargeCreditCardTokenRequest.billingAddress = this.checkoutForm.value.newShippingAddressFromGroup.streetAddress?this.checkoutForm.value.newShippingAddressFromGroup.streetAddress:'';
-
-    }
-    chargeCreditCardTokenRequest.expirationMonth = this.checkoutForm.value.CardFormGroup.expiryMonth ? this.checkoutForm.value.CardFormGroup.expiryMonth:null;
-    chargeCreditCardTokenRequest.creditCardType = 0;
-    chargeCreditCardTokenRequest.cvcCode = this.checkoutForm.value.CardFormGroup.cardCVV ? this.checkoutForm.value.CardFormGroup.cardCVV : null;
-    chargeCreditCardTokenRequest.billingCountry = this.checkoutForm.value.shippingAddressFormGroup.country?this.checkoutForm.value.shippingAddressFormGroup.country:'';
-    chargeCreditCardTokenRequest.billingZip = this.checkoutForm.value.shippingAddressFormGroup.zip?this.checkoutForm.value.shippingAddressFormGroup.zip:'';
-    chargeCreditCardTokenRequest.billingState = this.checkoutForm.value.shippingAddressFormGroup.state?this.checkoutForm.value.shippingAddressFormGroup.state:'';
-    chargeCreditCardTokenRequest.billingCity = this.checkoutForm.value.shippingAddressFormGroup.city?this.checkoutForm.value.shippingAddressFormGroup.city:'';
-    chargeCreditCardTokenRequest.billingAddress2 = '';
-    chargeCreditCardTokenRequest.billingAddress = this.checkoutForm.value.shippingAddressFormGroup.streetAddress?this.checkoutForm.value.shippingAddressFormGroup.streetAddress:'';
-    chargeCreditCardTokenRequest.creditCardToken = '';
-    chargeCreditCardTokenRequest.expirationYear = this.checkoutForm.value.CardFormGroup.expiryYear?this.checkoutForm.value.CardFormGroup.expiryYear:0;
-    chargeCreditCardTokenRequest.orderKey = '';
-
     const createAutoOrderRequest = new CreateAutoOrderRequest();
     createAutoOrderRequest.county = '';
     createAutoOrderRequest.email = '';
@@ -555,7 +506,7 @@ let data=this.checkoutForm.get(['CardFormGroup']).value;
     createAutoOrderRequest.details = this.orderDetails;
     createAutoOrderRequest.other16 = '';
     createAutoOrderRequest.frequency = 1;
-    createAutoOrderRequest.startDate = "2021-09-01T09:28:10.207Z";
+    createAutoOrderRequest.startDate = this.startDate;
     createAutoOrderRequest.stopDate = '';
     createAutoOrderRequest.specificDayInterval = 0;
     createAutoOrderRequest.currencyCode = '';
@@ -563,36 +514,80 @@ let data=this.checkoutForm.get(['CardFormGroup']).value;
     createAutoOrderRequest.shipMethodID = 0;
     createAutoOrderRequest.priceType = 0;
     createAutoOrderRequest.processType = '';
-    createAutoOrderRequest.firstName = '';
+    createAutoOrderRequest.firstName = firstName;
     createAutoOrderRequest.middleName = '';
-    createAutoOrderRequest.lastName = '';
+    createAutoOrderRequest.lastName = lastName;
     createAutoOrderRequest.nameSuffix = '';
     createAutoOrderRequest.company = '';
-    createAutoOrderRequest.address1 = '';
+    createAutoOrderRequest.address1 = streetAddress;
     createAutoOrderRequest.address2 = '';
     createAutoOrderRequest.address3 = '';
     createAutoOrderRequest.customerKey = '';
     createAutoOrderRequest.customFrequencyTy = 0;
 
+    const chargeCreditCardTokenRequest = new ChargeCreditCardTokenRequest();
+    chargeCreditCardTokenRequest.otherData9 = '';
+    chargeCreditCardTokenRequest.otherData8 = '';
+    chargeCreditCardTokenRequest.otherData7 = '';
+    chargeCreditCardTokenRequest.otherData6 = '';
+    chargeCreditCardTokenRequest.otherData5 = '';
+    chargeCreditCardTokenRequest.otherData4 = '';
+    chargeCreditCardTokenRequest.otherData3 = '';
+    chargeCreditCardTokenRequest.otherData2 = '';
+    chargeCreditCardTokenRequest.otherData1 = '';
+    chargeCreditCardTokenRequest.clientIPAddress = '';
+    chargeCreditCardTokenRequest.merchantWarehouseIDOverride = 0;
+    chargeCreditCardTokenRequest.maxAmount = 0;
+    chargeCreditCardTokenRequest.otherData10 = '';
+    if (this.addrnew == false) {
+      chargeCreditCardTokenRequest.billingCountry = country;
+      chargeCreditCardTokenRequest.billingZip = zip;
+      chargeCreditCardTokenRequest.billingState = state;
+      chargeCreditCardTokenRequest.billingCity = city;
+      chargeCreditCardTokenRequest.billingAddress2 = '';
+      chargeCreditCardTokenRequest.billingAddress = streetAddress;
+
+    } else {
+      chargeCreditCardTokenRequest.billingCountry = newCountry;
+      chargeCreditCardTokenRequest.billingZip = newZip;
+      chargeCreditCardTokenRequest.billingState = newState
+      chargeCreditCardTokenRequest.billingCity = newCity;
+      chargeCreditCardTokenRequest.billingAddress2 = '';
+      chargeCreditCardTokenRequest.billingAddress = newStreetAddress;
+
+    }
+    chargeCreditCardTokenRequest.expirationMonth = expiryMonth;
+    chargeCreditCardTokenRequest.creditCardType = 0;
+    chargeCreditCardTokenRequest.cvcCode = cardCVV;
+    chargeCreditCardTokenRequest.billingCountry = newCountry;
+    chargeCreditCardTokenRequest.billingZip = newZip;
+    chargeCreditCardTokenRequest.billingState = newState;
+    chargeCreditCardTokenRequest.billingCity = newCity;
+    chargeCreditCardTokenRequest.billingAddress2 = '';
+    chargeCreditCardTokenRequest.billingAddress = newStreetAddress;
+    chargeCreditCardTokenRequest.creditCardToken = '';
+    chargeCreditCardTokenRequest.expirationYear = expiryYear;
+    chargeCreditCardTokenRequest.orderKey = '';   
+
     const setAccountCreditCardTokenRequest = new SetAccountCreditCardTokenRequest();
     setAccountCreditCardTokenRequest.tokenType = 0;
     setAccountCreditCardTokenRequest.movePrimaryToSecondary = true;
     setAccountCreditCardTokenRequest.hideFromWeb = true;
-    setAccountCreditCardTokenRequest.billingCountry = '';
-    setAccountCreditCardTokenRequest.billingZip = '';
-    setAccountCreditCardTokenRequest.billingState = '';
-    setAccountCreditCardTokenRequest.billingCity = '';
+    setAccountCreditCardTokenRequest.billingCountry = newCountry;
+    setAccountCreditCardTokenRequest.billingZip = newZip;
+    setAccountCreditCardTokenRequest.billingState = newState;
+    setAccountCreditCardTokenRequest.billingCity = newCity;
     setAccountCreditCardTokenRequest.firstSix = '';
     setAccountCreditCardTokenRequest.billingAddress2 = '';
     setAccountCreditCardTokenRequest.useMainAddress = true;
     setAccountCreditCardTokenRequest.billingName = '';
     setAccountCreditCardTokenRequest.creditCardType = 0;
-    setAccountCreditCardTokenRequest.expirationYear = this.checkoutForm.value.CardFormGroup.expiryYear?this.checkoutForm.value.CardFormGroup.expiryYear:null;
-    setAccountCreditCardTokenRequest.expirationMonth = this.checkoutForm.value.CardFormGroup.expiryMonth?this.checkoutForm.value.CardFormGroup.expiryMonth:null;
+    setAccountCreditCardTokenRequest.expirationYear = expiryYear;
+    setAccountCreditCardTokenRequest.expirationMonth = expiryMonth;
     setAccountCreditCardTokenRequest.creditCardToken = '';
     setAccountCreditCardTokenRequest.creditCardAccountType = 1;
     setAccountCreditCardTokenRequest.customerID = 0;
-    setAccountCreditCardTokenRequest.billingAddress = '';
+    setAccountCreditCardTokenRequest.billingAddress = newStreetAddress;
     setAccountCreditCardTokenRequest.lastFour = '';
 
 

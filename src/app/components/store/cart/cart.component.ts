@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
   cartItems: any[] = [];
   minDate = new Date();
   modalOptions: NgbModalOptions = {
-    backdrop: 'static',
+    // backdrop: 'static',
     backdropClass: 'customBackdrop'
   };
   oneTimePriceCartItemsCount: number = 0;

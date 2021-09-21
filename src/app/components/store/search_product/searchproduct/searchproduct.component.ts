@@ -21,7 +21,7 @@ export class SearchproductComponent implements OnInit {
   quantityValue: any;
   closeResult: string;
   modalOptions: NgbModalOptions = {
-    backdrop: 'static',
+    // backdrop: 'static',
     backdropClass: 'customBackdrop',
     windowClass: 'prodview-modal'
   };
@@ -155,15 +155,6 @@ export class SearchproductComponent implements OnInit {
   addToCart(product: any) {
     debugger
     this.productItems = this.sessionService.getSessionObject('productCartItems');
-    if (this.quantityValue == undefined) {
-      this.quantityValue = "1";
-    }
-    if (this.bundle == undefined) {
-      this.bundle = 'single';
-    }
-    if (this.selectDelivery == undefined) {
-      this.selectDelivery = 0;
-    }
     if (this.subscriptionModel == undefined) {
       this.subscriptionModel = 'singleDelivery';
     }
@@ -178,44 +169,115 @@ export class SearchproductComponent implements OnInit {
       quantityLimit: 4
     }
     Object.entries(items).forEach(([key, value]) => { product[key] = value });
+    debugger;
     if (this.productItems) {
-      this.productItem = this.productItems.find(item => item.itemCode == product.itemCode && item.bundle == product.bundle)
-      let oldvalue = this.productItem;
-      if (this.productItem != null) {
-        if (this.productItem.bundle == "single") {
-          const index: number = this.productItems.indexOf(this.productItem);
+      //this.productItem=this.productItems.find(item => item.itemCode == product.itemCode)
+
+      if (this.product.bundle == 'single' && this.product.selectDelivery == 0) {
+        let single_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 0)
+        let old_single_singledelivery = single_singledelivery;
+        if (single_singledelivery) {
+          const index: number = this.productItems.indexOf(single_singledelivery);
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          this.product.quantityModel = this.productItem.quantityModel + +product.quantityModel;
+          this.product.quantityModel = single_singledelivery.quantityModel + +product.quantityModel;
 
           if (this.product.quantityModel > product.quantityLimit) {
-            this.productItems.push(oldvalue);
-            this.toastrService.success('You Exceed your Quantity Limit 4');
+            this.productItems.push(old_single_singledelivery);
+            this.toastrService.error('You Exceed your Quantity Limit 4');
           }
           else {
             this.productItems.push(this.product);
             this.toastrService.success('Product added successfully');
+            this.modalService.dismissAll();
           }
         }
         else {
-          const index: number = this.productItems.indexOf(this.productItem);
+          this.productItems.push(this.product);
+          this.toastrService.success('Product added successfully');
+          this.modalService.dismissAll();
+        }
+      }
+
+       if (this.product.bundle == 'single' && this.product.selectDelivery == 1) {
+        let single_subscriptiondelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 1 && x.subscriptionModel == product.subscriptionModel)
+        let old_single_subscriptiondelivery = single_subscriptiondelivery;
+        if (single_subscriptiondelivery) {
+          const index: number = this.productItems.indexOf(single_subscriptiondelivery);
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          this.product.quantityModel = this.productItem.quantityModel + +product.quantityModel;
+          this.product.quantityModel = single_subscriptiondelivery.quantityModel + +product.quantityModel;
+
           if (this.product.quantityModel > product.quantityLimit) {
-            this.productItems.push(oldvalue);
-            this.toastrService.success('You exceed your quantity limit 4');
+            this.productItems.push(old_single_subscriptiondelivery);
+            this.toastrService.error('You Exceed your Quantity Limit 4');
           }
           else {
-            this.productItems.push(product);
+            this.productItems.push(this.product);
             this.toastrService.success('Product added successfully');
+            this.modalService.dismissAll();
           }
         }
+        else {
+          this.productItems.push(this.product);
+          this.toastrService.success('Product added successfully');
+          this.modalService.dismissAll();
+        }
       }
-      else {
-        this.productItems.push(product);
+       if (this.product.bundle == 'multiple' && this.product.selectDelivery == 0) {
+        let multiple_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'multiple' && x.selectDelivery == 0)
+        let old_multiple_singledelivery = multiple_singledelivery;
+        if (multiple_singledelivery) {
+          const index: number = this.productItems.indexOf(multiple_singledelivery);
+          if (index !== -1) {
+            this.productItems.splice(index, 1);
+          }
+          this.product.quantityModel = multiple_singledelivery.quantityModel + +product.quantityModel;
+
+          if (this.product.quantityModel > product.quantityLimit) {
+            this.productItems.push(old_multiple_singledelivery);
+            this.toastrService.error('You Exceed your Quantity Limit 4');
+          }
+          else {
+            this.productItems.push(this.product);
+            this.toastrService.success('Product added successfully');
+            this.modalService.dismissAll();
+          }
+        }
+        else {
+          this.productItems.push(this.product);
+          this.toastrService.success('Product added successfully');
+          this.modalService.dismissAll();
+        }
+      }
+       if (this.product.bundle == 'multiple' && this.product.selectDelivery == 1) {
+        let multiple_subscriptiondelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 1 && x.subscriptionModel == product.subscriptionModel)
+        let old_multiple_subscriptiondelivery = multiple_subscriptiondelivery;
+        if (multiple_subscriptiondelivery) {
+          const index: number = this.productItems.indexOf(multiple_subscriptiondelivery);
+          if (index !== -1) {
+            this.productItems.splice(index, 1);
+          }
+          this.product.quantityModel = multiple_subscriptiondelivery.quantityModel + +product.quantityModel;
+
+          if (this.product.quantityModel > product.quantityLimit) {
+            this.productItems.push(old_multiple_subscriptiondelivery);
+            this.toastrService.error('You Exceed your Quantity Limit 4');
+          }
+          else {
+            this.productItems.push(this.product);
+            this.toastrService.success('Product added successfully');
+            this.modalService.dismissAll();
+          }
+        }
+        else {
+          this.productItems.push(this.product);
+          this.toastrService.success('Product added successfully');
+          this.closeResult = `Dismissed ${this.getDismissReason('Cross click')}`;
+          this.modalService.dismissAll();
+        }
       }
       this.sessionService.cartSession(this.productItems);
       this.sessionService.setSessionObject('productCartItems', this.productItems);
@@ -226,6 +288,7 @@ export class SearchproductComponent implements OnInit {
       this.sessionService.cartSession(this.productCartItems);
       this.sessionService.setSessionObject('productCartItems', this.productCartItems);
       this.toastrService.success('Product added successfully');
+      this.modalService.dismissAll();
     }
   }
 

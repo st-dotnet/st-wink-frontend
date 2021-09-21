@@ -13,7 +13,7 @@ export class EnrollmentInfoComponent implements OnInit {
   title = 'ng-bootstrap-modal-demo';
   closeResult: string;
   modalOptions: NgbModalOptions = {
-    backdrop: 'static',
+    // backdrop: 'static',
     backdropClass: 'customBackdrop'
   };
   isClickedMember: boolean = false;

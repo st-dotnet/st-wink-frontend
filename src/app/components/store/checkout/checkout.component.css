@@ -26,6 +26,7 @@ section.backlink-header .back-link a svg {
     position: absolute;
     right: 11px;
     top: 4px;
+    z-index: 3;
 }
 
 .referrer_modal button.close span {
