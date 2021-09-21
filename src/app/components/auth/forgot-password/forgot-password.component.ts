@@ -19,6 +19,7 @@ export class ForgotPasswordComponent implements OnInit {
   loading: boolean;
   customerId: number;
   showPassword: boolean = false;
+  cPassword: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
@@ -86,4 +87,5 @@ export class ForgotPasswordComponent implements OnInit {
   showHidePassword() {
     this.showPassword = !this.showPassword;    
   } 
+ 
 }

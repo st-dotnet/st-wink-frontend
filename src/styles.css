@@ -1153,10 +1153,22 @@ background-color:#fff;
   cursor: pointer;
 }
 
-
 .owl-nav {
   height: 45px;
 }
+
+
+.swal2-container .swal2-icon.swal2-icon-show .swal2-icon-content {
+  font-size: 60px;
+}
+.swal2-container .swal2-actions button.swal2-cancel {
+  margin-top: 0px;
+}
+
+.swal2-container .swal2-actions {
+  margin-bottom: 18px;
+}
+
 
 /* MEDIA */
 @media (min-width: 1367px)
@@ -1169,6 +1181,7 @@ background-color:#fff;
     color: rgba(0 0 0/0.8);
 }
 }
+
 @media (min-width: 1366px)
 {
 .container, .container-lg, .container-md, .container-sm, .container-xl {

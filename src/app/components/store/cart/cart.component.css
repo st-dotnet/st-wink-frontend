@@ -778,3 +778,7 @@ p.l-time span.time-icon svg {
   width: 80px;
   height: 80px;
 }
+
+.cart-details {
+  max-width: 320px;
+}
