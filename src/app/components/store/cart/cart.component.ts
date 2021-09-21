@@ -80,7 +80,7 @@ export class CartComponent implements OnInit {
     //   this.subtotalOneTimePrice = parseFloat(this.subtotalOneTimePrice);
     //   this.subtotalOneTimePrice = this.subtotalOneTimePrice.toFixed(2);
     // } else {
-//this.subtotalOneTimePrice = this.subtotalOneTimePrice.toFixed(2);
+    //this.subtotalOneTimePrice = this.subtotalOneTimePrice.toFixed(2);
     // }
     // this.subscriptionCartItems.forEach(element => {
     //   this.subtotalSubscriptionTimePrice += element.price;
@@ -219,20 +219,23 @@ export class CartComponent implements OnInit {
     }
   }
 
-  removeItem(cartItem: any, type: any,bundle:string) {
+  removeItem(cartItem: any, type: any, bundle: string) {
     debugger
     this.spinner.show();
     this.sessionService.removeSessionItem('productCartItems');
     switch (type) {
       case 0:
-        this.cartItems = this.cartItems.filter(x =>(x.itemCode != cartItem.itemCode || x.bundle != bundle));
+        //this.cartItems = this.cartItems.filter(x =>(x.itemCode != cartItem.itemCode || x.bundle != bundle));
+        this.cartItems = this.cartItems.filter(x => x !== cartItem);
+
         // this.subscriptionCartItems.length > 0 ? this.oneTimePriceCartItems.push(...this.subscriptionCartItems) : '';
         this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
         // this.subscriptionCartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.subscriptionCartItems) : '';
         this.updateCartSession();
         break;
       case 1:
-        this.cartItems = this.cartItems.filter(x =>(x.itemCode != cartItem.itemCode || x.bundle != bundle));
+        //this.cartItems = this.cartItems.filter(x =>(x.itemCode != cartItem.itemCode || x.bundle != bundle));
+        this.cartItems = this.cartItems.filter(x => x !== cartItem);
         // this.oneTimePriceCartItems.length > 0 ? this.subscriptionCartItems.push(...this.oneTimePriceCartItems) : '';
         this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
         // this.oneTimePriceCartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.oneTimePriceCartItems) : '';
@@ -256,6 +259,8 @@ export class CartComponent implements OnInit {
     const items = this.sessionService.getSessionObject('productCartItems');
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
     this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
+    this.oneTimePriceCartItemsCount = this.oneTimePriceCartItems.length;
+    this.subscriptionCartItemsCount = this.subscriptionCartItems.length;
     this.sessionService.cartSession(items == null ? [] : items);
   }
 
@@ -295,23 +300,27 @@ export class CartComponent implements OnInit {
   quantityForOneTime(cartitem: any, selectedvalue: number) {
     debugger
     this.cartSummaryTotal = 0;
-
-    if (selectedvalue != null && selectedvalue != undefined) {
-      for (var i = 0; i <= this.oneTimePriceCartItems.length - 1; i++) {
-        if (this.oneTimePriceCartItems[i].itemCode == cartitem.itemCode) {
-          this.oneTimePriceCartItems[i].quantityModel = selectedvalue;
+    let oneTimePriceCartItem:any[]=[];
+    if (cartitem == '' || cartitem == undefined) {
+      oneTimePriceCartItem = this.oneTimePriceCartItems;
+    }
+    else {
+      if (selectedvalue != null && selectedvalue != undefined) {
+        for (var i = 0; i <= this.cartItems.length - 1; i++) {
+          if (this.cartItems[i] == cartitem) {
+            this.cartItems[i].quantityModel = +selectedvalue;
+          }
         }
+        this.sessionService.setSessionObject('productCartItems', this.cartItems);
+        let onTimepriceCartValue = this.cartItems.find(x =>x.selectDelivery == CartTypeEnum.OneTimePrice);
+        oneTimePriceCartItem.push(onTimepriceCartValue);
+        
       }
     }
-    this.subtotalOneTimePrice = this.getSubTotal(this.oneTimePriceCartItems);
-
-
-
-
-    this.orderTotal = +this.subtotalOneTimePrice + this.subTotalSubscriptionPrice;
-    this.orderTotal = +this.orderTotal;
+    this.subtotalOneTimePrice = this.getSubTotal(oneTimePriceCartItem);
+    this.orderTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPrice;
     this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
-    this.cartSummaryTotal = +this.cartSummaryTotal;
+    this.cartSummaryTotal = this.cartSummaryTotal;
   }
 
 
@@ -319,37 +328,37 @@ export class CartComponent implements OnInit {
   quantityForSubscriptionTime(delivery: any, selectedvalue: number) {
     debugger
     this.cartSummaryTotal = 0;
-
-    if (selectedvalue != null && selectedvalue != undefined) {
-      for (var i = 0; i <= this.subscriptionCartItems.length - 1; i++) {
-        if (this.subscriptionCartItems[i].itemCode == delivery.itemCode) {
-          this.subscriptionCartItems[i].quantityModel = selectedvalue;
+    let subscriptionCartItem:any[]=[];
+    if(delivery == '' || delivery == undefined)
+    {
+      subscriptionCartItem = this.subscriptionCartItems;
+    }
+    else{
+      if (selectedvalue != null && selectedvalue != undefined) {
+        for (var i = 0; i <= this.cartItems.length - 1; i++) {
+          if (this.cartItems[i] == delivery) {
+            this.cartItems[i].quantityModel = +selectedvalue;
+          }
         }
+        this.sessionService.setSessionObject('productCartItems', this.cartItems);
+        let subscriptionTimeCartValue=this.cartItems.find(x =>x.selectDelivery == CartTypeEnum.Subscription);
+        subscriptionCartItem.push(subscriptionTimeCartValue);
       }
     }
-    this.subTotalSubscriptionPrice = this.getSubTotal(this.subscriptionCartItems);
-
-
+    this.subTotalSubscriptionPrice = this.getSubTotal(subscriptionCartItem);
     this.orderTotal = +this.subtotalOneTimePrice + this.subTotalSubscriptionPrice;
-    this.orderTotal = +this.orderTotal;
     this.discount15Percent = (this.subTotalSubscriptionPrice * 15) / 100;
-    this.discount15Percent = +this.discount15Percent;
-
-    this.subTotalSubscriptionPriceAfterDiscount = +this.subTotalSubscriptionPrice - this.discount15Percent;
-    this.subTotalSubscriptionPriceAfterDiscount = +this.subTotalSubscriptionPriceAfterDiscount;
-    this.cartSummaryTotal = +this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
-    this.cartSummaryTotal = +this.cartSummaryTotal;
-
+    this.subTotalSubscriptionPriceAfterDiscount = this.subTotalSubscriptionPrice - this.discount15Percent;
+    this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
   }
 
   getSubTotal(ProductList: any[]) {
     debugger;
     let multiplyprice = 0;
     let Temp = 0;
-
     for (var i = 0; i <= ProductList.length - 1; i++) {
-        multiplyprice = parseFloat(ProductList[i].price) * ProductList[i].quantityModel;
-        Temp = Temp + multiplyprice;
+      multiplyprice = parseFloat(ProductList[i].price) * ProductList[i].quantityModel;
+      Temp = Temp + multiplyprice;
     }
     return +Temp;
   }

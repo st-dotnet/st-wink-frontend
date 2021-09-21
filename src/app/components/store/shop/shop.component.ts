@@ -38,7 +38,7 @@ export class ShopComponent implements OnInit {
   productPrice: number = 0;
   filterValue: number = 1;
   modalOptions: NgbModalOptions = {
-    // backdrop: 'static',
+    backdrop: 'static',
     backdropClass: 'customBackdrop',
     windowClass: 'prodview-modal'
   };
@@ -139,7 +139,7 @@ export class ShopComponent implements OnInit {
   }
 
   open(content: any, product: any) {
-debugger
+    this.bundle='single';
     this.product = product;
     this.productPrice = product.price;
     this.showSubscription = false;
@@ -151,7 +151,6 @@ debugger
   }
 
   private getDismissReason(reason: any): string {
-    debugger
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -183,8 +182,9 @@ debugger
   }
 
   addToCart(product: any) {
-    debugger
+
     this.productItems = this.sessionService.getSessionObject('productCartItems');
+
     if (this.subscriptionModel == undefined) {
       this.subscriptionModel = 'singleDelivery';
     }
@@ -203,8 +203,8 @@ debugger
     if (this.productItems) {
       //this.productItem=this.productItems.find(item => item.itemCode == product.itemCode)
 
-      if (this.product.bundle == 'single' && this.product.selectDelivery == 0) {
-        let single_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 0)
+      if (this.product.bundle == 'single' && this.product.selectDelivery == 0 && this.product.subscriptionModel=='singleDelivery') {
+        let single_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 0 && x.subscriptionModel == 'singleDelivery')
         let old_single_singledelivery = single_singledelivery;
         if (single_singledelivery) {
           const index: number = this.productItems.indexOf(single_singledelivery);
@@ -220,17 +220,15 @@ debugger
           else {
             this.productItems.push(this.product);
             this.toastrService.success('Product added successfully');
-            this.modalService.dismissAll();
           }
         }
         else {
           this.productItems.push(this.product);
           this.toastrService.success('Product added successfully');
-          this.modalService.dismissAll();
         }
       }
 
-       if (this.product.bundle == 'single' && this.product.selectDelivery == 1) {
+       if (this.product.bundle == 'single' && this.product.selectDelivery == 1  && this.product.subscriptionModel !=='singleDelivery') {
         let single_subscriptiondelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 1 && x.subscriptionModel == product.subscriptionModel)
         let old_single_subscriptiondelivery = single_subscriptiondelivery;
         if (single_subscriptiondelivery) {
@@ -247,17 +245,15 @@ debugger
           else {
             this.productItems.push(this.product);
             this.toastrService.success('Product added successfully');
-            this.modalService.dismissAll();
           }
         }
         else {
           this.productItems.push(this.product);
           this.toastrService.success('Product added successfully');
-          this.modalService.dismissAll();
         }
       }
-       if (this.product.bundle == 'multiple' && this.product.selectDelivery == 0) {
-        let multiple_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'multiple' && x.selectDelivery == 0)
+       if (this.product.bundle == 'multiple' && this.product.selectDelivery == 0 && this.product.subscriptionModel=='singleDelivery') {
+        let multiple_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'multiple' && x.selectDelivery == 0 && x.subscriptionModel == 'singleDelivery')
         let old_multiple_singledelivery = multiple_singledelivery;
         if (multiple_singledelivery) {
           const index: number = this.productItems.indexOf(multiple_singledelivery);
@@ -273,17 +269,15 @@ debugger
           else {
             this.productItems.push(this.product);
             this.toastrService.success('Product added successfully');
-            this.modalService.dismissAll();
           }
         }
         else {
           this.productItems.push(this.product);
           this.toastrService.success('Product added successfully');
-          this.modalService.dismissAll();
         }
       }
-       if (this.product.bundle == 'multiple' && this.product.selectDelivery == 1) {
-        let multiple_subscriptiondelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 1 && x.subscriptionModel == product.subscriptionModel)
+       if (this.product.bundle == 'multiple' && this.product.selectDelivery == 1 && this.product.subscriptionModel !=='singleDelivery') {
+        let multiple_subscriptiondelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'multiple' && x.selectDelivery == 1 && x.subscriptionModel == product.subscriptionModel)
         let old_multiple_subscriptiondelivery = multiple_subscriptiondelivery;
         if (multiple_subscriptiondelivery) {
           const index: number = this.productItems.indexOf(multiple_subscriptiondelivery);
@@ -299,14 +293,11 @@ debugger
           else {
             this.productItems.push(this.product);
             this.toastrService.success('Product added successfully');
-            this.modalService.dismissAll();
           }
         }
         else {
           this.productItems.push(this.product);
           this.toastrService.success('Product added successfully');
-          this.closeResult = `Dismissed ${this.getDismissReason('Cross click')}`;
-          this.modalService.dismissAll();
         }
       }
       this.sessionService.cartSession(this.productItems);
@@ -318,7 +309,6 @@ debugger
       this.sessionService.cartSession(this.productCartItems);
       this.sessionService.setSessionObject('productCartItems', this.productCartItems);
       this.toastrService.success('Product added successfully');
-      this.modalService.dismissAll();
     }
   }
 
@@ -326,6 +316,7 @@ debugger
     debugger;
     this.bundle = bundle;
     if (bundle == "multiple") {
+      productPrice=productPrice*2;
       this.bundle = bundle;
       let subscribePrice = (productPrice / 100) * 5;
       this.product.price = (productPrice - subscribePrice).toFixed(2);
@@ -341,6 +332,7 @@ debugger
       case CartTypeEnum.OneTimePrice:
         this.showSubscription = false;
         this.selectDelivery = CartTypeEnum.OneTimePrice;
+        this.subscriptionModel='singleDelivery';
         break;
       case CartTypeEnum.Subscription:
         this.showSubscription = true;
