@@ -235,19 +235,24 @@ export class CartComponent implements OnInit {
   }
 
   checkOutItem() {
-    debugger;
+   debugger;
+    const paramsProductPrice = {
+      priceAfterDiscount: this.subTotalSubscriptionPriceAfterDiscount,
+      subTotalSubscriptionPrice: this.subTotalSubscriptionPrice,
+      subTotalOneTimePrice: this.subtotalOneTimePrice
+    }
     if (this.sessionService.getSessionItem('user')) {
+      debugger;
       this.sessionService.setSessionObject('productCartItems', this.cartItems);
-      const paramsProductPrice = {
-        priceAfterDiscount: this.subTotalSubscriptionPriceAfterDiscount,
-        subTotalSubscriptionPrice: this.subTotalSubscriptionPrice,
-        subTotalOneTimePrice: this.subtotalOneTimePrice
-      }
       this.sessionService.setSessionObject("paramsProductPrice", paramsProductPrice);
+      console.log(paramsProductPrice);
       this.router.navigate(["/store/checkout"]);
     } else {
+      debugger;
+      console.log(paramsProductPrice);
       let isTrue = true;
       this.sessionService.setSessionItem('isTrue', isTrue);
+      this.sessionService.setSessionObject("paramsProductPrice", paramsProductPrice);
       this.router.navigate(["/sign-in"]);
     }
   }
