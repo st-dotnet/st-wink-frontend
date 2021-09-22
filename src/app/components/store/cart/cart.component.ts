@@ -201,14 +201,20 @@ export class CartComponent implements OnInit {
       case 0:
         this.cartItems = this.cartItems.filter(x => x !== cartItem);
         this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
-        this.updateCartSession();
-        this.enablebtn=true;
+        this.updateCartSession();             
+        let cartItem0 =this.sessionService.getSessionObject("productCartItems");        
+        if(cartItem0 == null || cartItem0.length <= 0){
+          this.enablebtn=true;
+        }     
         break;
       case 1:
         this.cartItems = this.cartItems.filter(x => x !== cartItem);
         this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
         this.updateCartSession();
-        this.enablebtn=true;
+        let cartItem1 =this.sessionService.getSessionObject("productCartItems");        
+        if(cartItem1 == null || cartItem1.length <= 0){
+          this.enablebtn=true;
+        }   
         break;
       default:
         break;
