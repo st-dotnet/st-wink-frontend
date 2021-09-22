@@ -72,30 +72,17 @@ export class CheckoutComponent implements OnInit {
     this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
     this.subtotalOneTimePrices =this.getSubTotal(this.oneTimePriceCartItems );
     this.subtotalSubscriptionTimePrice=this.getSubTotal(this.subscriptionCartItems);
-    this.discount15Percent=this.paramsProductPrice.subTotalSubscriptionPrice-this.paramsProductPrice.priceAfterDiscount;;
-    this.subscriptionPriceAfterDiscount=this.paramsProductPrice.subTotalSubscriptionPrice- +this.discount15Percent.toFixed(2);
-    this.cartSummary=this.subscriptionPriceAfterDiscount+this.paramsProductPrice.subTotalOneTimePrice;
+    this.discount15Percent=(this.paramsProductPrice?.subTotalSubscriptionPrice ?? 0)-this.paramsProductPrice?.priceAfterDiscount ?? 0;
+    this.subscriptionPriceAfterDiscount=(this.paramsProductPrice?.subTotalSubscriptionPrice ?? 0) - +this.discount15Percent.toFixed(2) ?? 0;
+    this.cartSummary=this.subscriptionPriceAfterDiscount+this.paramsProductPrice?.subTotalOneTimePrice;
     this.TotalPrice = this.cartSummary + this.discount15Percent;
-
-    // this.oneTimePriceCartItems.forEach(element => {
-    //   this.subtotalOneTimePrice += element.bv;
-    // });
-    // this.subtotalOneTimePrice = +this.subtotalOneTimePrice.toFixed(2);
-    
-    
-    // this.subscriptionCartItems.forEach(element => {
-    //   this.subtotalSubscriptionTimePrice += element.bv;
-    // });
-    // this.subtotalSubscriptionTimePrice = +this.subtotalSubscriptionTimePrice.toFixed(2);
-
-
-    //this.TotalPrice = this.subtotalSubscriptionTimePrice + this.subtotalOneTimePrice;
+    this.sidebartoggle = true;  
     this.sidebartoggle = true;
     this.checkoutForm = this.formBuilder.group(
       {
         SubsScheduleDate: [''],
         shippingAddressFormGroup: this.formBuilder.group({
-          firstName: ['', Validators.required],
+          firstName: [''],
           lastName: [''],
           streetAddress: [''],
           state: [''],
