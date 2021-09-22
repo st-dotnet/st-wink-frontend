@@ -245,11 +245,9 @@ export class CartComponent implements OnInit {
       debugger;
       this.sessionService.setSessionObject('productCartItems', this.cartItems);
       this.sessionService.setSessionObject("paramsProductPrice", paramsProductPrice);
-      console.log(paramsProductPrice);
       this.router.navigate(["/store/checkout"]);
     } else {
       debugger;
-      console.log(paramsProductPrice);
       let isTrue = true;
       this.sessionService.setSessionItem('isTrue', isTrue);
       this.sessionService.setSessionObject("paramsProductPrice", paramsProductPrice);
