@@ -27,10 +27,6 @@ export class CheckoutComponent implements OnInit {
   filterTerm: any;
   cartItems: any[] = [];
   submitted = false;
-  modalOptions: NgbModalOptions = {
-    // backdrop: 'static',
-    backdropClass: 'customBackdrop'
-  };
   subscriptionCartItems: any[] = [];
   oneTimePriceCartItems: any[] = [];
   subtotalOneTimePrice: any = 0;
@@ -43,13 +39,14 @@ export class CheckoutComponent implements OnInit {
   startDate: any;
   paramsProductPrice: any;
   cartSummary: number = 0;
-
-  subtotalOneTimePrices:number=0;
-
-  subscriptionPriceAfterDiscount:number=0;
-  subTotalSubscriptionPrice:number=0;
-
-  discount15Percent:number=0;
+  subtotalOneTimePrices: number = 0;
+  subscriptionPriceAfterDiscount: number = 0;
+  subTotalSubscriptionPrice: number = 0;
+  discount15Percent: number = 0;
+  modalOptions: NgbModalOptions = {
+    // backdrop: 'static',
+    backdropClass: 'customBackdrop'
+  };
 
   constructor(private modalService: NgbModal,
     private shopService: ShopService,
@@ -62,7 +59,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger
     this.startDate = this.sessionService.getSessionItem('startDate');
     this.subscriptionTotalPrice = this.sessionService.getSessionObject('subscriptionTotal');
     this.unSubscriptionTotalPrice = this.sessionService.getSessionObject('unSubscriptionTotal');
@@ -70,12 +66,12 @@ export class CheckoutComponent implements OnInit {
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
     this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
-    this.subtotalOneTimePrices =this.getSubTotal(this.oneTimePriceCartItems );
-    this.subtotalSubscriptionTimePrice=this.getSubTotal(this.subscriptionCartItems);
-    this.discount15Percent=(this.paramsProductPrice?.subTotalSubscriptionPrice ?? 0)-this.paramsProductPrice?.priceAfterDiscount ?? 0;
-    this.subscriptionPriceAfterDiscount=(this.paramsProductPrice?.subTotalSubscriptionPrice ?? 0) - +this.discount15Percent.toFixed(2) ?? 0;
-    this.cartSummary=this.subscriptionPriceAfterDiscount+this.paramsProductPrice?.subTotalOneTimePrice;
-    this.TotalPrice = this.cartSummary + this.discount15Percent;    
+    this.subtotalOneTimePrices = this.getSubTotal(this.oneTimePriceCartItems);
+    this.subtotalSubscriptionTimePrice = this.getSubTotal(this.subscriptionCartItems);
+    this.discount15Percent = (this.paramsProductPrice?.subTotalSubscriptionPrice ?? 0) - this.paramsProductPrice?.priceAfterDiscount ?? 0;
+    this.subscriptionPriceAfterDiscount = (this.paramsProductPrice?.subTotalSubscriptionPrice ?? 0) - +this.discount15Percent.toFixed(2) ?? 0;
+    this.cartSummary = this.subscriptionPriceAfterDiscount + this.paramsProductPrice?.subTotalOneTimePrice;
+    this.TotalPrice = this.cartSummary + this.discount15Percent;
     this.sidebartoggle = true;
     this.checkoutForm = this.formBuilder.group(
       {
@@ -90,7 +86,7 @@ export class CheckoutComponent implements OnInit {
           zip: ['']
         }),
         isShipmentMethod: [''],
-        promoCodePays: ['', ],
+        promoCodePays: ['',],
         loyalPointz: [''],
         isSelectCard: [''],
         cardFormGroup: this.formBuilder.group({
@@ -108,9 +104,6 @@ export class CheckoutComponent implements OnInit {
           newZip: [''],
           newCountry: ['']
         }),
-        // reviewFormGroup: this.formBuilder.group({
-
-        // })
       });
   }
 
@@ -126,7 +119,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   private getDismissReason(reason: any): string {
-    debugger
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -145,65 +137,8 @@ export class CheckoutComponent implements OnInit {
   toShowData = false;
   refId: any;
   refName: any;
-  
-  referrerRecords = [
-    {
-      "id": 1,
-      "referrer_name": "Amanda Rich",
-      "wink_link": "purecures",
-      "referrer_location": "Henderson, NV",
-      "referrer_image": "../../assets/user_referrer.jpg"
-    },
-    {
-      "id": 2,
-      "referrer_name": "Amanda Walsh",
-      "wink_link": "purecures",
-      "referrer_location": "Henderson, NV",
-      "referrer_image": "../../assets/user_referrer.jpg"
-    },
-    {
-      "id": 3,
-      "referrer_name": "John Carter",
-      "wink_link": "purecures",
-      "referrer_location": "Henderson, NV",
-      "referrer_image": "../../assets/user_referrer.jpg"
-    },
-    {
-      "id": 4,
-      "referrer_name": "Mark Brown",
-      "wink_link": "purecures",
-      "referrer_location": "Henderson, NV",
-      "referrer_image": "../../assets/user_referrer.jpg"
-    },
-    {
-      "id": 5,
-      "referrer_name": "Eliot Marshall",
-      "wink_link": "purecures",
-      "referrer_location": "Henderson, NV",
-      "referrer_image": "../../assets/user_referrer.jpg"
-    },
-    {
-      "id": 6,
-      "referrer_name": "Amanda Boyce",
-      "wink_link": "purecures",
-      "referrer_location": "Henderson, NV",
-      "referrer_image": "../../assets/user_referrer.jpg"
-    },
-    {
-      "id": 7,
-      "referrer_name": "James George",
-      "wink_link": "purecures",
-      "referrer_location": "Henderson, NV",
-      "referrer_image": "../../assets/user_referrer.jpg"
-    },
-    {
-      "id": 8,
-      "referrer_name": "Casper Max",
-      "wink_link": "purecures",
-      "referrer_location": "Henderson, NV",
-      "referrer_image": "../../assets/user_referrer.jpg"
-    },
-  ]
+
+  referrerRecords = []
 
   selectedData = this.referrerRecords;
   filterItem(val) {
@@ -217,19 +152,15 @@ export class CheckoutComponent implements OnInit {
     }
     else {
       this.selectedData = this.referrerRecords;
-      debugger;
+
       this.isDataAvailable = true;
     }
   }
 
   choose_referrer(data: any) {
-    debugger;
     if (this.referrerRecords.filter(x => x.id == parseInt(data.id)).length > 0) {
-      debugger;
       this.refId = data.id;
-      debugger;
       this.refName = this.referrerRecords.filter(x => x.id == parseInt(data.id)).map(ele => ele.referrer_name);
-      debugger;
       this.toShowData = true;
     }
     else {
@@ -261,45 +192,43 @@ export class CheckoutComponent implements OnInit {
     }
     return value;
   }
+
   getSubTotal(ProductList: any[]) {
-    debugger;
     let multiplyprice = 0;
     let Temp = 0;
-
     for (var i = 0; i <= ProductList.length - 1; i++) {
-        multiplyprice = parseFloat(ProductList[i].price) * ProductList[i].quantityModel;
-        Temp = Temp + multiplyprice;
+      multiplyprice = parseFloat(ProductList[i].price) * ProductList[i].quantityModel;
+      Temp = Temp + multiplyprice;
     }
     return +Temp;
   }
 
   onSubmit() {
-    debugger;
     this.submitted = true;
     if (this.checkoutForm.invalid) {
       return;
     }
-    if(this.startDate == null){
+    if (this.startDate == null) {
       return this.toastrService.error("Please select the start date")
     }
-let firstName=this.checkoutForm.get(['shippingAddressFormGroup','firstName']).value? this.checkoutForm.get(['shippingAddressFormGroup','firstName']).value:'';
-let lastName=this.checkoutForm.get(['shippingAddressFormGroup','lastName']).value? this.checkoutForm.get(['shippingAddressFormGroup','lastName']).value :'';
-let streetAddress=this.checkoutForm.get(['shippingAddressFormGroup','streetAddress']).value?this.checkoutForm.get(['shippingAddressFormGroup','streetAddress']).value:'';
-let city=this.checkoutForm.get(['shippingAddressFormGroup','city']).value ?this.checkoutForm.get(['shippingAddressFormGroup','city']).value:'';
-let state=this.checkoutForm.get(['shippingAddressFormGroup','state']).value?this.checkoutForm.get(['shippingAddressFormGroup','state']).value:'';
-let zip=this.checkoutForm.get(['shippingAddressFormGroup','zip']).value?this.checkoutForm.get(['shippingAddressFormGroup','zip']).value:'';
-let country=this.checkoutForm.get(['shippingAddressFormGroup','country']).value?this.checkoutForm.get(['shippingAddressFormGroup','country']).value:'';
-let newStreetAddress=this.checkoutForm.get(['newShippingAddressFormGroup','newStreetAddress']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newStreetAddress']).value:'';
-let newCity=this.checkoutForm.get(['newShippingAddressFormGroup','newCity']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newCity']).value:'';
-let newState=this.checkoutForm.get(['newShippingAddressFormGroup','newState']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newState']).value:'';
-let newZip=this.checkoutForm.get(['newShippingAddressFormGroup','newZip']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newZip']).value:'';
-let newCountry=this.checkoutForm.get(['newShippingAddressFormGroup','newCountry']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newCountry']).value:'';
-let cardName=this.checkoutForm.get(['cardFormGroup','cardName']).value?this.checkoutForm.get(['cardFormGroup','cardName']).value:'';
-let cardNumber=this.checkoutForm.get(['cardFormGroup','cardNumber']).value?this.checkoutForm.get(['cardFormGroup','cardNumber']).value:0;
-let expiryMonth=this.checkoutForm.get(['cardFormGroup','expiryMonth']).value?this.checkoutForm.get(['cardFormGroup','expiryMonth']).value:0;
-let expiryYear=this.checkoutForm.get(['cardFormGroup','expiryYear']).value?this.checkoutForm.get(['cardFormGroup','expiryYear']).value:0;
-let cardCVV=this.checkoutForm.get(['cardFormGroup','cardCVV']).value?this.checkoutForm.get(['cardFormGroup','cardCVV']).value:0;
-let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard']).value?this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard']).value:'';
+    let firstName = this.checkoutForm.get(['shippingAddressFormGroup', 'firstName']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'firstName']).value : '';
+    let lastName = this.checkoutForm.get(['shippingAddressFormGroup', 'lastName']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'lastName']).value : '';
+    let streetAddress = this.checkoutForm.get(['shippingAddressFormGroup', 'streetAddress']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'streetAddress']).value : '';
+    let city = this.checkoutForm.get(['shippingAddressFormGroup', 'city']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'city']).value : '';
+    let state = this.checkoutForm.get(['shippingAddressFormGroup', 'state']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'state']).value : '';
+    let zip = this.checkoutForm.get(['shippingAddressFormGroup', 'zip']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'zip']).value : '';
+    let country = this.checkoutForm.get(['shippingAddressFormGroup', 'country']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'country']).value : '';
+    let newStreetAddress = this.checkoutForm.get(['newShippingAddressFormGroup', 'newStreetAddress']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newStreetAddress']).value : '';
+    let newCity = this.checkoutForm.get(['newShippingAddressFormGroup', 'newCity']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newCity']).value : '';
+    let newState = this.checkoutForm.get(['newShippingAddressFormGroup', 'newState']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newState']).value : '';
+    let newZip = this.checkoutForm.get(['newShippingAddressFormGroup', 'newZip']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newZip']).value : '';
+    let newCountry = this.checkoutForm.get(['newShippingAddressFormGroup', 'newCountry']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newCountry']).value : '';
+    let cardName = this.checkoutForm.get(['cardFormGroup', 'cardName']).value ? this.checkoutForm.get(['cardFormGroup', 'cardName']).value : '';
+    let cardNumber = this.checkoutForm.get(['cardFormGroup', 'cardNumber']).value ? this.checkoutForm.get(['cardFormGroup', 'cardNumber']).value : 0;
+    let expiryMonth = this.checkoutForm.get(['cardFormGroup', 'expiryMonth']).value ? this.checkoutForm.get(['cardFormGroup', 'expiryMonth']).value : 0;
+    let expiryYear = this.checkoutForm.get(['cardFormGroup', 'expiryYear']).value ? this.checkoutForm.get(['cardFormGroup', 'expiryYear']).value : 0;
+    let cardCVV = this.checkoutForm.get(['cardFormGroup', 'cardCVV']).value ? this.checkoutForm.get(['cardFormGroup', 'cardCVV']).value : 0;
+    let isMakePrimaryCard = this.checkoutForm.get(['cardFormGroup', 'isMakePrimaryCard']).value ? this.checkoutForm.get(['cardFormGroup', 'isMakePrimaryCard']).value : '';
     this.spinner.show();
     this.cartItems.forEach(element => {
       this.orderDetails.push({
@@ -356,12 +285,12 @@ let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard'
     createOrderRequest.notes = '';
     createOrderRequest.customerID = 0;
     createOrderRequest.orderStatus = 1;
-    createOrderRequest.orderDate = this.startDate ? this.startDate:'21-09-2021';
+    createOrderRequest.orderDate = this.startDate ? this.startDate : '21-09-2021';
     createOrderRequest.currencyCode = '';
     createOrderRequest.warehouseID = 0;
     createOrderRequest.shipMethodID = 0;
     createOrderRequest.priceType = 0;
-    createOrderRequest.firstName =  firstName;
+    createOrderRequest.firstName = firstName;
     createOrderRequest.middleName = '';
     createOrderRequest.lastName = lastName;
     createOrderRequest.other11 = '';
@@ -397,7 +326,7 @@ let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard'
     createCustomerRequest.field3 = '';
     createCustomerRequest.field2 = '';
     createCustomerRequest.field1 = '';
-    createCustomerRequest.birthDate = this.startDate ? this.startDate:'21-09-2021';
+    createCustomerRequest.birthDate = this.startDate ? this.startDate : '21-09-2021';
     createCustomerRequest.isSalesTaxExempt = false;
     createCustomerRequest.currencyCode = '';
     createCustomerRequest.salesTaxExemptExpireDate = '';
@@ -420,7 +349,7 @@ let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard'
     createCustomerRequest.checkThreshold = 0;
     createCustomerRequest.languageID = 0;
     createCustomerRequest.payableType = '';
-    createCustomerRequest.entryDate = this.startDate ? this.startDate:'21-09-2021';
+    createCustomerRequest.entryDate = this.startDate ? this.startDate : '21-09-2021';
     createCustomerRequest.salesTaxID = '';
     createCustomerRequest.taxID = '';
     createCustomerRequest.manualCustomerID = 0;
@@ -492,7 +421,7 @@ let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard'
     createAutoOrderRequest.details = this.orderDetails;
     createAutoOrderRequest.other16 = '';
     createAutoOrderRequest.frequency = 1;
-    createAutoOrderRequest.startDate = this.startDate ? this.startDate:'21-09-2021';
+    createAutoOrderRequest.startDate = this.startDate ? this.startDate : '21-09-2021';
     createAutoOrderRequest.stopDate = '';
     createAutoOrderRequest.specificDayInterval = 0;
     createAutoOrderRequest.currencyCode = '';
@@ -553,7 +482,7 @@ let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard'
     chargeCreditCardTokenRequest.billingAddress = newStreetAddress;
     chargeCreditCardTokenRequest.creditCardToken = '';
     chargeCreditCardTokenRequest.expirationYear = expiryYear;
-    chargeCreditCardTokenRequest.orderKey = '';   
+    chargeCreditCardTokenRequest.orderKey = '';
 
     const setAccountCreditCardTokenRequest = new SetAccountCreditCardTokenRequest();
     setAccountCreditCardTokenRequest.tokenType = 0;
@@ -583,7 +512,7 @@ let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard'
     transactionalRequestModel.chargeCreditCardTokenRequest = chargeCreditCardTokenRequest;
     transactionalRequestModel.createAutoOrderRequest = createAutoOrderRequest;
     transactionalRequestModel.setAccountCreditCardTokenRequest = setAccountCreditCardTokenRequest;
-    debugger;
+
     this.shopService.checkOutItems(transactionalRequestModel).subscribe(
       (result: any) => {
         console.log("Result", result);

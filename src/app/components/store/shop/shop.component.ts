@@ -130,8 +130,6 @@ export class ShopComponent implements OnInit {
     })
   }
 
-
-
   onCategoryChange(e: Event) {
     this.spinner.show();
     this.categoryId = Number((e.target as HTMLInputElement)?.value);
@@ -161,12 +159,9 @@ export class ShopComponent implements OnInit {
   }
 
   GetProductsList(categoryId: number, filterValue: number) {
-    debugger;
     this.shopProductModels = [];
     this.shopService.GetProductsList(categoryId, filterValue).subscribe(result => {
       this.shopProductModels = result;
-      console.log(result)
-      // this.shopProductModels =_.sortBy(this.shopProductModels, [function(o) { return o.itemDescription; }]);
       this.spinner.hide();
       console.log("product list", this.shopProductModels)
     })
@@ -197,10 +192,7 @@ export class ShopComponent implements OnInit {
       quantityLimit: 4
     }
     Object.entries(items).forEach(([key, value]) => { product[key] = value });
-    debugger;
     if (this.productItems) {
-      //this.productItem=this.productItems.find(item => item.itemCode == product.itemCode)
-
       if (this.product.bundle == 'single' && this.product.selectDelivery == 0 && this.product.subscriptionModel == 'singleDelivery') {
         let single_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 0 && x.subscriptionModel == 'singleDelivery')
         let old_single_singledelivery = single_singledelivery;
@@ -320,7 +312,6 @@ export class ShopComponent implements OnInit {
   }
 
   checkBundle(bundle: string, productPrice: any) {
-    debugger;
     this.bundle = bundle;
     if (bundle == "multiple") {
       productPrice = productPrice * 2;
@@ -334,7 +325,6 @@ export class ShopComponent implements OnInit {
   }
 
   checkDelivery(type: CartTypeEnum) {
-    debugger;
     switch (type) {
       case CartTypeEnum.OneTimePrice:
         this.showSubscription = false;
@@ -351,11 +341,8 @@ export class ShopComponent implements OnInit {
   }
 
   onProductFilter(event: any) {
-    debugger
     this.spinner.show();
     this.filterValue = parseInt(event.target.value);
     this.GetProductsList(this.categoryId, this.filterValue);
-    //this.shopService.filterProduct(filterValue, this.categoryId).subscribe((result: any) => {          
-    //});
   }
 }

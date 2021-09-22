@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SearchproductComponent implements OnInit {
   searchText: string;
-  shopProductModels: any[]=[];
+  shopProductModels: any[] = [];
   product: any;
   productPrice: any;
   showSubscription: boolean;
@@ -37,10 +37,10 @@ export class SearchproductComponent implements OnInit {
   productCartItems: any;
   cartTypes: any[] = [];;
 
-  constructor( private sessionService: SessionService,
+  constructor(private sessionService: SessionService,
     private modalService: NgbModal, private shopService: ShopService,
     private spinner: NgxSpinnerService, private router: Router,
-    private toastrService: ToastrService) { 
+    private toastrService: ToastrService) {
     this.bundles = [
       {
         id: '1',
@@ -87,34 +87,34 @@ export class SearchproductComponent implements OnInit {
         value: 4
       }
     ],
-    this.years = [
-      {
-        id: '1',
-        name: 'Every Month',
-        value: 'everyMonth'
-      },
-      {
-        id: '2',
-        name: 'Every Week',
-        value: 'everyWeek'
-      },
-      {
-        id: '3',
-        name: 'Every Year',
-        value: 'everyYear'
-      }
-    ]
+      this.years = [
+        {
+          id: '1',
+          name: 'Every Month',
+          value: 'everyMonth'
+        },
+        {
+          id: '2',
+          name: 'Every Week',
+          value: 'everyWeek'
+        },
+        {
+          id: '3',
+          name: 'Every Year',
+          value: 'everyYear'
+        }
+      ]
   }
 
   ngOnInit(): void {
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
-    this.searchText= this.sessionService.getSessionItem("searchItem");    
-      this.spinner.show();
-      this.getSearchProduct(this.searchText);   
+    this.searchText = this.sessionService.getSessionItem("searchItem");
+    this.spinner.show();
+    this.getSearchProduct(this.searchText);
   }
 
-  
-  getSearchProduct(search:any){
+
+  getSearchProduct(search: any) {
     this.shopService.searchProduct(search).subscribe(result => {
       debugger
       this.shopProductModels = result;
@@ -124,8 +124,7 @@ export class SearchproductComponent implements OnInit {
   }
 
 
-  open(content: any, product: any) {
-    debugger;
+  open(content: any, product: any) {    
     this.product = product;
     this.productPrice = product.price;
     this.showSubscription = false;
@@ -170,10 +169,8 @@ export class SearchproductComponent implements OnInit {
       quantityLimit: 4
     }
     Object.entries(items).forEach(([key, value]) => { product[key] = value });
-    debugger;
+    
     if (this.productItems) {
-      //this.productItem=this.productItems.find(item => item.itemCode == product.itemCode)
-
       if (this.product.bundle == 'single' && this.product.selectDelivery == 0) {
         let single_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 0)
         let old_single_singledelivery = single_singledelivery;
@@ -201,7 +198,7 @@ export class SearchproductComponent implements OnInit {
         }
       }
 
-       if (this.product.bundle == 'single' && this.product.selectDelivery == 1) {
+      if (this.product.bundle == 'single' && this.product.selectDelivery == 1) {
         let single_subscriptiondelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 1 && x.subscriptionModel == product.subscriptionModel)
         let old_single_subscriptiondelivery = single_subscriptiondelivery;
         if (single_subscriptiondelivery) {
@@ -227,7 +224,7 @@ export class SearchproductComponent implements OnInit {
           this.modalService.dismissAll();
         }
       }
-       if (this.product.bundle == 'multiple' && this.product.selectDelivery == 0) {
+      if (this.product.bundle == 'multiple' && this.product.selectDelivery == 0) {
         let multiple_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'multiple' && x.selectDelivery == 0)
         let old_multiple_singledelivery = multiple_singledelivery;
         if (multiple_singledelivery) {
@@ -253,7 +250,7 @@ export class SearchproductComponent implements OnInit {
           this.modalService.dismissAll();
         }
       }
-       if (this.product.bundle == 'multiple' && this.product.selectDelivery == 1) {
+      if (this.product.bundle == 'multiple' && this.product.selectDelivery == 1) {
         let multiple_subscriptiondelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 1 && x.subscriptionModel == product.subscriptionModel)
         let old_multiple_subscriptiondelivery = multiple_subscriptiondelivery;
         if (multiple_subscriptiondelivery) {
