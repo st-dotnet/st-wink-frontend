@@ -494,7 +494,7 @@
         </div>
 
         <div class="checkout-btn">
-          <a (click)="checkOutItem()" class="btn btn-checkout" >Checkout</a>
+         <button (click)="checkOutItem()" [disabled]="enablebtn"  [className]="enablebtn  ? 'btn btn-checkout disabledbutton ' : 'btn btn-checkout enabledbutton'">Checkout</button>
         </div>
         <div class="verified-batch">
           <span class="batch-icon"

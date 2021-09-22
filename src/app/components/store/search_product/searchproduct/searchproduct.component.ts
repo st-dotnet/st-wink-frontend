@@ -123,6 +123,7 @@ export class SearchproductComponent implements OnInit {
     })
   }
 
+
   open(content: any, product: any) {
     debugger;
     this.product = product;

@@ -96,14 +96,42 @@ ul.right-menu li a i {
 
 .search-ico {
   position: absolute;
-  top: 7px;
-  right: 4px;
+  top: 17px;
+  right: 24px;
   border:none;
   background-color: transparent;
 }
 
 .search-ico i {
   color: #b0b0b0;
+}
+
+.searchOptionsbox {
+  position: absolute;
+  width: 100%;
+  background-color: #ffffffd4;
+  left: 0;
+  top: 0;
+}
+
+.searchOptionsbox .searchOption-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 6px 20px 4px;
+  position: relative;
+}
+
+.searchOptionsbox .close-ico {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+
+.searchOptionsbox .searchOption-inner input {
+  height: 45px;
 }
 
 .searchOptions input {
@@ -178,6 +206,19 @@ div#main-menu.showmenu .logo-center {
 div#main-menu.showmenu ul.right-menu li a {
     padding: 0 8px 0;
     border: none;
+}
+.searchOptionsbox {
+  background-color: #fff;
+}
+.searchOptionsbox .searchOption-inner{
+  max-width: 280px;
+}
+.searchOptionsbox .close-ico {
+  z-index: 11;
+}
+
+.searchOptionsbox .close-ico a {
+  display: block;
 }
 
 }

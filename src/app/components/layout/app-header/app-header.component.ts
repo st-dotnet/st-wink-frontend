@@ -13,8 +13,10 @@ export class AppHeaderComponent implements OnInit {
   windowWidth: number;
   isMobileMenu: boolean = false;
   isDesktopMenu: boolean = false;
+  isSearchshow: boolean = false;
   cartItems: any = 0;
   searchText:any;
+  
   constructor(private sessionService: SessionService,
     private router: Router) {
     this.sessionService.user$.subscribe(x => this.user = x);
@@ -54,6 +56,16 @@ export class AppHeaderComponent implements OnInit {
   searchProduct(){ 
     debugger
     this.sessionService.setSessionItem("searchItem", this.searchText);
+    debugger
     this.router.navigate(["/store/search-products"]);
+
+  }
+  showSearchbar()
+  {
+    this.isSearchshow = true;
+  }
+  closeSearchbar()
+  {
+    this.isSearchshow = false;
   }
 }

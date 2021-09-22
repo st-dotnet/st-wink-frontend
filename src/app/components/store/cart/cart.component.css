@@ -378,14 +378,16 @@ p.l-time span.time-icon svg {
   margin: 20px 0 20px 0;
 }
 
-.checkout-btn a.btn-checkout {
-  background-color: #1CB1C5;
+
+button.btn.btn-checkout.disabledbutton,button.btn.btn-checkout.enabledbutton {
+  background-color: #1cb1c5;
   display: block;
   border-radius: 40px;
-  padding: 10px 8px 10px;
-  font-family: 'g-medium';
+  padding: 10px 8px;
+  font-family: g-medium;
   color: #fff;
   text-transform: uppercase;
+  width: 100%;
 }
 
 .verified-batch {
