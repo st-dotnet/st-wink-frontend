@@ -26,21 +26,13 @@ export class CartComponent implements OnInit {
   };
   oneTimePriceCartItemsCount: number = 0;
   subscriptionCartItemsCount: number = 0;
-
   cartSummaryTotal: number = 0;
   cart: any[];
-
   subtotalOneTimePrice: number = 0;
   subTotalSubscriptionPrice: number = 0;
   discount15Percent: number = 0;
   orderTotal: number = 0;
   subTotalSubscriptionPriceAfterDiscount: number = 0;
-
-
-  // subscriptionSubTotalPrice:any=0;
-  // subtotalSubscriptionTimePrice: any = 0;
-
-
   total = false;
   subscriptionCartItems: any[] = [];
   oneTimePriceCartItems: any[] = [];
@@ -66,32 +58,8 @@ export class CartComponent implements OnInit {
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
     this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
-
     this.oneTimePriceCartItemsCount = this.oneTimePriceCartItems.length;
     this.subscriptionCartItemsCount = this.subscriptionCartItems.length;
-    // if (this.total == true) {
-    //   this.subtotalOneTimePrice = 0
-    //   this.subtotalSubscriptionTimePrice = 0;
-    // }
-    // this.cartItems.forEach(element => {
-    //   this.subtotalOneTimePrice += element.price;
-    // });
-    // if (typeof this.subtotalOneTimePrice === 'string') {
-    //   this.subtotalOneTimePrice = parseFloat(this.subtotalOneTimePrice);
-    //   this.subtotalOneTimePrice = this.subtotalOneTimePrice.toFixed(2);
-    // } else {
-    //this.subtotalOneTimePrice = this.subtotalOneTimePrice.toFixed(2);
-    // }
-    // this.subscriptionCartItems.forEach(element => {
-    //   this.subtotalSubscriptionTimePrice += element.price;
-    // });
-    // if (typeof this.subtotalSubscriptionTimePrice === 'string') {
-    //   this.subtotalSubscriptionTimePrice = parseInt(this.subtotalSubscriptionTimePrice);
-    //   this.subtotalSubscriptionTimePrice = this.subtotalSubscriptionTimePrice.toFixed(2);
-    // } else {
-    //   this.subtotalSubscriptionTimePrice = this.subtotalSubscriptionTimePrice.toFixed(2);
-    // }
-
     this.filterItem("");
     this.quantityForOneTime('', 0);
     this.quantityForSubscriptionTime('', 0);
@@ -218,27 +186,20 @@ export class CartComponent implements OnInit {
       this.toShowData = false;
     }
   }
-
+//Remove Item From Cart List
   removeItem(cartItem: any, type: any, bundle: string) {
     debugger
     this.spinner.show();
     this.sessionService.removeSessionItem('productCartItems');
     switch (type) {
       case 0:
-        //this.cartItems = this.cartItems.filter(x =>(x.itemCode != cartItem.itemCode || x.bundle != bundle));
         this.cartItems = this.cartItems.filter(x => x !== cartItem);
-
-        // this.subscriptionCartItems.length > 0 ? this.oneTimePriceCartItems.push(...this.subscriptionCartItems) : '';
         this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
-        // this.subscriptionCartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.subscriptionCartItems) : '';
         this.updateCartSession();
         break;
       case 1:
-        //this.cartItems = this.cartItems.filter(x =>(x.itemCode != cartItem.itemCode || x.bundle != bundle));
         this.cartItems = this.cartItems.filter(x => x !== cartItem);
-        // this.oneTimePriceCartItems.length > 0 ? this.subscriptionCartItems.push(...this.oneTimePriceCartItems) : '';
         this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
-        // this.oneTimePriceCartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.oneTimePriceCartItems) : '';
         this.updateCartSession();
         break;
       default:
@@ -248,11 +209,6 @@ export class CartComponent implements OnInit {
     this.spinner.hide();
     this.quantityForOneTime('', 0);
     this.quantityForSubscriptionTime('', 0);
-    // this.cart = this.cartItems.filter(x => x.itemCode != cartItem.itemCode);
-    // // this.subscriptionCartItems.push(this.cart);
-    // this.sessionService.setSessionObject('productCartItems', this.subscriptionCartItems);
-    // this.spinner.hide();
-    // this.ngOnInit();
   }
 
   updateCartSession() {
@@ -264,25 +220,10 @@ export class CartComponent implements OnInit {
     this.sessionService.cartSession(items == null ? [] : items);
   }
 
-  // removeItemSubscription(subscriptionItem: any) {
-  //   debugger
-  //   this.total = true;
-  //   this.spinner.show();
-  //   this.cart = this.subscriptionCartItems.filter(x => x.itemCode != subscriptionItem.itemCode);
-  //   this.cartItems.push(this.cart);
-  //   this.sessionService.setSessionObject('productCartItems', this.cartItems);
-
-  //   this.quantityForOneTime('', 0);
-  //   this.quantityForSubscriptionTime('', 0);
-  //   this.spinner.hide();
-  //   this.ngOnInit();
-  // }
-
   checkOutItem() {
     debugger;
     if (this.sessionService.getSessionItem('user')) {
       this.sessionService.setSessionObject('productCartItems', this.cartItems);
-      //this.discount15Percent;
       const paramsProductPrice = {
         priceAfterDiscount: this.subTotalSubscriptionPriceAfterDiscount,
         subTotalSubscriptionPrice: this.subTotalSubscriptionPrice,
@@ -312,15 +253,12 @@ export class CartComponent implements OnInit {
           }
         }
         this.sessionService.setSessionObject('productCartItems', this.cartItems);
-        let onTimepriceCartValue = this.cartItems.find(x =>x.selectDelivery == CartTypeEnum.OneTimePrice);
-        oneTimePriceCartItem.push(onTimepriceCartValue);
-        
+        oneTimePriceCartItem = this.cartItems.filter((x)=>{if(x.selectDelivery==CartTypeEnum.OneTimePrice){return x}});  
       }
     }
     this.subtotalOneTimePrice = this.getSubTotal(oneTimePriceCartItem);
     this.orderTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPrice;
     this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
-    this.cartSummaryTotal = this.cartSummaryTotal;
   }
 
 
@@ -341,8 +279,7 @@ export class CartComponent implements OnInit {
           }
         }
         this.sessionService.setSessionObject('productCartItems', this.cartItems);
-        let subscriptionTimeCartValue=this.cartItems.find(x =>x.selectDelivery == CartTypeEnum.Subscription);
-        subscriptionCartItem.push(subscriptionTimeCartValue);
+        subscriptionCartItem =this.cartItems.filter((x)=>{if(x.selectDelivery==CartTypeEnum.Subscription){return x}});
       }
     }
     this.subTotalSubscriptionPrice = this.getSubTotal(subscriptionCartItem);

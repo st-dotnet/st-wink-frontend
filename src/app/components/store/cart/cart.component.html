@@ -82,7 +82,7 @@
                   <div class="cart-quantity">
                     <div class="form-group">
                       <select
-                        [formControlName]="'OneTimePurchagequantity' + i"
+                        
                         (change)="
                           quantityForOneTime(cartItem, $event.target.value)
                         "
@@ -194,7 +194,7 @@
                   <div class="cart-quantity">
                     <div class="form-group">
                       <select
-                        [formControlName]="'SubscriptionPurchageYear' + i"
+                       
                         [(ngModel)]="delivery.subscriptionModel"
                         class="form-control"
                       >
@@ -213,7 +213,7 @@
                     </div>
                     <div class="form-group">
                       <select
-                        [formControlName]="'SubscriptionPurchagequantity' + i"
+                       
                         (change)="
                           quantityForSubscriptionTime(
                             delivery,

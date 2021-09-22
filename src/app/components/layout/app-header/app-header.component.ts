@@ -21,7 +21,8 @@ export class AppHeaderComponent implements OnInit {
     this.windowWidth = window.innerWidth;
   }
 
-  ngOnInit(): void {    
+  ngOnInit(): void { 
+    debugger;   
     this.sessionService.cart$.subscribe(x => this.cartItems = x.length);
     if (this.windowWidth > 992) {
       this.isDesktopMenu = true;
