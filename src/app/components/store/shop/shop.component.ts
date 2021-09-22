@@ -139,7 +139,7 @@ export class ShopComponent implements OnInit {
   }
 
   open(content: any, product: any) {
-    this.bundle='single';
+    this.bundle = 'single';
     this.product = product;
     this.productPrice = product.price;
     this.showSubscription = false;
@@ -182,9 +182,7 @@ export class ShopComponent implements OnInit {
   }
 
   addToCart(product: any) {
-
     this.productItems = this.sessionService.getSessionObject('productCartItems');
-
     if (this.subscriptionModel == undefined) {
       this.subscriptionModel = 'singleDelivery';
     }
@@ -203,7 +201,7 @@ export class ShopComponent implements OnInit {
     if (this.productItems) {
       //this.productItem=this.productItems.find(item => item.itemCode == product.itemCode)
 
-      if (this.product.bundle == 'single' && this.product.selectDelivery == 0 && this.product.subscriptionModel=='singleDelivery') {
+      if (this.product.bundle == 'single' && this.product.selectDelivery == 0 && this.product.subscriptionModel == 'singleDelivery') {
         let single_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 0 && x.subscriptionModel == 'singleDelivery')
         let old_single_singledelivery = single_singledelivery;
         if (single_singledelivery) {
@@ -220,15 +218,17 @@ export class ShopComponent implements OnInit {
           else {
             this.productItems.push(this.product);
             this.toastrService.success('Product added successfully');
+            this.modalService.dismissAll();
           }
         }
         else {
           this.productItems.push(this.product);
           this.toastrService.success('Product added successfully');
+          this.modalService.dismissAll();
         }
       }
 
-       if (this.product.bundle == 'single' && this.product.selectDelivery == 1  && this.product.subscriptionModel !=='singleDelivery') {
+      if (this.product.bundle == 'single' && this.product.selectDelivery == 1 && this.product.subscriptionModel !== 'singleDelivery') {
         let single_subscriptiondelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 1 && x.subscriptionModel == product.subscriptionModel)
         let old_single_subscriptiondelivery = single_subscriptiondelivery;
         if (single_subscriptiondelivery) {
@@ -245,14 +245,16 @@ export class ShopComponent implements OnInit {
           else {
             this.productItems.push(this.product);
             this.toastrService.success('Product added successfully');
+            this.modalService.dismissAll();
           }
         }
         else {
           this.productItems.push(this.product);
           this.toastrService.success('Product added successfully');
+          this.modalService.dismissAll();
         }
       }
-       if (this.product.bundle == 'multiple' && this.product.selectDelivery == 0 && this.product.subscriptionModel=='singleDelivery') {
+      if (this.product.bundle == 'multiple' && this.product.selectDelivery == 0 && this.product.subscriptionModel == 'singleDelivery') {
         let multiple_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'multiple' && x.selectDelivery == 0 && x.subscriptionModel == 'singleDelivery')
         let old_multiple_singledelivery = multiple_singledelivery;
         if (multiple_singledelivery) {
@@ -269,14 +271,16 @@ export class ShopComponent implements OnInit {
           else {
             this.productItems.push(this.product);
             this.toastrService.success('Product added successfully');
+            this.modalService.dismissAll();
           }
         }
         else {
           this.productItems.push(this.product);
           this.toastrService.success('Product added successfully');
+          this.modalService.dismissAll();
         }
       }
-       if (this.product.bundle == 'multiple' && this.product.selectDelivery == 1 && this.product.subscriptionModel !=='singleDelivery') {
+      if (this.product.bundle == 'multiple' && this.product.selectDelivery == 1 && this.product.subscriptionModel !== 'singleDelivery') {
         let multiple_subscriptiondelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'multiple' && x.selectDelivery == 1 && x.subscriptionModel == product.subscriptionModel)
         let old_multiple_subscriptiondelivery = multiple_subscriptiondelivery;
         if (multiple_subscriptiondelivery) {
@@ -293,11 +297,13 @@ export class ShopComponent implements OnInit {
           else {
             this.productItems.push(this.product);
             this.toastrService.success('Product added successfully');
+            this.modalService.dismissAll();
           }
         }
         else {
           this.productItems.push(this.product);
           this.toastrService.success('Product added successfully');
+          this.modalService.dismissAll();
         }
       }
       this.sessionService.cartSession(this.productItems);
@@ -309,6 +315,7 @@ export class ShopComponent implements OnInit {
       this.sessionService.cartSession(this.productCartItems);
       this.sessionService.setSessionObject('productCartItems', this.productCartItems);
       this.toastrService.success('Product added successfully');
+      this.modalService.dismissAll();
     }
   }
 
@@ -316,7 +323,7 @@ export class ShopComponent implements OnInit {
     debugger;
     this.bundle = bundle;
     if (bundle == "multiple") {
-      productPrice=productPrice*2;
+      productPrice = productPrice * 2;
       this.bundle = bundle;
       let subscribePrice = (productPrice / 100) * 5;
       this.product.price = (productPrice - subscribePrice).toFixed(2);
@@ -332,7 +339,7 @@ export class ShopComponent implements OnInit {
       case CartTypeEnum.OneTimePrice:
         this.showSubscription = false;
         this.selectDelivery = CartTypeEnum.OneTimePrice;
-        this.subscriptionModel='singleDelivery';
+        this.subscriptionModel = 'singleDelivery';
         break;
       case CartTypeEnum.Subscription:
         this.showSubscription = true;

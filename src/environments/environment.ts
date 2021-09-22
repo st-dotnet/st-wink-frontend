@@ -8,7 +8,6 @@ export const environment = {
   apiUrl: 'https://winknaturalsreplicatedsite-stage.azurewebsites.net/api/',
   productImageApiUrl: 'https://localhost:44336/files/'
 };
-
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

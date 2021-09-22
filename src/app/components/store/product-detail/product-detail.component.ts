@@ -24,7 +24,7 @@ export class ProductDetailComponent implements OnInit {
   bundles: any[] = [];
   cartTypes: any[] = [];
   bundle: string = 'single';
-  productPrice:number;
+  productPrice: number;
   showSubscription = false;
   selectDelivery: CartTypeEnum = 0;
   subscriptionModel: string = 'singleDelivery';
@@ -37,7 +37,7 @@ export class ProductDetailComponent implements OnInit {
     this.isShowDivIf = !this.isShowDivIf;
   }
   productCartItems: any[] = [];
-  product: any; 
+  product: any;
 
   customOptions: OwlOptions = {
     loop: true,
@@ -140,14 +140,14 @@ export class ProductDetailComponent implements OnInit {
   }
 
   constructor(
-     private sessionService: SessionService,
-     private shopService : ShopService,
-     private activatedRoute: ActivatedRoute,
-     private spinner: NgxSpinnerService,
-     private toastrService: ToastrService,) {
-     this.sessionService.scrollToTop();
-     this.activatedRoute.params.subscribe((params: Params) => {
-      this.itemCode = params['id'];     
+    private sessionService: SessionService,
+    private shopService: ShopService,
+    private activatedRoute: ActivatedRoute,
+    private spinner: NgxSpinnerService,
+    private toastrService: ToastrService,) {
+    this.sessionService.scrollToTop();
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.itemCode = params['id'];
     });
     this.bundles = [
       {
@@ -214,24 +214,24 @@ export class ProductDetailComponent implements OnInit {
     ]
   }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
-    this.getProductDetail(this.itemCode);  
+    this.getProductDetail(this.itemCode);
   }
 
   toggleShow() {
     this.incredShow = !this.incredShow;
   }
-  
-  getProductDetail(itemCode){
+
+  getProductDetail(itemCode) {
     debugger;
     this.spinner.show();
     this.shopService.GetProductDetail(itemCode).subscribe(result => {
-    this.productDetail=result;
-    this.productPrice=this.productDetail.price;
-    this.itemCodeTitle= this.productDetail.itemCode;
-    this.spinner.hide();
-    console.log("ProductDetail", this.productDetail);
+      this.productDetail = result;
+      this.productPrice = this.productDetail.price;
+      this.itemCodeTitle = this.productDetail.itemCode;
+      this.spinner.hide();
+      console.log("ProductDetail", this.productDetail);
     });
   }
 
@@ -241,7 +241,7 @@ export class ProductDetailComponent implements OnInit {
       case CartTypeEnum.OneTimePrice:
         this.showSubscription = false;
         this.selectDelivery = CartTypeEnum.OneTimePrice;
-        this.subscriptionModel='singleDelivery';
+        this.subscriptionModel = 'singleDelivery';
         break;
       case CartTypeEnum.Subscription:
         this.showSubscription = true;
@@ -256,7 +256,7 @@ export class ProductDetailComponent implements OnInit {
     debugger;
     this.bundle = bundle;
     if (bundle == "multiple") {
-      productPrice=productPrice*2;
+      productPrice = productPrice * 2;
       this.bundle = bundle;
       let subscribePrice = (productPrice / 100) * 5;
       this.productDetail.price = (productPrice - subscribePrice).toFixed(2);
@@ -266,60 +266,7 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
-
-  // addToCart(product : any) {
-  //   debugger
-  //   this.productItems =this.sessionService.getSessionObject('productCartItems');
-  //   if (this.quantityValue == undefined) {
-  //     this.quantityValue = 1;
-  //   }
-  //   if (this.bundle == undefined) {
-  //     this.bundle = 'single';
-  //   }
-  //   if (this.selectDelivery == undefined) {
-  //     this.selectDelivery = 0 ;
-  //   }
-  //   if (this.subscriptionModel == undefined) {
-  //     this.subscriptionModel = 'singleDelivery';
-  //   }
-  //   const items = {
-  //     bundle: this.bundle,
-  //     selectDelivery: this.selectDelivery,
-  //     subscriptionModel: this.subscriptionModel,
-  //     quantityModel: this.quantityValue,
-  //     calculatedPrice:0,
-  //     afterDiscountPrice:0,
-  //     discount:0,
-  //     quantityLimit:4
-  //   }
-  //   Object.entries(items).forEach(([key, value]) => { product[key] = value });
-  //   if (this.productItems) {
-  //     this.productItem = this.productItems.find(x => x.itemCode == product.itemCode);
-  //     // for(let i=0;i<=this.productItem.length;i++)
-  //     // {
-  //     //   let quantitysum=0;
-  //     //   if(this.productItem[i].itemCode== product.itemCode && this.productItem[i].quantityModel==product.quantityModel)
-  //     //   quantitysum=+this.productItem[i].quantityModel+ +product.quantityModel;
-  //     //   this.productItem[i].quantityModel=quantitysum.toString();
-  //     // }
-     
-  //     this.productItems.push(product);
-  //     //this.productItems.find(x=> x.itemcode == product.itemCode).push(items);
-  //     this.sessionService.cartSession(this.productItems);
-  //     this.sessionService.setSessionObject('productCartItems', this.productItems);
-  //     this.toastrService.success('Product added successfully');
-  //   }
-  //   else {
-  //     Object.entries(items).forEach(([key, value]) => { product[key] = value });
-  //     this.productCartItems.push(product);
-  //     this.sessionService.cartSession(this.productCartItems);
-  //     this.sessionService.setSessionObject('productCartItems', this.productCartItems);
-  //     this.toastrService.success('Product added successfully');
-  //   }  
-  // }
-
   addToCart(product: any) {
-
     this.productItems = this.sessionService.getSessionObject('productCartItems');
 
     if (this.subscriptionModel == undefined) {
@@ -339,8 +286,7 @@ export class ProductDetailComponent implements OnInit {
     debugger;
     if (this.productItems) {
       //this.productItem=this.productItems.find(item => item.itemCode == product.itemCode)
-
-      if (product.bundle == 'single' && product.selectDelivery == 0 && product.subscriptionModel=='singleDelivery') {
+      if (product.bundle == 'single' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
         let single_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 0 && x.subscriptionModel == 'singleDelivery')
         let old_single_singledelivery = single_singledelivery;
         if (single_singledelivery) {
@@ -356,16 +302,15 @@ export class ProductDetailComponent implements OnInit {
           }
           else {
             this.productItems.push(product);
-            this.toastrService.success('Product added successfully');
+            this.toastrService.success('Product added successfully');            
           }
         }
         else {
           this.productItems.push(product);
-          this.toastrService.success('Product added successfully');
-        }
+          this.toastrService.success('Product added successfully');        }
       }
 
-       if (product.bundle == 'single' && product.selectDelivery == 1  && product.subscriptionModel !=='singleDelivery') {
+      if (product.bundle == 'single' && product.selectDelivery == 1 && product.subscriptionModel !== 'singleDelivery') {
         let single_subscriptiondelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 1 && x.subscriptionModel == product.subscriptionModel)
         let old_single_subscriptiondelivery = single_subscriptiondelivery;
         if (single_subscriptiondelivery) {
@@ -389,7 +334,7 @@ export class ProductDetailComponent implements OnInit {
           this.toastrService.success('Product added successfully');
         }
       }
-       if (product.bundle == 'multiple' && product.selectDelivery == 0 && product.subscriptionModel=='singleDelivery') {
+      if (product.bundle == 'multiple' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
         let multiple_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'multiple' && x.selectDelivery == 0 && x.subscriptionModel == 'singleDelivery')
         let old_multiple_singledelivery = multiple_singledelivery;
         if (multiple_singledelivery) {
@@ -413,7 +358,7 @@ export class ProductDetailComponent implements OnInit {
           this.toastrService.success('Product added successfully');
         }
       }
-       if (product.bundle == 'multiple' && product.selectDelivery == 1 && product.subscriptionModel !=='singleDelivery') {
+      if (product.bundle == 'multiple' && product.selectDelivery == 1 && product.subscriptionModel !== 'singleDelivery') {
         let multiple_subscriptiondelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'multiple' && x.selectDelivery == 1 && x.subscriptionModel == product.subscriptionModel)
         let old_multiple_subscriptiondelivery = multiple_subscriptiondelivery;
         if (multiple_subscriptiondelivery) {

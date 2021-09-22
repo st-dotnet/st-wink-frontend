@@ -67,13 +67,17 @@ export class SignInComponent implements OnInit {
           // get return url from query parameters or default to home page
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
            this.isTrue = this.sessionService.getSessionItem('isTrue');
-          if(this.isTrue == "true"){
+          if(this.isTrue == "true"){            
+            setTimeout(() => {              
             this.router.navigate(["/store/checkout"]);
+              this.spinner.hide();  
+                }, 1000);
           }else{
-            this.router.navigateByUrl(returnUrl);
+            this.router.navigateByUrl(returnUrl);            
+          this.spinner.hide();  
           }         
           this.loading = false;
-          this.spinner.hide();         
+          // this.spinner.hide();         
         },
         error: error => {
           this.spinner.hide();

@@ -121,11 +121,15 @@ export class SignUpComponent implements OnInit {
           console.log("Result", res);
           debugger
           this.isTrue = this.sessionService.getSessionItem('isTrue');
-          if(this.isTrue == "true"){
+          if(this.isTrue == "true"){            
+            setTimeout(() => {              
             this.router.navigate(["/store/checkout"]);
+              this.spinner.hide();  
+                }, 1000);
           }else{
-            this.router.navigate([''], { relativeTo: this.route });
-          }                 
+            this.router.navigate([''], { relativeTo: this.route }) ;            
+             this.spinner.hide();  
+          }                            
           this.toastrService.success('User registration successfully');
           // this.toastrService.success('Please check your email in order to verify the registration');
           this.spinner.hide();
