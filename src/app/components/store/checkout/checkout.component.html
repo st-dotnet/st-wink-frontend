@@ -14,7 +14,7 @@
                 <div class="sidebar-checkout">
                     <div class="cart-sidebar">
                         <div class="sidebar-head">
-                            <h2>Cart Summary</h2><span class="amount-summary"> ${{cartSummary | number:'.1-2'}}</span>
+                            <h2>Cart Summary</h2><span class="amount-summary"> ${{cartSummaryTotal | number:'.1-2'}}</span>
                         </div>
                     </div>
                 </div>
@@ -97,15 +97,16 @@
                                 </div>
                             </ng-template>
                             <ng-template ngbPanelContent>
-                                <div class="content-card steps-inner promo-checkout">
+                                <!-- <div class="content-card steps-inner promo-checkout">
                                     <div class="col-md-12 p-0 mb-3">
                                         <div class="promo-code">
-                                            <div [className]="promocode_sidebar_checkout ?  'special-field datafilled form-group' : 'special-field dataempty form-group'">
-                                                <input type="text" value="" [(ngModel)]="promocode_sidebar_checkout"
+                                            <div [className]="promocode_onetime ?  'special-field datafilled form-group' : 'special-field dataempty form-group'">
+                                                <input type="text" value="" [(ngModel)]="promocode_onetime"
                                                     name="promo-enter" class="form-control" />
                                                 <label class="form-label">Promo Code</label>
                                                 <span class="vali-promo">Not Applied</span>
-                                                <span class="btn-add-promo">
+                                                <button class="btn-add-promo" [disabled]="isDisabled"
+                                                (click)="addPromo(); isDisabled = true;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                         viewBox="0 0 14 14">
                                                         <path _ngcontent-shj-c146="" id="Path_2014"
@@ -113,12 +114,45 @@
                                                             d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
                                                             transform="translate(-194.9 -3)"></path>
                                                     </svg>
-                                                </span>
+                                                </button>
                                             </div>
                                         </div>
-
                                     </div>
-                                </div>
+                                </div> -->
+                                <div class="other-additional-product" >
+                                    <div class="promo-code" >
+                                      <div
+                                        [className]="
+                                          promocode_onetime
+                                            ? 'special-field datafilled form-group '
+                                            : 'special-field dataempty form-group'
+                                        "
+                                      >
+                                        <input  
+                                          type="text"
+                                          [(ngModel)]="promocode_onetime"
+                                          class="form-control"
+                                          (focusout)="clearPromo($event)"
+                                        />
+                                        <label class="form-label">Promo Code</label>
+                                        <button class="btn-add-promo"  (click)="addPromo(0)">
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="14"
+                                            height="14"
+                                            viewBox="0 0 14 14"
+                                          >
+                                            <path
+                                              id="Path_2014"
+                                              data-name="Path 2014"
+                                              d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
+                                              transform="translate(-194.9 -3)"
+                                            />
+                                          </svg>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
                             </ng-template>
                         </ngb-panel>
 
@@ -142,13 +176,17 @@
                                         <tbody>
                                             <tr *ngFor="let item of oneTimePriceCartItems">
                                                 <td>{{item.itemDescription}}</td>
-                                                <td>${{item.price * item.quantityModel | number :'.1-2'}}</td>
+                                                <td>${{item.Price * item.quantityModel | number :'.1-2'}}</td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
+                                            <tr *ngIf="isPromocode">
+                                                <td>You Saved</td>
+                                                <td>-${{promoPercentage | number :'.1-2'}}</td>
+                                            </tr>
                                             <tr>
                                                 <td>Subtotal</td>
-                                                <td>${{subtotalOneTimePrices| number :'.1-2'}}</td>
+                                                <td>${{subtotalOneTimePrice| number :'.1-2'}}</td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -177,7 +215,7 @@
                                         <tbody>
                                             <tr *ngFor="let item of subscriptionCartItems">
                                                 <td>{{item.itemDescription}}</td>
-                                                <td>${{item.price * item.quantityModel | number :'.1-2'}}</td>
+                                                <td>${{item.Price * item.quantityModel | number :'.1-2'}}</td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
@@ -187,7 +225,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Subtotal</td>
-                                                <td>${{subtotalSubscriptionTimePrice - discount15Percent | number
+                                                <td>${{subTotalSubscriptionPriceAfterDiscount | number
                                                     :'.1-2'}}</td>
                                             </tr>
                                         </tfoot>
@@ -216,22 +254,22 @@
                                         <tbody>
                                             <tr>
                                                 <td>One-Time Purchase</td>
-                                                <td>${{this.paramsProductPrice?.subTotalOneTimePrice | number :'.1-2'}}
+                                                <td>${{subtotalOneTimePrice | number :'.1-2'}}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Subscription Purchase</td>
-                                                <td>${{subscriptionPriceAfterDiscount | number :'.1-2'}}</td>
+                                                <td>${{subTotalSubscriptionPriceAfterDiscount | number :'.1-2'}}</td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <td>You Saved</td>
-                                                <td>-${{discount15Percent | number:'.1-2'}}</td>
+                                                <td>-${{totalDiscount | number:'.1-2'}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
-                                                <td>${{cartSummary | number:'.1-2'}}</td>
+                                                <td>${{cartSummaryTotal | number:'.1-2'}}</td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -501,9 +539,12 @@
                                                 <div class="content-card steps-inner promo-checkout">
                                                     <div class="col-md-12 p-0 mb-3">
                                                         <div
-                                                            [className]="promocodepay ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                            <input type="text" formControlName="promoCodePays" value=""
-                                                                name="promo-enter" class="form-control" />
+                                                            [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                                            <input  
+                                                            type="text"
+                                                            [(ngModel)]="promocode_onetime"
+                                                            class="form-control"
+                                                          />
                                                             <label class="form-label">Promo Code</label>
                                                             <span class="vali-promo">Not Applied</span>
                                                             <span class="btn-add-promo">
@@ -893,8 +934,11 @@
                                                     <div class="col-md-12 p-0 mb-3">
                                                         <div
                                                             [className]="promocodepay ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                            <input type="text" formControlName="promocodepay" value=""
-                                                                name="promo-enter" class="form-control" />
+                                                            <input  
+                                                            type="text"
+                                                            [(ngModel)]="promocode_onetime"
+                                                            class="form-control"
+                                                          />
                                                             <label class="form-label">Promo Code</label>
                                                             <span class="vali-promo">Not Applied</span>
                                                             <span class="btn-add-promo">
@@ -943,11 +987,11 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td>Order Total</td>
-                                                                    <td>${{TotalPrice | number:'.1-2'}}</td>
+                                                                    <td>${{orderTotal | number:'.1-2'}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Subtotal</td>
-                                                                    <td>${{cartSummary | number:'.1-2'}}</td>
+                                                                    <td>${{cartSummaryTotal | number:'.1-2'}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Shipping</td>
@@ -964,7 +1008,7 @@
                                                                         <p class="you-sav">You Saved</p>
                                                                     </td>
                                                                     <td>
-                                                                        <p class="you-sav">-${{discount15Percent |
+                                                                        <p class="you-sav">-${{totalDiscount |
                                                                             number:'.1-2'}}</p>
                                                                     </td>
                                                                 </tr>
@@ -973,7 +1017,7 @@
                                                                         <p class="you-pay">You pay</p>
                                                                     </td>
                                                                     <td>
-                                                                        <p class="you-pay">${{cartSummary |
+                                                                        <p class="you-pay">${{cartSummaryTotal |
                                                                             number:'.1-2'}}</p>
                                                                     </td>
                                                                 </tr>

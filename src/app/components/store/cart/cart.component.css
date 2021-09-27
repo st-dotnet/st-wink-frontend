@@ -94,7 +94,7 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-details p
     padding-right: 40px;
 }
 
-.other-additional-product .promo-code span.btn-add-promo {
+.other-additional-product .promo-code span.btn-add-promo, button.btn-add-promo{
   position: absolute;
   top: 11px;
   right: 15px;
@@ -102,7 +102,7 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-details p
   pointer-events: none;
 }
 
-.other-additional-product .promo-code span.btn-add-promo svg {
+.other-additional-product .promo-code span.btn-add-promo svg, button.btn-add-promo svg {
   width: 14px;
   height: 14px;
 }
@@ -590,7 +590,7 @@ button.btn.btn-checkout.disabledbutton,button.btn.btn-checkout.enabledbutton {
   height: 26px !important;
 }
 
-.Subscription-box .other-additional-product span.btn-add-promo {
+.Subscription-box .other-additional-product span.btn-add-promo,button.btn-add-promo {
   top: 10px !important;
 }
 
@@ -727,7 +727,7 @@ button.btn.btn-checkout.disabledbutton,button.btn.btn-checkout.enabledbutton {
       font-size: 14px !important;
   }
 
-  .promo-code span.btn-add-promo {
+  .promo-code span.btn-add-promo,button.btn-add-promo {
       top: 7px !important;
   }
 
@@ -783,4 +783,13 @@ button.btn.btn-checkout.disabledbutton,button.btn.btn-checkout.enabledbutton {
 
 .cart-details {
   max-width: 320px;
+}
+
+/* add promo style */
+
+button.btn-add-promo{
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  pointer-events: auto;
 }

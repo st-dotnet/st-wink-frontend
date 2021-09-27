@@ -104,15 +104,15 @@
                         </option>
                       </select>
                     </div>
-                    <p class="price-product">${{ cartItem.price  | number:'2.1-2'  }}</p>
+                    <p class="price-product">${{ cartItem.Price  | number:'.1-2'  }}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="other-additional-product">
-            <div class="promo-code">
+          <div class="other-additional-product" >
+            <div class="promo-code" >
               <div
                 [className]="
                   promocode_onetime
@@ -120,13 +120,14 @@
                     : 'special-field dataempty form-group'
                 "
               >
-                <input
+                <input  
                   type="text"
                   [(ngModel)]="promocode_onetime"
                   class="form-control"
+                  (focusout)="clearPromo($event)"
                 />
                 <label class="form-label">Promo Code</label>
-                <span class="btn-add-promo">
+                <button class="btn-add-promo"   (click)="addPromo(0)">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14"
@@ -140,7 +141,7 @@
                       transform="translate(-194.9 -3)"
                     />
                   </svg>
-                </span>
+                </button>
               </div>
               <div class="subtotal">
                 <p>Subtotal</p>
@@ -239,7 +240,7 @@
                         </option>
                       </select>
                     </div>
-                    <p class="price-product">${{ delivery.price }}</p>
+                    <p class="price-product">${{ delivery.Price | number:'.1-2' }}</p>
                   </div>
                 </div>
               </div>
@@ -304,7 +305,7 @@
               </div>
               <div class="subtotal">
                 <p>Subtotal</p>
-                <p>${{ subTotalSubscriptionPriceAfterDiscount  | number:'2.1-2'  }}</p>
+                <p>${{ subTotalSubscriptionPriceAfterDiscount  | number:'.1-2'  }}</p>
               </div>
             </div>
           </div>
@@ -409,18 +410,19 @@
           <h4>Special Offer</h4>
           <div class="media">
             <div class="media-left">
-              <a href="#">
+              <a [href]="specialItem.image_03" target="_blank">
                 <img
                   class="media-object"
-                  src="../../assets/special-offer.png"
+                  [src]="specialItem.image_03"
                   alt="..."
+                  style="height: 80px; width: 80px;"
                 />
               </a>
             </div>
             <div class="media-body">
               <div class="data-cart">
                 <div class="cart-details">
-                  <h4 class="media-heading">Immune Support</h4>
+                  <h4 class="media-heading">{{specialItem.itemDescription}}</h4>
                   <p class="l-time">
                     <span class="time-icon"
                       ><svg
@@ -444,16 +446,16 @@
                   </p>
                   <div class="price-tag">
                     <span class="del-price">
-                      <del>$29.99</del>
+                      <del>${{specialItem.price}}</del>
                     </span>
-                    <span class="price-new"> $19.99 </span>
+                    <span class="price-new"> ${{specialItem.field5}} </span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="click-to-add">
-            <a href="">Click to add</a>
+            <a (click)="spacialItemAdd()">Click to add</a>
           </div>
         </div>
 
@@ -484,7 +486,7 @@
           <div class="grand-total">
             <div class="save-you">
               <p class="saved-you">You saved</p>
-              <p class="you-saved-value">-${{discount15Percent  | number:'2.1-2' }}</p>
+              <p class="you-saved-value">-${{totalDiscount  | number:'2.1-2' }}</p>
             </div>
             <div class="total-grand">
               <p class="saved-you">You Pay</p>

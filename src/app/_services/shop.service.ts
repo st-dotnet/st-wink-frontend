@@ -35,4 +35,11 @@ export class ShopService {
    searchProduct(query:string) {
     return this.http.get<any>(`${environment.apiUrl}${this.shopEndpoint}SearchProducts/${query}`);
   }
+
+  getPromoData(promoCode:string){
+    return this.http.get<any>(`${environment.apiUrl}${this.shopEndpoint}PromoCode/${promoCode}`);
+  }
+  getSpecialItem() {
+    return this.http.get<any>(`${environment.apiUrl}${this.shopEndpoint}GetSpecialItem`);
+  }
 }

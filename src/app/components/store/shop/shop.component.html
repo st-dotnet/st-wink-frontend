@@ -279,6 +279,14 @@
                       {{qty.value}}
                        </option>
                     </select>
+                   
+                    <!-- <select  [ngModel]="quantityValue" class="form-control">
+                      <option class="dropdown-item" disabled selected value="undefined">Select Quantity</option>
+                      <option *ngFor="let tech of quantity" [ngValue]="tech">
+                       {{ tech.name }}
+                      </option>
+                    </select> -->
+
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 7.171 4.6"
@@ -293,7 +301,7 @@
                   </div>
                   <div *ngIf="showSubscription" class="form-group">
                     <select [(ngModel)]="subscriptionModel"  [ngModelOptions]="{standalone: true}" class="form-control">
-                      <option class="dropdown-item" disabled selected value="undefined">Select</option>                     
+                      <option class="dropdown-item" disabled value="undefined">Select</option>                     
                       <option *ngFor="let year of years" [value]="year.value">
                       {{year.name}}
                        </option>

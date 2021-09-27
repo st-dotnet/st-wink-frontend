@@ -137,7 +137,7 @@ export class ShopComponent implements OnInit {
   }
 
   open(content: any, product: any) {
-    this.bundle = 'single';
+    //this.bundle = 'single';
     this.product = product;
     this.productPrice = product.price;
     this.showSubscription = false;
@@ -177,8 +177,9 @@ export class ShopComponent implements OnInit {
   }
 
   addToCart(product: any) {
+    debugger;
     this.productItems = this.sessionService.getSessionObject('productCartItems');
-    if (this.subscriptionModel == undefined) {
+    if (product.selectDelivery == 0) {
       this.subscriptionModel = 'singleDelivery';
     }
     const items = {
@@ -186,14 +187,38 @@ export class ShopComponent implements OnInit {
       selectDelivery: this.selectDelivery,
       subscriptionModel: this.subscriptionModel,
       quantityModel: +this.quantityValue,
-      calculatedPrice: 0,
-      afterDiscountPrice: 0,
+      Price: 0,
       discount: 0,
       quantityLimit: 4
     }
     Object.entries(items).forEach(([key, value]) => { product[key] = value });
+    //No percentage calculation
+    if (product.bundle == 'single' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
+      product.Price = product.price; 
+    }
+    // 15% calulation
+    if (product.bundle == 'single' && product.selectDelivery == 1 && product.subscriptionModel !== 'singleDelivery') {
+      product.Price = product.price;
+    }
+    //5% calculation
+    if (product.bundle == 'multiple' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
+      let itemPrice = product.price;
+      itemPrice=itemPrice*2;
+      let discountper5 = (itemPrice * 5) / 100;
+      itemPrice = itemPrice - discountper5;
+      product.Price = itemPrice;
+    }
+    //5% cal
+    if (product.bundle == 'multiple' && product.selectDelivery == 1 && product.subscriptionModel !== 'singleDelivery') {
+      let itemPrice = product.price;
+      itemPrice=itemPrice*2;
+      let discountper5 = (itemPrice * 5) / 100;
+      product.Price = itemPrice-discountper5; 
+    }
+
     if (this.productItems) {
-      if (this.product.bundle == 'single' && this.product.selectDelivery == 0 && this.product.subscriptionModel == 'singleDelivery') {
+      //No percentage calucation
+      if (product.bundle == 'single' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
         let single_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 0 && x.subscriptionModel == 'singleDelivery')
         let old_single_singledelivery = single_singledelivery;
         if (single_singledelivery) {
@@ -219,8 +244,8 @@ export class ShopComponent implements OnInit {
           this.modalService.dismissAll();
         }
       }
-
-      if (this.product.bundle == 'single' && this.product.selectDelivery == 1 && this.product.subscriptionModel !== 'singleDelivery') {
+      // 15% calulation
+      if (product.bundle == 'single' && product.selectDelivery == 1 && product.subscriptionModel !== 'singleDelivery') {
         let single_subscriptiondelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 1 && x.subscriptionModel == product.subscriptionModel)
         let old_single_subscriptiondelivery = single_subscriptiondelivery;
         if (single_subscriptiondelivery) {
@@ -246,7 +271,8 @@ export class ShopComponent implements OnInit {
           this.modalService.dismissAll();
         }
       }
-      if (this.product.bundle == 'multiple' && this.product.selectDelivery == 0 && this.product.subscriptionModel == 'singleDelivery') {
+      //5% calculation 
+      if (product.bundle == 'multiple' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
         let multiple_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'multiple' && x.selectDelivery == 0 && x.subscriptionModel == 'singleDelivery')
         let old_multiple_singledelivery = multiple_singledelivery;
         if (multiple_singledelivery) {
@@ -254,9 +280,9 @@ export class ShopComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          this.product.quantityModel = multiple_singledelivery.quantityModel + +product.quantityModel;
+          product.quantityModel = multiple_singledelivery.quantityModel + +product.quantityModel;
 
-          if (this.product.quantityModel > product.quantityLimit) {
+          if (product.quantityModel > product.quantityLimit) {
             this.productItems.push(old_multiple_singledelivery);
             this.toastrService.error('You Exceed your Quantity Limit 4');
           }
@@ -272,7 +298,8 @@ export class ShopComponent implements OnInit {
           this.modalService.dismissAll();
         }
       }
-      if (this.product.bundle == 'multiple' && this.product.selectDelivery == 1 && this.product.subscriptionModel !== 'singleDelivery') {
+      //5% cal + 15 % cal
+      if (product.bundle == 'multiple' && product.selectDelivery == 1 && product.subscriptionModel !== 'singleDelivery') {
         let multiple_subscriptiondelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'multiple' && x.selectDelivery == 1 && x.subscriptionModel == product.subscriptionModel)
         let old_multiple_subscriptiondelivery = multiple_subscriptiondelivery;
         if (multiple_subscriptiondelivery) {
@@ -282,7 +309,7 @@ export class ShopComponent implements OnInit {
           }
           this.product.quantityModel = multiple_subscriptiondelivery.quantityModel + +product.quantityModel;
 
-          if (this.product.quantityModel > product.quantityLimit) {
+          if (product.quantityModel > product.quantityLimit) {
             this.productItems.push(old_multiple_subscriptiondelivery);
             this.toastrService.error('You Exceed your Quantity Limit 4');
           }
@@ -302,7 +329,7 @@ export class ShopComponent implements OnInit {
       this.sessionService.setSessionObject('productCartItems', this.productItems);
     }
     else {
-      Object.entries(items).forEach(([key, value]) => { product[key] = value });
+      // Object.entries(items).forEach(([key, value]) => { product[key] = value });
       this.productCartItems.push(product);
       this.sessionService.cartSession(this.productCartItems);
       this.sessionService.setSessionObject('productCartItems', this.productCartItems);
@@ -313,23 +340,26 @@ export class ShopComponent implements OnInit {
 
   checkBundle(bundle: string, productPrice: any) {
     this.bundle = bundle;
-    if (bundle == "multiple") {
-      productPrice = productPrice * 2;
-      this.bundle = bundle;
-      let subscribePrice = (productPrice / 100) * 5;
-      this.product.price = (productPrice - subscribePrice).toFixed(2);
-    } else {
-      this.bundle = bundle;
-      this.product.price = this.productPrice;
-    }
+    // if (bundle == "multiple") {
+    //   // productPrice = productPrice * 2;
+    //   this.bundle = bundle;
+    //   // let subscribePrice = (productPrice / 100) * 5;
+    //   //productPrice = (productPrice - subscribePrice).toFixed(2);
+    //   //  this.product.Price=productPrice;
+    //   // console.log(productPrice)
+    // } else {
+    //   this.bundle = bundle;
+    //   // productPrice = this.productPrice;
+    //   //  this.product.Price=productPrice;
+    // }
   }
 
   checkDelivery(type: CartTypeEnum) {
     switch (type) {
       case CartTypeEnum.OneTimePrice:
         this.showSubscription = false;
+        this.subscriptionModel = '';
         this.selectDelivery = CartTypeEnum.OneTimePrice;
-        this.subscriptionModel = 'singleDelivery';
         break;
       case CartTypeEnum.Subscription:
         this.showSubscription = true;
