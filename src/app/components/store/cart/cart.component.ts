@@ -309,7 +309,8 @@ export class CartComponent implements OnInit {
     promoCode:this.promocode_onetime,
     promoPercentage:this.promoPercentage
   }
-    this.sessionService.setSessionObject("promocodeObject",promocodeObject);  
+    this.sessionService.setSessionObject("promocodeObject",promocodeObject); 
+    this.sessionService.setSessionItem("startDate",this.inputdata);     
     if (this.sessionService.getSessionItem('user')) {
       this.sessionService.setSessionObject('productCartItems', this.cartItems);
       this.router.navigate(["/store/checkout"]);

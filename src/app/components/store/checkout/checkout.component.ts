@@ -59,9 +59,6 @@ export class CheckoutComponent implements OnInit {
   specialOfferPrice: number=0;
   promocodeObject: any;
 
-
-
-
   constructor(private modalService: NgbModal,
     private shopService: ShopService,
     private formBuilder: FormBuilder,
