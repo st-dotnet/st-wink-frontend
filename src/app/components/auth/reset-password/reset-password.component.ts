@@ -66,11 +66,13 @@ export class ResetPasswordComponent implements OnInit {
       .subscribe({
         next: (result: any) => {
           debugger
-          if (result) {
+          if (result.success == true) {            
             this.spinner.hide();
-            this.toastrService.success('Password Reset Link has been sent to your registered email.');
-          }
-          this.spinner.hide();
+            this.toastrService.success('Password Reset Link has been sent to your registered email.');            
+          }else{
+            this.toastrService.error(result.errorMessage);
+            this.spinner.hide();
+          }         
         },
         error: (error) => {
           this.toastrService.error(error);

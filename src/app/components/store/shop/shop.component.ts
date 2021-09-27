@@ -38,7 +38,7 @@ export class ShopComponent implements OnInit {
   productPrice: number = 0;
   filterValue: number = 1;
   modalOptions: NgbModalOptions = {
-    backdrop: 'static',
+    //backdrop: 'static',
     backdropClass: 'customBackdrop',
     windowClass: 'prodview-modal'
   };
@@ -131,6 +131,7 @@ export class ShopComponent implements OnInit {
   }
 
   onCategoryChange(e: Event) {
+    debugger
     this.spinner.show();
     this.categoryId = Number((e.target as HTMLInputElement)?.value);
     this.GetProductsList(this.categoryId, this.filterValue);
