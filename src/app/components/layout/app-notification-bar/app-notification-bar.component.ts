@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { SessionService } from '@app/_services';
 
 @Component({
   selector: 'app-notification-bar',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppNotificationBarComponent implements OnInit {
 
+  isNotif :boolean = true;
+  @Output() myOutput:EventEmitter<boolean>= new EventEmitter();  
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  closeSearchbar()
+  {
+    this.isNotif = false;
+    this.myOutput.emit(this.isNotif);     
   }
 
 }

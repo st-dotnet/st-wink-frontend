@@ -1085,10 +1085,14 @@ app-notification-bar .topbar {
   position: relative;
 }
 
-app-notification-bar .topbar span.icon-close {
+app-notification-bar .topbar .icon-close {
   position: absolute;
   top: 10px;
   right: 15px;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+border: none;
 }
 
 

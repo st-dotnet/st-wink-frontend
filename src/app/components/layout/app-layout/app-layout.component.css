@@ -1,0 +1,15 @@
+.wrapped-site {
+    position: relative;
+    width: 100%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.noti-remove app-header {
+    top: 0px;
+}
+
+.noti-remove .main-content {
+    padding-top: 56px;
+}

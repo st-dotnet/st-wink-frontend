@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { SessionService } from '@app/_services';
 
 @Component({
   selector: 'app-layout',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-layout.component.css']
 })
 export class AppLayoutComponent implements OnInit {
+  toggleDisplayDivIf: boolean = true;
+  @Input() myinputMsg:boolean; 
 
-  constructor() { }
+  constructor(private sessionService: SessionService) { }
 
   ngOnInit(): void {
+    debugger
+    //this.toggleDisplayDivIf = this.sessionService.getSessionItem("notification");
+  }
+
+  GetChildData(value){
+    debugger  
+    this.toggleDisplayDivIf=value;
+    
   }
 
 }
