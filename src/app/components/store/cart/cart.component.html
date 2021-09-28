@@ -82,7 +82,7 @@
                   <div class="cart-quantity">
                     <div class="form-group">
                       <select
-                        
+                        disabled={{cartItem.isDisabled}}
                         (change)="
                           quantityForOneTime(cartItem, $event.target.value)
                         "
@@ -124,10 +124,9 @@
                   type="text"
                   [(ngModel)]="promocode_onetime"
                   class="form-control"
-                  (focusout)="clearPromo($event)"
                 />
                 <label class="form-label">Promo Code</label>
-                <button class="btn-add-promo"   (click)="addPromo(0)">
+                <button class="btn-add-promo"   (click)="addPromo()">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14"
@@ -406,7 +405,7 @@
         </div>
 
         <!--- Special Offer BOX-->
-        <div class="grid-box-shadow special offer">
+        <div class="grid-box-shadow special offer" *ngIf="isShowSpecial">
           <h4>Special Offer</h4>
           <div class="media">
             <div class="media-left">
@@ -455,7 +454,7 @@
             </div>
           </div>
           <div class="click-to-add">
-            <a (click)="spacialItemAdd()">Click to add</a>
+            <button (click)="spacialItemAdd()" [disabled]="enablebtn"  [className]="enablebtn  ? 'btn btn-checkout disabledbutton ' : 'btn btn-checkout enabledbutton'">Click to add</button>
           </div>
         </div>
 

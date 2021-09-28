@@ -13,7 +13,7 @@ export class AppLayoutComponent implements OnInit {
   constructor(private sessionService: SessionService) { }
 
   ngOnInit(): void {
-    debugger
+   
     //this.toggleDisplayDivIf = this.sessionService.getSessionItem("notification");
   }
 

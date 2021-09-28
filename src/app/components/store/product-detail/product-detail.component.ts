@@ -280,7 +280,8 @@ export class ProductDetailComponent implements OnInit {
       calculatedPrice: 0,
       afterDiscountPrice: 0,
       discount: 0,
-      quantityLimit: 4
+      quantityLimit: 4,
+      isDisabled:null
     }
     Object.entries(items).forEach(([key, value]) => { product[key] = value });
     debugger;

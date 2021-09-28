@@ -26,12 +26,13 @@ export class ShopComponent implements OnInit {
   productItems: any[] = [];
   productItem: any;
   bundles: any[] = [];
-  bundle: string = 'single';
+  
   delivery: any[] = [];
-  selectDelivery: CartTypeEnum = 0;
   quantity: any[] = [];
   years: any[] = [];
   showSubscription = false;
+  bundle: string = 'single';
+  selectDelivery: CartTypeEnum = 0;
   subscriptionModel: string = 'singleDelivery';
   quantityValue: number = 1;
   cartTypes: any[] = [];
@@ -190,7 +191,8 @@ export class ShopComponent implements OnInit {
       quantityModel: +this.quantityValue,
       Price: 0,
       discount: 0,
-      quantityLimit: 4
+      quantityLimit: 4, 
+      isDisabled:null
     }
     Object.entries(items).forEach(([key, value]) => { product[key] = value });
     //No percentage calculation
@@ -356,10 +358,10 @@ export class ShopComponent implements OnInit {
   }
 
   checkDelivery(type: CartTypeEnum) {
+    debugger;
     switch (type) {
       case CartTypeEnum.OneTimePrice:
-        this.showSubscription = false;
-        this.subscriptionModel = '';
+        this.showSubscription = false; 
         this.selectDelivery = CartTypeEnum.OneTimePrice;
         break;
       case CartTypeEnum.Subscription:
