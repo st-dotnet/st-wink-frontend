@@ -243,20 +243,20 @@ export class ShopComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          this.product.quantityModel = single_singledelivery.quantityModel + +product.quantityModel;
+          product.quantityModel = single_singledelivery.quantityModel + +product.quantityModel;
 
           if (this.product.quantityModel > product.quantityLimit) {
             this.productItems.push(old_single_singledelivery);
             this.toastrService.error('You Exceed your Quantity Limit 4');
           }
           else {
-            this.productItems.push(this.product);
+            this.productItems.push(product);
             this.toastrService.success('Product added successfully');
             this.modalService.dismissAll();
           }
         }
         else {
-          this.productItems.push(this.product);
+          this.productItems.push(product);
           this.toastrService.success('Product added successfully');
           this.modalService.dismissAll();
         }
@@ -270,20 +270,20 @@ export class ShopComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          this.product.quantityModel = single_subscriptiondelivery.quantityModel + +product.quantityModel;
+          product.quantityModel = single_subscriptiondelivery.quantityModel + +product.quantityModel;
 
-          if (this.product.quantityModel > product.quantityLimit) {
+          if (product.quantityModel > product.quantityLimit) {
             this.productItems.push(old_single_subscriptiondelivery);
             this.toastrService.error('You Exceed your Quantity Limit 4');
           }
           else {
-            this.productItems.push(this.product);
+            this.productItems.push(product);
             this.toastrService.success('Product added successfully');
             this.modalService.dismissAll();
           }
         }
         else {
-          this.productItems.push(this.product);
+          this.productItems.push(product);
           this.toastrService.success('Product added successfully');
           this.modalService.dismissAll();
         }
@@ -304,13 +304,13 @@ export class ShopComponent implements OnInit {
             this.toastrService.error('You Exceed your Quantity Limit 4');
           }
           else {
-            this.productItems.push(this.product);
+            this.productItems.push(product);
             this.toastrService.success('Product added successfully');
             this.modalService.dismissAll();
           }
         }
         else {
-          this.productItems.push(this.product);
+          this.productItems.push(product);
           this.toastrService.success('Product added successfully');
           this.modalService.dismissAll();
         }
@@ -324,20 +324,20 @@ export class ShopComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          this.product.quantityModel = multiple_subscriptiondelivery.quantityModel + +product.quantityModel;
+          product.quantityModel = multiple_subscriptiondelivery.quantityModel + +product.quantityModel;
 
           if (product.quantityModel > product.quantityLimit) {
             this.productItems.push(old_multiple_subscriptiondelivery);
             this.toastrService.error('You Exceed your Quantity Limit 4');
           }
           else {
-            this.productItems.push(this.product);
+            this.productItems.push(product);
             this.toastrService.success('Product added successfully');
             this.modalService.dismissAll();
           }
         }
         else {
-          this.productItems.push(this.product);
+          this.productItems.push(product);
           this.toastrService.success('Product added successfully');
           this.modalService.dismissAll();
         }

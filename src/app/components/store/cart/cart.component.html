@@ -300,7 +300,7 @@
               </div>
               <div class="subscription-with-discount">
                 <p>15% Discount</p>
-                <p>-${{discount15Percent  | number:'2.1-2' }}</p>
+                <p>-${{discount15Percent  | number:'.1-2' }}</p>
               </div>
               <div class="subtotal">
                 <p>Subtotal</p>
@@ -466,11 +466,11 @@
             <ul>
               <li>
                 <span class="summry-value">Order Total</span
-                ><span class="value-summry">${{ orderTotal  | number:'2.1-2'  }}</span>
+                ><span class="value-summry">${{ orderTotal  | number:'.1-2'  }}</span>
               </li>
               <li>
                 <span class="summry-value">Subtotal</span
-                ><span class="value-summry">${{ cartSummaryTotal  | number:'2.1-2'  }}</span>
+                ><span class="value-summry">${{ cartSummaryTotal  | number:'.1-2'  }}</span>
               </li>
               <li>
                 <span class="summry-value">Shipping</span
@@ -485,11 +485,11 @@
           <div class="grand-total">
             <div class="save-you">
               <p class="saved-you">You saved</p>
-              <p class="you-saved-value">-${{totalDiscount  | number:'2.1-2' }}</p>
+              <p class="you-saved-value">-${{totalDiscount  | number:'.1-2' }}</p>
             </div>
             <div class="total-grand">
               <p class="saved-you">You Pay</p>
-              <p class="you-saved-value">${{ cartSummaryTotal  | number:'2.1-2'  }}</p>
+              <p class="you-saved-value">${{ cartSummaryTotal  | number:'.1-2'  }}</p>
             </div>
           </div>
         </div>
