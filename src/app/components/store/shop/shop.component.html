@@ -301,7 +301,7 @@
                   </div>
                   <div *ngIf="showSubscription" class="form-group">
                     <select [(ngModel)]="subscriptionModel"  [ngModelOptions]="{standalone: true}" class="form-control">
-                      <option class="dropdown-item" disabled value="undefined">Select</option>                     
+                      <option class="dropdown-item" disabled selected value="0">Select</option>                     
                       <option *ngFor="let year of years" [value]="year.value">
                       {{year.name}}
                        </option>

@@ -1,6 +1,6 @@
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartTypeEnum } from '@app/_models/cart-type-enum';
 import { ChargeCreditCardTokenRequest, CreateAutoOrderRequest, CreateCustomerRequest, CreateOrderRequest, OrderDetailRequest, SetAccountCreditCardTokenRequest, TransactionalRequestModel } from '@app/_models/checkout';
@@ -57,9 +57,7 @@ export class CheckoutComponent implements OnInit {
   isPromocode=false;
   specialOffer: any[];
   specialOfferPrice: number=0;
-
-
-
+  promocodeObject: any;
 
   constructor(private modalService: NgbModal,
     private shopService: ShopService,
@@ -73,15 +71,26 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     debugger;
+    this.totalDiscount = 0;
+    this.orderTotal=0;
+    this.subtotalOneTimePrice=0;
+    this.subTotalSubscriptionPrice=0;
+    this.discount15Percent=0;
+    this.subTotalSubscriptionPriceAfterDiscount =0;
+    this.cartSummaryTotal=0;
     this.startDate = this.sessionService.getSessionItem('startDate');
     this.subscriptionTotalPrice = this.sessionService.getSessionObject('subscriptionTotal');
     this.unSubscriptionTotalPrice = this.sessionService.getSessionObject('unSubscriptionTotal');
-
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
-    this.promocode_onetime= this.sessionService.getSessionItem('promoCode');
-    // if(this.promocode_onetime!='' && this.promocode_onetime !=undefined)
-    // {
-    //   this.isDisabled=true;
+    //this.promocodeObject = this.sessionService.getSessionObject('promocodeObject');
+    //this.promocode_onetime=this.promocodeObject.promoCode;
+    //this.promoPercentage=this.promocodeObject.promoPercentage;
+    // this.promocode_onetime = this.sessionService.getSessionItem('promoCode');
+    // if (this.promocode_onetime != "null" && this.promocode_onetime != undefined && this.promocode_onetime !='') {
+    //   this.addPromo(1);
+    // }
+    // else {
+    //   this.promocode_onetime = '';
     // }
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
     this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
@@ -95,23 +104,23 @@ export class CheckoutComponent implements OnInit {
         SubsScheduleDate: [''],
         shippingAddressFormGroup: this.formBuilder.group({
           firstName: ['', Validators.required],
-          lastName: [''],
-          streetAddress: [''],
-          state: [''],
-          city: [''],
-          country: [''],
-          zip: ['']
+          lastName: ['', Validators.required],
+          streetAddress:['', Validators.required],
+          state: ['', Validators.required],
+          city: ['', Validators.required],
+          country:['', Validators.required],
+          zip: ['', Validators.required]
         }),
         isShipmentMethod: [''],
        // promoCodePays: ['',],
         loyalPointz: [''],
         isSelectCard: [''],
         cardFormGroup: this.formBuilder.group({
-          cardName: [''],
-          cardNumber: [''],
-          expiryMonth: [''],
-          expiryYear: [''],
-          cardCVV: [''],
+          cardName: ['', Validators.required],
+          cardNumber: ['', Validators.required],
+          expiryMonth: ['', Validators.required],
+          expiryYear: ['', Validators.required],
+          cardCVV: ['', Validators.required],
           isMakePrimaryCard: ['']
         }),
         newShippingAddressFormGroup: this.formBuilder.group({
@@ -124,8 +133,17 @@ export class CheckoutComponent implements OnInit {
       });
   }
 
-  // convenience getter for easy access to form fields
-  get f() { return this.checkoutForm.controls; }
+ // convenience getter for easy access to form fields
+ get f() { return this.checkoutForm.controls; }
+ // get f() { return this.checkoutForm.controls; }
+
+ get shippingAddress(): FormArray {
+   return this.checkoutForm.get("shippingAddressFormGroup") as FormArray;
+ }
+
+ get cardForm(): FormArray {
+   return this.checkoutForm.get("cardFormGroup") as FormArray;
+ }
 
   open(content) {
     debugger;
@@ -146,63 +164,95 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  addPromo() {
-   // this.sessionService.removeSessionItem('promoCode')
-    //this.sessionService.setSessionItem('promoCode',this.promocode_onetime);
-   // let promoCode=this.sessionService.getSessionItem('promoCode');
-    this.spinner.show();
-    this.shopService.getPromoData(this.promocode_onetime).subscribe(result => {
-      this.promoItem = result;
-      if (this.promoItem.errorMessage == null) {
-         this.promoPercentage = (this.subtotalOneTimePrice * this.promoItem.discountPer) / 100;
-        this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
-        //this.isDisabled=true;
-        this.cartCalculation();
-        this.toastrService.success("Promo code applied succesfully")
-        this.spinner.hide();
-      }
-      else {
-        //this.isDisabled=false;
-        this.toastrService.error(this.promoItem.errorMessage);
-        this.cartCalculation();
-        this.spinner.hide();
-      }
-    })
+  addPromo(type: number) {
+    debugger;
+    this.promoPercentage = 0;
+    // this.sessionService.removeSessionItem('promoCode')
+    let oneTimePriceWithoutOffer = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice && x.bundle != 'specialOffer');
+    if (oneTimePriceWithoutOffer.length > 0) {   
+      if(this.promocode_onetime != null || this.promocode_onetime != '' || this.promocode_onetime != undefined){
+        this.spinner.show();
+        this.shopService.getPromoData(this.promocode_onetime).subscribe(result => {
+          this.promoItem = result;
+          if (this.promoItem.errorMessage == null) {
+            debugger;
+            this.promoPercentage = (this.subtotalOneTimePrice * this.promoItem.discountPer) / 100;
+            // this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
+            this.cartCalculation();
+            //this.isDisabled=true;
+            if (type == 0) {
+              this.toastrService.success("Promo code applied succesfully you save $'" + this.promoPercentage.toFixed(2) + "'.")
+            }
+            this.spinner.hide();
+          }
+          else {
+            // this.isDisabled=false;
+            this.toastrService.error(this.promoItem.errorMessage);
+            this.sessionService.removeSessionItem('promoCode');
+            this.cartCalculation();
+            this.spinner.hide();
+          }
+        })        
+      }     
+    }
+    else{
+      this.sessionService.removeSessionItem('promoCode');
+      this.promocode_onetime = '';
+      this.promoPercentage = 0;
+      this.cartCalculation();
+    }
+   
+  }
 
+  clearPromo(event: any) {
+    debugger;
+    if (event.target.value == '' || event.target.value == undefined || event.target.value == null) {
+      this.sessionService.removeSessionItem('promoCode');
+      this.promocode_onetime = '';
+      this.promoPercentage = 0;
+      this.cartCalculation();
+    }
+    else {
+      this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
+      //this.addPromo();
+    }
   }
 
   cartCalculation() {
-    this.totalDiscount=0;
+    this.totalDiscount = 0;
+    this.orderTotal=0;
+    this.subtotalOneTimePrice=0;
+    this.subTotalSubscriptionPrice=0;
+    this.discount15Percent=0;
+    this.subTotalSubscriptionPriceAfterDiscount =0;
+    this.cartSummaryTotal=0;
     debugger;
     this.orderTotal = this.getOrderTotal();
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
     //subsciption item List
-      this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
-      //onetime item list
-      this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
-      //special offer item
-      this.specialOffer=this.oneTimePriceCartItems.filter(x=>x.bundle=='specialOffer');
-      if(this.specialOffer!==null || this.specialOffer !==undefined)
-      {
-        let specialOfferItem = this.oneTimePriceCartItems.filter((x) => { if (x.selectDelivery == CartTypeEnum.Subscription && x.bundle=='specialOffer') { return x } });
-        const index: number = this.oneTimePriceCartItems.indexOf(specialOfferItem);
-        if (index !== -1) {
-          this.oneTimePriceCartItems.splice(index, 1);
-        }
+    this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
+    //onetime item list
+    this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
+    //special offer item
+    this.specialOffer = this.oneTimePriceCartItems.filter(x => x.bundle == 'specialOffer');
+    if (this.specialOffer != null && this.specialOffer != undefined && this.specialOffer.length>0) {
+      let specialOfferItem = this.oneTimePriceCartItems.filter((x) => { if (x.selectDelivery == CartTypeEnum.OneTimePrice && x.bundle == 'specialOffer') { return x } });
+      const index: number = this.oneTimePriceCartItems.indexOf(specialOfferItem);
+      if (index !== -1) {
+        this.oneTimePriceCartItems.splice(index, 1);
       }
+    }
 
-      this.subtotalOneTimePrice=this.getSubTotal(this.oneTimePriceCartItems);
-      // if(this.promocode_onetime!=="null" || this.promocode_onetime!==undefined)
-      // {
-      //     this.subtotalOneTimePrice=this.subtotalOneTimePrice-this.promoPercentage;
-      //     this.totalDiscount=this.totalDiscount+this.promoPercentage;
-      // }
-
-      this.subTotalSubscriptionPrice=this.getSubTotal(this.subscriptionCartItems);
-      this.discount15Percent = (this.subTotalSubscriptionPrice * 15) / 100;
-      this.subTotalSubscriptionPriceAfterDiscount = this.subTotalSubscriptionPrice - this.discount15Percent;
-      this.totalDiscount=this.totalDiscount+this.discount15Percent;
-      this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
+    this.subtotalOneTimePrice = this.getSubTotal(this.oneTimePriceCartItems);
+    if (this.promocode_onetime != null && this.promocode_onetime != undefined && this.promocode_onetime !='') {
+      this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
+      this.totalDiscount = this.totalDiscount + this.promoPercentage;
+    }
+    this.subTotalSubscriptionPrice = this.getSubTotal(this.subscriptionCartItems);
+    this.discount15Percent = (this.subTotalSubscriptionPrice * 15) / 100;
+    this.subTotalSubscriptionPriceAfterDiscount = this.subTotalSubscriptionPrice - this.discount15Percent;
+    this.totalDiscount = this.totalDiscount + this.discount15Percent;
+    this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
 
   }
   getOrderTotal()
@@ -292,51 +342,59 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
+    debugger
     this.submitted = true;
     if (this.checkoutForm.invalid) {
-      return;
+      return this.toastrService.error("Please fill the required field shipping address and card");
     }
-    if(this.startDate == null){
-      return this.toastrService.error("Please select the start date")
+    // if (this.startDate == null) {
+    //   return this.toastrService.error("Please select the start date")
+    // }
+    var startDate
+    if (this.startDate == "undefined") {
+      startDate = new Date();  
     }
-let firstName=this.checkoutForm.get(['shippingAddressFormGroup','firstName']).value? this.checkoutForm.get(['shippingAddressFormGroup','firstName']).value:'';
-let lastName=this.checkoutForm.get(['shippingAddressFormGroup','lastName']).value? this.checkoutForm.get(['shippingAddressFormGroup','lastName']).value :'';
-let streetAddress=this.checkoutForm.get(['shippingAddressFormGroup','streetAddress']).value?this.checkoutForm.get(['shippingAddressFormGroup','streetAddress']).value:'';
-let city=this.checkoutForm.get(['shippingAddressFormGroup','city']).value ?this.checkoutForm.get(['shippingAddressFormGroup','city']).value:'';
-let state=this.checkoutForm.get(['shippingAddressFormGroup','state']).value?this.checkoutForm.get(['shippingAddressFormGroup','state']).value:'';
-let zip=this.checkoutForm.get(['shippingAddressFormGroup','zip']).value?this.checkoutForm.get(['shippingAddressFormGroup','zip']).value:'';
-let country=this.checkoutForm.get(['shippingAddressFormGroup','country']).value?this.checkoutForm.get(['shippingAddressFormGroup','country']).value:'';
-let newStreetAddress=this.checkoutForm.get(['newShippingAddressFormGroup','newStreetAddress']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newStreetAddress']).value:'';
-let newCity=this.checkoutForm.get(['newShippingAddressFormGroup','newCity']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newCity']).value:'';
-let newState=this.checkoutForm.get(['newShippingAddressFormGroup','newState']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newState']).value:'';
-let newZip=this.checkoutForm.get(['newShippingAddressFormGroup','newZip']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newZip']).value:'';
-let newCountry=this.checkoutForm.get(['newShippingAddressFormGroup','newCountry']).value?this.checkoutForm.get(['newShippingAddressFormGroup','newCountry']).value:'';
-let cardName=this.checkoutForm.get(['cardFormGroup','cardName']).value?this.checkoutForm.get(['cardFormGroup','cardName']).value:'';
-let cardNumber=this.checkoutForm.get(['cardFormGroup','cardNumber']).value?this.checkoutForm.get(['cardFormGroup','cardNumber']).value:0;
-let expiryMonth=this.checkoutForm.get(['cardFormGroup','expiryMonth']).value?this.checkoutForm.get(['cardFormGroup','expiryMonth']).value:0;
-let expiryYear=this.checkoutForm.get(['cardFormGroup','expiryYear']).value?this.checkoutForm.get(['cardFormGroup','expiryYear']).value:0;
-let cardCVV=this.checkoutForm.get(['cardFormGroup','cardCVV']).value?this.checkoutForm.get(['cardFormGroup','cardCVV']).value:0;
-let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard']).value?this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard']).value:'';
+    else {
+      startDate = new Date(this.startDate);
+    }
+
+    let firstName = this.checkoutForm.get(['shippingAddressFormGroup', 'firstName']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'firstName']).value : '';
+    let lastName = this.checkoutForm.get(['shippingAddressFormGroup', 'lastName']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'lastName']).value : '';
+    let streetAddress = this.checkoutForm.get(['shippingAddressFormGroup', 'streetAddress']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'streetAddress']).value : '';
+    let city = this.checkoutForm.get(['shippingAddressFormGroup', 'city']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'city']).value : '';
+    let state = this.checkoutForm.get(['shippingAddressFormGroup', 'state']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'state']).value : '';
+    let zip = this.checkoutForm.get(['shippingAddressFormGroup', 'zip']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'zip']).value : '';
+    let country = this.checkoutForm.get(['shippingAddressFormGroup', 'country']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'country']).value : '';
+    let newStreetAddress = this.checkoutForm.get(['newShippingAddressFormGroup', 'newStreetAddress']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newStreetAddress']).value : '';
+    let newCity = this.checkoutForm.get(['newShippingAddressFormGroup', 'newCity']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newCity']).value : '';
+    let newState = this.checkoutForm.get(['newShippingAddressFormGroup', 'newState']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newState']).value : '';
+    let newZip = this.checkoutForm.get(['newShippingAddressFormGroup', 'newZip']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newZip']).value : '';
+    let newCountry = this.checkoutForm.get(['newShippingAddressFormGroup', 'newCountry']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newCountry']).value : '';
+    let cardName = this.checkoutForm.get(['cardFormGroup', 'cardName']).value ? this.checkoutForm.get(['cardFormGroup', 'cardName']).value : '';
+    let cardNumber = this.checkoutForm.get(['cardFormGroup', 'cardNumber']).value ? this.checkoutForm.get(['cardFormGroup', 'cardNumber']).value : 0;
+    let expiryMonth = this.checkoutForm.get(['cardFormGroup', 'expiryMonth']).value ? this.checkoutForm.get(['cardFormGroup', 'expiryMonth']).value : 0;
+    let expiryYear = this.checkoutForm.get(['cardFormGroup', 'expiryYear']).value ? this.checkoutForm.get(['cardFormGroup', 'expiryYear']).value : 0;
+    let cardCVV = this.checkoutForm.get(['cardFormGroup', 'cardCVV']).value ? this.checkoutForm.get(['cardFormGroup', 'cardCVV']).value : 0;
+    let isMakePrimaryCard = this.checkoutForm.get(['cardFormGroup', 'isMakePrimaryCard']).value ? this.checkoutForm.get(['cardFormGroup', 'isMakePrimaryCard']).value : '';
     this.spinner.show();
     this.cartItems.forEach(element => {
       this.orderDetails.push({
         descriptionOverride: '',
         other10EachOverride: 0,
-       other9EachOverride: 0,
+        other9EachOverride: 0,
         other8EachOverride: 0,
-       other7EachOverride: 0,
-       other6EachOverride: 0,
-       other5EachOverride: 0,
-       other4EachOverride: 0,
+        other7EachOverride: 0,
+        other6EachOverride: 0,
+        other5EachOverride: 0,
+        other4EachOverride: 0,
         other3EachOverride: 0,
-       other2EachOverride: 0,
-       other1EachOverride: 0,
+        other2EachOverride: 0,
+        other1EachOverride: 0,
         commissionableVolumeEachOverride: element.commissionableVolumeEachOverride,
         businessVolumeEachOverride: element.businessVolumeEachOverride,
         shippingPriceEachOverride: element.shippingPriceEachOverride,
-       taxableEachOverride: element.taxableEachOverride,
-       priceEachOverride: element.priceEachOverride,
+        taxableEachOverride: element.taxableEachOverride,
+        priceEachOverride: element.priceEachOverride,
         parentItemCode: element.parentItemCode,
         quantity: element.quantityModel,
         parentOrderDetailID: null,
@@ -348,143 +406,143 @@ let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard'
     });
 
     const createOrderRequest = new CreateOrderRequest();
-   createOrderRequest.other14 = '';
+    createOrderRequest.other14 = '';
     createOrderRequest.other15 = '';
-   createOrderRequest.other16 = '';
+    createOrderRequest.other16 = '';
     createOrderRequest.other17 = '';
-   createOrderRequest.other18 = '';
-   createOrderRequest.other19 = '';
-   createOrderRequest.other20 = '';
+    createOrderRequest.other18 = '';
+    createOrderRequest.other19 = '';
+    createOrderRequest.other20 = '';
     createOrderRequest.other13 = '';
-   createOrderRequest.taxRateOverride = 0;
-   createOrderRequest.shippingAmountOverride = 0;
+    createOrderRequest.taxRateOverride = 0;
+    createOrderRequest.shippingAmountOverride = 0;
     createOrderRequest.transferVolumeToID = 0;
-   createOrderRequest.returnOrderID = 0;
-   createOrderRequest.overwriteExistingOrder = false;
-    //createOrderRequest.existingOrderID = 0;
-    //createOrderRequest.partyID = 1;
+    createOrderRequest.returnOrderID = 0;
+    createOrderRequest.overwriteExistingOrder = false;
+    createOrderRequest.existingOrderID = 0;
+    createOrderRequest.partyID = 1;
     createOrderRequest.details = this.orderDetails;
-   createOrderRequest.suppressPackSlipPrice = false;
+    createOrderRequest.suppressPackSlipPrice = true;
     createOrderRequest.transferVolumeToKey = '';
-   createOrderRequest.returnOrderKey = '';
-   createOrderRequest.manualOrderKey = '';
-    createOrderRequest.manualOrderID = 67581;
+    createOrderRequest.returnOrderKey = '';
+    createOrderRequest.manualOrderKey = '';
+    createOrderRequest.manualOrderID = 0;
     createOrderRequest.existingOrderKey = '';
-   createOrderRequest.other12 = '';
-   createOrderRequest.notes = '';
-    createOrderRequest.customerID = 1;
-    createOrderRequest.orderStatus = 4;
-    createOrderRequest.orderDate = this.startDate ? this.startDate:'6/20/2019 12:00:00 AM';
-    createOrderRequest.currencyCode = 'usd';
-    createOrderRequest.warehouseID = 1;
-    createOrderRequest.shipMethodID = 8;
-    createOrderRequest.priceType = 4;
-    createOrderRequest.firstName =  'Master';
+    createOrderRequest.other12 = '';
+    createOrderRequest.notes = '';
+    createOrderRequest.customerID = 0;
+    createOrderRequest.orderStatus = 1;
+    createOrderRequest.orderDate = this.checkoutForm.value.SubsScheduleDate ? this.checkoutForm.value.SubsScheduleDate : startDate;
+    createOrderRequest.currencyCode = '';
+    createOrderRequest.warehouseID = 0;
+    createOrderRequest.shipMethodID = 0;
+    createOrderRequest.priceType = 0;
+    createOrderRequest.firstName = firstName;
     createOrderRequest.middleName = '';
-    createOrderRequest.lastName = 'Account';
-   createOrderRequest.other11 = '';
-   createOrderRequest.nameSuffix = '';
-    createOrderRequest.address1 = '564 W 700 S Ste 205'
+    createOrderRequest.lastName = lastName;
+    createOrderRequest.other11 = '';
+    createOrderRequest.nameSuffix = '';
+    createOrderRequest.address1 = streetAddress
     createOrderRequest.address2 = '';
-   createOrderRequest.address3 = '';
-    createOrderRequest.city = 'Pleasant Grove'
-    createOrderRequest.state = 'UT'
-    createOrderRequest.zip = '84062-3785'
-    createOrderRequest.country = 'US'
+    createOrderRequest.address3 = '';
+    createOrderRequest.city = city
+    createOrderRequest.state = state
+    createOrderRequest.zip = zip
+    createOrderRequest.country = country
     createOrderRequest.county = '';
-   createOrderRequest.email = '';
-   createOrderRequest.phone = '';
+    createOrderRequest.email = '';
+    createOrderRequest.phone = '';
     createOrderRequest.company = '';
     createOrderRequest.customerKey = '';
 
     const createCustomerRequest = new CreateCustomerRequest();
     createCustomerRequest.subscribeFromIPAddress = '';
     createCustomerRequest.subscribeToBroadcasts = false;
-   createCustomerRequest.field15 = '';
-   createCustomerRequest.field14 = '';
-   createCustomerRequest.field13 = '';
-   createCustomerRequest.field12 = '';
-   createCustomerRequest.field11 = '';
-   createCustomerRequest.field10 = '';
-   createCustomerRequest.field9 = '';
-   createCustomerRequest.field8 = '';
-   createCustomerRequest.field7 = '';
-   createCustomerRequest.field6 = '';
-   createCustomerRequest.field5 = '';
-   createCustomerRequest.field4 = '';
-   createCustomerRequest.field3 = '';
-   createCustomerRequest.field2 = '';
-   createCustomerRequest.field1 = '';
-   createCustomerRequest.birthDate = this.startDate ? this.startDate:'21-09-2021';
+    createCustomerRequest.field15 = '';
+    createCustomerRequest.field14 = '';
+    createCustomerRequest.field13 = '';
+    createCustomerRequest.field12 = '';
+    createCustomerRequest.field11 = '';
+    createCustomerRequest.field10 = '';
+    createCustomerRequest.field9 = '';
+    createCustomerRequest.field8 = '';
+    createCustomerRequest.field7 = '';
+    createCustomerRequest.field6 = '';
+    createCustomerRequest.field5 = '';
+    createCustomerRequest.field4 = '';
+    createCustomerRequest.field3 = '';
+    createCustomerRequest.field2 = '';
+    createCustomerRequest.field1 = '';
+    createCustomerRequest.birthDate = this.checkoutForm.value.SubsScheduleDate ? this.checkoutForm.value.SubsScheduleDate : startDate;
     createCustomerRequest.isSalesTaxExempt = false;
-    createCustomerRequest.currencyCode = 'usd';
-   createCustomerRequest.salesTaxExemptExpireDate = '';
+    createCustomerRequest.currencyCode = '';
+    createCustomerRequest.salesTaxExemptExpireDate = '';
     createCustomerRequest.payableToName = '';
-    createCustomerRequest.defaultWarehouseID = 1;
-   createCustomerRequest.sponsorKey = '';
-   createCustomerRequest.otherAddressVerified = true;
-   createCustomerRequest.mailAddressVerified = true;
-   createCustomerRequest.mainAddressVerified = true;
-   createCustomerRequest.useBinaryHoldingTank = true;
-   createCustomerRequest.binaryPlacementPreference = 0;
-   createCustomerRequest.nameSuffix = '';
-   createCustomerRequest.middleName = '';
+    createCustomerRequest.defaultWarehouseID = 0;
+    createCustomerRequest.sponsorKey = '';
+    createCustomerRequest.otherAddressVerified = true;
+    createCustomerRequest.mailAddressVerified = true;
+    createCustomerRequest.mainAddressVerified = true;
+    createCustomerRequest.useBinaryHoldingTank = true;
+    createCustomerRequest.binaryPlacementPreference = 0;
+    createCustomerRequest.nameSuffix = '';
+    createCustomerRequest.middleName = '';
     createCustomerRequest.date5 = '';
-   createCustomerRequest.date4 = '';
-   createCustomerRequest.date3 = '';
-   createCustomerRequest.date2 = '';
-   createCustomerRequest.date1 = '';
-   createCustomerRequest.taxIDType = '';
-   createCustomerRequest.checkThreshold = 0;
+    createCustomerRequest.date4 = '';
+    createCustomerRequest.date3 = '';
+    createCustomerRequest.date2 = '';
+    createCustomerRequest.date1 = '';
+    createCustomerRequest.taxIDType = '';
+    createCustomerRequest.checkThreshold = 0;
     createCustomerRequest.languageID = 0;
-   createCustomerRequest.payableType = '';
-    createCustomerRequest.entryDate = this.startDate ? this.startDate:'21-09-2021';
-   createCustomerRequest.salesTaxID = '';
-   createCustomerRequest.taxID = '';
+    createCustomerRequest.payableType = '';
+    createCustomerRequest.entryDate = this.checkoutForm.value.SubsScheduleDate ? this.checkoutForm.value.SubsScheduleDate : startDate;
+    createCustomerRequest.salesTaxID = '';
+    createCustomerRequest.taxID = '';
     createCustomerRequest.manualCustomerID = 0;
     createCustomerRequest.mainCounty = '';
-   createCustomerRequest.mainCountry = 'US';
-   createCustomerRequest.mainZip = '84062-3785';
-   createCustomerRequest.mainState = 'UT';
-   createCustomerRequest.mainCity = 'Pleasant Grove';
-   createCustomerRequest.mainAddress3 = '';
-   createCustomerRequest.mainAddress2 = '';
-   createCustomerRequest.mainAddress1 = '564 W 700 S Ste 205';
-   createCustomerRequest.notes = '';
-   createCustomerRequest.fax = '';
-   createCustomerRequest.mobilePhone = '';
-   createCustomerRequest.phone2 = '';
-   createCustomerRequest.phone = '';
-   createCustomerRequest.email = '';
-   createCustomerRequest.customerStatus = 0;
-    createCustomerRequest.customerType =0;
-   createCustomerRequest.company = '';
-   createCustomerRequest.lastName = '';
-   createCustomerRequest.firstName = '';
-   createCustomerRequest.mailAddress1 = '';
-   createCustomerRequest.mailAddress2 = '';
-   createCustomerRequest.mailAddress3 = '';
-   createCustomerRequest.mailCity = '';
-   createCustomerRequest.useManualCustomerID = false;
-   createCustomerRequest.sponsorID = 0;
-   createCustomerRequest.insertUnilevelTree = false;
-   createCustomerRequest.enrollerID = 0;
-   createCustomerRequest.insertEnrollerTree = true;
-   createCustomerRequest.loginPassword = '8979725677';
-   createCustomerRequest.loginName = 'ankchd';
-   createCustomerRequest.canLogin = true;
+    createCustomerRequest.mainCountry = '';
+    createCustomerRequest.mainZip = '';
+    createCustomerRequest.mainState = '';
+    createCustomerRequest.mainCity = '';
+    createCustomerRequest.mainAddress3 = '';
+    createCustomerRequest.mainAddress2 = '';
+    createCustomerRequest.mainAddress1 = '';
+    createCustomerRequest.notes = '';
+    createCustomerRequest.fax = '';
+    createCustomerRequest.mobilePhone = '';
+    createCustomerRequest.phone2 = '';
+    createCustomerRequest.phone = '';
+    createCustomerRequest.email = '';
+    createCustomerRequest.customerStatus = 0;
+    createCustomerRequest.customerType = 0;
+    createCustomerRequest.company = '';
+    createCustomerRequest.lastName = '';
+    createCustomerRequest.firstName = '';
+    createCustomerRequest.mailAddress1 = '';
+    createCustomerRequest.mailAddress2 = '';
+    createCustomerRequest.mailAddress3 = '';
+    createCustomerRequest.mailCity = '';
+    createCustomerRequest.useManualCustomerID = false;
+    createCustomerRequest.sponsorID = 0;
+    createCustomerRequest.insertUnilevelTree = false;
+    createCustomerRequest.enrollerID = 0;
+    createCustomerRequest.insertEnrollerTree = true;
+    createCustomerRequest.loginPassword = '';
+    createCustomerRequest.loginName = '';
+    createCustomerRequest.canLogin = true;
     createCustomerRequest.otherCounty = '';
     createCustomerRequest.enrollerKey = '';
-    createCustomerRequest.otherCountry = 'US';
-    createCustomerRequest.otherState = 'UT';
-    createCustomerRequest.otherCity = 'Pleasant Grove';
+    createCustomerRequest.otherCountry = '';
+    createCustomerRequest.otherState = '';
+    createCustomerRequest.otherCity = '';
     createCustomerRequest.otherAddress3 = '';
     createCustomerRequest.otherAddress2 = '';
-    createCustomerRequest.otherAddress1 = '564 W 700 S Ste 205';
+    createCustomerRequest.otherAddress1 = '';
     createCustomerRequest.mailCounty = '';
-    createCustomerRequest.mailCountry = 'US';
+    createCustomerRequest.mailCountry = '';
     createCustomerRequest.mailZip = '';
-    createCustomerRequest.mailState = 'UT';
+    createCustomerRequest.mailState = '';
     createCustomerRequest.otherZip = '';
     createCustomerRequest.manualCustomerKey = '';
 
@@ -503,27 +561,27 @@ let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard'
     createAutoOrderRequest.other18 = '';
     createAutoOrderRequest.other19 = '';
     createAutoOrderRequest.other20 = '';
-    createAutoOrderRequest.country = 'US';
+    createAutoOrderRequest.country = '';
     createAutoOrderRequest.description = '';
-    createAutoOrderRequest.overwriteExistingAutoOrder = false;
-    createAutoOrderRequest.existingAutoOrderID = 8694;
+    createAutoOrderRequest.overwriteExistingAutoOrder = true;
+    createAutoOrderRequest.existingAutoOrderID = 0;
     createAutoOrderRequest.details = this.orderDetails;
     createAutoOrderRequest.other16 = '';
     createAutoOrderRequest.frequency = 1;
-    createAutoOrderRequest.startDate = this.startDate ? this.startDate:'21-09-2021';
+    createAutoOrderRequest.startDate = this.checkoutForm.value.SubsScheduleDate ? this.checkoutForm.value.SubsScheduleDate : startDate;
     createAutoOrderRequest.stopDate = '';
     createAutoOrderRequest.specificDayInterval = 0;
-    createAutoOrderRequest.currencyCode = 'usd';
-    createAutoOrderRequest.warehouseID = 1;
-    createAutoOrderRequest.shipMethodID = 8;
-    createAutoOrderRequest.priceType = 4;
-    createAutoOrderRequest.processType = 0;
-    createAutoOrderRequest.firstName = 'Master';
+    createAutoOrderRequest.currencyCode = '';
+    createAutoOrderRequest.warehouseID = 0;
+    createAutoOrderRequest.shipMethodID = 0;
+    createAutoOrderRequest.priceType = 0;
+    createAutoOrderRequest.processType = '';
+    createAutoOrderRequest.firstName = firstName;
     createAutoOrderRequest.middleName = '';
-    createAutoOrderRequest.lastName = 'Account';
+    createAutoOrderRequest.lastName = lastName;
     createAutoOrderRequest.nameSuffix = '';
     createAutoOrderRequest.company = '';
-    createAutoOrderRequest.address1 = '564 W 700 S Ste 205';
+    createAutoOrderRequest.address1 = streetAddress;
     createAutoOrderRequest.address2 = '';
     createAutoOrderRequest.address3 = '';
     createAutoOrderRequest.customerKey = '';
@@ -540,21 +598,21 @@ let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard'
     chargeCreditCardTokenRequest.otherData2 = '';
     chargeCreditCardTokenRequest.otherData1 = '';
     chargeCreditCardTokenRequest.clientIPAddress = '';
-    chargeCreditCardTokenRequest.merchantWarehouseIDOverride = 1;
+    chargeCreditCardTokenRequest.merchantWarehouseIDOverride = 0;
     chargeCreditCardTokenRequest.maxAmount = 0;
     chargeCreditCardTokenRequest.otherData10 = '';
     if (this.addrnew == false) {
-      chargeCreditCardTokenRequest.billingCountry = 'US';
+      chargeCreditCardTokenRequest.billingCountry = country;
       chargeCreditCardTokenRequest.billingZip = zip;
-      chargeCreditCardTokenRequest.billingState = 'UT';
+      chargeCreditCardTokenRequest.billingState = state;
       chargeCreditCardTokenRequest.billingCity = city;
       chargeCreditCardTokenRequest.billingAddress2 = '';
       chargeCreditCardTokenRequest.billingAddress = streetAddress;
 
     } else {
-      chargeCreditCardTokenRequest.billingCountry = 'US';
+      chargeCreditCardTokenRequest.billingCountry = newCountry;
       chargeCreditCardTokenRequest.billingZip = newZip;
-      chargeCreditCardTokenRequest.billingState = 'UT'
+      chargeCreditCardTokenRequest.billingState = newState
       chargeCreditCardTokenRequest.billingCity = newCity;
       chargeCreditCardTokenRequest.billingAddress2 = '';
       chargeCreditCardTokenRequest.billingAddress = newStreetAddress;
@@ -563,13 +621,13 @@ let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard'
     chargeCreditCardTokenRequest.expirationMonth = expiryMonth;
     chargeCreditCardTokenRequest.creditCardType = 0;
     chargeCreditCardTokenRequest.cvcCode = cardCVV;
-    chargeCreditCardTokenRequest.billingCountry = 'US';
+    chargeCreditCardTokenRequest.billingCountry = newCountry;
     chargeCreditCardTokenRequest.billingZip = newZip;
-    chargeCreditCardTokenRequest.billingState = 'UT';
+    chargeCreditCardTokenRequest.billingState = newState;
     chargeCreditCardTokenRequest.billingCity = newCity;
     chargeCreditCardTokenRequest.billingAddress2 = '';
     chargeCreditCardTokenRequest.billingAddress = newStreetAddress;
-    chargeCreditCardTokenRequest.creditCardToken = 'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEIsFro6K+IUxRr4yFTOTO+kFCCEvHo7B9IOMLxah6c977oFzX\/beObH4a9OfosMHmft3JJZ6B3xpjIb8kduK4\/A==","protocolVersion":"ECv1"},{"keyValue":"MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEGnJ7Yo1sX9b4kr4Aa5uq58JRQfzD8bIJXw7WXaap\/hVE+PnFxvjx4nVxt79SdRuUVeu++HZD0cGAv4IOznc96w==';
+    chargeCreditCardTokenRequest.creditCardToken = '';
     chargeCreditCardTokenRequest.expirationYear = expiryYear;
     chargeCreditCardTokenRequest.orderKey = '';
 
@@ -577,18 +635,18 @@ let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard'
     setAccountCreditCardTokenRequest.tokenType = 0;
     setAccountCreditCardTokenRequest.movePrimaryToSecondary = true;
     setAccountCreditCardTokenRequest.hideFromWeb = true;
-    setAccountCreditCardTokenRequest.billingCountry = 'US';
+    setAccountCreditCardTokenRequest.billingCountry = newCountry;
     setAccountCreditCardTokenRequest.billingZip = newZip;
-    setAccountCreditCardTokenRequest.billingState = 'UT';
+    setAccountCreditCardTokenRequest.billingState = newState;
     setAccountCreditCardTokenRequest.billingCity = newCity;
     setAccountCreditCardTokenRequest.firstSix = '';
     setAccountCreditCardTokenRequest.billingAddress2 = '';
-    setAccountCreditCardTokenRequest.useMainAddress = false;
+    setAccountCreditCardTokenRequest.useMainAddress = true;
     setAccountCreditCardTokenRequest.billingName = '';
     setAccountCreditCardTokenRequest.creditCardType = 0;
     setAccountCreditCardTokenRequest.expirationYear = expiryYear;
     setAccountCreditCardTokenRequest.expirationMonth = expiryMonth;
-    setAccountCreditCardTokenRequest.creditCardToken = 'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEIsFro6K+IUxRr4yFTOTO+kFCCEvHo7B9IOMLxah6c977oFzX\/beObH4a9OfosMHmft3JJZ6B3xpjIb8kduK4\/A==","protocolVersion":"ECv1"},{"keyValue":"MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEGnJ7Yo1sX9b4kr4Aa5uq58JRQfzD8bIJXw7WXaap\/hVE+PnFxvjx4nVxt79SdRuUVeu++HZD0cGAv4IOznc96w==';
+    setAccountCreditCardTokenRequest.creditCardToken = '';
     setAccountCreditCardTokenRequest.creditCardAccountType = 1;
     setAccountCreditCardTokenRequest.customerID = 0;
     setAccountCreditCardTokenRequest.billingAddress = newStreetAddress;
@@ -601,7 +659,7 @@ let isMakePrimaryCard=this.checkoutForm.get(['cardFormGroup','isMakePrimaryCard'
     transactionalRequestModel.chargeCreditCardTokenRequest = chargeCreditCardTokenRequest;
     transactionalRequestModel.createAutoOrderRequest = createAutoOrderRequest;
     transactionalRequestModel.setAccountCreditCardTokenRequest = setAccountCreditCardTokenRequest;
-    debugger;
+
     this.shopService.checkOutItems(transactionalRequestModel).subscribe(
       (result: any) => {
         console.log("Result", result);

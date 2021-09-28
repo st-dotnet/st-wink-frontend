@@ -26,7 +26,7 @@ export class ProductDetailComponent implements OnInit {
   bundle: string = 'single';
   productPrice: number;
   showSubscription = false;
-  selectDelivery: CartTypeEnum = 0;
+  selectDelivery = 0;
   subscriptionModel: string = 'singleDelivery';
   quantity: any[] = [];
   delivery: any[] = [];
@@ -269,6 +269,9 @@ export class ProductDetailComponent implements OnInit {
   addToCart(product: any) {
     this.productItems = this.sessionService.getSessionObject('productCartItems');
 
+    if(this.selectDelivery == 1 && this.subscriptionModel == 'singleDelivery'){
+      return this.toastrService.error("Please select subscription plan");
+    }
     if (this.subscriptionModel == undefined) {
       this.subscriptionModel = 'singleDelivery';
     }

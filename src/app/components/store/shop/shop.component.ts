@@ -32,7 +32,7 @@ export class ShopComponent implements OnInit {
   years: any[] = [];
   showSubscription = false;
   bundle: string = 'single';
-  selectDelivery: CartTypeEnum = 0;
+  selectDelivery = 0;
   subscriptionModel: string = 'singleDelivery';
   quantityValue: number = 1;
   cartTypes: any[] = [];
@@ -151,6 +151,8 @@ export class ShopComponent implements OnInit {
   }
 
   private getDismissReason(reason: any): string {
+    this.subscriptionModel = 'singleDelivery';
+    this.selectDelivery = 0;
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -181,7 +183,10 @@ export class ShopComponent implements OnInit {
   addToCart(product: any) {
     debugger;
     this.productItems = this.sessionService.getSessionObject('productCartItems');
-    if (product.selectDelivery == 0) {
+    if(this.selectDelivery == 1 && this.subscriptionModel == 'singleDelivery'){
+      return this.toastrService.error("Please select subscription plan");
+    }
+    if (this.subscriptionModel == undefined) {
       this.subscriptionModel = 'singleDelivery';
     }
     const items = {
