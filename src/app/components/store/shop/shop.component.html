@@ -300,8 +300,9 @@
                     </svg>
                   </div>
                   <div *ngIf="showSubscription" class="form-group">
-                    <select [(ngModel)]="subscriptionModel"  [ngModelOptions]="{standalone: true}" class="form-control">
-                      <option class="dropdown-item" disabled selected value="0">Select</option>                     
+                    <select (change)="getYearValue($event.target.value)" class="form-control">
+                      <!-- <option class="dropdown-item" disabled value="undefined">Select</option>     -->
+                      <option [value]="undefined"  selected="true">Select</option>                 
                       <option *ngFor="let year of years" [value]="year.value">
                       {{year.name}}
                        </option>

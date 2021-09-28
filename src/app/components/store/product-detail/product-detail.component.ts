@@ -23,21 +23,23 @@ export class ProductDetailComponent implements OnInit {
   productItem: any[];
   bundles: any[] = [];
   cartTypes: any[] = [];
-  bundle: string = 'single';
   productPrice: number;
   showSubscription = false;
-  selectDelivery = 0;
-  subscriptionModel: string = 'singleDelivery';
   quantity: any[] = [];
   delivery: any[] = [];
   years: any[] = [];
   quantityValue: number = 1;
   itemCodeTitle: any;
+  subscriptionModelduration: string;
   toggleDisplayDivIf() {
     this.isShowDivIf = !this.isShowDivIf;
   }
   productCartItems: any[] = [];
   product: any;
+
+  bundle: string='single';
+  selectDelivery: CartTypeEnum=0;
+  subscriptionModel: string='singleDelivery';
 
   customOptions: OwlOptions = {
     loop: true,
@@ -217,6 +219,9 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.getProductDetail(this.itemCode);
+    this.bundle='single';
+    this.selectDelivery=0;
+  this.subscriptionModel='singleDelivery';
   }
 
   toggleShow() {
@@ -235,61 +240,56 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  checkDelivery(type: CartTypeEnum) {
-    debugger
-    switch (type) {
-      case CartTypeEnum.OneTimePrice:
-        this.showSubscription = false;
-        this.selectDelivery = CartTypeEnum.OneTimePrice;
-        this.subscriptionModel = 'singleDelivery';
-        break;
-      case CartTypeEnum.Subscription:
-        this.showSubscription = true;
-        this.selectDelivery = CartTypeEnum.Subscription;
-        break;
-      default:
-        break;
-    }
-  }
-
-  checkBundle(bundle: string, productPrice: any) {
+  getYearValue(event:any)
+  {
     debugger;
-    this.bundle = bundle;
-    if (bundle == "multiple") {
-      productPrice = productPrice * 2;
-      this.bundle = bundle;
-      let subscribePrice = (productPrice / 100) * 5;
-      this.productDetail.price = (productPrice - subscribePrice).toFixed(2);
-    } else {
-      this.bundle = bundle;
-      this.productDetail.price = this.productPrice;
-    }
+     this.subscriptionModelduration=event;
   }
 
   addToCart(product: any) {
+    debugger;
     this.productItems = this.sessionService.getSessionObject('productCartItems');
-
-    if(this.selectDelivery == 1 && this.subscriptionModel == 'singleDelivery'){
-      return this.toastrService.error("Please select subscription plan");
-    }
-    if (this.subscriptionModel == undefined) {
-      this.subscriptionModel = 'singleDelivery';
+    if(this.selectDelivery==1)
+    {
+      this.subscriptionModel=this.subscriptionModelduration;
     }
     const items = {
       bundle: this.bundle,
       selectDelivery: this.selectDelivery,
       subscriptionModel: this.subscriptionModel,
       quantityModel: +this.quantityValue,
-      calculatedPrice: 0,
-      afterDiscountPrice: 0,
+      Price: 0,
       discount: 0,
-      quantityLimit: 4,
+      quantityLimit: 4, 
       isDisabled:null
     }
     Object.entries(items).forEach(([key, value]) => { product[key] = value });
-    debugger;
+    //No percentage calculation
+    if (product.bundle == 'single' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
+      product.Price = product.price; 
+    }
+    // 15% calulation
+    if (product.bundle == 'single' && product.selectDelivery == 1 && product.subscriptionModel !== 'singleDelivery') {
+      product.Price = product.price;
+    }
+    //5% calculation
+    if (product.bundle == 'multiple' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
+      let itemPrice = product.price;
+      itemPrice=itemPrice*2;
+      let discountper5 = (itemPrice * 5) / 100;
+      itemPrice = itemPrice - discountper5;
+      product.Price = itemPrice;
+    }
+    //5% cal
+    if (product.bundle == 'multiple' && product.selectDelivery == 1 && product.subscriptionModel !== 'singleDelivery') {
+      let itemPrice = product.price;
+      itemPrice=itemPrice*2;
+      let discountper5 = (itemPrice * 5) / 100;
+      product.Price = itemPrice-discountper5; 
+    }
+
     if (this.productItems) {
-      //this.productItem=this.productItems.find(item => item.itemCode == product.itemCode)
+      //No percentage calucation
       if (product.bundle == 'single' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
         let single_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 0 && x.subscriptionModel == 'singleDelivery')
         let old_single_singledelivery = single_singledelivery;
@@ -306,14 +306,17 @@ export class ProductDetailComponent implements OnInit {
           }
           else {
             this.productItems.push(product);
-            this.toastrService.success('Product added successfully');            
+            this.toastrService.success('Product added successfully');
+           
           }
         }
         else {
           this.productItems.push(product);
-          this.toastrService.success('Product added successfully');        }
+          this.toastrService.success('Product added successfully');
+         
+        }
       }
-
+      // 15% calulation
       if (product.bundle == 'single' && product.selectDelivery == 1 && product.subscriptionModel !== 'singleDelivery') {
         let single_subscriptiondelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 1 && x.subscriptionModel == product.subscriptionModel)
         let old_single_subscriptiondelivery = single_subscriptiondelivery;
@@ -331,13 +334,16 @@ export class ProductDetailComponent implements OnInit {
           else {
             this.productItems.push(product);
             this.toastrService.success('Product added successfully');
+          
           }
         }
         else {
           this.productItems.push(product);
           this.toastrService.success('Product added successfully');
+         
         }
       }
+      //5% calculation 
       if (product.bundle == 'multiple' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
         let multiple_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'multiple' && x.selectDelivery == 0 && x.subscriptionModel == 'singleDelivery')
         let old_multiple_singledelivery = multiple_singledelivery;
@@ -355,13 +361,16 @@ export class ProductDetailComponent implements OnInit {
           else {
             this.productItems.push(product);
             this.toastrService.success('Product added successfully');
+           
           }
         }
         else {
           this.productItems.push(product);
           this.toastrService.success('Product added successfully');
+         
         }
       }
+      //5% cal + 15 % cal
       if (product.bundle == 'multiple' && product.selectDelivery == 1 && product.subscriptionModel !== 'singleDelivery') {
         let multiple_subscriptiondelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'multiple' && x.selectDelivery == 1 && x.subscriptionModel == product.subscriptionModel)
         let old_multiple_subscriptiondelivery = multiple_subscriptiondelivery;
@@ -379,22 +388,58 @@ export class ProductDetailComponent implements OnInit {
           else {
             this.productItems.push(product);
             this.toastrService.success('Product added successfully');
+            
           }
         }
         else {
           this.productItems.push(product);
           this.toastrService.success('Product added successfully');
+          
         }
       }
       this.sessionService.cartSession(this.productItems);
       this.sessionService.setSessionObject('productCartItems', this.productItems);
     }
     else {
-      Object.entries(items).forEach(([key, value]) => { product[key] = value });
+      // Object.entries(items).forEach(([key, value]) => { product[key] = value });
       this.productCartItems.push(product);
       this.sessionService.cartSession(this.productCartItems);
       this.sessionService.setSessionObject('productCartItems', this.productCartItems);
       this.toastrService.success('Product added successfully');
+     
+    }
+
+  }
+
+  checkBundle(bundle: string, productPrice: any) {
+    this.bundle = bundle;
+    // if (bundle == "multiple") {
+    //   // productPrice = productPrice * 2;
+    //   this.bundle = bundle;
+    //   // let subscribePrice = (productPrice / 100) * 5;
+    //   //productPrice = (productPrice - subscribePrice).toFixed(2);
+    //   //  this.product.Price=productPrice;
+    //   // console.log(productPrice)
+    // } else {
+    //   this.bundle = bundle;
+    //   // productPrice = this.productPrice;
+    //   //  this.product.Price=productPrice;
+    // }
+  }
+
+  checkDelivery(type: CartTypeEnum) {
+    debugger;
+    switch (type) {
+      case CartTypeEnum.OneTimePrice:
+        this.showSubscription = false; 
+        this.selectDelivery = CartTypeEnum.OneTimePrice;
+        break;
+      case CartTypeEnum.Subscription:
+        this.showSubscription = true;
+        this.selectDelivery = CartTypeEnum.Subscription;
+        break;
+      default:
+        break;
     }
   }
 

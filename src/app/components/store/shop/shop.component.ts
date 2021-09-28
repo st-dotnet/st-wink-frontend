@@ -26,14 +26,12 @@ export class ShopComponent implements OnInit {
   productItems: any[] = [];
   productItem: any;
   bundles: any[] = [];
-  
+
   delivery: any[] = [];
   quantity: any[] = [];
   years: any[] = [];
   showSubscription = false;
-  bundle: string = 'single';
-  selectDelivery = 0;
-  subscriptionModel: string = 'singleDelivery';
+
   quantityValue: number = 1;
   cartTypes: any[] = [];
   productPrice: number = 0;
@@ -43,6 +41,12 @@ export class ShopComponent implements OnInit {
     backdropClass: 'customBackdrop',
     windowClass: 'prodview-modal'
   };
+
+  bundle: string;
+  selectDelivery: CartTypeEnum;
+  subscriptionModel: string;
+
+  subscriptionModelduration: string;
 
   constructor(
     private sessionService: SessionService,
@@ -118,6 +122,9 @@ export class ShopComponent implements OnInit {
   ngOnInit(): void {
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.GetDDLCategoryById();
+    this.bundle = 'single';
+    this.selectDelivery = 0;
+    this.subscriptionModel = 'singleDelivery';
   }
 
   GetDDLCategoryById() {
@@ -143,6 +150,9 @@ export class ShopComponent implements OnInit {
     this.product = product;
     this.productPrice = product.price;
     this.showSubscription = false;
+    this.bundle = 'single';
+    this.selectDelivery = 0;
+    this.subscriptionModel = 'singleDelivery';
     this.modalService.open(content, this.modalOptions).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -151,8 +161,6 @@ export class ShopComponent implements OnInit {
   }
 
   private getDismissReason(reason: any): string {
-    this.subscriptionModel = 'singleDelivery';
-    this.selectDelivery = 0;
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -179,15 +187,16 @@ export class ShopComponent implements OnInit {
     this.modalService.dismissAll();
     this.router.navigate(['/store/product', product.itemCode]);
   }
+  getYearValue(event: any) {
+    debugger;
+    this.subscriptionModelduration = event;
+  }
 
   addToCart(product: any) {
     debugger;
     this.productItems = this.sessionService.getSessionObject('productCartItems');
-    if(this.selectDelivery == 1 && this.subscriptionModel == 'singleDelivery'){
-      return this.toastrService.error("Please select subscription plan");
-    }
-    if (this.subscriptionModel == undefined) {
-      this.subscriptionModel = 'singleDelivery';
+    if (this.selectDelivery == 1) {
+      this.subscriptionModel = this.subscriptionModelduration;
     }
     const items = {
       bundle: this.bundle,
@@ -196,13 +205,13 @@ export class ShopComponent implements OnInit {
       quantityModel: +this.quantityValue,
       Price: 0,
       discount: 0,
-      quantityLimit: 4, 
-      isDisabled:null
+      quantityLimit: 4,
+      isDisabled: null
     }
     Object.entries(items).forEach(([key, value]) => { product[key] = value });
     //No percentage calculation
     if (product.bundle == 'single' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
-      product.Price = product.price; 
+      product.Price = product.price;
     }
     // 15% calulation
     if (product.bundle == 'single' && product.selectDelivery == 1 && product.subscriptionModel !== 'singleDelivery') {
@@ -211,7 +220,7 @@ export class ShopComponent implements OnInit {
     //5% calculation
     if (product.bundle == 'multiple' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
       let itemPrice = product.price;
-      itemPrice=itemPrice*2;
+      itemPrice = itemPrice * 2;
       let discountper5 = (itemPrice * 5) / 100;
       itemPrice = itemPrice - discountper5;
       product.Price = itemPrice;
@@ -219,9 +228,9 @@ export class ShopComponent implements OnInit {
     //5% cal
     if (product.bundle == 'multiple' && product.selectDelivery == 1 && product.subscriptionModel !== 'singleDelivery') {
       let itemPrice = product.price;
-      itemPrice=itemPrice*2;
+      itemPrice = itemPrice * 2;
       let discountper5 = (itemPrice * 5) / 100;
-      product.Price = itemPrice-discountper5; 
+      product.Price = itemPrice - discountper5;
     }
 
     if (this.productItems) {
@@ -366,7 +375,7 @@ export class ShopComponent implements OnInit {
     debugger;
     switch (type) {
       case CartTypeEnum.OneTimePrice:
-        this.showSubscription = false; 
+        this.showSubscription = false;
         this.selectDelivery = CartTypeEnum.OneTimePrice;
         break;
       case CartTypeEnum.Subscription:

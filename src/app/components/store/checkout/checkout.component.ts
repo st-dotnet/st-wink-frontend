@@ -219,12 +219,12 @@ export class CheckoutComponent implements OnInit {
   }
 
   cartCalculation() {
-    this.totalDiscount = 0;
     this.orderTotal=0;
     this.subtotalOneTimePrice=0;
     this.subTotalSubscriptionPrice=0;
     this.discount15Percent=0;
-    this.subTotalSubscriptionPriceAfterDiscount =0;
+    this.subTotalSubscriptionPriceAfterDiscount=0;
+    this.totalDiscount=0;
     this.cartSummaryTotal=0;
     debugger;
     this.orderTotal = this.getOrderTotal();
@@ -261,6 +261,14 @@ export class CheckoutComponent implements OnInit {
     let Temp = 0;
     for (var i = 0; i <= this.cartItems.length - 1; i++) {
       multiplyprice = parseFloat(this.cartItems[i].price) * this.cartItems[i].quantityModel;
+      if(this.cartItems[i].bundle=='multiple')
+      {
+        multiplyprice=parseFloat(this.cartItems[i].price) * 2;
+        multiplyprice = multiplyprice * this.cartItems[i].quantityModel;
+      }
+      else{
+        multiplyprice = parseFloat(this.cartItems[i].price) * this.cartItems[i].quantityModel;
+      }    
       Temp = Temp + multiplyprice;
     }
     return +Temp;
