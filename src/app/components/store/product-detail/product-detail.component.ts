@@ -249,6 +249,9 @@ export class ProductDetailComponent implements OnInit {
   addToCart(product: any) {
     debugger;
     this.productItems = this.sessionService.getSessionObject('productCartItems');
+    if(this.selectDelivery == 1 && this.subscriptionModelduration == undefined){
+      return this.toastrService.error("Please select the subscription plan");
+      }
     if(this.selectDelivery==1)
     {
       this.subscriptionModel=this.subscriptionModelduration;

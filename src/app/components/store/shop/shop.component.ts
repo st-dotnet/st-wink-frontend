@@ -26,12 +26,10 @@ export class ShopComponent implements OnInit {
   productItems: any[] = [];
   productItem: any;
   bundles: any[] = [];
-
   delivery: any[] = [];
   quantity: any[] = [];
   years: any[] = [];
   showSubscription = false;
-
   quantityValue: number = 1;
   cartTypes: any[] = [];
   productPrice: number = 0;
@@ -41,11 +39,9 @@ export class ShopComponent implements OnInit {
     backdropClass: 'customBackdrop',
     windowClass: 'prodview-modal'
   };
-
   bundle: string;
-  selectDelivery: CartTypeEnum;
+  selectDelivery: CartTypeEnum =0;
   subscriptionModel: string;
-
   subscriptionModelduration: string;
 
   constructor(
@@ -187,6 +183,7 @@ export class ShopComponent implements OnInit {
     this.modalService.dismissAll();
     this.router.navigate(['/store/product', product.itemCode]);
   }
+
   getYearValue(event: any) {
     debugger;
     this.subscriptionModelduration = event;
@@ -195,6 +192,9 @@ export class ShopComponent implements OnInit {
   addToCart(product: any) {
     debugger;
     this.productItems = this.sessionService.getSessionObject('productCartItems');
+    if(this.selectDelivery == 1 && this.subscriptionModelduration == undefined){
+      return this.toastrService.error("Please select the subscription plan");
+      }
     if (this.selectDelivery == 1) {
       this.subscriptionModel = this.subscriptionModelduration;
     }

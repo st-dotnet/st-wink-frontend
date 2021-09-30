@@ -3,7 +3,7 @@
 
 
 section.products {
-  padding: 70px 10px;
+  padding:0px 10px 30px;
 }
 
 section.products h3 {
@@ -298,7 +298,47 @@ a.btn-add:hover {
   color: #1cb1c5 !important;
 }
 
+section.search-header {
+  padding: 60px 0 20px 0;
+}
 
+section.search-header .searchOption-inner {
+  position: relative;
+  max-width: 350px;
+  float: right;
+  width: 100%;
+}
+
+section.search-header .searchOption-inner button.search-ico {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  color: #acacac;
+}
+
+section.search-header .searchOption-inner input {
+  height: 45px;
+  padding-right: 35px;
+}
+
+.head-search {
+  width: 60%;
+  float: left;
+}
+
+.head-search h4 {
+  font-size: 30px;
+  font-family: 'g-demibold';
+}
+
+.header-searchbar {
+  width: 100%;
+  float: left;
+  border-bottom: 1px solid #e3e3e3;
+  padding-bottom: 18px;
+}
 
 /* MEDIA */
 @media (max-width:1366px)

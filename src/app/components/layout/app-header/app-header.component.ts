@@ -55,7 +55,7 @@ export class AppHeaderComponent implements OnInit {
 
   searchProduct(){ 
     debugger
-    this.sessionService.setSessionItem("searchItem", this.searchText);
+    //this.sessionService.setSessionItem("searchItem", this.searchText);
     debugger
     this.router.navigate(["/store/search-products"]);
 

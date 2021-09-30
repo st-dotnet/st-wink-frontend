@@ -70,8 +70,7 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     debugger
     this.spinner.show();
-    this.getSpecialItem();
-  
+    this.getSpecialItem();  
     // this.promocode_onetime=this.sessionService.getSessionItem('promoCode');
     // if(this.promocode_onetime!=="null" && this.promocode_onetime !==undefined)
     // {
@@ -80,8 +79,7 @@ export class CartComponent implements OnInit {
     // else{
     //   this.promocode_onetime='';
     // }
-    this.onLoad();
-  
+    this.onLoad();  
   }
 
   onLoad()
@@ -131,8 +129,7 @@ export class CartComponent implements OnInit {
         this.toastrService.error(this.promoItem.errorMessage);
         this.spinner.hide();
       }
-    })
-   
+    })   
   }
 
   getSpecialItem() {
