@@ -38,7 +38,7 @@ export class ForgotPasswordComponent implements OnInit {
     });
     console.log("CustomerId", this.customerId);
     this.resetPasswordForm = this.formBuilder.group({
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]]
     }, {
       validator: MustMatch('password', 'confirmPassword')
@@ -71,7 +71,7 @@ export class ForgotPasswordComponent implements OnInit {
           debugger
           if (result) {
             this.spinner.hide();
-            this.toastrService.success('Password reset succesfully');
+            this.toastrService.success('Password reset successfully');
             this.router.navigate(['/sign-in']);
           }
           this.spinner.hide();

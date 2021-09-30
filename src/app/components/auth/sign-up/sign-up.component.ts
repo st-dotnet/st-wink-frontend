@@ -40,7 +40,7 @@ export class SignUpComponent implements OnInit {
       {
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
-        username: ['', Validators.required],
+        userName: ['', Validators.required],
         emailAddress: [
           '',
           [
@@ -98,7 +98,7 @@ export class SignUpComponent implements OnInit {
       mobilePhone: this.f.phoneNumber.value ? this.f.phoneNumber.value : '',
       canLogin: true,
       email: this.f.emailAddress.value ? this.f.emailAddress.value : '',
-      loginName: this.f.username.value,
+      loginName: this.f.userName.value,
       loginPassword: this.f.confirmPassword.value
         ? this.f.confirmPassword.value
         : '',
@@ -126,11 +126,14 @@ export class SignUpComponent implements OnInit {
             this.router.navigate(["/store/checkout"]);
               this.spinner.hide();  
                 }, 1000);
-          }else{
-            this.router.navigate([''], { relativeTo: this.route }) ;            
+          }else if(res.errorMessage != null && res.errorMessage != ""){
+            this.toastrService.error(res.errorMessage);
+          }else
+          {
+            this.router.navigate([''], { relativeTo: this.route }) ;  
+            this.toastrService.success('User registration successfully');          
              this.spinner.hide();  
-          }                            
-          this.toastrService.success('User registration successfully');
+          } 
           // this.toastrService.success('Please check your email in order to verify the registration');
           this.spinner.hide();
         },
@@ -149,18 +152,24 @@ export class SignUpComponent implements OnInit {
   }
 
   emailVerify(type:any){
+    
     const emailModel ={
-      userName : this.f.username.value,
+      userName : this.f.userName.value,
       email : this.f.emailAddress.value
     }
+    this.spinner.show();
     this.accountService
       .emailVerify(emailModel)
       .pipe(first())
       .subscribe({
         next: (result:any) => {
-          debugger         
-          if(result){
-            this.toastrService.error(`${type} Already existed`);
+          if(result){           
+            if(type=="Email"){
+              this.form.get("emailAddress").setValue("");            
+            }else{
+              this.form.get("userName").setValue("");
+            }   
+            this.toastrService.error(`${type} Already existed`);           
            } 
           this.spinner.hide();
         },
