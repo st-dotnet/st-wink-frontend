@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartTypeEnum } from '@app/_models/cart-type-enum';
-import { ChargeCreditCardTokenRequest, CreateAutoOrderRequest, CreateCustomerRequest, CreateOrderRequest, OrderDetailRequest, SetAccountCreditCardTokenRequest, TransactionalRequestModel } from '@app/_models/checkout';
+import { ChargeCreditCardTokenRequest, CreateAutoOrderRequest, CreateCustomerRequest, CreateOrderRequest, OrderDetailRequest, SetAccountCreditCardTokenRequest } from '@app/_models/checkout';
 import { SessionService } from '@app/_services';
 import { ShopService } from '@app/_services/shop.service';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import {TransactionalRequestModel} from 'src/app/_models/checkout';
 
 @Component({
   selector: 'app-checkout',
@@ -38,6 +39,7 @@ export class CheckoutComponent implements OnInit {
   startDate: any;
   paramsProductPrice: any;
   promocode_onetime: string;
+
 
 
 
@@ -365,6 +367,7 @@ export class CheckoutComponent implements OnInit {
     else {
       startDate = new Date(this.startDate);
     }
+    
 
     let firstName = this.checkoutForm.get(['shippingAddressFormGroup', 'firstName']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'firstName']).value : '';
     let lastName = this.checkoutForm.get(['shippingAddressFormGroup', 'lastName']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'lastName']).value : '';
@@ -385,6 +388,7 @@ export class CheckoutComponent implements OnInit {
     let cardCVV = this.checkoutForm.get(['cardFormGroup', 'cardCVV']).value ? this.checkoutForm.get(['cardFormGroup', 'cardCVV']).value : 0;
     let isMakePrimaryCard = this.checkoutForm.get(['cardFormGroup', 'isMakePrimaryCard']).value ? this.checkoutForm.get(['cardFormGroup', 'isMakePrimaryCard']).value : '';
     this.spinner.show();
+
     this.cartItems.forEach(element => {
       this.orderDetails.push({
         descriptionOverride: '',
