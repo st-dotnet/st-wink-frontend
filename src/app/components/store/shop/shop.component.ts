@@ -43,6 +43,9 @@ export class ShopComponent implements OnInit {
   selectDelivery: CartTypeEnum =0;
   subscriptionModel: string;
   subscriptionModelduration: string;
+  showAgePopUp = false;
+  reProduct: any;
+  categoryTitle: any[]=[];
 
   constructor(
     private sessionService: SessionService,
@@ -127,34 +130,53 @@ export class ShopComponent implements OnInit {
     this.spinner.show();
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
       this.categoryModels = result;
+      this.categoryModels.forEach(element => {
+        this.categoryTitle.push({
+          webCategoryID : element.webCategoryID,
+          webCategoryDescription : element.webCategoryDescription
+        });
+      }); 
       var data = this.categoryModels.filter(x => x.webCategoryDescription.toString() === "All Products");
       this.categoryId = data[0]?.webCategoryID;
-
       this.GetProductsList(this.categoryId, this.filterValue);
     })
   }
 
   onCategoryChange(e: Event) {
-    debugger
+    debugger  
+    this.showAgePopUp = false;  
     this.spinner.show();
     this.categoryId = Number((e.target as HTMLInputElement)?.value);
+    if(this.categoryId == 39){
+      this.showAgePopUp = true;
+    }
     this.GetProductsList(this.categoryId, this.filterValue);
   }
 
-  open(content: any, product: any) {
+  open(content: any, product: any, adultCheck:any) {
     //this.bundle = 'single';
-    this.product = product;
-    this.productPrice = product.price;
-    this.showSubscription = false;
-    this.bundle = 'single';
-    this.selectDelivery = 0;
-    this.subscriptionModel = 'singleDelivery';
-    this.modalService.open(content, this.modalOptions).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    if(this.showAgePopUp == true){
+      this.reProduct=product;
+      this.modalService.open(adultCheck, this.modalOptions).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }else{
+      this.product = product;
+      this.productPrice = product.price;
+      this.showSubscription = false;
+      this.bundle = 'single';
+      this.selectDelivery = 0;
+      this.subscriptionModel = 'singleDelivery';
+      this.modalService.open(content, this.modalOptions).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }   
   }
+
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -175,6 +197,18 @@ export class ShopComponent implements OnInit {
     })
   }
 
+  closeModal(){
+    debugger   
+    this.modalService.dismissAll();
+  }
+
+  nextToMove(content: any){
+    debugger 
+    this.showAgePopUp = false;
+    this.open(content, this.reProduct, ""); 
+    this.showAgePopUp = true;    
+    //this.modalService.dismissAll();
+  }
   getImage(imageName: string) {
     return `${environment.productImageApiUrl}${imageName}`;
   }

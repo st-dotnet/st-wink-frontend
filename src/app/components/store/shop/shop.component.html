@@ -63,18 +63,19 @@
     <div class="row mt-5 prod-wrapp">
       <div
         class="col-md-3 prod-list-item"
-        *ngFor="let product of shopProductModels"
-      >
+        *ngFor="let product of shopProductModels">
         <div class="card">
           <!-- <img src="../../assets/products-sample.png" class="card-img-top" alt="products-sample"> -->
           <!-- <img [src]="'data:image/jpg;base64,'+data.productImage.fileContents" class="card-img-top" alt="products-sample"/> -->
-          <img
+          <a (click)="RedirectToProduct(product)"><img
             [src]="product.image_03"
             class="card-img-top"
             alt="products-sample"
-          />
+          /></a>
           <div class="card-body">
+            
             <div class="product-details">
+              <a  (click)="RedirectToProduct(product)">
               <h5 class="card-title">{{ product.itemDescription }}</h5>
               <h6 class="small">Perfect for ages 3+</h6>
               <div class="reviews-product">
@@ -90,8 +91,9 @@
               <div class="prod-price">
                 <span class="price-value">${{ product.price }}</span>
               </div>
+              </a>
               <span class="more-info">
-                <a (click)="open(produt_view, product)" class="btn btn-add"
+                <a (click)="open(produt_view, product,adult_check)" class="btn btn-add"
                   ><i class="fas fa-plus"></i
                 ></a>
               </span>
@@ -334,5 +336,21 @@
         </div>
       </div>
     </form>
+  </div>
+</ng-template>
+
+<ng-template #adult_check let-modal>
+  <div class="model-proo">
+    <div class="modal-body">
+      <div class="header18">
+        <h3>Are you over 18?</h3>
+      </div>
+      <div class="content18plus">
+        <div class="btn-same18">
+          <button class="btn btn-no" (click)="closeModal()">NO</button>
+          <button class="btn btn-yes" (click)="modal.dismiss('Cross click');nextToMove(produt_view)">YES</button>
+      </div>
+    </div>
+  </div>
   </div>
 </ng-template>
