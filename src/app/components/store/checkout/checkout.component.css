@@ -411,3 +411,23 @@ ul.conv-products.mk-primary label.custom-control-label {
     font-family: 'g-demibold';
     font-size: 16px;
 }
+
+.saveprocessed {
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+
+.saveprocessed button {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    background-color: #1cb1c5;
+    border-radius: 40px;
+    padding: 10px 10px;
+    font-family: 'g-regular';
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    border: 1px solid #1cb1c5;
+}
