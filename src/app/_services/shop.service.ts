@@ -42,4 +42,11 @@ export class ShopService {
   getSpecialItem() {
     return this.http.get<any>(`${environment.apiUrl}${this.shopEndpoint}GetSpecialItem`);
   }
+
+  postAddress(customerId:number,addressParam:any)
+  {
+    const headers = { 'content-type': 'application/json'}  
+    debugger;
+    return this.http.post<any[]>(`${environment.apiUrl}${this.shopEndpoint}AddUpdateCustomerAddress/${customerId}`,addressParam);
+  }
 }
