@@ -5,8 +5,7 @@ import { ShopService } from '@app/_services/shop.service';
 import { CategoryModel, ShopProductModel } from '@app/_models/shop';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from '@environments/environment';
-import { Router } from '@angular/router';
-import { param } from 'jquery';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CartTypeEnum } from '@app/_models/cart-type-enum';
 @Component({
@@ -40,18 +39,20 @@ export class ShopComponent implements OnInit {
     windowClass: 'prodview-modal'
   };
   bundle: string;
-  selectDelivery: CartTypeEnum =0;
+  selectDelivery: CartTypeEnum = 0;
   subscriptionModel: string;
   subscriptionModelduration: string;
   showAgePopUp = false;
   reProduct: any;
-  categoryTitle: any[]=[];
-
+  categoryTitle: any[] = [];
+  type: any = null;
+  category: any;
   constructor(
     private sessionService: SessionService,
     private modalService: NgbModal, private shopService: ShopService,
     private spinner: NgxSpinnerService, private router: Router,
-    private toastrService: ToastrService) {
+    private toastrService: ToastrService,
+    private route: ActivatedRoute,) {
     this.sessionService.scrollToTop();
     this.bundles = [
       {
@@ -120,49 +121,81 @@ export class ShopComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
-    this.GetDDLCategoryById();
-    this.bundle = 'single';
-    this.selectDelivery = 0;
-    this.subscriptionModel = 'singleDelivery';
+    this.route.params.subscribe(params => {
+      if (params['type']) {
+        const type = params['type'];
+        this.type = type.replace(new RegExp('-', 'g'), ' ');
+      }
+      if (this.type != null) {
+        this.getAllCategoryById();
+      } else {
+        this.GetDDLCategoryById();
+      }
+      this.bundle = 'single';
+      this.selectDelivery = 0;
+      this.subscriptionModel = 'singleDelivery';
+    });
   }
 
-  GetDDLCategoryById() {
+  getAllCategoryById() {
+    debugger
     this.spinner.show();
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
       this.categoryModels = result;
       this.categoryModels.forEach(element => {
         this.categoryTitle.push({
-          webCategoryID : element.webCategoryID,
-          webCategoryDescription : element.webCategoryDescription
+          webCategoryID: element.webCategoryID,
+          webCategoryDescription: element.webCategoryDescription
         });
-      }); 
+      });     
+      const category = this.categoryModels.find(x=> x.webCategoryDescription == this.type);
+      this.category = category != null ? category.webCategoryID : 0;
+      this.shopService.GetProductsList(this.category , this.filterValue).subscribe(result => {
+        this.shopProductModels = result;
+        this.spinner.hide();
+      });
+    })
+  }
+
+  GetDDLCategoryById() {
+    debugger
+    this.spinner.show();
+    this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
+      this.categoryModels = result;
+      this.categoryModels.forEach(element => {
+        this.categoryTitle.push({
+          webCategoryID: element.webCategoryID,
+          webCategoryDescription: element.webCategoryDescription
+        });
+      });
       var data = this.categoryModels.filter(x => x.webCategoryDescription.toString() === "All Products");
       this.categoryId = data[0]?.webCategoryID;
+      this.category = this.type != null ? parseInt(this.type) : this.categoryId;
       this.GetProductsList(this.categoryId, this.filterValue);
     })
   }
 
-  onCategoryChange(e: Event) {
-    debugger  
-    this.showAgePopUp = false;  
-    this.spinner.show();
-    this.categoryId = Number((e.target as HTMLInputElement)?.value);
-    if(this.categoryId == 39){
+  onCategoryChange() {
+    this.showAgePopUp = false;
+    this.categoryId = this.category;
+    if (this.categoryId == 39) {
       this.showAgePopUp = true;
     }
-    this.GetProductsList(this.categoryId, this.filterValue);
+    const category = this.categoryModels.find(x => x.webCategoryID == this.categoryId);
+    const categoryName = category.webCategoryDescription.replace(new RegExp(' ', 'g'), '-');   
+    this.router.navigate([`store/products/${categoryName}`])
   }
 
-  open(content: any, product: any, adultCheck:any) {
+  open(content: any, product: any, adultCheck: any) {
     //this.bundle = 'single';
-    if(this.showAgePopUp == true){
-      this.reProduct=product;
+    if (this.showAgePopUp == true) {
+      this.reProduct = product;
       this.modalService.open(adultCheck, this.modalOptions).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
-    }else{
+    } else {
       this.product = product;
       this.productPrice = product.price;
       this.showSubscription = false;
@@ -174,7 +207,7 @@ export class ShopComponent implements OnInit {
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
-    }   
+    }
   }
 
 
@@ -197,18 +230,19 @@ export class ShopComponent implements OnInit {
     })
   }
 
-  closeModal(){
-    debugger   
+  closeModal() {
+    debugger
     this.modalService.dismissAll();
   }
 
-  nextToMove(content: any){
-    debugger 
+  nextToMove(content: any) {
+    debugger
     this.showAgePopUp = false;
-    this.open(content, this.reProduct, ""); 
-    this.showAgePopUp = true;    
+    this.open(content, this.reProduct, "");
+    this.showAgePopUp = true;
     //this.modalService.dismissAll();
   }
+
   getImage(imageName: string) {
     return `${environment.productImageApiUrl}${imageName}`;
   }
@@ -226,9 +260,9 @@ export class ShopComponent implements OnInit {
   addToCart(product: any) {
     debugger;
     this.productItems = this.sessionService.getSessionObject('productCartItems');
-    if(this.selectDelivery == 1 && this.subscriptionModelduration == undefined){
+    if (this.selectDelivery == 1 && this.subscriptionModelduration == undefined) {
       return this.toastrService.error("Please select the subscription plan");
-      }
+    }
     if (this.selectDelivery == 1) {
       this.subscriptionModel = this.subscriptionModelduration;
     }
@@ -390,19 +424,7 @@ export class ShopComponent implements OnInit {
   }
 
   checkBundle(bundle: string, productPrice: any) {
-    this.bundle = bundle;
-    // if (bundle == "multiple") {
-    //   // productPrice = productPrice * 2;
-    //   this.bundle = bundle;
-    //   // let subscribePrice = (productPrice / 100) * 5;
-    //   //productPrice = (productPrice - subscribePrice).toFixed(2);
-    //   //  this.product.Price=productPrice;
-    //   // console.log(productPrice)
-    // } else {
-    //   this.bundle = bundle;
-    //   // productPrice = this.productPrice;
-    //   //  this.product.Price=productPrice;
-    // }
+    this.bundle = bundle;   
   }
 
   checkDelivery(type: CartTypeEnum) {

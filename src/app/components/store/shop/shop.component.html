@@ -10,11 +10,10 @@
     <form class="form-inline">
       <div class="form-group">
         <i class="fas fa-caret-down"></i>
-        <select class="custom-select" (change)="onCategoryChange($event)">
+        <select class="custom-select" [(ngModel)]="category" [ngModelOptions]="{standalone: true}" (change)="onCategoryChange()">
           <option
             *ngFor="let category of categoryModels"
-            [value]="category.webCategoryID"
-          >
+            [value]="category.webCategoryID">
             {{ category.webCategoryDescription }}
           </option>
         </select>
@@ -104,7 +103,7 @@
     </div>
   </div>
 </section>
-<!--- SHop MOdal --->
+<!--- Shop Modal --->
 <ng-template #produt_view let-modal>
   <div class="model-productview">
     <form>

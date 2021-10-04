@@ -143,6 +143,8 @@ export class SearchproductComponent implements OnInit {
     });
   }
 
+  
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -299,7 +301,7 @@ export class SearchproductComponent implements OnInit {
           }
           product.quantityModel = multiple_subscriptiondelivery.quantityModel + +product.quantityModel;
 
-          if (product.quantityModel > product.quantityLimit) {
+          if(product.quantityModel > product.quantityLimit) {
             this.productItems.push(old_multiple_subscriptiondelivery);
             this.toastrService.error('You Exceed your Quantity Limit 4');
           }
