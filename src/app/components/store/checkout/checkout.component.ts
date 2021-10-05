@@ -65,10 +65,15 @@ export class CheckoutComponent implements OnInit {
   customerId: number;
   newAddress: any;
 
+  showPanel1 = false;
+  showPanel2 = true;
+  showPanel3 = true;
+
 
 
   DisplayAddress: any;
   enablebtn: boolean;
+
 
   //Shipping Address Variables
   firstName: string;
@@ -82,14 +87,24 @@ export class CheckoutComponent implements OnInit {
   shippingAddressParam: any;
 
   //Card Information Variables
-  isCardType:number;
+  isCardType: number;
   //if card type 2 means new card details
-  cardName:string;
-  cardNumber:number;
-  expiryMonth:number;
-  expiryYear:number;
-  cardCVV:number;
-  isCardDisabled: boolean=true;
+  cardName: string;
+  cardNumber: number;
+  expiryMonth: number;
+  expiryYear: number;
+  cardCVV: number;
+  isCardDisabled: boolean = true;
+  isMakePrimaryCard: boolean = false;
+  paymentParam: any;
+  // New Billing Address
+  billingAddress: any;
+  newStreetAddress: string;
+  newCity: string;
+  newState: string;
+  newZip: number;
+  newCountry: string;
+
 
   constructor(private modalService: NgbModal,
     private shopService: ShopService,
@@ -99,10 +114,12 @@ export class CheckoutComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private toastrService: ToastrService,) {
     this.minDate.setDate(this.minDate.getDate() + 1);
+
   }
 
   ngOnInit(): void {
     debugger;
+
     this.UserDetails = JSON.parse(localStorage.getItem('user'));
     this.customerId = this.UserDetails.customerId;
     this.totalDiscount = 0;
@@ -116,16 +133,17 @@ export class CheckoutComponent implements OnInit {
     this.subscriptionTotalPrice = this.sessionService.getSessionObject('subscriptionTotal');
     this.unSubscriptionTotalPrice = this.sessionService.getSessionObject('unSubscriptionTotal');
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
-    this.newAddress = JSON.parse(localStorage.getItem('newShippingAddress'));
-    if (this.newAddress != '' || this.newAddress != undefined || this.newAddress != null) {
-      this.DisplayAddress = this.newAddress?.address1 + ' ' + this.newAddress?.city + ' ' + this.newAddress?.state + ' ' + this.newAddress?.zip + ' ' + this.newAddress?.country;
+    this.newAddress = JSON.parse(localStorage.getItem('newShippingAddress')) ? JSON.parse(localStorage.getItem('newShippingAddress')) : "";
+    if (this.newAddress != "" || this.newAddress != undefined || this.newAddress != null) {
+      this.DisplayAddress = this.newAddress?.addressDisplay + ' ' + this.newAddress?.streetAddress + ' ' + this.newAddress?.city + ' ' + this.newAddress?.state + ' ' + this.newAddress?.zip + ' ' + this.newAddress?.country;
       this.firstName = this.newAddress?.firstName;
       this.lastName = this.newAddress?.lastName;
-      this.streetAddress = this.newAddress?.address1;
+      this.streetAddress = this.newAddress?.streetAddress;
       this.city = this.newAddress?.city;
       this.state = this.newAddress?.state;
       this.zip = this.newAddress?.zip;
       this.country = this.newAddress?.country;
+      this.showPanel2 = false;
     }
     // if (this.newAddress == null) {
     //   this.enablebtn = true;
@@ -158,22 +176,28 @@ export class CheckoutComponent implements OnInit {
 
 
   onAddressSubmit() {
+
+    //var data=document.getElementsByTagName('');
+    // document.getElementsByClassName("checkoutstep2").className ='';
+
     debugger;
     // var id= $(document.getElementById('ngbaccordion_shipaddress').getElementsByTagName('activeIds'));
     // if (this.ShippingAddressForm.invalid) {
     //   return this.toastrService.error("Please fill the required field shipping address and card");
     // }
-    this.shippingAddressParam = this.getAddressParam();
+    this.shippingAddressParam = this.getShippingAddressParam(1);
 
     this.shopService.postAddress(this.customerId, this.shippingAddressParam).subscribe((result: any) => {
+      debugger
       console.log("Result", result.result);
+
       localStorage.setItem('newShippingAddress', JSON.stringify(result.result));
 
       this.newAddress = JSON.parse(localStorage.getItem('newShippingAddress'));
-      this.DisplayAddress = this.newAddress?.address1 + ' ' + this.newAddress?.city + ' ' + this.newAddress?.state + ' ' + this.newAddress?.zip + ' ' + this.newAddress?.country;
+      this.DisplayAddress = this.newAddress?.addressDisplay + ' ' + this.newAddress?.streetAddress + ' ' + this.newAddress?.city + ' ' + this.newAddress?.state + ' ' + this.newAddress?.zip + ' ' + this.newAddress?.country;
       this.firstName = this.newAddress?.firstName;
       this.lastName = this.newAddress?.lastName;
-      this.streetAddress = this.newAddress?.address1;
+      this.streetAddress = this.newAddress?.streetAddress;
       this.city = this.newAddress?.city;
       this.state = this.newAddress?.state;
       this.zip = this.newAddress?.zip;
@@ -181,11 +205,36 @@ export class CheckoutComponent implements OnInit {
       this.isShipmentMethod = this.isShipmentMethod;
       //this.router.navigate(["/store/thankyou"]);
       //this.spinner.hide();
+      if (result.result != null) {
+        this.showPanel2 = false;
+      }
     });
 
   }
+  onPaymentSubmit() {
+    if (this.isCardType == 1) {
+      this.paymentParam=''; //Existing card details
+      //Existing Card Details with tokenEx
+    }
+    else {
+      this.paymentParam = this.getNewCreditCardParam();
+      //Save new Card details and generate new card token and save to the database.
+    }
+    if(this.addrnew==true)
+    {
+      this.billingAddress=this.getBillingAddressParam();
+    }
+    else{
+      this.billingAddress=this.getShippingAddressParam(2);
+    }
+    if (this.showPanel2 == false) {
+      this.showPanel3 = false;
+    }
 
-  getAddressParam() {
+  }
+
+
+  getShippingAddressParam(type:number) {
     debugger
     let firstName;
     let lastName;
@@ -194,40 +243,174 @@ export class CheckoutComponent implements OnInit {
     let state;
     let zip;
     let country;
+    if(type==1)
+    {
+      if (this.firstName != '' || this.firstName != undefined || this.firstName != null) {
+        firstName = this.firstName;
+      }
+      if (this.lastName != '' || this.lastName != undefined || this.lastName != null) {
+        lastName = this.lastName;
+      }
+      if (this.streetAddress != '' || this.streetAddress != undefined || this.streetAddress != null) {
+        streetAddress = this.streetAddress;
+      }
+      if (this.city != '' || this.city != undefined || this.city != null) {
+        city = this.city;
+      }
+      if (this.state != '' || this.state != undefined || this.state != null) {
+        state = this.state;
+      }
+      if (this.zip != 0 || this.zip != undefined || this.zip != null) {
+        zip = this.zip;
+      }
+      if (this.country != '' || this.country != undefined || this.country != null) {
+        country = this.country;
+      }
+  
+      let addressParam = {
+        AddressType: 0,
+        StreetAddress: streetAddress,
+        City: city,
+        State: state,
+        Zip: zip,
+        Country: country,
+        FirstName: firstName,
+        LastName: lastName
+      }
+      return addressParam;
+  
+    }
+    else{
+      if (this.newAddress?.firstName != '' || this.newAddress?.firstName != undefined || this.newAddress?.firstName != null) {
+        firstName = this.newAddress?.firstName;
+      }
+      if (this.newAddress?.lastName != '' || this.newAddress?.lastName != undefined || this.newAddress?.lastName != null) {
+        lastName = this.newAddress?.lastName;
+      }
+      if (this.newAddress?.streetAddress != '' || this.newAddress?.streetAddress != undefined || this.newAddress?.streetAddress != null) {
+        streetAddress = this.newAddress?.streetAddress;
+      }
+      if (this.newAddress?.city != '' || this.newAddress?.city != undefined || this.newAddress?.city != null) {
+        city = this.newAddress?.city;
+      }
+      if (this.newAddress?.state != '' || this.newAddress?.state != undefined || this.newAddress?.state != null) {
+        state = this.newAddress?.state;
+      }
+      if (this.newAddress?.zip != 0 || this.newAddress?.zip != undefined || this.newAddress?.zip != null) {
+        zip = this.newAddress?.zip;
+      }
+      if (this.newAddress?.country != '' || this.newAddress?.country != undefined || this.newAddress?.country != null) {
+        country = this.newAddress?.country;
+      }
+
+      let addressParam = {
+        AddressType: 0,
+        StreetAddress: streetAddress,
+        City: city,
+        State: state,
+        Zip: zip,
+        Country: country,
+        FirstName: firstName,
+        LastName: lastName
+      }
+      return addressParam;
+    }
+   
+  }
+
+  getNewCreditCardParam() {
+    let cardName;
+    let cardNumber;
+    let expiryMonth;
+    let expiryYear;
+    let cardCVV;
+    let isMakePrimaryCard;
+
+    if (this.cardName != '' || this.cardName != undefined || this.cardName != null) {
+      cardName = this.cardName;
+    }
+    if (this.cardNumber != 0 || this.cardNumber != undefined || this.cardNumber != null) {
+      cardNumber = this.cardNumber;
+    }
+    if (this.expiryMonth != 0 || this.expiryMonth != undefined || this.expiryMonth != null) {
+      expiryMonth = this.expiryMonth;
+    }
+    if (this.expiryYear != 0 || this.expiryYear != undefined || this.expiryYear != null) {
+      expiryYear = this.expiryYear;
+    }
+    if (this.cardCVV != 0 || this.cardCVV != undefined || this.cardCVV != null) {
+      cardCVV = this.cardCVV;
+    }
+    if (this.isMakePrimaryCard != undefined || this.isMakePrimaryCard != null) {
+      isMakePrimaryCard = this.isMakePrimaryCard;
+    }
+    let newCardParam = {
+      CardName: cardName,
+      cardNumber: cardNumber,
+      expiryMonth: expiryMonth,
+      expiryYear: expiryYear,
+      cardCVV: cardCVV,
+      isMakePrimaryCard: isMakePrimaryCard
+    }
+    return newCardParam;
+  }
+
+  shippingAddressType(billingAddressType: string) {
+    debugger;
+    if (billingAddressType == 'shippingAddress') {
+      this.addrnew = false;
+    }
+    else {
+      this.addrnew = true;
+    }
+
+  }
+  getBillingAddressParam() {
+    let firstName;
+    let lastName;
+    let newStreetAddress;
+    let newCity;
+    let newState;
+    let newZip;
+    let newCountry;
+
     if (this.firstName != '' || this.firstName != undefined || this.firstName != null) {
       firstName = this.firstName;
     }
     if (this.lastName != '' || this.lastName != undefined || this.lastName != null) {
       lastName = this.lastName;
     }
-    if (this.streetAddress != '' || this.streetAddress != undefined || this.streetAddress != null) {
-      streetAddress = this.streetAddress;
+    if (this.newStreetAddress != '' || this.newStreetAddress != undefined || this.newStreetAddress != null) {
+      newStreetAddress = this.newStreetAddress;
     }
-    if (this.city != '' || this.city != undefined || this.city != null) {
-      city = this.city;
+    if (this.newCity != '' || this.newCity != undefined || this.newCity != null) {
+      newCity = this.newCity;
     }
-    if (this.state != '' || this.state != undefined || this.state != null) {
-      state = this.state;
+    if (this.newState != '' || this.newState != undefined || this.newState != null) {
+      newState = this.newState;
     }
-    if (this.zip != 0 || this.zip != undefined || this.zip != null) {
-      zip = this.zip;
+    if (this.newZip != 0 || this.newZip != undefined || this.newZip != null) {
+      newZip = this.newZip;
     }
-    if (this.country != '' || this.country != undefined || this.country != null) {
-      country = this.country;
+    if (this.newCountry != '' || this.newCountry != undefined || this.newCountry != null) {
+      newCountry = this.newCountry;
     }
-
-    let addressParam = {
-      AddressType: 0,
-      Address1: streetAddress,
-      City: city,
-      State: state,
-      Zip: zip,
-      Country: country,
+    let newBillingAddressParam = {
       FirstName: firstName,
-      LastName: lastName
+      LastName: lastName,
+      StreetAddress: newStreetAddress,
+      City: newCity,
+      State: newState,
+      Zip: newZip,
+      Country: newCountry
     }
-    return addressParam;
+    return newBillingAddressParam;
+  }
 
+
+  onCheckboxChange(event: any) {
+    debugger;
+    this.isMakePrimaryCard = event.target.checked;
   }
 
   // convenience getter for easy access to form fields
@@ -242,20 +425,20 @@ export class CheckoutComponent implements OnInit {
   //    return this.checkoutForm.get("cardFormGroup") as FormArray;
   //  }
 
-  onCardChange(id: number) {
+  onSelectCardChange(id: number) {
     debugger;
     switch (id) {
       case 1:
         //prepare existing card value;
-        this.isCardDisabled=true;
-        this.isCardType=id;
-        console.log(id);
+        this.isCardDisabled = true;
+        this.isCardType = id;
+        //console.log(id);
         break;
       case 2:
         // take new card value and create token and store it to database and get;
-        this.isCardDisabled=false;
-        this.isCardType=id;
-        console.log(id);
+        this.isCardDisabled = false;
+        this.isCardType = id;
+        //console.log(id);
         break;
       default:
         break;
@@ -434,17 +617,7 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  sameshippingAddress(id:number) {
-    debugger;
-    if(id==1)
-    {
-      this.addrnew = false;
-    }
-    else{
-      this.addrnew = true;
-    }
-   
-  }
+ 
 
   getQuantityVal(qty: string) {
     var value = 0;

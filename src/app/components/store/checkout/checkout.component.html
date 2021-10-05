@@ -289,7 +289,7 @@
 
                     <ngb-accordion [closeOthers]="false" activeIds="checkoutstep1" class="panel-stepbar">
 
-                        <ngb-panel id="checkoutstep1">
+                        <ngb-panel [disabled]="showPanel1 ? true:null" id="checkoutstep1">
 
                             <ng-template ngbPanelTitle>
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -562,7 +562,8 @@
                                 </div>
                             </ng-template>
                         </ngb-panel>
-                        <ngb-panel id="checkoutstep2" >
+
+                        <ngb-panel [disabled]="showPanel2 ? true:null" id="checkoutstep2" >
                             <ng-template ngbPanelTitle>
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     width="24" height="24" viewBox="0 0 24 24">
@@ -707,7 +708,7 @@
                                                         <li>
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" id="cardlitem1" name="isSelectCard"
-                                                                    value="IsVisaExpire" [ngModel]="isSelectCard" (change)="onCardChange(1)"
+                                                                    value="IsVisaExpire" [ngModel]="isSelectCard" [selected]="true" (change)="onSelectCardChange(1)"
                                                                     class="custom-control-input">
                                                                 <label class="custom-control-label" for="cardlitem1">
                                                                     <div class="shipping-list-item">
@@ -724,7 +725,7 @@
                                                         <li>
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" id="cardlitem2" name="isSelectCard"
-                                                                    value="IsNewCard" [ngModel]="isSelectCard" (change)="onCardChange(2)"
+                                                                    value="IsNewCard" [ngModel]="isSelectCard" (change)="onSelectCardChange(2)"
                                                                     class="custom-control-input">
                                                                 <label class="custom-control-label" for="cardlitem2">
                                                                     <div class="shipping-list-item">
@@ -828,7 +829,7 @@
                                                                     <li>
                                                                         <div class="custom-control custom-radio">
                                                                             <input type="checkbox" id="card-primary"
-                                                                                formArrayName="isMakePrimaryCard" [ngModel]="isMakePrimaryCard"
+                                                                                formArrayName="isMakePrimaryCard" [ngModel]="isMakePrimaryCard" (change)="onCheckboxChange($event)"
                                                                                 value="0" name="isMakePrimaryCard"
                                                                                 class="custom-control-input">
                                                                             <label class="custom-control-label"
@@ -864,10 +865,10 @@
                                                     <ul>
                                                         <li>
                                                             <div class="custom-control custom-radio">
-                                                                <input type="radio" id="customRadio1"
-                                                                    (change)="shippingAddressType(1)"
+                                                                <input type="radio" id="customRadio4"
+                                                                    (change)="shippingAddressType('shippingAddress')"
                                                                     name="newCustomRadio" class="custom-control-input">
-                                                                <label class="custom-control-label" for="customRadio1">
+                                                                <label class="custom-control-label" for="customRadio4">
                                                                     <div class="shipping-list-item">
                                                                         <h4>Same as shipping address</h4>
                                                                     </div>
@@ -876,10 +877,10 @@
                                                         </li>
                                                         <li>
                                                             <div class="custom-control custom-radio">
-                                                                <input type="radio" id="customRadio2"
-                                                                    (change)="shippingAddressType(2)" type="radio"
+                                                                <input type="radio" id="customRadio5"
+                                                                    (change)="shippingAddressType('newAddress')" type="radio"
                                                                     name="newCustomRadio" class="custom-control-input">
-                                                                <label class="custom-control-label" for="customRadio2">
+                                                                <label class="custom-control-label" for="customRadio5">
                                                                     <div class="shipping-list-item">
                                                                         <h4>Use different address</h4>
                                                                     </div>
@@ -942,11 +943,12 @@
                                     </ngb-panel>
                                 </ngb-accordion>
                                 <div class="saveprocessed">
-                                    <button type="submit">Save & Continue</button>
+                                    <button type="submit" (click)="onPaymentSubmit()">Save & Continue</button>
                                 </div>
                             </ng-template>
                         </ngb-panel>
-                        <ngb-panel id="checkoutstep3">
+
+                        <ngb-panel [disabled]="showPanel3 ? true:null" id="checkoutstep3">
                             <ng-template ngbPanelTitle>
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     width="24" height="24" viewBox="0 0 24 24">
