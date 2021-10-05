@@ -3,9 +3,9 @@
       <div class="row">
           <div class="col-md-12">
               <ul class="breadcrumb">
-                  <li><a [routerLink]="['/store']">Shop</a></li>/
-                  <li><a [routerLink]="['/store']">All Products</a></li>/
-                  <li>{{itemCodeTitle}}</li>
+                <li><a [routerLink]="['/store']" (click)="goToList('All Products')">Shop</a></li>/
+                <li><a [routerLink]="['/store']" (click)="goToList(filterTitleShow)">{{filterTitleShow}}</a></li>/
+                <li>{{itemCodeTitle}}</li>
               </ul>
           </div>
       </div>

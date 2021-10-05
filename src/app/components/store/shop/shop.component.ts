@@ -47,6 +47,7 @@ export class ShopComponent implements OnInit {
   categoryTitle: any[] = [];
   type: any = null;
   category: any;
+  filterTitle: string;
   constructor(
     private sessionService: SessionService,
     private modalService: NgbModal, private shopService: ShopService,
@@ -119,12 +120,16 @@ export class ShopComponent implements OnInit {
     ]
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {   
+    this.filterTitle = this.sessionService.getSessionItem("categorySelect");
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.route.params.subscribe(params => {
       if (params['type']) {
         const type = params['type'];
         this.type = type.replace(new RegExp('-', 'g'), ' ');
+      }
+      if (this.type == "Comfort Patch") {
+        this.showAgePopUp = true;
       }
       if (this.type != null) {
         this.getAllCategoryById();
@@ -138,7 +143,6 @@ export class ShopComponent implements OnInit {
   }
 
   getAllCategoryById() {
-    debugger
     this.spinner.show();
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
       this.categoryModels = result;
@@ -176,6 +180,7 @@ export class ShopComponent implements OnInit {
   }
 
   onCategoryChange() {
+    debugger
     this.showAgePopUp = false;
     this.categoryId = this.category;
     if (this.categoryId == 39) {
@@ -183,6 +188,7 @@ export class ShopComponent implements OnInit {
     }
     const category = this.categoryModels.find(x => x.webCategoryID == this.categoryId);
     const categoryName = category.webCategoryDescription.replace(new RegExp(' ', 'g'), '-');   
+    this.sessionService.setSessionItem('categoryDescription', categoryName);
     this.router.navigate([`store/products/${categoryName}`])
   }
 
@@ -247,9 +253,27 @@ export class ShopComponent implements OnInit {
     return `${environment.productImageApiUrl}${imageName}`;
   }
 
-  RedirectToProduct(product: any) {
-    this.modalService.dismissAll();
-    this.router.navigate(['/store/product', product.itemCode]);
+  RedirectToProduct(adultCheck:any,product: any,learnMore:string) {    
+    debugger
+    if(learnMore=="learnMore"){
+      this.showAgePopUp = false;
+      this.modalService.dismissAll();
+      this.router.navigate(['/store/product', product.itemCode]);
+    }
+    this.reProduct=product;
+    if(this.category == 22){
+      this.sessionService.setSessionItem('categoryDescription', "All-Products");
+    }   
+    if (this.showAgePopUp == true) {     
+      this.modalService.open(adultCheck, this.modalOptions).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    } else{
+      this.modalService.dismissAll();
+      this.router.navigate(['/store/product', product.itemCode]);
+    }       
   }
 
   getYearValue(event: any) {

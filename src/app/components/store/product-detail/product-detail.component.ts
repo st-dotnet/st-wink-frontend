@@ -31,6 +31,7 @@ export class ProductDetailComponent implements OnInit {
   quantityValue: number = 1;
   itemCodeTitle: any;
   subscriptionModelduration: string;
+  filterTitleShow: any;
   toggleDisplayDivIf() {
     this.isShowDivIf = !this.isShowDivIf;
   }
@@ -146,7 +147,8 @@ export class ProductDetailComponent implements OnInit {
     private shopService: ShopService,
     private activatedRoute: ActivatedRoute,
     private spinner: NgxSpinnerService,
-    private toastrService: ToastrService,) {
+    private toastrService: ToastrService,
+    private router: Router) {
     this.sessionService.scrollToTop();
     this.activatedRoute.params.subscribe((params: Params) => {
       this.itemCode = params['id'];
@@ -217,6 +219,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.filterTitleShow=this.sessionService.getSessionItem("categoryDescription");
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.getProductDetail(this.itemCode);
     this.bundle='single';
@@ -244,6 +247,15 @@ export class ProductDetailComponent implements OnInit {
   {
     debugger;
      this.subscriptionModelduration=event;
+  }
+
+  goToList(type) {
+    this.sessionService.setSessionItem('categorySelect', type);
+    if(type=='All Products')
+    this.router.navigate([`store/products/`])
+    else
+    this.router.navigate([`store/products/${this.filterTitleShow}`])
+
   }
 
   addToCart(product: any) {

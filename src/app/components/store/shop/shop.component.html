@@ -66,7 +66,7 @@
         <div class="card">
           <!-- <img src="../../assets/products-sample.png" class="card-img-top" alt="products-sample"> -->
           <!-- <img [src]="'data:image/jpg;base64,'+data.productImage.fileContents" class="card-img-top" alt="products-sample"/> -->
-          <a (click)="RedirectToProduct(product)"><img
+          <a (click)="RedirectToProduct(adult_check,product,'')"><img
             [src]="product.image_03"
             class="card-img-top"
             alt="products-sample"
@@ -74,7 +74,7 @@
           <div class="card-body">
             
             <div class="product-details">
-              <a  (click)="RedirectToProduct(product)">
+              <a  (click)="RedirectToProduct(adult_check, product,'')">
               <h5 class="card-title">{{ product.itemDescription }}</h5>
               <h6 class="small">Perfect for ages 3+</h6>
               <div class="reviews-product">
@@ -144,7 +144,7 @@
             />
             <a
               routerLinkActive="active"
-              (click)="RedirectToProduct(product)"
+              (click)="RedirectToProduct(adult_check,product,'learnMore')"
               class="btn btn-learn"
               >Learn More</a
             >
