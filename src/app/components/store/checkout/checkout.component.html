@@ -379,15 +379,13 @@
                                                 </div>
                                             </ng-template>
                                             <ng-template ngbPanelContent>
-                                                <!-- <form [formGroup]="shippingAddressForm"> -->
-                                                    <form [formGroup]="ShippingAddressForm" (ngSubmit)="onAddressSubmit()">
                                                 <div class="content-card steps-inner shipping-address-form">
                                                    
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                    formControlName="firstName" placeholder="First Name"
+                                                                     placeholder="First Name" [(ngModel)]="firstName"
                                                                     [ngClass]="{ 'is-invalid': submitted && ShippingAddressForm.controls.firstName?.errors }" />
                                                                 <div *ngIf="submitted && ShippingAddressForm.controls.firstName?.errors"
                                                                     class="invalid-feedback">
@@ -400,7 +398,7 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                    formControlName="lastName" placeholder="Last Name"
+                                                                     placeholder="Last Name" [(ngModel)]="lastName"
                                                                     [ngClass]="{ 'is-invalid': submitted && ShippingAddressForm.controls.lastName?.errors }" />
                                                                 <div *ngIf="submitted && ShippingAddressForm.controls.lastName?.errors"
                                                                     class="invalid-feedback">
@@ -413,7 +411,7 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                    formControlName="streetAddress"
+                                                                     [(ngModel)]="streetAddress"
                                                                     placeholder="Street Address"
                                                                     [ngClass]="{ 'is-invalid': submitted && ShippingAddressForm.controls.streetAddress?.errors }" />
                                                                 <div *ngIf="submitted && ShippingAddressForm.controls.streetAddress?.errors"
@@ -427,7 +425,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                    formControlName="city" placeholder="City"
+                                                                 placeholder="City" [(ngModel)]="city"
                                                                     [ngClass]="{ 'is-invalid': submitted && ShippingAddressForm.controls.city?.errors }" />
                                                                 <div *ngIf="submitted && ShippingAddressForm.controls.city?.errors"
                                                                     class="invalid-feedback">
@@ -440,7 +438,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                    formControlName="state" placeholder="State"
+                                                                     placeholder="State" [(ngModel)]="state"
                                                                     [ngClass]="{ 'is-invalid': submitted && ShippingAddressForm.controls.state?.errors }" />
                                                                 <div *ngIf="submitted && ShippingAddressForm.controls.state?.errors"
                                                                     class="invalid-feedback">
@@ -453,7 +451,7 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <input type="number" class="form-control"
-                                                                    formControlName="zip" placeholder="Zip"
+                                                                    placeholder="Zip" [(ngModel)]="zip"
                                                                     [ngClass]="{ 'is-invalid': submitted && ShippingAddressForm.controls.zip?.errors }" />
                                                                 <div *ngIf="submitted && ShippingAddressForm.controls.zip?.errors"
                                                                     class="invalid-feedback">
@@ -466,7 +464,7 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                    formControlName="country" placeholder="Country"
+                                                                     placeholder="Country" [(ngModel)]="country"
                                                                     [ngClass]="{ 'is-invalid': submitted && ShippingAddressForm.controls.country?.errors }" />
                                                                 <div *ngIf="submitted && ShippingAddressForm.controls.country?.errors"
                                                                     class="invalid-feedback">
@@ -476,18 +474,23 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <!-- <div class="saveprocessed">
+                                                            <button type="submit" (click)="onAddressSubmit()" >Save & Continue</button>
+                                                        </div> -->
                                                     </div>
-                                                   
-                                               
+                                                    <!-- <div class="saveprocessed">
+                                                        <button type="submit" (click)="onAddressSubmit()" >Save & Continue</button>
+                                                    </div> -->
+                                                  
                                                 </div>
-                                                <div class="saveprocessed">
-                                                    <button type="submit" >Save & Continue</button>
-                                                </div>
-                                            </form>
-                                                <!-- </form> -->
+                                                <!-- <div class="saveprocessed">
+                                                    <button type="submit" (click)="onAddressSubmit()" >Save & Continue</button>
+                                                </div> -->
                                             </ng-template>
+                                          
                                             <!-- [disabled]="enablebtn"  [className]="enablebtn  ? 'btn btn-checkout disabledbutton ' : 'btn btn-checkout enabledbutton'" -->
                                     </ngb-panel>
+                                   
                                
                                     <ngb-panel id="shipping-method">
                                         <ng-template ngbPanelTitle>
@@ -511,7 +514,7 @@
                                                         <li>
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" id="customRadio1" value="1"
-                                                                    name="isShipmentMethod"
+                                                                    name="isShipmentMethod" (change)="onItemChange(1)"
                                                                     class="custom-control-input">
                                                                 <label class="custom-control-label" for="customRadio1">
                                                                     <div class="shipping-list-item">
@@ -523,7 +526,7 @@
                                                         </li>
                                                         <li>
                                                             <div class="custom-control custom-radio">
-                                                                <input type="radio" id="customRadio2" value="2"
+                                                                <input type="radio" id="customRadio2" value="2" (change)="onItemChange(2)"
                                                                     name="isShipmentMethod"
                                                                     class="custom-control-input">
                                                                 <label class="custom-control-label" for="customRadio2">
@@ -536,7 +539,7 @@
                                                         </li>
                                                         <li>
                                                             <div class="custom-control custom-radio">
-                                                                <input type="radio" id="customRadio3" value="3"
+                                                                <input type="radio" id="customRadio3" value="3" (change)="onItemChange(3)"
                                                                     name="isShipmentMethod"
                                                                     class="custom-control-input">
                                                                 <label class="custom-control-label" for="customRadio3">
@@ -553,18 +556,13 @@
                                         </ng-template>
                                     </ngb-panel>
                                 </ngb-accordion>
-                              
-
+                                <!-- Save Button For Shipping Address -->
+                                <div class="saveprocessed">
+                                    <button type="submit" (click)="onAddressSubmit()" >Save & Continue</button>
+                                </div>
                             </ng-template>
-
                         </ngb-panel>
-
-
-
-
-
-
-                        <ngb-panel id="checkoutstep2">
+                        <ngb-panel id="checkoutstep2" >
                             <ng-template ngbPanelTitle>
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     width="24" height="24" viewBox="0 0 24 24">
@@ -669,7 +667,7 @@
                                                 <div class="col-md-12 loyalty-form p-0 mb-3">
                                                     <div
                                                         [className]="loyalpointz ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                        <input type="text" formControlName="loyalPointz" value=""
+                                                        <input type="text"  [ngModel]="loyalPointz" value=""
                                                             name="promo-enter" class="form-control" />
                                                         <label class="form-label">Loyalty points</label>
                                                         <span class="vali-promo">Points Not Applied</span>
@@ -709,7 +707,7 @@
                                                         <li>
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" id="cardlitem1" name="isSelectCard"
-                                                                    value="IsVisaExpire" formControlName="isSelectCard"
+                                                                    value="IsVisaExpire" [ngModel]="isSelectCard" (change)="onCardChange(1)"
                                                                     class="custom-control-input">
                                                                 <label class="custom-control-label" for="cardlitem1">
                                                                     <div class="shipping-list-item">
@@ -726,7 +724,7 @@
                                                         <li>
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" id="cardlitem2" name="isSelectCard"
-                                                                    value="IsNewCard" formControlName="isSelectCard"
+                                                                    value="IsNewCard" [ngModel]="isSelectCard" (change)="onCardChange(2)"
                                                                     class="custom-control-input">
                                                                 <label class="custom-control-label" for="cardlitem2">
                                                                     <div class="shipping-list-item">
@@ -740,7 +738,7 @@
                                             </div>
                                         </ng-template>
                                     </ngb-panel>
-                                    <ngb-panel id="card-info">
+                                    <ngb-panel id="card-info" [disabled]="isCardDisabled ? true : null">
                                         <ng-template ngbPanelTitle>
                                             <div class="heading-step1">
                                                 <h4>Card</h4>
@@ -767,7 +765,7 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="cardName"
+                                                                    <input type="text" [ngModel]="cardName"
                                                                         placeholder="Name on card" name="card-name"
                                                                         class="form-control"
                                                                          [ngClass]="{ 'is-invalid': submitted && cardForm.controls.cardName?.errors }" />
@@ -778,7 +776,7 @@
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <input type="number" formControlName="cardNumber"
+                                                                    <input type="number"  [ngModel]="cardNumber"
                                                                         placeholder="Card number" name="cardNumber"
                                                                         class="form-control"
                                                                         [ngClass]="{ 'is-invalid': submitted && cardForm.controls.cardNumber?.errors }" />
@@ -791,7 +789,7 @@
                                                         <div class="row">
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="number" formControlName="expiryMonth"
+                                                                    <input type="number" [ngModel]="expiryMonth"
                                                                         placeholder="Month" name="expiryMonth"
                                                                         class="form-control" 
                                                                         [ngClass]="{ 'is-invalid': submitted && cardForm.controls.expiryMonth?.errors }" />
@@ -802,7 +800,7 @@
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="number" formControlName="expiryYear"
+                                                                    <input type="number"  [ngModel]="expiryYear"
                                                                         placeholder="expiryYear" name="expiryYear"
                                                                         class="form-control" 
                                                                         [ngClass]="{ 'is-invalid': submitted && cardForm.controls.expiryYear?.errors }" />
@@ -813,7 +811,7 @@
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="number" formControlName="cardCVV"
+                                                                    <input type="number" [ngModel]="cardCVV"
                                                                         placeholder="cardCVV" name="cardCVV"
                                                                         class="form-control"
                                                                         [ngClass]="{ 'is-invalid': submitted && cardForm.controls.cardCVV?.errors }" />
@@ -830,7 +828,7 @@
                                                                     <li>
                                                                         <div class="custom-control custom-radio">
                                                                             <input type="checkbox" id="card-primary"
-                                                                                formArrayName="isMakePrimaryCard"
+                                                                                formArrayName="isMakePrimaryCard" [ngModel]="isMakePrimaryCard"
                                                                                 value="0" name="isMakePrimaryCard"
                                                                                 class="custom-control-input">
                                                                             <label class="custom-control-label"
@@ -867,7 +865,7 @@
                                                         <li>
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" id="customRadio1"
-                                                                    (change)="sameshippingAddress()"
+                                                                    (change)="shippingAddressType(1)"
                                                                     name="newCustomRadio" class="custom-control-input">
                                                                 <label class="custom-control-label" for="customRadio1">
                                                                     <div class="shipping-list-item">
@@ -879,7 +877,7 @@
                                                         <li>
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" id="customRadio2"
-                                                                    (change)="differentAddress()" type="radio"
+                                                                    (change)="shippingAddressType(2)" type="radio"
                                                                     name="newCustomRadio" class="custom-control-input">
                                                                 <label class="custom-control-label" for="customRadio2">
                                                                     <div class="shipping-list-item">
@@ -890,7 +888,7 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <!-- <ng-template [ngIf]="addrnew">
+                                                <ng-template [ngIf]="addrnew">
                                                         <div class="different-address">
                                                             <div class="newaddr-infoo">
                                                                 <div class="row"
@@ -898,7 +896,7 @@
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
                                                                             <input type="text"
-                                                                                formControlName="newStreetAddress"
+                                                                             [(ngModel)]="newStreetAddress"
                                                                                 placeholder="Street address"
                                                                                 name="newStreetAddress"
                                                                                 class="form-control" />
@@ -906,7 +904,7 @@
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <input type="text" formControlName="newCity"
+                                                                            <input type="text" [(ngModel)]="newCity"
                                                                                 placeholder="City" name="newCity"
                                                                                 class="form-control" />
                                                                         </div>
@@ -915,23 +913,21 @@
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <input type="text"
-                                                                                formControlName="newState"
-                                                                                placeholder="State" name="newState"
+                                                                                placeholder="State" name="newState" [(ngModel)]="newState"
                                                                                 class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <input type="number"
-                                                                                formControlName="newZip"
-                                                                                placeholder="ZIP" name="newZip"
+                                                                                placeholder="ZIP" name="newZip" [(ngModel)]="newZip"
                                                                                 class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <input type="text"
-                                                                                formControlName="newCountry"
+                                                                             [(ngModel)]="newCountry"
                                                                                 placeholder="newCountry"
                                                                                 name="newCountry"
                                                                                 class="form-control" />
@@ -940,7 +936,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </ng-template> -->
+                                                    </ng-template>
                                             </div>
                                         </ng-template>
                                     </ngb-panel>
