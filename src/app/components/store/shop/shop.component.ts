@@ -48,6 +48,9 @@ export class ShopComponent implements OnInit {
   type: any = null;
   category: any;
   filterTitle: string;
+  productNameTitle: string="All Products";
+  bundlePrice:any=0;
+  showActualPrice: boolean= false;
   constructor(
     private sessionService: SessionService,
     private modalService: NgbModal, private shopService: ShopService,
@@ -127,6 +130,7 @@ export class ShopComponent implements OnInit {
       if (params['type']) {
         const type = params['type'];
         this.type = type.replace(new RegExp('-', 'g'), ' ');
+        this.productNameTitle=this.type;
       }
       if (this.type == "Comfort Patch") {
         this.showAgePopUp = true;
@@ -187,13 +191,15 @@ export class ShopComponent implements OnInit {
       this.showAgePopUp = true;
     }
     const category = this.categoryModels.find(x => x.webCategoryID == this.categoryId);
-    const categoryName = category.webCategoryDescription.replace(new RegExp(' ', 'g'), '-');   
+    const categoryName = category.webCategoryDescription.replace(new RegExp(' ', 'g'), '-');  
+    this.productNameTitle= categoryName; 
     this.sessionService.setSessionItem('categoryDescription', categoryName);
     this.router.navigate([`store/products/${categoryName}`])
   }
 
   open(content: any, product: any, adultCheck: any) {
     //this.bundle = 'single';
+    this.showActualPrice= false;
     if (this.showAgePopUp == true) {
       this.reProduct = product;
       this.modalService.open(adultCheck, this.modalOptions).result.then((result) => {
@@ -448,7 +454,21 @@ export class ShopComponent implements OnInit {
   }
 
   checkBundle(bundle: string, productPrice: any) {
-    this.bundle = bundle;   
+    debugger
+    this.bundlePrice=0;
+    this.bundle = bundle; 
+    if(bundle=='single')
+    {
+     this.bundlePrice=productPrice;
+    }
+    else{
+      //let itemPrice = productPrice;
+      this.showActualPrice=true;
+      let itemPrice = productPrice * 2;
+      let discountper5 = (itemPrice * 5) / 100;
+      this.bundlePrice = itemPrice - discountper5;
+      this.bundlePrice =this.bundlePrice.toFixed(2);
+    }     
   }
 
   checkDelivery(type: CartTypeEnum) {

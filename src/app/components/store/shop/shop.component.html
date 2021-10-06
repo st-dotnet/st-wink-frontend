@@ -56,7 +56,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h3>All Products</h3>
+        <h3>{{productNameTitle}}</h3>
       </div>
     </div>
     <div class="row mt-5 prod-wrapp">
@@ -327,7 +327,7 @@
                   type="submit"
                   (click)="addToCart(product)"
                   class="btn btn-cart">
-                  ${{ product.price }} ADD
+                  ${{showActualPrice == true ? bundlePrice  : product.price}} ADD
                 </button>
               </div>
             </div>

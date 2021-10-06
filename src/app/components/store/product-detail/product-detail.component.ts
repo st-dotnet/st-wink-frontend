@@ -32,6 +32,9 @@ export class ProductDetailComponent implements OnInit {
   itemCodeTitle: any;
   subscriptionModelduration: string;
   filterTitleShow: any;
+  bundletype: string;
+  bundlePrice: any =0;
+  showActualPrice: boolean;
   toggleDisplayDivIf() {
     this.isShowDivIf = !this.isShowDivIf;
   }
@@ -428,18 +431,19 @@ export class ProductDetailComponent implements OnInit {
 
   checkBundle(bundle: string, productPrice: any) {
     this.bundle = bundle;
-    // if (bundle == "multiple") {
-    //   // productPrice = productPrice * 2;
-    //   this.bundle = bundle;
-    //   // let subscribePrice = (productPrice / 100) * 5;
-    //   //productPrice = (productPrice - subscribePrice).toFixed(2);
-    //   //  this.product.Price=productPrice;
-    //   // console.log(productPrice)
-    // } else {
-    //   this.bundle = bundle;
-    //   // productPrice = this.productPrice;
-    //   //  this.product.Price=productPrice;
-    // }
+    this.bundlePrice=0;  
+    if(this.bundle == "single") {
+      this.bundletype = "";
+      this.bundlePrice=productPrice;
+    }
+    else {
+    this.bundletype = "/ 2-pk";
+    this.showActualPrice=true;
+      let itemPrice = productPrice * 2;
+      let discountper5 = (itemPrice * 5) / 100;
+      this.bundlePrice = itemPrice - discountper5;
+      this.bundlePrice =this.bundlePrice.toFixed(2);
+    }
   }
 
   checkDelivery(type: CartTypeEnum) {

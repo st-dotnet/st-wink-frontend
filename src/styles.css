@@ -120,6 +120,15 @@ section.top-owl-banner .owl-dots {
   bottom: 20px;
   width: 100%;
 }
+
+section.testimonial-home owl-carousel-o .owl-nav {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform:  translateY(-50%);
+  margin: 0;
+}
+
 section.best-selller .owl-nav {
   position: absolute;
   top: 50%;

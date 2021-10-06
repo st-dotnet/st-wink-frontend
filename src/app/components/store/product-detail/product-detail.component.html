@@ -5,7 +5,8 @@
               <ul class="breadcrumb">
                 <li><a [routerLink]="['/store']" (click)="goToList('All Products')">Shop</a></li>/
                 <li><a [routerLink]="['/store']" (click)="goToList(filterTitleShow)">{{filterTitleShow}}</a></li>/
-                <li>{{itemCodeTitle}}</li>
+                <li>{{itemCodeTitle}}</li>/
+                <li>{{productDetail.itemDescription}} {{bundletype}}</li>
               </ul>
           </div>
       </div>
@@ -226,7 +227,7 @@
                             </div>
                           </div>
                                   <div class="cart-btn">
-                                      <button type="submit" (click)="addToCart(productDetail)" class="btn btn-cart">${{productDetail.price}} ADD</button>
+                                      <button type="submit" (click)="addToCart(productDetail)" class="btn btn-cart">${{showActualPrice == true ? bundlePrice  : productDetail.price}} ADD</button>
                                   </div>
                       </div>
                   </div>
