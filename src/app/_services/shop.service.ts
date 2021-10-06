@@ -45,8 +45,10 @@ export class ShopService {
 
   postAddress(customerId:number,addressParam:any)
   {
-    const headers = { 'content-type': 'application/json'}  
-    debugger;
-    return this.http.post<any[]>(`${environment.apiUrl}${this.shopEndpoint}AddUpdateCustomerAddress/${customerId}`,addressParam);
+    return this.http.post<any>(`${environment.apiUrl}${this.shopEndpoint}AddUpdateCustomerAddress/${customerId}`,addressParam);
+  }
+  getAddressById(customerId:number)
+  {
+    return this.http.get<any[]>(`${environment.apiUrl}${this.shopEndpoint}GetshippingAddress/${customerId}`);
   }
 }

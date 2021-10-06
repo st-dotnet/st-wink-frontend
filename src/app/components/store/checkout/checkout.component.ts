@@ -6,7 +6,7 @@ import { CartTypeEnum } from '@app/_models/cart-type-enum';
 import { ChargeCreditCardTokenRequest, CreateAutoOrderRequest, CreateCustomerRequest, CreateOrderRequest, OrderDetailRequest, SetAccountCreditCardTokenRequest } from '@app/_models/checkout';
 import { SessionService } from '@app/_services';
 import { ShopService } from '@app/_services/shop.service';
-import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbModalOptions, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { last } from 'rxjs/operators';
@@ -41,6 +41,7 @@ export class CheckoutComponent implements OnInit {
   paramsProductPrice: any;
   promocode_onetime: string;
   UserDetails: any;
+  addressType:number=0;
 
 
 
@@ -63,6 +64,7 @@ export class CheckoutComponent implements OnInit {
   specialOfferPrice: number = 0;
   promocodeObject: any;
   customerId: number;
+  email:string;
   newAddress: any;
 
   showPanel1 = false;
@@ -71,7 +73,7 @@ export class CheckoutComponent implements OnInit {
 
 
 
-  DisplayAddress: any;
+  DisplayAddress: string='';
   enablebtn: boolean;
 
 
@@ -104,6 +106,7 @@ export class CheckoutComponent implements OnInit {
   newState: string;
   newZip: number;
   newCountry: string;
+  customerAddress: any;
 
 
   constructor(private modalService: NgbModal,
@@ -122,6 +125,7 @@ export class CheckoutComponent implements OnInit {
 
     this.UserDetails = JSON.parse(localStorage.getItem('user'));
     this.customerId = this.UserDetails.customerId;
+    this.email=this.UserDetails.email;
     this.totalDiscount = 0;
     this.orderTotal = 0;
     this.subtotalOneTimePrice = 0;
@@ -133,18 +137,28 @@ export class CheckoutComponent implements OnInit {
     this.subscriptionTotalPrice = this.sessionService.getSessionObject('subscriptionTotal');
     this.unSubscriptionTotalPrice = this.sessionService.getSessionObject('unSubscriptionTotal');
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
-    this.newAddress = JSON.parse(localStorage.getItem('newShippingAddress')) ? JSON.parse(localStorage.getItem('newShippingAddress')) : "";
-    if (this.newAddress != "" || this.newAddress != undefined || this.newAddress != null) {
-      this.DisplayAddress = this.newAddress?.addressDisplay + ' ' + this.newAddress?.streetAddress + ' ' + this.newAddress?.city + ' ' + this.newAddress?.state + ' ' + this.newAddress?.zip + ' ' + this.newAddress?.country;
-      this.firstName = this.newAddress?.firstName;
-      this.lastName = this.newAddress?.lastName;
-      this.streetAddress = this.newAddress?.streetAddress;
-      this.city = this.newAddress?.city;
-      this.state = this.newAddress?.state;
-      this.zip = this.newAddress?.zip;
-      this.country = this.newAddress?.country;
-      this.showPanel2 = false;
-    }
+    this.getCustomerAddress();
+    // this.DisplayAddress = this.customerAddress!.address1 + ' ' + this.customerAddress!.city + ' ' + this.customerAddress!.state + ' ' + this.customerAddress!.zip + ' ' + this.customerAddress!.country;
+    // this.firstName = this.customerAddress!.firstName;
+    // this.lastName = this.customerAddress!.lastName;
+    // this.streetAddress = this.customerAddress!.address1;
+    // this.city = this.customerAddress!.city;
+    // this.state = this.customerAddress!.state;
+    // this.zip = this.customerAddress!.zip;
+    // this.country = this.customerAddress!.country;
+    //this.showPanel2 = false;
+    // this.newAddress = JSON.parse(localStorage.getItem('newShippingAddress')) ? JSON.parse(localStorage.getItem('newShippingAddress')) : "";
+    // if (this.newAddress != "" || this.newAddress != undefined || this.newAddress != null) {
+    //   this.DisplayAddress = this.newAddress?.addressDisplay + ' ' + this.newAddress?.streetAddress + ' ' + this.newAddress?.city + ' ' + this.newAddress?.state + ' ' + this.newAddress?.zip + ' ' + this.newAddress?.country;
+    //   this.firstName = this.newAddress?.firstName;
+    //   this.lastName = this.newAddress?.lastName;
+    //   this.streetAddress = this.newAddress?.streetAddress;
+    //   this.city = this.newAddress?.city;
+    //   this.state = this.newAddress?.state;
+    //   this.zip = this.newAddress?.zip;
+    //   this.country = this.newAddress?.country;
+    //   this.showPanel2 = false;
+    // }
     // if (this.newAddress == null) {
     //   this.enablebtn = true;
     // } else {
@@ -171,40 +185,62 @@ export class CheckoutComponent implements OnInit {
     this.cartCalculation();
   }
 
+  public toggleAccordian(props: NgbPanelChangeEvent): void {
+    debugger;
+    props.nextState // true === panel is toggling to an open state 
+    // false === panel is toggling to a closed state
+    props.panelId    // the ID of the panel that was clicked
+    //props.preventDefault(); // don't toggle the state of the selected panel
+  }
+
+  getCustomerAddress() {
+    this.customerAddress='';
+    this.shopService.getAddressById(this.customerId).subscribe((res: any) => {
+
+      this.customerAddress = res[2];
+
+      this.DisplayAddress = this.customerAddress!.address1 + ' ' + this.customerAddress!.city + ' ' + this.customerAddress!.state + ' ' + this.customerAddress!.zip + ' ' + this.customerAddress!.country;
+      this.firstName = this.customerAddress!.firstName;
+      this.lastName = this.customerAddress!.lastName;
+      this.streetAddress = this.customerAddress!.address1;
+      this.city = this.customerAddress!.city;
+      this.state = this.customerAddress!.state;
+      this.zip = this.customerAddress!.zip;
+      this.country = this.customerAddress!.country;
+      this.email=this.customerAddress!.email;
+      this.addressType=this.customerAddress!.addressType;
+      this.showPanel2 = false;
+
+    }, (err: any) => {
+      console.log(err);
+    });
+  }
+
 
 
 
 
   onAddressSubmit() {
-
-    //var data=document.getElementsByTagName('');
-    // document.getElementsByClassName("checkoutstep2").className ='';
-
     debugger;
-    // var id= $(document.getElementById('ngbaccordion_shipaddress').getElementsByTagName('activeIds'));
-    // if (this.ShippingAddressForm.invalid) {
-    //   return this.toastrService.error("Please fill the required field shipping address and card");
-    // }
-    this.shippingAddressParam = this.getShippingAddressParam(1);
+    this.shippingAddressParam = this.getShippingAddressParam();
 
     this.shopService.postAddress(this.customerId, this.shippingAddressParam).subscribe((result: any) => {
       debugger
-      console.log("Result", result.result);
-
-      localStorage.setItem('newShippingAddress', JSON.stringify(result.result));
-
-      this.newAddress = JSON.parse(localStorage.getItem('newShippingAddress'));
-      this.DisplayAddress = this.newAddress?.addressDisplay + ' ' + this.newAddress?.streetAddress + ' ' + this.newAddress?.city + ' ' + this.newAddress?.state + ' ' + this.newAddress?.zip + ' ' + this.newAddress?.country;
-      this.firstName = this.newAddress?.firstName;
-      this.lastName = this.newAddress?.lastName;
-      this.streetAddress = this.newAddress?.streetAddress;
-      this.city = this.newAddress?.city;
-      this.state = this.newAddress?.state;
-      this.zip = this.newAddress?.zip;
-      this.country = this.newAddress?.country;
-      this.isShipmentMethod = this.isShipmentMethod;
+      this.getCustomerAddress();
+      //console.log(this.customerAddress);
+      // this.newAddress = JSON.parse(localStorage.getItem('newShippingAddress'));
+      // this.DisplayAddress = this.newAddress?.addressDisplay + ' ' + this.newAddress?.streetAddress + ' ' + this.newAddress?.city + ' ' + this.newAddress?.state + ' ' + this.newAddress?.zip + ' ' + this.newAddress?.country;
+      // this.firstName = this.newAddress?.firstName;
+      // this.lastName = this.newAddress?.lastName;
+      // this.streetAddress = this.newAddress?.streetAddress;
+      // this.city = this.newAddress?.city;
+      // this.state = this.newAddress?.state;
+      // this.zip = this.newAddress?.zip;
+      // this.country = this.newAddress?.country;
+      // this.isShipmentMethod = this.isShipmentMethod;
       //this.router.navigate(["/store/thankyou"]);
       //this.spinner.hide();
+      console.log(result.result);
       if (result.result != null) {
         this.showPanel2 = false;
       }
@@ -213,19 +249,18 @@ export class CheckoutComponent implements OnInit {
   }
   onPaymentSubmit() {
     if (this.isCardType == 1) {
-      this.paymentParam=''; //Existing card details
+      this.paymentParam = ''; //Existing card details
       //Existing Card Details with tokenEx
     }
     else {
       this.paymentParam = this.getNewCreditCardParam();
       //Save new Card details and generate new card token and save to the database.
     }
-    if(this.addrnew==true)
-    {
-      this.billingAddress=this.getBillingAddressParam();
+    if (this.addrnew == true) {
+      this.billingAddress = this.getBillingAddressParam();
     }
-    else{
-      this.billingAddress=this.getShippingAddressParam(2);
+    else {
+      this.billingAddress = this.getShippingAddressParam();
     }
     if (this.showPanel2 == false) {
       this.showPanel3 = false;
@@ -234,88 +269,52 @@ export class CheckoutComponent implements OnInit {
   }
 
 
-  getShippingAddressParam(type:number) {
+  getShippingAddressParam() {
     debugger
-    let firstName;
-    let lastName;
-    let streetAddress;
-    let city;
-    let state;
-    let zip;
-    let country;
-    if(type==1)
-    {
-      if (this.firstName != '' || this.firstName != undefined || this.firstName != null) {
-        firstName = this.firstName;
-      }
-      if (this.lastName != '' || this.lastName != undefined || this.lastName != null) {
-        lastName = this.lastName;
-      }
-      if (this.streetAddress != '' || this.streetAddress != undefined || this.streetAddress != null) {
-        streetAddress = this.streetAddress;
-      }
-      if (this.city != '' || this.city != undefined || this.city != null) {
-        city = this.city;
-      }
-      if (this.state != '' || this.state != undefined || this.state != null) {
-        state = this.state;
-      }
-      if (this.zip != 0 || this.zip != undefined || this.zip != null) {
-        zip = this.zip;
-      }
-      if (this.country != '' || this.country != undefined || this.country != null) {
-        country = this.country;
-      }
-  
-      let addressParam = {
-        AddressType: 0,
-        StreetAddress: streetAddress,
-        City: city,
-        State: state,
-        Zip: zip,
-        Country: country,
-        FirstName: firstName,
-        LastName: lastName
-      }
-      return addressParam;
-  
-    }
-    else{
-      if (this.newAddress?.firstName != '' || this.newAddress?.firstName != undefined || this.newAddress?.firstName != null) {
-        firstName = this.newAddress?.firstName;
-      }
-      if (this.newAddress?.lastName != '' || this.newAddress?.lastName != undefined || this.newAddress?.lastName != null) {
-        lastName = this.newAddress?.lastName;
-      }
-      if (this.newAddress?.streetAddress != '' || this.newAddress?.streetAddress != undefined || this.newAddress?.streetAddress != null) {
-        streetAddress = this.newAddress?.streetAddress;
-      }
-      if (this.newAddress?.city != '' || this.newAddress?.city != undefined || this.newAddress?.city != null) {
-        city = this.newAddress?.city;
-      }
-      if (this.newAddress?.state != '' || this.newAddress?.state != undefined || this.newAddress?.state != null) {
-        state = this.newAddress?.state;
-      }
-      if (this.newAddress?.zip != 0 || this.newAddress?.zip != undefined || this.newAddress?.zip != null) {
-        zip = this.newAddress?.zip;
-      }
-      if (this.newAddress?.country != '' || this.newAddress?.country != undefined || this.newAddress?.country != null) {
-        country = this.newAddress?.country;
-      }
+    let firstName='';
+    let lastName='';
+    let streetAddress='';
+    let city='';
+    let state='';
+    let zip=0;
+    let country='';
 
-      let addressParam = {
-        AddressType: 0,
-        StreetAddress: streetAddress,
-        City: city,
-        State: state,
-        Zip: zip,
-        Country: country,
-        FirstName: firstName,
-        LastName: lastName
-      }
-      return addressParam;
+    if (this.firstName != '' || this.firstName != undefined || this.firstName != null) {
+      firstName = this.firstName;
     }
-   
+    if (this.lastName != '' || this.lastName != undefined || this.lastName != null) {
+      lastName = this.lastName;
+    }
+    if (this.streetAddress != '' || this.streetAddress != undefined || this.streetAddress != null) {
+      streetAddress = this.streetAddress;
+    }
+    if (this.city != '' || this.city != undefined || this.city != null) {
+      city = this.city;
+    }
+    if (this.state != '' || this.state != undefined || this.state != null) {
+      state = this.state;
+    }
+    if (this.zip != 0 || this.zip != undefined || this.zip != null) {
+      zip = this.zip;
+    }
+    if (this.country != '' || this.country != undefined || this.country != null) {
+      country = this.country;
+    }
+
+    let addressParam = {
+      FirstName: firstName,
+      LastName: lastName,
+      AddressType: 0,
+      Address1: streetAddress,
+      Address2: "",
+      City: city,
+      State: state,
+      Zip: zip,
+      Country: country
+
+
+    }
+    return addressParam;
   }
 
   getNewCreditCardParam() {
@@ -617,7 +616,7 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
- 
+
 
   getQuantityVal(qty: string) {
     var value = 0;
