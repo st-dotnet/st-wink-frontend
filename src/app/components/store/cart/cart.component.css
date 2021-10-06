@@ -637,8 +637,43 @@ button.btn.btn-checkout.disabledbutton,button.btn.btn-checkout.enabledbutton {
 }
 
 
+@media (min-width:768px)
+{
+  .cart-quantity.des-sec .form-group {
+    display: block;
+    }
+  
+    .cart-quantity.mob-sec .form-group {
+    display: none;
+    }
+}
+
 @media (max-width:767px)
 {
+  .Subscription-box .data-cart .cart-quantity.mob-sec .form-group:first-child
+  {
+ margin-left: 0px !important;
+  }
+  .cart-details p {
+    margin-bottom: 4px !important;
+}
+.cart-singleitem img
+{
+  height: 100% !important;
+}
+  .cart-quantity.mob-sec .form-group {
+    display: block;
+    }
+
+  .cart-quantity.des-sec {
+    display: block !important;
+    text-align: right;
+    }
+    
+    .cart-quantity.des-sec .form-group {
+    display: none;
+    }
+
   .cart-singleitem .media-left {
       max-width: 50px;
   }

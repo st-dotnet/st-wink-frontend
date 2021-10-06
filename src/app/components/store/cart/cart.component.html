@@ -78,8 +78,34 @@
                       {{ cartItem.itemDescription }}
                     </h4>
                     <p>{{ cartItem.itemCode }}</p>
+                    <div class="cart-quantity mob-sec">
+                      <div class="form-group">
+                        <select
+                          disabled={{cartItem.isDisabled}}
+                          (change)="
+                            quantityForOneTime(cartItem, $event.target.value)
+                          "
+                          class="form-control"
+                        >
+                          <option
+                            class="dropdown-item"
+                            disabled
+                            selected
+                            value="undefined"
+                          >
+                            {{ cartItem.quantityModel }}
+                          </option>
+                          <option
+                            *ngFor="let qty of quantity"
+                            [value]="qty.value"
+                          >
+                            {{ qty.value }}
+                          </option>
+                        </select>
+                      </div>
+                      </div>
                   </div>
-                  <div class="cart-quantity">
+                  <div class="cart-quantity des-sec">
                     <div class="form-group">
                       <select
                         disabled={{cartItem.isDisabled}}
@@ -190,8 +216,58 @@
                       {{ delivery.itemDescription }}
                     </h4>
                     <p>{{ delivery.itemCode }}</p>
+                    <div class="cart-quantity mob-sec">
+                      <div class="form-group">
+                        <select
+                         
+                          [(ngModel)]="delivery.subscriptionModel"
+                          class="form-control"
+                        >
+                          <option
+                            class="dropdown-item"
+                            disabled
+                            selected
+                            value="undefined"
+                          >
+                            {{ delivery.subscriptionModel }}
+                          </option>
+                          <option *ngFor="let year of years" [value]="year.value">
+                            {{ year.name }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <select
+                         
+                          (change)="
+                            quantityForSubscriptionTime(
+                              delivery,
+                              $event.target.value
+                            )
+                          "
+                          [(ngModel)]="delivery.quantityModel"
+                          class="form-control"
+                        >
+                          <option
+                            class="dropdown-item"
+                            disabled
+                            selected
+                            value="undefined"
+                          >
+                            {{ delivery.quantityModel }}
+                          </option>
+                          <option
+                            *ngFor="let qty of quantity"
+                            [value]="qty.value"
+                          >
+                            {{ qty.value }}
+                          </option>
+                        </select>
+                      </div>
+                      </div>
                   </div>
-                  <div class="cart-quantity">
+
+                  <div class="cart-quantity des-sec">
                     <div class="form-group">
                       <select
                        
