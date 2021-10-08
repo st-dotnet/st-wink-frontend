@@ -140,7 +140,12 @@ export class CartComponent implements OnInit {
 
   getSpecialItem() {
     this.shopService.getSpecialItem().subscribe(result => {
-      if (result) {
+      if (result==null) {
+        this.isShowSpecial=false;
+        this.spinner.hide();
+      }
+      else{
+        this.isShowSpecial=true;
         this.specialItem = result;
         this.spinner.hide();
       }
