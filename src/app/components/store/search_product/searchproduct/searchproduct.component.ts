@@ -361,5 +361,4 @@ export class SearchproductComponent implements OnInit {
         break;
     }
   }
-
 }

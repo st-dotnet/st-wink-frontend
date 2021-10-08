@@ -627,13 +627,54 @@ button.btn.btn-checkout.disabledbutton,button.btn.btn-checkout.enabledbutton {
 
 /* media Queries */
 
-
+@media (min-width:992px)
+{
+  .mob-setting .grid-box-shadow.shippingbox
+  {
+    display: none;
+  }
+  .mob-setting .sidebar-ui
+  {
+    display: none;
+  }
+}
 
 @media (max-width:991px)
 {
+  .mob-setting .shippingbox {
+    margin-bottom: 15px;
+}
   .grid-box-shadow.OTP {
       margin-bottom: 20px;
   }
+
+  .mob-setting .grid-box-shadow.shippingbox
+  {
+    display: block;
+  }
+  .mob-setting .sidebar-ui {
+    background: #fff;
+    padding: 12px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.mob-setting .sidebar-ui .search-box {
+    margin: 0;
+}
+
+.mob-setting .sidebar-ui svg {
+    fill: #ababab;
+}
+
+.desk-setting .sidebar-ui {
+  display: none;
+}
+
+.desk-setting .grid-box-shadow.shippingbox {
+  display: none;
+}
+
 }
 
 
@@ -650,6 +691,21 @@ button.btn.btn-checkout.disabledbutton,button.btn.btn-checkout.enabledbutton {
 
 @media (max-width:767px)
 {
+  .header-conv-subscr h3 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.header-conv-subscr p {font-size: 13px;max-width: 252px;}
+
+.conv_subscription_modal .modal-body {
+    padding: 20px;
+}
+
+.conv_subscription_modal .more-learn p.link-learnmore a {
+    color: #1cb1c5;
+}
+
   .Subscription-box .data-cart .cart-quantity.mob-sec .form-group:first-child
   {
  margin-left: 0px !important;
@@ -693,7 +749,7 @@ button.btn.btn-checkout.disabledbutton,button.btn.btn-checkout.enabledbutton {
   }
 
   .cart-singleitem .data-cart .cart-details {
-      padding-right: 10px;
+      padding-right: 0px;
   }
 
   .cart-singleitem .data-cart .cart-details h4 {
@@ -702,7 +758,7 @@ button.btn.btn-checkout.disabledbutton,button.btn.btn-checkout.enabledbutton {
 
   .cart-singleitem .data-cart .form-group {
       min-width: 50px !important;
-      margin-right: 4px !important;
+      margin-right: 0px !important;
   }
 
   .cart-singleitem .data-cart .form-group select {
@@ -808,6 +864,23 @@ button.btn.btn-checkout.disabledbutton,button.btn.btn-checkout.enabledbutton {
   .grid-box-shadow.today-order h4 {
       font-size: 18px;
   }
+  .conv_subscription_modal .method-shipp ul .custom-control.custom-radio {
+    width: 100%;
+    display: block;
+}
+
+.conv_subscription_modal .method-shipp ul .custom-control.custom-radio label {
+    width: 100%;
+}
+
+.conv_subscription_modal .method-shipp ul .custom-control.custom-radio label .cart-quantity {
+    justify-content: space-between;
+}
+
+.conv_subscription_modal .method-shipp ul .custom-control.custom-radio label .media-left {
+    padding-right: 5px;
+}
+
 }
 
 /* sandeep */

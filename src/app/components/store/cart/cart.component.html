@@ -36,7 +36,65 @@
 <section class="cart-header">
   <div class="container">
     <div class="row">
-      <div class="col-md-12 col-lg-7">
+      <div class="col-md-12 col-lg-7 mob-setting">
+        <div class="sidebar-ui">
+          <div class="search-box">
+            <div class="search-bar-on">
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  (click)="open(referr_user)"
+                  value=""
+                  placeholder="Find referral (Optional)"
+                />
+                <span class="search"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16.947"
+                    height="17.048"
+                    viewBox="0 0 16.947 17.048"
+                  >
+                    <path
+                      id="Path_2019"
+                      data-name="Path 2019"
+                      d="M151.4,12a4.5,4.5,0,1,1,4.5-4.5A4.481,4.481,0,0,1,151.4,12Zm6,0h-.8l-.3-.3a6.593,6.593,0,0,0,1.5-5.3,6.471,6.471,0,0,0-5.6-5.3,6.53,6.53,0,0,0-2,12.9,6.593,6.593,0,0,0,5.3-1.5l.3.3v.8l4.2,4.2a1.061,1.061,0,0,0,1.5-1.5Z"
+                      transform="translate(-144.853 -1.052)"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <span class="text-value"
+                >Customer ID, First or Last Name</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!--- GET FREE SHipping BOX-->
+        <div class="grid-box-shadow shippingbox">
+          <div class="get-shipping">
+            <a (click)="open(convert_subscription)"
+              >Get Free Shipping & Save 15%
+              <span class="arrow">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="6.6"
+                  height="11.2"
+                  viewBox="0 0 6.6 11.2"
+                >
+                  <path
+                    id="Path_2044"
+                    data-name="Path 2044"
+                    d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                    transform="translate(-630.6 -4.4)"
+                    fill="#1280c4"
+                  />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
         <div *ngIf="oneTimePriceCartItemsCount > 0" class="grid-box-shadow OTP">
           <h3>One-Time Purchase ({{ oneTimePriceCartItemsCount }})</h3>
           <div
@@ -386,7 +444,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-12 col-lg-5">
+      <div class="col-md-12 col-lg-5 desk-setting">
         <!--- Search BOX-->
 
         <div class="sidebar-ui">

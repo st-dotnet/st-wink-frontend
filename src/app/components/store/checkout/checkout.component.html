@@ -286,11 +286,8 @@
 
             <div class="col-sm-12 col-md-12 col-lg-7 col-lg-pull-5">
                 <div class="checkout-steps-3">
-
                     <ngb-accordion [closeOthers]="false" activeIds="checkoutstep1" class="panel-stepbar">
-
                         <ngb-panel [disabled]="showPanel1 ? true:null" id="checkoutstep1">
-
                             <ng-template ngbPanelTitle>
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     width="24" height="24" viewBox="0 0 24 24">
@@ -311,7 +308,7 @@
                             </ng-template>
 
                             <ng-template ngbPanelContent>
-
+                                <form [formGroup]="shippingAddressForm" (ngSubmit)="onAddressSubmit()">
                                 <ngb-accordion activeIds="subscr-schedule,shipping-address,shipping-method">
                                     <ngb-panel *ngIf="subscriptionCartItems.length > 0" id="subscr-schedule">
                                         <ng-template ngbPanelTitle>
@@ -362,8 +359,7 @@
                                         </ng-template>
                                     </ngb-panel>
                                    
-                                    <ngb-panel id="shipping-address">
-                                       
+                                    <ngb-panel id="shipping-address">                                       
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
                                                     <h4>Shipping Address</h4>
@@ -379,18 +375,17 @@
                                                 </div>
                                             </ng-template>
                                             <ng-template ngbPanelContent>
-                                                <div class="content-card steps-inner shipping-address-form">
-                                                   
+                                                <div class="content-card steps-inner shipping-address-form">                                                   
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                     placeholder="First Name" [(ngModel)]="firstName"
-                                                                    [ngClass]="{ 'is-invalid': submitted && ShippingAddressForm.controls.firstName?.errors }" />
-                                                                <div *ngIf="submitted && ShippingAddressForm.controls.firstName?.errors"
+                                                                     placeholder="First Name" formControlName="firstName"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.firstName?.errors }" />
+                                                                <div *ngIf="submitted && f.firstName?.errors"
                                                                     class="invalid-feedback">
                                                                     <div
-                                                                        *ngIf="ShippingAddressForm.controls.firstName?.errors.required">
+                                                                        *ngIf="f.firstName?.errors.required">
                                                                         First Name is required</div>
                                                                 </div>
                                                             </div>
@@ -398,12 +393,12 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                     placeholder="Last Name" [(ngModel)]="lastName"
-                                                                    [ngClass]="{ 'is-invalid': submitted && ShippingAddressForm.controls.lastName?.errors }" />
-                                                                <div *ngIf="submitted && ShippingAddressForm.controls.lastName?.errors"
+                                                                     placeholder="Last Name" formControlName="lastName"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.lastName?.errors }" />
+                                                                <div *ngIf="submitted && f.lastName?.errors"
                                                                     class="invalid-feedback">
                                                                     <div
-                                                                        *ngIf="ShippingAddressForm.controls.lastName?.errors.required">
+                                                                        *ngIf="f.lastName?.errors.required">
                                                                         Last Name is required</div>
                                                                 </div>
                                                             </div>
@@ -411,13 +406,13 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                     [(ngModel)]="streetAddress"
+                                                                formControlName="streetAddress"
                                                                     placeholder="Street Address"
-                                                                    [ngClass]="{ 'is-invalid': submitted && ShippingAddressForm.controls.streetAddress?.errors }" />
-                                                                <div *ngIf="submitted && ShippingAddressForm.controls.streetAddress?.errors"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.streetAddress?.errors }" />
+                                                                <div *ngIf="submitted && f.streetAddress?.errors"
                                                                     class="invalid-feedback">
                                                                     <div
-                                                                        *ngIf="ShippingAddressForm.controls.streetAddress?.errors.required">
+                                                                        *ngIf="f.streetAddress?.errors.required">
                                                                         Street Address is required</div>
                                                                 </div>
                                                             </div>
@@ -425,12 +420,12 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                 placeholder="City" [(ngModel)]="city"
-                                                                    [ngClass]="{ 'is-invalid': submitted && ShippingAddressForm.controls.city?.errors }" />
-                                                                <div *ngIf="submitted && ShippingAddressForm.controls.city?.errors"
+                                                                 placeholder="City" formControlName="city"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.city?.errors }" />
+                                                                <div *ngIf="submitted && f.city?.errors"
                                                                     class="invalid-feedback">
                                                                     <div
-                                                                        *ngIf="ShippingAddressForm.controls.city?.errors.required">
+                                                                        *ngIf="f.city?.errors.required">
                                                                         City is required</div>
                                                                 </div>
                                                             </div>
@@ -438,12 +433,12 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                     placeholder="State" [(ngModel)]="state"
-                                                                    [ngClass]="{ 'is-invalid': submitted && ShippingAddressForm.controls.state?.errors }" />
-                                                                <div *ngIf="submitted && ShippingAddressForm.controls.state?.errors"
+                                                                     placeholder="State" formControlName="state"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.state?.errors }" />
+                                                                <div *ngIf="submitted && f.state?.errors"
                                                                     class="invalid-feedback">
                                                                     <div
-                                                                        *ngIf="ShippingAddressForm.controls.state?.errors.required">
+                                                                        *ngIf="f.state?.errors.required">
                                                                         State is required</div>
                                                                 </div>
                                                             </div>
@@ -451,12 +446,12 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <input type="number" class="form-control"
-                                                                    placeholder="Zip" [(ngModel)]="zip"
-                                                                    [ngClass]="{ 'is-invalid': submitted && ShippingAddressForm.controls.zip?.errors }" />
-                                                                <div *ngIf="submitted && ShippingAddressForm.controls.zip?.errors"
+                                                                    placeholder="Zip" formControlName="zip"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.zip?.errors }" />
+                                                                <div *ngIf="submitted && f.zip?.errors"
                                                                     class="invalid-feedback">
                                                                     <div
-                                                                        *ngIf="ShippingAddressForm.controls.zip?.errors.required">
+                                                                        *ngIf="f.zip?.errors.required">
                                                                         Zip is required</div>
                                                                 </div>
                                                             </div>
@@ -464,33 +459,20 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control"
-                                                                     placeholder="Country" [(ngModel)]="country"
-                                                                    [ngClass]="{ 'is-invalid': submitted && ShippingAddressForm.controls.country?.errors }" />
-                                                                <div *ngIf="submitted && ShippingAddressForm.controls.country?.errors"
+                                                                     placeholder="Country" formControlName="country"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.country?.errors }" />
+                                                                <div *ngIf="submitted && f.country?.errors"
                                                                     class="invalid-feedback">
                                                                     <div
-                                                                        *ngIf="ShippingAddressForm.controls.country?.errors.required">
+                                                                        *ngIf="f.country?.errors.required">
                                                                         Country is required</div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <!-- <div class="saveprocessed">
-                                                            <button type="submit" (click)="onAddressSubmit()" >Save & Continue</button>
-                                                        </div> -->
-                                                    </div>
-                                                    <!-- <div class="saveprocessed">
-                                                        <button type="submit" (click)="onAddressSubmit()" >Save & Continue</button>
-                                                    </div> -->
-                                                  
-                                                </div>
-                                                <!-- <div class="saveprocessed">
-                                                    <button type="submit" (click)="onAddressSubmit()" >Save & Continue</button>
-                                                </div> -->
-                                            </ng-template>
-                                          
-                                            <!-- [disabled]="enablebtn"  [className]="enablebtn  ? 'btn btn-checkout disabledbutton ' : 'btn btn-checkout enabledbutton'" -->
-                                    </ngb-panel>
-                                   
+                                                        </div>                                                    
+                                                    </div> 
+                                                </div>                                             
+                                            </ng-template>                                          
+                                    </ngb-panel>                                   
                                
                                     <ngb-panel id="shipping-method">
                                         <ng-template ngbPanelTitle>
@@ -558,8 +540,9 @@
                                 </ngb-accordion>
                                 <!-- Save Button For Shipping Address -->
                                 <div class="saveprocessed">
-                                    <button type="submit" (click)="onAddressSubmit()" >Save & Continue</button>
+                                    <button type="submit" >Save & Continue</button>
                                 </div>
+                                </form>
                             </ng-template>
                         </ngb-panel>
 
@@ -583,6 +566,7 @@
                                 <span>2 of 3 - Payment</span>
                             </ng-template>
                             <ng-template ngbPanelContent>
+                                <form [formGroup]="onPaymentSubmitForm" (ngSubmit)="onPaymentSubmit()">
                                 <ngb-accordion activeIds="enter-payment">
                                     <ngb-panel id="promo-code">
                                         <ng-template ngbPanelTitle>
@@ -766,23 +750,23 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <input type="text" [ngModel]="cardName"
+                                                                    <input type="text" formControlName="cardName"
                                                                         placeholder="Name on card" name="card-name"
                                                                         class="form-control"
-                                                                         [ngClass]="{ 'is-invalid': submitted && cardForm.controls.cardName?.errors }" />
-                                                                        <div *ngIf="submitted && cardForm.controls.cardName?.errors" class="invalid-feedback">
-                                                                            <div *ngIf="cardForm.controls.cardName?.errors.required">Card Name is required</div>
+                                                                         [ngClass]="{ 'is-invalid': submitted && p.cardName?.errors }" />
+                                                                        <div *ngIf="submitted && p.cardName?.errors" class="invalid-feedback">
+                                                                            <div *ngIf="p.cardName?.errors.required">Card Name is required</div>
                                                                           </div>  
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <input type="number"  [ngModel]="cardNumber"
+                                                                    <input type="number"  formControlName="cardNumber"
                                                                         placeholder="Card number" name="cardNumber"
                                                                         class="form-control"
-                                                                        [ngClass]="{ 'is-invalid': submitted && cardForm.controls.cardNumber?.errors }" />
-                                                                        <div *ngIf="submitted && cardForm.controls.cardNumber?.errors" class="invalid-feedback">
-                                                                            <div *ngIf="cardForm.controls.cardNumber?.errors.required">Card Number is required</div>
+                                                                        [ngClass]="{ 'is-invalid': submitted && p.cardNumber?.errors }" />
+                                                                        <div *ngIf="submitted && p.cardNumber?.errors" class="invalid-feedback">
+                                                                            <div *ngIf="p.cardNumber?.errors.required">Card Number is required</div>
                                                                           </div>  
                                                                 </div>
                                                             </div>
@@ -790,34 +774,34 @@
                                                         <div class="row">
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="number" [ngModel]="expiryMonth"
+                                                                    <input type="number" formControlName="expiryMonth"
                                                                         placeholder="Month" name="expiryMonth"
                                                                         class="form-control" 
-                                                                        [ngClass]="{ 'is-invalid': submitted && cardForm.controls.expiryMonth?.errors }" />
-                                                                        <div *ngIf="submitted && cardForm.controls.expiryMonth?.errors" class="invalid-feedback">
-                                                                            <div *ngIf="cardForm.controls.expiryMonth?.errors.required">Expiry Month  is required</div>
+                                                                        [ngClass]="{ 'is-invalid': submitted && p.expiryMonth?.errors }" />
+                                                                        <div *ngIf="submitted && p.expiryMonth?.errors" class="invalid-feedback">
+                                                                            <div *ngIf="p.expiryMonth?.errors.required">Expiry Month  is required</div>
                                                                           </div>  
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="number"  [ngModel]="expiryYear"
+                                                                    <input type="number" formControlName="expiryYear"
                                                                         placeholder="expiryYear" name="expiryYear"
                                                                         class="form-control" 
-                                                                        [ngClass]="{ 'is-invalid': submitted && cardForm.controls.expiryYear?.errors }" />
-                                                                        <div *ngIf="submitted && cardForm.controls.expiryYear?.errors" class="invalid-feedback">
-                                                                            <div *ngIf="cardForm.controls.expiryYear?.errors.required">Expiry Year  is required</div>
+                                                                        [ngClass]="{ 'is-invalid': submitted && p.expiryYear?.errors }" />
+                                                                        <div *ngIf="submitted && p.expiryYear?.errors" class="invalid-feedback">
+                                                                            <div *ngIf="p.expiryYear?.errors.required">Expiry Year  is required</div>
                                                                           </div>  
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="number" [ngModel]="cardCVV"
+                                                                    <input type="number" formControlName="cardCVV"
                                                                         placeholder="cardCVV" name="cardCVV"
                                                                         class="form-control"
-                                                                        [ngClass]="{ 'is-invalid': submitted && cardForm.controls.cardCVV?.errors }" />
-                                                                    <div *ngIf="submitted && cardForm.controls.cardCVV?.errors" class="invalid-feedback">
-                                                                        <div *ngIf="cardForm.controls.cardCVV?.errors.required">card CVV  is required</div>
+                                                                        [ngClass]="{ 'is-invalid': submitted && p.cardCVV?.errors }" />
+                                                                    <div *ngIf="submitted && p.cardCVV?.errors" class="invalid-feedback">
+                                                                        <div *ngIf="p.cardCVV?.errors.required">card CVV  is required</div>
                                                                       </div>  
                                                                 </div>
                                                             </div>
@@ -829,7 +813,7 @@
                                                                     <li>
                                                                         <div class="custom-control custom-radio">
                                                                             <input type="checkbox" id="card-primary"
-                                                                                formArrayName="isMakePrimaryCard" [ngModel]="isMakePrimaryCard" (change)="onCheckboxChange($event)"
+                                                                                formArrayName="isMakePrimaryCard" formControlName="isMakePrimaryCard" (change)="onCheckboxChange($event)"
                                                                                 value="0" name="isMakePrimaryCard"
                                                                                 class="custom-control-input">
                                                                             <label class="custom-control-label"
@@ -892,12 +876,11 @@
                                                 <ng-template [ngIf]="addrnew">
                                                         <div class="different-address">
                                                             <div class="newaddr-infoo">
-                                                                <div class="row"
-                                                                    >
+                                                                <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
                                                                             <input type="text"
-                                                                             [(ngModel)]="newStreetAddress"
+                                                                             formControlName="newStreetAddress"
                                                                                 placeholder="Street address"
                                                                                 name="newStreetAddress"
                                                                                 class="form-control" />
@@ -905,7 +888,7 @@
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <input type="text" [(ngModel)]="newCity"
+                                                                            <input type="text" formControlName="newCity"
                                                                                 placeholder="City" name="newCity"
                                                                                 class="form-control" />
                                                                         </div>
@@ -914,21 +897,21 @@
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <input type="text"
-                                                                                placeholder="State" name="newState" [(ngModel)]="newState"
+                                                                                placeholder="State" name="newState" formControlName="newState"
                                                                                 class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <input type="number"
-                                                                                placeholder="ZIP" name="newZip" [(ngModel)]="newZip"
+                                                                                placeholder="ZIP" name="newZip" formControlName="newZip"
                                                                                 class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <input type="text"
-                                                                             [(ngModel)]="newCountry"
+                                                                            formControlName="newCountry"
                                                                                 placeholder="newCountry"
                                                                                 name="newCountry"
                                                                                 class="form-control" />
@@ -943,8 +926,9 @@
                                     </ngb-panel>
                                 </ngb-accordion>
                                 <div class="saveprocessed">
-                                    <button type="submit" (click)="onPaymentSubmit()">Save & Continue</button>
+                                    <button type="submit">Save & Continue</button>
                                 </div>
+                            </form>
                             </ng-template>
                         </ngb-panel>
 
