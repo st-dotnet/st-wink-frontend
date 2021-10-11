@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { CategoryModel, ShopProductModel } from '@app/_models/shop';
-
+import { Payment } from '@app/_models/payment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ import { CategoryModel, ShopProductModel } from '@app/_models/shop';
 export class ShopService {
 
   private readonly shopEndpoint = 'shopping/';
+  private readonly paymentEndpoint = 'payment/';
   constructor(private http: HttpClient) { }
 
   GetCategoryForShopById(webCategoryID: any) {
@@ -47,9 +48,14 @@ export class ShopService {
   {
     return this.http.post<any>(`${environment.apiUrl}${this.shopEndpoint}AddUpdateCustomerAddress/${customerId}`,addressParam);
   }
-  
+
   getAddressById(customerId:number)
   {
     return this.http.get<any[]>(`${environment.apiUrl}${this.shopEndpoint}GetshippingAddress/${customerId}`);
+  }
+
+  addPayment(Payment: Payment)
+  {
+    return this.http.post<any>(`${environment.apiUrl}${this.paymentEndpoint}createCustomerProfile/`,Payment);
   }
 }

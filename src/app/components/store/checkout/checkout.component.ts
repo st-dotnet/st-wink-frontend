@@ -10,7 +10,6 @@ import { ShopService } from '@app/_services/shop.service';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { last } from 'rxjs/operators';
 import { TransactionalRequestModel } from 'src/app/_models/checkout';
 
 @Component({
@@ -210,35 +209,14 @@ export class CheckoutComponent implements OnInit {
      if(result.result){
       this.spinner.hide();
       this.showPanel2 = false;
+      this.toastrService.success("Shipping address saved successfully");
       this.displayAddress =  result.result.address1 + ' ' + result.result.city + ' ' + result.result.state + ' ' + result.result.zip + ' ' + result.result.country;
      }
      else{
          this.toastrService.error(result.message);
          this.spinner.hide();
         }
-    });
-    //     localStorage.setItem('newShippingAddress', JSON.stringify(result.result));
-    //     this.newAddress = JSON.parse(localStorage.getItem('newShippingAddress'));
-    //     this.DisplayAddress = this.newAddress?.addressDisplay + ' ' + this.newAddress?.streetAddress + ' ' + this.newAddress?.city + ' ' + this.newAddress?.state + ' ' + this.newAddress?.zip + ' ' + this.newAddress?.country;
-    //     this.firstName = this.newAddress?.firstName;
-    //     this.lastName = this.newAddress?.lastName;
-    //     this.streetAddress = this.newAddress?.streetAddress;
-    //     this.city = this.newAddress?.city;
-    //     this.state = this.newAddress?.state;
-    //     this.zip = this.newAddress?.zip;
-    //     this.country = this.newAddress?.country;
-    //     this.isShipmentMethod = this.isShipmentMethod;
-    //     //this.router.navigate(["/store/thankyou"]);
-    //     this.spinner.hide();
-    //     if (result.result != null) {
-    //       this.showPanel2 = false;
-    //     }
-    //   }
-    //   else{
-    //     this.toastrService.error(result.message);
-    //   }
-    // });
-
+    });   
   }
 
   onPaymentSubmit() {
@@ -247,12 +225,12 @@ export class CheckoutComponent implements OnInit {
     if (this.onPaymentSubmitForm.invalid) {
       return;
     }
+    this.spinner.show();
      const payment = new Payment();
      payment.firstName =this.f.firstName.value;
      payment.lastName =this.f.lastName.value;
      if(this.addrnew){
       payment.address1 =this.p.newStreetAddress.value;
-      payment.address2 ="";
       payment.state =this.p.newState.value;
       payment.phone ="";
       payment.city =this.p.newCity.value;
@@ -269,30 +247,26 @@ export class CheckoutComponent implements OnInit {
      payment.amount =this.cartSummaryTotal;
      payment.cardNumber =this.p.cardNumber.value;
      payment.cardCode =this.p.cardNumber.value;
-     payment.month =this.p.cardNumber.value;
-     payment.year =this.p.cardNumber.value;
+     payment.expMonth =this.p.expiryMonth.value;
+     payment.expYear =this.p.expiryYear.value;
+     payment.primary =true;
+     payment.active =true;
+     payment.cardType =1;
+     payment.customerId =this.customerId;
 
-
-
-    // if (this.isCardType == 1) {
-    //   this.paymentParam=''; //Existing card details
-    //   //Existing Card Details with tokenEx
-    // }
-    // else {
-    //   this.paymentParam = this.getNewCreditCardParam();
-    //   //Save new Card details and generate new card token and save to the database.
-    // }
-    // if(this.addrnew==true)
-    // {
-    //   this.billingAddress=this.getBillingAddressParam();
-    // }
-    // else{
-    //   this.billingAddress=this.getShippingAddressParam(2);
-    // }
-    // if (this.showPanel2 == false) {
-    //   this.showPanel3 = false;
-    // }
-
+     this.shopService.addPayment(payment).subscribe((result: any) => {
+      debugger
+      console.log("Result", result.result);
+     if(result.message == "successfull"){
+      this.spinner.hide();
+      this.showPanel3 = true;
+      this.toastrService.success("Payment is succesfull");
+      this.showPanel2 = false;
+       }else{
+        this.spinner.hide();
+        this.toastrService.error(result.message);        
+       }
+      });    
   }
 
 
@@ -698,7 +672,6 @@ export class CheckoutComponent implements OnInit {
       startDate = new Date(this.startDate);
     }
 
-
     // let firstName = this.checkoutForm.get(['shippingAddressFormGroup', 'firstName']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'firstName']).value : '';
     // let lastName = this.checkoutForm.get(['shippingAddressFormGroup', 'lastName']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'lastName']).value : '';
     // let streetAddress = this.checkoutForm.get(['shippingAddressFormGroup', 'streetAddress']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'streetAddress']).value : '';
@@ -993,7 +966,6 @@ export class CheckoutComponent implements OnInit {
     setAccountCreditCardTokenRequest.customerID = 0;
     setAccountCreditCardTokenRequest.billingAddress = '';
     setAccountCreditCardTokenRequest.lastFour = '';
-
 
     const transactionalRequestModel = new TransactionalRequestModel();
     transactionalRequestModel.createOrderRequest = createOrderRequest;

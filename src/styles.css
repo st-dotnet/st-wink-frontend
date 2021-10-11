@@ -850,6 +850,7 @@ div#notifi-review-header+div#notifi-review {
   display: flex;
   position: relative;
   padding-right: 16px;
+  color:#1cb1c5;
 }
 
 .conv_subscription_modal .more-learn p.link-learnmore {

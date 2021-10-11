@@ -1,9 +1,9 @@
 export class Payment
 {
+customerId: number;
 firstName: string;
 lastName :string;
 address1 : string;
-address2 : string;
 city : string;
 state : string;
 country : string;
@@ -12,6 +12,9 @@ phone : string;
 amount : number;
 cardNumber : number; 
 cardCode : number; 
-month :number;
-year : number;
+expYear :number;
+expMonth : number;
+primary :boolean;
+active : boolean;
+cardType : number;
 }
