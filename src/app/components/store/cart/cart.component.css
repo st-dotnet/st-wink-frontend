@@ -637,6 +637,9 @@ button.btn.btn-checkout.disabledbutton,button.btn.btn-checkout.enabledbutton {
   {
     display: none;
   }
+  .grid-box-shadow.today-order {
+    margin-top: 16px;
+}
 }
 
 @media (max-width:991px)
@@ -674,7 +677,10 @@ button.btn.btn-checkout.disabledbutton,button.btn.btn-checkout.enabledbutton {
 .desk-setting .grid-box-shadow.shippingbox {
   display: none;
 }
-
+.desk-setting .shipp
+{
+  display: none;
+}
 }
 
 

@@ -330,7 +330,7 @@
                                             <div class="content-card steps-inner">
                                                 <div [className]="startDate ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'"
                                                     id="subscr-schedule">
-                                                    <!-- [(ngModel)]="inputdata"  --> <input type="text"
+                                                 <input type="text"
                                                         class="form-control" bsDatepicker [minDate]="minDate"
                                                         [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }"
                                                         [ngModelOptions]="{standalone: true}" />
@@ -363,7 +363,7 @@
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
                                                     <h4>Shipping Address</h4>
-                                                    <p> {{DisplayAddress}} …</p>
+                                                    <p> {{displayAddress}} …</p>
                                                     <span class="arrow-stepp">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
                                                             height="11.2" viewBox="0 0 6.6 11.2">
@@ -912,7 +912,7 @@
                                                                         <div class="form-group">
                                                                             <input type="text"
                                                                             formControlName="newCountry"
-                                                                                placeholder="newCountry" mnn
+                                                                                placeholder="Country" 
                                                                                 name="newCountry"
                                                                                 class="form-control" />
                                                                         </div>

@@ -906,6 +906,7 @@ div#notifi-review-header+div#notifi-review {
   position: absolute;
   top: 9px;
   right: 10px;
+  pointer-events: none;
 }
 
 .conv-subsc-date .form-group input {

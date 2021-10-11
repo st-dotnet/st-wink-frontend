@@ -65,7 +65,7 @@ export class CheckoutComponent implements OnInit {
   showPanel1 = false;
   showPanel2 = true;
   showPanel3 = true;
-    DisplayAddress: any;
+  
   enablebtn: boolean;
   //Shipping Address Variables
   firstName: string;
@@ -95,6 +95,7 @@ export class CheckoutComponent implements OnInit {
   newState: string;
   newZip: number;
   newCountry: string;
+  displayAddress: string;
 
 
   constructor(private modalService: NgbModal,
@@ -125,7 +126,7 @@ export class CheckoutComponent implements OnInit {
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
     this.newAddress = JSON.parse(localStorage.getItem('newShippingAddress')) ? JSON.parse(localStorage.getItem('newShippingAddress')) : "";
     if (this.newAddress != "" || this.newAddress != undefined || this.newAddress != null) {
-      this.DisplayAddress = this.newAddress?.addressDisplay + ' ' + this.newAddress?.streetAddress + ' ' + this.newAddress?.city + ' ' + this.newAddress?.state + ' ' + this.newAddress?.zip + ' ' + this.newAddress?.country;
+      this.displayAddress = this.newAddress?.addressDisplay + ' ' + this.newAddress?.streetAddress + ' ' + this.newAddress?.city + ' ' + this.newAddress?.state + ' ' + this.newAddress?.zip + ' ' + this.newAddress?.country;
       this.firstName = this.newAddress?.firstName;
       this.lastName = this.newAddress?.lastName;
       this.streetAddress = this.newAddress?.streetAddress;
@@ -139,6 +140,7 @@ export class CheckoutComponent implements OnInit {
     this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
     this.sidebartoggle = true;
     this.cartCalculation();
+    this.getAddressByCustomerId(this.customerId);
     this.shippingAddressForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
@@ -172,6 +174,28 @@ export class CheckoutComponent implements OnInit {
   get p() {
     return this.onPaymentSubmitForm.controls;
   }
+
+  getAddressByCustomerId(id){
+    debugger
+    this.spinner.show();
+    this.shopService.getAddressById(id).subscribe((result: any) => {
+      debugger      
+      if(result.length > 0){
+        this.displayAddress =  result[0].address1 + ' ' + result[0].city + ' ' + result[0].state + ' ' + result[0].zip + ' ' + result[0].country;
+        this.shippingAddressForm.get('firstName').setValue(result[0].firstName);
+        this.shippingAddressForm.get('lastName').setValue(result[0].lastName);
+        this.shippingAddressForm.get('streetAddress').setValue(result[0].address1);
+        this.shippingAddressForm.get('city').setValue(result[0].city);
+        this.shippingAddressForm.get('state').setValue(result[0].state);
+        this.shippingAddressForm.get('zip').setValue(result[0].zip);
+        this.shippingAddressForm.get('country').setValue(result[0].country);
+        this.spinner.hide();
+      }else{
+        this.spinner.hide();
+      }
+    });
+  }
+
   onAddressSubmit() {
     debugger
     this.submitted = true;
@@ -186,7 +210,7 @@ export class CheckoutComponent implements OnInit {
      if(result.result){
       this.spinner.hide();
       this.showPanel2 = false;
-      this.DisplayAddress =  result.result.address1 + ' ' + result.result.city + ' ' + result.result.state + ' ' + result.result.zip + ' ' + result.result.country;
+      this.displayAddress =  result.result.address1 + ' ' + result.result.city + ' ' + result.result.state + ' ' + result.result.zip + ' ' + result.result.country;
      }
      else{
          this.toastrService.error(result.message);
@@ -273,6 +297,7 @@ export class CheckoutComponent implements OnInit {
 
 
   getShippingAddressParam(type:number) {
+    debugger
     let firstName;
     let lastName;
     let address1;
@@ -288,7 +313,7 @@ export class CheckoutComponent implements OnInit {
         address1 : this.f.streetAddress.value,
         city : this.f.city.value,
         state : this.f.state.value,
-        zip : this.f.firstName.value,
+        zip : this.f.zip.value,
         country : this.f.country.value    
       }
       return addressParam;
