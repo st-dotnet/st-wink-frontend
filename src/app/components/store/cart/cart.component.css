@@ -53,8 +53,25 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart {
 section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-quantity {
   display: flex;
   align-items: flex-start;
-  min-width: 175px;
+  min-width: 195px;
   justify-content: space-between;
+  flex-direction: column;
+}
+
+.prod-quant {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.prod-discount {
+  display: block;
+  text-align: right;
+  width: 100%;
+}
+
+.prod-discount .subscription-with-discount p {
+  font-size: 18px !important;
 }
 
 section.cart-header .grid-box-shadow .cart-singleitem .data-cart p.price-product {

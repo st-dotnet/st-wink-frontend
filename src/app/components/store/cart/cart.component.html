@@ -164,7 +164,8 @@
                       </div>
                   </div>
                   <div class="cart-quantity des-sec">
-                    <div class="form-group">
+                    <div class="prod-quant">
+                       <div class="form-group">
                       <select
                         disabled={{cartItem.isDisabled}}
                         (change)="
@@ -189,6 +190,14 @@
                       </select>
                     </div>
                     <p class="price-product">${{ cartItem.Price  | number:'.1-2'  }}</p>
+                    </div>
+                   <div class="prod-discount">
+                    <div *ngIf="cartItem.bundle == 'multiple'" class="subscription-with-discount">
+                      <p>5% Discount</p>
+                      <p>-$ {{cartItem.bv * 2 - cartItem.Price  | number:'.1-2'}}</p>
+                  </div>
+                   </div>
+                   
                   </div>
                 </div>
               </div>
