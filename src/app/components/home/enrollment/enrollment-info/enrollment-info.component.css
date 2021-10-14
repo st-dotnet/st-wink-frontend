@@ -202,3 +202,6 @@ ul.list-items li:after {
 .enroll-member form.member-search input:focus {
     outline: none;
 }
+.content-video-enrollment iframe.wistia_embed {
+    width: 100%;
+    }

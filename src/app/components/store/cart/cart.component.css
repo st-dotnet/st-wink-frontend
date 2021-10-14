@@ -657,6 +657,7 @@ button.btn.btn-checkout.disabledbutton,button.btn.btn-checkout.enabledbutton {
   .grid-box-shadow.today-order {
     margin-top: 16px;
 }
+
 }
 
 @media (max-width:991px)
@@ -710,6 +711,13 @@ button.btn.btn-checkout.disabledbutton,button.btn.btn-checkout.enabledbutton {
     .cart-quantity.mob-sec .form-group {
     display: none;
     }
+    .conv_subscription_modal .method-shipp ul label {
+      width: 100%;
+  }
+  
+  .conv_subscription_modal .method-shipp ul label .cart-quantity {
+      justify-content: space-between;
+  }
 }
 
 @media (max-width:767px)
@@ -902,6 +910,13 @@ button.btn.btn-checkout.disabledbutton,button.btn.btn-checkout.enabledbutton {
 
 .conv_subscription_modal .method-shipp ul .custom-control.custom-radio label .media-left {
     padding-right: 5px;
+}
+.other-additional-product {
+  max-width: 100% !important;
+  float: left !important;
+}
+.other-additional-product .special-field.dataempty.form-group {
+  max-width: 100%;
 }
 
 }

@@ -1,6 +1,263 @@
-<section class="backlink-header">
+<section class="backlink-header mob-check">
     <div class="container">
         <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 show-deskk">
+                <div
+                    [className]="sidebartoggle1 ?  'hidesidebar toggle-sidebar hidden-lg' : 'showsidebar toggle-sidebar hidden-lg'">
+                    <div class="cart-sidebar sidebar-collapse">
+                        <div class="sidebar-head">
+                            <h2><a (click)="toggleShow()"> <span class="arrow-down">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="11.2" height="6.6"
+                                            viewBox="0 0 11.2 6.6">
+                                            <path id="Path_2040" data-name="Path 2040"
+                                                d="M541.8,7l-3.9,3.9L534,7a.967.967,0,0,0-1.4,0,.967.967,0,0,0,0,1.4l4.6,4.6a.967.967,0,0,0,1.4,0l4.6-4.6A.99.99,0,1,0,541.8,7Z"
+                                                transform="translate(-532.3 -6.7)" fill="#1cb1c5" />
+                                        </svg>
+                                    </span><span class="down-ext">Hide Order Summary</span><span class="left-ext">Show Order Summary</span></a>
+                            </h2>
+                            <span class="amount-summary"> $40.00 </span>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="sidebartoggle1" class="sidebar-ui">
+                    <ngb-accordion activeIds="enter-payment">
+                        <ngb-panel id="refered-sidebar">
+                            <ng-template ngbPanelTitle>
+                                <div class="heading-step1">
+                                    <h4>Referred By</h4>
+                                    <span *ngIf="!toShowData" class="vali-promo">Not Referred</span>
+                                    <p *ngIf="toShowData" class="Refered-value mb-0">{{refName}}, ID #{{refId}}</p>
+                                    <span class="arrow-stepp">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
+                                            viewBox="0 0 6.6 11.2">
+                                            <path id="Path_2044" data-name="Path 2044"
+                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                transform="translate(-630.6 -4.4)" />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                                <div class=" search-box">
+                                    <div class="search-bar-on">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" (click)="open(referr_user)" value=""
+                                                placeholder="Find referral (Optional)" />
+                                            <span class="search"><svg xmlns="http://www.w3.org/2000/svg" width="16.947"
+                                                    height="17.048" viewBox="0 0 16.947 17.048">
+                                                    <path id="Path_2019" data-name="Path 2019"
+                                                        d="M151.4,12a4.5,4.5,0,1,1,4.5-4.5A4.481,4.481,0,0,1,151.4,12Zm6,0h-.8l-.3-.3a6.593,6.593,0,0,0,1.5-5.3,6.471,6.471,0,0,0-5.6-5.3,6.53,6.53,0,0,0-2,12.9,6.593,6.593,0,0,0,5.3-1.5l.3.3v.8l4.2,4.2a1.061,1.061,0,0,0,1.5-1.5Z"
+                                                        transform="translate(-144.853 -1.052)" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <span class="text-value">Customer ID, First or Last Name</span>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ngb-panel>
+                        <ngb-panel id="promo-sidebar">
+                            <ng-template ngbPanelTitle>
+                                <div class="heading-step1">
+                                    <h4>Promo Code</h4>
+                                    <span class="vali-promo">Not Applied</span>
+                                    <span class="arrow-stepp">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
+                                            viewBox="0 0 6.6 11.2">
+                                            <path id="Path_2044" data-name="Path 2044"
+                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                transform="translate(-630.6 -4.4)" />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                                <div class="content-card steps-inner promo-checkout">
+                                    <div class="col-md-12 p-0 mb-3">
+                                        <div class="promo-code">
+                                            <div
+                                                [className]="promocode_onetime ?  'special-field datafilled form-group' : 'special-field dataempty form-group'">
+                                                <input type="text" value="" [(ngModel)]="promocode_onetime"
+                                                    name="promo-enter" class="form-control" />
+                                                <label class="form-label">Promo Code</label>
+                                                <span class="vali-promo">Not Applied</span>
+                                                <span class="btn-add-promo" [disabled]="isDisabled"
+                                                    (click)="addPromo(); isDisabled = true;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                        viewBox="0 0 14 14">
+                                                        <path _ngcontent-shj-c146="" id="Path_2014"
+                                                            data-name="Path 2014"
+                                                            d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
+                                                            transform="translate(-194.9 -3)"></path>
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="other-additional-product" >
+                                    <div class="promo-code" >
+                                      <div
+                                        [className]="
+                                          promocode_onetime
+                                            ? 'special-field datafilled form-group '
+                                            : 'special-field dataempty form-group'
+                                        "
+                                      >
+                                        <input  
+                                          type="text"
+                                          [(ngModel)]="promocode_onetime"
+                                          class="form-control"
+                                          (focusout)="clearPromo($event)"
+                                        />
+                                        <label class="form-label">Promo Code</label>
+                                        <button class="btn-add-promo"  (click)="addPromo()">
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="14"
+                                            height="14"
+                                            viewBox="0 0 14 14"
+                                          >
+                                            <path
+                                              id="Path_2014"
+                                              data-name="Path 2014"
+                                              d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
+                                              transform="translate(-194.9 -3)"
+                                            />
+                                          </svg>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div> -->
+                            </ng-template>
+                        </ngb-panel>
+
+                        <ngb-panel id="otp-sidebar">
+                            <ng-template ngbPanelTitle>
+                                <div class="heading-step1">
+                                    <h4>One-Time Purchase</h4>
+                                    <span class="arrow-stepp">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
+                                            viewBox="0 0 6.6 11.2">
+                                            <path id="Path_2044" data-name="Path 2044"
+                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                transform="translate(-630.6 -4.4)" />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                                <div class="content-card steps-inner otp-data-sidebar">
+                                    <table>
+                                        <tbody>
+                                            <tr *ngFor="let item of oneTimePriceCartItems">
+                                                <td>{{item.itemDescription}}</td>
+                                                <td>${{item.Price * item.quantityModel | number :'.1-2'}}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr *ngIf="isPromocode">
+                                                <td>You Saved</td>
+                                                <td>-${{promoPercentage | number :'.1-2'}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Subtotal</td>
+                                                <td>${{subtotalOneTimePrice| number :'.1-2'}}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </ng-template>
+                        </ngb-panel>
+
+                        <ngb-panel id="subsc-purchse">
+                            <ng-template ngbPanelTitle>
+                                <div class="heading-step1">
+                                    <h4>Subscription Purchase</h4>
+
+                                    <span class="arrow-stepp">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
+                                            viewBox="0 0 6.6 11.2">
+                                            <path id="Path_2044" data-name="Path 2044"
+                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                transform="translate(-630.6 -4.4)" />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                                <div class="content-card steps-inner subsc-purchse-sidebar">
+                                    <table>
+                                        <tbody>
+                                            <tr *ngFor="let item of subscriptionCartItems">
+                                                <td>{{item.itemDescription}}</td>
+                                                <td>${{item.Price * item.quantityModel | number :'.1-2'}}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td>You Saved</td>
+                                                <td>-${{discount15Percent | number:'.1-2'}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Subtotal</td>
+                                                <td>${{subTotalSubscriptionPriceAfterDiscount | number
+                                                    :'.1-2'}}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </ng-template>
+                        </ngb-panel>
+
+                        <ngb-panel id="today-order-sidebar">
+                            <ng-template ngbPanelTitle>
+                                <div class="heading-step1">
+                                    <h4>Today's Order</h4>
+                                    <span class="arrow-stepp">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
+                                            viewBox="0 0 6.6 11.2">
+                                            <path id="Path_2044" data-name="Path 2044"
+                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                transform="translate(-630.6 -4.4)" />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                                <div class="content-card steps-inner today-order">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>One-Time Purchase</td>
+                                                <td>${{subtotalOneTimePrice | number :'.1-2'}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Subscription Purchase</td>
+                                                <td>${{subTotalSubscriptionPriceAfterDiscount | number :'.1-2'}}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td>You Saved</td>
+                                                <td>-${{totalDiscount | number:'.1-2'}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total</td>
+                                                <td>${{cartSummaryTotal | number:'.1-2'}}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </ng-template>
+                        </ngb-panel>
+                    </ngb-accordion>
+                </div>
+
+            </div>
+
+
             <div class="col-lg-7 col-md-12 back-link mb-4">
                 <a [routerLink]="['/store/cart']"><svg aria-hidden="true" focusable="false" data-prefix="far"
                         data-icon="angle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
@@ -27,19 +284,18 @@
 <section class="checkout-page grid-checkout">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-5 col-lg-push-7">
-                <div
-                    [className]="sidebartoggle ?  'showsidebar toggle-sidebar hidden-lg' : 'hidesidebar toggle-sidebar hidden-lg'">
+            <div class="col-sm-12 col-md-12 col-lg-5 col-lg-push-7 desk-sidebar">
+                <div class="showsidebar toggle-sidebar hidden-lg">
                     <div class="cart-sidebar sidebar-collapse">
                         <div class="sidebar-head">
-                            <h2><a (click)="toggleShow()"> <span class="arrow-down">
+                            <h2> <span class="arrow-down">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="11.2" height="6.6"
                                             viewBox="0 0 11.2 6.6">
                                             <path id="Path_2040" data-name="Path 2040"
                                                 d="M541.8,7l-3.9,3.9L534,7a.967.967,0,0,0-1.4,0,.967.967,0,0,0,0,1.4l4.6,4.6a.967.967,0,0,0,1.4,0l4.6-4.6A.99.99,0,1,0,541.8,7Z"
                                                 transform="translate(-532.3 -6.7)" fill="#1cb1c5" />
                                         </svg>
-                                    </span>Cart Summary</a>
+                                    </span>Cart Summary
                             </h2>
                             <span class="amount-summary"> $40.00 </span>
                         </div>
@@ -567,7 +823,7 @@
                             </ng-template>
                             <ng-template ngbPanelContent>
                                 <form [formGroup]="onPaymentSubmitForm" (ngSubmit)="onPaymentSubmit()">
-                                <ngb-accordion activeIds="enter-payment">
+                                <ngb-accordion activeIds="promo-code,loyalty-info,cards-selection,card-info,billing-method">
                                     <ngb-panel id="promo-code">
                                         <ng-template ngbPanelTitle>
                                             <div class="heading-step1">
@@ -786,7 +1042,7 @@
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <input type="number" formControlName="expiryYear"
-                                                                        placeholder="expiryYear" name="expiryYear"
+                                                                        placeholder="Year" name="expiryYear"
                                                                         class="form-control" 
                                                                         [ngClass]="{ 'is-invalid': submitted && p.expiryYear?.errors }" />
                                                                         <div *ngIf="submitted && p.expiryYear?.errors" class="invalid-feedback">
@@ -797,7 +1053,7 @@
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <input type="number" formControlName="cardCVV"
-                                                                        placeholder="cardCVV" name="cardCVV"
+                                                                        placeholder="CVV" name="cardCVV"
                                                                         class="form-control"
                                                                         [ngClass]="{ 'is-invalid': submitted && p.cardCVV?.errors }" />
                                                                     <div *ngIf="submitted && p.cardCVV?.errors" class="invalid-feedback">
@@ -866,7 +1122,7 @@
                                                                     name="newCustomRadio" class="custom-control-input">
                                                                 <label class="custom-control-label" for="customRadio5">
                                                                     <div class="shipping-list-item">
-                                                                        <h4>Use different address</h4>
+                                                                        <h4>Use different billing address</h4>
                                                                     </div>
                                                                 </label>
                                                             </div>
@@ -932,7 +1188,7 @@
                             </ng-template>
                         </ngb-panel>
 
-                        <ngb-panel [disabled]="showPanel3 ? true:null" id="checkoutstep3">
+                        <ngb-panel  id="checkoutstep3">
                             <ng-template ngbPanelTitle>
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     width="24" height="24" viewBox="0 0 24 24">
@@ -952,7 +1208,7 @@
                                 <span>3 of 3 - Review Order</span>
                             </ng-template>
                             <ng-template ngbPanelContent>
-                                <ngb-accordion activeIds="enter-payment">
+                                <ngb-accordion activeIds="notifi-review,promo-code,loyalty-info,today-order">
                                     <ngb-panel id="notifi-review">
                                         <ng-template ngbPanelTitle>
                                             <div class="heading-step1">
@@ -961,8 +1217,6 @@
                                             </div>
                                         </ng-template>
                                     </ngb-panel>
-
-
                                     <ngb-panel id="promo-code">
                                         <ng-template ngbPanelTitle>
                                             <div class="heading-step1">

@@ -1251,9 +1251,70 @@ background-color:#fff;
     {
       display:none;
     }
+    .show-deskk
+    {
+  display: none;
+    }
+    section.checkout-page.grid-checkout .hidesidebar.toggle-sidebar {
+      display: block;
+  }
+  .desk-sidebar {
+    display: block;
+}
 }
 @media (max-width:991px)
 {
+  .mob-check .show-deskk .showsidebar.toggle-sidebar .sidebar-head span.down-ext {
+    display: none;
+}
+
+.mob-check .show-deskk .showsidebar.toggle-sidebar .sidebar-head span.left-ext {color: #1cb1c5 !important;}
+
+.mob-check .show-deskk .hidesidebar.toggle-sidebar .sidebar-head span.down-ext {color: #1cb1c5 !important;}
+
+.mob-check .show-deskk .hidesidebar.toggle-sidebar .sidebar-head span.left-ext {
+    display: none;
+}
+
+.hidesidebar.toggle-sidebar+.sidebar-ui {
+    padding: 0 15px;
+}
+
+  .show-deskk {
+    padding: 0 !important;
+}
+
+section.backlink-header.mob-check {
+    padding-top: 0px !important;
+}
+
+  .mob-check .show-deskk .showsidebar.toggle-sidebar .sidebar-head span.arrow-down {
+    top: -2px;
+}
+
+.mob-check .show-deskk .showsidebar.toggle-sidebar .sidebar-head span.arrow-down svg
+ {transform: rotate(90deg);}
+
+
+.mob-check .show-deskk .hidesidebar.toggle-sidebar .sidebar-head span.arrow-down {
+    top: -2px;
+}
+
+.mob-check .show-deskk .hidesidebar.toggle-sidebar .sidebar-head span.arrow-down svg
+ {transform: rotate(0deg);}
+
+
+  .desk-sidebar {
+    display: none;
+}
+
+  section.checkout-page.grid-checkout .hidesidebar.toggle-sidebar {
+    display: none;
+}
+  .show-deskk
+  {
+display: block;
+  }
   /* CSS PRODUCT DETAIL PAGE CSS */
   .slider-whylove {bottom: 0px;top: auto;transform: none;max-width: 96%;left: 15px;}
   .slider-whylove owl-carousel-o owl-stage .text-slider {

@@ -56,6 +56,6 @@ export class ShopService {
 
   addPayment(Payment: Payment)
   {
-    return this.http.post<any>(`${environment.apiUrl}${this.paymentEndpoint}createCustomerProfile/`,Payment);
+    return this.http.post<any>(`${environment.apiUrl}${this.paymentEndpoint}CreatePaymentUsingAuthorizeNet/`, Payment);
   }
 }

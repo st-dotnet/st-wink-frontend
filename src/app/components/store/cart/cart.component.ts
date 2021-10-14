@@ -456,4 +456,8 @@ export class CartComponent implements OnInit {
       }
     ]
   }
+
+  customQuantity(quantity: any){
+    return `Qty ${quantity}`;
+  }
 }

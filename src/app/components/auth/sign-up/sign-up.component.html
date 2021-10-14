@@ -8,6 +8,7 @@
             <div class="form-group mb-3">
               <input type="text" class="form-control" formControlName="firstName" placeholder="First Name"
                 [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                <span class="valid-text">* Required</span>
               <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                 <div *ngIf="f.firstName.errors.required">First Name is required</div>
               </div>
@@ -15,6 +16,7 @@
             <div class="form-group mb-3">
               <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name"
                 [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                <span class="valid-text">* Required</span>
               <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
                 <div *ngIf="f.lastName.errors.required">Last Name is required</div>
               </div>
@@ -22,6 +24,7 @@
             <div class="form-group mb-3">
               <input type="email" class="form-control" (change)="emailVerify('Email')" formControlName="emailAddress" placeholder="Email Address"
                 [ngClass]="{ 'is-invalid': submitted && f.emailAddress.errors }" />
+                <span class="valid-text">* Required</span>
               <div *ngIf="submitted && f.emailAddress.errors" class="invalid-feedback">
                 <div *ngIf="f.emailAddress.errors.required">Email is required</div>
                 <div *ngIf="f.emailAddress.errors.email">Please enter vaild email address</div>
@@ -31,6 +34,7 @@
             <div class="form-group mb-3">
               <input type="text" class="form-control" (change)="emailVerify('UserName')" formControlName="userName" placeholder="Username"
                 [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+                <span class="valid-text">* Required</span>
               <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
                 <div *ngIf="f.userName.errors.required">User Name is required</div>
               </div>
@@ -38,6 +42,7 @@
             <div class="form-group mb-3">
               <input type="text" class="form-control" formControlName="phoneNumber" [textMask]="{mask: maskMobileNo}" placeholder="Phone Number"
                 [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
+                <span class="valid-text">* Required</span>
               <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
                 <div *ngIf="f.phoneNumber.errors.required">Phone number is required</div>
                 <div *ngIf="f.phoneNumber.errors.minlength">Phone number must be at least 10-12 numbers with country
@@ -47,6 +52,7 @@
             <div class="form-group mb-3">
               <input type="password" class="form-control" formControlName="password" placeholder="Password" minlength="6" maxlength="12"
                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <span class="valid-text">* Required</span>
               <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                 <div *ngIf="f.password.errors.required">Password is required</div>
                 <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
@@ -55,6 +61,7 @@
             <div class="form-group mb-3">
               <input type="password" class="form-control" formControlName="confirmPassword" minlength="6" maxlength="12"
                 placeholder="Confirm Password" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                <span class="valid-text">* Required</span>
               <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
                 <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
                 <div *ngIf="f.confirmPassword.errors.minlength">Confirm Password must be at least 6 characters</div>
@@ -62,13 +69,14 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <input type="text" placeholder="Date Of Birth" class="form-control" readonly="readonly"
+              <input type="text" placeholder="Birthday" class="form-control" readonly="readonly"
               bsDatepicker [maxDate]="maxDate" [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }" formControlName="dateOfBirth">
+              <span class="valid-text">* Required</span>
             </div>
           </div>
           <div class="btn-proceed">
             <p class="short-noti-signup">We will never sell or share your personal information.</p>
-            <button type="submit" class="form-control"> Create My Account</button>
+            <button type="submit" class="form-control">CREATE MY ACCOUNT</button>
             <p class="already-text">Already have an account?</p>
             <a [routerLink]="['/sign-in']">SIGN IN</a>
           </div>

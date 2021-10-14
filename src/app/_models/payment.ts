@@ -1,20 +1,22 @@
 export class Payment
 {
-customerId: number;
-firstName: string;
-lastName :string;
-address1 : string;
+//customerId: number;
+name: number;
+address : string;
+billingAddress : string;
 city : string;
-state : string;
-country : string;
-postcode : string;
-phone : string;
+//state : string;
+//country : string;
+zip : string;
+// phone : string;
 amount : number;
+payment : string;
 cardNumber : number; 
-cardCode : number; 
+cvv : number; 
 expYear :number;
 expMonth : number;
-primary :boolean;
-active : boolean;
-cardType : number;
+// primary :boolean;
+// active : boolean;
+// cardType : number;
 }
+

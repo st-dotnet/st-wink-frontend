@@ -20,10 +20,11 @@ import { TransactionalRequestModel } from 'src/app/_models/checkout';
 export class CheckoutComponent implements OnInit {
   addrnew = false;
   sidebartoggle: boolean = true;
+  sidebartoggle1: boolean = false;
   title = 'ng-bootstrap-modal-demo';
   closeResult: string;
   shippingAddressForm: FormGroup;
-  onPaymentSubmitForm:FormGroup;
+  onPaymentSubmitForm: FormGroup;
   inputdata: any;
   promocodepay: any;
   loyalpointz: any;
@@ -64,7 +65,7 @@ export class CheckoutComponent implements OnInit {
   showPanel1 = false;
   showPanel2 = true;
   showPanel3 = true;
-  
+
   enablebtn: boolean;
   //Shipping Address Variables
   firstName: string;
@@ -157,12 +158,13 @@ export class CheckoutComponent implements OnInit {
       expiryYear: ['', [Validators.required]],
       cardCVV: ['', [Validators.required]],
       isMakePrimaryCard: [''],
-      newStreetAddress:[''],
-      newCity:[''],
-      newState:[''],
-      newZip:[''],
-      newCountry:[''],
+      newStreetAddress: [''],
+      newCity: [''],
+      newState: [''],
+      newZip: [''],
+      newCountry: [''],
     });
+    this.sidebartoggle1 = false;
   }
 
   // convenience getter for easy access to form fields
@@ -174,13 +176,13 @@ export class CheckoutComponent implements OnInit {
     return this.onPaymentSubmitForm.controls;
   }
 
-  getAddressByCustomerId(id){
+  getAddressByCustomerId(id) {
     debugger
     this.spinner.show();
     this.shopService.getAddressById(id).subscribe((result: any) => {
-      debugger      
-      if(result.length > 0){
-        this.displayAddress =  result[0].address1 + ' ' + result[0].city + ' ' + result[0].state + ' ' + result[0].zip + ' ' + result[0].country;
+      debugger
+      if (result.length > 0) {
+        this.displayAddress = result[0].address1 + ' ' + result[0].city + ' ' + result[0].state + ' ' + result[0].zip + ' ' + result[0].country;
         this.shippingAddressForm.get('firstName').setValue(result[0].firstName);
         this.shippingAddressForm.get('lastName').setValue(result[0].lastName);
         this.shippingAddressForm.get('streetAddress').setValue(result[0].address1);
@@ -189,7 +191,7 @@ export class CheckoutComponent implements OnInit {
         this.shippingAddressForm.get('zip').setValue(result[0].zip);
         this.shippingAddressForm.get('country').setValue(result[0].country);
         this.spinner.hide();
-      }else{
+      } else {
         this.spinner.hide();
       }
     });
@@ -201,22 +203,22 @@ export class CheckoutComponent implements OnInit {
     if (this.shippingAddressForm.invalid) {
       return;
     }
-     this.spinner.show();
+    this.spinner.show();
     this.shippingAddressParam = this.getShippingAddressParam(1);
-     this.shopService.postAddress(this.customerId, this.shippingAddressParam).subscribe((result: any) => {
+    this.shopService.postAddress(this.customerId, this.shippingAddressParam).subscribe((result: any) => {
       debugger
       console.log("Result", result.result);
-     if(result.result){
-      this.spinner.hide();
-      this.showPanel2 = false;
-      this.toastrService.success("Shipping address saved successfully");
-      this.displayAddress =  result.result.address1 + ' ' + result.result.city + ' ' + result.result.state + ' ' + result.result.zip + ' ' + result.result.country;
-     }
-     else{
-         this.toastrService.error(result.message);
-         this.spinner.hide();
-        }
-    });   
+      if (result.result) {
+        this.spinner.hide();
+        this.showPanel2 = false;
+        this.toastrService.success("Shipping address saved successfully");
+        this.displayAddress = result.result.address1 + ' ' + result.result.city + ' ' + result.result.state + ' ' + result.result.zip + ' ' + result.result.country;
+      }
+      else {
+        this.toastrService.error(result.message);
+        this.spinner.hide();
+      }
+    });
   }
 
   onPaymentSubmit() {
@@ -226,51 +228,51 @@ export class CheckoutComponent implements OnInit {
       return;
     }
     this.spinner.show();
-     const payment = new Payment();
-     payment.firstName =this.f.firstName.value;
-     payment.lastName =this.f.lastName.value;
-     if(this.addrnew){
-      payment.address1 =this.p.newStreetAddress.value;
-      payment.state =this.p.newState.value;
-      payment.phone ="";
-      payment.city =this.p.newCity.value;
-      payment.city =this.p.newCountry.value;
-      payment.postcode =this.p.newZip.value;
-     }
-     else{
-      payment.address1 = this.f.streetAddress.value,
-      payment.city = this.f.city.value,
-      payment.state = this.f.state.value,
-      payment.postcode = this.f.firstName.value,
-      payment.country = this.f.country.value
-     }     
-     payment.amount =this.cartSummaryTotal;
-     payment.cardNumber =this.p.cardNumber.value;
-     payment.cardCode =this.p.cardNumber.value;
-     payment.expMonth =this.p.expiryMonth.value;
-     payment.expYear =this.p.expiryYear.value;
-     payment.primary =true;
-     payment.active =true;
-     payment.cardType =1;
-     payment.customerId =this.customerId;
+    const payment = new Payment();
+    payment.name = this.f.firstName.value;
+    if (this.addrnew) {
+      payment.address = this.p.newStreetAddress.value;
+      //payment.state =this.p.newState.value;
+      //payment.phone ="";
+      payment.city = this.p.newCity.value;
+      payment.city = this.p.newCountry.value;
+      payment.zip = this.p.newZip.value;
+    }
+    else {
+      payment.address = this.f.streetAddress.value,
+        payment.city = this.f.city.value,
+        //payment.state = this.f.state.value,
+        payment.zip = this.f.firstName.value
+      //payment.country = this.f.country.value
+    }
+    payment.amount = this.cartSummaryTotal;
+    payment.cardNumber = this.p.cardNumber.value;
+    payment.cvv = this.p.cardCVV.value;
+    payment.expMonth = this.p.expiryMonth.value;
+    payment.expYear = this.p.expiryYear.value;
+    //payment.primary =true;
+    //  payment.active =true;
+    //  payment.cardType =1;
+    //payment.customerId =this.customerId;
 
-     this.shopService.addPayment(payment).subscribe((result: any) => {
+    this.shopService.addPayment(payment).subscribe((result: any) => {
       debugger
-      console.log("Result", result.result);
-     if(result.message == "successfull"){
-      this.spinner.hide();
-      this.showPanel3 = true;
-      this.toastrService.success("Payment is succesfull");
-      this.showPanel2 = false;
-       }else{
+      console.log("Result", result);
+      if (result.isCompletedSuccessfully == true) {
         this.spinner.hide();
-        this.toastrService.error(result.message);        
-       }
-      });    
+        this.showPanel3 = true;
+        this.toastrService.success("Payment is succesfull");
+        this.showPanel2 = false;
+      }
+      else {
+        this.spinner.hide();
+        this.toastrService.error("Payment is not unsuccessfull");
+      }
+    });
   }
 
 
-  getShippingAddressParam(type:number) {
+  getShippingAddressParam(type: number) {
     debugger
     let firstName;
     let lastName;
@@ -279,20 +281,19 @@ export class CheckoutComponent implements OnInit {
     let state;
     let zip;
     let country;
-    if(type==1)
-    {        
+    if (type == 1) {
       let addressParam = {
-        firstName : this.f.firstName.value,
-        lastName : this.f.lastName.value,
-        address1 : this.f.streetAddress.value,
-        city : this.f.city.value,
-        state : this.f.state.value,
-        zip : this.f.zip.value,
-        country : this.f.country.value    
+        firstName: this.f.firstName.value,
+        lastName: this.f.lastName.value,
+        address1: this.f.streetAddress.value,
+        city: this.f.city.value,
+        state: this.f.state.value,
+        zip: this.f.zip.value,
+        country: this.f.country.value
       }
       return addressParam;
     }
-    else{
+    else {
       if (this.newAddress?.firstName != '' || this.newAddress?.firstName != undefined || this.newAddress?.firstName != null) {
         firstName = this.newAddress?.firstName;
       }
@@ -588,6 +589,7 @@ export class CheckoutComponent implements OnInit {
 
   toggleShow() {
     this.sidebartoggle = !this.sidebartoggle;
+    this.sidebartoggle1 = !this.sidebartoggle1;
     console.log(this.sidebartoggle);
   }
 
