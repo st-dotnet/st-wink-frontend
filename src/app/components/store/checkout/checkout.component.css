@@ -411,13 +411,11 @@ ul.conv-products.mk-primary label.custom-control-label {
     font-family: 'g-demibold';
     font-size: 16px;
 }
-
 .saveprocessed {
     width: 100%;
     float: left;
     text-align: center;
 }
-
 .saveprocessed button {
     width: 100%;
     max-width: 280px;
@@ -430,4 +428,22 @@ ul.conv-products.mk-primary label.custom-control-label {
     text-transform: uppercase;
     font-size: 15px;
     border: 1px solid #1cb1c5;
+}
+
+.grid-checkout .cart-sidebar .sidebar-head .title{
+    color: #1cb1c5;
+}
+.grid-checkout .toggle-sidebar .sidebar-head span.arrow-down {
+    top: -3px;
+}
+.steps-inner.promo-checkout .promo-code .special-field {
+    max-width: 100%;
+}
+
+
+.steps-inner.promo-checkout .form-group span.btn-add-promo{
+    top: 7px;
+}
+.steps-inner.promo-checkout .special-field.dataempty label{
+    top: 11px;
 }
