@@ -60,7 +60,7 @@ p.forgot-link a {
 
 
 .btn-proceed button {
-    max-width: 246px;
+    max-width: 100%;
     background-color: #1cb1c5;
     margin: 0 auto 20px;
     color: #fff;
@@ -73,7 +73,7 @@ p.forgot-link a {
 }
 
 .btn-proceed a {
-    max-width: 246px;
+    max-width: 100%;
     background-color: transparent;
     margin: 0 auto 20px;
     color: #1cb1c5;

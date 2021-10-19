@@ -954,7 +954,7 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart{
   padding-top: 0px;
 }
 
-.grid-box-shadow.special.offer button.btn.btn-checkout.enabledbutton {
+.grid-box-shadow.special.offer button.btn.btn-checkout {
     background-color: transparent;
     color: #1CC584;
     border: 1px solid #1CC584;
