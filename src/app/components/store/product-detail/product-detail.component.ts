@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { SessionService } from '@app/_services';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -239,6 +239,7 @@ export class ProductDetailComponent implements OnInit {
     this.spinner.show();
     this.shopService.GetProductDetail(itemCode).subscribe(result => {
       this.productDetail = result;
+      console.log("this.productDetail",this.productDetail);
       this.productPrice = this.productDetail.price;
       this.itemCodeTitle = this.productDetail.itemCode;
       this.spinner.hide();

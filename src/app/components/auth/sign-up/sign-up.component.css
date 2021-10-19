@@ -1,5 +1,5 @@
 section.form-sign-up {
-    padding: 60px 20px;
+    padding: 60px 0px;
 }
 
 section.form-sign-up form {
@@ -58,7 +58,6 @@ p.forgot-link a {
     color: #1cb1c5;
 }
 
-
 .btn-proceed button {
     max-width: 100%;
     background-color: #1cb1c5;
@@ -92,11 +91,12 @@ p.forgot-link a {
     background-color: #1cb1c5 !important;
     color: #fff !important;
 }
+
 p.short-noti-signup {
     color: #000;
     font-size: 12px;
     opacity: 0.8;
-    padding: 0 15px;
+    padding: 0 9px;
 }
 
 section.form-sign-up .signup-box-wrapper {
