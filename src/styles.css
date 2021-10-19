@@ -1499,6 +1499,19 @@ section.testimonial-home .owl-nav .owl-prev {
 section.top-owl-banner .owl-dots {
   bottom: 0px;
 }
+
+.model-productview {
+  padding: 0 0px;
+}
+
+ngb-modal-window.prodview-modal {
+  padding: 0 12px;
+}
+
+ngb-modal-window.prodview-modal .model-productview a.btn.btn-learn {
+  bottom: 20px;
+  right: 20px;
+}
 }
 
 @media (max-width:575px)

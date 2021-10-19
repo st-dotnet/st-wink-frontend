@@ -81,7 +81,6 @@ section.products h3 {
 .prod-wrapp .card-body .product-details .reviews-product {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .prod-wrapp .card-body .product-details .reviews-product ul {
@@ -119,7 +118,7 @@ section.products h3 {
 }
 .reviews-product p {
   font-size: 13px;
-  margin: 0;
+  margin: 0 0 0 10px;
 }
 
 .reviews-product ul {
@@ -211,7 +210,7 @@ section.products h3 {
   position: absolute;
   z-index: 1;
   opacity: 1;
-  right: 10px;
+  left: 10px;
   top: 9px;
   background-color: #1cb1c5;
   border-radius: 20px;

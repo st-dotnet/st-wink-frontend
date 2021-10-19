@@ -31,7 +31,9 @@ section.breadcrumb-product ul li a:hover {
 }
 
 /* Gallery CSS */
-
+.banners-enery img {
+  width: 100%;
+}
 /* Product View Modal CSS */
 
 .product-info p {
