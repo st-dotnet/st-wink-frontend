@@ -1,5 +1,5 @@
 section.form-sign-in {
-    padding: 60px 20px;
+    padding: 10px 20px;
 }
 
 section.form-sign-in form {
@@ -14,7 +14,6 @@ section.form-sign-in form .signup-box-wrapper {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
     margin-bottom: 30px;
 }
-
 
 .signup-box-wrapper h3 {
     font-family: 'g-regular';
@@ -38,7 +37,6 @@ p.forgot-link {
 p.forgot-link a {
     color: #1cb1c5;
 }
-
 
 .btn-proceed button {
     max-width: 246px;

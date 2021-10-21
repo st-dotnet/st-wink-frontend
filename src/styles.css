@@ -779,9 +779,10 @@ div#notifi-review-header+div#notifi-review {
     border: none;
 }
 
-.checkout-steps-3 span.arrow-stepp {
+
+/* .checkout-steps-3 span.arrow-stepp {
     display: none;
-}
+} */
 
 .reviews-yotpo .yotpo .promoted-products-box .yotpo-main-title {
     margin-bottom: 34px;
@@ -1240,6 +1241,12 @@ section.top-owl-banner .owl-dots .owl-dot.active span {
 
 .swal2-container .swal2-actions {
     margin-bottom: 18px;
+}
+
+div#checkoutstep1 .card-body,
+div#checkoutstep2 .card-body,
+div#checkoutstep3 .card-body {
+    padding: 20px 10px;
 }
 
 
