@@ -2,11 +2,11 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12 show-deskk">
-                <div
-                    [className]="sidebartoggle1 ?  'hidesidebar toggle-sidebar hidden-lg' : 'showsidebar toggle-sidebar hidden-lg'">
+                <div [className]="sidebartoggle1 ?  'hidesidebar toggle-sidebar hidden-lg' : 'showsidebar toggle-sidebar hidden-lg'">
                     <div class="cart-sidebar sidebar-collapse">
                         <div class="sidebar-head">
-                            <h2><a (click)="toggleShow()"> <span class="arrow-down">
+                            <h2>
+                                <a (click)="toggleShow()"> <span class="arrow-down">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="11.2" height="6.6"
                                             viewBox="0 0 11.2 6.6">
                                             <path id="Path_2040" data-name="Path 2040"
@@ -41,8 +41,7 @@
                                 <div class=" search-box">
                                     <div class="search-bar-on">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" (click)="open(referr_user)" value=""
-                                                placeholder="Find referral (Optional)" />
+                                            <input type="text" class="form-control" (click)="open(referr_user)" value="" placeholder="Find referral (Optional)" />
                                             <span class="search"><svg xmlns="http://www.w3.org/2000/svg" width="16.947"
                                                     height="17.048" viewBox="0 0 16.947 17.048">
                                                     <path id="Path_2019" data-name="Path 2019"
@@ -75,14 +74,11 @@
                                 <div class="content-card steps-inner promo-checkout">
                                     <div class="col-md-12 p-0 mb-3">
                                         <div class="promo-code">
-                                            <div
-                                                [className]="promocode_onetime ?  'special-field datafilled form-group' : 'special-field dataempty form-group'">
-                                                <input type="text" value="" [(ngModel)]="promocode_onetime"
-                                                    name="promo-enter" class="form-control" />
+                                            <div [className]="promocode_onetime ?  'special-field datafilled form-group' : 'special-field dataempty form-group'">
+                                                <input type="text" value="" [(ngModel)]="promocode_onetime" name="promo-enter" class="form-control" />
                                                 <label class="form-label">Promo Code</label>
                                                 <span class="vali-promo">Not Applied</span>
-                                                <span class="btn-add-promo" [disabled]="isDisabled"
-                                                    (click)="addPromo(); isDisabled = true;">
+                                                <span class="btn-add-promo" [disabled]="isDisabled" (click)="addPromo(); isDisabled = true;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                         viewBox="0 0 14 14">
                                                         <path _ngcontent-shj-c146="" id="Path_2014"
@@ -201,8 +197,8 @@
                                             </tr>
                                             <tr>
                                                 <td>Subtotal</td>
-                                                <td>${{subTotalSubscriptionPriceAfterDiscount | number
-                                                    :'.1-2'}}</td>
+                                                <td>${{subTotalSubscriptionPriceAfterDiscount | number :'.1-2'}}
+                                                </td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -288,7 +284,7 @@
                 <div class="showsidebar toggle-sidebar hidden-lg">
                     <div class="cart-sidebar sidebar-collapse">
                         <div class="sidebar-head">
-                            <h2  class="title"> <span class="arrow-down">
+                            <h2 class="title"> <span class="arrow-down">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="11.2" height="6.6"
                                             viewBox="0 0 11.2 6.6">
                                             <path id="Path_2040" data-name="Path 2040"
@@ -323,8 +319,7 @@
                                 <div class=" search-box">
                                     <div class="search-bar-on">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" (click)="open(referr_user)" value=""
-                                                placeholder="Find referral (Optional)" />
+                                            <input type="text" class="form-control" (click)="open(referr_user)" value="" placeholder="Find referral (Optional)" />
                                             <span class="search"><svg xmlns="http://www.w3.org/2000/svg" width="16.947"
                                                     height="17.048" viewBox="0 0 16.947 17.048">
                                                     <path id="Path_2019" data-name="Path 2019"
@@ -357,14 +352,11 @@
                                 <div class="content-card steps-inner promo-checkout">
                                     <div class="col-md-12 p-0 mb-3">
                                         <div class="promo-code">
-                                            <div
-                                                [className]="promocode_onetime ?  'special-field datafilled form-group' : 'special-field dataempty form-group'">
-                                                <input type="text" value="" [(ngModel)]="promocode_onetime"
-                                                    name="promo-enter" class="form-control" />
+                                            <div [className]="promocode_onetime ?  'special-field datafilled form-group' : 'special-field dataempty form-group'">
+                                                <input type="text" value="" [(ngModel)]="promocode_onetime" name="promo-enter" class="form-control" />
                                                 <label class="form-label">Promo Code</label>
                                                 <span class="vali-promo">Not Applied</span>
-                                                <span class="btn-add-promo" [disabled]="isDisabled"
-                                                    (click)="addPromo(); isDisabled = true;">
+                                                <span class="btn-add-promo" [disabled]="isDisabled" (click)="addPromo(); isDisabled = true;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                         viewBox="0 0 14 14">
                                                         <path _ngcontent-shj-c146="" id="Path_2014"
@@ -483,8 +475,8 @@
                                             </tr>
                                             <tr>
                                                 <td>Subtotal</td>
-                                                <td>${{subTotalSubscriptionPriceAfterDiscount | number
-                                                    :'.1-2'}}</td>
+                                                <td>${{subTotalSubscriptionPriceAfterDiscount | number :'.1-2'}}
+                                                </td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -545,8 +537,7 @@
                     <ngb-accordion [closeOthers]="false" activeIds="checkoutstep1" class="panel-stepbar">
                         <ngb-panel [disabled]="showPanel1 ? true:null" id="checkoutstep1">
                             <ng-template ngbPanelTitle>
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    width="24" height="24" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
                                     <defs>
                                         <clipPath id="clip-path">
                                             <rect width="24" height="24" fill="none" />
@@ -565,14 +556,14 @@
 
                             <ng-template ngbPanelContent>
                                 <form [formGroup]="shippingAddressForm" (ngSubmit)="onAddressSubmit()">
-                                <ngb-accordion activeIds="subscr-schedule,shipping-address,shipping-method">
-                                    <ngb-panel *ngIf="subscriptionCartItems.length > 0" id="subscr-schedule">
-                                        <ng-template ngbPanelTitle>
-                                            <div class="heading-step1">
-                                                <h4>Subscription Schedule</h4>
-                                                <p>Start Date:<span class="data-span">{{startDate | date:
+                                    <ngb-accordion activeIds="subscr-schedule,shipping-address,shipping-method">
+                                        <ngb-panel *ngIf="subscriptionCartItems.length > 0" id="subscr-schedule">
+                                            <ng-template ngbPanelTitle>
+                                                <div class="heading-step1">
+                                                    <h4>Subscription Schedule</h4>
+                                                    <p>Start Date:<span class="data-span">{{startDate | date:
                                                         'dd/MM/yyyy'}}</span></p>
-                                                <span class="arrow-stepp">
+                                                    <span class="arrow-stepp">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
                                                         viewBox="0 0 6.6 11.2">
                                                         <path id="Path_2044" data-name="Path 2044"
@@ -580,18 +571,14 @@
                                                             transform="translate(-630.6 -4.4)" />
                                                     </svg>
                                                 </span>
-                                            </div>
-                                        </ng-template>
-                                        <ng-template ngbPanelContent>
-                                            <div class="content-card steps-inner">
-                                                <div [className]="startDate ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'"
-                                                    id="subscr-schedule">
-                                                 <input type="text"
-                                                        class="form-control" bsDatepicker [minDate]="minDate"
-                                                        [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }"
-                                                        [ngModelOptions]="{standalone: true}" />
-                                                    <label class="form-label">Select Start Date</label>
-                                                    <span class="btn-add-promo">
+                                                </div>
+                                            </ng-template>
+                                            <ng-template ngbPanelContent>
+                                                <div class="content-card steps-inner">
+                                                    <div [className]="startDate ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'" id="subscr-schedule">
+                                                        <input type="text" class="form-control" bsDatepicker [minDate]="minDate" [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }" [ngModelOptions]="{standalone: true}" />
+                                                        <label class="form-label">Select Start Date</label>
+                                                        <span class="btn-add-promo">
                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
                                                             height="24" viewBox="0 0 24 24">
@@ -610,12 +597,12 @@
                                                             </g>
                                                         </svg>
                                                     </span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </ng-template>
-                                    </ngb-panel>
-                                   
-                                    <ngb-panel id="shipping-address">                                       
+                                            </ng-template>
+                                        </ngb-panel>
+
+                                        <ngb-panel id="shipping-address">
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
                                                     <h4>Shipping Address</h4>
@@ -631,111 +618,82 @@
                                                 </div>
                                             </ng-template>
                                             <ng-template ngbPanelContent>
-                                                <div class="content-card steps-inner shipping-address-form">                                                   
+                                                <div class="content-card steps-inner shipping-address-form">
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control"
-                                                                     placeholder="First Name" formControlName="firstName"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.firstName?.errors }" />
-                                                                <div *ngIf="submitted && f.firstName?.errors"
-                                                                    class="invalid-feedback">
-                                                                    <div
-                                                                        *ngIf="f.firstName?.errors.required">
+                                                                <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName?.errors }" />
+                                                                <div *ngIf="submitted && f.firstName?.errors" class="invalid-feedback">
+                                                                    <div *ngIf="f.firstName?.errors.required">
                                                                         First Name is required</div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control"
-                                                                     placeholder="Last Name" formControlName="lastName"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.lastName?.errors }" />
-                                                                <div *ngIf="submitted && f.lastName?.errors"
-                                                                    class="invalid-feedback">
-                                                                    <div
-                                                                        *ngIf="f.lastName?.errors.required">
+                                                                <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName?.errors }" />
+                                                                <div *ngIf="submitted && f.lastName?.errors" class="invalid-feedback">
+                                                                    <div *ngIf="f.lastName?.errors.required">
                                                                         Last Name is required</div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control"
-                                                                formControlName="streetAddress"
-                                                                    placeholder="Street Address"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.streetAddress?.errors }" />
-                                                                <div *ngIf="submitted && f.streetAddress?.errors"
-                                                                    class="invalid-feedback">
-                                                                    <div
-                                                                        *ngIf="f.streetAddress?.errors.required">
+                                                                <input type="text" class="form-control" formControlName="streetAddress" placeholder="Street Address" [ngClass]="{ 'is-invalid': submitted && f.streetAddress?.errors }" />
+                                                                <div *ngIf="submitted && f.streetAddress?.errors" class="invalid-feedback">
+                                                                    <div *ngIf="f.streetAddress?.errors.required">
                                                                         Street Address is required</div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control"
-                                                                 placeholder="City" formControlName="city"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.city?.errors }" />
-                                                                <div *ngIf="submitted && f.city?.errors"
-                                                                    class="invalid-feedback">
-                                                                    <div
-                                                                        *ngIf="f.city?.errors.required">
+                                                                <input type="text" class="form-control" placeholder="City" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city?.errors }" />
+                                                                <div *ngIf="submitted && f.city?.errors" class="invalid-feedback">
+                                                                    <div *ngIf="f.city?.errors.required">
                                                                         City is required</div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control"
-                                                                     placeholder="State" formControlName="state"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.state?.errors }" />
-                                                                <div *ngIf="submitted && f.state?.errors"
-                                                                    class="invalid-feedback">
-                                                                    <div
-                                                                        *ngIf="f.state?.errors.required">
+                                                                <input type="text" class="form-control" placeholder="State" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f.state?.errors }" />
+                                                                <div *ngIf="submitted && f.state?.errors" class="invalid-feedback">
+                                                                    <div *ngIf="f.state?.errors.required">
                                                                         State is required</div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="number" class="form-control"
-                                                                    placeholder="Zip" formControlName="zip"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.zip?.errors }" />
-                                                                <div *ngIf="submitted && f.zip?.errors"
-                                                                    class="invalid-feedback">
-                                                                    <div
-                                                                        *ngIf="f.zip?.errors.required">
+                                                                <input type="number" class="form-control" placeholder="Zip" formControlName="zip" [ngClass]="{ 'is-invalid': submitted && f.zip?.errors }" />
+                                                                <div *ngIf="submitted && f.zip?.errors" class="invalid-feedback">
+                                                                    <div *ngIf="f.zip?.errors.required">
                                                                         Zip is required</div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control"
-                                                                     placeholder="Country" formControlName="country"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.country?.errors }" />
-                                                                <div *ngIf="submitted && f.country?.errors"
-                                                                    class="invalid-feedback">
-                                                                    <div
-                                                                        *ngIf="f.country?.errors.required">
+                                                                <input type="text" class="form-control" placeholder="Country" formControlName="country" [ngClass]="{ 'is-invalid': submitted && f.country?.errors }" />
+                                                                <div *ngIf="submitted && f.country?.errors" class="invalid-feedback">
+                                                                    <div *ngIf="f.country?.errors.required">
                                                                         Country is required</div>
                                                                 </div>
                                                             </div>
-                                                        </div>                                                    
-                                                    </div> 
-                                                </div>                                             
-                                            </ng-template>                                          
-                                    </ngb-panel>                                   
-                               
-                                    <ngb-panel id="shipping-method">
-                                        <ng-template ngbPanelTitle>
-                                            <div class="heading-step1">
-                                                <h4>Shipping Method</h4>
-                                                <p>$6.99 - USPS Ground Shipping - 1st Class</p>
-                                                <span class="arrow-stepp">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-panel>
+
+                                        <ngb-panel id="shipping-method">
+                                            <ng-template ngbPanelTitle>
+                                                <div class="heading-step1">
+                                                    <h4>Shipping Method</h4>
+                                                    <p>$6.99 - USPS Ground Shipping - 1st Class</p>
+                                                    <span class="arrow-stepp">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
                                                         viewBox="0 0 6.6 11.2">
                                                         <path id="Path_2044" data-name="Path 2044"
@@ -743,69 +701,62 @@
                                                             transform="translate(-630.6 -4.4)" />
                                                     </svg>
                                                 </span>
-                                            </div>
-                                        </ng-template>
-                                        <ng-template ngbPanelContent>
-                                            <div class="content-card steps-inner shipping-method">
-                                                <div class="method-shipp">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" id="customRadio1" value="1"
-                                                                    name="isShipmentMethod" (change)="onItemChange(1)"
-                                                                    class="custom-control-input">
-                                                                <label class="custom-control-label" for="customRadio1">
+                                                </div>
+                                            </ng-template>
+                                            <ng-template ngbPanelContent>
+                                                <div class="content-card steps-inner shipping-method">
+                                                    <div class="method-shipp">
+                                                        <ul>
+                                                            <li>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="customRadio1" value="1" name="isShipmentMethod" (change)="onItemChange(1)" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="customRadio1">
                                                                     <div class="shipping-list-item">
                                                                         <h4>Get it today (Utah only)</h4>
                                                                         <p>$0.00 Will Call Pickup</p>
                                                                     </div>
                                                                 </label>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" id="customRadio2" value="2" (change)="onItemChange(2)"
-                                                                    name="isShipmentMethod"
-                                                                    class="custom-control-input">
-                                                                <label class="custom-control-label" for="customRadio2">
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="customRadio2" value="2" (change)="onItemChange(2)" name="isShipmentMethod" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="customRadio2">
                                                                     <div class="shipping-list-item">
                                                                         <h4>Get it by Fri, Feb 22nd</h4>
                                                                         <p>FREE Shipping</p>
                                                                     </div>
                                                                 </label>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" id="customRadio3" value="3" (change)="onItemChange(3)"
-                                                                    name="isShipmentMethod"
-                                                                    class="custom-control-input">
-                                                                <label class="custom-control-label" for="customRadio3">
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="customRadio3" value="3" (change)="onItemChange(3)" name="isShipmentMethod" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="customRadio3">
                                                                     <div class="shipping-list-item">
                                                                         <h4>Get it by Wed, Feb 19th</h4>
                                                                         <p>$8.99 Shipping</p>
                                                                     </div>
                                                                 </label>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </ng-template>
-                                    </ngb-panel>
-                                </ngb-accordion>
-                                <!-- Save Button For Shipping Address -->
-                                <div class="saveprocessed">
-                                    <button type="submit" >Save & Continue</button>
-                                </div>
+                                            </ng-template>
+                                        </ngb-panel>
+                                    </ngb-accordion>
+                                    <!-- Save Button For Shipping Address -->
+                                    <div class="saveprocessed">
+                                        <button type="submit">Save & Continue</button>
+                                    </div>
                                 </form>
                             </ng-template>
                         </ngb-panel>
 
-                        <ngb-panel [disabled]="showPanel2 ? true:null" id="checkoutstep2" >
+                        <ngb-panel [disabled]="showPanel2 ? true:null" id="checkoutstep2">
                             <ng-template ngbPanelTitle>
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    width="24" height="24" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
                                     <defs>
                                         <clipPath id="clip-path">
                                             <rect width="24" height="24" fill="none" />
@@ -823,12 +774,12 @@
                             </ng-template>
                             <ng-template ngbPanelContent>
                                 <form [formGroup]="onPaymentSubmitForm" (ngSubmit)="onPaymentSubmit()">
-                                <ngb-accordion activeIds="promo-code,loyalty-info,cards-selection,card-info,billing-method">
-                                    <ngb-panel id="promo-code">
-                                        <ng-template ngbPanelTitle>
-                                            <div class="heading-step1">
-                                                <h4>Promo Code</h4>
-                                                <span class="arrow-stepp">
+                                    <ngb-accordion activeIds="promo-code,loyalty-info,cards-selection,card-info,billing-method">
+                                        <ngb-panel id="promo-code">
+                                            <ng-template ngbPanelTitle>
+                                                <div class="heading-step1">
+                                                    <h4>Promo Code</h4>
+                                                    <span class="arrow-stepp">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
                                                         viewBox="0 0 6.6 11.2">
                                                         <path id="Path_2044" data-name="Path 2044"
@@ -836,18 +787,16 @@
                                                             transform="translate(-630.6 -4.4)" />
                                                     </svg>
                                                 </span>
-                                            </div>
-                                        </ng-template>
-                                        <ng-template ngbPanelContent>
-                                            <div class="content-card steps-inner promo-checkout">
-                                                <div class="col-md-12 p-0 mb-3">
-                                                    <div
-                                                        [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                        <input type="text" [(ngModel)]="promocode_onetime"
-                                                            class="form-control" (focusout)="clearPromo($event)" />
-                                                        <label class="form-label">Promo Code</label>
-                                                        <span class="vali-promo">Not Applied</span>
-                                                        <span class="btn-add-promo" (click)="addPromo()">
+                                                </div>
+                                            </ng-template>
+                                            <ng-template ngbPanelContent>
+                                                <div class="content-card steps-inner promo-checkout">
+                                                    <div class="col-md-12 p-0 mb-3">
+                                                        <div [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                                            <input type="text" [(ngModel)]="promocode_onetime" class="form-control" (focusout)="clearPromo($event)" />
+                                                            <label class="form-label">Promo Code</label>
+                                                            <span class="vali-promo">Not Applied</span>
+                                                            <span class="btn-add-promo" (click)="addPromo()">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                                 height="14" viewBox="0 0 14 14">
                                                                 <path _ngcontent-shj-c146="" id="Path_2014"
@@ -856,16 +805,16 @@
                                                                     transform="translate(-194.9 -3)"></path>
                                                             </svg>
                                                         </span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </ng-template>
-                                    </ngb-panel>
-                                    <ngb-panel id="loyalty-info">
-                                        <ng-template ngbPanelTitle>
-                                            <div class="heading-step1">
-                                                <h4>Loyalty Rewards</h4>
-                                                <span class="arrow-stepp">
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel id="loyalty-info">
+                                            <ng-template ngbPanelTitle>
+                                                <div class="heading-step1">
+                                                    <h4>Loyalty Rewards</h4>
+                                                    <span class="arrow-stepp">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
                                                         viewBox="0 0 6.6 11.2">
                                                         <path id="Path_2044" data-name="Path 2044"
@@ -873,17 +822,15 @@
                                                             transform="translate(-630.6 -4.4)" />
                                                     </svg>
                                                 </span>
-                                            </div>
-                                        </ng-template>
-                                        <ng-template ngbPanelContent>
-                                            <div class="content-card steps-inner shipping-address-form">
-                                                <div class="loyalty-desc">
-                                                    <div class="r-available">Rewards Available:<span
-                                                            class="value-r-available">$25</span></div>
-                                                    <div class="r-applied">Rewards Applied:<span
-                                                            class="value-r-applied">$0</span></div>
-                                                    <div class="loya-conver">
-                                                        <span class="loyal-conv-modal" (click)="open(loyal_conversion)">
+                                                </div>
+                                            </ng-template>
+                                            <ng-template ngbPanelContent>
+                                                <div class="content-card steps-inner shipping-address-form">
+                                                    <div class="loyalty-desc">
+                                                        <div class="r-available">Rewards Available:<span class="value-r-available">$25</span></div>
+                                                        <div class="r-applied">Rewards Applied:<span class="value-r-applied">$0</span></div>
+                                                        <div class="loya-conver">
+                                                            <span class="loyal-conv-modal" (click)="open(loyal_conversion)">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="25" viewBox="0 0 24 25">
                                                                 <g id="Group_183" data-name="Group 183"
@@ -903,16 +850,14 @@
                                                                 </g>
                                                             </svg>
                                                         </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-12 loyalty-form p-0 mb-3">
-                                                    <div
-                                                        [className]="loyalpointz ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                        <input type="text"  [ngModel]="loyalPointz" value=""
-                                                            name="promo-enter" class="form-control" />
-                                                        <label class="form-label">Loyalty points</label>
-                                                        <span class="vali-promo">Points Not Applied</span>
-                                                        <span class="btn-add-promo">
+                                                    <div class="col-md-12 loyalty-form p-0 mb-3">
+                                                        <div [className]="loyalpointz ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                                            <input type="text" [ngModel]="loyalPointz" value="" name="promo-enter" class="form-control" />
+                                                            <label class="form-label">Loyalty points</label>
+                                                            <span class="vali-promo">Points Not Applied</span>
+                                                            <span class="btn-add-promo">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                                 height="14" viewBox="0 0 14 14">
                                                                 <path _ngcontent-shj-c146="" id="Path_2014"
@@ -921,17 +866,17 @@
                                                                     transform="translate(-194.9 -3)"></path>
                                                             </svg>
                                                         </span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </ng-template>
-                                    </ngb-panel>
+                                            </ng-template>
+                                        </ngb-panel>
 
-                                    <ngb-panel id="cards-selection">
-                                        <ng-template ngbPanelTitle>
-                                            <div class="heading-step1">
-                                                <h4>Select Card</h4>
-                                                <span class="arrow-stepp">
+                                        <ngb-panel id="cards-selection">
+                                            <ng-template ngbPanelTitle>
+                                                <div class="heading-step1">
+                                                    <h4>Select Card</h4>
+                                                    <span class="arrow-stepp">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
                                                         viewBox="0 0 6.6 11.2">
                                                         <path id="Path_2044" data-name="Path 2044"
@@ -939,18 +884,16 @@
                                                             transform="translate(-630.6 -4.4)" />
                                                     </svg>
                                                 </span>
-                                            </div>
-                                        </ng-template>
-                                        <ng-template ngbPanelContent>
-                                            <div class="content-card steps-inner shipping-method">
-                                                <div class="method-cardselect">
-                                                    <ul class="select-paycard">
-                                                        <li>
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" id="cardlitem1" name="isSelectCard"
-                                                                    value="IsVisaExpire" [ngModel]="isSelectCard" [selected]="true" (change)="onSelectCardChange(1)"
-                                                                    class="custom-control-input">
-                                                                <label class="custom-control-label" for="cardlitem1">
+                                                </div>
+                                            </ng-template>
+                                            <ng-template ngbPanelContent>
+                                                <div class="content-card steps-inner shipping-method">
+                                                    <div class="method-cardselect">
+                                                        <ul class="select-paycard">
+                                                            <li>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="cardlitem1" name="isSelectCard" value="IsVisaExpire" [ngModel]="isSelectCard" [selected]="true" (change)="onSelectCardChange(1)" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="cardlitem1">
                                                                     <div class="shipping-list-item">
                                                                         <h4>Visa ending in 111 <a href=""
                                                                                 class="edit-cardopt">Edit</a></h4>
@@ -960,30 +903,28 @@
                                                                         </div>
                                                                     </div>
                                                                 </label>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" id="cardlitem2" name="isSelectCard"
-                                                                    value="IsNewCard" [ngModel]="isSelectCard" (change)="onSelectCardChange(2)"
-                                                                    class="custom-control-input">
-                                                                <label class="custom-control-label" for="cardlitem2">
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="cardlitem2" name="isSelectCard" value="IsNewCard" [ngModel]="isSelectCard" (change)="onSelectCardChange(2)" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="cardlitem2">
                                                                     <div class="shipping-list-item">
                                                                         <h4>Pay with new card</h4>
                                                                     </div>
                                                                 </label>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </ng-template>
-                                    </ngb-panel>
-                                    <ngb-panel id="card-info" [disabled]="isCardDisabled ? true : null">
-                                        <ng-template ngbPanelTitle>
-                                            <div class="heading-step1">
-                                                <h4>Card</h4>
-                                                <span class="arrow-stepp">
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel id="card-info" [disabled]="isCardDisabled ? true : null">
+                                            <ng-template ngbPanelTitle>
+                                                <div class="heading-step1">
+                                                    <h4>Card</h4>
+                                                    <span class="arrow-stepp">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
                                                         viewBox="0 0 6.6 11.2">
                                                         <path id="Path_2044" data-name="Path 2044"
@@ -991,74 +932,59 @@
                                                             transform="translate(-630.6 -4.4)" />
                                                     </svg>
                                                 </span>
-                                            </div>
-                                        </ng-template>
-                                        <ng-template ngbPanelContent>
-                                            <div class="content-card steps-inner shipping-address-form">
-                                                <ul class="card-mat">
-                                                    <li><img src="../../assets/card-ui-1.png" /></li>
-                                                    <li><img src="../../assets/card-ui-2.png" /></li>
-                                                    <li><img src="../../assets/card-ui-3.png" /></li>
-                                                    <li><img src="../../assets/card-ui-4.png" /></li>
-                                                    <li><span class="more-card">and more</span></li>
-                                                </ul>
-                                                <div class="card-infoo" >
+                                                </div>
+                                            </ng-template>
+                                            <ng-template ngbPanelContent>
+                                                <div class="content-card steps-inner shipping-address-form">
+                                                    <ul class="card-mat">
+                                                        <li><img src="../../assets/card-ui-1.png" /></li>
+                                                        <li><img src="../../assets/card-ui-2.png" /></li>
+                                                        <li><img src="../../assets/card-ui-3.png" /></li>
+                                                        <li><img src="../../assets/card-ui-4.png" /></li>
+                                                        <li><span class="more-card">and more</span></li>
+                                                    </ul>
+                                                    <div class="card-infoo">
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="cardName"
-                                                                        placeholder="Name on card" name="card-name"
-                                                                        class="form-control"
-                                                                         [ngClass]="{ 'is-invalid': submitted && p.cardName?.errors }" />
-                                                                        <div *ngIf="submitted && p.cardName?.errors" class="invalid-feedback">
-                                                                            <div *ngIf="p.cardName?.errors.required">Card Name is required</div>
-                                                                          </div>  
+                                                                    <input type="text" formControlName="cardName" placeholder="Name on card" name="card-name" class="form-control" [ngClass]="{ 'is-invalid': submitted && p.cardName?.errors }" />
+                                                                    <div *ngIf="submitted && p.cardName?.errors" class="invalid-feedback">
+                                                                        <div *ngIf="p.cardName?.errors.required">Card Name is required</div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <input type="number"  formControlName="cardNumber"
-                                                                        placeholder="Card number" name="cardNumber"
-                                                                        class="form-control"
-                                                                        [ngClass]="{ 'is-invalid': submitted && p.cardNumber?.errors }" />
-                                                                        <div *ngIf="submitted && p.cardNumber?.errors" class="invalid-feedback">
-                                                                            <div *ngIf="p.cardNumber?.errors.required">Card Number is required</div>
-                                                                          </div>  
+                                                                    <input type="number" formControlName="cardNumber" placeholder="Card number" name="cardNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && p.cardNumber?.errors }" />
+                                                                    <div *ngIf="submitted && p.cardNumber?.errors" class="invalid-feedback">
+                                                                        <div *ngIf="p.cardNumber?.errors.required">Card Number is required</div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-6 col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="number" formControlName="expiryMonth"
-                                                                        placeholder="Month" name="expiryMonth"
-                                                                        class="form-control" 
-                                                                        [ngClass]="{ 'is-invalid': submitted && p.expiryMonth?.errors }" />
-                                                                        <div *ngIf="submitted && p.expiryMonth?.errors" class="invalid-feedback">
-                                                                            <div *ngIf="p.expiryMonth?.errors.required">Expiry Month  is required</div>
-                                                                          </div>  
+                                                                    <input type="number" formControlName="expiryMonth" placeholder="Month" name="expiryMonth" class="form-control" [ngClass]="{ 'is-invalid': submitted && p.expiryMonth?.errors }" />
+                                                                    <div *ngIf="submitted && p.expiryMonth?.errors" class="invalid-feedback">
+                                                                        <div *ngIf="p.expiryMonth?.errors.required">Expiry Month is required</div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-6 col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="number" formControlName="expiryYear"
-                                                                        placeholder="Year" name="expiryYear"
-                                                                        class="form-control" 
-                                                                        [ngClass]="{ 'is-invalid': submitted && p.expiryYear?.errors }" />
-                                                                        <div *ngIf="submitted && p.expiryYear?.errors" class="invalid-feedback">
-                                                                            <div *ngIf="p.expiryYear?.errors.required">Expiry Year  is required</div>
-                                                                          </div>  
+                                                                    <input type="number" formControlName="expiryYear" placeholder="Year" name="expiryYear" class="form-control" [ngClass]="{ 'is-invalid': submitted && p.expiryYear?.errors }" />
+                                                                    <div *ngIf="submitted && p.expiryYear?.errors" class="invalid-feedback">
+                                                                        <div *ngIf="p.expiryYear?.errors.required">Expiry Year is required</div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="number" formControlName="cardCVV"
-                                                                        placeholder="CVV" name="cardCVV"
-                                                                        class="form-control"
-                                                                        [ngClass]="{ 'is-invalid': submitted && p.cardCVV?.errors }" />
+                                                                    <input type="number" formControlName="cardCVV" placeholder="CVV" name="cardCVV" class="form-control" [ngClass]="{ 'is-invalid': submitted && p.cardCVV?.errors }" />
                                                                     <div *ngIf="submitted && p.cardCVV?.errors" class="invalid-feedback">
-                                                                        <div *ngIf="p.cardCVV?.errors.required">card CVV  is required</div>
-                                                                      </div>  
+                                                                        <div *ngIf="p.cardCVV?.errors.required">card CVV is required</div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
 
@@ -1068,12 +994,8 @@
                                                                 <ul class="conv-products mk-primary">
                                                                     <li>
                                                                         <div class="custom-control custom-radio">
-                                                                            <input type="checkbox" id="card-primary"
-                                                                                formArrayName="isMakePrimaryCard" formControlName="isMakePrimaryCard" (change)="onCheckboxChange($event)"
-                                                                                value="0" name="isMakePrimaryCard"
-                                                                                class="custom-control-input">
-                                                                            <label class="custom-control-label"
-                                                                                for="card-primary">
+                                                                            <input type="checkbox" id="card-primary" formArrayName="isMakePrimaryCard" formControlName="isMakePrimaryCard" (change)="onCheckboxChange($event)" value="0" name="isMakePrimaryCard" class="custom-control-input">
+                                                                            <label class="custom-control-label" for="card-primary">
                                                                                 Make primary card
                                                                             </label>
                                                                         </div>
@@ -1082,14 +1004,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                            </div>
-                                        </ng-template>
-                                    </ngb-panel>
-                                    <ngb-panel id="billing-method">
-                                        <ng-template ngbPanelTitle>
-                                            <div class="heading-step1">
-                                                <h4>Billing Address</h4>
-                                                <span class="arrow-stepp">
+                                                </div>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel id="billing-method">
+                                            <ng-template ngbPanelTitle>
+                                                <div class="heading-step1">
+                                                    <h4>Billing Address</h4>
+                                                    <span class="arrow-stepp">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
                                                         viewBox="0 0 6.6 11.2">
                                                         <path id="Path_2044" data-name="Path 2044"
@@ -1097,101 +1019,82 @@
                                                             transform="translate(-630.6 -4.4)" />
                                                     </svg>
                                                 </span>
-                                            </div>
-                                        </ng-template>
-                                        <ng-template ngbPanelContent>
-                                            <div class="content-card steps-inner shipping-method">
-                                                <div class="method-shipp">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" id="customRadio4"
-                                                                    (change)="shippingAddressType('shippingAddress')"
-                                                                    name="newCustomRadio" class="custom-control-input">
-                                                                <label class="custom-control-label" for="customRadio4">
+                                                </div>
+                                            </ng-template>
+                                            <ng-template ngbPanelContent>
+                                                <div class="content-card steps-inner shipping-method">
+                                                    <div class="method-shipp">
+                                                        <ul>
+                                                            <li>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="customRadio4" (change)="shippingAddressType('shippingAddress')" name="newCustomRadio" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="customRadio4">
                                                                     <div class="shipping-list-item">
                                                                         <h4>Same as shipping address</h4>
                                                                     </div>
                                                                 </label>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" id="customRadio5"
-                                                                    (change)="shippingAddressType('newAddress')" type="radio"
-                                                                    name="newCustomRadio" class="custom-control-input">
-                                                                <label class="custom-control-label" for="customRadio5">
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="customRadio5" (change)="shippingAddressType('newAddress')" type="radio" name="newCustomRadio" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="customRadio5">
                                                                     <div class="shipping-list-item">
                                                                         <h4>Use different billing address</h4>
                                                                     </div>
                                                                 </label>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <ng-template [ngIf]="addrnew">
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <ng-template [ngIf]="addrnew">
                                                         <div class="different-address">
                                                             <div class="newaddr-infoo">
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
-                                                                            <input type="text"
-                                                                             formControlName="newStreetAddress"
-                                                                                placeholder="Street address"
-                                                                                name="newStreetAddress"
-                                                                                class="form-control" />
+                                                                            <input type="text" formControlName="newStreetAddress" placeholder="Street address" name="newStreetAddress" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <input type="text" formControlName="newCity"
-                                                                                placeholder="City" name="newCity"
-                                                                                class="form-control" />
+                                                                            <input type="text" formControlName="newCity" placeholder="City" name="newCity" class="form-control" />
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-6 col-md-4">
                                                                         <div class="form-group">
-                                                                            <input type="text"
-                                                                                placeholder="State" name="newState" formControlName="newState"
-                                                                                class="form-control" />
+                                                                            <input type="text" placeholder="State" name="newState" formControlName="newState" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-6 col-md-4">
                                                                         <div class="form-group">
-                                                                            <input type="number"
-                                                                                placeholder="ZIP" name="newZip" formControlName="newZip"
-                                                                                class="form-control" />
+                                                                            <input type="number" placeholder="ZIP" name="newZip" formControlName="newZip" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
-                                                                            <input type="text"
-                                                                            formControlName="newCountry"
-                                                                                placeholder="Country" 
-                                                                                name="newCountry"
-                                                                                class="form-control" />
+                                                                            <input type="text" formControlName="newCountry" placeholder="Country" name="newCountry" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </ng-template>
-                                            </div>
-                                        </ng-template>
-                                    </ngb-panel>
-                                </ngb-accordion>
-                                <div class="saveprocessed">
-                                    <button type="submit">Save & Continue</button>
-                                </div>
-                            </form>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-panel>
+                                    </ngb-accordion>
+                                    <div class="saveprocessed">
+                                        <button type="submit">Save & Continue</button>
+                                    </div>
+                                </form>
                             </ng-template>
                         </ngb-panel>
 
-                        <ngb-panel  id="checkoutstep3">
+                        <ngb-panel id="checkoutstep3">
                             <ng-template ngbPanelTitle>
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    width="24" height="24" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
                                     <defs>
                                         <clipPath id="clip-path">
                                             <rect width="24" height="24" fill="none" />
@@ -1236,10 +1139,8 @@
                                         <ng-template ngbPanelContent>
                                             <div class="content-card steps-inner promo-checkout">
                                                 <div class="col-md-12 p-0 mb-3">
-                                                    <div
-                                                        [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                        <input type="text" [(ngModel)]="promocode_onetime"
-                                                            class="form-control" (focusout)="clearPromo($event)" />
+                                                    <div [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                                        <input type="text" [(ngModel)]="promocode_onetime" class="form-control" (focusout)="clearPromo($event)" />
                                                         <label class="form-label">Promo Code</label>
                                                         <span class="vali-promo">Not Applied</span>
                                                         <span class="btn-add-promo" (click)="addPromo()">
@@ -1309,8 +1210,8 @@
                                                                     <p class="you-sav">You Saved</p>
                                                                 </td>
                                                                 <td>
-                                                                    <p class="you-sav">-${{totalDiscount |
-                                                                        number:'.1-2'}}</p>
+                                                                    <p class="you-sav">-${{totalDiscount | number:'.1-2'}}
+                                                                    </p>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1318,8 +1219,8 @@
                                                                     <p class="you-pay">You pay</p>
                                                                 </td>
                                                                 <td>
-                                                                    <p class="you-pay">${{cartSummaryTotal |
-                                                                        number:'.1-2'}}</p>
+                                                                    <p class="you-pay">${{cartSummaryTotal | number:'.1-2'}}
+                                                                    </p>
                                                                 </td>
                                                             </tr>
                                                         </tfoot>
@@ -1365,9 +1266,8 @@
         <div class="modal-body">
             <div class="modal-content-conversion">
                 <div class="desc-loyalty">
-                    <p>Loyalty Points are earned through the Loyalty Rewards Program. When subscriptions totaling $50+
-                        are shipped monthly, up to 20% of the order value can be earned back in Loyalty Points! Points
-                        have a dollar for dollar value, and can be used on one-time purchases of any standard products.
+                    <p>Loyalty Points are earned through the Loyalty Rewards Program. When subscriptions totaling $50+ are shipped monthly, up to 20% of the order value can be earned back in Loyalty Points! Points have a dollar for dollar value, and can
+                        be used on one-time purchases of any standard products.
                     </p>
                     <p>Start earning rewards by creating your subscription today!</p>
                 </div>
@@ -1388,8 +1288,7 @@
             <h3 class="referrer-title" id="modal-basic-title">Who referred you?</h3>
             <div class="search-bar-on">
                 <div class="form-group">
-                    <input type="text" #myInput class="form-control" value="" [(ngModel)]="filterTerm"
-                        (input)="filterItem(myInput.value)" placeholder="Find referral (Optional)" />
+                    <input type="text" #myInput class="form-control" value="" [(ngModel)]="filterTerm" (input)="filterItem(myInput.value)" placeholder="Find referral (Optional)" />
                     <span class="search">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16.947" height="17.048"
                             viewBox="0 0 16.947 17.048">
@@ -1419,8 +1318,7 @@
                                             <h4 class="media-heading">{{referrer.referrer_name}}, ID #{{referrer.id}}
                                             </h4>
                                             <div class="refrrer-info">
-                                                <p class="wink-link">Wink Link:<span
-                                                        class="wlink-data">{{referrer.wink_link}}</span></p>
+                                                <p class="wink-link">Wink Link:<span class="wlink-data">{{referrer.wink_link}}</span></p>
                                                 <p class="location-referrer">{{referrer.referrer_location}}</p>
                                             </div>
                                         </div>

@@ -779,10 +779,9 @@ div#notifi-review-header+div#notifi-review {
     border: none;
 }
 
-
-/* .checkout-steps-3 span.arrow-stepp {
+.checkout-steps-3 span.arrow-stepp {
     display: none;
-} */
+}
 
 .reviews-yotpo .yotpo .promoted-products-box .yotpo-main-title {
     margin-bottom: 34px;

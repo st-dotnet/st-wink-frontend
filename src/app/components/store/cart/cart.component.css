@@ -41,7 +41,6 @@ section.cart-header .grid-box-shadow .cart-singleitem {
     margin-bottom: 20px;
     border-bottom: 1px solid #f1f1f1;
     padding-bottom: 20px;
-    overflow: hidden;
 }
 
 section.cart-header .grid-box-shadow .cart-singleitem .data-cart {
@@ -51,10 +50,15 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart {
     padding-top: 6px;
 }
 
+
+/* .cart-singleitem.ng-star-inserted .media {
+    align-items: center;
+} */
+
 section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-quantity {
-    display: flex;
+    display: inline-flex;
     align-items: flex-start;
-    min-width: 195px;
+    /* min-width: 195px; */
     justify-content: space-between;
     flex-direction: column;
 }
@@ -78,14 +82,14 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-quantity 
 section.cart-header .grid-box-shadow .cart-singleitem .data-cart p.price-product {
     font-size: 18px;
     margin: 0;
-    margin-top: 4px;
+    /* margin-top: 4px; */
     font-family: 'g-demibold';
     color: #707070;
 }
 
 section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-details h4 {
     font-family: 'g-demibold';
-    font-size: 18px;
+    font-size: 14px;
     color: rgba(0 0 0/0.6);
     margin-bottom: 4px;
     max-width: 100%;
@@ -177,8 +181,8 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-quantity 
 }
 
 section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-quantity .form-group {
-    margin: 0;
-    min-width: 90px;
+    margin-right: 18px;
+    /* min-width: 90px; */
 }
 
 .cart-singleitem .media-left span.remove-product {
@@ -626,7 +630,7 @@ button.btn.btn-checkout.enabledbutton {
 }
 
 .Subscription-box .data-cart .cart-quantity .form-group {
-    margin: 0 22px 0 !important;
+    margin: 0 10px 0 !important;
 }
 
 .Subscription-box .other-additional-product svg {
@@ -667,6 +671,10 @@ button.btn-add-promo {
 .conv_subscription_modal .cart-quantity select {
     font-size: 13px;
     padding: 4px 4px;
+}
+
+.cart-singleitem.ng-star-inserted .form-control {
+    width: unset !important;
 }
 
 
@@ -754,7 +762,7 @@ button.btn-add-promo {
         color: #1cb1c5;
     }
     .Subscription-box .data-cart .cart-quantity.mob-sec .form-group:first-child {
-        margin-left: 0px !important;
+        margin-left: 20px !important;
     }
     .cart-details p {
         margin-bottom: 4px !important;
@@ -782,7 +790,7 @@ button.btn-add-promo {
         min-width: 50px;
     }
     .cart-singleitem .cart-quantity {
-        min-width: 14px !important;
+        min-width: 12px !important;
     }
     .cart-singleitem .data-cart {
         padding-left: 6px !important;
@@ -829,10 +837,10 @@ button.btn-add-promo {
         font-size: 12px;
     }
     .sidebar-head h2 {
-        font-size: 18px !important;
+        font-size: 34px !important;
     }
     .sidebar-head span.amount-summary {
-        font-size: 15px !important;
+        font-size: 24px !important;
     }
     .sidebar-head {
         margin: 10px 0 0 0;
@@ -909,7 +917,7 @@ button.btn-add-promo {
 }
 
 .cart-details {
-    max-width: 245px;
+    max-width: 178px;
 }
 
 
@@ -983,4 +991,16 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart {
 .more-learn .content-learnmore .sec-title {
     font-weight: bold;
     font-size: 18px;
+}
+
+@media (max-width:767px) {
+    .cart-quantity.mob-sec .form-group:last-child {
+        order: 1;
+    }
+    .cart-quantity.mob-sec .form-group:first-child {
+        order: 2;
+    }
+    .Subscription-box .data-cart .cart-quantity.mob-sec .form-group {
+        margin: 0 !important;
+    }
 }

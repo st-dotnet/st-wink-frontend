@@ -151,6 +151,11 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+                <!-- subscription -->
                 <div *ngIf="subscriptionCartItemsCount > 0" class="grid-box-shadow OTP mt-3 Subscription-box">
                     <h3>Subscription Purchase ({{ subscriptionCartItemsCount }})</h3>
                     <div *ngFor="let delivery of subscriptionCartItems; let i = index" class="cart-singleitem">
@@ -236,6 +241,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- discount section -->
 
                     <div class="other-additional-product">
                         <div class="promo-code">
