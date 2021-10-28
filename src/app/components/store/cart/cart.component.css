@@ -762,7 +762,7 @@ button.btn-add-promo {
         color: #1cb1c5;
     }
     .Subscription-box .data-cart .cart-quantity.mob-sec .form-group:first-child {
-        margin-left: 20px !important;
+        margin-right: 20px !important;
     }
     .cart-details p {
         margin-bottom: 4px !important;
@@ -997,9 +997,9 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart {
     .cart-quantity.mob-sec .form-group:last-child {
         order: 1;
     }
-    .cart-quantity.mob-sec .form-group:first-child {
+    /* .cart-quantity.mob-sec .form-group:first-child {
         order: 2;
-    }
+    } */
     .Subscription-box .data-cart .cart-quantity.mob-sec .form-group {
         margin: 0 !important;
     }

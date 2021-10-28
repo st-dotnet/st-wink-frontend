@@ -50,7 +50,7 @@ section.shop-banner .content-banner p a.btn-blue {
 }
 
 section.products {
-    padding: 70px 10px;
+    padding: 30px 10px;
 }
 
 section.products .col-md-3 {
@@ -62,7 +62,8 @@ section.products h3 {
     font-family: 'g-regular';
     font-size: 28px;
     margin: 0 0 30px 0;
-    color: #000000;
+    color: #000000bf;
+    font-weight: 600;
 }
 
 .prod-wrapp .card-body .product-details h5 {
@@ -151,7 +152,7 @@ section.products h3 {
     max-width: 1140px;
     margin: 0 auto;
     left: 0;
-    right: 0;
+    right: 117px;
 }
 
 .product-filters form.form-inline {
@@ -418,6 +419,15 @@ a.btn-add:hover {
 @media (max-width:1366px) {
     section.shop-banner {
         min-height: 420px;
+    }
+    .product-filters {
+        position: absolute;
+        bottom: 30px;
+        width: 100%;
+        max-width: 1140px;
+        margin: 0 auto;
+        left: 0;
+        right: -15px;
     }
 }
 
