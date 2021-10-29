@@ -17,7 +17,7 @@ section.enroll-packs .grid-pack {
 }
 
 .grid-pack-header {
-    padding: 27px 20px;
+    padding: 22px 20px;
     position: relative;
     float: left;
     width: 100%;
@@ -27,7 +27,7 @@ section.enroll-packs .grid-pack {
     font-family: 'g-demibold';
     display: block;
     padding: 0 0;
-    font-size: 22px;
+    font-size: 18px;
     margin: 0 0 4px 0;
     text-align: left;
 }
@@ -35,10 +35,10 @@ section.enroll-packs .grid-pack {
 .grid-pack-header p.price-pack {
     position: absolute;
     background-color: #17a2b8;
-    font-size: 16px;
+    font-size: 14px;
     padding: 6px 8px 6px 18px;
     color: #fff;
-    top: 40px;
+    top: 49px;
     right: 0;
     margin: 0;
     box-shadow: 2px 2px 3px #c7c7c7;

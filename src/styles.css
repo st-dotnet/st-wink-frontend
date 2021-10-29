@@ -1569,4 +1569,8 @@ div#checkoutstep3 .card-body {
     .model-productview .card-body {
         padding: 14px;
     }
+    .products .card-body {
+        min-height: 200px;
+        line-height: 14px;
+    }
 }

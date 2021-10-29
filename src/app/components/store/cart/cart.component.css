@@ -76,7 +76,7 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-quantity 
 }
 
 .prod-discount .subscription-with-discount p {
-    font-size: 18px !important;
+    font-size: 14px !important;
 }
 
 section.cart-header .grid-box-shadow .cart-singleitem .data-cart p.price-product {
@@ -997,10 +997,10 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart {
     .cart-quantity.mob-sec .form-group:last-child {
         order: 1;
     }
-    /* .cart-quantity.mob-sec .form-group:first-child {
+    .cart-quantity.mob-sec .form-group:first-child {
         order: 2;
-    } */
+    }
     .Subscription-box .data-cart .cart-quantity.mob-sec .form-group {
-        margin: 0 !important;
+        margin-right: 10px !important;
     }
 }

@@ -68,7 +68,7 @@ section.products h3 {
 
 .prod-wrapp .card-body .product-details h5 {
     font-family: g-demibold;
-    font-size: 18px;
+    font-size: 14px;
     color: #000;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -82,6 +82,7 @@ section.products h3 {
     color: #000000;
     font-size: 14px;
     font-family: 'g-regular';
+    line-height: 0px;
 }
 
 .prod-wrapp .card-body .product-details .reviews-product {
@@ -261,7 +262,7 @@ section.products h3 {
 
 .prod-bundle-select .radio-bundle label {
     border: 1px solid #d6d6d6;
-    padding: 9px 18px;
+    padding: 9px 11px;
     max-width: 195px;
     border-radius: 50px;
     text-align: center;
