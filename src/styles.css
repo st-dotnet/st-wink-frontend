@@ -1561,7 +1561,7 @@ div#checkoutstep3 .card-body {
         padding: 0;
         min-width: 60px !important;
         max-width: 200px !important;
-        font-size: 15px !important;
+        font-size: 14px !important;
     }
     .prod-bundle-select .radio-bundle .form-check:first-child {
         margin-bottom: 10px;
@@ -1572,5 +1572,11 @@ div#checkoutstep3 .card-body {
     .products .card-body {
         min-height: 200px;
         line-height: 14px;
+    }
+}
+
+@media (max-width:320px) {
+    .prod-bundle-select .radio-bundle label {
+        font-size: 12px !important;
     }
 }

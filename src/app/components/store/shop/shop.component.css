@@ -10,6 +10,12 @@ section.shop-banner {
     background-repeat: no-repeat;
 }
 
+section.products .card-body {
+    flex: 1 1 auto;
+    min-height: 184px;
+    padding: 1.25 rem;
+}
+
 .container-banner {
     max-width: 1140px;
     margin: 0 auto;
@@ -68,7 +74,7 @@ section.products h3 {
 
 .prod-wrapp .card-body .product-details h5 {
     font-family: g-demibold;
-    font-size: 14px;
+    font-size: 16px;
     color: #000;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -80,7 +86,7 @@ section.products h3 {
 
 .prod-wrapp .card-body .product-details h6 {
     color: #000000;
-    font-size: 14px;
+    font-size: 11px;
     font-family: 'g-regular';
     line-height: 0px;
 }
