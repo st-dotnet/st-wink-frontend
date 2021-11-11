@@ -93,7 +93,7 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-details h
     font-size: 14px;
     color: rgba(0 0 0/0.6);
     margin-bottom: 4px;
-    max-width: 100%;
+    max-width: 90%;
 }
 
 section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-details p {
@@ -159,7 +159,7 @@ button.btn-add-promo svg {
 }
 
 .subscription-with-discount {
-    /* display: flex; */
+    display: flex;
     justify-content: space-between;
 }
 
@@ -631,7 +631,7 @@ button.btn.btn-checkout.enabledbutton {
 }
 
 .Subscription-box .data-cart .cart-quantity .form-group {
-    margin: 0 10px 0 !important;
+    margin: 0 0px 0 !important;
 }
 
 .Subscription-box .other-additional-product svg {
@@ -674,9 +674,10 @@ button.btn-add-promo {
     padding: 4px 4px;
 }
 
-.cart-singleitem.ng-star-inserted .form-control {
+
+/* .cart-singleitem.ng-star-inserted .form-control {
     width: unset !important;
-}
+} */
 
 
 /* media Queries */
@@ -730,6 +731,15 @@ button.btn-add-promo {
 }
 
 @media (min-width:768px) {
+    section.cart-header .grid-box-shadow .cart-singleitem .data-cart p.price-product {
+        width: 55px;
+    }
+    .prod-quant .price {
+        width: 50px;
+    }
+    .Subscription-box .data-cart .cart-quantity .form-group {
+        margin: 0 10px 0 !important;
+    }
     section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-details h4 {
         max-width: 80%;
     }
@@ -776,7 +786,7 @@ button.btn-add-promo {
     }
     .cart-quantity.des-sec {
         display: block !important;
-        text-align: right;
+        /* text-align: right; */
     }
     .cart-quantity.des-sec .form-group {
         display: none;
@@ -918,7 +928,7 @@ button.btn-add-promo {
 }
 
 .cart-details {
-    max-width: 150px;
+    max-width: 80%;
 }
 
 

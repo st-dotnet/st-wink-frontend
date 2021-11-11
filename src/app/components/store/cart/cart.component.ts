@@ -18,6 +18,7 @@ export class CartComponent implements OnInit {
   subscriptionPurchase = false;
   inputdata: string;
   promocode_onetime: string;
+ date_convertModal: string;
   data_learn: boolean = false;
   closeResult: string;
   cartItems: any[] = [];
@@ -54,6 +55,8 @@ export class CartComponent implements OnInit {
   show: boolean=false;
   onTextChange(value) {
   }
+
+
   //quantityValue: any;
   subscriptionModel: any;
 
