@@ -19,6 +19,10 @@ export class ContactService {
 createContact(model: any) {
   return this.http.post<any>(`${environment.apiUrl}${this.homeEndpoint}about`, model);
 }
+
+   getReviews() {
+     return this.http.get<any>(`${environment.apiUrl}${this.homeEndpoint}GetHomePageReviews`,);
+    }
 }
 
 

@@ -15,6 +15,7 @@ import { AppFooterComponent } from './components/layout/app-footer/app-footer.co
 import { AppNotificationBarComponent } from './components/layout/app-notification-bar/app-notification-bar.component';
 import { AppLayoutComponent } from './components/layout/app-layout/app-layout.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { YotpoDirective } from './_helpers/yotpo.directive';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     AppFooterComponent,
     AppNotificationBarComponent,
     AppLayoutComponent,
+    YotpoDirective
   ],
   imports: [
     BrowserModule,

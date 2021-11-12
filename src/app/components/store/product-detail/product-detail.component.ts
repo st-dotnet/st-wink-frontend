@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, Input, OnInit } from '@angular/core';
 import { SessionService } from '@app/_services';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ShopService } from '@app/_services/shop.service';
 import { CartTypeEnum } from '@app/_models/cart-type-enum';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,6 +16,8 @@ import { CartTypeEnum } from '@app/_models/cart-type-enum';
 })
 
 export class ProductDetailComponent implements OnInit {
+
+  review:number;
   incredShow: Boolean = false;
   isShowDivIf = false;
   itemCode: number;
@@ -222,12 +225,21 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
+
+    //alert(this.itemCode);
     this.filterTitleShow=this.sessionService.getSessionItem("categoryDescription");
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.getProductDetail(this.itemCode);
     this.bundle='single';
     this.selectDelivery=0;
   this.subscriptionModel='singleDelivery';
+
+  //var x = document.getElementById("data_val_item_code").getAttribute("data-product-id");
+    //console.log("X is "+x);
+
+
   }
 
   toggleShow() {
@@ -242,10 +254,16 @@ export class ProductDetailComponent implements OnInit {
       console.log("this.productDetail",this.productDetail);
       this.productPrice = this.productDetail.price;
       this.itemCodeTitle = this.productDetail.itemCode;
+      this.review = this.productDetail.itemID;
+
+      console.log("Review", this.review );
       this.spinner.hide();
+     // const layout= `<div class='yotpo bottomLine' data-product-id='${this.productDetail.itemID}'>dsfsdfdfds</div>`;
+     // this.review = this.sanitizer.bypassSecurityTrustHtml(layout);
       console.log("ProductDetail", this.productDetail);
     });
   }
+
 
   getYearValue(event:any)
   {
@@ -279,13 +297,13 @@ export class ProductDetailComponent implements OnInit {
       quantityModel: +this.quantityValue,
       Price: 0,
       discount: 0,
-      quantityLimit: 4, 
+      quantityLimit: 4,
       isDisabled:null
     }
     Object.entries(items).forEach(([key, value]) => { product[key] = value });
     //No percentage calculation
     if (product.bundle == 'single' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
-      product.Price = product.price; 
+      product.Price = product.price;
     }
     // 15% calulation
     if (product.bundle == 'single' && product.selectDelivery == 1 && product.subscriptionModel !== 'singleDelivery') {
@@ -304,7 +322,7 @@ export class ProductDetailComponent implements OnInit {
       let itemPrice = product.price;
       itemPrice=itemPrice*2;
       let discountper5 = (itemPrice * 5) / 100;
-      product.Price = itemPrice-discountper5; 
+      product.Price = itemPrice-discountper5;
     }
 
     if (this.productItems) {
@@ -326,13 +344,13 @@ export class ProductDetailComponent implements OnInit {
           else {
             this.productItems.push(product);
             this.toastrService.success('Product added successfully');
-           
+
           }
         }
         else {
           this.productItems.push(product);
           this.toastrService.success('Product added successfully');
-         
+
         }
       }
       // 15% calulation
@@ -353,16 +371,15 @@ export class ProductDetailComponent implements OnInit {
           else {
             this.productItems.push(product);
             this.toastrService.success('Product added successfully');
-          
           }
         }
         else {
           this.productItems.push(product);
           this.toastrService.success('Product added successfully');
-         
+
         }
       }
-      //5% calculation 
+      //5% calculation
       if (product.bundle == 'multiple' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
         let multiple_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'multiple' && x.selectDelivery == 0 && x.subscriptionModel == 'singleDelivery')
         let old_multiple_singledelivery = multiple_singledelivery;
@@ -380,13 +397,13 @@ export class ProductDetailComponent implements OnInit {
           else {
             this.productItems.push(product);
             this.toastrService.success('Product added successfully');
-           
+
           }
         }
         else {
           this.productItems.push(product);
           this.toastrService.success('Product added successfully');
-         
+
         }
       }
       //5% cal + 15 % cal
@@ -407,13 +424,13 @@ export class ProductDetailComponent implements OnInit {
           else {
             this.productItems.push(product);
             this.toastrService.success('Product added successfully');
-            
+
           }
         }
         else {
           this.productItems.push(product);
           this.toastrService.success('Product added successfully');
-          
+
         }
       }
       this.sessionService.cartSession(this.productItems);
@@ -425,14 +442,14 @@ export class ProductDetailComponent implements OnInit {
       this.sessionService.cartSession(this.productCartItems);
       this.sessionService.setSessionObject('productCartItems', this.productCartItems);
       this.toastrService.success('Product added successfully');
-     
+
     }
 
   }
 
   checkBundle(bundle: string, productPrice: any) {
     this.bundle = bundle;
-    this.bundlePrice=0;  
+    this.bundlePrice=0;
     if(this.bundle == "single") {
       this.bundletype = "";
       this.bundlePrice=productPrice;
@@ -451,7 +468,7 @@ export class ProductDetailComponent implements OnInit {
     debugger;
     switch (type) {
       case CartTypeEnum.OneTimePrice:
-        this.showSubscription = false; 
+        this.showSubscription = false;
         this.selectDelivery = CartTypeEnum.OneTimePrice;
         break;
       case CartTypeEnum.Subscription:
@@ -462,5 +479,4 @@ export class ProductDetailComponent implements OnInit {
         break;
     }
   }
-
 }

@@ -41,14 +41,21 @@
                     <div class="product-details">
                         <h5 class="card-title">{{productDetail.itemDescription}}</h5>
                         <div class="reviews-product">
-                            <ul>
+
+                            <div  [attr.data-product-id]="review" class="yotpo bottomLine" >
+                            </div>
+                             <!-- <yotpo-star-rating data-yotpo-productId="969">
+
+                             </yotpo-star-rating> -->
+
+                            <!-- <ul>
                                 <li><i class="fas fa-star"></i></li>
                                 <li><i class="fas fa-star"></i></li>
                                 <li><i class="fas fa-star"></i></li>
                                 <li><i class="fas fa-star"></i></li>
                                 <li><i class="fas fa-star"></i></li>
-                            </ul>
-                            <p>704 REVIEWS</p>
+                            </ul> -->
+                            <!-- <p>704 REVIEWS</p> -->
                         </div>
                         <h6 class="small">Perfect for ages 3+</h6>
                         <div class="product-info">
@@ -83,17 +90,18 @@
                                 <label class="form-check-label" for="{{bundle.id}}"
                                   >{{bundle.name}}</label
                                 >
-                              </div>               
+                              </div>
                             </div> -->
 
 
                             <div class="radio-bundle">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="1" value="single" (change)="checkBundle('single',productDetail.price)" checked />
-                                    <label class="form-check-label" for="1">Single</label
-                      >
-                    </div>               
-                  </div>
+                             <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="1" value="single" (change)="checkBundle('single',productDetail.price)" checked />
+                            <label class="form-check-label" for="1">Single</label>
+                           </div>
+                           </div>
+
+
                   <div class="radio-bundle">
                     <div class="form-check form-check-inline">
                       <input
@@ -107,9 +115,9 @@
                       <label class="form-check-label" for="2"
                         >2-pk (Save 5%)</label
                       >
-                    </div>               
+                    </div>
                   </div>
-                          </div>
+    </div>
 
                           <!-- <div class="prod-bundle-select mt-0 delivery-radio">
                               <h3>Select Delivery</h3>
@@ -134,11 +142,11 @@
                                   name="inlineRadioOptionsdelivery"
                                   id="{{i}}{{type}}"
                                   value="{{type}}"
-                                  (change)="checkDelivery(type)"                      
+                                  (change)="checkDelivery(type)"
                                 />
                                 <label class="form-check-label" for="{{i}}{{type}}"
                                   >{{type == 0 ? 'Single Delivery' : 'Subscribe & Save 15%'}}</label>
-                              </div>                 
+                              </div>
                             </div> -->
                             <div class="radio-bundle">
                                 <div class="form-check form-check-inline">
@@ -177,7 +185,7 @@
                                 <div *ngIf="showSubscription" class="form-group">
                                     <select (change)="getYearValue($event.target.value)" class="form-control">
                                   <!-- <option class="dropdown-item" disabled value="undefined">Select</option>     -->
-                                  <option [value]="undefined"  selected="true">Select</option>                 
+                                  <option [value]="undefined"  selected="true">Select</option>
                                   <option *ngFor="let year of years" [value]="year.value">
                                   {{year.name}}
                                    </option>
@@ -490,7 +498,6 @@
             <li>Tastes like berries</li>
         </ul>
     </div>
-
 </section>
 
 <section class="client-reviews white-bg">
@@ -620,9 +627,18 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="yotpo yotpo-main-widget" data-product-id="683" data-price="24.99" data-currency="usd" data-name="The One Multi-Cleaner" data-url="#" data-image-url="/shopping/productimages/SP-THEONE_12_11_2020_500px.jpg">
+              <yotpo-reviews-widget
+    productId="{{review}}"
 
-                </div>
+    name="{{productDetail.itemDescription}}"
+    url="#"
+    imageUrl="{{productDetail.largeImageUrl}}"
+    description="{{productDetail.itemDescription}}">
+  </yotpo-reviews-widget>
+
+                <!-- <div class="yotpo yotpo-main-widget" data-product-id="718"  data-price="24.99" data-currency="usd" data-name="The One Multi-Cleaner" data-url="#" data-image-url="/shopping/productimages/SP-THEONE_12_11_2020_500px.jpg">
+                </div> -->
+
             </div>
         </div>
     </div>

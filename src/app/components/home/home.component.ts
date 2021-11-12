@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from '@app/_services';
+import { ContactService, SessionService } from '@app/_services';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { first } from 'rxjs/operators';
 
 
 @Component({
@@ -9,6 +12,10 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  Review:any[]=[];
+  loading = false;
+
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -37,7 +44,7 @@ export class HomeComponent implements OnInit {
       }
     },
   }
-  
+
   bestsellers: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -88,11 +95,37 @@ export class HomeComponent implements OnInit {
     nav: true
   }
 
-  constructor(private sessionService: SessionService) {
+  constructor(private sessionService: SessionService, private spinner: NgxSpinnerService, private toastrService: ToastrService,private contactService: ContactService,) {
+
     this.sessionService.scrollToTop();
   }
 
   ngOnInit(): void {
+    this.getAllreviews();
+  }
+
+  score(i:any) {
+    return new Array(i);
+   }
+
+  getAllreviews() {
+    this.spinner.show();
+    this.loading = true;
+     this.contactService.getReviews()
+       .pipe(first())
+       .subscribe({
+         next: (response: any) => {
+           this.Review = response;
+           this.spinner.hide();
+           this.loading = false;
+          // console.log(this.Review);
+         },
+         error: error => {
+          this.spinner.hide();
+          this.toastrService.error();
+          this.loading = false;
+         }
+       });
   }
 }
 

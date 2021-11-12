@@ -14,7 +14,7 @@
     <ng-template carouselSlide>
       <div class="slider-wrapper">
         <div class="slider-image">
-          <img src="../../../assets/slider.png"/> 
+          <img src="../../../assets/slider.png"/>
         </div>
         <div class="content-banner-slider">
           <h3>Bath Sale Today Only!</h3>
@@ -144,40 +144,45 @@
     <div class="row">
       <div class="col-md-12">
         <owl-carousel-o [options]="home_testimonials">
-          <ng-template carouselSlide>
+          <ng-template carouselSlide   *ngFor="let reviews of Review, let i = index">
             <div class="testimonial-outer">
               <div class="testimonial-wrapper">
                 <div class="content-info-image">
-                  <h4>I Just Love These</h4>
-                  <p class="testimonial-text">“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”</p>
+                  <h4>{{reviews.title}}</h4>
+                  <p class="testimonial-text">{{reviews.content}}</p>
                   <div class="bottom-stars-info">
-                    <div class="star-rating">
-                    <ul class="rating-star">
+                     <div class="star-rating">
+                    <ul class="rating-star" >
+
+                      <li *ngFor='let in of score(reviews.score) ;let i = index'><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
+                       <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
+                      </svg>
+                      </li>
+
+                       <!-- <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
+                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
+                      </svg>
+                      </li>
+
                       <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
                         <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
                       </svg>
                       </li>
+
                       <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
                         <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
                       </svg>
                       </li>
+
                       <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
                         <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
                       </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                     
+                      </li> -->
                     </ul>
+
                     </div>
                     <div class="client-name">
-                      <h5>-Beth Mena</h5>
+                      <h5>{{reviews.user.display_name}} </h5>
                     </div>
                   </div>
                 </div>
@@ -185,300 +190,6 @@
             </div>
 
           </ng-template>
-         
-          <ng-template carouselSlide>
-            <div class="testimonial-outer">
-              <div class="testimonial-wrapper">
-                <div class="content-info-image">
-                  <h4>I Just Love These</h4>
-                  <p class="testimonial-text">“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”</p>
-                  <div class="bottom-stars-info">
-                    <div class="star-rating">
-                    <ul class="rating-star">
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                     
-                    </ul>
-                    </div>
-                    <div class="client-name">
-                      <h5>-Beth Mena</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-         
-          <ng-template carouselSlide>
-            <div class="testimonial-outer">
-              <div class="testimonial-wrapper">
-                <div class="content-info-image">
-                  <h4>I Just Love These</h4>
-                  <p class="testimonial-text">“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”</p>
-                  <div class="bottom-stars-info">
-                    <div class="star-rating">
-                    <ul class="rating-star">
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>                     
-                    </ul>
-                    </div>
-                    <div class="client-name">
-                      <h5>-Beth Mena</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-         
-          <ng-template carouselSlide>
-            <div class="testimonial-outer">
-              <div class="testimonial-wrapper">
-                <div class="content-info-image">
-                  <h4>I Just Love These</h4>
-                  <p class="testimonial-text">“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”</p>
-                  <div class="bottom-stars-info">
-                    <div class="star-rating">
-                    <ul class="rating-star">
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>                     
-                    </ul>
-                    </div>
-                    <div class="client-name">
-                      <h5>-Beth Mena</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-         
-          <ng-template carouselSlide>
-            <div class="testimonial-outer">
-              <div class="testimonial-wrapper">
-                <div class="content-info-image">
-                  <h4>I Just Love These</h4>
-                  <p class="testimonial-text">“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”</p>
-                  <div class="bottom-stars-info">
-                    <div class="star-rating">
-                    <ul class="rating-star">
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                     
-                    </ul>
-                    </div>
-                    <div class="client-name">
-                      <h5>-Beth Mena</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </ng-template>
-         
-          <ng-template carouselSlide>
-            <div class="testimonial-outer">
-              <div class="testimonial-wrapper">
-                <div class="content-info-image">
-                  <h4>I Just Love These</h4>
-                  <p class="testimonial-text">“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”</p>
-                  <div class="bottom-stars-info">
-                    <div class="star-rating">
-                    <ul class="rating-star">
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                     
-                    </ul>
-                    </div>
-                    <div class="client-name">
-                      <h5>-Beth Mena</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </ng-template>
-         
-          <ng-template carouselSlide>
-            <div class="testimonial-outer">
-              <div class="testimonial-wrapper">
-                <div class="content-info-image">
-                  <h4>I Just Love These</h4>
-                  <p class="testimonial-text">“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”</p>
-                  <div class="bottom-stars-info">
-                    <div class="star-rating">
-                    <ul class="rating-star">
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                     
-                    </ul>
-                    </div>
-                    <div class="client-name">
-                      <h5>-Beth Mena</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </ng-template>
-         
-          <ng-template carouselSlide>
-            <div class="testimonial-outer">
-              <div class="testimonial-wrapper">
-                <div class="content-info-image">
-                  <h4>I Just Love These</h4>
-                  <p class="testimonial-text">“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”</p>
-                  <div class="bottom-stars-info">
-                    <div class="star-rating">
-                    <ul class="rating-star">
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                      <li><svg xmlns="http://www.w3.org/2000/svg" width="25.075" height="24" viewBox="0 0 25.075 24">
-                        <path id="star-solid" d="M31.692.822,28.631,7.028l-6.848,1a1.5,1.5,0,0,0-.83,2.559l4.954,4.828-1.172,6.819a1.5,1.5,0,0,0,2.175,1.579l6.126-3.22,6.126,3.22a1.5,1.5,0,0,0,2.175-1.579l-1.172-6.819,4.954-4.828a1.5,1.5,0,0,0-.83-2.559l-6.848-1L34.382.822A1.5,1.5,0,0,0,31.692.822Z" transform="translate(-20.5 0.013)" fill="#ffad00"/>
-                      </svg>
-                      </li>
-                     
-                    </ul>
-                    </div>
-                    <div class="client-name">
-                      <h5>-Beth Mena</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </ng-template>
-         
-      
-      
-    
-
         </owl-carousel-o>
       </div>
     </div>
@@ -501,7 +212,7 @@
           <a [routerLink]="['/store']" class="btn btn-shop">Shop Now</a>
         </div>
         </div>
-  
+
         </div>
         </div>
 </section>
