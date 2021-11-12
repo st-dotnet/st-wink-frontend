@@ -97,7 +97,6 @@ export class CheckoutComponent implements OnInit {
   newCountry: string;
   displayAddress: string;
 
-
   constructor(private modalService: NgbModal,
     private shopService: ShopService,
     private formBuilder: FormBuilder,
@@ -110,7 +109,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger;
     this.UserDetails = JSON.parse(localStorage.getItem('user'));
     this.customerId = this.UserDetails.customerId;
     this.totalDiscount = 0;
@@ -177,19 +175,17 @@ export class CheckoutComponent implements OnInit {
   }
 
   getAddressByCustomerId(id) {
-    debugger
     this.spinner.show();
     this.shopService.getAddressById(id).subscribe((result: any) => {
-      debugger
       if (result.length > 0) {
-        this.displayAddress = result[0].address1 + ' ' + result[0].city + ' ' + result[0].state + ' ' + result[0].zip + ' ' + result[0].country;
-        this.shippingAddressForm.get('firstName').setValue(result[0].firstName);
-        this.shippingAddressForm.get('lastName').setValue(result[0].lastName);
-        this.shippingAddressForm.get('streetAddress').setValue(result[0].address1);
-        this.shippingAddressForm.get('city').setValue(result[0].city);
-        this.shippingAddressForm.get('state').setValue(result[0].state);
-        this.shippingAddressForm.get('zip').setValue(result[0].zip);
-        this.shippingAddressForm.get('country').setValue(result[0].country);
+        this.displayAddress = result[1].address1 + ' ' + result[1].city + ' ' + result[1].state + ' ' + result[1].zip + ' ' + result[1].country;
+        this.shippingAddressForm.get('firstName').setValue(result[1].firstName);
+        this.shippingAddressForm.get('lastName').setValue(result[1].lastName);
+        this.shippingAddressForm.get('streetAddress').setValue(result[1].address1);
+        this.shippingAddressForm.get('city').setValue(result[1].city);
+        this.shippingAddressForm.get('state').setValue(result[1].state);
+        this.shippingAddressForm.get('zip').setValue(result[1].zip);
+        this.shippingAddressForm.get('country').setValue(result[1].country);
         this.spinner.hide();
       } else {
         this.spinner.hide();
@@ -198,7 +194,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   onAddressSubmit() {
-    debugger
     this.submitted = true;
     if (this.shippingAddressForm.invalid) {
       return;
@@ -206,8 +201,6 @@ export class CheckoutComponent implements OnInit {
     this.spinner.show();
     this.shippingAddressParam = this.getShippingAddressParam(1);
     this.shopService.postAddress(this.customerId, this.shippingAddressParam).subscribe((result: any) => {
-      debugger
-      console.log("Result", result.result);
       if (result.result) {
         this.spinner.hide();
         this.showPanel2 = false;
@@ -218,11 +211,11 @@ export class CheckoutComponent implements OnInit {
         this.toastrService.error(result.message);
         this.spinner.hide();
       }
+      this.getAddressByCustomerId(this.customerId);
     });
   }
 
   onPaymentSubmit() {
-    debugger
     this.submitted = true;
     if (this.onPaymentSubmitForm.invalid) {
       return;
@@ -256,8 +249,6 @@ export class CheckoutComponent implements OnInit {
     //payment.customerId =this.customerId;
 
     this.shopService.addPayment(payment).subscribe((result: any) => {
-      debugger
-      console.log("Result", result);
       if (result.isCompletedSuccessfully == true) {
         this.spinner.hide();
         this.showPanel3 = true;
@@ -271,9 +262,7 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-
   getShippingAddressParam(type: number) {
-    debugger
     let firstName;
     let lastName;
     let address1;
@@ -281,6 +270,7 @@ export class CheckoutComponent implements OnInit {
     let state;
     let zip;
     let country;
+    let addressType;
     if (type == 1) {
       let addressParam = {
         firstName: this.f.firstName.value,
@@ -289,7 +279,8 @@ export class CheckoutComponent implements OnInit {
         city: this.f.city.value,
         state: this.f.state.value,
         zip: this.f.zip.value,
-        country: this.f.country.value
+        country: this.f.country.value,
+        addressType: 2
       }
       return addressParam;
     }
@@ -368,7 +359,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   shippingAddressType(billingAddressType: string) {
-    debugger;
     if (billingAddressType == 'shippingAddress') {
       this.addrnew = false;
     }
@@ -419,9 +409,7 @@ export class CheckoutComponent implements OnInit {
     return newBillingAddressParam;
   }
 
-
   onCheckboxChange(event: any) {
-    debugger;
     this.isMakePrimaryCard = event.target.checked;
   }
 
@@ -436,7 +424,6 @@ export class CheckoutComponent implements OnInit {
   //  }
 
   onSelectCardChange(id: number) {
-    debugger;
     switch (id) {
       case 1:
         //prepare existing card value;
@@ -456,7 +443,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   open(content) {
-    debugger;
     this.modalService.open(content, this.modalOptions).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -474,13 +460,11 @@ export class CheckoutComponent implements OnInit {
     }
   }
   onItemChange(id: number) {
-    debugger;
     this.isShipmentMethod = id;
     console.log(this.isShipmentMethod)
   }
 
   addPromo(type: number) {
-    debugger;
     this.promoPercentage = 0;
     // this.sessionService.removeSessionItem('promoCode')
     let oneTimePriceWithoutOffer = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice && x.bundle != 'specialOffer');
@@ -490,7 +474,6 @@ export class CheckoutComponent implements OnInit {
         this.shopService.getPromoData(this.promocode_onetime).subscribe(result => {
           this.promoItem = result;
           if (this.promoItem.errorMessage == null) {
-            debugger;
             this.promoPercentage = (this.subtotalOneTimePrice * this.promoItem.discountPer) / 100;
             // this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
             this.cartCalculation();
@@ -516,11 +499,9 @@ export class CheckoutComponent implements OnInit {
       this.promoPercentage = 0;
       this.cartCalculation();
     }
-
   }
 
   clearPromo(event: any) {
-    debugger;
     if (event.target.value == '' || event.target.value == undefined || event.target.value == null) {
       this.sessionService.removeSessionItem('promoCode');
       this.promocode_onetime = '';
@@ -541,7 +522,6 @@ export class CheckoutComponent implements OnInit {
     this.subTotalSubscriptionPriceAfterDiscount = 0;
     this.totalDiscount = 0;
     this.cartSummaryTotal = 0;
-    debugger;
     this.orderTotal = this.getOrderTotal();
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
     //subsciption item List
@@ -570,6 +550,7 @@ export class CheckoutComponent implements OnInit {
     this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
 
   }
+  
   getOrderTotal() {
     let multiplyprice = 0;
     let Temp = 0;
@@ -628,8 +609,6 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-
-
   getQuantityVal(qty: string) {
     var value = 0;
     if (qty == "Qty1") {
@@ -658,7 +637,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger
     this.submitted = true;
     // if (this.checkoutForm.invalid) {
     //   return this.toastrService.error("Please fill the required field shipping address and card");
