@@ -332,7 +332,7 @@ section.testimonial-home .owl-nav .owl-next {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    top: 50%;
+    top: 40%;
     margin: 0 !important;
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
@@ -1025,7 +1025,7 @@ ul.conv-products input[type="checkbox"]~.custom-control-label::before {
 
 .special-field {
     position: relative;
-    max-width: 240px;
+    /* max-width: 240px; */
 }
 
 .special-field input {

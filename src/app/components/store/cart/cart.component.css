@@ -55,6 +55,10 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart {
     align-items: center;
 } */
 
+.Subscription-box .data-cart .cart-quantity.mob-sec .form-group:first-child {
+    margin-right: 0px !important;
+}
+
 section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-quantity {
     display: inline-flex;
     align-items: flex-start;
@@ -93,7 +97,7 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-details h
     font-size: 14px;
     color: rgba(0 0 0/0.6);
     margin-bottom: 4px;
-    max-width: 90%;
+    /* max-width: 90%; */
 }
 
 section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-details p {
@@ -175,7 +179,7 @@ button.btn-add-promo svg {
 }
 
 section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-quantity select {
-    padding: 3px 10px 3px 2px;
+    padding: 3px 0px 6px 0px;
     border: 1px solid #707070;
     font-size: 15px;
     font-family: 'g-medium';
@@ -755,9 +759,16 @@ button.btn-add-promo {
     .conv_subscription_modal .method-shipp ul label .cart-quantity {
         justify-content: space-between;
     }
+    .Subscription-box .data-cart .cart-quantity.mob-sec .form-group:first-child {
+        margin-right: 20px !important;
+    }
 }
 
 @media (max-width:767px) {
+    section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-details h4 {
+        max-width: 90%;
+        /* width: 120px; */
+    }
     .header-conv-subscr h3 {
         font-size: 20px;
         font-weight: 600;
@@ -771,9 +782,6 @@ button.btn-add-promo {
     }
     .conv_subscription_modal .more-learn p.link-learnmore a {
         color: #1cb1c5;
-    }
-    .Subscription-box .data-cart .cart-quantity.mob-sec .form-group:first-child {
-        margin-right: 20px !important;
     }
     .cart-details p {
         margin-bottom: 4px !important;
@@ -800,9 +808,9 @@ button.btn-add-promo {
     .cart-singleitem .media-left .media-body .cart-quantity {
         min-width: 50px;
     }
-    .cart-singleitem .cart-quantity {
+    /* .cart-singleitem .cart-quantity {
         min-width: 12px !important;
-    }
+    } */
     .cart-singleitem .data-cart {
         padding-left: 6px !important;
     }
@@ -927,8 +935,13 @@ button.btn-add-promo {
     height: 80px;
 }
 
-.cart-details {
+
+/* .cart-details {
     max-width: 80%;
+} */
+
+.media-body .prod-left {
+    width: 60%;
 }
 
 
