@@ -73,13 +73,13 @@ export class CartComponent implements OnInit {
 
 
   ngOnInit() {
-    debugger    
+    debugger
     this.userLogin=this.sessionService.getSessionObject("user");
     if(this.userLogin){
       this.show = true;
     }
     this.spinner.show();
-    this.getSpecialItem();  
+    this.getSpecialItem();
     // this.promocode_onetime=this.sessionService.getSessionItem('promoCode');
     // if(this.promocode_onetime!=="null" && this.promocode_onetime !==undefined)
     // {
@@ -88,7 +88,7 @@ export class CartComponent implements OnInit {
     // else{
     //   this.promocode_onetime='';
     // }
-    this.onLoad();  
+    this.onLoad();
   }
 
   onLoad()
@@ -138,7 +138,7 @@ export class CartComponent implements OnInit {
         this.toastrService.error(this.promoItem.errorMessage);
         this.spinner.hide();
       }
-    })   
+    })
   }
 
   getSpecialItem() {
@@ -269,7 +269,7 @@ export class CartComponent implements OnInit {
           this.enablebtn = true;
         }
         break;
-      default:
+        default:
         break;
     }
     this.specialOffer=this.cartItems.filter(x=>x.bundle=='specialOffer');
@@ -385,7 +385,7 @@ export class CartComponent implements OnInit {
       else{
         multiplyprice = parseFloat(this.cartItems[i].price) * this.cartItems[i].quantityModel;
       }
-    
+
       Temp = Temp + multiplyprice;
     }
     return +Temp;

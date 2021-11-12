@@ -1,4 +1,4 @@
-export class TransactionalRequestModel {      
+export class TransactionalRequestModel {
       createOrderRequest: CreateOrderRequest;
       createCustomerRequest: CreateCustomerRequest;
       chargeCreditCardTokenRequest: ChargeCreditCardTokenRequest;

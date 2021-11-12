@@ -32,7 +32,7 @@ export class ShopService {
   checkOutItems(transactionalRequestModel: any) {
     debugger
     return this.http.post<ShopProductModel[]>(`${environment.apiUrl}${this.shopEndpoint}SubmitCheckout`, transactionalRequestModel);
-  }  
+  }
    searchProduct(query:string) {
     return this.http.get<any>(`${environment.apiUrl}${this.shopEndpoint}SearchProducts/${query}`);
   }

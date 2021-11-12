@@ -450,7 +450,7 @@ export class CheckoutComponent implements OnInit {
         this.isCardType = id;
         //console.log(id);
         break;
-      default:
+        default:
         break;
     }
   }
@@ -601,6 +601,7 @@ export class CheckoutComponent implements OnInit {
   referrerRecords = []
 
   selectedData = this.referrerRecords;
+
   filterItem(val) {
     //value not empty
     if (val !== "") {

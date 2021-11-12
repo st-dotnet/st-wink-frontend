@@ -62,7 +62,7 @@ section.best-selller h3 {
 .seller-wrapper .content-info-image h4 {
     font-family: 'g-demibold';
     font-size: 22px;
-    max-width: 210px;   
+    max-width: 210px;
     margin: 0 auto 6px;
     color: #fff;
 }
@@ -198,10 +198,12 @@ section.testimonial-home h3 {
 .testimonial-wrapper h4 {
     font-size: 24px;
     color: rgba(0 0 0/0.8);
+    min-height: 55px;
 }
 
 .testimonial-wrapper p.testimonial-text {
     font-size: 16px;
+    min-height: 140px;
 }
 
 .testimonial-outer {
@@ -287,40 +289,40 @@ ul.testimonial-images li img {
         transform: translate(-50%,-50%);
         left: 50%;
     }
-    
+
     .content-banner-slider h3 {
         font-size: 20px !important;
         margin: 0 0 12px 0 !important;
     }
-    
+
     .content-banner-slider a.btn.btn-learn {
         font-size: 16px !important;
         padding: 3px 15px !important;
     }
-    
+
     section.wink-energy .content-safe h3 {
         font-size: 34px !important;
         max-width: 150px;
         margin: 0 auto 40px;
     }
-    
+
     ul.feature-safeffective {
         flex-direction: column !important;
         align-items: center;
     }
-    
+
     ul.feature-safeffective li {
         display: flex;
         align-items: center;
         text-align: left !important;
         margin-bottom: 30px;
     }
-    
+
     ul.feature-safeffective li p.sub-title-safeff {
         margin-left: 20px;
         margin-bottom: 0px;
     }
-    
+
     ul.feature-safeffective li span.circl-safeffective {
         width: 70px !important;
         height: 70px !important;
@@ -330,30 +332,30 @@ ul.testimonial-images li img {
         float: left;
         width: 100%;
     }
-    
+
     section.safe-affective {
         float: left;
         width: 100%;
     }
-    
+
     section.impact-strengthen {
         width: 100%;
         float: left;
         padding: 50px 0;
     }
-    
+
     section.safe-affective .content-safe {
         margin: 20px 0 0px 0;
     }
-    
+
     section.impact-strengthen p {
         text-align: center;
     }
-    
+
     section.impact-strengthen .content-safe h3 {
         font-size: 35px !important;
     }
-    
+
 ul.testimonial-images li {
     width: calc(50% - 15px) !important;
 }
