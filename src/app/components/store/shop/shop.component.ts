@@ -7,7 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from '@environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CartTypeEnum } from '@app/_models/cart-type-enum';
+import { CartTypeEnum, ShoppingCartItemType } from '@app/_models/cart-type-enum';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -51,6 +51,9 @@ export class ShopComponent implements OnInit {
   productNameTitle: string="All Products";
   bundlePrice:any=0;
   showActualPrice: boolean= false;
+
+  orderType : any;
+
   constructor(
     private sessionService: SessionService,
     private modalService: NgbModal, private shopService: ShopService,
@@ -121,6 +124,7 @@ export class ShopComponent implements OnInit {
         value: 'everyYear'
       }
     ]
+
   }
 
   ngOnInit(): void {   
@@ -166,7 +170,6 @@ export class ShopComponent implements OnInit {
   }
 
   GetDDLCategoryById() {
-    debugger
     this.spinner.show();
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
       this.categoryModels = result;
@@ -184,7 +187,6 @@ export class ShopComponent implements OnInit {
   }
 
   onCategoryChange() {
-    debugger
     this.showAgePopUp = false;
     this.categoryId = this.category;
     if (this.categoryId == 39) {
@@ -223,7 +225,6 @@ export class ShopComponent implements OnInit {
     }
   }
 
-
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -244,12 +245,10 @@ export class ShopComponent implements OnInit {
   }
 
   closeModal() {
-    debugger
     this.modalService.dismissAll();
   }
 
   nextToMove(content: any) {
-    debugger
     this.showAgePopUp = false;
     this.open(content, this.reProduct, "");
     this.showAgePopUp = true;
@@ -260,8 +259,7 @@ export class ShopComponent implements OnInit {
     return `${environment.productImageApiUrl}${imageName}`;
   }
 
-  RedirectToProduct(adultCheck:any,product: any,learnMore:string) {    
-    debugger
+  RedirectToProduct(adultCheck:any,product: any,learnMore:string) {   
     if(learnMore=="learnMore"){
       this.showAgePopUp = false;
       this.modalService.dismissAll();
@@ -284,7 +282,6 @@ export class ShopComponent implements OnInit {
   }
 
   getYearValue(event: any) {
-    debugger;
     this.subscriptionModelduration = event;
   }
 
@@ -305,16 +302,20 @@ export class ShopComponent implements OnInit {
       Price: 0,
       discount: 0,
       quantityLimit: 4,
-      isDisabled: null
+      isDisabled: null,
+      orderType:0
+
     }
     Object.entries(items).forEach(([key, value]) => { product[key] = value });
     //No percentage calculation
     if (product.bundle == 'single' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
       product.Price = product.price;
+      product.orderType = ShoppingCartItemType.Order;
     }
     // 15% calulation
     if (product.bundle == 'single' && product.selectDelivery == 1 && product.subscriptionModel !== 'singleDelivery') {
       product.Price = product.price;
+      product.orderType = ShoppingCartItemType.AutoOrder;
     }
     //5% calculation
     if (product.bundle == 'multiple' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
@@ -323,6 +324,7 @@ export class ShopComponent implements OnInit {
       let discountper5 = (itemPrice * 5) / 100;
       itemPrice = itemPrice - discountper5;
       product.Price = itemPrice;
+      product.orderType = ShoppingCartItemType.Order;
     }
     //5% cal
     if (product.bundle == 'multiple' && product.selectDelivery == 1 && product.subscriptionModel !== 'singleDelivery') {
@@ -330,6 +332,7 @@ export class ShopComponent implements OnInit {
       itemPrice = itemPrice * 2;
       let discountper5 = (itemPrice * 5) / 100;
       product.Price = itemPrice - discountper5;
+      product.orderType = ShoppingCartItemType.AutoOrder;
     }
 
     if (this.productItems) {
@@ -455,7 +458,6 @@ export class ShopComponent implements OnInit {
   }
 
   checkBundle(bundle: string, productPrice: any) {
-    debugger
     this.bundlePrice=0;
     this.bundle = bundle; 
     if(bundle=='single')
@@ -473,7 +475,6 @@ export class ShopComponent implements OnInit {
   }
 
   checkDelivery(type: CartTypeEnum) {
-    debugger;
     switch (type) {
       case CartTypeEnum.OneTimePrice:
         this.showSubscription = false;
