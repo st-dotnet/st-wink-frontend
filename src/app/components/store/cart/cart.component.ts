@@ -422,7 +422,44 @@ export class CartComponent implements OnInit {
         id: '4',
         name: 'Qty 4',
         value: 4
+      },
+      {
+        id: '5',
+        name: 'Qty 5',
+        value: 5
       }
+
+      ,
+      {
+        id: '6',
+        name: 'Qty 6',
+        value: 6
+      }
+      ,
+      {
+        id: '7',
+        name: 'Qty 7',
+        value: 7
+      },
+      
+      {
+        id: '8',
+        name: 'Qty 8',
+        value: 8
+      }
+      ,
+      {
+        id: '9',
+        name: 'Qty 9',
+        value: 9
+      }
+      ,
+      {
+        id: '10',
+        name: 'Qty 10',
+        value: 10
+      }
+   
     ]
     this.years = [
       {
@@ -437,6 +474,41 @@ export class CartComponent implements OnInit {
       },
       {
         id: '3',
+        name: 'Every Year',
+        value: 'everyYear'
+      },
+      {
+        id: '4',
+        name: 'Every Year',
+        value: 'everyYear'
+      },
+      {
+        id: '5',
+        name: 'Every Year',
+        value: 'everyYear'
+      }
+      ,{
+        id: '6',
+        name: 'Every Year',
+        value: 'everyYear'
+      },
+      {
+        id: '7',
+        name: 'Every Year',
+        value: 'everyYear'
+      },
+      {
+        id: '8',
+        name: 'Every Year',
+        value: 'everyYear'
+      },
+      {
+        id: '9',
+        name: 'Every Year',
+        value: 'everyYear'
+      },
+      {
+        id: '10',
         name: 'Every Year',
         value: 'everyYear'
       }
@@ -457,6 +529,42 @@ export class CartComponent implements OnInit {
         name: 'Every Year',
         value: 'everyYear'
       }
+      ,{
+        id: '4',
+        name: 'Every Year',
+        value: 'everyYear'
+      },
+      {
+        id: '5',
+        name: 'Every Year',
+        value: 'everyYear'
+      },
+      {
+        id: '6',
+        name: 'Every Year',
+        value: 'everyYear'
+      },
+      {
+        id: '7',
+        name: 'Every Year',
+        value: 'everyYear'
+      },
+      {
+        id: '8',
+        name: 'Every Year',
+        value: 'everyYear'
+      },
+      {
+        id: '9',
+        name: 'Every Year',
+        value: 'everyYear'
+      },
+      {
+        id: '10',
+        name: 'Every Year',
+        value: 'everyYear'
+      }
+      
     ]
   }
 
