@@ -42,9 +42,9 @@
                         <h5 class="card-title">{{productDetail.itemDescription}}</h5>
                         <div class="reviews-product">
 
-                            <div  [attr.data-product-id]="review" class="yotpo bottomLine" >
+                            <div [attr.data-product-id]="review" class="yotpo bottomLine">
                             </div>
-                             <!-- <yotpo-star-rating data-yotpo-productId="969">
+                            <!-- <yotpo-star-rating data-yotpo-productId="969">
 
                              </yotpo-star-rating> -->
 
@@ -95,25 +95,17 @@
 
 
                             <div class="radio-bundle">
-                             <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="1" value="single" (change)="checkBundle('single',productDetail.price)" checked />
-                            <label class="form-check-label" for="1">Single</label>
-                           </div>
-                           </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="1" value="single" (change)="checkBundle('single',productDetail.price)" checked />
+                                    <label class="form-check-label" for="1">Single</label>
+                                </div>
+                            </div>
 
 
-                  <div class="radio-bundle">
-                    <div class="form-check form-check-inline">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="inlineRadioOptions"
-                        id="2"
-                        value="multiple"
-                        (change)="checkBundle('multiple',productDetail.price)"
-                      />
-                      <label class="form-check-label" for="2"
-                        >2-pk (Save 5%)</label
+                            <div class="radio-bundle">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="2" value="multiple" (change)="checkBundle('multiple',productDetail.price)" />
+                                    <label class="form-check-label" for="2">2-pk (Save 5%)</label
                       >
                     </div>
                   </div>
@@ -164,13 +156,13 @@
                         </div>
 
                         <div class="custom-shiping">
-                            <h3>Customize Shipment</h3>
+                            <h3>Customize Shipment <span class="ques-ico"><a href="#"><i class="fas fa-question" aria-hidden="true"></i></a></span></h3>
                             <div class="choose-shipping">
                                 <div class="form-group">
                                     <select [(ngModel)]="quantityValue" [ngModelOptions]="{standalone: true}" class="form-control">
                                   <option class="dropdown-item" disabled selected value="undefined">Select Quantity</option>
                                   <option *ngFor="let qty of quantity" [value]="qty.value">
-                                  {{qty.value}}
+                                  {{'Qty '+ qty.value}}
                                    </option>
                                 </select>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
@@ -627,14 +619,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-              <yotpo-reviews-widget
-    productId="{{review}}"
-
-    name="{{productDetail.itemDescription}}"
-    url="#"
-    imageUrl="{{productDetail.largeImageUrl}}"
-    description="{{productDetail.itemDescription}}">
-  </yotpo-reviews-widget>
+                <yotpo-reviews-widget productId="{{review}}" name="{{productDetail.itemDescription}}" url="#" imageUrl="{{productDetail.largeImageUrl}}" description="{{productDetail.itemDescription}}">
+                </yotpo-reviews-widget>
 
                 <!-- <div class="yotpo yotpo-main-widget" data-product-id="718"  data-price="24.99" data-currency="usd" data-name="The One Multi-Cleaner" data-url="#" data-image-url="/shopping/productimages/SP-THEONE_12_11_2020_500px.jpg">
                 </div> -->

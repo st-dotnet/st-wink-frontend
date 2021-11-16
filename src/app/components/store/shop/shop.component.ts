@@ -51,7 +51,7 @@ export class ShopComponent implements OnInit {
   productNameTitle: string="All Products";
   bundlePrice:any=0;
   showActualPrice: boolean= false;
-
+  tooltipData: boolean = false;
   orderType : any;
 
   constructor(
@@ -167,6 +167,17 @@ export class ShopComponent implements OnInit {
         this.spinner.hide();
       });
     })
+  }
+
+
+  showTooltip()
+  {
+    this.tooltipData = true;
+  }
+
+  closeTooltip()
+  {
+    this.tooltipData = false;
   }
 
   GetDDLCategoryById() {

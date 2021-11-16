@@ -11,41 +11,25 @@
             <div class="form-group">
                 <i class="fas fa-caret-down"></i>
                 <select class="custom-select" [(ngModel)]="category" [ngModelOptions]="{standalone: true}" (change)="onCategoryChange()">
-          <option
-            *ngFor="let category of categoryModels"
-            [value]="category.webCategoryID">
+          <option *ngFor="let category of categoryModels" [value]="category.webCategoryID">
             {{ category.webCategoryDescription }}
           </option>
         </select>
             </div>
             <div class="form-group select-filters">
                 <i class="svg-ico">
-          <svg
-            id="filter_list-24px"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            <path
-              id="Path_2090"
-              data-name="Path 2090"
-              d="M0,0H24V24H0Z"
-              fill="none"
-            />
-            <path
-              id="Path_2091"
-              data-name="Path 2091"
+          <svg id="filter_list-24px" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path id="Path_2090" data-name="Path 2090" d="M0,0H24V24H0Z" fill="none" />
+            <path id="Path_2091" data-name="Path 2091"
               d="M11,18h2a1,1,0,0,0,0-2H11a1,1,0,0,0,0,2ZM3,7A1,1,0,0,0,4,8H20a1,1,0,0,0,0-2H4A1,1,0,0,0,3,7Zm4,6H17a1,1,0,0,0,0-2H7a1,1,0,0,0,0,2Z"
-              fill="rgba(0,0,0,0.87)"
-            />
+              fill="rgba(0,0,0,0.87)" />
           </svg>
         </i>
                 <select class="form-control" (change)="onProductFilter($event)">
-          <option  [value]="1">Filter By</option>
-          <option  [value]="2">Price: $ - $$</option>
-          <option  [value]="3">Price: $$ - $</option>
-          <option  [value]="4">Name: A - Z</option>
+          <option [value]="1">Filter By</option>
+          <option [value]="2">Price: $ - $$</option>
+          <option [value]="3">Price: $$ - $</option>
+          <option [value]="4">Name: A - Z</option>
         </select>
             </div>
         </form>
@@ -71,9 +55,9 @@
                             <a (click)="RedirectToProduct(adult_check, product,'')">
                                 <h5 class="card-title">{{ product.itemDescription }}</h5>
                                 <h6 class="small">Perfect for ages 3+</h6>
-                                 <div class="reviews-product">
-                                  <div  [attr.data-product-id]="product.itemID" class="yotpo bottomLine" >
-                                  </div>
+                                <div class="reviews-product">
+                                    <div [attr.data-product-id]="product.itemID" class="yotpo bottomLine">
+                                    </div>
                                     <yotpo-star-rating productId="718" style="display: none;">
                                     </yotpo-star-rating>
 
@@ -83,9 +67,7 @@
                                 </div>
                             </a>
                             <span class="more-info">
-                <a (click)="open(produt_view, product,adult_check)" class="btn btn-add"
-                  ><i class="fas fa-plus"></i
-                ></a>
+                <a (click)="open(produt_view, product,adult_check)" class="btn btn-add"><i class="fas fa-plus"></i></a>
               </span>
                         </div>
                     </div>
@@ -100,23 +82,13 @@
         <form>
             <div class="modal-body">
                 <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <svg
-            id="Icon_Close_Rounded"
-            data-name="Icon / Close / Rounded"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
+          <svg id="Icon_Close_Rounded" data-name="Icon / Close / Rounded" xmlns="http://www.w3.org/2000/svg" width="24"
+            height="24" viewBox="0 0 24 24">
             <g id="Icon_Close_Rounded-2" data-name="Icon / Close / Rounded">
               <rect id="Box" width="24" height="24" fill="none" />
-              <path
-                id="Path_2016"
-                data-name="Path 2016"
+              <path id="Path_2016" data-name="Path 2016"
                 d="M111.8,3.3a.967.967,0,0,0-1.4,0l-4.9,4.9-4.9-4.9a.99.99,0,0,0-1.4,1.4l4.9,4.9-4.9,4.9a.99.99,0,0,0,1.4,1.4l4.9-4.9,4.9,4.9a.99.99,0,1,0,1.4-1.4l-4.9-4.9,4.9-4.9A.967.967,0,0,0,111.8,3.3Z"
-                transform="translate(-94 2)"
-                fill="#fff"
-              />
+                transform="translate(-94 2)" fill="#fff" />
             </g>
           </svg>
         </button>
@@ -124,19 +96,18 @@
                     <div class="product-view-image">
                         <!-- <img src="../../assets/product-view-sample.png" class="card-img-top" alt="products-sample"> -->
                         <img [src]="product.image_03" class="card-img-top" alt="products-sample" />
-                        <a routerLinkActive="active" (click)="RedirectToProduct(adult_check,product,'learnMore')" class="btn btn-learn">Learn More</a
-            >
-          </div>
-          <div class="card-body">
-            <div class="product-details">
-              <h5 class="card-title">{{ product?.itemDescription }}</h5>
-              <div class="reviews-product">
+                        <a routerLinkActive="active" (click)="RedirectToProduct(adult_check,product,'learnMore')" class="btn btn-learn">Learn More</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="product-details">
+                            <h5 class="card-title">{{ product?.itemDescription }}</h5>
+                            <div class="reviews-product">
 
-                <div  [attr.data-product-id]="product.itemID" class="yotpo bottomLine" >
-                </div>
-                  <yotpo-star-rating productId="718" style="display: none;">
-                  </yotpo-star-rating>
-                <!-- <ul>
+                                <div [attr.data-product-id]="product.itemID" class="yotpo bottomLine">
+                                </div>
+                                <yotpo-star-rating productId="718" style="display: none;">
+                                </yotpo-star-rating>
+                                <!-- <ul>
                   <li><i class="fas fa-star"></i></li>
                   <li><i class="fas fa-star"></i></li>
                   <li><i class="fas fa-star"></i></li>
@@ -144,18 +115,16 @@
                   <li><i class="fas fa-star"></i></li>
                 </ul>
                 <p>704 REVIEWS</p> -->
-              </div>
-              <h6 class="small">Perfect for ages 3+</h6>
-              <div class="product-info">
-                <p>
-                  Take the battle out of bedtime! Our Kids Sleep Melts are
-                  formulated with high-quality melatonin and natural ingredients
-                  to help your little one get the kind of sleep they need.
-                </p>
-              </div>
-              <div class="prod-bundle-select">
-                <h3>Select Bundle</h3>
-                <!-- <div *ngFor="let bundle of bundles" class="radio-bundle">
+                            </div>
+                            <h6 class="small">Perfect for ages 3+</h6>
+                            <div class="product-info">
+                                <p>
+                                    Take the battle out of bedtime! Our Kids Sleep Melts are formulated with high-quality melatonin and natural ingredients to help your little one get the kind of sleep they need.
+                                </p>
+                            </div>
+                            <div class="prod-bundle-select">
+                                <h3>Select Bundle</h3>
+                                <!-- <div *ngFor="let bundle of bundles" class="radio-bundle">
                   <div class="form-check form-check-inline">
                     <input
                       class="form-check-input"
@@ -172,41 +141,22 @@
                   </div>
                 </div> -->
 
-                  <div class="radio-bundle">
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="1"
-                      value="single"
-                      (change)="checkBundle('single',product.price)"
-                      checked
-                    />
-                    <label class="form-check-label" for="1"
-                      >Single</label
-                    >
-                  </div>
-                </div>
-                <div class="radio-bundle">
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="2"
-                      value="multiple"
-                      (change)="checkBundle('multiple',product.price)"
-                    />
-                    <label class="form-check-label" for="2"
-                      >2-pk (Save 5%)</label
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="prod-bundle-select mt-0 delivery-radio">
-                <h3>Select Delivery</h3>
-                <!-- <div *ngFor="let type of cartTypes; let i = index" class="radio-bundle">
+                                <div class="radio-bundle">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="1" value="single" (change)="checkBundle('single',product.price)" checked />
+                                        <label class="form-check-label" for="1">Single</label>
+                                    </div>
+                                </div>
+                                <div class="radio-bundle">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="2" value="multiple" (change)="checkBundle('multiple',product.price)" />
+                                        <label class="form-check-label" for="2">2-pk (Save 5%)</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="prod-bundle-select mt-0 delivery-radio">
+                                <h3>Select Delivery</h3>
+                                <!-- <div *ngFor="let type of cartTypes; let i = index" class="radio-bundle">
                   <div class="form-check form-check-inline">
                     <input
                       class="form-check-input"
@@ -221,122 +171,93 @@
                   </div>
                 </div> -->
 
-                <div class="radio-bundle">
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptionsdelivery"
-                      id="3"
-                      value="0"
-                      (change)="checkDelivery(0)"
+                                <div class="radio-bundle">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptionsdelivery" id="3" value="0" (change)="checkDelivery(0)" />
+                                        <label class="form-check-label" for="3">Single Delivery</label>
+                                    </div>
+                                </div>
 
-                    />
-                    <label class="form-check-label" for="3"
-                      >Single Delivery</label>
-                  </div>
-                </div>
+                                <div class="radio-bundle">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptionsdelivery" id="4" value="1" checked (change)="checkDelivery(1)" />
+                                        <label class="form-check-label" for="4">Subscribe & Save 15%</label>
+                                    </div>
+                                </div>
 
-                <div class="radio-bundle">
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptionsdelivery"
-                      id="4"
-                      value="1"
-                      checked
-                      (change)="checkDelivery(1)"
-                    />
-                    <label class="form-check-label" for="4"
-                      >Subscribe & Save 15%</label>
-                  </div>
-                </div>
+                            </div>
+                            <div class="custom-shiping">
+                                <div [className]="tooltipData ? 'tooltipcontent show' : 'tooltipcontent hide'">
+                                    <p>This text explains what our subscription system is and how it works in a concise way, It will also explain the shipping schedule.</p>
+                                    <p><a (click)="closeTooltip()" class="btnclose">Go Back</a></p>
 
-              </div>
-              <div class="custom-shiping">
-                <h3>Customize Shipment</h3>
-                <div class="choose-shipping">
-                  <div class="form-group">
-                    <select [(ngModel)]="quantityValue"  [ngModelOptions]="{standalone: true}" class="form-control">
+                                </div>
+                                <h3>Customize Shipment <span class="ques-ico"><a (click)="showTooltip()"><i class="fas fa-question"
+                        aria-hidden="true"></i></a></span>
+                                </h3>
+                                <div class="choose-shipping">
+                                    <div class="form-group">
+                                        <select [(ngModel)]="quantityValue" [ngModelOptions]="{standalone: true}" class="form-control">
                       <option class="dropdown-item" disabled selected value="undefined">Select Quantity</option>
                       <option *ngFor="let qty of quantity" [value]="qty.value">
-                      Qty {{qty.value}}
-                       </option>
+                        Qty {{qty.value}}
+                      </option>
                     </select>
 
-                    <!-- <select  [ngModel]="quantityValue" class="form-control">
+                                        <!-- <select  [ngModel]="quantityValue" class="form-control">
                       <option class="dropdown-item" disabled selected value="undefined">Select Quantity</option>
                       <option *ngFor="let tech of quantity" [ngValue]="tech">
                        {{ tech.name }}
                       </option>
                     </select> -->
 
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 7.171 4.6"
-                    >
-                      <path
-                        id="Path_2028"
-                        data-name="Path 2028"
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
+                      <path id="Path_2028" data-name="Path 2028"
                         d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
-                        transform="translate(-342.315 -7.7)"
-                      />
+                        transform="translate(-342.315 -7.7)" />
                     </svg>
-                  </div>
-                  <div *ngIf="showSubscription" class="form-group">
-                    <select (change)="getYearValue($event.target.value)" class="form-control">
+                                    </div>
+                                    <div *ngIf="showSubscription" class="form-group">
+                                        <select (change)="getYearValue($event.target.value)" class="form-control">
                       <!-- <option class="dropdown-item" disabled value="undefined">Select</option>     -->
-                      <option [value]="undefined"  selected="true">Select</option>
+                      <option [value]="undefined" selected="true">Select</option>
                       <option *ngFor="let year of years" [value]="year.value">
-                      {{year.name}}
-                       </option>
+                        {{year.name}}
+                      </option>
                     </select>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 7.171 4.6"
-                    >
-                      <path
-                        id="Path_2028"
-                        data-name="Path 2028"
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
+                      <path id="Path_2028" data-name="Path 2028"
                         d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
-                        transform="translate(-342.315 -7.7)"
-                      />
+                        transform="translate(-342.315 -7.7)" />
                     </svg>
-                  </div>
-                </div>
-              </div>
-              <div class="cart-btn">
-                <button
-                  type="submit"
-                  (click)="addToCart(product)"
-                  class="btn btn-cart">
-                  ${{showActualPrice == true ? bundlePrice  : product.price}} ADD
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cart-btn">
+                                <button type="submit" (click)="addToCart(product)" class="btn btn-cart">
+                  ${{showActualPrice == true ? bundlePrice : product.price}} ADD
                 </button>
-              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
+        </form>
+    </div>
 </ng-template>
 
 <ng-template #adult_check let-modal>
-  <div class="model-proo">
-    <div class="modal-body">
-      <div class="header18">
-        <h3>Are you over 18?</h3>
-      </div>
-      <div class="content18plus">
-        <div class="btn-same18">
-          <button class="btn btn-no" (click)="closeModal()">NO</button>
-          <button class="btn btn-yes" (click)="modal.dismiss('Cross click');nextToMove(produt_view)">YES</button>
-      </div>
+    <div class="model-proo">
+        <div class="modal-body">
+            <div class="header18">
+                <h3>Are you over 18?</h3>
+            </div>
+            <div class="content18plus">
+                <div class="btn-same18">
+                    <button class="btn btn-no" (click)="closeModal()">NO</button>
+                    <button class="btn btn-yes" (click)="modal.dismiss('Cross click');nextToMove(produt_view)">YES</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  </div>
 </ng-template>
-
-
-
