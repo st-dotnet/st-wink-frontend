@@ -58,7 +58,6 @@ export class SignInComponent implements OnInit {
       .subscribe({
         next: (res: any) => {
           if (!res.token) {
-            debugger
             this.toastrService.error(res.errorMessage);
             this.spinner.hide();
             this.loading = false;
@@ -73,6 +72,9 @@ export class SignInComponent implements OnInit {
               this.spinner.hide();  
                 }, 1000);
           }else{
+            if(res.typeOfCustomer=="4" || res.typeOfCustomer=="5" || res.typeOfCustomer=="3")
+            window.location.href = "https://sellers.winknaturals.com/login";
+            else
             this.router.navigateByUrl(returnUrl);            
           this.spinner.hide();  
           }         

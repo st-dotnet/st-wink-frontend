@@ -8,7 +8,7 @@
           </div>
           <div class="searchOption-inner">
             <input class="form-control" type="text" [(ngModel)]="searchText" name="search"
-              placeholder="Search Product" />
+              placeholder="Search Product"  (keyup.enter)="getSearchProduct()"/>
             <button type="button"  (click)="getSearchProduct()" class="search-ico">
               <i class="fa fa-search"></i>
             </button>

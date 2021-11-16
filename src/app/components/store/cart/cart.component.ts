@@ -18,11 +18,13 @@ export class CartComponent implements OnInit {
   subscriptionPurchase = false;
   inputdata: string;
   promocode_onetime: string;
- date_convertModal: string;
+  date_convertModal: string;
   data_learn: boolean = false;
   closeResult: string;
   cartItems: any[] = [];
   minDate = new Date();
+  showOtherTextbox = null;
+  isOtherValue = false;
   modalOptions: NgbModalOptions = {
     // backdrop: 'static',
     backdropClass: 'customBackdrop'
@@ -45,14 +47,14 @@ export class CartComponent implements OnInit {
   promoItem: any;
   specialItem: any;
   isDisabled: Boolean = false;
-  isPromoCode=false;
-  promoPercentage:number=0;
-  totalDiscount:number=0;
+  isPromoCode = false;
+  promoPercentage: number = 0;
+  totalDiscount: number = 0;
   productItems: any;
-  isShowSpecial=true;
+  isShowSpecial = true;
   specialOffer: any[];
   userLogin: any;
-  show: boolean=false;
+  show: boolean = false;
   onTextChange(value) {
   }
 
@@ -73,9 +75,8 @@ export class CartComponent implements OnInit {
 
 
   ngOnInit() {
-    debugger
-    this.userLogin=this.sessionService.getSessionObject("user");
-    if(this.userLogin){
+    this.userLogin = this.sessionService.getSessionObject("user");
+    if (this.userLogin) {
       this.show = true;
     }
     this.spinner.show();
@@ -91,8 +92,7 @@ export class CartComponent implements OnInit {
     this.onLoad();
   }
 
-  onLoad()
-  {
+  onLoad() {
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
     if (this.cartItems == null || this.cartItems.length <= 0) {
       this.enablebtn = true;
@@ -103,34 +103,31 @@ export class CartComponent implements OnInit {
       this.oneTimePriceCartItemsCount = this.oneTimePriceCartItems.length;
       this.subscriptionCartItemsCount = this.subscriptionCartItems.length;
     }
-    this.specialOffer=this.cartItems.filter(x=>x.bundle=='specialOffer');
-    if(this.specialOffer.length ==0)
-    {
-      this.isShowSpecial=true;
+    this.specialOffer = this.cartItems.filter(x => x.bundle == 'specialOffer');
+    if (this.specialOffer.length == 0) {
+      this.isShowSpecial = true;
     }
-    else{
-      this.isShowSpecial=false;
+    else {
+      this.isShowSpecial = false;
     }
     this.filterItem("");
     this.cartCalculation();
   }
 
   addPromo() {
-    debugger;
     // this.sessionService.removeSessionItem('promoCode')
-  this.sessionService.setSessionItem('promoCode',this.promocode_onetime);
-  this.promocode_onetime=this.sessionService.getSessionItem('promoCode');
-   this.isPromoCode=true;
+    this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
+    this.promocode_onetime = this.sessionService.getSessionItem('promoCode');
+    this.isPromoCode = true;
     this.spinner.show();
     this.shopService.getPromoData(this.promocode_onetime).subscribe(result => {
       this.promoItem = result;
       if (this.promoItem.errorMessage == null) {
-        debugger;
-      this.promoPercentage = (this.subtotalOneTimePrice * this.promoItem.discountPer) / 100;
-       // this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
+        this.promoPercentage = (this.subtotalOneTimePrice * this.promoItem.discountPer) / 100;
+        // this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
         this.cartCalculation();
         //this.isDisabled=true;
-        this.toastrService.success("Promo code applied succesfully you save $'"+this.promoPercentage.toFixed(2)+"'.")
+        this.toastrService.success("Promo code applied succesfully you save $'" + this.promoPercentage.toFixed(2) + "'.")
         this.spinner.hide();
       }
       else {
@@ -143,12 +140,12 @@ export class CartComponent implements OnInit {
 
   getSpecialItem() {
     this.shopService.getSpecialItem().subscribe(result => {
-      if (result==null) {
-        this.isShowSpecial=false;
+      if (result == null) {
+        this.isShowSpecial = false;
         this.spinner.hide();
       }
-      else{
-        this.isShowSpecial=true;
+      else {
+        this.isShowSpecial = true;
         this.specialItem = result;
         this.spinner.hide();
       }
@@ -156,7 +153,7 @@ export class CartComponent implements OnInit {
   }
 
   spacialItemAdd() {
-    this.isShowSpecial=false;
+    this.isShowSpecial = false;
     debugger
     this.productItems = this.sessionService.getSessionObject('productCartItems');
     const items = {
@@ -169,7 +166,7 @@ export class CartComponent implements OnInit {
       discount: 0,
       quantityLimit: 1,
       isDiscountTime: true,
-      isDisabled:true
+      isDisabled: true
     }
     this.specialItem.price = items.Price;
     Object.entries(items).forEach(([key, value]) => { this.specialItem[key] = value });
@@ -180,7 +177,7 @@ export class CartComponent implements OnInit {
 
     //this.oneTimePriceCartItems.push(this.specialItem);
     console.log("fasdfds", this.specialItem[0]);
-   this.onLoad();
+    this.onLoad();
   }
 
 
@@ -269,13 +266,12 @@ export class CartComponent implements OnInit {
           this.enablebtn = true;
         }
         break;
-        default:
+      default:
         break;
     }
-    this.specialOffer=this.cartItems.filter(x=>x.bundle=='specialOffer');
-    if(this.specialOffer.length ==0)
-    {
-      this.isShowSpecial=true;
+    this.specialOffer = this.cartItems.filter(x => x.bundle == 'specialOffer');
+    if (this.specialOffer.length == 0) {
+      this.isShowSpecial = true;
     }
     this.total = true;
     this.spinner.hide();
@@ -305,84 +301,99 @@ export class CartComponent implements OnInit {
   }
 
   quantityForOneTime(cartitem: any, selectedvalue: number) {
-    debugger;
-      if (selectedvalue != null && selectedvalue != undefined) {
-        for (var i = 0; i <= this.cartItems.length - 1; i++) {
-          if (this.cartItems[i] == cartitem) {
-            this.cartItems[i].quantityModel = +selectedvalue;
-          }
-        }
-        this.sessionService.setSessionObject('productCartItems', this.cartItems);
+    this.quantityCalculation(cartitem, selectedvalue);
+  }
+  quantitychanged(cartitem: any, selectedvalue: number) {
+debugger;
+    this.quantityCalculation(cartitem, selectedvalue);
+    const item =  this.cartItems.find(x=>x.itemCode == cartitem.itemCode);
+    if(item && selectedvalue>10){
+      item.quantityModel = 33;
+    }
+
+  }
+  quantityCalculation(cartitem: any, selectedvalue: number) {
+
+    if (selectedvalue < 11) {
+      cartitem.extraQuantity = null;
+    }
+    if (selectedvalue != null && selectedvalue != undefined) {
+      if (selectedvalue == 33) {
+        this.showOtherTextbox = cartitem.itemCode;
+        $("#showinput" + cartitem.itemCode).show();
       }
-      this.cartCalculation();
+      else {
+        $("#showinput" + cartitem.itemCode).hide();
+      }
+      for (var i = 0; i <= this.cartItems.length - 1; i++) {
+        if (this.cartItems[i] == cartitem) {
+          this.cartItems[i].quantityModel = +selectedvalue;
+        }
+      }
+      this.sessionService.setSessionObject('productCartItems', this.cartItems);
+    }
+    this.cartCalculation();
+    if (selectedvalue >= 10) {
+      cartitem.quantityModel = 33;
+    }
   }
 
   quantityForSubscriptionTime(delivery: any, selectedvalue: number) {
-    debugger;
-      if (selectedvalue != null && selectedvalue != undefined) {
-        for (var i = 0; i <= this.cartItems.length - 1; i++) {
-          if (this.cartItems[i] == delivery) {
-            this.cartItems[i].quantityModel = +selectedvalue;
-          }
-        }
-        this.sessionService.setSessionObject('productCartItems', this.cartItems);
-        this.cartCalculation();
+    this.quantityCalculation(delivery, selectedvalue);
+
   }
-}
 
   cartCalculation() {
-    this.totalDiscount=0;
-    this.orderTotal=0;
-    this.subtotalOneTimePrice=0;
-    this.subTotalSubscriptionPrice=0;
-    this.discount15Percent=0;
-    this.subTotalSubscriptionPriceAfterDiscount=0;
-    this.totalDiscount=0;
-    this.cartSummaryTotal=0;
+    this.totalDiscount = 0;
+    this.orderTotal = 0;
+    this.subtotalOneTimePrice = 0;
+    this.subTotalSubscriptionPrice = 0;
+    this.discount15Percent = 0;
+    this.subTotalSubscriptionPriceAfterDiscount = 0;
+    this.totalDiscount = 0;
+    this.cartSummaryTotal = 0;
 
-    debugger;
+    if (this.isOtherValue)
+      $("#showinput" + this.showOtherTextbox).show();
     this.orderTotal = this.getOrderTotal();
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
     //subsciption item List
-      this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
-      //onetime item list
-      this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
-      //special offer item
-      this.specialOffer=this.oneTimePriceCartItems.filter(x=>x.bundle=='specialOffer');
-      if(this.specialOffer!==null || this.specialOffer !==undefined)
-      {
-        let specialOfferItem = this.oneTimePriceCartItems.filter((x) => { if (x.selectDelivery == CartTypeEnum.Subscription && x.bundle=='specialOffer') { return x } });
-        const index: number = this.oneTimePriceCartItems.indexOf(specialOfferItem);
-        if (index !== -1) {
-          this.oneTimePriceCartItems.splice(index, 1);
-        }
+    this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
+    //onetime item list
+    this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
+    //special offer item
+    this.specialOffer = this.oneTimePriceCartItems.filter(x => x.bundle == 'specialOffer');
+    if (this.specialOffer !== null || this.specialOffer !== undefined) {
+      let specialOfferItem = this.oneTimePriceCartItems.filter((x) => { if (x.selectDelivery == CartTypeEnum.Subscription && x.bundle == 'specialOffer') { return x } });
+      const index: number = this.oneTimePriceCartItems.indexOf(specialOfferItem);
+      if (index !== -1) {
+        this.oneTimePriceCartItems.splice(index, 1);
       }
+    }
 
-      this.subtotalOneTimePrice=this.getSubTotal(this.oneTimePriceCartItems);
-      // if(this.promocode_onetime!=="null" || this.promocode_onetime!==undefined)
-      // {
-      //     this.subtotalOneTimePrice=this.subtotalOneTimePrice-this.promoPercentage;
-      //     this.totalDiscount=this.totalDiscount+this.promoPercentage;
-      // }
+    this.subtotalOneTimePrice = this.getSubTotal(this.oneTimePriceCartItems);
+    // if(this.promocode_onetime!=="null" || this.promocode_onetime!==undefined)
+    // {
+    //     this.subtotalOneTimePrice=this.subtotalOneTimePrice-this.promoPercentage;
+    //     this.totalDiscount=this.totalDiscount+this.promoPercentage;
+    // }
 
-      this.subTotalSubscriptionPrice=this.getSubTotal(this.subscriptionCartItems);
-      this.discount15Percent = (this.subTotalSubscriptionPrice * 15) / 100;
-      this.subTotalSubscriptionPriceAfterDiscount = this.subTotalSubscriptionPrice - this.discount15Percent;
-      this.totalDiscount=this.totalDiscount+this.discount15Percent;
-      this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
-
+    this.subTotalSubscriptionPrice = this.getSubTotal(this.subscriptionCartItems);
+    this.discount15Percent = (this.subTotalSubscriptionPrice * 15) / 100;
+    this.subTotalSubscriptionPriceAfterDiscount = this.subTotalSubscriptionPrice - this.discount15Percent;
+    this.totalDiscount = this.totalDiscount + this.discount15Percent;
+    this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
+    return;
   }
-  getOrderTotal()
-  {
+  getOrderTotal() {
     let multiplyprice = 0;
     let Temp = 0;
     for (var i = 0; i <= this.cartItems.length - 1; i++) {
-      if(this.cartItems[i].bundle=='multiple')
-      {
-        multiplyprice=parseFloat(this.cartItems[i].price) * 2;
+      if (this.cartItems[i].bundle == 'multiple') {
+        multiplyprice = parseFloat(this.cartItems[i].price) * 2;
         multiplyprice = multiplyprice * this.cartItems[i].quantityModel;
       }
-      else{
+      else {
         multiplyprice = parseFloat(this.cartItems[i].price) * this.cartItems[i].quantityModel;
       }
 
@@ -441,7 +452,7 @@ export class CartComponent implements OnInit {
         name: 'Qty 7',
         value: 7
       },
-      
+
       {
         id: '8',
         name: 'Qty 8',
@@ -458,8 +469,12 @@ export class CartComponent implements OnInit {
         id: '10',
         name: 'Qty 10',
         value: 10
+      },
+      {
+        id: 'Others',
+        name: 'Customs',
+        value: 33
       }
-   
     ]
     this.years = [
       {
@@ -487,7 +502,7 @@ export class CartComponent implements OnInit {
         name: 'Every Year',
         value: 'everyYear'
       }
-      ,{
+      , {
         id: '6',
         name: 'Every Year',
         value: 'everyYear'
@@ -529,7 +544,7 @@ export class CartComponent implements OnInit {
         name: 'Every Year',
         value: 'everyYear'
       }
-      ,{
+      , {
         id: '4',
         name: 'Every Year',
         value: 'everyYear'
@@ -564,11 +579,11 @@ export class CartComponent implements OnInit {
         name: 'Every Year',
         value: 'everyYear'
       }
-      
+
     ]
   }
 
-  customQuantity(quantity: any){
+  customQuantity(quantity: any) {
     return `Qty ${quantity}`;
   }
 }

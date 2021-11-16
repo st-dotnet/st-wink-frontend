@@ -106,10 +106,13 @@
                           <!-- <option class="dropdown-item" disabled selected value="undefined">
                           {{ cartItem.quantityModel }}
                         </option> -->
-                          <option *ngFor="let qty of quantity" [value]="qty.value">
-                            {{'Qty ' + qty.value }}
+                          <option *ngFor="let qty of quantity" [value]="qty.value" >
+                            {{qty.name }}
                           </option>
                         </select>
+                      <input type="number"  style="margin-top: 10px;" id="showinput{{cartItem.itemCode}}" [(ngModel)]="cartItem. extraQuantity" *ngIf="cartItem.quantityModel == '33' || cartItem.extraQuantity !=null "    (change)="quantitychanged(cartItem, $event.target.value)" class="form-control">
+
+                     
                                             </div>
                                             <div class="price">
                                                 <p class="price-product">${{ cartItem.Price | number:'.1-2' }}</p>
@@ -226,15 +229,13 @@
                             delivery,
                             $event.target.value
                           )
-                        " [(ngModel)]="delivery.quantityModel" class="form-control">
-                        <!-- <option class="dropdown-item" disabled selected value="undefined">
-                          {{ delivery.quantityModel }}
-                        </option> -->
+                        "[(ngModel)]="delivery.quantityModel" class="form-control">
                         <option *ngFor="let qty of quantity" [value]="qty.value">
-                          {{'Qty ' +  qty.value }}
+                          {{ qty.name }}
                         </option>
                       </select>
-                                        </div>
+                      <input type="number" style="margin-top: 10px;" id="showinput{{delivery.itemCode}}" [(ngModel)]="delivery.extraQuantity" *ngIf="delivery.quantityModel == '33' || delivery.extraQuantity !=null" (change)="quantitychanged(delivery, $event.target.value)" class="form-control">
+                                        </div>                                        
                                         <p class="price-product">${{ delivery.Price | number:'.1-2' }}</p>
                                     </div>
                                 </div>
