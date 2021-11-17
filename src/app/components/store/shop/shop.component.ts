@@ -190,8 +190,10 @@ export class ShopComponent implements OnInit {
           webCategoryDescription: element.webCategoryDescription
         });
       });
-      var data = this.categoryModels.filter(x => x.webCategoryDescription.toString() === "All Products");
-      this.categoryId = data[0]?.webCategoryID;
+      var data = this.categoryModels.find(x => x.webCategoryDescription.toString() === "All Products");
+      if(data){
+      data.webCategoryDescription="Select Category";}
+      this.categoryId = data?.webCategoryID;
       this.category = this.type != null ? parseInt(this.type) : this.categoryId;
       this.GetProductsList(this.categoryId, this.filterValue);
     })
