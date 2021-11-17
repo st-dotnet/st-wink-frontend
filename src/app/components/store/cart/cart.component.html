@@ -162,6 +162,9 @@
                 <div *ngIf="subscriptionCartItemsCount > 0" class="grid-box-shadow OTP Subscription-box">
                     <h3>Subscription Purchase ({{ subscriptionCartItemsCount }})</h3>
                     <div *ngFor="let delivery of subscriptionCartItems; let i = index" class="cart-singleitem">
+                    <div class="subscribe_title" > <p *ngIf="delivery.subscriptionModel=='everyMonth'">Delivers Every Month</p>
+                      <p *ngIf="delivery.subscriptionModel=='everyWeek'">Delivers Every Week</p>
+                      <p *ngIf="delivery.subscriptionModel=='everyYear'">Delivers Every Year</p></div> 
                         <div class="media">
                             <div class="media-left">
                                 <a [href]="delivery.image_03" target="_blank">
@@ -186,7 +189,7 @@
                                         <div class="cart-quantity mob-sec">
                                             <div class="form-group">
                                                 <select [(ngModel)]="delivery.subscriptionModel" class="form-control">
-                          <option class="dropdown-item" disabled selected value="undefined">
+                          <option class="dropdown-item" disabled selected value="undefined" >
                             {{ delivery.subscriptionModel }}
                           </option>
                           <option *ngFor="let year of years" [value]="year.value">

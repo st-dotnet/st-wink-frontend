@@ -4,7 +4,7 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+ import {NgxFreshChatModule} from  'ngx-freshchat';
 // app routing module
 import { AppRoutingModule } from './app-routing.module';
 
@@ -30,6 +30,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     HttpClientModule,
     SharedModule,
     AppRoutingModule,
+    NgxFreshChatModule,
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy}

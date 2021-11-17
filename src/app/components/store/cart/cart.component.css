@@ -678,7 +678,12 @@ button.btn-add-promo {
     font-size: 13px;
     padding: 4px 4px;
 }
-
+.subscribe_title {
+margin-top:10px;
+margin-bottom:10px;
+width: 100%;
+height: auto;
+}
 
 /* .cart-singleitem.ng-star-inserted .form-control {
     width: unset !important;
