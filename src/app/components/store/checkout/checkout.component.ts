@@ -22,13 +22,17 @@ import {
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { TransactionalRequestModel } from 'src/app/_models/checkout';
+import * as braintree from 'braintree-web';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css'],
+  styleUrls: ['./checkout.component.scss'],
 })
 export class CheckoutComponent implements OnInit {
+  hostedFieldsInstance: braintree.HostedFields;
+  cardholdersName: string;
+
   addrnew = false;
   sidebartoggle: boolean = true;
   sidebartoggle1: boolean = false;
@@ -200,6 +204,84 @@ export class CheckoutComponent implements OnInit {
       newCountry: [''],
     });
     this.sidebartoggle1 = false;
+  }
+
+  createBraintreeUI(clientToken: string) {
+    braintree.client.create({
+      authorization: clientToken
+    }).then((clientInstance) => {
+      braintree.hostedFields.create({
+        client: clientInstance,
+        styles: {
+          // Override styles for the hosted fields
+        },
+
+        // The hosted fields that we will be using
+        // NOTE : cardholder's name field is not available in the field options
+        // and a separate input field has to be used incase you need it
+        fields: {
+          number: {
+            selector: '#card-number',
+            placeholder: '1111 1111 1111 1111'
+          },
+          cvv: {
+            selector: '#cvv',
+            placeholder: '111'
+          },
+          expirationDate: {
+            selector: '#expiration-date',
+            placeholder: 'MM/YY'
+          }
+        }
+      }).then((hostedFieldsInstance) => {
+
+        this.hostedFieldsInstance = hostedFieldsInstance;
+
+        hostedFieldsInstance.on('focus', (event) => {
+          const field = event.fields[event.emittedBy];
+          const label = this.findLabel(field);
+          label.classList.remove('filled'); // added and removed css classes
+          // can add custom code for custom validations here
+        });
+
+        hostedFieldsInstance.on('blur', (event) => {
+          const field = event.fields[event.emittedBy];
+          const label = this.findLabel(field); // fetched label to apply custom validations
+          // can add custom code for custom validations here
+        });
+
+        hostedFieldsInstance.on('empty', (event) => {
+          const field = event.fields[event.emittedBy];
+          // can add custom code for custom validations here
+        });
+
+        hostedFieldsInstance.on('validityChange', (event) => {
+          const field = event.fields[event.emittedBy];
+          const label = this.findLabel(field);
+          if (field.isPotentiallyValid) { // applying custom css and validations
+            label.classList.remove('invalid');
+          } else {
+            label.classList.add('invalid');
+          }
+          // can add custom code for custom validations here
+        });
+      });
+    });
+  }
+
+  tokenizeUserDetails() {
+    this.hostedFieldsInstance.tokenize({cardholderName: this.cardholdersName}).then((payload) => {
+      console.log(payload);
+      // submit payload.nonce to the server from here
+    }).catch((error) => {
+      console.log(error);
+      // perform custom validation here or log errors
+    });
+  }
+
+  // Fetches the label element for the corresponding field
+  findLabel(field: braintree.HostedFieldsHostedFieldsFieldData) {
+    return document.querySelector('.hosted-field--label[for="' + field.container.id + '"]');
   }
 
   // convenience getter for easy access to form fields
@@ -562,16 +644,26 @@ export class CheckoutComponent implements OnInit {
         this.isCardDisabled = true;
         this.isCardType = id;
         //console.log(id);
+
         break;
       case 2:
         // take new card value and create token and store it to database and get;
         this.isCardDisabled = false;
         this.isCardType = id;
         //console.log(id);
+        setTimeout(() => {
+          this.shopService.getClientToken()
+            .subscribe(
+              (data: any) => {
+                console.log("Client Token", data.token);
+                this.createBraintreeUI(data.token);
+              });
+        }, 1000);
         break;
       default:
         break;
     }
+
   }
 
   open(content) {
@@ -834,321 +926,176 @@ export class CheckoutComponent implements OnInit {
     // if (this.startDate == null) {
     //   return this.toastrService.error("Please select the start date")
     // }
-    var startDate;
-    if (this.startDate == 'undefined') {
-      startDate = new Date();
-    } else {
-      //startDate = new Date(this.startDate);
-      startDate = new Date();
-    }
+    this.hostedFieldsInstance.tokenize({cardholderName: this.cardholdersName}).then((payload) => {
+      console.log(payload);
+      debugger;
+      var startDate;
+      if (this.startDate == 'undefined') {
+        startDate = new Date();
+      } else {
+        //startDate = new Date(this.startDate);
+        startDate = new Date();
+      }
 
-    // let firstName = this.checkoutForm.get(['shippingAddressFormGroup', 'firstName']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'firstName']).value : '';
-    // let lastName = this.checkoutForm.get(['shippingAddressFormGroup', 'lastName']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'lastName']).value : '';
-    // let streetAddress = this.checkoutForm.get(['shippingAddressFormGroup', 'streetAddress']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'streetAddress']).value : '';
-    // let city = this.checkoutForm.get(['shippingAddressFormGroup', 'city']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'city']).value : '';
-    // let state = this.checkoutForm.get(['shippingAddressFormGroup', 'state']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'state']).value : '';
-    // let zip = this.checkoutForm.get(['shippingAddressFormGroup', 'zip']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'zip']).value : '';
-    // let country = this.checkoutForm.get(['shippingAddressFormGroup', 'country']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'country']).value : '';
-    // let newStreetAddress = this.checkoutForm.get(['newShippingAddressFormGroup', 'newStreetAddress']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newStreetAddress']).value : '';
-    // let newCity = this.checkoutForm.get(['newShippingAddressFormGroup', 'newCity']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newCity']).value : '';
-    // let newState = this.checkoutForm.get(['newShippingAddressFormGroup', 'newState']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newState']).value : '';
-    // let newZip = this.checkoutForm.get(['newShippingAddressFormGroup', 'newZip']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newZip']).value : '';
-    // let newCountry = this.checkoutForm.get(['newShippingAddressFormGroup', 'newCountry']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newCountry']).value : '';
-    // let cardName = this.checkoutForm.get(['cardFormGroup', 'cardName']).value ? this.checkoutForm.get(['cardFormGroup', 'cardName']).value : '';
-    // let cardNumber = this.checkoutForm.get(['cardFormGroup', 'cardNumber']).value ? this.checkoutForm.get(['cardFormGroup', 'cardNumber']).value : 0;
-    // let expiryMonth = this.checkoutForm.get(['cardFormGroup', 'expiryMonth']).value ? this.checkoutForm.get(['cardFormGroup', 'expiryMonth']).value : 0;
-    // let expiryYear = this.checkoutForm.get(['cardFormGroup', 'expiryYear']).value ? this.checkoutForm.get(['cardFormGroup', 'expiryYear']).value : 0;
-    // let cardCVV = this.checkoutForm.get(['cardFormGroup', 'cardCVV']).value ? this.checkoutForm.get(['cardFormGroup', 'cardCVV']).value : 0;
-    // let isMakePrimaryCard = this.checkoutForm.get(['cardFormGroup', 'isMakePrimaryCard']).value ? this.checkoutForm.get(['cardFormGroup', 'isMakePrimaryCard']).value : '';
-    this.spinner.show();
+      // let firstName = this.checkoutForm.get(['shippingAddressFormGroup', 'firstName']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'firstName']).value : '';
+      // let lastName = this.checkoutForm.get(['shippingAddressFormGroup', 'lastName']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'lastName']).value : '';
+      // let streetAddress = this.checkoutForm.get(['shippingAddressFormGroup', 'streetAddress']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'streetAddress']).value : '';
+      // let city = this.checkoutForm.get(['shippingAddressFormGroup', 'city']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'city']).value : '';
+      // let state = this.checkoutForm.get(['shippingAddressFormGroup', 'state']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'state']).value : '';
+      // let zip = this.checkoutForm.get(['shippingAddressFormGroup', 'zip']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'zip']).value : '';
+      // let country = this.checkoutForm.get(['shippingAddressFormGroup', 'country']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'country']).value : '';
+      // let newStreetAddress = this.checkoutForm.get(['newShippingAddressFormGroup', 'newStreetAddress']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newStreetAddress']).value : '';
+      // let newCity = this.checkoutForm.get(['newShippingAddressFormGroup', 'newCity']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newCity']).value : '';
+      // let newState = this.checkoutForm.get(['newShippingAddressFormGroup', 'newState']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newState']).value : '';
+      // let newZip = this.checkoutForm.get(['newShippingAddressFormGroup', 'newZip']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newZip']).value : '';
+      // let newCountry = this.checkoutForm.get(['newShippingAddressFormGroup', 'newCountry']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newCountry']).value : '';
+      // let cardName = this.checkoutForm.get(['cardFormGroup', 'cardName']).value ? this.checkoutForm.get(['cardFormGroup', 'cardName']).value : '';
+      // let cardNumber = this.checkoutForm.get(['cardFormGroup', 'cardNumber']).value ? this.checkoutForm.get(['cardFormGroup', 'cardNumber']).value : 0;
+      // let expiryMonth = this.checkoutForm.get(['cardFormGroup', 'expiryMonth']).value ? this.checkoutForm.get(['cardFormGroup', 'expiryMonth']).value : 0;
+      // let expiryYear = this.checkoutForm.get(['cardFormGroup', 'expiryYear']).value ? this.checkoutForm.get(['cardFormGroup', 'expiryYear']).value : 0;
+      // let cardCVV = this.checkoutForm.get(['cardFormGroup', 'cardCVV']).value ? this.checkoutForm.get(['cardFormGroup', 'cardCVV']).value : 0;
+      // let isMakePrimaryCard = this.checkoutForm.get(['cardFormGroup', 'isMakePrimaryCard']).value ? this.checkoutForm.get(['cardFormGroup', 'isMakePrimaryCard']).value : '';
+      this.spinner.show();
 
-    this.cartItems.forEach((element) => {
-      this.orderDetails.push({
-        descriptionOverride: '',
-        other10EachOverride: 0,
-        other9EachOverride: 0,
-        other8EachOverride: 0,
-        other7EachOverride: 0,
-        other6EachOverride: 0,
-        other5EachOverride: 0,
-        other4EachOverride: 0,
-        other3EachOverride: 0,
-        other2EachOverride: 0,
-        other1EachOverride: 0,
-        commissionableVolumeEachOverride:
-          element.commissionableVolumeEachOverride,
-        businessVolumeEachOverride: element.businessVolumeEachOverride,
-        shippingPriceEachOverride: element.shippingPriceEachOverride,
-        taxableEachOverride: element.taxableEachOverride,
-        priceEachOverride: element.priceEachOverride,
-        parentItemCode: element.parentItemCode,
-        quantity: element.quantityModel,
-        parentOrderDetailID: null,
-        orderDetailID: null,
-        itemCode: element.itemCode,
-        reference1: null,
-        advancedAutoOptions: '',
+      this.cartItems.forEach((element) => {
+        this.orderDetails.push({
+          descriptionOverride: '',
+          other10EachOverride: 0,
+          other9EachOverride: 0,
+          other8EachOverride: 0,
+          other7EachOverride: 0,
+          other6EachOverride: 0,
+          other5EachOverride: 0,
+          other4EachOverride: 0,
+          other3EachOverride: 0,
+          other2EachOverride: 0,
+          other1EachOverride: 0,
+          commissionableVolumeEachOverride:
+            element.commissionableVolumeEachOverride,
+          businessVolumeEachOverride: element.businessVolumeEachOverride,
+          shippingPriceEachOverride: element.shippingPriceEachOverride,
+          taxableEachOverride: element.taxableEachOverride,
+          priceEachOverride: element.priceEachOverride,
+          parentItemCode: element.parentItemCode,
+          quantity: element.quantityModel,
+          parentOrderDetailID: null,
+          orderDetailID: null,
+          itemCode: element.itemCode,
+          reference1: null,
+          advancedAutoOptions: '',
+        });
       });
-    });
 
-    const createOrderRequest = new CreateOrderRequest();
-    createOrderRequest.other14 = '';
-    createOrderRequest.other15 = '';
-    createOrderRequest.other16 = '';
-    createOrderRequest.other17 = '';
-    createOrderRequest.other18 = '';
-    createOrderRequest.other19 = '';
-    createOrderRequest.other20 = '';
-    createOrderRequest.other13 = '';
-    createOrderRequest.taxRateOverride = 0;
-    createOrderRequest.shippingAmountOverride = 0;
-    createOrderRequest.transferVolumeToID = 0;
-    createOrderRequest.returnOrderID = 0;
-    createOrderRequest.overwriteExistingOrder = false;
-    createOrderRequest.existingOrderID = 0;
-    createOrderRequest.partyID = 1;
-    createOrderRequest.details = this.orderDetails;
-    createOrderRequest.suppressPackSlipPrice = true;
-    createOrderRequest.transferVolumeToKey = '';
-    createOrderRequest.returnOrderKey = '';
-    createOrderRequest.manualOrderKey = '';
-    createOrderRequest.manualOrderID = 0;
-    createOrderRequest.existingOrderKey = '';
-    createOrderRequest.other12 = '';
-    createOrderRequest.notes = '';
-    createOrderRequest.customerID = 0;
-    createOrderRequest.orderStatus = 1;
-    createOrderRequest.orderDate = startDate;
-    createOrderRequest.currencyCode = '';
-    createOrderRequest.warehouseID = 0;
-    createOrderRequest.shipMethodID = 0;
-    createOrderRequest.priceType = 0;
-    createOrderRequest.firstName = this.f.firstName.value;
-    createOrderRequest.middleName = '';
-    createOrderRequest.lastName = this.f.lastName.value;
-    createOrderRequest.other11 = '';
-    createOrderRequest.nameSuffix = '';
-    createOrderRequest.address1 = this.f.streetAddress.value;
-    createOrderRequest.address2 = '';
-    createOrderRequest.address3 = '';
-    createOrderRequest.city = this.f.city.value;
-    createOrderRequest.state = this.f.state.value;
-    createOrderRequest.zip = this.f.zip.value;
-    createOrderRequest.country = this.f.country.value;
-    createOrderRequest.county = '';
-    createOrderRequest.email = '';
-    createOrderRequest.phone = '';
-    createOrderRequest.company = '';
-    createOrderRequest.customerKey = '';
+      const createOrderRequest = new CreateOrderRequest();
+      createOrderRequest.other14 = '';
+      createOrderRequest.other15 = '';
+      createOrderRequest.other16 = '';
+      createOrderRequest.other17 = '';
+      createOrderRequest.other18 = '';
+      createOrderRequest.other19 = '';
+      createOrderRequest.other20 = '';
+      createOrderRequest.other13 = '';
+      createOrderRequest.taxRateOverride = 0;
+      createOrderRequest.shippingAmountOverride = 0;
+      createOrderRequest.transferVolumeToID = 0;
+      createOrderRequest.returnOrderID = 0;
+      createOrderRequest.overwriteExistingOrder = false;
+      createOrderRequest.existingOrderID = 0;
+      createOrderRequest.partyID = 1;
+      createOrderRequest.details = this.orderDetails;
+      createOrderRequest.suppressPackSlipPrice = true;
+      createOrderRequest.transferVolumeToKey = '';
+      createOrderRequest.returnOrderKey = '';
+      createOrderRequest.manualOrderKey = '';
+      createOrderRequest.manualOrderID = 0;
+      createOrderRequest.existingOrderKey = '';
+      createOrderRequest.other12 = '';
+      createOrderRequest.notes = '';
+      createOrderRequest.customerID = 0;
+      createOrderRequest.orderStatus = 1;
+      createOrderRequest.orderDate = startDate;
+      createOrderRequest.currencyCode = '';
+      createOrderRequest.warehouseID = 0;
+      createOrderRequest.shipMethodID = 0;
+      createOrderRequest.priceType = 0;
+      createOrderRequest.firstName = this.f.firstName.value;
+      createOrderRequest.middleName = '';
+      createOrderRequest.lastName = this.f.lastName.value;
+      createOrderRequest.other11 = '';
+      createOrderRequest.nameSuffix = '';
+      createOrderRequest.address1 = this.f.streetAddress.value;
+      createOrderRequest.address2 = '';
+      createOrderRequest.address3 = '';
+      createOrderRequest.city = this.f.city.value;
+      createOrderRequest.state = 'TX'; //this.f.state.value;
+      createOrderRequest.zip = this.f.zip.value;
+      createOrderRequest.country = 'US'; //this.f.country.value
+      createOrderRequest.county = '';
+      createOrderRequest.email = '';
+      createOrderRequest.phone = '';
+      createOrderRequest.company = '';
+      createOrderRequest.customerKey = '';
 
-    const createCustomerRequest = new CreateCustomerRequest();
-    createCustomerRequest.subscribeFromIPAddress = '';
-    createCustomerRequest.subscribeToBroadcasts = false;
-    createCustomerRequest.field15 = '';
-    createCustomerRequest.field14 = '';
-    createCustomerRequest.field13 = '';
-    createCustomerRequest.field12 = '';
-    createCustomerRequest.field11 = '';
-    createCustomerRequest.field10 = '';
-    createCustomerRequest.field9 = '';
-    createCustomerRequest.field8 = '';
-    createCustomerRequest.field7 = '';
-    createCustomerRequest.field6 = '';
-    createCustomerRequest.field5 = '';
-    createCustomerRequest.field4 = '';
-    createCustomerRequest.field3 = '';
-    createCustomerRequest.field2 = '';
-    createCustomerRequest.field1 = '';
-    createCustomerRequest.birthDate = startDate;
-    createCustomerRequest.isSalesTaxExempt = false;
-    createCustomerRequest.currencyCode = '';
-    createCustomerRequest.salesTaxExemptExpireDate = startDate;
-    createCustomerRequest.payableToName = '';
-    createCustomerRequest.defaultWarehouseID = 0;
-    createCustomerRequest.sponsorKey = '';
-    createCustomerRequest.otherAddressVerified = true;
-    createCustomerRequest.mailAddressVerified = true;
-    createCustomerRequest.mainAddressVerified = true;
-    createCustomerRequest.useBinaryHoldingTank = true;
-    createCustomerRequest.binaryPlacementPreference = 0;
-    createCustomerRequest.nameSuffix = '';
-    createCustomerRequest.middleName = '';
-    createCustomerRequest.date5 = startDate;
-    createCustomerRequest.date4 = startDate;
-    createCustomerRequest.date3 = startDate;
-    createCustomerRequest.date2 = startDate;
-    createCustomerRequest.date1 = startDate;
-    createCustomerRequest.taxIDType = '';
-    createCustomerRequest.checkThreshold = 0;
-    createCustomerRequest.languageID = 0;
-    createCustomerRequest.payableType = '';
-    createCustomerRequest.entryDate = startDate;
-    createCustomerRequest.salesTaxID = '';
-    createCustomerRequest.taxID = '';
-    createCustomerRequest.manualCustomerID = 0;
-    createCustomerRequest.mainCounty = '';
-    createCustomerRequest.mainCountry = '';
-    createCustomerRequest.mainZip = '';
-    createCustomerRequest.mainState = '';
-    createCustomerRequest.mainCity = '';
-    createCustomerRequest.mainAddress3 = '';
-    createCustomerRequest.mainAddress2 = '';
-    createCustomerRequest.mainAddress1 = '';
-    createCustomerRequest.notes = '';
-    createCustomerRequest.fax = '';
-    createCustomerRequest.mobilePhone = '';
-    createCustomerRequest.phone2 = '';
-    createCustomerRequest.phone = '';
-    createCustomerRequest.email = '';
-    createCustomerRequest.customerStatus = 0;
-    createCustomerRequest.customerType = 0;
-    createCustomerRequest.company = '';
-    createCustomerRequest.lastName = '';
-    createCustomerRequest.firstName = '';
-    createCustomerRequest.mailAddress1 = '';
-    createCustomerRequest.mailAddress2 = '';
-    createCustomerRequest.mailAddress3 = '';
-    createCustomerRequest.mailCity = '';
-    createCustomerRequest.useManualCustomerID = false;
-    createCustomerRequest.sponsorID = 0;
-    createCustomerRequest.insertUnilevelTree = false;
-    createCustomerRequest.enrollerID = 0;
-    createCustomerRequest.insertEnrollerTree = true;
-    createCustomerRequest.loginPassword = '';
-    createCustomerRequest.loginName = '';
-    createCustomerRequest.canLogin = true;
-    createCustomerRequest.otherCounty = '';
-    createCustomerRequest.enrollerKey = '';
-    createCustomerRequest.otherCountry = '';
-    createCustomerRequest.otherState = '';
-    createCustomerRequest.otherCity = '';
-    createCustomerRequest.otherAddress3 = '';
-    createCustomerRequest.otherAddress2 = '';
-    createCustomerRequest.otherAddress1 = '';
-    createCustomerRequest.mailCounty = '';
-    createCustomerRequest.mailCountry = '';
-    createCustomerRequest.mailZip = '';
-    createCustomerRequest.mailState = '';
-    createCustomerRequest.otherZip = '';
-    createCustomerRequest.manualCustomerKey = '';
 
-    const createAutoOrderRequest = new CreateAutoOrderRequest();
-    createAutoOrderRequest.county = '';
-    createAutoOrderRequest.email = '';
-    createAutoOrderRequest.phone = '';
-    createAutoOrderRequest.notes = '';
-    createAutoOrderRequest.other11 = '';
-    createAutoOrderRequest.other12 = '';
-    createAutoOrderRequest.other13 = '';
-    createAutoOrderRequest.other14 = '';
-    createAutoOrderRequest.other15 = '';
-    createAutoOrderRequest.other16 = '';
-    createAutoOrderRequest.other17 = '';
-    createAutoOrderRequest.other18 = '';
-    createAutoOrderRequest.other19 = '';
-    createAutoOrderRequest.other20 = '';
-    createAutoOrderRequest.country = this.f.country.value;
-    createAutoOrderRequest.description = '';
-    createAutoOrderRequest.overwriteExistingAutoOrder = true;
-    createAutoOrderRequest.existingAutoOrderID = 0;
-    createAutoOrderRequest.details = this.orderDetails;
-    createAutoOrderRequest.other16 = '';
-    createAutoOrderRequest.frequency = 1;
-    createAutoOrderRequest.startDate = startDate;
-    createAutoOrderRequest.stopDate = startDate;
-    createAutoOrderRequest.specificDayInterval = 0;
-    createAutoOrderRequest.currencyCode = '';
-    createAutoOrderRequest.warehouseID = 0;
-    createAutoOrderRequest.shipMethodID = 0;
-    createAutoOrderRequest.priceType = 0;
-    createAutoOrderRequest.processType = '';
-    createAutoOrderRequest.firstName = this.f.firstName.value;
-    createAutoOrderRequest.middleName = '';
-    createAutoOrderRequest.lastName = this.f.lastName.value;
-    createAutoOrderRequest.nameSuffix = '';
-    createAutoOrderRequest.company = '';
-    createAutoOrderRequest.address1 = this.f.streetAddress.value;
-    createAutoOrderRequest.address2 = '';
-    createAutoOrderRequest.address3 = '';
-    createAutoOrderRequest.customerKey = '';
-    createAutoOrderRequest.customFrequencyTy = 0;
-
-    const chargeCreditCardTokenRequest = new ChargeCreditCardTokenRequest();
-    chargeCreditCardTokenRequest.otherData9 = '';
-    chargeCreditCardTokenRequest.otherData8 = '';
-    chargeCreditCardTokenRequest.otherData7 = '';
-    chargeCreditCardTokenRequest.otherData6 = '';
-    chargeCreditCardTokenRequest.otherData5 = '';
-    chargeCreditCardTokenRequest.otherData4 = '';
-    chargeCreditCardTokenRequest.otherData3 = '';
-    chargeCreditCardTokenRequest.otherData2 = '';
-    chargeCreditCardTokenRequest.otherData1 = '';
-    chargeCreditCardTokenRequest.clientIPAddress = '';
-    chargeCreditCardTokenRequest.merchantWarehouseIDOverride = 0;
-    chargeCreditCardTokenRequest.maxAmount = 0;
-    chargeCreditCardTokenRequest.otherData10 = '';
-    if (this.addrnew == false) {
-      chargeCreditCardTokenRequest.billingCountry = '';
-      chargeCreditCardTokenRequest.billingZip = '';
-      chargeCreditCardTokenRequest.billingState = '';
-      chargeCreditCardTokenRequest.billingCity = '';
-      chargeCreditCardTokenRequest.billingAddress2 = '';
-      chargeCreditCardTokenRequest.billingAddress = '';
-    } else {
-      chargeCreditCardTokenRequest.billingCountry = this.f.country.value;
+      const chargeCreditCardTokenRequest = new ChargeCreditCardTokenRequest();
+      chargeCreditCardTokenRequest.otherData9 = '';
+      chargeCreditCardTokenRequest.otherData8 = '';
+      chargeCreditCardTokenRequest.otherData7 = '';
+      chargeCreditCardTokenRequest.otherData6 = '';
+      chargeCreditCardTokenRequest.otherData5 = '';
+      chargeCreditCardTokenRequest.otherData4 = '';
+      chargeCreditCardTokenRequest.otherData3 = '';
+      chargeCreditCardTokenRequest.otherData2 = '';
+      chargeCreditCardTokenRequest.otherData1 = '';
+      chargeCreditCardTokenRequest.clientIPAddress = '';
+      chargeCreditCardTokenRequest.merchantWarehouseIDOverride = 0;
+      chargeCreditCardTokenRequest.maxAmount = 0;
+      chargeCreditCardTokenRequest.otherData10 = '';
+      if (this.addrnew == false) {
+        chargeCreditCardTokenRequest.billingCountry = '';
+        chargeCreditCardTokenRequest.billingZip = '';
+        chargeCreditCardTokenRequest.billingState = '';
+        chargeCreditCardTokenRequest.billingCity = '';
+        chargeCreditCardTokenRequest.billingAddress2 = '';
+        chargeCreditCardTokenRequest.billingAddress = '';
+      } else {
+        chargeCreditCardTokenRequest.billingCountry = 'US'; //this.f.country.value
+        chargeCreditCardTokenRequest.billingZip = this.f.zip.value;
+        chargeCreditCardTokenRequest.billingState = 'TX'; //this.f.state.value;
+        chargeCreditCardTokenRequest.billingCity = this.f.city.value;
+        chargeCreditCardTokenRequest.billingAddress2 = '';
+        chargeCreditCardTokenRequest.billingAddress = this.f.streetAddress.value;
+      }
+      chargeCreditCardTokenRequest.expirationMonth = this.p.expiryMonth.value;
+      chargeCreditCardTokenRequest.creditCardType = 0;
+      chargeCreditCardTokenRequest.cvcCode = this.p.cardCVV.value;
+      chargeCreditCardTokenRequest.billingCountry = 'US'; //this.f.country.value
       chargeCreditCardTokenRequest.billingZip = this.f.zip.value;
-      chargeCreditCardTokenRequest.billingState = this.f.state.value;
+      chargeCreditCardTokenRequest.billingState = 'TX'; //this.f.state.value;
       chargeCreditCardTokenRequest.billingCity = this.f.city.value;
       chargeCreditCardTokenRequest.billingAddress2 = '';
       chargeCreditCardTokenRequest.billingAddress = this.f.streetAddress.value;
-    }
-    chargeCreditCardTokenRequest.expirationMonth = this.p.expiryMonth.value;
-    chargeCreditCardTokenRequest.creditCardType = 0;
-    chargeCreditCardTokenRequest.cvcCode = this.p.cardCVV.value;
-    chargeCreditCardTokenRequest.billingCountry = this.f.country.value;
-    chargeCreditCardTokenRequest.billingZip = this.f.zip.value;
-    chargeCreditCardTokenRequest.billingState = this.f.state.value;
-    chargeCreditCardTokenRequest.billingCity = this.f.city.value;
-    chargeCreditCardTokenRequest.billingAddress2 = '';
-    chargeCreditCardTokenRequest.billingAddress = this.f.streetAddress.value;
-    chargeCreditCardTokenRequest.creditCardToken = '';
-    chargeCreditCardTokenRequest.expirationYear = this.p.expiryYear.value;
-    chargeCreditCardTokenRequest.orderKey = '';
+      chargeCreditCardTokenRequest.creditCardToken = payload.nonce;
+      chargeCreditCardTokenRequest.expirationYear = this.p.expiryYear.value;
+      chargeCreditCardTokenRequest.orderKey = '';
 
-    const setAccountCreditCardTokenRequest =
-      new SetAccountCreditCardTokenRequest();
-    setAccountCreditCardTokenRequest.tokenType = 0;
-    setAccountCreditCardTokenRequest.movePrimaryToSecondary = true;
-    setAccountCreditCardTokenRequest.hideFromWeb = true;
-    setAccountCreditCardTokenRequest.billingCountry = this.f.country.value;
-    setAccountCreditCardTokenRequest.billingZip = this.f.zip.value;
-    setAccountCreditCardTokenRequest.billingState = this.f.state.value;
-    setAccountCreditCardTokenRequest.billingCity = this.f.city.value;
-    setAccountCreditCardTokenRequest.firstSix = '';
-    setAccountCreditCardTokenRequest.billingAddress2 = '';
-    setAccountCreditCardTokenRequest.useMainAddress = true;
-    setAccountCreditCardTokenRequest.billingName = '';
-    setAccountCreditCardTokenRequest.creditCardType = 0;
-    setAccountCreditCardTokenRequest.expirationYear = 0;
-    setAccountCreditCardTokenRequest.expirationMonth = 0;
-    setAccountCreditCardTokenRequest.creditCardToken = '';
-    setAccountCreditCardTokenRequest.creditCardAccountType = 1;
-    setAccountCreditCardTokenRequest.customerID = 0;
-    setAccountCreditCardTokenRequest.billingAddress =
-      this.f.streetAddress.value;
-    setAccountCreditCardTokenRequest.lastFour = '';
+      const transactionalRequestModel = new TransactionalRequestModel();
+      transactionalRequestModel.createOrderRequest = createOrderRequest;
+      transactionalRequestModel.chargeCreditCardTokenRequest = chargeCreditCardTokenRequest;
+      transactionalRequestModel.setListItemRequest = this.cartItems;
+      console.log("CART: ", this.cartItems);
 
-    const transactionalRequestModel = new TransactionalRequestModel();
-    transactionalRequestModel.chargeCreditCardTokenRequest = chargeCreditCardTokenRequest;
-    transactionalRequestModel.setListItemRequest = this.cartItems;
-    console.log("CART: ", this.cartItems);
-
-    this.shopService
-      .checkOutItems(transactionalRequestModel)
-      .subscribe((result: any) => {
-        console.log('Result', result);
-        this.router.navigate(['/store/thankyou']);
-        this.spinner.hide();
-      });
+      this.shopService
+        .checkOutItems(transactionalRequestModel)
+        .subscribe((result: any) => {
+          console.log('Result', result);
+          this.router.navigate(['/store/thankyou']);
+          this.spinner.hide();
+        });
+      // submit payload.nonce to the server from here
+    }).catch((error) => {
+      console.log(error);
+      // perform custom validation here or log errors
+    });
   }
 }
