@@ -269,16 +269,6 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  tokenizeUserDetails() {
-    this.hostedFieldsInstance.tokenize({cardholderName: this.cardholdersName}).then((payload) => {
-      console.log(payload);
-      // submit payload.nonce to the server from here
-    }).catch((error) => {
-      console.log(error);
-      // perform custom validation here or log errors
-    });
-  }
-
   // Fetches the label element for the corresponding field
   findLabel(field: braintree.HostedFieldsHostedFieldsFieldData) {
     return document.querySelector('.hosted-field--label[for="' + field.container.id + '"]');
@@ -331,8 +321,7 @@ export class CheckoutComponent implements OnInit {
     }
     this.spinner.show();
     this.shippingAddressParam = this.getShippingAddressParam(1);
-    this.shopService
-      .postAddress(this.customerId, this.shippingAddressParam)
+    this.shopService.postAddress(this.customerId, this.shippingAddressParam)
       .subscribe((result: any) => {
         if (result.result) {
           this.spinner.hide();
@@ -1027,9 +1016,9 @@ export class CheckoutComponent implements OnInit {
       createOrderRequest.address2 = '';
       createOrderRequest.address3 = '';
       createOrderRequest.city = this.f.city.value;
-      createOrderRequest.state = 'TX'; //this.f.state.value;
+      createOrderRequest.state = 'TX';//this.f.state.value;
       createOrderRequest.zip = this.f.zip.value;
-      createOrderRequest.country = 'US'; //this.f.country.value
+      createOrderRequest.country = 'US';//this.f.country.value
       createOrderRequest.county = '';
       createOrderRequest.email = '';
       createOrderRequest.phone = '';
@@ -1049,7 +1038,7 @@ export class CheckoutComponent implements OnInit {
       chargeCreditCardTokenRequest.otherData1 = '';
       chargeCreditCardTokenRequest.clientIPAddress = '';
       chargeCreditCardTokenRequest.merchantWarehouseIDOverride = 0;
-      chargeCreditCardTokenRequest.maxAmount = 0;
+      chargeCreditCardTokenRequest.maxAmount = this.cartSummaryTotal;
       chargeCreditCardTokenRequest.otherData10 = '';
       if (this.addrnew == false) {
         chargeCreditCardTokenRequest.billingCountry = '';
@@ -1059,9 +1048,9 @@ export class CheckoutComponent implements OnInit {
         chargeCreditCardTokenRequest.billingAddress2 = '';
         chargeCreditCardTokenRequest.billingAddress = '';
       } else {
-        chargeCreditCardTokenRequest.billingCountry = 'US'; //this.f.country.value
+        chargeCreditCardTokenRequest.billingCountry = 'US';//this.f.country.value;
         chargeCreditCardTokenRequest.billingZip = this.f.zip.value;
-        chargeCreditCardTokenRequest.billingState = 'TX'; //this.f.state.value;
+        chargeCreditCardTokenRequest.billingState = 'TX';//this.f.state.value;
         chargeCreditCardTokenRequest.billingCity = this.f.city.value;
         chargeCreditCardTokenRequest.billingAddress2 = '';
         chargeCreditCardTokenRequest.billingAddress = this.f.streetAddress.value;
@@ -1069,9 +1058,9 @@ export class CheckoutComponent implements OnInit {
       chargeCreditCardTokenRequest.expirationMonth = this.p.expiryMonth.value;
       chargeCreditCardTokenRequest.creditCardType = 0;
       chargeCreditCardTokenRequest.cvcCode = this.p.cardCVV.value;
-      chargeCreditCardTokenRequest.billingCountry = 'US'; //this.f.country.value
+      chargeCreditCardTokenRequest.billingCountry = 'US';//this.f.country.value;
       chargeCreditCardTokenRequest.billingZip = this.f.zip.value;
-      chargeCreditCardTokenRequest.billingState = 'TX'; //this.f.state.value;
+      chargeCreditCardTokenRequest.billingState = 'TX';//this.f.state.value;
       chargeCreditCardTokenRequest.billingCity = this.f.city.value;
       chargeCreditCardTokenRequest.billingAddress2 = '';
       chargeCreditCardTokenRequest.billingAddress = this.f.streetAddress.value;
@@ -1083,7 +1072,6 @@ export class CheckoutComponent implements OnInit {
       transactionalRequestModel.createOrderRequest = createOrderRequest;
       transactionalRequestModel.chargeCreditCardTokenRequest = chargeCreditCardTokenRequest;
       transactionalRequestModel.setListItemRequest = this.cartItems;
-      console.log("CART: ", this.cartItems);
 
       this.shopService
         .checkOutItems(transactionalRequestModel)
