@@ -94,6 +94,12 @@ export class CartComponent implements OnInit {
 
   onLoad() {
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
+      this.cartItems.forEach(function (item) {
+       if(item.quantityModel>10){
+        item.quantityModel= 33;
+       }
+    });
+    
     if (this.cartItems == null || this.cartItems.length <= 0) {
       this.enablebtn = true;
     } else {
@@ -244,7 +250,6 @@ export class CartComponent implements OnInit {
 
   //Remove Item From Cart List
   removeItem(cartItem: any, type: any, bundle: string) {
-    debugger
     this.spinner.show();
     this.sessionService.removeSessionItem('productCartItems');
     switch (type) {
@@ -304,7 +309,7 @@ export class CartComponent implements OnInit {
     this.quantityCalculation(cartitem, selectedvalue);
   }
   quantitychanged(cartitem: any, selectedvalue: number) {
-debugger;
+
     this.quantityCalculation(cartitem, selectedvalue);
     const item =  this.cartItems.find(x=>x.itemCode == cartitem.itemCode);
     if(item && selectedvalue>10){
@@ -333,9 +338,6 @@ debugger;
       this.sessionService.setSessionObject('productCartItems', this.cartItems);
     }
     this.cartCalculation();
-    if (selectedvalue >= 10) {
-      cartitem.quantityModel = 33;
-    }
   }
 
   quantityForSubscriptionTime(delivery: any, selectedvalue: number) {
@@ -383,7 +385,11 @@ debugger;
     this.subTotalSubscriptionPriceAfterDiscount = this.subTotalSubscriptionPrice - this.discount15Percent;
     this.totalDiscount = this.totalDiscount + this.discount15Percent;
     this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
-    return;
+    this.cartItems.forEach(function (item) {
+      if(item.quantityModel>10){
+       item.quantityModel= 33;
+      }
+    });
   }
   getOrderTotal() {
     let multiplyprice = 0;
@@ -472,7 +478,7 @@ debugger;
       },
       {
         id: 'Others',
-        name: 'Customs',
+        name: 'Custom',
         value: 33
       }
     ]
@@ -491,95 +497,8 @@ debugger;
         id: '3',
         name: 'Every Year',
         value: 'everyYear'
-      },
-      {
-        id: '4',
-        name: 'Every Year',
-        value: 'everyYear'
-      },
-      {
-        id: '5',
-        name: 'Every Year',
-        value: 'everyYear'
       }
-      , {
-        id: '6',
-        name: 'Every Year',
-        value: 'everyYear'
-      },
-      {
-        id: '7',
-        name: 'Every Year',
-        value: 'everyYear'
-      },
-      {
-        id: '8',
-        name: 'Every Year',
-        value: 'everyYear'
-      },
-      {
-        id: '9',
-        name: 'Every Year',
-        value: 'everyYear'
-      },
-      {
-        id: '10',
-        name: 'Every Year',
-        value: 'everyYear'
-      }
-    ]
-    this.years = [
-      {
-        id: '1',
-        name: 'Every Month',
-        value: 'everyMonth'
-      },
-      {
-        id: '2',
-        name: 'Every Week',
-        value: 'everyWeek'
-      },
-      {
-        id: '3',
-        name: 'Every Year',
-        value: 'everyYear'
-      }
-      , {
-        id: '4',
-        name: 'Every Year',
-        value: 'everyYear'
-      },
-      {
-        id: '5',
-        name: 'Every Year',
-        value: 'everyYear'
-      },
-      {
-        id: '6',
-        name: 'Every Year',
-        value: 'everyYear'
-      },
-      {
-        id: '7',
-        name: 'Every Year',
-        value: 'everyYear'
-      },
-      {
-        id: '8',
-        name: 'Every Year',
-        value: 'everyYear'
-      },
-      {
-        id: '9',
-        name: 'Every Year',
-        value: 'everyYear'
-      },
-      {
-        id: '10',
-        name: 'Every Year',
-        value: 'everyYear'
-      }
-
+     
     ]
   }
 
