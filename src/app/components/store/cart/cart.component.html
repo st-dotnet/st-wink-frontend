@@ -557,7 +557,7 @@
                     <ul class="conv-products">
                         <li>
                             <div class="custom-control custom-radio">
-                                <input type="checkbox" id="customRadio1" name="customRadio" class="custom-control-input" />
+                                <input type="checkbox" id="customRadio1" name="customRadio" #checkbox class="custom-control-input" />
                                 <label class="custom-control-label" for="customRadio1">
                   <div class="media">
                     <div class="media-left">
@@ -596,8 +596,7 @@
                           </div>
                           <div class="form-group">
                             <select class="form-control">
-                              <option>Every Month</option>
-                              <option _ngcontent-cnl-c154="" disabled="" selected="" value="undefined" class="dropdown-item" ng-reflect-value="undefined"> EveryMonth </option>
+                              <option _ngcontent-cnl-c154="" selected="" value="everyMonth" class="dropdown-item" ng-reflect-value="everyMonth"> Every Month </option>
                               <option _ngcontent-cnl-c154="" value="everyWeek" ng-reflect-value="everyWeek" class="ng-star-inserted"> Every Week </option>
                               <option _ngcontent-cnl-c154="" value="everyYear" ng-reflect-value="everyYear" class="ng-star-inserted"> Every Year </option>
                             
@@ -612,8 +611,8 @@
                         </li>
                         <li>
                             <div class="custom-control custom-radio">
-                                <input type="checkbox" id="customRadio2" name="customRadio" class="custom-control-input" />
-                                <label class="custom-control-label" for="customRadio2">
+                                <input type="checkbox" id="customRadio2" name="customRadio" #checkbox1 class="custom-control-input" />
+                                <label class="custom-control-label" for="customRadio2" >
                   <div class="media">
                     <div class="media-left">
                       <a href="#">
@@ -651,7 +650,7 @@
                           </div>
                           <div class="form-group">
                             <select class="form-control">
-                              <option _ngcontent-cnl-c154="" disabled="" selected="" value="undefined" class="dropdown-item" ng-reflect-value="undefined"> EveryMonth </option>
+                              <option _ngcontent-cnl-c154=""  value="everyMonth" class="dropdown-item" ng-reflect-value="everyMonth"> Every Month </option>
                               <option _ngcontent-cnl-c154="" value="everyWeek" ng-reflect-value="everyWeek" class="ng-star-inserted"> Every Week </option>
                               <option _ngcontent-cnl-c154="" value="everyYear" ng-reflect-value="everyYear" class="ng-star-inserted"> Every Year </option>
                             
@@ -693,7 +692,7 @@
                     </div>
                 </div>
                 <div class="btn btn-subsc">
-                    <button type="submit" class="btn btn-subsc-active">
+                    <button type="submit" class="btn btn-subsc-active" [disabled]="!date_convertModal ||(!checkbox.checked &&!checkbox1.checked)">
             Activate My Subscription
           </button>
                 </div>
