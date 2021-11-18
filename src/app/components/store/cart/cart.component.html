@@ -146,7 +146,9 @@
                       transform="translate(-194.9 -3)" />
                   </svg>
                 </button>
+                  <p class="noPromoMessage">No code applied</p>
                             </div>
+                         
                             <div class="subtotal">
                                 <p>Subtotal</p>
                                 <p>${{ subtotalOneTimePrice | number:'.1-2' }}</p>
@@ -667,7 +669,7 @@
                 </div>
                 <div class="conv-subsc-date">
                     <div [className]="date_convertModal ? 'special-field datafilled form-group ' : 'special-field dataempty form-group' ">
-                        <input type="text" [(ngModel)]="date_convertModal" class="form-control" bsDatepicker [maxDate]="maxDate" [bsConfig]="{
+                        <input type="text" [(ngModel)]="date_convertModal" value="{{date_convertModal| date}}" class="form-control" bsDatepicker [maxDate]="maxDate" [bsConfig]="{
                 isAnimated: true,
                 adaptivePosition: true,
                 selectFromOtherMonth: true
@@ -692,7 +694,7 @@
                     </div>
                 </div>
                 <div class="btn btn-subsc">
-                    <button type="submit" class="btn btn-subsc-active" [disabled]="!date_convertModal ||(!checkbox.checked &&!checkbox1.checked)">
+                    <button type="submit"  [disabled]="!date_convertModal ||(!checkbox.checked &&!checkbox1.checked)" [className]="(!date_convertModal ||(!checkbox.checked &&!checkbox1.checked) ) ? 'btn btn-subsc-disable' : 'btn btn-subsc-active'">
             Activate My Subscription
           </button>
                 </div>

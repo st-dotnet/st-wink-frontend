@@ -790,10 +790,10 @@
                                                 </div>
                                             </ng-template>
                                             <ng-template ngbPanelContent>
-                                                <div class="content-card steps-inner promo-checkout">
-                                                    <div class="col-md-12 p-0 mb-3">
+                                                <div class="content-card steps-inner shipping-address-form">
+                                                    <div class="col-md-12 loyalty-form p-0 mb-3">
                                                         <div [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                            <input type="text" [(ngModel)]="promocode_onetime" class="form-control" (focusout)="clearPromo($event)" />
+                                                            <input type="text" [(ngModel)]="promocode_onetime" class="form-control" name="promo-enter" (focusout)="clearPromo($event)" />
                                                             <label class="form-label">Promo Code</label>
                                                             <span class="vali-promo">Not Applied</span>
                                                             <span class="btn-add-promo" (click)="addPromo()">

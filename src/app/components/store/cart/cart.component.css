@@ -684,7 +684,15 @@ margin-bottom:10px;
 width: 100%;
 height: auto;
 }
-
+.btn-subsc-disable{
+    width: 100%;
+    background-color: #6c757d6b !important;
+    border-radius: 26px;
+    height: 45px;
+    color: rgb(0 0 0 / 65%);;
+    font-family: "g-demibold";
+    text-transform: uppercase;
+}
 /* .cart-singleitem.ng-star-inserted .form-control {
     width: unset !important;
 } */

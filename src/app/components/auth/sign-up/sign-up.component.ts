@@ -59,7 +59,7 @@ export class SignUpComponent implements OnInit {
         ],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-        dateOfBirth: [''],
+        dateOfBirth: ['',[Validators.required]],
       },
       {
         validator: MustMatch('password', 'confirmPassword'),
@@ -97,6 +97,7 @@ export class SignUpComponent implements OnInit {
       lastName: this.f.lastName.value ? this.f.lastName.value : '',
       mobilePhone: this.f.phoneNumber.value ? this.f.phoneNumber.value : '',
       canLogin: true,
+      dateOfBirth:this.f.dateOfBirth.value ? this.f.dateOfBirth.value : '',
       email: this.f.emailAddress.value ? this.f.emailAddress.value : '',
       loginName: this.f.userName.value,
       loginPassword: this.f.confirmPassword.value
