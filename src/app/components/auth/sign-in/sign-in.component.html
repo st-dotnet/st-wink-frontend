@@ -1,35 +1,76 @@
 <section class="form-sign-in">
-<div class="container">
+  <div class="container">
     <div class="row">
-        <div class="col-md-12">
-          <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                  <div class="signup-box-wrapper">
-                      <h3>Sign In</h3>
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control" name="username" formControlName="emailAddress" placeholder="Username" [ngClass]="{ 'is-invalid': submitted && f.emailAddress.errors }"/>
-                                <div *ngIf="submitted && f.emailAddress.errors" class="invalid-feedback">
-                                  <div *ngIf="f.emailAddress.errors.required">Username is required</div>
-                                  <!-- <div *ngIf="f.emailAddress.errors.required">Email is required</div>
+      <div class="col-md-12">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="signup-box-wrapper">
+            <h3>Sign In</h3>
+            <div class="form-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                formControlName="emailAddress"
+                placeholder="Username"
+                [ngClass]="{ 'is-invalid': submitted && f.emailAddress.errors }"
+              />
+              <div
+                *ngIf="submitted && f.emailAddress.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.emailAddress.errors.required">
+                  Username is required
+                </div>
+                <!-- <div *ngIf="f.emailAddress.errors.required">Email is required</div>
                                   <div *ngIf="f.emailAddress.errors.email">Please enter vaild email address</div>
                                   <div *ngIf="f.emailAddress.errors.pattern">Email format is not vaild</div> -->
-                                </div>
-                            </div>
-                            <div class="form-group mb-3 pwd-field">
-                                <span class="show-pwd" (click)="showHidePassword()"><i [className]="showPassword ?  'far fa-eye-slash' : 'far fa-eye'"></i></span>
-                                <input [type]="showPassword ? 'text': 'password'" class="form-control" name="pwd-sign" formControlName="password"  placeholder="Password" minlength="6" maxlength="12" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                                  <div *ngIf="f.password.errors.required">Password is required</div>
-                                  <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-                                </div>
-                            </div>
-                            <p class="forgot-link"><a href="#" [routerLink]="['/reset-password']">Forgot password?</a></p>
-                    </div>
-                        <div class="btn-proceed">
-                            <button type="submit" class="form-control"> SIGN IN</button>
-                            <a [routerLink]="['/sign-up']">Create My Account</a>
-                        </div>
-                </form>
-        </div>
+              </div>
+            </div>
+            <div class="form-group mb-3 pwd-field">
+              <span class="show-pwd" (click)="showHidePassword()"
+                ><i
+                  [className]="showPassword ? 'far fa-eye-slash' : 'far fa-eye'"
+                ></i
+              ></span>
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                class="form-control"
+                name="pwd-sign"
+                formControlName="password"
+                placeholder="Password"
+                minlength="6"
+                maxlength="12"
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+              />
+              <div
+                *ngIf="submitted && f.password.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.password.errors.required">
+                  Password is required
+                </div>
+                <div *ngIf="f.password.errors.minlength">
+                  Password must be at least 6 characters
+                </div>
+              </div>
+            </div>
+            <p class="forgot-link">
+              <a href="#" [routerLink]="['/reset-password']"
+                >Forgot password?</a
+              >
+            </p>
+          </div>
+          <div class="card mt-3">
+            <div class="card-body">
+                <div #recaptcha ></div>
+            </div>
+          </div>
+          <div class="btn-proceed">
+            <button type="submit" class="form-control">SIGN IN</button>
+            <a [routerLink]="['/sign-up']">Create My Account</a>
+          </div>
+        </form>
+      </div>
     </div>
-</div>
+  </div>
 </section>

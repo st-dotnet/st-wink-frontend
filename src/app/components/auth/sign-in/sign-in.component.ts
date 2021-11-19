@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SessionService } from '@app/_services';
@@ -13,6 +13,8 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
+  @ViewChild('recaptcha', {static: true }) recaptchaElement: ElementRef;
+
   form: FormGroup;
   showPassword: boolean = false;
   loading = false;
@@ -35,6 +37,7 @@ export class SignInComponent implements OnInit {
       emailAddress: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+    this.addRecaptchaScript();
   }
 
   // convenience getter for easy access to form fields
@@ -92,5 +95,31 @@ export class SignInComponent implements OnInit {
 
   showHidePassword() {
     this.showPassword = !this.showPassword;
+  }
+
+  renderReCaptch() {
+    debugger;
+    window['grecaptcha'].render(this.recaptchaElement.nativeElement, {
+      'sitekey' : '6LfjuUUdAAAAAHSpzAbu9NQq8SOR_CsJfukp0L_I',
+      'callback': (response) => {
+          console.log(response);
+      }
+    });
+  }
+ 
+  addRecaptchaScript() { 
+    debugger;
+    window['grecaptchaCallback'] = () => {
+      this.renderReCaptch();
+    }
+ 
+    (function(d, s, id, obj){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { obj.renderReCaptch(); return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://www.google.com/recaptcha/api.js?onload=grecaptchaCallback&render=explicit";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'recaptcha-jssdk', this));
+ 
   }
 }
