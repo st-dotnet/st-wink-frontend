@@ -188,6 +188,7 @@ div#main-menu.showmenu ul li a {
     padding: 10px 10px;
     border-bottom: 1px solid #f5f5f5;
     border-radius: 0px;
+    color: #2aa8bf !important;
 }
 
 div#main-menu.showmenu ul li a.active {
