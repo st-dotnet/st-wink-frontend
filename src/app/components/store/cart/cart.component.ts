@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
 })
 export class CartComponent implements OnInit {
   subscriptionPurchase = false;
-  inputdata: string;
+  inputdata: any;
   promocode_onetime: string;
   date_convertModal: string;
   data_learn: boolean = false;
@@ -172,7 +172,8 @@ export class CartComponent implements OnInit {
       discount: 0,
       quantityLimit: 1,
       isDiscountTime: true,
-      isDisabled: true
+      isDisabled: true,
+      inputdata :this.inputdata,
     }
     this.specialItem.price = items.Price;
     Object.entries(items).forEach(([key, value]) => { this.specialItem[key] = value });

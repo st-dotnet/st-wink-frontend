@@ -9,7 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
-
+import { PlatformLocation } from '@angular/common'; 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -17,12 +17,12 @@ import { first } from 'rxjs/operators';
 })
 export class SignUpComponent implements OnInit {
   form!: FormGroup;
+  public recaptchaMode = 'v3';
   loading = false;
   submitted = false;
   maxDate = new Date();
   maskMobileNo = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   isTrue: string;
-
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -30,9 +30,18 @@ export class SignUpComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private toastrService: ToastrService,
     private accountService: AccountService,
+    private location: PlatformLocation,
     private sessionService: SessionService) {
     this.sessionService.scrollToTop();
     this.maxDate.setDate(this.maxDate.getDate() - 1);
+
+    location.onPopState(() => {
+      var r = confirm("You pressed a Back button! Are you sure?!");
+      if (r == true) {
+           this.router.navigate(['/sign-in']) ;  
+      } 
+      return false;
+  });
   }
 
   ngOnInit(): void {
@@ -60,13 +69,16 @@ export class SignUpComponent implements OnInit {
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
         dateOfBirth: ['',[Validators.required]],
+        recaptcha:['',[Validators.required]]
       },
       {
         validator: MustMatch('password', 'confirmPassword'),
       }
     );
   }
-
+  public addTokenLog(message: string, token: string | null) {
+   // this.log.push(`${message}: ${this.formatToken(token)}`);
+  }
   // convenience getter for easy access to form fields
   get f() {
     return this.form.controls;
@@ -97,6 +109,7 @@ export class SignUpComponent implements OnInit {
       lastName: this.f.lastName.value ? this.f.lastName.value : '',
       mobilePhone: this.f.phoneNumber.value ? this.f.phoneNumber.value : '',
       canLogin: true,
+      recaptcha:this.f.recaptcha.value ? this.f.recaptcha.value : '',
       dateOfBirth:this.f.dateOfBirth.value ? this.f.dateOfBirth.value : '',
       email: this.f.emailAddress.value ? this.f.emailAddress.value : '',
       loginName: this.f.userName.value,
