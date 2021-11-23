@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactService, SessionService } from '@app/_services';
+import { ajax } from 'jquery';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -95,8 +96,7 @@ export class HomeComponent implements OnInit {
     nav: true
   }
 
-  constructor(private sessionService: SessionService, private spinner: NgxSpinnerService, private toastrService: ToastrService,private contactService: ContactService,) {
-
+  constructor(private sessionService: SessionService, private spinner: NgxSpinnerService, private toastrService: ToastrService,private contactService: ContactService) {
     this.sessionService.scrollToTop();
   }
 
@@ -106,6 +106,12 @@ export class HomeComponent implements OnInit {
 
   score(i:any) {
     return new Array(i);
+   }
+
+   decodeContent(val:any){
+    var txt = document.createElement("textarea");
+    txt.innerHTML = val;
+    return txt.value;
    }
 
   getAllreviews() {

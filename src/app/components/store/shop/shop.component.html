@@ -25,7 +25,7 @@
               fill="rgba(0,0,0,0.87)" />
           </svg>
         </i>
-                <select class="form-control" (change)="onProductFilter($event)">
+        <select class="form-control" (change)="onProductFilter($event)">
           <option [value]="1">Filter By</option>
           <option [value]="2">Price: $ - $$</option>
           <option [value]="3">Price: $$ - $</option>
@@ -43,8 +43,8 @@
                 <h3>{{productNameTitle}}</h3>
             </div>
         </div>
-        <div class="row prod-wrapp">
-            <div class="col-md-3 prod-list-item" *ngFor="let product of shopProductModels">
+        <div class="row prod-wrapp Product-demo-tour-class">
+            <div class="col-md-3 prod-list-item " *ngFor="let product of shopProductModels">
                 <div class="card">
                     <!-- <img src="../../assets/products-sample.png" class="card-img-top" alt="products-sample"> -->
                     <!-- <img [src]="'data:image/jpg;base64,'+data.productImage.fileContents" class="card-img-top" alt="products-sample"/> -->
@@ -67,8 +67,8 @@
                                 </div>
                             </a>
                             <span class="more-info">
-                <a (click)="open(produt_view, product,adult_check)" class="btn btn-add"><i class="fas fa-plus"></i></a>
-              </span>
+                            <a (click)="open(produt_view, product,adult_check)" class="btn btn-add"><i class="fas fa-plus"></i></a>
+                             </span>
                         </div>
                     </div>
                 </div>
@@ -107,14 +107,14 @@
                                 </div>
                                 <yotpo-star-rating productId="718" style="display: none;">
                                 </yotpo-star-rating>
-                                <!-- <ul>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                </ul>
-                <p>704 REVIEWS</p> -->
+                                                <!-- <ul>
+                                  <li><i class="fas fa-star"></i></li>
+                                  <li><i class="fas fa-star"></i></li>
+                                  <li><i class="fas fa-star"></i></li>
+                                  <li><i class="fas fa-star"></i></li>
+                                  <li><i class="fas fa-star"></i></li>
+                                </ul>
+                                <p>704 REVIEWS</p> -->
                             </div>
                             <h6 class="small">Perfect for ages 3+</h6>
                             <div class="product-info">

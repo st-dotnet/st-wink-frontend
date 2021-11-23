@@ -12,6 +12,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
 import { SearchproductComponent } from './search_product/searchproduct/searchproduct.component';
 import { NgYotpoModule } from '@ng-ecom-kit/ng-yotpo';
+import { GuidedTourModule } from 'src/lib/guided-tour.module';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { NgYotpoModule } from '@ng-ecom-kit/ng-yotpo';
     NgYotpoModule.forRoot({apiKey: 'jV57gp4RKXABm7N2zd94UnPq6pgfRerQyaeq3iQk'}),
     SharedModule,
     StoreRoutingModule,
-
+    GuidedTourModule.forRoot()
   ]
 })
 export class StoreModule { }
