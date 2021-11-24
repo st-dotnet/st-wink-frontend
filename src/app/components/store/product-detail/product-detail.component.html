@@ -154,9 +154,20 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="custom-shiping">
-                            <h3>Customize Shipment <span class="ques-ico"><a href="#"><i class="fas fa-question" aria-hidden="true"></i></a></span></h3>
+                          <div [className]="tooltipData ? 'tooltipcontent show' : 'tooltipcontent hide'">
+                            <p>This text explains what our subscription system is and how it works in a concise way, It will also explain the shipping schedule.</p>
+                            <p><a (click)="closeTooltip()" class="btnclose">Go Back</a></p>
+
+                        </div>
+                        <h3>Customize Shipment <span class="ques-ico"><a (click)="showTooltip()"><i class="fas fa-question"
+                           aria-hidden="true"></i></a></span>
+                        </h3>
+
+
+
+
+                            <!-- <h3>Customize Shipment <span class="ques-ico"><a href="#"><i class="fas fa-question" aria-hidden="true"></i></a></span></h3> -->
                             <div class="choose-shipping">
                                 <div class="form-group">
                                     <select [(ngModel)]="quantityValue" [ngModelOptions]="{standalone: true}" class="form-control">

@@ -85,6 +85,27 @@ export class ShopComponent implements OnInit {
         value: 'subscribe'
       }
     ]
+
+    this.years = [
+      {
+        id: '1',
+        name: 'Every Month',
+        value: 'everyMonth'
+      },
+      {
+        id: '2',
+        name: 'Every Week',
+        value: 'everyWeek'
+      },
+      {
+        id: '3',
+        name: 'Every Year',
+        value: 'everyYear'
+      }
+    ]
+
+  }
+  ngAfterContentInit(): void {
     this.quantity = [
       {
         id: '1',
@@ -107,27 +128,9 @@ export class ShopComponent implements OnInit {
         value: 4
       }
     ]
-    this.years = [
-      {
-        id: '1',
-        name: 'Every Month',
-        value: 'everyMonth'
-      },
-      {
-        id: '2',
-        name: 'Every Week',
-        value: 'everyWeek'
-      },
-      {
-        id: '3',
-        name: 'Every Year',
-        value: 'everyYear'
-      }
-    ]
-
   }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {
     this.filterTitle = this.sessionService.getSessionItem("categorySelect");
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.route.params.subscribe(params => {
@@ -159,7 +162,7 @@ export class ShopComponent implements OnInit {
           webCategoryID: element.webCategoryID,
           webCategoryDescription: element.webCategoryDescription
         });
-      });     
+      });
       const category = this.categoryModels.find(x=> x.webCategoryDescription == this.type);
       this.category = category != null ? category.webCategoryID : 0;
       this.shopService.GetProductsList(this.category , this.filterValue).subscribe(result => {
@@ -197,6 +200,7 @@ export class ShopComponent implements OnInit {
       this.category = this.type != null ? parseInt(this.type) : this.categoryId;
       this.GetProductsList(this.categoryId, this.filterValue);
     })
+
   }
 
   onCategoryChange() {
@@ -204,10 +208,12 @@ export class ShopComponent implements OnInit {
     this.categoryId = this.category;
     if (this.categoryId == 39) {
       this.showAgePopUp = true;
+
+
     }
     const category = this.categoryModels.find(x => x.webCategoryID == this.categoryId);
-    const categoryName = category.webCategoryDescription.replace(new RegExp(' ', 'g'), '-');  
-    this.productNameTitle= categoryName; 
+    const categoryName = category.webCategoryDescription.replace(new RegExp(' ', 'g'), '-');
+    this.productNameTitle= categoryName;
     this.sessionService.setSessionItem('categoryDescription', categoryName);
     this.router.navigate([`store/products/${categoryName}`])
   }
@@ -219,8 +225,10 @@ export class ShopComponent implements OnInit {
       this.reProduct = product;
       this.modalService.open(adultCheck, this.modalOptions).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
+        alert(this.closeResult);
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        this.sessionService.setSessionObject("ignore_Comfort_patch","ComfortPatch");
       });
     } else {
       this.product = product;
@@ -272,7 +280,7 @@ export class ShopComponent implements OnInit {
     return `${environment.productImageApiUrl}${imageName}`;
   }
 
-  RedirectToProduct(adultCheck:any,product: any,learnMore:string) {   
+  RedirectToProduct(adultCheck:any,product: any,learnMore:string) {
     if(learnMore=="learnMore"){
       this.showAgePopUp = false;
       this.modalService.dismissAll();
@@ -281,17 +289,19 @@ export class ShopComponent implements OnInit {
     this.reProduct=product;
     if(this.category == 22){
       this.sessionService.setSessionItem('categoryDescription', "All-Products");
-    }   
-    if (this.showAgePopUp == true) {     
+    }
+    if (this.showAgePopUp == true) {
       this.modalService.open(adultCheck, this.modalOptions).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        this.sessionService.setSessionObject("ignore_Comfort_patch","ComfortPatch");
+
       });
     } else{
       this.modalService.dismissAll();
       this.router.navigate(['/store/product', product.itemCode]);
-    }       
+    }
   }
 
   getYearValue(event: any) {
@@ -300,6 +310,11 @@ export class ShopComponent implements OnInit {
 
   addToCart(product: any) {
     debugger;
+
+    if(this.sessionService.getSessionObject("ignore_Comfort_patch")){
+      this.toastrService.error('Sorry You are Under 18.');
+      return;
+    }
     this.productItems = this.sessionService.getSessionObject('productCartItems');
     if (this.selectDelivery == 1 && this.subscriptionModelduration == undefined) {
       return this.toastrService.error("Please select the subscription plan");
@@ -403,7 +418,7 @@ export class ShopComponent implements OnInit {
           this.modalService.dismissAll();
         }
       }
-      //5% calculation 
+      //5% calculation
       if (product.bundle == 'multiple' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
         let multiple_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'multiple' && x.selectDelivery == 0 && x.subscriptionModel == 'singleDelivery')
         let old_multiple_singledelivery = multiple_singledelivery;
@@ -472,7 +487,7 @@ export class ShopComponent implements OnInit {
 
   checkBundle(bundle: string, productPrice: any) {
     this.bundlePrice=0;
-    this.bundle = bundle; 
+    this.bundle = bundle;
     if(bundle=='single')
     {
      this.bundlePrice=productPrice;
@@ -484,7 +499,7 @@ export class ShopComponent implements OnInit {
       let discountper5 = (itemPrice * 5) / 100;
       this.bundlePrice = itemPrice - discountper5;
       this.bundlePrice =this.bundlePrice.toFixed(2);
-    }     
+    }
   }
 
   checkDelivery(type: CartTypeEnum) {

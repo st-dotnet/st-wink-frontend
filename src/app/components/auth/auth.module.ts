@@ -10,6 +10,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
+import { CanDeactivateGuard } from '@app/_helpers/can-deactivate-guard';
+
 @NgModule({
   declarations: [
     SignInComponent,
@@ -23,7 +25,7 @@ import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSet
     RecaptchaFormsModule,
     RecaptchaModule,
   ],
-  providers: [
+  providers: [CanDeactivateGuard,
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: {

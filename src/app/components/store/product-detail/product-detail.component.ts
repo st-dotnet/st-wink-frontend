@@ -17,6 +17,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 export class ProductDetailComponent implements OnInit {
 
+  tooltipData: boolean = false;
   review:number;
   incredShow: Boolean = false;
   isShowDivIf = false;
@@ -224,9 +225,14 @@ export class ProductDetailComponent implements OnInit {
     ]
   }
 
+  closeTooltip()
+  {
+    this.tooltipData = false;
+  }
+  showTooltip(){
+    this.tooltipData = true;
+  }
   ngOnInit(): void {
-
-
 
     //alert(this.itemCode);
     this.filterTitleShow=this.sessionService.getSessionItem("categoryDescription");
@@ -237,7 +243,7 @@ export class ProductDetailComponent implements OnInit {
   this.subscriptionModel='singleDelivery';
 
   //var x = document.getElementById("data_val_item_code").getAttribute("data-product-id");
-    //console.log("X is "+x);
+  //console.log("X is "+x);
 
 
   }
@@ -247,7 +253,8 @@ export class ProductDetailComponent implements OnInit {
   }
 
   getProductDetail(itemCode) {
-    debugger;
+
+    //debugger;
     this.spinner.show();
     this.shopService.GetProductDetail(itemCode).subscribe(result => {
       this.productDetail = result;

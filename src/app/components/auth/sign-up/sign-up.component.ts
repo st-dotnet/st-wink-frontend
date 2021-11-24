@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router,CanDeactivate } from '@angular/router';
 import { MustMatch } from '@app/_helpers/must-match.validator';
 import { User } from '@app/_models/user';
 import { SessionService } from '@app/_services';
@@ -9,13 +9,21 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { PlatformLocation } from '@angular/common'; 
+import { PlatformLocation } from '@angular/common';
+
+
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css'],
 })
-export class SignUpComponent implements OnInit {
+
+
+export class SignUpComponent implements OnInit  {
+
+  unSaved: boolean = true;
+
   form!: FormGroup;
   public recaptchaMode = 'v3';
   loading = false;
@@ -35,13 +43,17 @@ export class SignUpComponent implements OnInit {
     this.sessionService.scrollToTop();
     this.maxDate.setDate(this.maxDate.getDate() - 1);
 
-    location.onPopState(() => {
-      var r = confirm("You pressed a Back button! Are you sure?!");
-      if (r == true) {
-           this.router.navigate(['/sign-in']) ;  
-      } 
-      return false;
-  });
+  //    location.onPopState(() => {
+
+  //     var r = confirm("You pressed a Back button! Are you sure?!");
+  //     if (r == true) {
+  //         // this.router.navigate(['/sign-in']) ;
+  //          return true;
+  //     }
+  //     else{
+  //     return false;
+  //     }
+  //  });
   }
 
   ngOnInit(): void {
@@ -88,7 +100,7 @@ export class SignUpComponent implements OnInit {
   canDeactivate(): Observable<boolean> | boolean {
     debugger
     let dirty=this.form.dirty;
-    if(dirty==false){ 
+    if(dirty==false){
       return true;
     }else if(dirty==true){
       return false;
@@ -135,19 +147,19 @@ export class SignUpComponent implements OnInit {
           console.log("Result", res);
           debugger
           this.isTrue = this.sessionService.getSessionItem('isTrue');
-          if(this.isTrue == "true"){            
-            setTimeout(() => {              
+          if(this.isTrue == "true"){
+            setTimeout(() => {
             this.router.navigate(["/store/checkout"]);
-              this.spinner.hide();  
+              this.spinner.hide();
                 }, 1000);
           }else if(res.errorMessage != null && res.errorMessage != ""){
             this.toastrService.error(res.errorMessage);
           }else
           {
-            this.router.navigate([''], { relativeTo: this.route }) ;  
-            this.toastrService.success('User registration successfully');          
-             this.spinner.hide();  
-          } 
+            this.router.navigate([''], { relativeTo: this.route }) ;
+            this.toastrService.success('User registration successfully');
+             this.spinner.hide();
+          }
           // this.toastrService.success('Please check your email in order to verify the registration');
           this.spinner.hide();
         },
@@ -166,7 +178,7 @@ export class SignUpComponent implements OnInit {
   }
 
   emailVerify(type:any){
-    
+
     const emailModel ={
       userName : this.f.userName.value,
       email : this.f.emailAddress.value
@@ -177,14 +189,14 @@ export class SignUpComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: (result:any) => {
-          if(result){           
+          if(result){
             if(type=="Email"){
-              this.form.get("emailAddress").setValue("");            
+              this.form.get("emailAddress").setValue("");
             }else{
               this.form.get("userName").setValue("");
-            }   
-            this.toastrService.error(`${type} Already existed`);           
-           } 
+            }
+            this.toastrService.error(`${type} Already existed`);
+           }
           this.spinner.hide();
         },
         error: (error) => {
@@ -192,6 +204,6 @@ export class SignUpComponent implements OnInit {
           this.spinner.hide();
           this.loading = false;
         },
-      });  
+      });
   }
 }
