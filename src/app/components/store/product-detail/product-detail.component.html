@@ -170,20 +170,33 @@
                             <!-- <h3>Customize Shipment <span class="ques-ico"><a href="#"><i class="fas fa-question" aria-hidden="true"></i></a></span></h3> -->
                             <div class="choose-shipping">
                                 <div class="form-group">
-                                    <select [(ngModel)]="quantityValue" [ngModelOptions]="{standalone: true}" class="form-control">
+                                    <!-- <select [(ngModel)]="quantityValue" [ngModelOptions]="{standalone: true}" class="form-control">
                                   <option class="dropdown-item" disabled selected value="undefined">Select Quantity</option>
                                   <option *ngFor="let qty of quantity" [value]="qty.value">
                                   {{'Qty '+ qty.value}}
                                    </option>
-                                </select>
+                                </select> -->
+
+                                    <select (change)="quantityForOneTime(productDetail, $event.target.value)" [(ngModel)]="quantityValue"  class="form-control">
+                                        <option class="dropdown-item" disabled selected value="undefined">Select Quantity</option>
+                                        <option *ngFor="let qty of quantity" [value]="qty.value">
+                                        {{qty.name}}
+                                        </option>
+                                    </select>
+
+                                    <input type="number" style="margin-top: 10px;" id="showinput{{productDetail.itemCode}}" 
+                                    [(ngModel)]="productDetail.extraQuantity" *ngIf="productDetail.quantityModel == '11'  || productDetail.extraQuantity !=null"
+                                    (change)="quantitychanged(productDetail, $event.target.value)"
+                                    class="form-control" />
+
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
-                                  <path
+                                    <path
                                     id="Path_2028"
                                     data-name="Path 2028"
                                     d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
                                     transform="translate(-342.315 -7.7)"
-                                  />
-                                </svg>
+                                    />
+                                    </svg>
                                 </div>
                                 <div *ngIf="showSubscription" class="form-group">
                                     <select (change)="getYearValue($event.target.value)" class="form-control">
@@ -265,12 +278,17 @@
                             <h3>Customize Shipment</h3>
                             <div class="choose-shipping">
                                 <div class="form-group">
-                                    <select class="form-control">
-                                          <option>Qty 1</option>
-                                          <option>Qty 2</option>
-                                          <option>Qty 3</option>
-                                          <option>Qty 4</option>
-                                      </select>
+                                    <select [(ngModel)]="quantityValue"  class="form-control">
+                                        <option class="dropdown-item" disabled selected value="undefined">Select Quantity</option>
+                                        <option *ngFor="let qty of quantity" [value]="qty.value">
+                                        {{qty.name}}
+                                        </option>
+                                    </select>
+                                  <input type="number" style="margin-top: 10px;" id="showinput{{productDetail.itemCode}}" 
+                                    [(ngModel)]="productDetail.extraQuantity" *ngIf="productDetail.quantityModel == '11'  || productDetail.extraQuantity !=null"
+                                    (change)="quantitychanged(productDetail, $event.target.value)"
+                                    class="form-control" />
+
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
                                           <path id="Path_2028" data-name="Path 2028" d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z" transform="translate(-342.315 -7.7)"/>
                                           </svg>
