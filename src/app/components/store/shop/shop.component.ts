@@ -130,8 +130,6 @@ export class ShopComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-
     this.filterTitle = this.sessionService.getSessionItem("categorySelect");
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.route.params.subscribe(params => {
@@ -152,12 +150,9 @@ export class ShopComponent implements OnInit {
       this.selectDelivery = 0;
       this.subscriptionModel = 'singleDelivery';
     });
-
-
   }
 
   getAllCategoryById() {
-
     this.spinner.show();
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
       this.categoryModels = result;
@@ -175,6 +170,8 @@ export class ShopComponent implements OnInit {
       });
     })
   }
+
+
   showTooltip()
   {
     this.tooltipData = true;
@@ -186,7 +183,6 @@ export class ShopComponent implements OnInit {
   }
 
   GetDDLCategoryById() {
-
     this.spinner.show();
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
       this.categoryModels = result;
@@ -273,6 +269,7 @@ export class ShopComponent implements OnInit {
   closeModal() {
     this.modalService.dismissAll();
     this.router.navigate(['/store']);
+
   }
 
   nextToMove(content: any) {
