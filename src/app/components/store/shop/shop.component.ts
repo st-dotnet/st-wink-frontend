@@ -270,7 +270,8 @@ export class ShopComponent implements OnInit {
   }
 
   closeModal() {
-    this.modalService.dismissAll();
+  this.modalService.dismissAll();
+  this.router.navigate([`store/products/`]);
   }
 
   nextToMove(content: any) {

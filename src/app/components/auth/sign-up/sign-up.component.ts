@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router,CanDeactivate } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MustMatch } from '@app/_helpers/must-match.validator';
 import { User } from '@app/_models/user';
 import { SessionService } from '@app/_services';
@@ -38,22 +38,9 @@ export class SignUpComponent implements OnInit  {
     private spinner: NgxSpinnerService,
     private toastrService: ToastrService,
     private accountService: AccountService,
-    private location: PlatformLocation,
     private sessionService: SessionService) {
     this.sessionService.scrollToTop();
     this.maxDate.setDate(this.maxDate.getDate() - 1);
-
-  //    location.onPopState(() => {
-
-  //     var r = confirm("You pressed a Back button! Are you sure?!");
-  //     if (r == true) {
-  //         // this.router.navigate(['/sign-in']) ;
-  //          return true;
-  //     }
-  //     else{
-  //     return false;
-  //     }
-  //  });
   }
 
   ngOnInit(): void {
@@ -114,6 +101,18 @@ export class SignUpComponent implements OnInit  {
     if (this.form.invalid) {
       return;
     }
+    var today = new Date();
+    var birthDate = new Date(this.f.dateOfBirth.value);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+
+   
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+          age--;
+          if(age < 14) {
+         return   alert("You have less than 14 old!");
+        } 
+
     const model = {
       customerID: 0,
       insertEnrollerTree: '',
