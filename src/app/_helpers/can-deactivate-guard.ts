@@ -11,6 +11,6 @@ export interface CanComponentDeactivate {
 export class CanDeactivateGuard implements CanDeactivate<SignUpComponent> {
 
   canDeactivate():boolean {
-    return window.confirm("You want to leave this page");
+    return window.confirm("You want to leave this page?");
   }
 }

@@ -50,22 +50,20 @@ export class AppHeaderComponent implements OnInit {
           selector: '.Join-demo-tour',
           content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
           orientation: Orientation.Right
+        },
+      // {
+      //   title: 'Product',
+      //   selector: '.Product-demo-tour-class',
+      //   content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
+      //   orientation: Orientation.Right
 
-      },
-      {
-        title: 'Product',
-        selector: '.Product-demo-tour-class',
-        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
-        orientation: Orientation.Right
-
-      },
+      // },
 
       {
         title: 'Search',
         selector: '.Search-demo-tour-class',
         content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
         orientation: Orientation.Right
-
       },
 
       {
@@ -75,13 +73,13 @@ export class AppHeaderComponent implements OnInit {
         orientation: Orientation.Right
 
       },
-      {
-        title: 'LogOut',
-        selector: '.LogOut-demo-tour-class',
-        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
-        orientation: Orientation.Right
+      // {
+      //   title: 'LogOut',
+      //   selector: '.LogOut-demo-tour-class',
+      //   content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
+      //   orientation: Orientation.Right
 
-      },
+      // },
       {
         title: 'Login',
         selector: '.Login-demo-tour-class',
@@ -91,7 +89,6 @@ export class AppHeaderComponent implements OnInit {
       }
 
     ]
-
 };
 
   user: any;
@@ -107,41 +104,32 @@ export class AppHeaderComponent implements OnInit {
     private router: Router) {
     this.sessionService.user$.subscribe(x => this.user = x);
     this.windowWidth = window.innerWidth;
-
-  //   setTimeout(() => {
-  //     this.guidedTourService.startTour(this.dashboardTour);
-  // }, 1000);
   }
 
-  // RestartTour(){
-  //   this.guidedTourService.startTour(this.dashboardTour);
-  // }
-
    public RestartTour() {
-    // alert("ok");
     setTimeout(() => {
       this.guidedTourService.startTour(this.dashboardTour);
   }, 1000);
 }
-getIPAddress()
+ChecktourSession()
 {
-
-      if(localStorage.getItem("ipaddress"))
+      if(localStorage.getItem("IsVisted"))
       {
 
       }
        else
          {
-          this.http.get("http://api.ipify.org/?format=json").subscribe((res:any)=>{
-            this.ipAddress=res;
-          localStorage.setItem("ipaddress",this.ipAddress);
-       });
-    this.RestartTour();
+          //this.http.get("http://api.ipify.org/?format=json").subscribe((res:any)=>{
+            //this.ipAddress=res;
+          localStorage.setItem("IsVisted","visit");
+          this.RestartTour();
+       //});
   }
 }
   ngOnInit(): void {
-    this.getIPAddress();
-  // localStorage.setItem("ipaddress","");
+  // localStorage.setItem("IsVisted","");
+    this.ChecktourSession();
+
    // debugger;
     this.sessionService.cart$.subscribe(x => this.cartItems = x.length);
     if (this.windowWidth > 992) {

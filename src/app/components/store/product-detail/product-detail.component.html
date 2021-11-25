@@ -25,16 +25,13 @@
                     </div>
                     <ol class="carousel-indicators list-inline">
                         <li class="list-inline-item active">
-                            <a id="carousel-selector-0" class="selected" data-slide-to="0"
-                                data-target="#custCarousel"><img [src]="productDetail.image_03" /></a>
+                            <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#custCarousel"><img [src]="productDetail.image_03" /></a>
                         </li>
                         <li class="list-inline-item active">
-                            <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel"><img
-                                    [src]="productDetail.image_02" /></a>
+                            <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel"><img [src]="productDetail.image_02" /></a>
                         </li>
                         <li class="list-inline-item active">
-                            <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel"><img
-                                    [src]="productDetail.image_01" /></a>
+                            <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel"><img [src]="productDetail.image_01" /></a>
                         </li>
                     </ol>
                 </div>
@@ -62,9 +59,7 @@
                         </div>
                         <h6 class="small">Perfect for ages 3+</h6>
                         <div class="product-info">
-                            <p>Take the battle out of bedtime! Our Kids Sleep Melts are formulated with high-quality
-                                melatonin and natural ingredients to help your little one get the kind of sleep they
-                                need.</p>
+                            <p>Take the battle out of bedtime! Our Kids Sleep Melts are formulated with high-quality melatonin and natural ingredients to help your little one get the kind of sleep they need.</p>
                         </div>
                         <!-- <div class="prod-bundle-select">
                               <h3>Select Bundle</h3>
@@ -101,8 +96,7 @@
 
                             <div class="radio-bundle">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="1"
-                                        value="single" (change)="checkBundle('single',productDetail.price)" checked />
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="1" value="single" (change)="checkBundle('single',productDetail.price)" checked />
                                     <label class="form-check-label" for="1">Single</label>
                                 </div>
                             </div>
@@ -110,14 +104,14 @@
 
                             <div class="radio-bundle">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="2"
-                                        value="multiple" (change)="checkBundle('multiple',productDetail.price)" />
-                                    <label class="form-check-label" for="2">2-pk (Save 5%)</label>
-                                </div>
-                            </div>
-                        </div>
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="2" value="multiple" (change)="checkBundle('multiple',productDetail.price)" />
+                                    <label class="form-check-label" for="2">2-pk (Save 5%)</label
+                      >
+                    </div>
+                  </div>
+    </div>
 
-                        <!-- <div class="prod-bundle-select mt-0 delivery-radio">
+                          <!-- <div class="prod-bundle-select mt-0 delivery-radio">
                               <h3>Select Delivery</h3>
                                       <div class="radio-bundle">
                                       <div class="form-check form-check-inline">
@@ -148,74 +142,84 @@
                             </div> -->
                             <div class="radio-bundle">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptionsdelivery"
-                                        id="3" value="0" (change)="checkDelivery(0)" checked />
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptionsdelivery" id="3" value="0" (change)="checkDelivery(0)" checked />
                                     <label class="form-check-label" for="3">Single Delivery</label>
                                 </div>
                             </div>
 
                             <div class="radio-bundle">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptionsdelivery"
-                                        id="4" value="1" (change)="checkDelivery(1)" />
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptionsdelivery" id="4" value="1" (change)="checkDelivery(1)" />
                                     <label class="form-check-label" for="4">Subscribe & Save 15%</label>
                                 </div>
                             </div>
                         </div>
                         <div class="custom-shiping">
-                            <div [className]="tooltipData ? 'tooltipcontent show' : 'tooltipcontent hide'">
-                                <p>This text explains what our subscription system is and how it works in a concise way,
-                                    It will also explain the shipping schedule.</p>
-                                <p><a (click)="closeTooltip()" class="btnclose">Go Back</a></p>
+                          <div [className]="tooltipData ? 'tooltipcontent show' : 'tooltipcontent hide'">
+                             <p>This text explains what our subscription system is and how it works in a concise way, It will also explain the shipping schedule.</p>
+                            <!-- <p style="font-size: 14px;">Schedule your deliveries however you see fit. It is completely customizable.
+                              Do you need to skip a shipment or adjust your next shipment date? Just edit your recurring order in your account or give us a call.
+                              You get FREE 1st Class Shipping & 15% off every order.
+                              Setting up your Preferred Subscription Account automatically lets you start earning rewards. Earn up to 20% of your order value each month in store credit paid out in Loyalty Points directly into your account just for having an active subscription.</p> -->
+                            <p><a (click)="closeTooltip()" class="btnclose">Go Back</a></p>
 
-                            </div>
-                            <h3>Customize Shipment <span class="ques-ico"><a (click)="showTooltip()"><i
-                                            class="fas fa-question" aria-hidden="true"></i></a></span>
-                            </h3>
+                        </div>
+                        <h3>Customize Shipment <span class="ques-ico"><a (click)="showTooltip()"><i class="fas fa-question"
+                           aria-hidden="true"></i></a></span>
+                        </h3>
+
                             <!-- <h3>Customize Shipment <span class="ques-ico"><a href="#"><i class="fas fa-question" aria-hidden="true"></i></a></span></h3> -->
                             <div class="choose-shipping">
                                 <div class="form-group">
+                                    <!-- <select [(ngModel)]="quantityValue" [ngModelOptions]="{standalone: true}" class="form-control">
+                                  <option class="dropdown-item" disabled selected value="undefined">Select Quantity</option>
+                                  <option *ngFor="let qty of quantity" [value]="qty.value">
+                                  {{'Qty '+ qty.value}}
+                                   </option>
+                                </select> -->
 
-                                    <select (change)="quantityForOneTime(productDetail, $event.target.value)"
-                                        [(ngModel)]="quantityValue" class="form-control">
+                                    <select (change)="quantityForOneTime(productDetail, $event.target.value)" [(ngModel)]="quantityValue"  class="form-control">
+                                        <option class="dropdown-item" disabled selected value="undefined">Select Quantity</option>
                                         <option *ngFor="let qty of quantity" [value]="qty.value">
-                                            {{qty.name}}
+                                        {{qty.name}}
                                         </option>
                                     </select>
 
-                                    <input type="number" style="margin-top: 10px;"
-                                        id="showinput{{productDetail.itemCode}}"
-                                        [(ngModel)]="productDetail.extraQuantity"
-                                        *ngIf="productDetail.quantityModel == '11'  || productDetail.extraQuantity !=null"
-                                        (change)="quantitychanged(productDetail, $event.target.value)"
-                                        class="form-control" />
+                                    <input type="number" style="margin-top: 10px;" id="showinput{{productDetail.itemCode}}"
+                                    [(ngModel)]="productDetail.extraQuantity" *ngIf="productDetail.quantityModel == '11'  || productDetail.extraQuantity !=null"
+                                    (change)="quantitychanged(productDetail, $event.target.value)"
+                                    class="form-control" />
 
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
-                                        <path id="Path_2028" data-name="Path 2028"
-                                            d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
-                                            transform="translate(-342.315 -7.7)" />
+                                    <path
+                                    id="Path_2028"
+                                    data-name="Path 2028"
+                                    d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
+                                    transform="translate(-342.315 -7.7)"
+                                    />
                                     </svg>
                                 </div>
                                 <div *ngIf="showSubscription" class="form-group">
                                     <select (change)="getYearValue($event.target.value)" class="form-control">
-                                        <!-- <option class="dropdown-item" disabled value="undefined">Select</option>     -->
-                                        <option [value]="undefined" selected="true">Select</option>
-                                        <option *ngFor="let year of years" [value]="year.value">
-                                            {{year.name}}
-                                        </option>
-                                    </select>
+                                  <!-- <option class="dropdown-item" disabled value="undefined">Select</option>     -->
+                                  <option [value]="undefined"  selected="true">Select</option>
+                                  <option *ngFor="let year of years" [value]="year.value">
+                                  {{year.name}}
+                                   </option>
+                                </select>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
-                                        <path id="Path_2028" data-name="Path 2028"
-                                            d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
-                                            transform="translate(-342.315 -7.7)" />
-                                    </svg>
+                                  <path
+                                    id="Path_2028"
+                                    data-name="Path 2028"
+                                    d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
+                                    transform="translate(-342.315 -7.7)"
+                                  />
+                                </svg>
                                 </div>
                             </div>
                         </div>
                         <div class="cart-btn">
-                            <button type="submit" (click)="addToCart(productDetail)"
-                                class="btn btn-cart">${{showActualPrice == true ? bundlePrice : productDetail.price}}
-                                ADD</button>
+                            <button type="submit" (click)="addToCart(productDetail)" class="btn btn-cart">${{showActualPrice == true ? bundlePrice  : productDetail.price}} ADD</button>
                         </div>
                     </div>
                 </div>
@@ -243,21 +247,17 @@
                         </div>
                         <h6 class="small">Perfect for ages 3+</h6>
                         <div class="product-info">
-                            <p>Take the battle out of bedtime! Our Kids Sleep Melts are formulated with high-quality
-                                melatonin and natural ingredients to help your little one get the kind of sleep they
-                                need.</p>
+                            <p>Take the battle out of bedtime! Our Kids Sleep Melts are formulated with high-quality melatonin and natural ingredients to help your little one get the kind of sleep they need.</p>
                         </div>
                         <div class="prod-bundle-select">
                             <h3>Select Bundle</h3>
                             <div class="radio-bundle">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio1" value="option1">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
                                     <label class="form-check-label" for="inlineRadio1">Single</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio2" value="option2">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
                                     <label class="form-check-label" for="inlineRadio2">2-pk (Save 5%)</label>
                                 </div>
                             </div>
@@ -266,13 +266,11 @@
                             <h3>Select Delivery</h3>
                             <div class="radio-bundle">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="del-radio" id="inlineRadio3"
-                                        value="option3">
+                                    <input class="form-check-input" type="radio" name="del-radio" id="inlineRadio3" value="option3">
                                     <label class="form-check-label" for="inlineRadio3">Single Delivery</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="del-radio" id="inlineRadio4"
-                                        value="option4">
+                                    <input class="form-check-input" type="radio" name="del-radio" id="inlineRadio4" value="option4">
                                     <label class="form-check-label" for="inlineRadio4">Subscribe & Save 15%</label>
                                 </div>
                             </div>
@@ -281,41 +279,35 @@
                             <h3>Customize Shipment</h3>
                             <div class="choose-shipping">
                                 <div class="form-group">
-                                    <select [(ngModel)]="quantityValue" class="form-control">
+                                    <select [(ngModel)]="quantityValue"  class="form-control">
+                                        <option class="dropdown-item" disabled selected value="undefined">Select Quantity</option>
                                         <option *ngFor="let qty of quantity" [value]="qty.value">
-                                            {{qty.name}}
+                                        {{qty.name}}
                                         </option>
                                     </select>
-                                    <input type="number" style="margin-top: 10px;"
-                                        id="showinput{{productDetail.itemCode}}"
-                                        [(ngModel)]="productDetail.extraQuantity"
-                                        *ngIf="productDetail.quantityModel == '11'  || productDetail.extraQuantity !=null"
-                                        (change)="quantitychanged(productDetail, $event.target.value)"
-                                        class="form-control" />
+                                  <input type="number" style="margin-top: 10px;" id="showinput{{productDetail.itemCode}}"
+                                    [(ngModel)]="productDetail.extraQuantity" *ngIf="productDetail.quantityModel == '11'  || productDetail.extraQuantity !=null"
+                                    (change)="quantitychanged(productDetail, $event.target.value)"
+                                    class="form-control" />
 
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
-                                        <path id="Path_2028" data-name="Path 2028"
-                                            d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
-                                            transform="translate(-342.315 -7.7)" />
-                                    </svg>
+                                          <path id="Path_2028" data-name="Path 2028" d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z" transform="translate(-342.315 -7.7)"/>
+                                          </svg>
                                 </div>
                                 <div class="form-group">
                                     <select class="form-control">
-                                        <option>Every Month</option>
-                                        <option>Every Week</option>
-                                        <option>Every Year</option>
-                                    </select>
+                                          <option>Every Month</option>
+                                          <option>Every Week</option>
+                                          <option>Every Year</option>
+                                      </select>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
-                                        <path id="Path_2028" data-name="Path 2028"
-                                            d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
-                                            transform="translate(-342.315 -7.7)" />
-                                    </svg>
+                                          <path id="Path_2028" data-name="Path 2028" d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z" transform="translate(-342.315 -7.7)"/>
+                                          </svg>
                                 </div>
                             </div>
                         </div>
                         <div class="cart-btn">
-                            <button type="submit" (click)="addToCart(product)"
-                                class="btn btn-cart">${{productDetail.price}}</button>
+                            <button type="submit" (click)="addToCart(product)" class="btn btn-cart">${{productDetail.price}}</button>
                         </div>
                     </div>
                 </div>
@@ -329,8 +321,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="banners-enery">
-                    <img
-                        src="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/Product+Pages/Protect+and+Whiten+Toothpaste/Desktop+Banner_P_and_W.jpg" />
+                    <img src="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/Product+Pages/Protect+and+Whiten+Toothpaste/Desktop+Banner_P_and_W.jpg" />
                 </div>
             </div>
         </div>
@@ -347,18 +338,12 @@
                         <div class="Line-70">
                             <h3>Sweet,Sweet Sleep</h3>
                         </div>
-                        <p class="sweet-text">Elit ut aliquam purus sit amet luctus venenatis lectus magna fringilla
-                            urna porttitor rhoncus dolor purus non enim praesent elementum facilisis leo vel fringilla
-                            est ullamcorper eget nulla facilisi etiam dignissim diam quis enim
-                            lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat
-                            odio.</p>
-                        <p>Facilisis mauris sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio
-                            tempor orci dapibus ultrices in iaculis nunc.</p>
+                        <p class="sweet-text">Elit ut aliquam purus sit amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non enim praesent elementum facilisis leo vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim
+                            lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio.</p>
+                        <p>Facilisis mauris sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc.</p>
                     </div>
                     <div class="video-product-code">
-                        <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0"
-                            scrolling="no" class="wistia_embed" name="wistia_embed"
-                            src="https://fast.wistia.net/embed/iframe/3e5bf135vu" width="100%" height="100%"></iframe>
+                        <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" src="https://fast.wistia.net/embed/iframe/3e5bf135vu" width="100%" height="100%"></iframe>
                     </div>
                 </div>
             </div>
@@ -446,8 +431,7 @@
                         </div>
                         <div class="content-card-deepinfo">
                             <h4 class="title-ingred">Vitamin C (from Ascorbic Acid):</h4>
-                            <p class="info-ingred">Antioxidant; natural immune system support* | 1,500 mg per serving
-                            </p>
+                            <p class="info-ingred">Antioxidant; natural immune system support* | 1,500 mg per serving</p>
                         </div>
                     </div>
                 </div>
@@ -548,9 +532,7 @@
                             <div class="slider-wrapper">
                                 <div class="text-slider">
                                     <h4>Best Thing Ever</h4>
-                                    <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                                         consequat.”
                                     </p>
                                     <div class="reviews-product">
@@ -570,9 +552,7 @@
                             <div class="slider-wrapper">
                                 <div class="text-slider">
                                     <h4>Best Thing Ever</h4>
-                                    <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                                         consequat.”
                                     </p>
                                     <div class="reviews-product">
@@ -592,9 +572,7 @@
                             <div class="slider-wrapper">
                                 <div class="text-slider">
                                     <h4>Best Thing Ever</h4>
-                                    <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                                         consequat.”
                                     </p>
                                     <div class="reviews-product">
@@ -628,23 +606,19 @@
                         <li>
                             <div class="faq-data">
                                 <h4>Q: Elit ut aliquam purus sit amet luctus venenatis lectus magna fringilla?</h4>
-                                <p>A: Facilisis leo vel fringilla est ullamcorper eget nulla facilisi etiam dignissim
-                                    diam.</p>
+                                <p>A: Facilisis leo vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam.</p>
                             </div>
                         </li>
                         <li>
                             <div class="faq-data">
                                 <h4>Q: Facilisis mauris sit amet massa vitae tortor condimentum?</h4>
-                                <p>A: Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                    mollit anim id est laborum.</p>
+                                <p>A: Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                             </div>
                         </li>
                         <li>
                             <div class="faq-data">
-                                <h4>Q: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                    fugiat nulla pariatur?</h4>
-                                <p>A: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                    ex ea commodo consequat.</p>
+                                <h4>Q: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur?</h4>
+                                <p>A: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             </div>
                         </li>
                     </ul>
@@ -654,24 +628,14 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="more-info-shipping">
-                    <p>Warning: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat.</p>
+                    <p>Warning: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                     <h4>Shipping & Returns:</h4>
-                    <p>We pride ourselves on our top-notch customer service. Most of our orders are shipped within 24
-                        hours. Orders placed over the weekend will be packaged and sent out first thing on Monday
-                        morning.</p>
-                    <p>Wink Naturals offers a 365-day, 100% Happy Guarantee on all products we sell. If for any reason
-                        you are unhappy with your purchase, please reach out to us by phone at 888-799-5656 or email at
-                        hello@winknaturals.com and we will make
-                        it right! Orders returned less than 30 days from the date of purchase will qualify for a 100%
-                        refund of the amount paid for the order, less any shipping and handling charges. Any order
-                        returned that is past 30 days from the date
-                        of purchase will receive up to 100% of the amount paid refunded in Product Credit to be used on
-                        any other product for sale in the store. Shipping cost will be deducted from orders that are
-                        returned for refund.</p>
+                    <p>We pride ourselves on our top-notch customer service. Most of our orders are shipped within 24 hours. Orders placed over the weekend will be packaged and sent out first thing on Monday morning.</p>
+                    <p>Wink Naturals offers a 365-day, 100% Happy Guarantee on all products we sell. If for any reason you are unhappy with your purchase, please reach out to us by phone at 888-799-5656 or email at hello@winknaturals.com and we will make
+                        it right! Orders returned less than 30 days from the date of purchase will qualify for a 100% refund of the amount paid for the order, less any shipping and handling charges. Any order returned that is past 30 days from the date
+                        of purchase will receive up to 100% of the amount paid refunded in Product Credit to be used on any other product for sale in the store. Shipping cost will be deducted from orders that are returned for refund.</p>
                     <div class="note-info-center">
-                        <p>*These statements have not been evaluated by the Food and Drug Administration. This product
-                            is not intended to diagnose, treat, cure or prevent any disease.</p>
+                        <p>*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease.</p>
                     </div>
                 </div>
 
@@ -685,8 +649,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <yotpo-reviews-widget productId="{{review}}" name="{{productDetail.itemDescription}}" url="#"
-                    imageUrl="{{productDetail.largeImageUrl}}" description="{{productDetail.itemDescription}}">
+                <yotpo-reviews-widget productId="{{review}}" name="{{productDetail.itemDescription}}" url="#" imageUrl="{{productDetail.largeImageUrl}}" description="{{productDetail.itemDescription}}">
                 </yotpo-reviews-widget>
 
                 <!-- <div class="yotpo yotpo-main-widget" data-product-id="718"  data-price="24.99" data-currency="usd" data-name="The One Multi-Cleaner" data-url="#" data-image-url="/shopping/productimages/SP-THEONE_12_11_2020_500px.jpg">

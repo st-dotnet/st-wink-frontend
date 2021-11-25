@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap'
 import { SessionService } from '@app/_services';
 import { ShopService } from '@app/_services/shop.service';
@@ -48,14 +48,11 @@ export class ShopComponent implements OnInit {
   type: any = null;
   category: any;
   filterTitle: string;
-  productNameTitle: string = "All Products";
-  bundlePrice: any = 0;
-  showActualPrice: boolean = false;
+  productNameTitle: string="All Products";
+  bundlePrice:any=0;
+  showActualPrice: boolean= false;
   tooltipData: boolean = false;
-  orderType: any;
-
-  showOtherTextbox = null;
-  cartItems: any[] = [];
+  orderType : any;
 
   constructor(
     private sessionService: SessionService,
@@ -129,12 +126,7 @@ export class ShopComponent implements OnInit {
         id: '4',
         name: 'Qty 4',
         value: 4
-      },
-      {
-        id: 'Others',
-        name: 'Custom',
-        value: 11,
-      },
+      }
     ]
   }
 
@@ -145,7 +137,7 @@ export class ShopComponent implements OnInit {
       if (params['type']) {
         const type = params['type'];
         this.type = type.replace(new RegExp('-', 'g'), ' ');
-        this.productNameTitle = this.type;
+        this.productNameTitle=this.type;
       }
       if (this.type == "Comfort Patch") {
         this.showAgePopUp = true;
@@ -171,20 +163,23 @@ export class ShopComponent implements OnInit {
           webCategoryDescription: element.webCategoryDescription
         });
       });
-      const category = this.categoryModels.find(x => x.webCategoryDescription == this.type);
+      const category = this.categoryModels.find(x=> x.webCategoryDescription == this.type);
       this.category = category != null ? category.webCategoryID : 0;
-      this.shopService.GetProductsList(this.category, this.filterValue).subscribe(result => {
+      this.shopService.GetProductsList(this.category , this.filterValue).subscribe(result => {
         this.shopProductModels = result;
         this.spinner.hide();
       });
     })
   }
 
-  showTooltip() {
+
+  showTooltip()
+  {
     this.tooltipData = true;
   }
 
-  closeTooltip() {
+  closeTooltip()
+  {
     this.tooltipData = false;
   }
 
@@ -199,9 +194,8 @@ export class ShopComponent implements OnInit {
         });
       });
       var data = this.categoryModels.find(x => x.webCategoryDescription.toString() === "All Products");
-      if (data) {
-        data.webCategoryDescription = "Select Category";
-      }
+      if(data){
+      data.webCategoryDescription="Select Category";}
       this.categoryId = data?.webCategoryID;
       this.category = this.type != null ? parseInt(this.type) : this.categoryId;
       this.GetProductsList(this.categoryId, this.filterValue);
@@ -214,17 +208,19 @@ export class ShopComponent implements OnInit {
     this.categoryId = this.category;
     if (this.categoryId == 39) {
       this.showAgePopUp = true;
+
+
     }
     const category = this.categoryModels.find(x => x.webCategoryID == this.categoryId);
     const categoryName = category.webCategoryDescription.replace(new RegExp(' ', 'g'), '-');
-    this.productNameTitle = categoryName;
+    this.productNameTitle= categoryName;
     this.sessionService.setSessionItem('categoryDescription', categoryName);
     this.router.navigate([`store/products/${categoryName}`])
   }
 
   open(content: any, product: any, adultCheck: any) {
     //this.bundle = 'single';
-    this.showActualPrice = false;
+    this.showActualPrice= false;
     if (this.showAgePopUp == true) {
       this.reProduct = product;
       this.modalService.open(adultCheck, this.modalOptions).result.then((result) => {
@@ -232,7 +228,7 @@ export class ShopComponent implements OnInit {
         alert(this.closeResult);
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        this.sessionService.setSessionObject("ignore_Comfort_patch", "ComfortPatch");
+        //this.sessionService.setSessionObject("ignore_Comfort_patch","ComfortPatch");
       });
     } else {
       this.product = product;
@@ -270,8 +266,7 @@ export class ShopComponent implements OnInit {
   }
 
   closeModal() {
-  this.modalService.dismissAll();
-  this.router.navigate([`store/products/`]);
+    this.modalService.dismissAll();
   }
 
   nextToMove(content: any) {
@@ -285,14 +280,14 @@ export class ShopComponent implements OnInit {
     return `${environment.productImageApiUrl}${imageName}`;
   }
 
-  RedirectToProduct(adultCheck: any, product: any, learnMore: string) {
-    if (learnMore == "learnMore") {
+  RedirectToProduct(adultCheck:any,product: any,learnMore:string) {
+    if(learnMore=="learnMore"){
       this.showAgePopUp = false;
       this.modalService.dismissAll();
       this.router.navigate(['/store/product', product.itemCode]);
     }
-    this.reProduct = product;
-    if (this.category == 22) {
+    this.reProduct=product;
+    if(this.category == 22){
       this.sessionService.setSessionItem('categoryDescription', "All-Products");
     }
     if (this.showAgePopUp == true) {
@@ -300,10 +295,10 @@ export class ShopComponent implements OnInit {
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        this.sessionService.setSessionObject("ignore_Comfort_patch", "ComfortPatch");
+       // this.sessionService.setSessionObject("ignore_Comfort_patch","ComfortPatch");
 
       });
-    } else {
+    } else{
       this.modalService.dismissAll();
       this.router.navigate(['/store/product', product.itemCode]);
     }
@@ -316,10 +311,10 @@ export class ShopComponent implements OnInit {
   addToCart(product: any) {
     debugger;
 
-    if (this.sessionService.getSessionObject("ignore_Comfort_patch")) {
-      this.toastrService.error('Sorry You are Under 18.');
-      return;
-    }
+    // if(this.sessionService.getSessionObject("ignore_Comfort_patch")){
+    //   this.toastrService.error('Sorry You are Under 18.');
+    //   return;
+    // }
     this.productItems = this.sessionService.getSessionObject('productCartItems');
     if (this.selectDelivery == 1 && this.subscriptionModelduration == undefined) {
       return this.toastrService.error("Please select the subscription plan");
@@ -336,7 +331,7 @@ export class ShopComponent implements OnInit {
       discount: 0,
       quantityLimit: 4,
       isDisabled: null,
-      orderType: 0
+      orderType:0
 
     }
     Object.entries(items).forEach(([key, value]) => { product[key] = value });
@@ -381,11 +376,8 @@ export class ShopComponent implements OnInit {
           product.quantityModel = single_singledelivery.quantityModel + +product.quantityModel;
 
           if (this.product.quantityModel > product.quantityLimit) {
-            // this.productItems.push(old_single_singledelivery);
-            // this.toastrService.error('You Exceed your Quantity Limit 4');
-            
-            this.productItems.push(product);
-            this.toastrService.success('Product added successfully');
+            this.productItems.push(old_single_singledelivery);
+            this.toastrService.error('You Exceed your Quantity Limit 4');
           }
           else {
             this.productItems.push(product);
@@ -411,11 +403,8 @@ export class ShopComponent implements OnInit {
           product.quantityModel = single_subscriptiondelivery.quantityModel + +product.quantityModel;
 
           if (product.quantityModel > product.quantityLimit) {
-            // this.productItems.push(old_single_subscriptiondelivery);
-            // this.toastrService.error('You Exceed your Quantity Limit 4');
-            
-            this.productItems.push(product);
-            this.toastrService.success('Product added successfully');
+            this.productItems.push(old_single_subscriptiondelivery);
+            this.toastrService.error('You Exceed your Quantity Limit 4');
           }
           else {
             this.productItems.push(product);
@@ -441,11 +430,8 @@ export class ShopComponent implements OnInit {
           product.quantityModel = multiple_singledelivery.quantityModel + +product.quantityModel;
 
           if (product.quantityModel > product.quantityLimit) {
-            // this.productItems.push(old_multiple_singledelivery);
-            // this.toastrService.error('You Exceed your Quantity Limit 4');
-            
-            this.productItems.push(product);
-            this.toastrService.success('Product added successfully');
+            this.productItems.push(old_multiple_singledelivery);
+            this.toastrService.error('You Exceed your Quantity Limit 4');
           }
           else {
             this.productItems.push(product);
@@ -471,11 +457,8 @@ export class ShopComponent implements OnInit {
           product.quantityModel = multiple_subscriptiondelivery.quantityModel + +product.quantityModel;
 
           if (product.quantityModel > product.quantityLimit) {
-            // this.productItems.push(old_multiple_subscriptiondelivery);
-            // this.toastrService.error('You Exceed your Quantity Limit 4');
-            
-            this.productItems.push(product);
-            this.toastrService.success('Product added successfully');
+            this.productItems.push(old_multiple_subscriptiondelivery);
+            this.toastrService.error('You Exceed your Quantity Limit 4');
           }
           else {
             this.productItems.push(product);
@@ -503,18 +486,19 @@ export class ShopComponent implements OnInit {
   }
 
   checkBundle(bundle: string, productPrice: any) {
-    this.bundlePrice = 0;
+    this.bundlePrice=0;
     this.bundle = bundle;
-    if (bundle == 'single') {
-      this.bundlePrice = productPrice;
+    if(bundle=='single')
+    {
+     this.bundlePrice=productPrice;
     }
-    else {
+    else{
       //let itemPrice = productPrice;
-      this.showActualPrice = true;
+      this.showActualPrice=true;
       let itemPrice = productPrice * 2;
       let discountper5 = (itemPrice * 5) / 100;
       this.bundlePrice = itemPrice - discountper5;
-      this.bundlePrice = this.bundlePrice.toFixed(2);
+      this.bundlePrice =this.bundlePrice.toFixed(2);
     }
   }
 
@@ -537,45 +521,5 @@ export class ShopComponent implements OnInit {
     this.spinner.show();
     this.filterValue = parseInt(event.target.value);
     this.GetProductsList(this.categoryId, this.filterValue);
-  }
-
-  quantityForOneTime(productDetail: any, selectedvalue: number) {
-    debugger;
-    this.quantityCalculation(productDetail, selectedvalue);
-  }
-
-  quantitychanged(cartitem: any, selectedvalue: number) {
-    debugger;
-    this.quantityCalculation(cartitem, selectedvalue);
-    const item = this.cartItems.find((x) => x.itemCode == cartitem.itemCode);
-
-    if (item && selectedvalue > 5) {
-      item.quantityModel = +selectedvalue;
-    }
-  }
-
-  quantityCalculation(productDetail: any, selectedvalue: number) {
-    debugger;
-    this.cartItems = this.sessionService.getSessionObject('productCartItems');
-    if (selectedvalue < 5) {
-      productDetail.extraQuantity = null;
-    }
-    if (selectedvalue != null && selectedvalue != undefined) {
-      if (selectedvalue == 11 || selectedvalue > 5) {
-        this.showOtherTextbox = productDetail.itemCode;
-        $('#showinput' + productDetail.itemCode).show();
-      } else {
-        $('#showinput' + productDetail.itemCode).hide();
-      }
-      if (this.cartItems) {
-        for (var i = 0; i <= this.cartItems.length - 1; i++) {
-          if (this.cartItems[i].itemCode == productDetail.itemCode) {
-            this.cartItems[i].quantityModel = +selectedvalue;
-          }
-        }
-      }
-    }
-    this.product.quantityModel = +selectedvalue;
-    this.sessionService.setSessionObject('productCartItems', this.cartItems);
   }
 }
