@@ -21,15 +21,16 @@ import { PlatformLocation } from '@angular/common';
 
 
 export class SignUpComponent implements OnInit  {
-
   unSaved: boolean = true;
-
   form!: FormGroup;
   public recaptchaMode = 'v3';
   loading = false;
   submitted = false;
   maxDate = new Date();
   maskMobileNo = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  //datemask= [/\d/, /\d/, '/', /\d/, /\d/, '/',/\d/, /\d/,/\d/, /\d/];
+
+
   isTrue: string;
   constructor(
     private formBuilder: FormBuilder,
@@ -68,6 +69,7 @@ export class SignUpComponent implements OnInit  {
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
         dateOfBirth: ['',[Validators.required]],
+        //dateOfBirth: ['',[Validators.required,Validators.pattern('^((0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])[- /.](19|20)?[0-9]{2})*$')]],
         recaptcha:['',[Validators.required]]
       },
       {
@@ -75,6 +77,7 @@ export class SignUpComponent implements OnInit  {
       }
     );
   }
+ //
   public addTokenLog(message: string, token: string | null) {
    // this.log.push(`${message}: ${this.formatToken(token)}`);
   }
@@ -106,12 +109,12 @@ export class SignUpComponent implements OnInit  {
     var age = today.getFullYear() - birthDate.getFullYear();
     var m = today.getMonth() - birthDate.getMonth();
 
-   
-      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
           age--;
           if(age < 14) {
          return   alert("You have less than 14 old!");
-        } 
+        }
 
     const model = {
       customerID: 0,
@@ -170,14 +173,13 @@ export class SignUpComponent implements OnInit  {
       });
   }
 
-  validateEmail(email: any) {
+  validateEmail(email: any){
     const re =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
 
   emailVerify(type:any){
-
     const emailModel ={
       userName : this.f.userName.value,
       email : this.f.emailAddress.value

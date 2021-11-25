@@ -53,7 +53,7 @@
               <input type="password" class="form-control" formControlName="password" placeholder="Password" minlength="6" maxlength="12"
                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                 <span class="valid-text">* Required</span>
-              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+               <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                 <div *ngIf="f.password.errors.required">Password is required</div>
                 <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
               </div>
@@ -69,23 +69,22 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <input type="text" placeholder="Birthday" class="form-control" readonly="readonly" [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors }" 
-              bsDatepicker [maxDate]="maxDate" [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }" formControlName="dateOfBirth">
+              <input type="text" placeholder="Birthday" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors }"
+              bsDatepicker [maxDate]="maxDate" [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }"  formControlName="dateOfBirth">
               <span class="valid-text">* Required</span>
               <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
                 <div *ngIf="f.dateOfBirth.errors.required">Birthday is required</div>
+                <!-- <div *ngIf="f.dateOfBirth.errors.pattern">Date Of Birth format is not vaild</div> -->
 
               </div>
             </div>
-<div class="form-group mb-3">
-
-  <re-captcha id="recaptcha" name="recaptcha" required [ngClass]="{ 'is-invalid': submitted && f.recaptcha.errors }" formControlName="recaptcha"></re-captcha>
-  <span class="valid-text">* Required</span>
-  <div *ngIf="submitted && f.recaptcha.errors" class="invalid-feedback">
-    <div *ngIf="f.recaptcha.errors.required">Recaptcha is required</div>
-
-  </div>
-</div>
+                <div class="form-group mb-3">
+                  <re-captcha id="recaptcha" name="recaptcha" required [ngClass]="{ 'is-invalid': submitted && f.recaptcha.errors }" formControlName="recaptcha"></re-captcha>
+                  <span class="valid-text">* Required</span>
+                  <div *ngIf="submitted && f.recaptcha.errors" class="invalid-feedback">
+                    <div *ngIf="f.recaptcha.errors.required">Recaptcha is required</div>
+                  </div>
+                </div>
           </div>
           <div class="btn-proceed">
             <p class="short-noti-signup">We will never sell or share your personal information.</p>
@@ -94,7 +93,7 @@
             <a [routerLink]="['/sign-in']">SIGN IN</a>
           </div>
         </form>
-     
+
       </div>
     </div>
   </div>

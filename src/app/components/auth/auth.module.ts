@@ -29,7 +29,8 @@ import { CanDeactivateGuard } from '@app/_helpers/can-deactivate-guard';
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: {
-        siteKey: '6Lc7B1AdAAAAAM39-h6SVw-Cto_oLDL_FGxSb-2e',
+       // siteKey: '6Lc7B1AdAAAAAM39-h6SVw-Cto_oLDL_FGxSb-2e',
+       siteKey: '6Lcrd1odAAAAADJjzNMBVyE67Az5LO5M14uu5Qoc',
       } as RecaptchaSettings,
     },
   ],

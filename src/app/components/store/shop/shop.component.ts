@@ -103,9 +103,6 @@ export class ShopComponent implements OnInit {
         value: 'everyYear'
       }
     ]
-
-  }
-  ngAfterContentInit(): void {
     this.quantity = [
       {
         id: '1',
@@ -128,9 +125,13 @@ export class ShopComponent implements OnInit {
         value: 4
       }
     ]
+
   }
 
+
   ngOnInit(): void {
+
+
     this.filterTitle = this.sessionService.getSessionItem("categorySelect");
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.route.params.subscribe(params => {
@@ -151,9 +152,12 @@ export class ShopComponent implements OnInit {
       this.selectDelivery = 0;
       this.subscriptionModel = 'singleDelivery';
     });
+
+
   }
 
   getAllCategoryById() {
+
     this.spinner.show();
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
       this.categoryModels = result;
@@ -171,8 +175,6 @@ export class ShopComponent implements OnInit {
       });
     })
   }
-
-
   showTooltip()
   {
     this.tooltipData = true;
@@ -184,6 +186,7 @@ export class ShopComponent implements OnInit {
   }
 
   GetDDLCategoryById() {
+
     this.spinner.show();
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
       this.categoryModels = result;
@@ -219,6 +222,7 @@ export class ShopComponent implements OnInit {
   }
 
   open(content: any, product: any, adultCheck: any) {
+
     //this.bundle = 'single';
     this.showActualPrice= false;
     if (this.showAgePopUp == true) {
@@ -227,6 +231,7 @@ export class ShopComponent implements OnInit {
         this.closeResult = `Closed with: ${result}`;
         alert(this.closeResult);
       }, (reason) => {
+
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         //this.sessionService.setSessionObject("ignore_Comfort_patch","ComfortPatch");
       });
@@ -267,6 +272,7 @@ export class ShopComponent implements OnInit {
 
   closeModal() {
     this.modalService.dismissAll();
+    this.router.navigate(['/store']);
   }
 
   nextToMove(content: any) {
@@ -281,6 +287,7 @@ export class ShopComponent implements OnInit {
   }
 
   RedirectToProduct(adultCheck:any,product: any,learnMore:string) {
+
     if(learnMore=="learnMore"){
       this.showAgePopUp = false;
       this.modalService.dismissAll();
