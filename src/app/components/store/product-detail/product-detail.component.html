@@ -153,19 +153,22 @@
                                     <label class="form-check-label" for="4">Subscribe & Save 15%</label>
                                 </div>
                             </div>
+                            <div> <span class="ques-ico"><a (click)="showTooltip()"><i class="fas fa-question"
+                                aria-hidden="true"></i></a></span></div> 
                         </div>
                         <div class="custom-shiping">
                           <div [className]="tooltipData ? 'tooltipcontent show' : 'tooltipcontent hide'">
-                             <p>This text explains what our subscription system is and how it works in a concise way, It will also explain the shipping schedule.</p>
-                            <!-- <p style="font-size: 14px;">Schedule your deliveries however you see fit. It is completely customizable.
-                              Do you need to skip a shipment or adjust your next shipment date? Just edit your recurring order in your account or give us a call.
-                              You get FREE 1st Class Shipping & 15% off every order.
-                              Setting up your Preferred Subscription Account automatically lets you start earning rewards. Earn up to 20% of your order value each month in store credit paid out in Loyalty Points directly into your account just for having an active subscription.</p> -->
-                            <p><a (click)="closeTooltip()" class="btnclose">Go Back</a></p>
+ 
+                             <p (click)="closeTooltip()">
+                                <b>Here's How it Works</b><br>
+                                <li>Schedule your deliveries however you see fit. It is completely customizable.</li>
+                                    <li>Do you need to skip a shipment or adjust your next shipment date? Just edit your recurring order in your account or give us a call.</li>
+                                   <li>You get FREE 1st Class Shipping & 15% off every order.</li>
+                                   <li>Setting up your Preferred Subscription Account automatically lets you start earning rewards. Earn up to 20% of your order value each month in store credit paid out in Loyalty Points directly into your account just for having an active subscription.</li>
 
+                           </p> 
                         </div>
-                        <h3>Customize Shipment <span class="ques-ico"><a (click)="showTooltip()"><i class="fas fa-question"
-                           aria-hidden="true"></i></a></span>
+                        <h3>Customize Shipment 
                         </h3>
 
                             <!-- <h3>Customize Shipment <span class="ques-ico"><a href="#"><i class="fas fa-question" aria-hidden="true"></i></a></span></h3> -->

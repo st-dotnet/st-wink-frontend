@@ -1041,7 +1041,14 @@ div#questions-ask .no-question a.be-post {
 .faq-data h4 {
     font-family: 'g-demibold';
 }
-
+.prod-bundle-select.mt-0.delivery-radio div {
+    position: relative;
+}
+div span.ques-ico {
+float: right;
+position: absolute;
+bottom: 9px;
+}
 
 /* MEDIA QUERIES CSS */
 

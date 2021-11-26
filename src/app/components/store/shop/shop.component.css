@@ -420,7 +420,14 @@ a.btn-add:hover {
     cursor: pointer;
 }
 
-
+.prod-bundle-select.mt-0.delivery-radio div {
+    position: relative;
+}
+div span.ques-ico {
+float: right;
+position: absolute;
+bottom: 9px;
+}
 /* MEDIA */
 
 @media (max-width:1366px) {
