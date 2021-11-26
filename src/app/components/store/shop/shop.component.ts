@@ -130,6 +130,7 @@ export class ShopComponent implements OnInit {
 
 
   ngOnInit(): void {
+
     this.filterTitle = this.sessionService.getSessionItem("categorySelect");
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.route.params.subscribe(params => {

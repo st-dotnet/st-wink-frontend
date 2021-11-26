@@ -111,3 +111,10 @@ p.already-text {
     color: #000000bf;
     margin-bottom: 8px;
 }
+
+.dateofbirth-invalid-feed-back{
+     width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #dc3545;
+}

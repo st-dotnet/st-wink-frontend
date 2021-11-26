@@ -1031,6 +1031,14 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart {
     font-size: 18px;
 }
 
+.additional-div {
+  display: block;
+  width: 100%;
+  float: left;
+  margin: 40px 0 0 0;
+}
+
+
 @media (max-width:767px) {
     .cart-quantity.mob-sec .form-group:last-child {
         order: 1;

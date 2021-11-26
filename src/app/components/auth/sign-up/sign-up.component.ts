@@ -21,6 +21,7 @@ import { PlatformLocation } from '@angular/common';
 
 
 export class SignUpComponent implements OnInit  {
+  checkage:boolean=false;
   unSaved: boolean = true;
   form!: FormGroup;
   public recaptchaMode = 'v3';
@@ -69,7 +70,7 @@ export class SignUpComponent implements OnInit  {
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
         dateOfBirth: ['',[Validators.required]],
-        //dateOfBirth: ['',[Validators.required,Validators.pattern('^((0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])[- /.](19|20)?[0-9]{2})*$')]],
+
         recaptcha:['',[Validators.required]]
       },
       {
@@ -113,7 +114,8 @@ export class SignUpComponent implements OnInit  {
       if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
           age--;
           if(age < 14) {
-         return   alert("You have less than 14 old!");
+          this.checkage=true;
+         return;
         }
 
     const model = {

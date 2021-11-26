@@ -1,53 +1,54 @@
 <section class="backlink-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7 back-link">
-                <a [routerLink]="['/store']"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="angle-left"
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 back-link">
+        <a [routerLink]="['/store']"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="angle-left"
             role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
             class="svg-inline--fa fa-angle-left fa-w-6 fa-3x">
             <path fill="currentColor"
               d="M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z"
               class=""></path>
           </svg>Back to SHOP</a>
-            </div>
-            <div class="col-md-5">
-                <div class="cart-sidebar">
-                    <div class="sidebar-head">
-                        <h2>Cart Summary</h2>
-                        <span class="amount-summary"> ${{ cartSummaryTotal | number:'.1-2' }} </span>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="col-md-5">
+        <div class="cart-sidebar">
+          <div class="sidebar-head">
+            <h2>Cart Summary</h2>
+            <span class="amount-summary"> ${{ cartSummaryTotal | number:'.1-2' }} </span>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
 <section class="cart-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-7 mob-setting">
-                <div class="sidebar-ui">
-                    <div class="search-box">
-                        <div class="search-bar-on">
-                            <div class="form-group">
-                                <input type="text" class="form-control" (click)="open(referr_user)" value="" placeholder="Find referral (Optional)" />
-                                <span class="search"><svg xmlns="http://www.w3.org/2000/svg" width="16.947" height="17.048"
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-7 mob-setting">
+        <div class="sidebar-ui">
+          <div class="search-box">
+            <div class="search-bar-on">
+              <div class="form-group">
+                <input type="text" class="form-control" (click)="open(referr_user)" value=""
+                  placeholder="Find referral (Optional)" />
+                <span class="search"><svg xmlns="http://www.w3.org/2000/svg" width="16.947" height="17.048"
                     viewBox="0 0 16.947 17.048">
                     <path id="Path_2019" data-name="Path 2019"
                       d="M151.4,12a4.5,4.5,0,1,1,4.5-4.5A4.481,4.481,0,0,1,151.4,12Zm6,0h-.8l-.3-.3a6.593,6.593,0,0,0,1.5-5.3,6.471,6.471,0,0,0-5.6-5.3,6.53,6.53,0,0,0-2,12.9,6.593,6.593,0,0,0,5.3-1.5l.3.3v.8l4.2,4.2a1.061,1.061,0,0,0,1.5-1.5Z"
                       transform="translate(-144.853 -1.052)" />
                   </svg>
                 </span>
-                            </div>
-                            <span class="text-value">Customer ID, First or Last Name</span>
-                        </div>
-                    </div>
-                </div>
+              </div>
+              <span class="text-value">Customer ID, First or Last Name</span>
+            </div>
+          </div>
+        </div>
 
-                <!--- GET FREE SHipping BOX-->
-                <div class="grid-box-shadow shippingbox">
-                    <div class="get-shipping">
-                        <a (click)="open(convert_subscription)">Get Free Shipping & Save 15%
+        <!--- GET FREE SHipping BOX-->
+        <div class="grid-box-shadow shippingbox">
+          <div class="get-shipping">
+            <a (click)="open(convert_subscription)">Get Free Shipping & Save 15%
               <span class="arrow">
                 <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
                   <path id="Path_2044" data-name="Path 2044"
@@ -56,17 +57,17 @@
                 </svg>
               </span>
             </a>
-                    </div>
-                </div>
-                <div *ngIf="oneTimePriceCartItemsCount > 0" class="grid-box-shadow OTP">
-                    <h3>One-Time Purchase ({{ oneTimePriceCartItemsCount }})</h3>
-                    <div *ngFor="let cartItem of oneTimePriceCartItems; let i = index" class="cart-singleitem">
-                        <div class="media">
-                            <div class="media-left">
-                                <a [href]="cartItem.image_03" target="_blank">
-                                    <img class="media-object" [src]="cartItem.image_03" alt="..." />
-                                </a>
-                                <span class="remove-product"><a (click)="removeItem(cartItem, 0,cartItem.bundle)"><svg
+          </div>
+        </div>
+        <div *ngIf="oneTimePriceCartItemsCount > 0" class="grid-box-shadow OTP mb-4">
+          <h3>One-Time Purchase ({{ oneTimePriceCartItemsCount }})</h3>
+          <div *ngFor="let cartItem of oneTimePriceCartItems; let i = index" class="cart-singleitem">
+            <div class="media">
+              <div class="media-left">
+                <a [href]="cartItem.image_03" target="_blank">
+                  <img class="media-object" [src]="cartItem.image_03" alt="..." />
+                </a>
+                <span class="remove-product"><a (click)="removeItem(cartItem, 0,cartItem.bundle)"><svg
                       aria-hidden="true" focusable="false" data-prefix="far" data-icon="times" role="img"
                       xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"
                       class="svg-inline--fa fa-times fa-w-10 fa-3x">
@@ -74,17 +75,17 @@
                         d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"
                         class=""></path>
                     </svg></a></span>
-                            </div>
-                            <div class="media-body">
-                                <div class="data-cart">
-                                    <div class="cart-details">
-                                        <h4 class="media-heading">
-                                            {{ cartItem.itemDescription }}
-                                        </h4>
-                                        <p>{{ cartItem.itemCode }}</p>
-                                        <div class="cart-quantity mob-sec">
-                                            <div class="form-group">
-                                                <select disabled={{cartItem.isDisabled}} (change)="
+              </div>
+              <div class="media-body">
+                <div class="data-cart">
+                  <div class="cart-details">
+                    <h4 class="media-heading">
+                      {{ cartItem.itemDescription }}
+                    </h4>
+                    <p>{{ cartItem.itemCode }}</p>
+                    <div class="cart-quantity mob-sec">
+                      <div class="form-group">
+                        <select disabled={{cartItem.isDisabled}} (change)="
                             quantityForOneTime(cartItem, $event.target.value)
                           " class="form-control">
                           <!-- <option class="dropdown-item" disabled selected value="undefined">
@@ -94,85 +95,102 @@
                             {{'Qty '+ qty.value }}
                           </option>
                         </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="cart-quantity des-sec">
-                                        <div class="prod-quant">
-                                            <div class="form-group">
-                                                <select (change)="
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cart-quantity des-sec">
+                    <div class="prod-quant">
+                      <div class="form-group">
+                        <select (change)="
                           quantityForOneTime(cartItem, $event.target.value)
                         " class="form-control" [(ngModel)]="cartItem.quantityModel">
                           <!-- <option class="dropdown-item" disabled selected value="undefined">
                           {{ cartItem.quantityModel }}
                         </option> -->
-                          <option *ngFor="let qty of quantity" [value]="qty.value" >
+                          <option *ngFor="let qty of quantity" [value]="qty.value">
                             {{qty.name }}
                           </option>
                         </select>
-                      <input type="number"  style="margin-top: 10px;" id="showinput{{cartItem.itemCode}}" [(ngModel)]="cartItem. extraQuantity" *ngIf="cartItem.quantityModel == '33' || cartItem.extraQuantity !=null "    (change)="quantitychanged(cartItem, $event.target.value)" class="form-control">
+                        <input type="number" style="margin-top: 10px;" id="showinput{{cartItem.itemCode}}"
+                          [(ngModel)]="cartItem.extraQuantity"
+                          *ngIf="cartItem.quantityModel == '0' || cartItem.extraQuantity !=null "
+                          (change)="quantitychanged(cartItem, $event.target.value)" class="form-control">
 
-                     
-                                            </div>
-                                            <div class="price">
-                                                <p class="price-product">${{ cartItem.Price | number:'.1-2' }}</p>
-                                            </div>
-                                        </div>
-                                        <div class="prod-discount">
-                                            <div *ngIf="cartItem.bundle == 'multiple'" class="subscription-with-discount">
-                                                <p>5% Discount</p>
-                                                <p>-$ {{cartItem.bv * 2 - cartItem.Price | number:'.1-2'}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                      </div>
+                      <div class="price">
+                        <p class="price-product">${{ cartItem.Price | number:'.1-2' }}</p>
+                      </div>
                     </div>
+                    <div class="prod-discount">
+                      <div *ngIf="cartItem.bundle == 'multiple'" class="subscription-with-discount">
+                        <!-- <p>5% Discount</p>
+                        <p>-${{cartItem.Quantityupdate| number:'.1-2'}}</p> -->
 
-                    <div class="other-additional-product">
-                        <div class="promo-code">
-                            <div [className]="
+                        <!-- <p id="UpdateDiscoutAmount{{cartItem.itemCode}}">{{cartItem.bv * 2 - cartItem.Price| number:'.1-2'}}</p> -->
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="other-additional-product">
+            <div class="promo-code">
+              <div [className]="
                   promocode_onetime
                     ? 'special-field datafilled form-group '
                     : 'special-field dataempty form-group'
                 ">
-                                <input type="text" [(ngModel)]="promocode_onetime" class="form-control" />
-                                <label class="form-label">Promo Code</label>
-                                <button class="btn-add-promo" (click)="addPromo()">
+                <input type="text" [(ngModel)]="promocode_onetime" class="form-control" />
+                <label class="form-label">Promo Code</label>
+                <button class="btn-add-promo" (click)="addPromo()">
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
                     <path id="Path_2014" data-name="Path 2014"
                       d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
                       transform="translate(-194.9 -3)" />
                   </svg>
                 </button>
-                  <p class="noPromoMessage">No code applied</p>
-                            </div>
-                         
-                            <div class="subtotal">
-                                <p>Subtotal</p>
-                                <p>${{ subtotalOneTimePrice | number:'.1-2' }}</p>
-                            </div>
-                        </div>
-                    </div>
+                <p class="noPromoMessage">No code applied</p>
+              </div>
+
+
+              <div class="prod-discount">
+                <div class="subtotal">
+                  <p>5% Discount</p>
+                  <p>-$ {{totalOneTimeDiscountPurchase | number:'.1-2'}}</p>
                 </div>
+              </div>
+
+              <div class="subtotal">
+
+                <p>Subtotal</p>
+                <p>${{ subtotalOneTimePrice | number:'.1-2' }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
 
 
-                <!-- subscription -->
-                <div *ngIf="subscriptionCartItemsCount > 0" class="grid-box-shadow OTP Subscription-box">
-                    <h3>Subscription Purchase ({{ subscriptionCartItemsCount }})</h3>
-                    <div *ngFor="let delivery of subscriptionCartItems; let i = index" class="cart-singleitem">
-                    <div class="subscribe_title" > <p *ngIf="delivery.subscriptionModel=='everyMonth'">Delivers Every Month</p>
-                      <p *ngIf="delivery.subscriptionModel=='everyWeek'">Delivers Every Week</p>
-                      <p *ngIf="delivery.subscriptionModel=='everyYear'">Delivers Every Year</p></div> 
-                        <div class="media">
-                            <div class="media-left">
-                                <a [href]="delivery.image_03" target="_blank">
-                                    <img class="media-object" [src]="delivery.image_03" alt="..." />
-                                </a>
-                                <span class="remove-product"><a (click)="removeItem(delivery, 1,delivery.bundle)"><svg
+        <!-- subscription -->
+        <div *ngIf="subscriptionCartItemsCount > 0" class="grid-box-shadow OTP Subscription-box">
+          <h3>Subscription Purchase ({{ subscriptionCartItemsCount }})</h3>
+          <div *ngFor="let delivery of subscriptionCartItems; let i = index" class="cart-singleitem">
+            <div class="subscribe_title">
+              <p *ngIf="delivery.subscriptionModel=='everyMonth'">Delivers Every Month</p>
+              <p *ngIf="delivery.subscriptionModel=='everyWeek'">Delivers Every Week</p>
+              <p *ngIf="delivery.subscriptionModel=='everyYear'">Delivers Every Year</p>
+            </div>
+            <div class="media">
+              <div class="media-left">
+                <a [href]="delivery.image_03" target="_blank">
+                  <img class="media-object" [src]="delivery.image_03" alt="..." />
+                </a>
+                <span class="remove-product"><a (click)="removeItem(delivery, 1,delivery.bundle)"><svg
                       aria-hidden="true" focusable="false" data-prefix="far" data-icon="times" role="img"
                       xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"
                       class="svg-inline--fa fa-times fa-w-10 fa-3x">
@@ -180,27 +198,27 @@
                         d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"
                         class=""></path>
                     </svg></a></span>
-                            </div>
-                            <div class="media-body">
-                                <div class="data-cart">
-                                    <div class="cart-details">
-                                        <h4 class="media-heading">
-                                            {{ delivery.itemDescription }}
-                                        </h4>
-                                        <p>{{ delivery.itemCode }}</p>
-                                        <div class="cart-quantity mob-sec">
-                                            <div class="form-group">
-                                                <select [(ngModel)]="delivery.subscriptionModel" class="form-control">
-                          <option class="dropdown-item" disabled selected value="undefined" >
+              </div>
+              <div class="media-body">
+                <div class="data-cart">
+                  <div class="cart-details">
+                    <h4 class="media-heading">
+                      {{ delivery.itemDescription }}
+                    </h4>
+                    <p>{{ delivery.itemCode }}</p>
+                    <div class="cart-quantity mob-sec">
+                      <div class="form-group">
+                        <select [(ngModel)]="delivery.subscriptionModel" class="form-control">
+                          <option class="dropdown-item" disabled selected value="undefined">
                             {{ delivery.subscriptionModel }}
                           </option>
                           <option *ngFor="let year of years" [value]="year.value">
                             {{ year.name }}
                           </option>
                         </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <select (change)="
+                      </div>
+                      <div class="form-group">
+                        <select (change)="
                             quantityForSubscriptionTime(
                               delivery,
                               $event.target.value
@@ -213,13 +231,13 @@
                             {{'Qty ' + qty.value }}
                           </option>
                         </select>
-                                            </div>
-                                        </div>
-                                    </div>
+                      </div>
+                    </div>
+                  </div>
 
-                                    <div class="cart-quantity des-sec">
-                                        <div class="form-group">
-                                            <select [(ngModel)]="delivery.subscriptionModel" class="form-control">
+                  <div class="cart-quantity des-sec">
+                    <div class="form-group">
+                      <select [(ngModel)]="delivery.subscriptionModel" class="form-control">
                         <option class="dropdown-item" disabled selected value="undefined">
                           {{ delivery.subscriptionModel }}
                         </option>
@@ -227,117 +245,129 @@
                           {{ year.name }}
                         </option>
                       </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <select (change)="
+                    </div>
+                    <div class="form-group">
+                      <select (change)="
                           quantityForSubscriptionTime(
                             delivery,
                             $event.target.value
                           )
-                        "[(ngModel)]="delivery.quantityModel" class="form-control">
+                        " [(ngModel)]="delivery.quantityModel" class="form-control">
                         <option *ngFor="let qty of quantity" [value]="qty.value">
                           {{ qty.name }}
                         </option>
                       </select>
-                      <input type="number" style="margin-top: 10px;" id="showinput{{delivery.itemCode}}" [(ngModel)]="delivery.extraQuantity" *ngIf="delivery.quantityModel == '33' || delivery.extraQuantity !=null" (change)="quantitychanged(delivery, $event.target.value)" class="form-control">
-                                        </div>                                        
-                                        <p class="price-product">${{ delivery.Price | number:'.1-2' }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    <!-- discount section -->
+                      <input type="number" style="margin-top: 10px;" id="showinput{{delivery.itemCode}}"
+                        [(ngModel)]="delivery.extraQuantity"
+                        *ngIf="delivery.quantityModel == '0' || delivery.extraQuantity !=null"
+                        (change)="quantitychanged(delivery, $event.target.value)" class="form-control">
+                    </div>
+                    <p class="price-product">${{ delivery.Price | number:'.1-2' }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- discount section -->
 
-
-    <div class="other-additional-product">
-      <div class="promo-code">
-          <div [className]="  delivery.inputdata ? 'special-field datafilled form-group ' : 'special-field dataempty form-group' ">
-              <input type="text" [(ngModel)]="delivery.inputdata" class="form-control" value="{{delivery.inputdata| date}}" bsDatepicker [minDate]="minDate" [bsConfig]="{
+            <div class="additional-div">
+              <div class="other-additional-product">
+              <div class="promo-code">
+                <div
+                  [className]="  delivery.inputdata ? 'special-field datafilled form-group ' : 'special-field dataempty form-group' ">
+                  <input type="text" [(ngModel)]="delivery.inputdata" class="form-control"
+                    value="{{delivery.inputdata| date}}" bsDatepicker [minDate]="minDate" [bsConfig]="{
   isAnimated: true,
   adaptivePosition: true,
   selectFromOtherMonth: true
-}" />
-              <label class="form-label">Select Start Date</label>
-              <span class="btn-add-promo">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
-  height="24" viewBox="0 0 24 24">
-  <defs>
-    <clipPath id="clip-path">
-      <rect width="24" height="24" fill="none" />
-    </clipPath>
-  </defs>
-  <g id="Icon_Event_Rounded" data-name="Icon / Event / Rounded" opacity="0.5"
-    clip-path="url(#clip-path)">
-    <rect id="Box" width="24" height="24" fill="none" />
-    <path id="Path_2017" data-name="Path 2017"
-      d="M879.9,18h-12a1.075,1.075,0,0,1-1-1V7h14V17A1,1,0,0,1,879.9,18Zm-2-17V2h-8V1a1,1,0,0,0-2,0V2h-1a2.006,2.006,0,0,0-2,2V18a2.006,2.006,0,0,0,2,2h14a2.006,2.006,0,0,0,2-2V4a2.006,2.006,0,0,0-2-2h-1V1a1,1,0,0,0-2,0Zm0,10h-3a1.075,1.075,0,0,0-1,1v3a1.075,1.075,0,0,0,1,1h3a1.075,1.075,0,0,0,1-1V12A1,1,0,0,0,877.9,11Z"
-      transform="translate(-862 2)" />
-  </g>
-</svg>
-</span>
+  }" />
+                  <label class="form-label">Select Start Date</label>
+                  <span class="btn-add-promo">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
+                      height="24" viewBox="0 0 24 24">
+                      <defs>
+                        <clipPath id="clip-path">
+                          <rect width="24" height="24" fill="none" />
+                        </clipPath>
+                      </defs>
+                      <g id="Icon_Event_Rounded" data-name="Icon / Event / Rounded" opacity="0.5"
+                        clip-path="url(#clip-path)">
+                        <rect id="Box" width="24" height="24" fill="none" />
+                        <path id="Path_2017" data-name="Path 2017"
+                          d="M879.9,18h-12a1.075,1.075,0,0,1-1-1V7h14V17A1,1,0,0,1,879.9,18Zm-2-17V2h-8V1a1,1,0,0,0-2,0V2h-1a2.006,2.006,0,0,0-2,2V18a2.006,2.006,0,0,0,2,2h14a2.006,2.006,0,0,0,2-2V4a2.006,2.006,0,0,0-2-2h-1V1a1,1,0,0,0-2,0Zm0,10h-3a1.075,1.075,0,0,0-1,1v3a1.075,1.075,0,0,0,1,1h3a1.075,1.075,0,0,0,1-1V12A1,1,0,0,0,877.9,11Z"
+                          transform="translate(-862 2)" />
+                      </g>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+            </div>
           </div>
-          <div class="subscription-with-discount">
+          <div class="prod-discount">
+            <div class="subtotal">
               <p>15% Discount</p>
               <p>-${{discount15Percent | number:'.1-2' }}</p>
-          </div>
-          <div class="subtotal">
-              <p>Subtotal</p>
-              <p>${{ subTotalSubscriptionPriceAfterDiscount | number:'.1-2' }}</p>
-          </div>
-      </div>
-  </div>
-                    </div>
-
-                
-                </div>
             </div>
-            <div class="col-md-12 col-lg-5 desk-setting">
-                <!--- Search BOX-->
+          </div>
 
-                <div class="sidebar-ui">
-                    <ngb-accordion activeIds="enter-payment">
-                        <ngb-panel id="refered-sidebar">
-                            <ng-template ngbPanelTitle>
-                                <div class="heading-step1">
-                                    <h4>Referred By</h4>
-                                    <span *ngIf="!toShowData" class="vali-promo">Not Referred</span>
-                                    <p *ngIf="toShowData" class="Refered-value mb-0">
-                                        {{ refName }}, ID #{{ refId }}
-                                    </p>
-                                    <span class="arrow-stepp">
+          <div class="subtotal">
+
+            <p>Subtotal</p>
+            <p>${{ subTotalSubscriptionPriceAfterDiscount | number:'.1-2' }}</p>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="col-md-12 col-lg-5 desk-setting">
+        <!--- Search BOX-->
+
+        <div class="sidebar-ui">
+          <ngb-accordion activeIds="enter-payment">
+            <ngb-panel id="refered-sidebar">
+              <ng-template ngbPanelTitle>
+                <div class="heading-step1">
+                  <h4>Referred By</h4>
+                  <span *ngIf="!toShowData" class="vali-promo">Not Referred</span>
+                  <p *ngIf="toShowData" class="Refered-value mb-0">
+                    {{ refName }}, ID #{{ refId }}
+                  </p>
+                  <span class="arrow-stepp">
                     <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
                       <path id="Path_2044" data-name="Path 2044"
                         d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
                         transform="translate(-630.6 -4.4)" />
                     </svg>
                   </span>
-                                </div>
-                            </ng-template>
-                            <ng-template ngbPanelContent>
-                                <div class="search-box">
-                                    <div class="search-bar-on">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" (click)="open(referr_user)" value="" placeholder="Find referral (Optional)" />
-                                            <span class="search"><svg xmlns="http://www.w3.org/2000/svg" width="16.947" height="17.048"
+                </div>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <div class="search-box">
+                  <div class="search-bar-on">
+                    <div class="form-group">
+                      <input type="text" class="form-control" (click)="open(referr_user)" value=""
+                        placeholder="Find referral (Optional)" />
+                      <span class="search"><svg xmlns="http://www.w3.org/2000/svg" width="16.947" height="17.048"
                           viewBox="0 0 16.947 17.048">
                           <path id="Path_2019" data-name="Path 2019"
                             d="M151.4,12a4.5,4.5,0,1,1,4.5-4.5A4.481,4.481,0,0,1,151.4,12Zm6,0h-.8l-.3-.3a6.593,6.593,0,0,0,1.5-5.3,6.471,6.471,0,0,0-5.6-5.3,6.53,6.53,0,0,0-2,12.9,6.593,6.593,0,0,0,5.3-1.5l.3.3v.8l4.2,4.2a1.061,1.061,0,0,0,1.5-1.5Z"
                             transform="translate(-144.853 -1.052)" />
                         </svg>
                       </span>
-                                        </div>
-                                        <span class="text-value">Customer ID, First or Last Name</span>
-                                    </div>
-                                </div>
-                            </ng-template>
-                        </ngb-panel>
-                    </ngb-accordion>
+                    </div>
+                    <span class="text-value">Customer ID, First or Last Name</span>
+                  </div>
                 </div>
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+        </div>
 
-                <!--- GET FREE SHipping BOX-->
-                <div class="grid-box-shadow shipp">
-                    <div class="get-shipping">
-                        <a (click)="open(convert_subscription)">Get Free Shipping & Save 15%
+        <!--- GET FREE SHipping BOX-->
+        <div class="grid-box-shadow shipp">
+          <div class="get-shipping">
+            <a (click)="open(convert_subscription)">Get Free Shipping & Save 15%
               <span class="arrow">
                 <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2" viewBox="0 0 6.6 11.2">
                   <path id="Path_2044" data-name="Path 2044"
@@ -346,97 +376,99 @@
                 </svg>
               </span>
             </a>
-                    </div>
-                </div>
+          </div>
+        </div>
 
-                <!--- Special Offer BOX-->
-                <div class="grid-box-shadow special offer" *ngIf="isShowSpecial">
-                    <h4>Special Offer</h4>
-                    <div class="media">
-                        <div class="media-left">
-                            <a [href]="specialItem.image_03" target="_blank">
-                                <img class="media-object" [src]="specialItem.image_03" alt="..." style="height: 80px; width: 80px;" />
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <div class="data-cart">
-                                <div class="cart-details">
-                                    <h4 class="media-heading">{{specialItem.itemDescription}}</h4>
-                                    <p class="l-time">
-                                        <span class="time-icon"><svg id="Icon_Access_Time_Rounded" data-name="Icon / Access Time / Rounded"
+        <!--- Special Offer BOX-->
+        <div class="grid-box-shadow special offer" *ngIf="isShowSpecial">
+          <h4>Special Offer</h4>
+          <div class="media">
+            <div class="media-left">
+              <a [href]="specialItem.image_03" target="_blank">
+                <img class="media-object" [src]="specialItem.image_03" alt="..." style="height: 80px; width: 80px;" />
+              </a>
+            </div>
+            <div class="media-body">
+              <div class="data-cart">
+                <div class="cart-details">
+                  <h4 class="media-heading">{{specialItem.itemDescription}}</h4>
+                  <p class="l-time">
+                    <span class="time-icon"><svg id="Icon_Access_Time_Rounded" data-name="Icon / Access Time / Rounded"
                         xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
                         <rect id="Box" width="12" height="12" fill="none" />
                         <path id="Path_2027" data-name="Path 2027"
                           d="M389,50.6h0a.371.371,0,0,0-.416.364v2.446a.547.547,0,0,0,.26.468l2.186,1.3a.375.375,0,0,0,.416-.625l-2.03-1.2V51.019C389.365,50.759,389.209,50.6,389,50.6Zm.1,6.766a4.164,4.164,0,1,1,4.164-4.164A4.176,4.176,0,0,1,389.1,57.369Zm0-9.369a5.2,5.2,0,1,0,5.2,5.2A5.22,5.22,0,0,0,389.1,48Z"
                           transform="translate(-383.276 -47.212)" fill="#5e5e5e" />
                       </svg> </span>Limited Time
-                                    </p>
-                                    <div class="price-tag">
-                                        <span class="del-price">
+                  </p>
+                  <div class="price-tag">
+                    <span class="del-price">
                       <del>${{specialItem.price}}</del>
                     </span>
-                                        <span class="price-new"> ${{specialItem.field5}} </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="click-to-add">
-                        <button (click)="spacialItemAdd()" [disabled]="enablebtn" [className]="enablebtn  ? 'btn btn-checkout disabledbutton ' : 'btn btn-checkout enabledbutton'">Click to
+                    <span class="price-new"> ${{specialItem.field5}} </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="click-to-add">
+            <button (click)="spacialItemAdd()" [disabled]="enablebtn"
+              [className]="enablebtn  ? 'btn btn-checkout disabledbutton ' : 'btn btn-checkout enabledbutton'">Click to
               add</button>
-                    </div>
-                </div>
+          </div>
+        </div>
 
-                <!--- Today's Order BOX -->
+        <!--- Today's Order BOX -->
 
-                <div *ngIf="show" class="grid-box-shadow today-order">
-                    <h4>Today's Order</h4>
-                    <div class="order-summary-end">
-                        <ul>
-                            <li>
-                                <span class="summry-value">Order Total</span><span class="value-summry">${{ orderTotal | number:'.1-2'
+        <div *ngIf="show" class="grid-box-shadow today-order">
+          <h4>Today's Order</h4>
+          <div class="order-summary-end">
+            <ul>
+              <li>
+                <span class="summry-value">Order Total</span><span class="value-summry">${{ orderTotal | number:'.1-2'
                   }}</span>
-                            </li>
-                            <li>
-                                <span class="summry-value">Subtotal</span><span class="value-summry">${{ cartSummaryTotal |
+              </li>
+              <li>
+                <span class="summry-value">Subtotal</span><span class="value-summry">${{ cartSummaryTotal |
                   number:'.1-2' }}</span>
-                            </li>
-                            <li>
-                                <span class="summry-value">Shipping</span><span class="value-summry">Not yet Calculated</span>
-                            </li>
-                            <li>
-                                <span class="summry-value">Tax</span><span class="value-summry">Not yet Calculated</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="grand-total">
-                        <div class="save-you">
-                            <p class="saved-you">You saved</p>
-                            <p class="you-saved-value">-${{totalDiscount | number:'.1-2' }}</p>
-                        </div>
-                        <div class="total-grand">
-                            <p class="saved-you">You Pay</p>
-                            <p class="you-saved-value">${{ cartSummaryTotal | number:'.1-2' }}</p>
-                        </div>
-                    </div>
-                </div>
+              </li>
+              <li>
+                <span class="summry-value">Shipping</span><span class="value-summry">Not yet Calculated</span>
+              </li>
+              <li>
+                <span class="summry-value">Tax</span><span class="value-summry">Not yet Calculated</span>
+              </li>
+            </ul>
+          </div>
+          <div class="grand-total">
+            <div class="save-you">
+              <p class="saved-you">You saved</p>
+              <p class="you-saved-value">-${{totalDiscount | number:'.1-2' }}</p>
+            </div>
+            <div class="total-grand">
+              <p class="saved-you">You Pay</p>
+              <p class="you-saved-value">${{ cartSummaryTotal | number:'.1-2' }}</p>
+            </div>
+          </div>
+        </div>
 
-                <div class="checkout-btn">
-                    <button (click)="checkOutItem()" [disabled]="enablebtn" [className]="enablebtn  ? 'btn btn-checkout disabledbutton ' : 'btn btn-checkout enabledbutton'">Checkout</button>
-                </div>
-                <div class="verified-batch">
-                    <span class="batch-icon"><svg xmlns="http://www.w3.org/2000/svg" width="27" height="36.001"
+        <div class="checkout-btn">
+          <button (click)="checkOutItem()" [disabled]="enablebtn"
+            [className]="enablebtn  ? 'btn btn-checkout disabledbutton ' : 'btn btn-checkout enabledbutton'">Checkout</button>
+        </div>
+        <div class="verified-batch">
+          <span class="batch-icon"><svg xmlns="http://www.w3.org/2000/svg" width="27" height="36.001"
               viewBox="0 0 27 36.001">
               <path id="Icon_awesome-award" data-name="Icon awesome-award"
                 d="M6.829,25.5c-.611-.611-.293-.439-1.766-.833a5.073,5.073,0,0,1-1.788-.937L.084,31.549A1.125,1.125,0,0,0,1.169,33.1l3.7-.141,2.548,2.692A1.125,1.125,0,0,0,9.281,35.3l3.66-8.973A5.046,5.046,0,0,1,6.829,25.5Zm20.087,6.052-3.19-7.822a5.062,5.062,0,0,1-1.788.937c-1.481.4-1.157.224-1.766.833a5.047,5.047,0,0,1-6.112.829l3.66,8.973a1.125,1.125,0,0,0,1.858.349l2.549-2.692,3.7.141a1.125,1.125,0,0,0,1.085-1.549Zm-8.423-7.643c1.074-1.093,1.2-1,2.727-1.416a2.857,2.857,0,0,0,2-2.038c.526-2,.39-1.756,1.825-3.217a2.917,2.917,0,0,0,.733-2.783c-.525-2-.526-1.717,0-3.715a2.917,2.917,0,0,0-.733-2.783c-1.435-1.461-1.3-1.221-1.825-3.217a2.857,2.857,0,0,0-2-2.038c-1.96-.535-1.724-.4-3.161-1.857A2.8,2.8,0,0,0,15.325.1c-1.96.534-1.686.535-3.649,0A2.8,2.8,0,0,0,8.941.844C7.506,2.3,7.742,2.166,5.781,2.7a2.857,2.857,0,0,0-2,2.038c-.525,2-.39,1.756-1.825,3.217a2.915,2.915,0,0,0-.733,2.783c.525,1.994.526,1.716,0,3.714a2.919,2.919,0,0,0,.733,2.784c1.435,1.461,1.3,1.22,1.825,3.217a2.857,2.857,0,0,0,2,2.038c1.574.429,1.691.361,2.727,1.416a2.794,2.794,0,0,0,3.5.409,2.79,2.79,0,0,1,2.99,0A2.793,2.793,0,0,0,18.492,23.906ZM6.867,12.372A6.634,6.634,0,1,1,13.5,19.124a6.693,6.693,0,0,1-6.633-6.751Z"
                 transform="translate(0 0.001)" fill="#333" opacity="0.5" />
             </svg>
           </span>
-                    <span class="batch-text">Every order is backed by our 100% Happy Guarantee</span>
-                </div>
+          <span class="batch-text">Every order is backed by our 100% Happy Guarantee</span>
+        </div>
 
-                <div class="share-chat">
-                    <a href="#"><span class="icon-share"><svg id="Icon_ionic-ios-share" data-name="Icon ionic-ios-share"
+        <div class="share-chat">
+          <a href="#"><span class="icon-share"><svg id="Icon_ionic-ios-share" data-name="Icon ionic-ios-share"
                 xmlns="http://www.w3.org/2000/svg" width="12.311" height="16" viewBox="0 0 12.311 16">
                 <path id="Path_2065" data-name="Path 2065"
                   d="M17.522,12.375H13.405v5.64a.514.514,0,0,1-.477.516.5.5,0,0,1-.523-.5V12.375H8.289A1.543,1.543,0,0,0,6.75,13.914v8a1.543,1.543,0,0,0,1.539,1.539h9.233a1.543,1.543,0,0,0,1.539-1.539v-8A1.543,1.543,0,0,0,17.522,12.375Z"
@@ -445,94 +477,95 @@
                   d="M15.861,5.075,17.7,6.891a.5.5,0,0,0,.7-.712L15.715,3.524a.508.508,0,0,0-.35-.142.477.477,0,0,0-.192.038.535.535,0,0,0-.158.1h0L12.322,6.179a.5.5,0,0,0,.7.712l1.835-1.816V8.3h1Z"
                   transform="translate(-9.206 -3.382)" fill="#1cb1c5" />
               </svg> </span>Share this cart</a>
-                </div>
-            </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
 <ng-template #referr_user let-modal>
-    <div [ngClass]="{ referrer_modal: true }">
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+  <div [ngClass]="{ referrer_modal: true }">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
-        <div class="modal-body">
-            <h3 class="referrer-title" id="modal-basic-title">Who referred you?</h3>
-            <div class="search-bar-on">
-                <div class="form-group">
-                    <input type="text" #myInput class="form-control" value="" [(ngModel)]="filterTerm" (input)="filterItem(myInput.value)" placeholder="Find referral (Optional)" />
-                    <span class="search">
+    <div class="modal-body">
+      <h3 class="referrer-title" id="modal-basic-title">Who referred you?</h3>
+      <div class="search-bar-on">
+        <div class="form-group">
+          <input type="text" #myInput class="form-control" value="" [(ngModel)]="filterTerm"
+            (input)="filterItem(myInput.value)" placeholder="Find referral (Optional)" />
+          <span class="search">
             <svg xmlns="http://www.w3.org/2000/svg" width="16.947" height="17.048" viewBox="0 0 16.947 17.048">
               <path id="Path_2019" data-name="Path 2019"
                 d="M151.4,12a4.5,4.5,0,1,1,4.5-4.5A4.481,4.481,0,0,1,151.4,12Zm6,0h-.8l-.3-.3a6.593,6.593,0,0,0,1.5-5.3,6.471,6.471,0,0,0-5.6-5.3,6.53,6.53,0,0,0-2,12.9,6.593,6.593,0,0,0,5.3-1.5l.3.3v.8l4.2,4.2a1.061,1.061,0,0,0,1.5-1.5Z"
                 transform="translate(-144.853 -1.052)" />
             </svg>
           </span>
+        </div>
+        <span class="text-value">Customer ID, First or Last Name</span>
+      </div>
+      <div class="search-results">
+        <h4>Search Results</h4>
+        <div class="referred-lists">
+          <!--- Referrer People Grid -->
+          <div class="data-all-referrer" *ngIf="isDataAvailable">
+            <div class="reffered-list-items" *ngFor="let referrer of selectedData">
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object" src="{{ referrer.referrer_image }}" alt="..." />
+                  </a>
                 </div>
-                <span class="text-value">Customer ID, First or Last Name</span>
-            </div>
-            <div class="search-results">
-                <h4>Search Results</h4>
-                <div class="referred-lists">
-                    <!--- Referrer People Grid -->
-                    <div class="data-all-referrer" *ngIf="isDataAvailable">
-                        <div class="reffered-list-items" *ngFor="let referrer of selectedData">
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#">
-                                        <img class="media-object" src="{{ referrer.referrer_image }}" alt="..." />
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <div class="data-cart">
-                                        <div class="cart-details">
-                                            <h4 class="media-heading">
-                                                {{ referrer.referrer_name }}, ID #{{ referrer.id }}
-                                            </h4>
-                                            <div class="refrrer-info">
-                                                <p class="wink-link">
-                                                    Wink Link:<span class="wlink-data">{{
+                <div class="media-body">
+                  <div class="data-cart">
+                    <div class="cart-details">
+                      <h4 class="media-heading">
+                        {{ referrer.referrer_name }}, ID #{{ referrer.id }}
+                      </h4>
+                      <div class="refrrer-info">
+                        <p class="wink-link">
+                          Wink Link:<span class="wlink-data">{{
                             referrer.wink_link
                             }}</span>
-                                                </p>
-                                                <p class="location-referrer">
-                                                    {{ referrer.referrer_location }}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="link-select">
-                                        <a (click)="choose_referrer(referrer)">Select</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </p>
+                        <p class="location-referrer">
+                          {{ referrer.referrer_location }}
+                        </p>
+                      </div>
                     </div>
-                    <!--- Referrer People Grid -->
-                    <div *ngIf="!isDataAvailable">No Records Available</div>
+                  </div>
+                  <div class="link-select">
+                    <a (click)="choose_referrer(referrer)">Select</a>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
+          <!--- Referrer People Grid -->
+          <div *ngIf="!isDataAvailable">No Records Available</div>
         </div>
+      </div>
     </div>
+  </div>
 </ng-template>
 
 <ng-template #convert_subscription let-modal>
-    <div [ngClass]="{ conv_subscription_modal: true }">
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+  <div [ngClass]="{ conv_subscription_modal: true }">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
-        <div class="modal-body">
-            <div class="header-conv-subscr">
+    <div class="modal-body">
+      <div class="header-conv-subscr">
 
 
-                <h3>Convert to a subscription</h3>
-                <p>
-                    Save time and money by selecting which items you would like to subscribe to below
-                </p>
-            </div>
-            <div class="more-learn">
-                <p class="link-learnmore">
-                    <a (click)="learn_show()">LEARN MORE
+        <h3>Convert to a subscription</h3>
+        <p>
+          Save time and money by selecting which items you would like to subscribe to below
+        </p>
+      </div>
+      <div class="more-learn">
+        <p class="link-learnmore">
+          <a (click)="learn_show()">LEARN MORE
             <span class="svg-arrow-down">
               <svg xmlns="http://www.w3.org/2000/svg" width="11.2" height="6.6" viewBox="0 0 11.2 6.6">
                 <path id="Path_2040" data-name="Path 2040"
@@ -541,27 +574,30 @@
               </svg>
             </span>
           </a>
-                </p>
-                <div class="content-learnmore" *ngIf="data_learn">
-                    <p>
-                        <p class="sec-title">
-                            Here’s how it works: </p>
-                        <p> - Schedule your deliveries however you see fit. It is completely customizable.</p>
-                        <p> - Do you need to skip a shipment or adjust your next shipment date? Just edit your recurring order in your account or give us a call.
-                            <p>
-                                <p> - You get FREE 1st Class Shipping & 15% off every order.</p>
-                                <p> - Setting up your Preferred Subscription Account automatically lets you start earning rewards. Earn up to 20% of your order value each month in store credit paid out in Loyalty Points directly into your account just for
-                                    having an active subscription.</p>
+        </p>
+        <div class="content-learnmore" *ngIf="data_learn">
+          <p>
+          <p class="sec-title">
+            Here’s how it works: </p>
+          <p> - Schedule your deliveries however you see fit. It is completely customizable.</p>
+          <p> - Do you need to skip a shipment or adjust your next shipment date? Just edit your recurring order in your
+            account or give us a call.
+          <p>
+          <p> - You get FREE 1st Class Shipping & 15% off every order.</p>
+          <p> - Setting up your Preferred Subscription Account automatically lets you start earning rewards. Earn up to
+            20% of your order value each month in store credit paid out in Loyalty Points directly into your account
+            just for
+            having an active subscription.</p>
 
-                </div>
-            </div>
-            <div class="cart-singleitem">
-                <div class="method-shipp">
-                    <ul class="conv-products">
-                        <li>
-                            <div class="custom-control custom-radio">
-                                <input type="checkbox" id="customRadio1" name="customRadio" #checkbox class="custom-control-input" />
-                                <label class="custom-control-label" for="customRadio1">
+        </div>
+      </div>
+      <div class="cart-singleitem">
+        <div class="method-shipp">
+          <ul class="conv-products">
+            <li>
+              <div class="custom-control custom-radio">
+                <input type="checkbox" id="customRadio1" name="customRadio" #checkbox class="custom-control-input" />
+                <label class="custom-control-label" for="customRadio1">
                   <div class="media">
                     <div class="media-left">
                       <a href="#">
@@ -599,10 +635,13 @@
                           </div>
                           <div class="form-group">
                             <select class="form-control">
-                              <option _ngcontent-cnl-c154="" selected="" value="everyMonth" class="dropdown-item" ng-reflect-value="everyMonth"> Every Month </option>
-                              <option _ngcontent-cnl-c154="" value="everyWeek" ng-reflect-value="everyWeek" class="ng-star-inserted"> Every Week </option>
-                              <option _ngcontent-cnl-c154="" value="everyYear" ng-reflect-value="everyYear" class="ng-star-inserted"> Every Year </option>
-                            
+                              <option _ngcontent-cnl-c154="" selected="" value="everyMonth" class="dropdown-item"
+                                ng-reflect-value="everyMonth"> Every Month </option>
+                              <option _ngcontent-cnl-c154="" value="everyWeek" ng-reflect-value="everyWeek"
+                                class="ng-star-inserted"> Every Week </option>
+                              <option _ngcontent-cnl-c154="" value="everyYear" ng-reflect-value="everyYear"
+                                class="ng-star-inserted"> Every Year </option>
+
                             </select>
                           </div>
                         </div>
@@ -610,12 +649,12 @@
                     </div>
                   </div>
                 </label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="custom-control custom-radio">
-                                <input type="checkbox" id="customRadio2" name="customRadio" #checkbox1 class="custom-control-input" />
-                                <label class="custom-control-label" for="customRadio2" >
+              </div>
+            </li>
+            <li>
+              <div class="custom-control custom-radio">
+                <input type="checkbox" id="customRadio2" name="customRadio" #checkbox1 class="custom-control-input" />
+                <label class="custom-control-label" for="customRadio2">
                   <div class="media">
                     <div class="media-left">
                       <a href="#">
@@ -653,10 +692,13 @@
                           </div>
                           <div class="form-group">
                             <select class="form-control">
-                              <option _ngcontent-cnl-c154=""  value="everyMonth" class="dropdown-item" ng-reflect-value="everyMonth"> Every Month </option>
-                              <option _ngcontent-cnl-c154="" value="everyWeek" ng-reflect-value="everyWeek" class="ng-star-inserted"> Every Week </option>
-                              <option _ngcontent-cnl-c154="" value="everyYear" ng-reflect-value="everyYear" class="ng-star-inserted"> Every Year </option>
-                            
+                              <option _ngcontent-cnl-c154="" value="everyMonth" class="dropdown-item"
+                                ng-reflect-value="everyMonth"> Every Month </option>
+                              <option _ngcontent-cnl-c154="" value="everyWeek" ng-reflect-value="everyWeek"
+                                class="ng-star-inserted"> Every Week </option>
+                              <option _ngcontent-cnl-c154="" value="everyYear" ng-reflect-value="everyYear"
+                                class="ng-star-inserted"> Every Year </option>
+
                             </select>
                           </div>
                         </div>
@@ -664,19 +706,21 @@
                     </div>
                   </div>
                 </label>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="conv-subsc-date">
-                    <div [className]="date_convertModal ? 'special-field datafilled form-group ' : 'special-field dataempty form-group' ">
-                        <input type="text" [(ngModel)]="date_convertModal" value="{{date_convertModal| date}}" class="form-control" bsDatepicker [maxDate]="maxDate" [bsConfig]="{
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="conv-subsc-date">
+          <div
+            [className]="date_convertModal ? 'special-field datafilled form-group ' : 'special-field dataempty form-group' ">
+            <input type="text" [(ngModel)]="date_convertModal" value="{{date_convertModal| date}}" class="form-control"
+              bsDatepicker [maxDate]="maxDate" [bsConfig]="{
                 isAnimated: true,
                 adaptivePosition: true,
                 selectFromOtherMonth: true
               }" />
-                        <label class="form-label">Select Start Date</label>
-                        <span class="btn-add-promo">
+            <label class="form-label">Select Start Date</label>
+            <span class="btn-add-promo">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24"
                 viewBox="0 0 24 24">
                 <defs>
@@ -692,14 +736,15 @@
                 </g>
               </svg>
             </span>
-                    </div>
-                </div>
-                <div class="btn btn-subsc">
-                    <button type="submit"  [disabled]="!date_convertModal ||(!checkbox.checked &&!checkbox1.checked)" [className]="(!date_convertModal ||(!checkbox.checked &&!checkbox1.checked) ) ? 'btn btn-subsc-disable' : 'btn btn-subsc-active'">
+          </div>
+        </div>
+        <div class="btn btn-subsc">
+          <button type="submit" [disabled]="!date_convertModal ||(!checkbox.checked &&!checkbox1.checked)"
+            [className]="(!date_convertModal ||(!checkbox.checked &&!checkbox1.checked) ) ? 'btn btn-subsc-disable' : 'btn btn-subsc-active'">
             Activate My Subscription
           </button>
-                </div>
-            </div>
         </div>
+      </div>
     </div>
+  </div>
 </ng-template>

@@ -57,9 +57,8 @@
                                 <div class="reviews-product">
                                     <div [attr.data-product-id]="product.itemID" class="yotpo bottomLine">
                                     </div>
-                                    <yotpo-star-rating productId="718" style="display: none;">
+                                     <yotpo-star-rating [productId]="product.itemID" style="display: none;">
                                     </yotpo-star-rating>
-
                                 </div>
                                 <div class="prod-price">
                                     <span class="price-value">${{ product.price }}</span>

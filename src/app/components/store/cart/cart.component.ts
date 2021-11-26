@@ -62,6 +62,9 @@ export class CartComponent implements OnInit {
   //quantityValue: any;
   subscriptionModel: any;
 
+  totalOneTimeDiscountPurchase:number;
+  Quantityupdate:any;
+
   constructor(private modalService: NgbModal,
     private sessionService: SessionService,
     private spinner: NgxSpinnerService,
@@ -74,7 +77,22 @@ export class CartComponent implements OnInit {
   }
 
 
+  GetOneTimeSubDiscount(){
+  let total:number=0;
+    this.oneTimePriceCartItems.forEach(element => {
+
+      if(element.bundle == 'multiple'){
+        //total+=element.bv * 2 - element.Price;
+         total+=element.Quantityupdate;
+      }
+    });
+    this.totalOneTimeDiscountPurchase=total;
+  }
+
+
   ngOnInit() {
+    this.Quantityupdate=1;
+
     this.userLogin = this.sessionService.getSessionObject("user");
     if (this.userLogin) {
       this.show = true;
@@ -90,16 +108,17 @@ export class CartComponent implements OnInit {
     //   this.promocode_onetime='';
     // }
     this.onLoad();
+    this.GetOneTimeSubDiscount();
   }
 
   onLoad() {
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
       this.cartItems.forEach(function (item) {
-       if(item.quantityModel>10){
-        item.quantityModel= 33;
+       if(item.quantityModel>10 ||item.quantityModel==0){
+        item.quantityModel= 0;
        }
     });
-    
+
     if (this.cartItems == null || this.cartItems.length <= 0) {
       this.enablebtn = true;
     } else {
@@ -234,7 +253,6 @@ export class CartComponent implements OnInit {
     else {
       this.selectedData = this.referrerRecords;
       this.isDataAvailable = true;
-
     }
   }
 
@@ -314,34 +332,48 @@ export class CartComponent implements OnInit {
   }
   quantitychanged(cartitem: any, selectedvalue: number) {
 
+    debugger;
     this.quantityCalculation(cartitem, selectedvalue);
     const item =  this.cartItems.find(x=>x.itemCode == cartitem.itemCode);
-    if(item && selectedvalue>10){
-      item.quantityModel = 33;
+    if(item && (selectedvalue>10 || selectedvalue==0)){
+      item.quantityModel = 0;
     }
 
   }
-  quantityCalculation(cartitem: any, selectedvalue: number) {
 
+  calculatedata(bv:number,Price:number,qun:number){
+    this.Quantityupdate=(bv * 2 - Price)*qun;
+    return this.Quantityupdate;
+  }
+  quantityCalculation(cartitem: any, selectedvalue: number) {
+   debugger;
     if (selectedvalue < 11) {
       cartitem.extraQuantity = null;
+
     }
     if (selectedvalue != null && selectedvalue != undefined) {
-      if (selectedvalue == 33) {
+      if (selectedvalue == 0) {
         this.showOtherTextbox = cartitem.itemCode;
         $("#showinput" + cartitem.itemCode).show();
+
+        //cartitem.Quantityupdate=0;
       }
       else {
         $("#showinput" + cartitem.itemCode).hide();
       }
       for (var i = 0; i <= this.cartItems.length - 1; i++) {
         if (this.cartItems[i] == cartitem) {
+
+          cartitem.Quantityupdate=(this.cartItems[i].bv * 2 - this.cartItems[i].Price)*selectedvalue;
           this.cartItems[i].quantityModel = +selectedvalue;
+
         }
       }
       this.sessionService.setSessionObject('productCartItems', this.cartItems);
+      this.GetOneTimeSubDiscount();
     }
     this.cartCalculation();
+
   }
 
   quantityForSubscriptionTime(delivery: any, selectedvalue: number) {
@@ -390,8 +422,8 @@ export class CartComponent implements OnInit {
     this.totalDiscount = this.totalDiscount + this.discount15Percent;
     this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
     this.cartItems.forEach(function (item) {
-      if(item.quantityModel>10){
-       item.quantityModel= 33;
+      if(item.quantityModel>10 || item.quantityModel==0 ){
+       item.quantityModel= 0;
       }
     });
   }
@@ -483,7 +515,7 @@ export class CartComponent implements OnInit {
       {
         id: 'Others',
         name: 'Custom',
-        value: 33
+        value: 0
       }
     ]
     this.years = [
@@ -502,7 +534,6 @@ export class CartComponent implements OnInit {
         name: 'Every Year',
         value: 'everyYear'
       }
-     
     ]
   }
 
