@@ -160,13 +160,16 @@
                           <div [className]="tooltipData ? 'tooltipcontent show' : 'tooltipcontent hide'">
  
                              <p (click)="closeTooltip()">
-                                <b>Here's How it Works</b><br>
-                                <li>Schedule your deliveries however you see fit. It is completely customizable.</li>
-                                    <li>Do you need to skip a shipment or adjust your next shipment date? Just edit your recurring order in your account or give us a call.</li>
-                                   <li>You get FREE 1st Class Shipping & 15% off every order.</li>
-                                   <li>Setting up your Preferred Subscription Account automatically lets you start earning rewards. Earn up to 20% of your order value each month in store credit paid out in Loyalty Points directly into your account just for having an active subscription.</li>
-
-                           </p> 
+                                <p class="sec-title" style="font-weight: 700; font-size: 18px;">
+                                    Here’s how it works: </p>
+                                <p style="font-size: 14px;"> - Schedule your deliveries however you see fit. It is completely customizable.</p>
+                                <p style="font-size: 14px;"> - Do you need to skip a shipment or adjust your next shipment date? Just edit your recurring order in your account or give us a call.
+                                    <p style="font-size: 14px;">
+                                        <p style="font-size: 14px;"> - You get FREE 1st Class Shipping & 15% off every order.</p>
+                                        <p style="font-size: 14px;"> - Setting up your Preferred Subscription Account automatically lets you start earning rewards. Earn up to 20% of your order value each month in store credit paid out in Loyalty Points directly into your account just for
+                                            having an active subscription.</p>
+                           <p><a (click)="closeTooltip()" class="btnclose">Go Back</a></p>
+                          
                         </div>
                         <h3>Customize Shipment 
                         </h3>

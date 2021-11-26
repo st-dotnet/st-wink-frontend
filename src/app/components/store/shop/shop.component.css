@@ -428,6 +428,10 @@ float: right;
 position: absolute;
 bottom: 9px;
 }
+
+.tooltipcontent {
+    background-color: #f2f2f2;
+}
 /* MEDIA */
 
 @media (max-width:1366px) {
