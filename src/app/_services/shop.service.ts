@@ -57,7 +57,11 @@ export class ShopService {
   addPayment(payment: any) {
     return this.http.post<Payment>(`${environment.apiUrl}${this.paymentEndpoint}CreatePaymentUsingAuthorizeNet`, payment);
   }
+  chargecreditcard(payment: any) {
+    return this.http.post<Payment>(`${environment.apiUrl}${this.shopEndpoint}ChargeCreditCardTokenRequest`, payment);
+  }
 
+  
   getClientToken()
   {
     return this.http.get<any>(`${environment.apiUrl}${this.paymentEndpoint}GetClientToken`);

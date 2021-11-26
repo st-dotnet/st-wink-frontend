@@ -36,6 +36,7 @@ export class CheckoutComponent implements OnInit {
   addrnew = false;
   sidebartoggle: boolean = true;
   sidebartoggle1: boolean = false;
+  isAddressSaveBtn : boolean = true;
   title = 'ng-bootstrap-modal-demo';
   closeResult: string;
   shippingAddressForm: FormGroup;
@@ -314,7 +315,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   onAddressSubmit() {
-    debugger;
     this.submitted = true;
     if (this.shippingAddressForm.invalid) {
       return;
@@ -327,6 +327,8 @@ export class CheckoutComponent implements OnInit {
           this.spinner.hide();
           this.showPanel2 = false;
           this.toastrService.success('Shipping address saved successfully');
+          this.showPanel1= false;
+          this.isAddressSaveBtn= false;
           this.displayAddress =
             result.result.address1 +
             ' ' +
@@ -362,7 +364,7 @@ export class CheckoutComponent implements OnInit {
       payment.country = this.p.newCountry.value;
       payment.zip = this.p.newZip.value;
     } else {
-      (payment.address1 = this.f.streetAddress.value),
+       (payment.address1 = this.f.streetAddress.value),
         (payment.city = this.f.city.value),
         payment.state = this.f.state.value,
         (payment.zip = this.f.zip.value),
@@ -377,22 +379,31 @@ export class CheckoutComponent implements OnInit {
     payment.active =true;
     payment.cardType =1;
     payment.customerId =this.customerId;
-    payment.accountNo = '';
-    payment.emailAddress = '';
-    payment.externalId1 = '';
-    payment.externalId2 ='';
-
-    this.shopService.addPayment(payment).subscribe((result: any) => {
-      if (result.isCompletedSuccessfully == true) {
-        this.spinner.hide();
-        this.showPanel3 = true;
-        this.toastrService.success('Payment is succesfull');
-        this.showPanel2 = false;
-      } else {
-        this.spinner.hide();
-        this.toastrService.error('Payment is not unsuccessfull');
-      }
-    });
+    const chargeCredit = new ChargeCreditCardTokenRequest();
+    chargeCredit.creditCardToken="41X1111WBCXTE1111",
+    chargeCredit.billingName="amar"
+    chargeCredit.billingAddress = "#street",//transactionRequest.ChargeCreditCardTokenRequest.BillingAddress,
+    chargeCredit.billingAddress2 = null,//transactionRequest.ChargeCreditCardTokenRequest.BillingAddress2,
+    chargeCredit.billingCity = "123456",//transactionRequest.ChargeCreditCardTokenRequest.BillingCity,
+    chargeCredit.billingZip = "123456",//transactionRequest.ChargeCreditCardTokenRequest.BillingZip,
+    chargeCredit.expirationMonth = 1,// transactionRequest.ChargeCreditCardTokenRequest.ExpirationMonth,
+    chargeCredit.expirationYear = 2023,//transactionRequest.ChargeCreditCardTokenRequest.ExpirationYear,
+    chargeCredit.billingCountry = "US",//transactionRequest.ChargeCreditCardTokenRequest.BillingCountry,
+    chargeCredit.billingState = "AA",//transactionRequest.ChargeCreditCardTokenRequest.BillingState,
+    chargeCredit.maxAmount = null,
+    this.spinner.hide();
+    this.toastrService.success('Card Added');
+    // this.shopService.chargecreditcard(payment).subscribe((result: any) => {
+    //   if (result.isCompletedSuccessfully == true) {
+    //     this.spinner.hide();
+    //     this.showPanel3 = true;
+    //     this.toastrService.success('Payment is succesfull');
+    //     this.showPanel2 = false;
+    //   } else {
+    //     this.spinner.hide();
+    //     this.toastrService.error('Payment is not unsuccessfull');
+    //   }
+    // });
   }
 
   getShippingAddressParam(type: number) {
@@ -907,7 +918,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
+debugger;
     this.submitted = true;
     // if (this.checkoutForm.invalid) {
     //   return this.toastrService.error("Please fill the required field shipping address and card");
@@ -915,35 +926,17 @@ export class CheckoutComponent implements OnInit {
     // if (this.startDate == null) {
     //   return this.toastrService.error("Please select the start date")
     // }
-    this.hostedFieldsInstance.tokenize({cardholderName: this.cardholdersName}).then((payload) => {
-      console.log(payload);
-      debugger;
+    // this.hostedFieldsInstance.tokenize({cardholderName: this.cardholdersName}).then((payload) => {
+    //   console.log(payload);
+    //   debugger;
       var startDate;
-      if (this.startDate == 'undefined') {
-        startDate = new Date();
+     if (this.startDate == 'undefined') {
+    //     startDate = new Date();
       } else {
-        //startDate = new Date(this.startDate);
-        startDate = new Date();
+    //    //startDate = new Date(this.startDate);
+         startDate = new Date();
       }
 
-      // let firstName = this.checkoutForm.get(['shippingAddressFormGroup', 'firstName']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'firstName']).value : '';
-      // let lastName = this.checkoutForm.get(['shippingAddressFormGroup', 'lastName']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'lastName']).value : '';
-      // let streetAddress = this.checkoutForm.get(['shippingAddressFormGroup', 'streetAddress']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'streetAddress']).value : '';
-      // let city = this.checkoutForm.get(['shippingAddressFormGroup', 'city']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'city']).value : '';
-      // let state = this.checkoutForm.get(['shippingAddressFormGroup', 'state']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'state']).value : '';
-      // let zip = this.checkoutForm.get(['shippingAddressFormGroup', 'zip']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'zip']).value : '';
-      // let country = this.checkoutForm.get(['shippingAddressFormGroup', 'country']).value ? this.checkoutForm.get(['shippingAddressFormGroup', 'country']).value : '';
-      // let newStreetAddress = this.checkoutForm.get(['newShippingAddressFormGroup', 'newStreetAddress']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newStreetAddress']).value : '';
-      // let newCity = this.checkoutForm.get(['newShippingAddressFormGroup', 'newCity']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newCity']).value : '';
-      // let newState = this.checkoutForm.get(['newShippingAddressFormGroup', 'newState']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newState']).value : '';
-      // let newZip = this.checkoutForm.get(['newShippingAddressFormGroup', 'newZip']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newZip']).value : '';
-      // let newCountry = this.checkoutForm.get(['newShippingAddressFormGroup', 'newCountry']).value ? this.checkoutForm.get(['newShippingAddressFormGroup', 'newCountry']).value : '';
-      // let cardName = this.checkoutForm.get(['cardFormGroup', 'cardName']).value ? this.checkoutForm.get(['cardFormGroup', 'cardName']).value : '';
-      // let cardNumber = this.checkoutForm.get(['cardFormGroup', 'cardNumber']).value ? this.checkoutForm.get(['cardFormGroup', 'cardNumber']).value : 0;
-      // let expiryMonth = this.checkoutForm.get(['cardFormGroup', 'expiryMonth']).value ? this.checkoutForm.get(['cardFormGroup', 'expiryMonth']).value : 0;
-      // let expiryYear = this.checkoutForm.get(['cardFormGroup', 'expiryYear']).value ? this.checkoutForm.get(['cardFormGroup', 'expiryYear']).value : 0;
-      // let cardCVV = this.checkoutForm.get(['cardFormGroup', 'cardCVV']).value ? this.checkoutForm.get(['cardFormGroup', 'cardCVV']).value : 0;
-      // let isMakePrimaryCard = this.checkoutForm.get(['cardFormGroup', 'isMakePrimaryCard']).value ? this.checkoutForm.get(['cardFormGroup', 'isMakePrimaryCard']).value : '';
       this.spinner.show();
 
       this.cartItems.forEach((element) => {
@@ -959,8 +952,7 @@ export class CheckoutComponent implements OnInit {
           other3EachOverride: 0,
           other2EachOverride: 0,
           other1EachOverride: 0,
-          commissionableVolumeEachOverride:
-            element.commissionableVolumeEachOverride,
+          commissionableVolumeEachOverride:element.commissionableVolumeEachOverride,
           businessVolumeEachOverride: element.businessVolumeEachOverride,
           shippingPriceEachOverride: element.shippingPriceEachOverride,
           taxableEachOverride: element.taxableEachOverride,
@@ -976,68 +968,28 @@ export class CheckoutComponent implements OnInit {
       });
 
       const createOrderRequest = new CreateOrderRequest();
-      createOrderRequest.other14 = '';
-      createOrderRequest.other15 = '';
-      createOrderRequest.other16 = '';
-      createOrderRequest.other17 = '';
-      createOrderRequest.other18 = '';
-      createOrderRequest.other19 = '';
-      createOrderRequest.other20 = '';
-      createOrderRequest.other13 = '';
-      createOrderRequest.taxRateOverride = 0;
-      createOrderRequest.shippingAmountOverride = 0;
-      createOrderRequest.transferVolumeToID = 0;
-      createOrderRequest.returnOrderID = 0;
-      createOrderRequest.overwriteExistingOrder = false;
-      createOrderRequest.existingOrderID = 0;
-      createOrderRequest.partyID = 1;
+      
+      createOrderRequest.other17 = "0.0";
       createOrderRequest.details = this.orderDetails;
       createOrderRequest.suppressPackSlipPrice = true;
-      createOrderRequest.transferVolumeToKey = '';
-      createOrderRequest.returnOrderKey = '';
-      createOrderRequest.manualOrderKey = '';
-      createOrderRequest.manualOrderID = 0;
-      createOrderRequest.existingOrderKey = '';
-      createOrderRequest.other12 = '';
-      createOrderRequest.notes = '';
-      createOrderRequest.customerID = 0;
       createOrderRequest.orderStatus = 1;
       createOrderRequest.orderDate = startDate;
-      createOrderRequest.currencyCode = '';
-      createOrderRequest.warehouseID = 0;
-      createOrderRequest.shipMethodID = 0;
-      createOrderRequest.priceType = 0;
       createOrderRequest.firstName = this.f.firstName.value;
-      createOrderRequest.middleName = '';
       createOrderRequest.lastName = this.f.lastName.value;
-      createOrderRequest.other11 = '';
-      createOrderRequest.nameSuffix = '';
       createOrderRequest.address1 = this.f.streetAddress.value;
       createOrderRequest.address2 = '';
-      createOrderRequest.address3 = '';
       createOrderRequest.city = this.f.city.value;
       createOrderRequest.state = 'TX';//this.f.state.value;
       createOrderRequest.zip = this.f.zip.value;
       createOrderRequest.country = 'US';//this.f.country.value
-      createOrderRequest.county = '';
-      createOrderRequest.email = '';
-      createOrderRequest.phone = '';
-      createOrderRequest.company = '';
-      createOrderRequest.customerKey = '';
+      createOrderRequest.email = 'test@gmail.com';
+      createOrderRequest.phone = '1111111111111';
+      createOrderRequest.company = 'Test';
+      createOrderRequest.notes = 'abc';
 
 
       const chargeCreditCardTokenRequest = new ChargeCreditCardTokenRequest();
-      chargeCreditCardTokenRequest.otherData9 = '';
-      chargeCreditCardTokenRequest.otherData8 = '';
-      chargeCreditCardTokenRequest.otherData7 = '';
-      chargeCreditCardTokenRequest.otherData6 = '';
-      chargeCreditCardTokenRequest.otherData5 = '';
-      chargeCreditCardTokenRequest.otherData4 = '';
-      chargeCreditCardTokenRequest.otherData3 = '';
-      chargeCreditCardTokenRequest.otherData2 = '';
-      chargeCreditCardTokenRequest.otherData1 = '';
-      chargeCreditCardTokenRequest.clientIPAddress = '';
-      chargeCreditCardTokenRequest.merchantWarehouseIDOverride = 0;
+    
       chargeCreditCardTokenRequest.maxAmount = this.cartSummaryTotal;
       chargeCreditCardTokenRequest.otherData10 = '';
       if (this.addrnew == false) {
@@ -1058,32 +1010,36 @@ export class CheckoutComponent implements OnInit {
       chargeCreditCardTokenRequest.expirationMonth = this.p.expiryMonth.value;
       chargeCreditCardTokenRequest.creditCardType = 0;
       chargeCreditCardTokenRequest.cvcCode = this.p.cardCVV.value;
-      chargeCreditCardTokenRequest.billingCountry = 'US';//this.f.country.value;
+      chargeCreditCardTokenRequest.billingCountry = this.f.country.value;
       chargeCreditCardTokenRequest.billingZip = this.f.zip.value;
-      chargeCreditCardTokenRequest.billingState = 'TX';//this.f.state.value;
+      chargeCreditCardTokenRequest.billingState = this.f.state.value;
       chargeCreditCardTokenRequest.billingCity = this.f.city.value;
       chargeCreditCardTokenRequest.billingAddress2 = '';
       chargeCreditCardTokenRequest.billingAddress = this.f.streetAddress.value;
-      chargeCreditCardTokenRequest.creditCardToken = payload.nonce;
+      chargeCreditCardTokenRequest.creditCardToken = "41X1111WBCXTE1111";
       chargeCreditCardTokenRequest.expirationYear = this.p.expiryYear.value;
-      chargeCreditCardTokenRequest.orderKey = '';
+      chargeCreditCardTokenRequest.billingName = this.f.firstName.value;
+
+       const setAccountCreditCardTokenRequest = new SetAccountCreditCardTokenRequest();
+       setAccountCreditCardTokenRequest.creditCardToken ="41X1111WBCXTE1111";
+       setAccountCreditCardTokenRequest.expirationMonth =this.p.expiryMonth.value;
+       setAccountCreditCardTokenRequest.expirationYear = this.p.expiryYear.value;
 
       const transactionalRequestModel = new TransactionalRequestModel();
       transactionalRequestModel.createOrderRequest = createOrderRequest;
       transactionalRequestModel.chargeCreditCardTokenRequest = chargeCreditCardTokenRequest;
       transactionalRequestModel.setListItemRequest = this.cartItems;
-
+      transactionalRequestModel.setAccountCreditCardTokenRequest= setAccountCreditCardTokenRequest;
       this.shopService
         .checkOutItems(transactionalRequestModel)
         .subscribe((result: any) => {
-          console.log('Result', result);
-          this.router.navigate(['/store/thankyou']);
+      if(result==null){
+        this.toastrService.success('Payment failed');
+      }else{ this.router.navigate(['/store/thankyou']);}
+         
           this.spinner.hide();
         });
       // submit payload.nonce to the server from here
-    }).catch((error) => {
-      console.log(error);
-      // perform custom validation here or log errors
-    });
+   
   }
 }

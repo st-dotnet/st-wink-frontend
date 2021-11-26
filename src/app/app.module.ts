@@ -1,7 +1,7 @@
 // app required modules
 import { NgModule } from '@angular/core';
 import { SharedModule } from './shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxFreshChatModule} from  'ngx-freshchat';
@@ -16,8 +16,7 @@ import { AppNotificationBarComponent } from './components/layout/app-notificatio
 import { AppLayoutComponent } from './components/layout/app-layout/app-layout.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { GuidedTourModule } from 'src/lib/guided-tour.module';
-
-
+import {JwtInterceptor} from'./_helpers/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,8 @@ import { GuidedTourModule } from 'src/lib/guided-tour.module';
     GuidedTourModule.forRoot()
   ],
   providers: [
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

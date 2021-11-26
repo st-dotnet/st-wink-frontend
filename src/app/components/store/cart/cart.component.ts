@@ -298,7 +298,10 @@ export class CartComponent implements OnInit {
   checkOutItem() {
     if (this.sessionService.getSessionItem('user')) {
       this.sessionService.setSessionObject('productCartItems', this.cartItems);
+      if(this.cartItems.length>0)
       this.router.navigate(["/store/checkout"]);
+      else
+      this.toastrService.success('Add Item to Cart');
     } else {
       let isTrue = true;
       this.sessionService.setSessionItem('isTrue', isTrue);
