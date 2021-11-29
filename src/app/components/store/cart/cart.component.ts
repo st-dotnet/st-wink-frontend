@@ -78,15 +78,16 @@ export class CartComponent implements OnInit {
 
 
   GetOneTimeSubDiscount(){
-    debugger;
+   debugger;
   let total:number=0;
     this.oneTimePriceCartItems.forEach(element => {
+
       if(element.bundle == 'multiple'){
         if(element.Quantityupdate){
-         total+=element.Quantityupdate;
+         total+= parseFloat( element.Quantityupdate);
         }
         else{
-          total+=element.bv * 2 - element.Price;
+          total+= (element.bv * 2 - element.Price)*element.quantityModel;
         }
       }
     });
