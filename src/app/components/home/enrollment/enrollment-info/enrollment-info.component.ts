@@ -8,7 +8,7 @@ import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng
   templateUrl: './enrollment-info.component.html',
   styleUrls: ['./enrollment-info.component.css']
 })
-export class EnrollmentInfoComponent implements OnInit {
+export class EnrollmentComponent implements OnInit {
 
   title = 'ng-bootstrap-modal-demo';
   closeResult: string;

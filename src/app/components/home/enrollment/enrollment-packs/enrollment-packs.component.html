@@ -27,8 +27,7 @@
                         </p>
                     </div>
                     <div class="pack-image-product">
-                        <img [src]="'data:image/jpg;base64,'+data.productImage.fileContents" class="img-responsive"
-                            style="width:100%" />
+                        <img [src]="'data:image/jpg;base64,'+data.productImage.fileContents" class="img-responsive" style="width:100%" />
                     </div>
                     <div class="pack-info" [innerHtml]="data.longDetail1">
                     </div>
@@ -38,10 +37,10 @@
                 </div>
             </div>
         </div>
-    
+
         <div class="continue">
-            <button class="btn btn-info">Continue</button>
+            <button class="btn btn-info" routerLink="/enrollment/enrolleeinfo" routerLinkActive="active">Continue</button>
         </div>
-       
+
     </div>
 </section>

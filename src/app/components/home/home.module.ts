@@ -8,14 +8,16 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { AboutComponent } from './about/about.component';
 import { EnrollmentPacksComponent } from './enrollment/enrollment-packs/enrollment-packs.component';
-import { EnrollmentInfoComponent } from './enrollment/enrollment-info/enrollment-info.component';
+import { EnrollmentinfoComponent } from './enrollment/enrollmentinfo/enrollmentinfo.component';
+import { EnrollmentComponent } from './enrollment/enrollment-info/enrollment-info.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     AboutComponent,
     EnrollmentPacksComponent,
-    EnrollmentInfoComponent
+    EnrollmentComponent,
+    EnrollmentinfoComponent
   ],
   imports: [
     SharedModule,

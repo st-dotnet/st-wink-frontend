@@ -1,0 +1,25 @@
+section.enrollment-page.grid-checkout {
+    padding: 100px 0px;
+}
+
+span.arrow-stepp {
+    display: none;
+}
+
+.enrollment-righ .card.ng-star-inserted {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-bottom: 20px;
+}
+
+.enrollment-page .card.ng-star-inserted .card-header {
+    padding: 0px;
+}
+
+.card.ng-star-inserted {
+    background-color: unset !important;
+}
+
+div#refered-sidebar {
+    padding: 20px;
+}

@@ -678,21 +678,30 @@ button.btn-add-promo {
     font-size: 13px;
     padding: 4px 4px;
 }
+
 .subscribe_title {
-margin-top:10px;
-margin-bottom:10px;
-width: 100%;
-height: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: auto;
 }
-.btn-subsc-disable{
+
+.btn-subsc-disable {
     width: 100%;
     background-color: #6c757d6b !important;
     border-radius: 26px;
     height: 45px;
-    color: rgb(0 0 0 / 65%);;
+    color: rgb(0 0 0 / 65%);
+    ;
     font-family: "g-demibold";
     text-transform: uppercase;
 }
+
+.cart-quantity.mob-sec {
+    margin-bottom: 10px;
+}
+
+
 /* .cart-singleitem.ng-star-inserted .form-control {
     width: unset !important;
 } */
