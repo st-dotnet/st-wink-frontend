@@ -85,16 +85,18 @@
                     <p>{{ cartItem.itemCode }}</p>
                     <div class="cart-quantity mob-sec">
                       <div class="form-group">
-                        <select disabled={{cartItem.isDisabled}} (change)="
-                            quantityForOneTime(cartItem, $event.target.value)
-                          " class="form-control">
-                          <!-- <option class="dropdown-item" disabled selected value="undefined">
-                            {{cartItem.quantityModel }}
-                          </option> -->
+                        <select (change)="
+                        quantityForOneTime(cartItem, $event.target.value)
+                      " class="form-control" [(ngModel)]="cartItem.quantityModel">
                           <option *ngFor="let qty of quantity" [value]="qty.value">
-                            {{'Qty '+ qty.value }}
+                            {{qty.name }}
                           </option>
                         </select>
+                        <input type="number" style="margin-top: 10px;" id="showinput{{cartItem.itemCode}}"
+                          [(ngModel)]="cartItem.extraQuantity"
+                          *ngIf="cartItem.quantityModel == '0' || cartItem.extraQuantity !=null "
+                          (change)="quantitychanged(cartItem, $event.target.value)" class="form-control">
+
                       </div>
                     </div>
                   </div>
@@ -103,10 +105,7 @@
                       <div class="form-group">
                         <select (change)="
                           quantityForOneTime(cartItem, $event.target.value)
-                        " class="form-control"   [(ngModel)]="cartItem.quantityModel">
-                          <!-- <option class="dropdown-item" disabled selected value="undefined">
-                          {{ cartItem.quantityModel }}
-                        </option> -->
+                        " class="form-control" [(ngModel)]="cartItem.quantityModel">
                           <option *ngFor="let qty of quantity" [value]="qty.value">
                             {{qty.name }}
                           </option>
@@ -124,10 +123,10 @@
                     </div>
                     <div class="prod-discount">
                       <div *ngIf="cartItem.bundle == 'multiple'" class="subscription-with-discount">
-                         <!-- <p>5% Discount</p>
+                        <!-- <p>5% Discount</p>
                         <p>-${{cartItem.Quantityupdate| number:'.1-2'}}</p> -->
 
-                       <!-- <p >{{cartItem.bv * 2 - cartItem.Price| number:'.1-2'}}</p> -->
+                        <!-- <p >{{cartItem.bv * 2 - cartItem.Price| number:'.1-2'}}</p> -->
 
                       </div>
                     </div>
@@ -172,10 +171,6 @@
             </div>
           </div>
         </div>
-
-
-
-
         <!-- subscription -->
         <div *ngIf="subscriptionCartItemsCount > 0" class="grid-box-shadow OTP Subscription-box">
           <h3>Subscription Purchase ({{ subscriptionCartItemsCount }})</h3>
@@ -219,18 +214,19 @@
                       </div>
                       <div class="form-group">
                         <select (change)="
-                            quantityForSubscriptionTime(
-                              delivery,
-                              $event.target.value
-                            )
-                          " [(ngModel)]="delivery.quantityModel" class="form-control">
-                          <option class="dropdown-item" disabled selected value="undefined">
-                            {{ delivery.quantityModel }}
-                          </option>
+                          quantityForSubscriptionTime(
+                            delivery,
+                            $event.target.value
+                          )
+                        " [(ngModel)]="delivery.quantityModel" class="form-control">
                           <option *ngFor="let qty of quantity" [value]="qty.value">
-                            {{'Qty ' + qty.value }}
+                            {{ qty.name }}
                           </option>
                         </select>
+                        <input type="number" style="margin-top: 10px;" id="showinput{{delivery.itemCode}}"
+                          [(ngModel)]="delivery.extraQuantity"
+                          *ngIf="delivery.quantityModel == '0' || delivery.extraQuantity !=null"
+                          (change)="quantitychanged(delivery, $event.target.value)" class="form-control">
                       </div>
                     </div>
                   </div>
@@ -271,40 +267,40 @@
 
             <div class="additional-div">
               <div class="other-additional-product">
-              <div class="promo-code">
-                <div
-                  [className]="  delivery.inputdata ? 'special-field datafilled form-group ' : 'special-field dataempty form-group' ">
-                  <input type="text" [(ngModel)]="delivery.inputdata" class="form-control"
-                    value="{{delivery.inputdata| date}}" bsDatepicker [minDate]="minDate" [bsConfig]="{
+                <div class="promo-code">
+                  <div
+                    [className]="  delivery.inputdata ? 'special-field datafilled form-group ' : 'special-field dataempty form-group' ">
+                    <input type="text" [(ngModel)]="delivery.inputdata" class="form-control"
+                      value="{{delivery.inputdata| date}}" bsDatepicker [minDate]="minDate" [bsConfig]="{
   isAnimated: true,
   adaptivePosition: true,
   selectFromOtherMonth: true
   }" />
-                  <label class="form-label">Select Start Date</label>
-                  <span class="btn-add-promo">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
-                      height="24" viewBox="0 0 24 24">
-                      <defs>
-                        <clipPath id="clip-path">
-                          <rect width="24" height="24" fill="none" />
-                        </clipPath>
-                      </defs>
-                      <g id="Icon_Event_Rounded" data-name="Icon / Event / Rounded" opacity="0.5"
-                        clip-path="url(#clip-path)">
-                        <rect id="Box" width="24" height="24" fill="none" />
-                        <path id="Path_2017" data-name="Path 2017"
-                          d="M879.9,18h-12a1.075,1.075,0,0,1-1-1V7h14V17A1,1,0,0,1,879.9,18Zm-2-17V2h-8V1a1,1,0,0,0-2,0V2h-1a2.006,2.006,0,0,0-2,2V18a2.006,2.006,0,0,0,2,2h14a2.006,2.006,0,0,0,2-2V4a2.006,2.006,0,0,0-2-2h-1V1a1,1,0,0,0-2,0Zm0,10h-3a1.075,1.075,0,0,0-1,1v3a1.075,1.075,0,0,0,1,1h3a1.075,1.075,0,0,0,1-1V12A1,1,0,0,0,877.9,11Z"
-                          transform="translate(-862 2)" />
-                      </g>
-                    </svg>
-                  </span>
+                    <label class="form-label">Select Start Date</label>
+                    <span class="btn-add-promo">
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
+                        height="24" viewBox="0 0 24 24">
+                        <defs>
+                          <clipPath id="clip-path">
+                            <rect width="24" height="24" fill="none" />
+                          </clipPath>
+                        </defs>
+                        <g id="Icon_Event_Rounded" data-name="Icon / Event / Rounded" opacity="0.5"
+                          clip-path="url(#clip-path)">
+                          <rect id="Box" width="24" height="24" fill="none" />
+                          <path id="Path_2017" data-name="Path 2017"
+                            d="M879.9,18h-12a1.075,1.075,0,0,1-1-1V7h14V17A1,1,0,0,1,879.9,18Zm-2-17V2h-8V1a1,1,0,0,0-2,0V2h-1a2.006,2.006,0,0,0-2,2V18a2.006,2.006,0,0,0,2,2h14a2.006,2.006,0,0,0,2-2V4a2.006,2.006,0,0,0-2-2h-1V1a1,1,0,0,0-2,0Zm0,10h-3a1.075,1.075,0,0,0-1,1v3a1.075,1.075,0,0,0,1,1h3a1.075,1.075,0,0,0,1-1V12A1,1,0,0,0,877.9,11Z"
+                            transform="translate(-862 2)" />
+                        </g>
+                      </svg>
+                    </span>
+                  </div>
                 </div>
+
+
+
+
               </div>
-
-
-
-
-            </div>
             </div>
           </div>
           <div class="prod-discount">
