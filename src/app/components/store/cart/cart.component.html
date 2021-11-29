@@ -103,7 +103,7 @@
                       <div class="form-group">
                         <select (change)="
                           quantityForOneTime(cartItem, $event.target.value)
-                        " class="form-control" [(ngModel)]="cartItem.quantityModel">
+                        " class="form-control"   [(ngModel)]="cartItem.quantityModel">
                           <!-- <option class="dropdown-item" disabled selected value="undefined">
                           {{ cartItem.quantityModel }}
                         </option> -->
@@ -124,10 +124,10 @@
                     </div>
                     <div class="prod-discount">
                       <div *ngIf="cartItem.bundle == 'multiple'" class="subscription-with-discount">
-                        <!-- <p>5% Discount</p>
+                         <!-- <p>5% Discount</p>
                         <p>-${{cartItem.Quantityupdate| number:'.1-2'}}</p> -->
 
-                        <!-- <p id="UpdateDiscoutAmount{{cartItem.itemCode}}">{{cartItem.bv * 2 - cartItem.Price| number:'.1-2'}}</p> -->
+                        <!-- <p >{{cartItem.bv * 2 - cartItem.Price| number:'.1-2'}}</p> -->
 
                       </div>
                     </div>
@@ -159,7 +159,7 @@
 
               <div class="prod-discount">
                 <div class="subtotal">
-                  <p>5% Discount</p>
+                  <p>5% Sub Discount</p>
                   <p>-$ {{totalOneTimeDiscountPurchase | number:'.1-2'}}</p>
                 </div>
               </div>

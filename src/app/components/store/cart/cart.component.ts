@@ -78,12 +78,16 @@ export class CartComponent implements OnInit {
 
 
   GetOneTimeSubDiscount(){
+    debugger;
   let total:number=0;
     this.oneTimePriceCartItems.forEach(element => {
-
       if(element.bundle == 'multiple'){
-        //total+=element.bv * 2 - element.Price;
+        if(element.Quantityupdate){
          total+=element.Quantityupdate;
+        }
+        else{
+          total+=element.bv * 2 - element.Price;
+        }
       }
     });
     this.totalOneTimeDiscountPurchase=total;
@@ -91,7 +95,7 @@ export class CartComponent implements OnInit {
 
 
   ngOnInit() {
-    this.Quantityupdate=1;
+    //this.Quantityupdate=1;
 
     this.userLogin = this.sessionService.getSessionObject("user");
     if (this.userLogin) {
@@ -204,6 +208,7 @@ export class CartComponent implements OnInit {
     //this.oneTimePriceCartItems.push(this.specialItem);
     console.log("fasdfds", this.specialItem[0]);
     this.onLoad();
+
   }
 
 
@@ -301,6 +306,8 @@ export class CartComponent implements OnInit {
     this.spinner.hide();
     // this.quantityForOneTime('', 0);
     // this.quantityForSubscriptionTime('', 0);
+
+    this.GetOneTimeSubDiscount();
     this.cartCalculation();
   }
 
@@ -341,10 +348,10 @@ export class CartComponent implements OnInit {
 
   }
 
-  calculatedata(bv:number,Price:number,qun:number){
-    this.Quantityupdate=(bv * 2 - Price)*qun;
-    return this.Quantityupdate;
-  }
+  // calculatedata(bv:number,Price:number,qun:number){
+  //   this.Quantityupdate=(bv * 2 - Price)*qun;
+  //   return this.Quantityupdate;
+  // }
   quantityCalculation(cartitem: any, selectedvalue: number) {
    debugger;
     if (selectedvalue < 11) {
@@ -371,6 +378,7 @@ export class CartComponent implements OnInit {
       }
       this.sessionService.setSessionObject('productCartItems', this.cartItems);
       this.GetOneTimeSubDiscount();
+
     }
     this.cartCalculation();
 
