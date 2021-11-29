@@ -177,14 +177,7 @@
                             <!-- <h3>Customize Shipment <span class="ques-ico"><a href="#"><i class="fas fa-question" aria-hidden="true"></i></a></span></h3> -->
                             <div class="choose-shipping">
                                 <div class="form-group">
-                                    <!-- <select [(ngModel)]="quantityValue" [ngModelOptions]="{standalone: true}" class="form-control">
-                                  <option class="dropdown-item" disabled selected value="undefined">Select Quantity</option>
-                                  <option *ngFor="let qty of quantity" [value]="qty.value">
-                                  {{'Qty '+ qty.value}}
-                                   </option>
-                                </select> -->
-
-                                    <select (change)="quantityForOneTime(productDetail, $event.target.value)" [(ngModel)]="quantityValue"  class="form-control">
+                                    <select (change)="quantityForOneTime(productDetail, $event.target.value)" [(ngModel)]="quantityValue" class="form-control">
                                         <option class="dropdown-item" disabled selected value="undefined">Select Quantity</option>
                                         <option *ngFor="let qty of quantity" [value]="qty.value">
                                         {{qty.name}}
