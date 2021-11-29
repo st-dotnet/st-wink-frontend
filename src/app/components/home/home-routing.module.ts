@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { EnrollmentComponent } from './enrollment/enrollment-info/enrollment-info.component';
 import { EnrollmentPacksComponent } from './enrollment/enrollment-packs/enrollment-packs.component';
-import { EnrollmentinfoComponent } from './enrollment/enrollmentinfo/enrollmentinfo.component';
+import { EnrollmentInfoComponent } from './enrollment/enrollmentinfo/enrollmentinfo.component';
 import { HomeComponent } from './home.component';
 
 // home routes
@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'enrollment', component: EnrollmentComponent },
   { path: 'enrollment/enrollment-packs', component: EnrollmentPacksComponent },
-  { path: 'enrollment/enrolleeinfo', component: EnrollmentinfoComponent },
+  { path: 'enrollment/enrolleeinfo', component: EnrollmentInfoComponent },
 ];
 
 @NgModule({
