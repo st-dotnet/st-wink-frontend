@@ -126,6 +126,36 @@ export class ShopComponent implements OnInit {
         value: 4,
       },
       {
+        id: '5',
+        name: 'Qty 5',
+        value: 5,
+      },
+      {
+        id: '6',
+        name: 'Qty 6',
+        value: 6,
+      },
+      {
+        id: '7',
+        name: 'Qty 7',
+        value: 7,
+      },
+      {
+        id: '8',
+        name: 'Qty 8',
+        value: 8,
+      },
+      {
+        id: '9',
+        name: 'Qty 9',
+        value: 9,
+      },
+      {
+        id: '10',
+        name: 'Qty 10',
+        value: 10,
+      },
+      {
         id: 'Others',
         name: 'Custom',
         value: 11,
@@ -544,7 +574,7 @@ export class ShopComponent implements OnInit {
     if (this.cartItems) {
       const item = this.cartItems.find((x) => x.itemCode == cartitem.itemCode);
 
-      if (item && selectedvalue > 5) {
+      if (item && selectedvalue > 10) {
         item.quantityModel = item.quantityModel + item.extraQuantity;
       }
     }
@@ -555,11 +585,11 @@ export class ShopComponent implements OnInit {
 
   quantityCalculation(productDetail: any, selectedvalue: number) {
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
-    if (selectedvalue < 5) {
+    if (selectedvalue < 10) {
       productDetail.extraQuantity = null;
     }
     if (selectedvalue != null && selectedvalue != undefined) {
-      if (selectedvalue == 11 || selectedvalue > 5) {
+      if (selectedvalue == 11 || selectedvalue > 10) {
         this.showOtherTextbox = productDetail.itemCode;
         $('#showinput' + productDetail.itemCode).show();
       } else {
