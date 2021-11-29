@@ -11,17 +11,14 @@ import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { PlatformLocation } from '@angular/common';
 
-
-
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css'],
 })
 
-
-export class SignUpComponent implements OnInit  {
-  checkage:boolean=false;
+export class SignUpComponent implements OnInit {
+  checkage: boolean = false;
   unSaved: boolean = true;
   form!: FormGroup;
   public recaptchaMode = 'v3';
@@ -30,7 +27,6 @@ export class SignUpComponent implements OnInit  {
   maxDate = new Date();
   maskMobileNo = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   //datemask= [/\d/, /\d/, '/', /\d/, /\d/, '/',/\d/, /\d/,/\d/, /\d/];
-
 
   isTrue: string;
   constructor(
@@ -69,18 +65,17 @@ export class SignUpComponent implements OnInit  {
         ],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-        dateOfBirth: ['',[Validators.required]],
-
-        recaptcha:['',[Validators.required]]
+        dateOfBirth: ['', [Validators.required]],
+        recaptcha: ['', [Validators.required]]
       },
       {
         validator: MustMatch('password', 'confirmPassword'),
       }
     );
   }
- //
+  //
   public addTokenLog(message: string, token: string | null) {
-   // this.log.push(`${message}: ${this.formatToken(token)}`);
+    // this.log.push(`${message}: ${this.formatToken(token)}`);
   }
   // convenience getter for easy access to form fields
   get f() {
@@ -89,18 +84,16 @@ export class SignUpComponent implements OnInit  {
 
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | boolean {
-    debugger
-    let dirty=this.form.dirty;
-    if(dirty==false){
+    let dirty = this.form.dirty;
+    if (dirty == false) {
       return true;
-    }else if(dirty==true){
+    } else if (dirty == true) {
       return false;
     }
   }
 
   onSubmit() {
     this.submitted = true;
-    debugger;
     // stop here if form is invalid
     if (this.form.invalid) {
       return;
@@ -110,13 +103,13 @@ export class SignUpComponent implements OnInit  {
     var age = today.getFullYear() - birthDate.getFullYear();
     var m = today.getMonth() - birthDate.getMonth();
 
-
-      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
-          age--;
-          if(age < 14) {
-          this.checkage=true;
-         return;
-        }
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
+      age--;
+    if (age < 14) {
+      this.checkage = true;
+      this.toastrService.error('You have less than 14 years old!');
+      return;
+    }
 
     const model = {
       customerID: 0,
@@ -125,8 +118,8 @@ export class SignUpComponent implements OnInit  {
       lastName: this.f.lastName.value ? this.f.lastName.value : '',
       mobilePhone: this.f.phoneNumber.value ? this.f.phoneNumber.value : '',
       canLogin: true,
-      recaptcha:this.f.recaptcha.value ? this.f.recaptcha.value : '',
-      dateOfBirth:this.f.dateOfBirth.value ? this.f.dateOfBirth.value : '',
+      recaptcha: this.f.recaptcha.value ? this.f.recaptcha.value : '',
+      dateOfBirth: this.f.dateOfBirth.value ? this.f.dateOfBirth.value : '',
       email: this.f.emailAddress.value ? this.f.emailAddress.value : '',
       loginName: this.f.userName.value,
       loginPassword: this.f.confirmPassword.value
@@ -148,21 +141,18 @@ export class SignUpComponent implements OnInit  {
       .pipe(first())
       .subscribe({
         next: (res) => {
-          console.log("Result", res);
-          debugger
           this.isTrue = this.sessionService.getSessionItem('isTrue');
-          if(this.isTrue == "true"){
+          if (this.isTrue == "true") {
             setTimeout(() => {
-            this.router.navigate(["/store/checkout"]);
+              this.router.navigate(["/store/checkout"]);
               this.spinner.hide();
-                }, 1000);
-          }else if(res.errorMessage != null && res.errorMessage != ""){
+            }, 1000);
+          } else if (res.errorMessage != null && res.errorMessage != "") {
             this.toastrService.error(res.errorMessage);
-          }else
-          {
-            this.router.navigate([''], { relativeTo: this.route }) ;
+          } else {
+            this.router.navigate([''], { relativeTo: this.route });
             this.toastrService.success('User registration successfully');
-             this.spinner.hide();
+            this.spinner.hide();
           }
           // this.toastrService.success('Please check your email in order to verify the registration');
           this.spinner.hide();
@@ -175,31 +165,31 @@ export class SignUpComponent implements OnInit  {
       });
   }
 
-  validateEmail(email: any){
+  validateEmail(email: any) {
     const re =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
 
-  emailVerify(type:any){
-    const emailModel ={
-      userName : this.f.userName.value,
-      email : this.f.emailAddress.value
+  emailVerify(type: any) {
+    const emailModel = {
+      userName: this.f.userName.value,
+      email: this.f.emailAddress.value
     }
     this.spinner.show();
     this.accountService
       .emailVerify(emailModel)
       .pipe(first())
       .subscribe({
-        next: (result:any) => {
-          if(result){
-            if(type=="Email"){
+        next: (result: any) => {
+          if (result) {
+            if (type == "Email") {
               this.form.get("emailAddress").setValue("");
-            }else{
+            } else {
               this.form.get("userName").setValue("");
             }
             this.toastrService.error(`${type} Already existed`);
-           }
+          }
           this.spinner.hide();
         },
         error: (error) => {

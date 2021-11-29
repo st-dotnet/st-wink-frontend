@@ -8,7 +8,7 @@
             <div class="form-group mb-3">
               <input type="text" class="form-control" formControlName="firstName" placeholder="First name"
                 [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                <span class="valid-text">* Required</span>
+              <span class="valid-text">* Required</span>
               <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                 <div *ngIf="f.firstName.errors.required">First Name is required</div>
               </div>
@@ -16,15 +16,15 @@
             <div class="form-group mb-3">
               <input type="text" class="form-control" formControlName="lastName" placeholder="Last name"
                 [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-                <span class="valid-text">* Required</span>
+              <span class="valid-text">* Required</span>
               <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
                 <div *ngIf="f.lastName.errors.required">Last Name is required</div>
               </div>
             </div>
             <div class="form-group mb-3">
-              <input type="email" class="form-control" (change)="emailVerify('Email')" formControlName="emailAddress" placeholder="Email address"
-                [ngClass]="{ 'is-invalid': submitted && f.emailAddress.errors }" />
-                <span class="valid-text">* Required</span>
+              <input type="email" class="form-control" (change)="emailVerify('Email')" formControlName="emailAddress"
+                placeholder="Email address" [ngClass]="{ 'is-invalid': submitted && f.emailAddress.errors }" />
+              <span class="valid-text">* Required</span>
               <div *ngIf="submitted && f.emailAddress.errors" class="invalid-feedback">
                 <div *ngIf="f.emailAddress.errors.required">Email is required</div>
                 <div *ngIf="f.emailAddress.errors.email">Please enter vaild email address</div>
@@ -32,17 +32,17 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <input type="text" class="form-control" (change)="emailVerify('UserName')" formControlName="userName" placeholder="Username"
-                [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
-                <span class="valid-text">* Required</span>
+              <input type="text" class="form-control" (change)="emailVerify('UserName')" formControlName="userName"
+                placeholder="Username" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+              <span class="valid-text">* Required</span>
               <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
                 <div *ngIf="f.userName.errors.required">User Name is required</div>
               </div>
             </div>
             <div class="form-group mb-3">
-              <input type="text" class="form-control" formControlName="phoneNumber" [textMask]="{mask: maskMobileNo}" placeholder="Phone number"
-                [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
-                <span class="valid-text">* Required</span>
+              <input type="text" class="form-control" formControlName="phoneNumber" [textMask]="{mask: maskMobileNo}"
+                placeholder="Phone number" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
+              <span class="valid-text">* Required</span>
               <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
                 <div *ngIf="f.phoneNumber.errors.required">Phone number is required</div>
                 <div *ngIf="f.phoneNumber.errors.minlength">Phone number must be at least 10-12 numbers with country
@@ -50,10 +50,10 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <input type="password" class="form-control" formControlName="password" placeholder="Password" minlength="6" maxlength="12"
-                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                <span class="valid-text">* Required</span>
-               <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <input type="password" class="form-control" formControlName="password" placeholder="Password"
+                minlength="6" maxlength="12" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+              <span class="valid-text">* Required</span>
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                 <div *ngIf="f.password.errors.required">Password is required</div>
                 <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
               </div>
@@ -61,7 +61,7 @@
             <div class="form-group mb-3">
               <input type="password" class="form-control" formControlName="confirmPassword" minlength="6" maxlength="12"
                 placeholder="Confirm password" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
-                <span class="valid-text">* Required</span>
+              <span class="valid-text">* Required</span>
               <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
                 <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
                 <div *ngIf="f.confirmPassword.errors.minlength">Confirm Password must be at least 6 characters</div>
@@ -69,21 +69,24 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <input type="text" placeholder="Birthday" class="form-control" readonly="readonly" [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors }"
-              bsDatepicker [maxDate]="maxDate" [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }"  formControlName="dateOfBirth">
+              <input type="text" placeholder="Birthday" class="form-control" readonly="readonly"
+                [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors }" bsDatepicker [maxDate]="maxDate"
+                [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }"
+                formControlName="dateOfBirth">
               <span class="valid-text">* Required</span>
               <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
                 <div *ngIf="f.dateOfBirth.errors.required">Birthday is required</div>
               </div>
-              <div *ngIf="checkage" class="dateofbirth-invalid-feed-back">You have less than 14 old!</div>
+              <div *ngIf="checkage" class="dateofbirth-invalid-feed-back">You have less than 14 years old!</div>
             </div>
-                 <div class="form-group mb-3">
-                  <re-captcha id="recaptcha" name="recaptcha" required [ngClass]="{ 'is-invalid': submitted && f.recaptcha.errors }" formControlName="recaptcha"></re-captcha>
-                  <span class="valid-text">* Required</span>
-                  <div *ngIf="submitted && f.recaptcha.errors" class="invalid-feedback">
-                    <div *ngIf="f.recaptcha.errors.required">Recaptcha is required</div>
-                  </div>
-                </div>
+            <div class="form-group mb-3">
+              <re-captcha id="recaptcha" name="recaptcha" required
+                [ngClass]="{ 'is-invalid': submitted && f.recaptcha.errors }" formControlName="recaptcha"></re-captcha>
+              <span class="valid-text">* Required</span>
+              <div *ngIf="submitted && f.recaptcha.errors" class="invalid-feedback">
+                <div *ngIf="f.recaptcha.errors.required">Recaptcha is required</div>
+              </div>
+            </div>
           </div>
           <div class="btn-proceed">
             <p class="short-noti-signup">We will never sell or share your personal information.</p>
