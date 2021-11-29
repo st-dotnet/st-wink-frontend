@@ -179,7 +179,7 @@ export class SignUpComponent implements OnInit {
           } else if (res.errorMessage != null && res.errorMessage != "") {
             this.toastrService.error(res.errorMessage);
           } else {
-            this.router.navigate([''], { relativeTo: this.route });
+            //this.router.navigate([''], { relativeTo: this.route });
             this.toastrService.success('User registration successfully');
             this.spinner.hide();
           }
