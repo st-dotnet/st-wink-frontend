@@ -636,7 +636,8 @@ section.client-reviews .client-testimonial-box .owl-nav {
 
 .panel-stepbar #checkoutstep1-header.card-header .btn[aria-expanded="true"],
 .panel-stepbar #checkoutstep2-header.card-header .btn[aria-expanded="true"],
-.panel-stepbar #checkoutstep3-header.card-header .btn[aria-expanded="true"] {
+.panel-stepbar #checkoutstep3-header.card-header .btn[aria-expanded="true"],
+.panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"] {
     color: #fff;
     background-color: #2196f3;
     padding: 15px 15px;
@@ -656,14 +657,16 @@ section.client-reviews .client-testimonial-box .owl-nav {
 
 .panel-stepbar #checkoutstep1-header.card-header,
 .panel-stepbar #checkoutstep2-header.card-header,
-.panel-stepbar #checkoutstep3-header.card-header {
+.panel-stepbar #checkoutstep3-header.card-header,
+.panel-stepbar #checkoutstep4-header.card-header {
     padding: 0;
     margin-bottom: 12px;
 }
 
 .panel-stepbar #checkoutstep1-header.card-header .btn[aria-expanded="true"]:before,
 .panel-stepbar #checkoutstep2-header.card-header .btn[aria-expanded="true"]:before,
-.panel-stepbar #checkoutstep3-header.card-header .btn[aria-expanded="true"]:before {
+.panel-stepbar #checkoutstep3-header.card-header .btn[aria-expanded="true"]:before,
+.panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"]:before {
     width: 30px;
     height: 30px;
     border-top: solid 20px rgb(33 150 243);
@@ -677,7 +680,8 @@ section.client-reviews .client-testimonial-box .owl-nav {
 
 .panel-stepbar #checkoutstep1-header.card-header svg,
 .panel-stepbar #checkoutstep2-header.card-header svg,
-.panel-stepbar #checkoutstep3-header.card-header svg {
+.panel-stepbar #checkoutstep3-header.card-header svg,
+.panel-stepbar #checkoutstep4-header.card-header svg {
     display: none;
 }
 
@@ -714,6 +718,51 @@ div#card-info ul.card-mat span.more-card {
 
 div#notifi-review-header+div#notifi-review {
     display: none;
+}
+
+.checkout-steps-4 ngb-accordion .card-header p {
+    margin: 0;
+    color: #000000b3;
+    font-family: g-medium;
+    font-size: 16px;
+}
+
+div#checkoutstep4 ngb-accordion .card-header {
+    padding: 0px;
+}
+
+div#checkoutstep4 ngb-accordion .card-header p {
+    margin: 0px;
+}
+
+div#checkoutstep4 ngb-accordion .card-header h4 {
+    color: #000000b3;
+    font-family: g-medium;
+    font-size: 20px;
+    line-height: 22px;
+    margin-top: 0;
+}
+
+div#checkoutstep4 ngb-accordion .card-header p {
+    margin: 0;
+    color: #000000b3;
+    font-family: g-medium;
+    font-size: 16px;
+}
+
+div#checkoutstep4 ngb-accordion .card-header button:hover {
+    text-decoration: none;
+}
+
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep4 ngb-accordion.accordion .card-header+div#today-order .table-today-order {
+    margin-bottom: 20px;
+}
+
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep1-header button:hover,
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep2-header button:hover,
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep3-header button:hover,
+.enrollment-steps-4 ngb-accordion.accordion div#checkoutstep1-header button:hover {
+    text-decoration: none;
 }
 
 
@@ -1409,15 +1458,15 @@ div#refered-sidebar {
     padding: 20px;
 }
 
-.content-card.steps-inner.promo-checkout.ng-star-inserted {
+.content-card.steps-inner.promo-checkout {
     padding: 20px;
 }
 
-.enrollment-page .final-cta-bottom.ng-star-inserted .plce-order-cta {
+.enrollment-page .final-cta-bottom .plce-order-cta {
     text-align: center;
 }
 
-.enrollment-page .final-cta-bottom.ng-star-inserted button {
+.enrollment-page .final-cta-bottom button {
     width: 100%;
     max-width: 320px;
     margin: 0 auto;
@@ -1431,7 +1480,7 @@ div#refered-sidebar {
     border: 1px solid #1cb1c5;
 }
 
-.enrollment-page .final-cta-bottom.ng-star-inserted .verified-batch {
+.enrollment-page .final-cta-bottom .verified-batch {
     max-width: 245px;
     display: flex;
     text-align: left;
@@ -1439,17 +1488,149 @@ div#refered-sidebar {
     margin: 20px auto 0;
 }
 
-.enrollment-page .final-cta-bottom.ng-star-inserted {
+.enrollment-page .final-cta-bottom {
     padding: 20px 0px;
 }
 
-.tour-step.tour-bottom.ng-star-inserted {
+.enrollment-steps-3 ngb-accordion .card-header {
+    background: #fff;
+    border: none;
+    box-shadow: 0 0 5px #d0d0d0!important;
+    border-radius: 3px!important;
+}
+
+.enrollment-steps-3 ngb-accordion .card {
+    background: none;
+    border: none;
+    overflow: visible;
+    margin-bottom: 18px;
+}
+
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep1 ngb-accordion.accordion .card-header,
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep2 ngb-accordion.accordion .card-header,
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep3 ngb-accordion.accordion .card-header,
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep4 ngb-accordion.accordion .card-header {
+    box-shadow: none !important;
+}
+
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep1 ngb-accordion.accordion .card-header+div,
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep2 ngb-accordion.accordion .card-header+div,
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep3 ngb-accordion.accordion .card-header+div,
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep4 ngb-accordion.accordion .card-header+div {
+    background: #fff;
+    padding: 0 25px;
+}
+
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep1 ngb-accordion.accordion .card-header+div .card-body,
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep2 ngb-accordion.accordion .card-header+div .card-body,
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep3 ngb-accordion.accordion .card-header+div .card-body,
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep4 ngb-accordion.accordion .card-header+div .card-body {
+    padding: 0px;
+}
+
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep1 ngb-accordion.accordion .card-header button,
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep2 ngb-accordion.accordion .card-header button,
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep3 ngb-accordion.accordion .card-header button,
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep4 ngb-accordion.accordion .card-header button {
+    padding: 20px 25px;
+}
+
+.enrollment-steps-3 ngb-accordion.accordion div#checkoutstep1 ngb-accordion.accordion .card-header+div .card-body .content-card {
+    padding: 0px;
+}
+
+.title-yw {
+    padding: 0 14px;
+    margin-bottom: 10px;
+}
+
+.enrollment-steps-3 input,
+.enrollment-steps-3 select {
+    height: 50px;
+    font-family: g-medium;
+    font-size: 16px;
+    color: #000c;
+}
+
+.space-20 {
+    margin-bottom: 25px;
+}
+
+.need-help {
+    position: absolute;
+    bottom: 30px;
+}
+
+.checkbox.aligned-checked {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox.aligned-checked label {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox.aligned-checked label span {
+    margin-left: 10px;
+}
+
+ul.conv-products.styl-check {
+    padding: 12px 27px 0px;
+}
+
+
+/*Sprint 2 - UI*/
+
+.birthday-holder {
+    position: relative;
+}
+
+.birthday-holder span.btn-add-promo {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.tour-step.tour-bottom {
     z-index: 999;
 }
 
-.ng-star-inserted.tour-step.tour-right {
-    left: 50%;
-    z-index: 999;
+.custom-shiping .choose-shipping .form-group {
+    width: 50%;
+}
+
+section.reviews-yotpo yotpo-reviews-widget .yotpo-label.yotpo-small-box {
+    display: none;
+}
+
+section.reviews-yotpo yotpo-reviews-widget h2.yotpo-main-title {
+    font-family: 'g-medium';
+    text-transform: capitalize !important;
+    font-size: 36px !important;
+    color: #2e2e2e !important;
+}
+
+.grid-box-shadow.Subscription-box .prod-discount {
+    max-width: 250px;
+    float: right;
+}
+
+.grid-box-shadow.Subscription-box .prod-discount .subtotal {
+    display: block;
+    max-width: 250px;
+    width: 100%;
+}
+
+.grid-box-shadow.Subscription-box .prod-discount .subtotal p:first-child {
+    text-align: left;
+    float: left;
+}
+
+.grid-box-shadow.Subscription-box .prod-discount .subtotal p {
+    font-weight: 600;
+    color: #3e3e3e;
 }
 
 
@@ -1682,7 +1863,20 @@ div#refered-sidebar {
     }
 }
 
+@media (min-width:768px) and (max-width:1199px) {
+    .tour-step.tour-right {
+        left: 50% !important;
+        z-index: 999;
+        margin-top: 50px;
+        transform: translateX(-50%);
+        width: 300px !important;
+    }
+}
+
 @media (max-width: 767px) {
+    ngx-guided-tour {
+        display: none;
+    }
     .r-listing-head .media-body .r-date-post {
         display: none;
     }
