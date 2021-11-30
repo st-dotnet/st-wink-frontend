@@ -47,6 +47,8 @@ export class CheckoutComponent implements OnInit {
   filterTerm: any;
   cartItems: any[] = [];
   submitted = false;
+  paymentSubmitted= false;
+  cardvalidate= false;
   subscriptionCartItems: any[] = [];
   oneTimePriceCartItems: any[] = [];
   subtotalOneTimePrice: any = 0;
@@ -90,7 +92,7 @@ export class CheckoutComponent implements OnInit {
   city: string;
   state: string;
   zip: number;
-  country: string;
+  country: string="US";
   isShipmentMethod: any;
   shippingAddressParam: any;
   //Card Information Variables
@@ -101,7 +103,7 @@ export class CheckoutComponent implements OnInit {
   expiryMonth: number;
   expiryYear: number;
   cardCVV: number;
-  isCardDisabled: boolean = true;
+  isCardDisabled: boolean = false;
   isMakePrimaryCard: boolean = false;
   paymentParam: any;
   // New Billing Address
@@ -188,12 +190,13 @@ export class CheckoutComponent implements OnInit {
       city: ['', [Validators.required]],
       state: ['', [Validators.required]],
       zip: ['', [Validators.required]],
-      country: ['', [Validators.required]],
+      country: ['US'],
     });
 
     this.onPaymentSubmitForm = this.formBuilder.group({
       cardName: ['', [Validators.required]],
-      cardNumber: ['', [Validators.required]],
+      cardNumber: ['', [Validators.required,Validators.minLength(15),
+        Validators.maxLength(15)]],
       expiryMonth: ['', [Validators.required]],
       expiryYear: ['', [Validators.required]],
       cardCVV: ['', [Validators.required]],
@@ -349,8 +352,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   onPaymentSubmit() {
-    debugger;
-    this.submitted = true;
+    
+    this.paymentSubmitted = true;
     if (this.onPaymentSubmitForm.invalid) {
       return;
     }
@@ -395,17 +398,18 @@ export class CheckoutComponent implements OnInit {
     this.spinner.hide();
     this.toastrService.success('Card Added');
     this.activeIds= ['checkoutstep3'];
-    // this.shopService.chargecreditcard(payment).subscribe((result: any) => {
-    //   if (result.isCompletedSuccessfully == true) {
-    //     this.spinner.hide();
-    //     this.showPanel3 = true;
-    //     this.toastrService.success('Payment is succesfull');
-    //     this.showPanel2 = false;
-    //   } else {
-    //     this.spinner.hide();
-    //     this.toastrService.error('Payment is not unsuccessfull');
-    //   }
-    // });
+    this.shopService.generateCreditCardToken( payment.cardNumber).subscribe((result: any) => {
+      debugger;
+      if (result.isCompletedSuccessfully == true) {
+        this.spinner.hide();
+        this.showPanel3 = true;
+        this.toastrService.success('Payment is succesfull');
+        this.showPanel2 = false;
+      } else {
+        this.spinner.hide();
+        this.toastrService.error('Payment is not unsuccessfull');
+      }
+    });
   }
 
   getShippingAddressParam(type: number) {
@@ -629,38 +633,28 @@ export class CheckoutComponent implements OnInit {
     this.isMakePrimaryCard = event.target.checked;
   }
 
-  // convenience getter for easy access to form fields
-  // get f() { return this.checkoutForm.controls; }
-  //  get shippingAddress(): FormArray {
-  //    return this.ShippingAddressForm.get("shippingAddressFormGroup") as FormArray;
-  //  }
-
-  //  get cardForm(): FormArray {
-  //    return this.checkoutForm.get("cardFormGroup") as FormArray;
-  //  }
-
   onSelectCardChange(id: number) {
     switch (id) {
       case 1:
         //prepare existing card value;
-        this.isCardDisabled = true;
+        this.isCardDisabled = false;
         this.isCardType = id;
         //console.log(id);
 
         break;
       case 2:
         // take new card value and create token and store it to database and get;
-        this.isCardDisabled = false;
+        this.isCardDisabled = true;
         this.isCardType = id;
         //console.log(id);
-        setTimeout(() => {
-          this.shopService.getClientToken()
-            .subscribe(
-              (data: any) => {
-                console.log("Client Token", data.token);
-                this.createBraintreeUI(data.token);
-              });
-        }, 1000);
+        // setTimeout(() => {
+        //   this.shopService.getClientToken()
+        //     .subscribe(
+        //       (data: any) => {
+        //         console.log("Client Token", data.token);
+        //         this.createBraintreeUI(data.token);
+        //       });
+        // }, 1000);
         break;
       default:
         break;
@@ -690,11 +684,9 @@ export class CheckoutComponent implements OnInit {
   }
 
   onItemChange(id: number) {
-debugger;
     this.isShipmentMethod = id;
     console.log(this.isShipmentMethod);
   }
-
   addPromo(type: number) {
     this.promoPercentage = 0;
     let oneTimePriceWithoutOffer = this.cartItems.filter(
@@ -745,7 +737,7 @@ debugger;
   }
 
   clearPromo(event: any) {
-    debugger;
+    
     if (
       event.target.value == '' ||event.target.value == undefined ||event.target.value == null) {
       this.sessionService.removeSessionItem('promoCode');
@@ -918,17 +910,8 @@ debugger;
   }
 
   onSubmit() {
-debugger;
-    this.submitted = true;
-    // if (this.checkoutForm.invalid) {
-    //   return this.toastrService.error("Please fill the required field shipping address and card");
-    // }
-    // if (this.startDate == null) {
-    //   return this.toastrService.error("Please select the start date")
-    // }
-    // this.hostedFieldsInstance.tokenize({cardholderName: this.cardholdersName}).then((payload) => {
-    //   console.log(payload);
-    //   debugger;
+
+    this.submitted = true; 
       var startDate;
      if (this.startDate == 'undefined') {
     //     startDate = new Date();
@@ -1042,7 +1025,17 @@ debugger;
       // submit payload.nonce to the server from here
    
   }
-
+  creditCardValidator(control: any) {
+    debugger;
+    // Visa, MasterCard, American Express, Diners Club, Discover, JCB
+    if (control.target.value.match(/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/)) {
+      
+     return null;
+    } else {
+     this.cardvalidate = true;
+         
+    }
+ }
   
 
 }
