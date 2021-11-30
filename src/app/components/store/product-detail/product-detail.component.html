@@ -185,9 +185,6 @@
                                         </option>
                                     </select>
 
-                                    <input type="number" style="margin-top: 10px;" id="showinput{{productDetail.itemCode}}" [(ngModel)]="productDetail.extraQuantity" *ngIf="productDetail.quantityModel == '11'  || productDetail.extraQuantity !=null" (change)="quantitychanged(productDetail, $event.target.value)"
-                                        class="form-control" />
-
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
                                         <path id="Path_2028" data-name="Path 2028"
                                             d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
@@ -208,6 +205,10 @@
                                             transform="translate(-342.315 -7.7)" />
                                     </svg>
                                 </div>
+                            </div>
+                            <div class="custom-field">
+                                <input type="number" id="showinput{{productDetail.itemCode}}" [(ngModel)]="productDetail.extraQuantity" *ngIf="productDetail.quantityModel == '11'  || productDetail.extraQuantity !=null" (change)="quantitychanged(productDetail, $event.target.value)" class="form-control"
+                                />
                             </div>
                         </div>
                         <div class="cart-btn">
