@@ -173,13 +173,16 @@ export class SignUpComponent implements OnInit {
           this.isTrue = this.sessionService.getSessionItem('isTrue');
           if (this.isTrue == "true") {
             setTimeout(() => {
+              this.form.reset;
               this.router.navigate(["/store/checkout"]);
               this.spinner.hide();
             }, 1000);
           } else if (res.errorMessage != null && res.errorMessage != "") {
             this.toastrService.error(res.errorMessage);
           } else {
-            //this.router.navigate([''], { relativeTo: this.route });
+            this.form.reset;
+            
+            this.router.navigate([''], { relativeTo: this.route });
             this.toastrService.success('User registration successfully');
             this.spinner.hide();
           }
