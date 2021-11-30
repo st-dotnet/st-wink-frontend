@@ -676,9 +676,9 @@
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="Country" formControlName="country" [ngClass]="{ 'is-invalid': submitted && f.country?.errors }" />
+                                                                <input type="text" class="form-control" placeholder="Country" value="US" readonly >
                                                                 <div *ngIf="submitted && f.country?.errors" class="invalid-feedback">
-                                                                    <div *ngIf="f.country?.errors.required">
+                                                                    <div *ngIf="f.country?.errors.required" >
                                                                         Country is required</div>
                                                                 </div>
                                                             </div>
@@ -920,9 +920,9 @@
                                                 </div>
                                             </ng-template>
                                         </ngb-panel>
-                                        <ngb-panel id="card-info" [disabled]="isCardDisabled ? true : null">
+                                        <ngb-panel id="card-info"  *ngIf="isCardDisabled">
                                             <ng-template ngbPanelTitle>
-                                                <div class="heading-step1">
+                                                <div class="heading-step1" *ngIf="isCardDisabled">
                                                     <h4>Card</h4>
                                                     <span class="arrow-stepp">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
@@ -947,17 +947,21 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="cardName" placeholder="Name on card" name="card-name" class="form-control" [ngClass]="{ 'is-invalid': submitted && p.cardName?.errors }" />
-                                                                    <div *ngIf="submitted && p.cardName?.errors" class="invalid-feedback">
+                                                                    <input type="text" formControlName="cardName" placeholder="Name on card" name="card-name" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardName?.errors }" />
+                                                                    <div *ngIf="paymentSubmitted && p.cardName?.errors" class="invalid-feedback">
                                                                         <div *ngIf="p.cardName?.errors.required">Card Name is required</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <input type="number" formControlName="cardNumber" placeholder="Card number" name="cardNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && p.cardNumber?.errors }" />
-                                                                    <div *ngIf="submitted && p.cardNumber?.errors" class="invalid-feedback">
+                                                                    <input type="number" formControlName="cardNumber"   minlength="14" maxlength="15"  (change)="creditCardValidator($event)" placeholder="Card number" name="cardNumber" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardNumber?.errors }" />
+                                                                    <div *ngIf="paymentSubmitted && p.cardNumber?.errors" class="invalid-feedback">
                                                                         <div *ngIf="p.cardNumber?.errors.required">Card Number is required</div>
+                                                                        <div *ngIf="p.cardNumber.errors.minlength">Card Number must be at least 14 numbers </div>
+                                                                    </div>
+                                                                    <div *ngIf="cardvalidate" class="cardvalidateerror">
+                                                                        <div *ngIf="cardvalidate">Card Number is not valid</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -965,8 +969,8 @@
                                                         <div class="row">
                                                             <div class="col-6 col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="number" formControlName="expiryMonth" placeholder="Month" name="expiryMonth" class="form-control" [ngClass]="{ 'is-invalid': submitted && p.expiryMonth?.errors }" />
-                                                                    <div *ngIf="submitted && p.expiryMonth?.errors" class="invalid-feedback">
+                                                                    <input type="number" formControlName="expiryMonth" placeholder="Month" name="expiryMonth" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryMonth?.errors }" />
+                                                                    <div *ngIf="paymentSubmitted && p.expiryMonth?.errors" class="invalid-feedback">
                                                                         <div *ngIf="p.expiryMonth?.errors.required">Expiry Month is required</div>
                                                                     </div>
                                                                 </div>
@@ -974,7 +978,7 @@
                                                             <div class="col-6 col-md-3">
                                                                 <div class="form-group">
                                                                     <input type="number" formControlName="expiryYear" placeholder="Year" name="expiryYear" class="form-control" [ngClass]="{ 'is-invalid': submitted && p.expiryYear?.errors }" />
-                                                                    <div *ngIf="submitted && p.expiryYear?.errors" class="invalid-feedback">
+                                                                    <div *ngIf="paymentSubmitted && p.expiryYear?.errors" class="invalid-feedback">
                                                                         <div *ngIf="p.expiryYear?.errors.required">Expiry Year is required</div>
                                                                     </div>
                                                                 </div>
