@@ -81,13 +81,15 @@ export class CartComponent implements OnInit {
    debugger;
   let total:number=0;
     this.oneTimePriceCartItems.forEach(element => {
-
       if(element.bundle == 'multiple'){
         if(element.Quantityupdate){
-         total+= parseFloat( element.Quantityupdate);
+         total+= parseFloat(element.Quantityupdate);
+        }
+        else if(element.extraQuantity){
+          total+= total+= (parseFloat(element.bv) * 2 - parseFloat( element.Price))*(element.extraQuantity);
         }
         else{
-          total+= (element.bv * 2 - element.Price)*element.quantityModel;
+          total+= (parseFloat(element.bv) * 2 - parseFloat( element.Price))*(element.quantityModel);
         }
       }
     });
@@ -96,7 +98,6 @@ export class CartComponent implements OnInit {
 
 
   ngOnInit() {
-    //this.Quantityupdate=1;
 
     this.userLogin = this.sessionService.getSessionObject("user");
     if (this.userLogin) {
@@ -117,9 +118,16 @@ export class CartComponent implements OnInit {
   }
 
   onLoad() {
+
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
       this.cartItems.forEach(function (item) {
        if(item.quantityModel>10 ||item.quantityModel==0){
+
+        if(!item.extraQuantity)
+        {
+        item.extraQuantity=item.quantityModel;
+        item.quantityModel= 0;
+        }
         item.quantityModel= 0;
        }
     });
@@ -184,7 +192,7 @@ export class CartComponent implements OnInit {
 
   spacialItemAdd() {
     this.isShowSpecial = false;
-    debugger
+
     this.productItems = this.sessionService.getSessionObject('productCartItems');
     const items = {
       bundle: 'specialOffer',
@@ -339,8 +347,6 @@ export class CartComponent implements OnInit {
     this.quantityCalculation(cartitem, selectedvalue);
   }
   quantitychanged(cartitem: any, selectedvalue: number) {
-
-    debugger;
     this.quantityCalculation(cartitem, selectedvalue);
     const item =  this.cartItems.find(x=>x.itemCode == cartitem.itemCode);
     if(item && (selectedvalue>10 || selectedvalue==0)){
@@ -349,22 +355,15 @@ export class CartComponent implements OnInit {
 
   }
 
-  // calculatedata(bv:number,Price:number,qun:number){
-  //   this.Quantityupdate=(bv * 2 - Price)*qun;
-  //   return this.Quantityupdate;
-  // }
   quantityCalculation(cartitem: any, selectedvalue: number) {
-   debugger;
     if (selectedvalue < 11) {
       cartitem.extraQuantity = null;
-
     }
+
     if (selectedvalue != null && selectedvalue != undefined) {
-      if (selectedvalue == 0) {
+      if (selectedvalue == 0 || selectedvalue >10) {
         this.showOtherTextbox = cartitem.itemCode;
         $("#showinput" + cartitem.itemCode).show();
-
-        //cartitem.Quantityupdate=0;
       }
       else {
         $("#showinput" + cartitem.itemCode).hide();
@@ -374,7 +373,6 @@ export class CartComponent implements OnInit {
 
           cartitem.Quantityupdate=(this.cartItems[i].bv * 2 - this.cartItems[i].Price)*selectedvalue;
           this.cartItems[i].quantityModel = +selectedvalue;
-
         }
       }
       this.sessionService.setSessionObject('productCartItems', this.cartItems);
@@ -385,7 +383,7 @@ export class CartComponent implements OnInit {
 
   }
 
-  quantityForSubscriptionTime(delivery: any, selectedvalue: number) {
+   quantityForSubscriptionTime(delivery: any, selectedvalue: number) {
     this.quantityCalculation(delivery, selectedvalue);
 
   }
@@ -432,7 +430,12 @@ export class CartComponent implements OnInit {
     this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
     this.cartItems.forEach(function (item) {
       if(item.quantityModel>10 || item.quantityModel==0 ){
-       item.quantityModel= 0;
+        if(!item.extraQuantity)
+        {
+        item.extraQuantity=item.quantityModel;
+        item.quantityModel= 0;
+        }
+        item.quantityModel= 0;
       }
     });
   }
