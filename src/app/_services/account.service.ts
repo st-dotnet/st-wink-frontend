@@ -52,7 +52,6 @@ export class AccountService {
   }
 
  emailVerify(model: any) {
-   debugger
     return this.http.post<any>(`${environment.apiUrl}${this.authenticationEndpoint}ValidateCustomer`, model);
   }
 }

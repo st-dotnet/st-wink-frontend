@@ -10,7 +10,14 @@ export interface CanComponentDeactivate {
 @Injectable()
 export class CanDeactivateGuard implements CanDeactivate<SignUpComponent> {
 
-  canDeactivate():boolean {
-    return window.confirm("You want to leave this page?");
+  // canDeactivate():boolean {
+  //   return window.confirm("You want to leave this page?");
+  // }
+
+  canDeactivate(component: CanComponentDeactivate): boolean | Observable<boolean> {
+    return component.canDeactivate() ?
+    true : confirm("You want to leave this page?");
+
+    // return window.confirm("You want to leave this page?");
   }
 }

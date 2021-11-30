@@ -73,7 +73,7 @@ export class SignUpComponent implements OnInit {
       }
     );
   }
-  //
+
   public addTokenLog(message: string, token: string | null) {
     // this.log.push(`${message}: ${this.formatToken(token)}`);
   }
@@ -92,7 +92,7 @@ export class SignUpComponent implements OnInit {
     }
   }
 
-  getAge(fromdate : Date, todate) {
+  getAge(fromdate: Date, todate) {
     if (todate) todate = new Date(todate);
     else todate = new Date();
 
@@ -119,6 +119,7 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
+    debugger;
     this.submitted = true;
     // stop here if form is invalid
     if (this.form.invalid) {
@@ -132,11 +133,11 @@ export class SignUpComponent implements OnInit {
     // if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
     //   age--;
 
-    var age = this.getAge(this.f.dateOfBirth.value,today);
+    var age = this.getAge(this.f.dateOfBirth.value, today);
 
     if (age < 14) {
       this.checkage = true;
-      this.toastrService.error('You have less than 14 years old!');
+      this.toastrService.error('Must be 14 years or older to create an account');
       return;
     }
     this.checkage = false;
@@ -173,15 +174,14 @@ export class SignUpComponent implements OnInit {
           this.isTrue = this.sessionService.getSessionItem('isTrue');
           if (this.isTrue == "true") {
             setTimeout(() => {
-              this.form.reset;
+              this.form.reset();
               this.router.navigate(["/store/checkout"]);
               this.spinner.hide();
             }, 1000);
           } else if (res.errorMessage != null && res.errorMessage != "") {
             this.toastrService.error(res.errorMessage);
           } else {
-            this.form.reset;
-            
+            this.form.reset();
             this.router.navigate([''], { relativeTo: this.route });
             this.toastrService.success('User registration successfully');
             this.spinner.hide();
