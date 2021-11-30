@@ -75,7 +75,7 @@
                                     <div class="col-md-12 p-0 mb-3">
                                         <div class="promo-code">
                                             <div [className]="promocode_onetime ?  'special-field datafilled form-group' : 'special-field dataempty form-group'">
-                                                <input type="text" value="" [(ngModel)]="promocode_onetime" name="promo-enter" class="form-control" />
+                                                <input type="text"  [(ngModel)]="promocode_onetime" name="promo-enter" class="form-control" />
                                                 <label class="form-label">Promo Code</label>
                                                 <span class="vali-promo">Not Applied</span>
                                                 <span class="btn-add-promo" [disabled]="isDisabled" (click)="addPromo(); isDisabled = true;">
@@ -534,7 +534,7 @@
 
             <div class="col-sm-12 col-md-12 col-lg-7 col-lg-pull-5">
                 <div class="checkout-steps-3">
-                    <ngb-accordion [closeOthers]="false" activeIds="checkoutstep1" class="panel-stepbar">
+                    <ngb-accordion [closeOthers]="false" [activeIds]="activeIds" class="panel-stepbar">
                         <ngb-panel [disabled]="showPanel1 ? true:null" id="checkoutstep1">
                             <ng-template ngbPanelTitle>
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
@@ -576,7 +576,7 @@
                                             <ng-template ngbPanelContent>
                                                 <div class="content-card steps-inner">
                                                     <div [className]="startDate ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'" id="subscr-schedule">
-                                                        <input type="text" class="form-control" bsDatepicker [minDate]="minDate" [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }" [ngModelOptions]="{standalone: true}" />
+                                                        <input type="text" class="form-control" bsDatepicker [minDate]="minDate" [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }" [ngModelOptions]="{standalone: true}" [(ngModel)]="startDate" />
                                                         <label class="form-label">Select Start Date</label>
                                                         <span class="btn-add-promo">
                                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -688,7 +688,7 @@
                                             </ng-template>
                                         </ngb-panel>
 
-                                        <ngb-panel id="shipping-method" *ngIf="isAddressSaveBtn">
+                                        <ngb-panel id="shipping-method">
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
                                                     <h4>Shipping Method</h4>
@@ -707,9 +707,9 @@
                                                 <div class="content-card steps-inner shipping-method">
                                                     <div class="method-shipp">
                                                         <ul>
-                                                            <li>
+                                                            <li >
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="customRadio1" value="1" name="isShipmentMethod" (change)="onItemChange(1)" class="custom-control-input">
+                                                                    <input type="radio" id="customRadio1"  [(ngModel)]="isShipmentMethod"  [checked]="isShipmentMethod === 1"  value="1" name="isShipmentMethod" (change)="onItemChange(1)" class="custom-control-input" >
                                                                     <label class="custom-control-label" for="customRadio1">
                                                                     <div class="shipping-list-item">
                                                                         <h4>Get it today (Utah only)</h4>
@@ -720,7 +720,7 @@
                                                             </li>
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="customRadio2" value="2" (change)="onItemChange(2)" name="isShipmentMethod" class="custom-control-input">
+                                                                    <input type="radio" id="customRadio2" [checked]="isShipmentMethod === 2"  [(ngModel)]="isShipmentMethod" value="2" (change)="onItemChange(2)" name="isShipmentMethod" class="custom-control-input">
                                                                     <label class="custom-control-label" for="customRadio2">
                                                                     <div class="shipping-list-item">
                                                                         <h4>Get it by Fri, Feb 22nd</h4>
@@ -731,7 +731,7 @@
                                                             </li>
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="customRadio3" value="3" (change)="onItemChange(3)" name="isShipmentMethod" class="custom-control-input">
+                                                                    <input type="radio" id="customRadio3" [checked]="isShipmentMethod === 3"  [(ngModel)]="isShipmentMethod" value="3" (change)="onItemChange(3)" name="isShipmentMethod" class="custom-control-input">
                                                                     <label class="custom-control-label" for="customRadio3">
                                                                     <div class="shipping-list-item">
                                                                         <h4>Get it by Wed, Feb 19th</h4>
@@ -793,7 +793,7 @@
                                                 <div class="content-card steps-inner shipping-address-form">
                                                     <div class="col-md-12 loyalty-form p-0 mb-3">
                                                         <div [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                            <input type="text" [(ngModel)]="promocode_onetime" class="form-control" name="promo-enter" (focusout)="clearPromo($event)" />
+                                                            <input type="text" [(ngModel)]="promocode_onetime" class="form-control" name="promo-enter" (focusout)="clearPromo($event)" [ngModelOptions]="{standalone: true}"/>
                                                             <label class="form-label">Promo Code</label>
                                                             <span class="vali-promo">Not Applied</span>
                                                             <span class="btn-add-promo" (click)="addPromo()">
@@ -853,8 +853,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 loyalty-form p-0 mb-3">
-                                                        <div [className]="loyalpointz ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                            <input type="text" [ngModel]="loyalPointz" value="" name="promo-enter" class="form-control" />
+                                                        <div [className]="loyalPointz ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                                            <input type="text" [(ngModel)]="loyalPointz"  value=""  class="form-control" [ngModelOptions]="{standalone: true}" />
                                                             <label class="form-label">Loyalty points</label>
                                                             <span class="vali-promo">Points Not Applied</span>
                                                             <span class="btn-add-promo">

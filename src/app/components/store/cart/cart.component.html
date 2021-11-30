@@ -87,7 +87,7 @@
                       <div class="form-group">
                         <select (change)="
                         quantityForOneTime(cartItem, $event.target.value)
-                      " class="form-control" [(ngModel)]="cartItem.quantityModel">
+                      " class="form-control" [(ngModel)]="cartItem.quantityModel" [disabled]="cartItem.bundle=='specialOffer'">
                           <option *ngFor="let qty of quantity" [value]="qty.value">
                             {{qty.name }}
                           </option>
@@ -95,7 +95,7 @@
                         <input type="number" style="margin-top: 10px;" id="showinput{{cartItem.itemCode}}"
                           [(ngModel)]="cartItem.extraQuantity"
                           *ngIf="cartItem.quantityModel == '0' || cartItem.extraQuantity !=null "
-                          (change)="quantitychanged(cartItem, $event.target.value)" class="form-control">
+                          (change)="quantitychanged(cartItem, $event.target.value)" class="form-control" [disabled]="cartItem.bundle=='specialOffer'">
 
                       </div>
                     </div>
@@ -105,7 +105,7 @@
                       <div class="form-group">
                         <select (change)="
                           quantityForOneTime(cartItem, $event.target.value)
-                        " class="form-control" [(ngModel)]="cartItem.quantityModel">
+                        " class="form-control" [(ngModel)]="cartItem.quantityModel" [disabled]="cartItem.bundle=='specialOffer'">
                           <option *ngFor="let qty of quantity" [value]="qty.value">
                             {{qty.name }}
                           </option>
@@ -113,7 +113,7 @@
                         <input type="number" style="margin-top: 10px;" id="showinput{{cartItem.itemCode}}"
                           [(ngModel)]="cartItem.extraQuantity"
                           *ngIf="cartItem.quantityModel == '0' || cartItem.extraQuantity !=null "
-                          (change)="quantitychanged(cartItem, $event.target.value)" class="form-control">
+                          (change)="quantitychanged(cartItem, $event.target.value)" class="form-control" [disabled]="cartItem.bundle=='specialOffer'">
 
 
                       </div>
@@ -158,7 +158,7 @@
 
               <div class="prod-discount">
                 <div class="subtotal">
-                  <p>5% Sub Discount</p>
+                  <p>Sub Discount</p>
                   <p>-$ {{totalOneTimeDiscountPurchase | number:'.1-2'}}</p>
                 </div>
               </div>
@@ -305,7 +305,7 @@
           </div>
           <div class="prod-discount">
             <div class="subtotal">
-              <p>15% Discount</p>
+              <p>Sub Discount</p>
               <p>-${{discount15Percent | number:'.1-2' }}</p>
             </div>
           </div>

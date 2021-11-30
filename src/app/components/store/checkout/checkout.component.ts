@@ -81,7 +81,7 @@ export class CheckoutComponent implements OnInit {
   showPanel1 = false;
   showPanel2 = true;
   showPanel3 = true;
-
+ activeIds:string[] = ['checkoutstep1'];
   enablebtn: boolean;
   //Shipping Address Variables
   firstName: string;
@@ -113,7 +113,7 @@ export class CheckoutComponent implements OnInit {
   newCountry: string;
   displayAddress: string;
   shopProductsRequest: any[];
-
+  shippingMethods: any[];
   constructor(
     private modalService: NgbModal,
     private shopService: ShopService,
@@ -327,6 +327,7 @@ export class CheckoutComponent implements OnInit {
           this.spinner.hide();
           this.showPanel2 = false;
           this.toastrService.success('Shipping address saved successfully');
+          this.activeIds= ['checkoutstep2'];
           this.showPanel1= false;
           this.isAddressSaveBtn= false;
           this.displayAddress =
@@ -343,7 +344,7 @@ export class CheckoutComponent implements OnInit {
           this.toastrService.error(result.message);
           this.spinner.hide();
         }
-        this.getAddressByCustomerId(this.customerId);
+        //this.getAddressByCustomerId(this.customerId);
       });
   }
 
@@ -393,6 +394,7 @@ export class CheckoutComponent implements OnInit {
     chargeCredit.maxAmount = null,
     this.spinner.hide();
     this.toastrService.success('Card Added');
+    this.activeIds= ['checkoutstep3'];
     // this.shopService.chargecreditcard(payment).subscribe((result: any) => {
     //   if (result.isCompletedSuccessfully == true) {
     //     this.spinner.hide();
@@ -688,13 +690,13 @@ export class CheckoutComponent implements OnInit {
   }
 
   onItemChange(id: number) {
+debugger;
     this.isShipmentMethod = id;
     console.log(this.isShipmentMethod);
   }
 
   addPromo(type: number) {
     this.promoPercentage = 0;
-    // this.sessionService.removeSessionItem('promoCode')
     let oneTimePriceWithoutOffer = this.cartItems.filter(
       (x) =>
         x.selectDelivery == CartTypeEnum.OneTimePrice &&
@@ -713,7 +715,7 @@ export class CheckoutComponent implements OnInit {
             this.promoItem = result;
             if (this.promoItem.errorMessage == null) {
               this.promoPercentage =
-                (this.subtotalOneTimePrice * this.promoItem.discountPer) / 100;
+                (this.subtotalOneTimePrice * this.promoItem.percentOff) / 100;
               // this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
               this.cartCalculation();
               //this.isDisabled=true;
@@ -743,11 +745,9 @@ export class CheckoutComponent implements OnInit {
   }
 
   clearPromo(event: any) {
+    debugger;
     if (
-      event.target.value == '' ||
-      event.target.value == undefined ||
-      event.target.value == null
-    ) {
+      event.target.value == '' ||event.target.value == undefined ||event.target.value == null) {
       this.sessionService.removeSessionItem('promoCode');
       this.promocode_onetime = '';
       this.promoPercentage = 0;
@@ -1042,4 +1042,7 @@ debugger;
       // submit payload.nonce to the server from here
    
   }
+
+  
+
 }
