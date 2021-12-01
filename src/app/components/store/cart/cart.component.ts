@@ -78,7 +78,6 @@ export class CartComponent implements OnInit {
 
 
   GetOneTimeSubDiscount(){
-   debugger;
   let total:number=0;
     this.oneTimePriceCartItems.forEach(element => {
       if(element.bundle == 'multiple'){
@@ -216,7 +215,6 @@ export class CartComponent implements OnInit {
     this.sessionService.setSessionObject('productCartItems', this.productItems);
 
     //this.oneTimePriceCartItems.push(this.specialItem);
-    console.log("fasdfds", this.specialItem[0]);
     this.onLoad();
 
   }
@@ -232,7 +230,6 @@ export class CartComponent implements OnInit {
 
   learn_show() {
     this.data_learn = !this.data_learn;
-    console.log(this.data_learn);
   }
 
   private getDismissReason(reason: any): string {
@@ -464,7 +461,6 @@ export class CartComponent implements OnInit {
   }
 
   getSubTotal(ProductList: any[]) {
- debugger;
     let multiplyprice = 0;
     let Temp = 0;
     for (var i = 0; i <= ProductList.length - 1; i++) {
