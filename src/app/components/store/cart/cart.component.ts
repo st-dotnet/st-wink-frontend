@@ -391,6 +391,7 @@ export class CartComponent implements OnInit {
   }
 
   cartCalculation() {
+    this.GetOneTimeSubDiscount();
     this.totalDiscount = 0;
     this.orderTotal = 0;
     this.subtotalOneTimePrice = 0;
@@ -428,6 +429,7 @@ export class CartComponent implements OnInit {
     this.subTotalSubscriptionPrice = this.getSubTotal(this.subscriptionCartItems);
     this.discount15Percent = (this.subTotalSubscriptionPrice * 15) / 100;
     this.subTotalSubscriptionPriceAfterDiscount = this.subTotalSubscriptionPrice - this.discount15Percent;
+
     this.totalDiscount = this.totalDiscount + this.discount15Percent+this.totalOneTimeDiscountPurchase;
     this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
     this.cartItems.forEach(function (item) {
@@ -435,18 +437,16 @@ export class CartComponent implements OnInit {
         if(!item.extraQuantity)
         {
         item.extraQuantity=item.quantityModel;
-
         }
-
       }
     });
 
-    this.GetOneTimeSubDiscount();
+
   }
 
 
   getOrderTotal() {
-    debugger;
+
     let multiplyprice = 0.00;
     let Temp = 0;
     for (var i = 0; i <= this.cartItems.length - 1; i++) {
@@ -455,7 +455,7 @@ export class CartComponent implements OnInit {
         multiplyprice = multiplyprice * parseFloat( this.cartItems[i].quantityModel);
       }
       else {
-        multiplyprice = parseFloat(this.cartItems[i].price) * this.cartItems[i].quantityModel;
+        multiplyprice = parseFloat(this.cartItems[i].price) * parseFloat(this.cartItems[i].quantityModel);
       }
 
       Temp = Temp + multiplyprice;
@@ -464,10 +464,11 @@ export class CartComponent implements OnInit {
   }
 
   getSubTotal(ProductList: any[]) {
+ debugger;
     let multiplyprice = 0;
     let Temp = 0;
     for (var i = 0; i <= ProductList.length - 1; i++) {
-      multiplyprice = parseFloat(ProductList[i].Price) * ProductList[i].quantityModel;
+      multiplyprice = parseFloat(ProductList[i].Price) * parseFloat(ProductList[i].quantityModel);
       Temp = Temp + multiplyprice;
     }
     return +Temp;
