@@ -52,7 +52,7 @@ export class SignUpComponent implements OnInit {
           [
             Validators.required,
             Validators.email,
-            Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+            Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'),
           ],
         ],
         phoneNumber: [
@@ -119,20 +119,12 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
     this.submitted = true;
     // stop here if form is invalid
     if (this.form.invalid) {
       return;
     }
     var today = new Date();
-    // var birthDate = new Date(this.f.dateOfBirth.value);
-    // var age = today.getFullYear() - birthDate.getFullYear();
-    // var m = today.getMonth() - birthDate.getMonth();
-
-    // if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
-    //   age--;
-
     var age = this.getAge(this.f.dateOfBirth.value, today);
 
     if (age < 14) {
@@ -150,7 +142,7 @@ export class SignUpComponent implements OnInit {
       canLogin: true,
       recaptcha: this.f.recaptcha.value ? this.f.recaptcha.value : '',
       dateOfBirth: this.f.dateOfBirth.value ? this.f.dateOfBirth.value : '',
-      email: this.f.emailAddress.value ? this.f.emailAddress.value : '',
+      email: this.f.emailAddress.value.toLowerCase( ) ? this.f.emailAddress.value.toLowerCase( ) : '',
       loginName: this.f.userName.value,
       loginPassword: this.f.confirmPassword.value
         ? this.f.confirmPassword.value
@@ -197,7 +189,7 @@ export class SignUpComponent implements OnInit {
       });
   }
 
-  validateEmail(email: any) {
+  validateEmail(email: string) {
     const re =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
