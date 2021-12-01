@@ -85,7 +85,7 @@
                     <p>{{ cartItem.itemCode }}</p>
                     <div class="cart-quantity mob-sec">
                       <div class="form-group">
-
+                     
                         <!-- <select (change)="
                         quantityForOneTime(cartItem, $event.target.value)
                       " class="form-control" [(ngModel)]="cartItem.quantityModel">
@@ -99,7 +99,7 @@
                           (change)="quantitychanged(cartItem, $event.target.value)" class="form-control"> -->
                           <select (change)="
                           quantityForOneTime(cartItem, $event.target.value)
-                        " class="form-control" [ngModel]="cartItem.quantityModel>10?'0':cartItem.quantityModel" (ngModelChange)="cartItem.quantityModel=$event"  >
+                        " class="form-control" [ngModel]="cartItem.quantityModel>10?'0':cartItem.quantityModel" (ngModelChange)="cartItem.quantityModel=$event"  [disabled]="cartItem.bundle=='specialOffer'" >
                           <option *ngFor="let qty of quantity" [value]="qty.value">
                             {{qty.name }}
                           </option>
@@ -108,7 +108,7 @@
                         <input type="number" style="margin-top: 10px;" id="showinput{{cartItem.itemCode}}"
                           [(ngModel)]="cartItem.extraQuantity"
                           *ngIf="cartItem.quantityModel == '0'||cartItem.quantityModel >10 || cartItem.extraQuantity !=null "
-                          (change)="quantitychanged(cartItem, $event.target.value)" class="form-control">
+                          (change)="quantitychanged(cartItem, $event.target.value)" class="form-control" [disabled]="cartItem.bundle=='specialOffer'" >
 
                       </div>
                     </div>
@@ -120,7 +120,7 @@
 
                         <select (change)="
                         quantityForOneTime(cartItem, $event.target.value)
-                      " class="form-control" [ngModel]="cartItem.quantityModel>10?'0':cartItem.quantityModel" (ngModelChange)="cartItem.quantityModel=$event"  >
+                      " class="form-control" [ngModel]="cartItem.quantityModel>10?'0':cartItem.quantityModel" (ngModelChange)="cartItem.quantityModel=$event"  [disabled]="cartItem.bundle=='specialOffer'" >
                         <option *ngFor="let qty of quantity" [value]="qty.value">
                           {{qty.name }}
                         </option>
@@ -128,7 +128,7 @@
 
                       <input type="number" style="margin-top: 10px;" id="showinput{{cartItem.itemCode}}"
                         [(ngModel)]="cartItem.extraQuantity"
-                        *ngIf="cartItem.quantityModel == '0'||cartItem.quantityModel >10 || cartItem.extraQuantity !=null "
+                        *ngIf="cartItem.quantityModel == '0'||cartItem.quantityModel >10 || cartItem.extraQuantity !=null " [disabled]="cartItem.bundle=='specialOffer'" 
                         (change)="quantitychanged(cartItem, $event.target.value)" class="form-control">
                         <!-- <select (change)="
                           quantityForOneTime(cartItem, $event.target.value)
