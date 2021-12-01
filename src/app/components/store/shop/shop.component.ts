@@ -300,8 +300,11 @@ export class ShopComponent implements OnInit {
   }
 
   nextToMove(content: any) {
+    
     this.showAgePopUp = false;
-    this.open(content, this.reProduct, "");
+    // this.open(content, this.reProduct, "");
+    // 
+    this.router.navigate(['/store/product', this.reProduct.itemCode])
     this.showAgePopUp = true;
     //this.modalService.dismissAll();
   }
@@ -322,6 +325,7 @@ export class ShopComponent implements OnInit {
     }
     if (this.showAgePopUp == true) {
       this.modalService.open(adultCheck, this.modalOptions).result.then((result) => {
+        
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
