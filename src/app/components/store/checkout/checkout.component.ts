@@ -36,7 +36,6 @@ export class CheckoutComponent implements OnInit {
   addrnew = false;
   sidebartoggle: boolean = true;
   sidebartoggle1: boolean = false;
-  isAddressSaveBtn : boolean = true;
   title = 'ng-bootstrap-modal-demo';
   closeResult: string;
   shippingAddressForm: FormGroup;
@@ -61,6 +60,7 @@ export class CheckoutComponent implements OnInit {
   paramsProductPrice: any;
   promocode_onetime: string;
   UserDetails: any;
+  cardToken:string;
   modalOptions: NgbModalOptions = {
     // backdrop: 'static',
     backdropClass: 'customBackdrop',
@@ -116,6 +116,8 @@ export class CheckoutComponent implements OnInit {
   displayAddress: string;
   shopProductsRequest: any[];
   shippingMethods: any[];
+  promocodeMessage:string="No code applied";
+  addPromoIcon:boolean = true;
   constructor(
     private modalService: NgbModal,
     private shopService: ShopService,
@@ -172,7 +174,8 @@ export class CheckoutComponent implements OnInit {
       this.state = this.newAddress?.state;
       this.zip = this.newAddress?.zip;
       this.country = this.newAddress?.country;
-      this.showPanel2 = false;
+      this.showPanel2 = true;
+      this.showPanel3 = true;
     }
     this.subscriptionCartItems = this.cartItems.filter(
       (x) => x.selectDelivery == CartTypeEnum.Subscription
@@ -195,7 +198,7 @@ export class CheckoutComponent implements OnInit {
 
     this.onPaymentSubmitForm = this.formBuilder.group({
       cardName: ['', [Validators.required]],
-      cardNumber: ['', [Validators.required,Validators.minLength(15),
+      cardNumber: ['', [Validators.required,Validators.minLength(14),
         Validators.maxLength(15)]],
       expiryMonth: ['', [Validators.required]],
       expiryYear: ['', [Validators.required]],
@@ -327,12 +330,11 @@ export class CheckoutComponent implements OnInit {
     this.shopService.postAddress(this.customerId, this.shippingAddressParam)
       .subscribe((result: any) => {
         if (result.result) {
+          debugger;
           this.spinner.hide();
           this.showPanel2 = false;
           this.toastrService.success('Shipping address saved successfully');
           this.activeIds= ['checkoutstep2'];
-          this.showPanel1= false;
-          this.isAddressSaveBtn= false;
           this.displayAddress =
             result.result.address1 +
             ' ' +
@@ -395,19 +397,16 @@ export class CheckoutComponent implements OnInit {
     chargeCredit.billingCountry = "US",//transactionRequest.ChargeCreditCardTokenRequest.BillingCountry,
     chargeCredit.billingState = "AA",//transactionRequest.ChargeCreditCardTokenRequest.BillingState,
     chargeCredit.maxAmount = null,
-    this.spinner.hide();
-    this.toastrService.success('Card Added');
-    this.activeIds= ['checkoutstep3'];
-    this.shopService.generateCreditCardToken( payment.cardNumber).subscribe((result: any) => {
-      debugger;
-      if (result.isCompletedSuccessfully == true) {
+    this.shopService.generateCreditCardToken( payment.cardNumber).subscribe((result:any) => {
+      if (result.errorMessage =="") {
+        this.cardToken = result.token;
         this.spinner.hide();
-        this.showPanel3 = true;
-        this.toastrService.success('Payment is succesfull');
-        this.showPanel2 = false;
+        this.activeIds= ['checkoutstep3'];
+        this.showPanel3 = false;
+        this.toastrService.success('Payment Card is accepted');
       } else {
         this.spinner.hide();
-        this.toastrService.error('Payment is not unsuccessfull');
+        this.toastrService.error('Payment card is not declined');
       }
     });
   }
@@ -705,19 +704,21 @@ export class CheckoutComponent implements OnInit {
           .getPromoData(this.promocode_onetime)
           .subscribe((result) => {
             this.promoItem = result;
+           
             if (this.promoItem.errorMessage == null) {
+              this.addPromoIcon = false;
+              this.promocodeMessage="Code Applied";
               this.promoPercentage =
                 (this.subtotalOneTimePrice * this.promoItem.percentOff) / 100;
               // this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
               this.cartCalculation();
-              //this.isDisabled=true;
-              if (type == 0) {
+             
                 this.toastrService.success(
                   "Promo code applied succesfully you save $'" +
                     this.promoPercentage.toFixed(2) +
                     "'."
                 );
-              }
+              
               this.spinner.hide();
             } else {
               // this.isDisabled=false;
@@ -732,6 +733,7 @@ export class CheckoutComponent implements OnInit {
       this.sessionService.removeSessionItem('promoCode');
       this.promocode_onetime = '';
       this.promoPercentage = 0;
+      this.promocodeMessage="No code Applied";
       this.cartCalculation();
     }
   }
@@ -743,8 +745,12 @@ export class CheckoutComponent implements OnInit {
       this.sessionService.removeSessionItem('promoCode');
       this.promocode_onetime = '';
       this.promoPercentage = 0;
+      this.promocodeMessage="No code Applied";
+      this.addPromoIcon = true;
       this.cartCalculation();
     } else {
+      // this.promocodeMessage="Code Applied";
+      // this.addPromoIcon = false;
       this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
       //this.addPromo();
     }
@@ -999,12 +1005,12 @@ export class CheckoutComponent implements OnInit {
       chargeCreditCardTokenRequest.billingCity = this.f.city.value;
       chargeCreditCardTokenRequest.billingAddress2 = '';
       chargeCreditCardTokenRequest.billingAddress = this.f.streetAddress.value;
-      chargeCreditCardTokenRequest.creditCardToken = "41X1111WBCXTE1111";
+      chargeCreditCardTokenRequest.creditCardToken = this.cardToken;//"41X1111WBCXTE1111"
       chargeCreditCardTokenRequest.expirationYear = this.p.expiryYear.value;
       chargeCreditCardTokenRequest.billingName = this.f.firstName.value;
 
        const setAccountCreditCardTokenRequest = new SetAccountCreditCardTokenRequest();
-       setAccountCreditCardTokenRequest.creditCardToken ="41X1111WBCXTE1111";
+       setAccountCreditCardTokenRequest.creditCardToken =this.cardToken;
        setAccountCreditCardTokenRequest.expirationMonth =this.p.expiryMonth.value;
        setAccountCreditCardTokenRequest.expirationYear = this.p.expiryYear.value;
 
@@ -1029,7 +1035,7 @@ export class CheckoutComponent implements OnInit {
     debugger;
     // Visa, MasterCard, American Express, Diners Club, Discover, JCB
     if (control.target.value.match(/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/)) {
-      
+      this.cardvalidate = false;
      return null;
     } else {
      this.cardvalidate = true;

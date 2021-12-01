@@ -61,7 +61,7 @@ export class ShopService {
     return this.http.post<Payment>(`${environment.apiUrl}${this.shopEndpoint}ChargeCreditCardTokenRequest`, payment);
   }
   generateCreditCardToken(cardNumber: any) {
-    return this.http.get<any>(`${environment.apiUrl}${this.paymentEndpoint}GenerateCreditCardToken?cardNumber=${cardNumber}`);
+    return this.http.get<string>(`${environment.apiUrl}${this.paymentEndpoint}GenerateCreditCardToken?cardNumber=${cardNumber}`);
   }
  
   getClientToken()
