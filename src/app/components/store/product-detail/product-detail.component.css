@@ -109,6 +109,7 @@ section.breadcrumb-product ul li a:hover {
 .prod-bundle-select .radio-bundle input {
     position: absolute;
     opacity: 0;
+    width: 100%;
 }
 
 .prod-bundle-select .radio-bundle input:checked~label {
@@ -1080,6 +1081,12 @@ bottom: 9px;
 }
 
 @media (max-width:991px) {
+    .ques_modal span.ques-ico.question-icon-img {
+        bottom: 0px !important;
+    }
+    .prod-bundle-select h3+.radio-bundle+.radio-bundle {
+        margin-left: 8px;
+    }
     .banners-enery {
         margin: 0;
     }
