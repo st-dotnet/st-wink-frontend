@@ -62,7 +62,7 @@ export class CartComponent implements OnInit {
   //quantityValue: any;
   subscriptionModel: any;
 
-  totalOneTimeDiscountPurchase:number;
+  totalOneTimeDiscountPurchase:number=0;
   Quantityupdate:any;
 
   constructor(private modalService: NgbModal,
@@ -82,14 +82,17 @@ export class CartComponent implements OnInit {
   let total:number=0;
     this.oneTimePriceCartItems.forEach(element => {
       if(element.bundle == 'multiple'){
-        if(element.Quantityupdate){
-         total+= parseFloat(element.Quantityupdate);
+        // if(element.Quantityupdate){
+        //  //total+= parseFloat(element.Quantityupdate);
+        //  total+=  ((parseFloat(element.Price)*5)/100)*(element.extraQuantity);
+        // }
+         if(element.extraQuantity){
+          //total+=  (parseFloat(element.bv) * 2 - parseFloat( element.Price))*(element.extraQuantity);
+          total+=  ((parseFloat(element.Price)*5)/100)*(element.extraQuantity);
         }
-        else if(element.extraQuantity){
-          total+= total+= (parseFloat(element.bv) * 2 - parseFloat( element.Price))*(element.extraQuantity);
-        }
-        else{
-          total+= (parseFloat(element.bv) * 2 - parseFloat( element.Price))*(element.quantityModel);
+        else if(element.quantityModel){
+         // total+= (parseFloat(element.bv) * 2 - parseFloat( element.Price))*(element.quantityModel);
+          total+=  ((parseFloat(element.Price)*5)/100)*(element.quantityModel);
         }
       }
     });
@@ -126,9 +129,7 @@ export class CartComponent implements OnInit {
         if(!item.extraQuantity)
         {
         item.extraQuantity=item.quantityModel;
-        item.quantityModel= 0;
         }
-        item.quantityModel= 0;
        }
     });
 
@@ -371,8 +372,9 @@ export class CartComponent implements OnInit {
       for (var i = 0; i <= this.cartItems.length - 1; i++) {
         if (this.cartItems[i] == cartitem) {
 
-          cartitem.Quantityupdate=(this.cartItems[i].bv * 2 - this.cartItems[i].Price)*selectedvalue;
+          //cartitem.Quantityupdate=(this.cartItems[i].bv * 2 - this.cartItems[i].Price)*selectedvalue;
           this.cartItems[i].quantityModel = +selectedvalue;
+
         }
       }
       this.sessionService.setSessionObject('productCartItems', this.cartItems);
@@ -426,26 +428,31 @@ export class CartComponent implements OnInit {
     this.subTotalSubscriptionPrice = this.getSubTotal(this.subscriptionCartItems);
     this.discount15Percent = (this.subTotalSubscriptionPrice * 15) / 100;
     this.subTotalSubscriptionPriceAfterDiscount = this.subTotalSubscriptionPrice - this.discount15Percent;
-    this.totalDiscount = this.totalDiscount + this.discount15Percent;
+    this.totalDiscount = this.totalDiscount + this.discount15Percent+this.totalOneTimeDiscountPurchase;
     this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
     this.cartItems.forEach(function (item) {
       if(item.quantityModel>10 || item.quantityModel==0 ){
         if(!item.extraQuantity)
         {
         item.extraQuantity=item.quantityModel;
-        item.quantityModel= 0;
+
         }
-        item.quantityModel= 0;
+
       }
     });
+
+    this.GetOneTimeSubDiscount();
   }
+
+
   getOrderTotal() {
-    let multiplyprice = 0;
+    debugger;
+    let multiplyprice = 0.00;
     let Temp = 0;
     for (var i = 0; i <= this.cartItems.length - 1; i++) {
       if (this.cartItems[i].bundle == 'multiple') {
         multiplyprice = parseFloat(this.cartItems[i].price) * 2;
-        multiplyprice = multiplyprice * this.cartItems[i].quantityModel;
+        multiplyprice = multiplyprice * parseFloat( this.cartItems[i].quantityModel);
       }
       else {
         multiplyprice = parseFloat(this.cartItems[i].price) * this.cartItems[i].quantityModel;
@@ -552,4 +559,5 @@ export class CartComponent implements OnInit {
   customQuantity(quantity: any) {
     return `Qty ${quantity}`;
   }
+
 }

@@ -134,6 +134,10 @@ section.products h3 {
 .product-filters form.form-inline .form-group i svg {margin: -12px 0 0 0;}
 
 
+section.products.search-results {
+  min-height: 270px;
+}
+
 /* Product View Modal CSS */
 
 .product-info p {
@@ -360,7 +364,7 @@ section.search-header .searchOption-inner input {
 
 @media (max-width:991px)
 {
- 
+
   .product-filters {
       padding: 0 10px;
   }
@@ -380,7 +384,7 @@ section.search-header .searchOption-inner input {
 
 @media (max-width:767px)
 {
-  
+
   .prod-wrapp .prod-list-item {
       width: 100%;
       max-width: 50%;

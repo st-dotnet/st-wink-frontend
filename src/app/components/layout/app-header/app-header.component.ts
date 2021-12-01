@@ -140,7 +140,7 @@ ChecktourSession()
   }
 
   toggleDisplayDivIf() {
-    this.isMobileMenu = !this.isMobileMenu
+    this.isMobileMenu = !this.isMobileMenu;
   }
 
   logout() {
