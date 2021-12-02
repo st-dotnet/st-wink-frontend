@@ -136,6 +136,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.isShipmentMethod = 1;
     this.UserDetails = JSON.parse(localStorage.getItem('user'));
     this.customerId = this.UserDetails.customerId;
     this.totalDiscount = 0;
@@ -997,19 +999,19 @@ export class CheckoutComponent implements OnInit {
       if(result==null){
         this.toastrService.success('Payment failed');
       }else{ this.router.navigate(['/store/thankyou']);}
-         
+
           this.spinner.hide();
         });
       // submit payload.nonce to the server from here
-   
+
   }
   creditCardValidator(control: any) {
-    debugger;
+var card= control.target.value.replace(/ /g, "");
     // Visa, MasterCard, American Express, Diners Club, Discover, JCB
-    if (control.target.value.match(/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/)) {
+    if (card.match(/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/)) {
       this.cardvalidate = false;
      return null;
-    } else 
+    } else
      this.cardvalidate = true;
  }
 
