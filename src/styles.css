@@ -1708,6 +1708,10 @@ section.reviews-yotpo yotpo-reviews-widget h2.yotpo-main-title {
 }
 
 @media (max-width: 991px) {
+    ngx-guided-tour {
+        display: none;
+    }
+    
     .mob-check .show-deskk .showsidebar.toggle-sidebar .sidebar-head span.down-ext {
         display: none;
     }
@@ -1874,9 +1878,7 @@ section.reviews-yotpo yotpo-reviews-widget h2.yotpo-main-title {
 }
 
 @media (max-width: 767px) {
-    ngx-guided-tour {
-        display: none;
-    }
+   
     .r-listing-head .media-body .r-date-post {
         display: none;
     }

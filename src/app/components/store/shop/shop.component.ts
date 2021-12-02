@@ -347,6 +347,9 @@ export class ShopComponent implements OnInit {
     //   this.toastrService.error('Sorry You are Under 18.');
     //   return;
     // }
+   if(product.quantityModel==0 ||product.quantityModel==undefined )
+    return this.toastrService.error("Please select the quantity");
+ 
     this.productItems = this.sessionService.getSessionObject('productCartItems');
     if (this.selectDelivery == 1 && this.subscriptionModelduration == undefined) {
       return this.toastrService.error("Please select the subscription plan");

@@ -23,7 +23,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { TransactionalRequestModel } from 'src/app/_models/checkout';
 import * as braintree from 'braintree-web';
-
+import { MONTH } from 'ngx-bootstrap/chronos/units/constants';
+import { data } from 'jquery';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -118,6 +119,10 @@ export class CheckoutComponent implements OnInit {
   shippingMethods: any[];
   promocodeMessage:string="No code applied";
   addPromoIcon:boolean = true;
+  checkMonth: number;
+  checkYear: number;
+  monthError: boolean=false;
+  yearError:  boolean=false;
   constructor(
     private modalService: NgbModal,
     private shopService: ShopService,
@@ -150,39 +155,26 @@ export class CheckoutComponent implements OnInit {
     this.newAddress = JSON.parse(localStorage.getItem('newShippingAddress'))
       ? JSON.parse(localStorage.getItem('newShippingAddress'))
       : '';
-    if (
-      this.newAddress != '' ||
-      this.newAddress != undefined ||
-      this.newAddress != null
-    ) {
-      this.displayAddress =
-        this.newAddress?.addressDisplay +
-        ' ' +
-        this.newAddress?.streetAddress +
-        ' ' +
-        this.newAddress?.city +
-        ' ' +
-        this.newAddress?.state +
-        ' ' +
-        this.newAddress?.zip +
-        ' ' +
-        this.newAddress?.country;
+    if (this.newAddress != '' && this.newAddress != undefined && this.newAddress != null) {
       this.firstName = this.newAddress?.firstName;
       this.lastName = this.newAddress?.lastName;
       this.streetAddress = this.newAddress?.streetAddress;
       this.city = this.newAddress?.city;
       this.state = this.newAddress?.state;
       this.zip = this.newAddress?.zip;
-      this.country = this.newAddress?.country;
+      this.country = 'US';
+      this.displayAddress =
+        this.newAddress?.addressDisplay +
+        ' ' + this.streetAddress +
+        ' ' + this.city +
+        ' ' + this.state +
+        ' ' + this.zip +
+        ' ' + this.country
       this.showPanel2 = true;
       this.showPanel3 = true;
     }
-    this.subscriptionCartItems = this.cartItems.filter(
-      (x) => x.selectDelivery == CartTypeEnum.Subscription
-    );
-    this.oneTimePriceCartItems = this.cartItems.filter(
-      (x) => x.selectDelivery == CartTypeEnum.OneTimePrice
-    );
+    this.subscriptionCartItems = this.cartItems.filter((x) => x.selectDelivery == CartTypeEnum.Subscription);
+    this.oneTimePriceCartItems = this.cartItems.filter((x) => x.selectDelivery == CartTypeEnum.OneTimePrice);
     this.sidebartoggle = true;
     this.cartCalculation();
     this.getAddressByCustomerId(this.customerId);
@@ -293,22 +285,17 @@ export class CheckoutComponent implements OnInit {
   getAddressByCustomerId(id) {
     this.spinner.show();
     this.shopService.getAddressById(id).subscribe((result: any) => {
+      debugger;
       if (result.length > 0) {
         this.displayAddress =
           result[1].address1 +
-          ' ' +
-          result[1].city +
-          ' ' +
-          result[1].state +
-          ' ' +
-          result[1].zip +
-          ' ' +
-          result[1].country;
+          ' ' + result[1].city +
+          ' ' +result[1].state +
+          ' ' + result[1].zip +
+          ' ' + result[1].country;
         this.shippingAddressForm.get('firstName').setValue(result[1].firstName);
         this.shippingAddressForm.get('lastName').setValue(result[1].lastName);
-        this.shippingAddressForm
-          .get('streetAddress')
-          .setValue(result[1].address1);
+        this.shippingAddressForm.get('streetAddress').setValue(result[1].address1);
         this.shippingAddressForm.get('city').setValue(result[1].city);
         this.shippingAddressForm.get('state').setValue(result[1].state);
         this.shippingAddressForm.get('zip').setValue(result[1].zip);
@@ -337,14 +324,10 @@ export class CheckoutComponent implements OnInit {
           this.activeIds= ['checkoutstep2'];
           this.displayAddress =
             result.result.address1 +
-            ' ' +
-            result.result.city +
-            ' ' +
-            result.result.state +
-            ' ' +
-            result.result.zip +
-            ' ' +
-            result.result.country;
+            ' ' +result.result.city +
+            ' ' + result.result.state +
+            ' ' +result.result.zip +
+            ' ' +result.result.country;
         } else {
           this.toastrService.error(result.message);
           this.spinner.hide();
@@ -367,14 +350,14 @@ export class CheckoutComponent implements OnInit {
       payment.state = this.p.newState.value;
       payment.phone = "";
       payment.city = this.p.newCity.value;
-      payment.country = this.p.newCountry.value;
+      payment.country = 'US';
       payment.zip = this.p.newZip.value;
     } else {
        (payment.address1 = this.f.streetAddress.value),
         (payment.city = this.f.city.value),
         payment.state = this.f.state.value,
         (payment.zip = this.f.zip.value),
-      payment.country = this.f.country.value;
+      payment.country = 'US';
     }
     payment.amount = this.cartSummaryTotal;
     payment.cardNumber = this.p.cardNumber.value;
@@ -385,18 +368,7 @@ export class CheckoutComponent implements OnInit {
     payment.active =true;
     payment.cardType =1;
     payment.customerId =this.customerId;
-    const chargeCredit = new ChargeCreditCardTokenRequest();
-    chargeCredit.creditCardToken="41X1111WBCXTE1111",
-    chargeCredit.billingName="amar"
-    chargeCredit.billingAddress = "#street",//transactionRequest.ChargeCreditCardTokenRequest.BillingAddress,
-    chargeCredit.billingAddress2 = null,//transactionRequest.ChargeCreditCardTokenRequest.BillingAddress2,
-    chargeCredit.billingCity = "123456",//transactionRequest.ChargeCreditCardTokenRequest.BillingCity,
-    chargeCredit.billingZip = "123456",//transactionRequest.ChargeCreditCardTokenRequest.BillingZip,
-    chargeCredit.expirationMonth = 1,// transactionRequest.ChargeCreditCardTokenRequest.ExpirationMonth,
-    chargeCredit.expirationYear = 2023,//transactionRequest.ChargeCreditCardTokenRequest.ExpirationYear,
-    chargeCredit.billingCountry = "US",//transactionRequest.ChargeCreditCardTokenRequest.BillingCountry,
-    chargeCredit.billingState = "AA",//transactionRequest.ChargeCreditCardTokenRequest.BillingState,
-    chargeCredit.maxAmount = null,
+
     this.shopService.generateCreditCardToken( payment.cardNumber).subscribe((result:any) => {
       if (result.errorMessage =="") {
         this.cardToken = result.token;
@@ -506,8 +478,8 @@ export class CheckoutComponent implements OnInit {
     let isMakePrimaryCard;
 
     if (
-      this.cardName != '' ||
-      this.cardName != undefined ||
+      this.cardName != ''&&
+      this.cardName != undefined &&
       this.cardName != null
     ) {
       cardName = this.cardName;
@@ -1037,11 +1009,27 @@ export class CheckoutComponent implements OnInit {
     if (control.target.value.match(/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/)) {
       this.cardvalidate = false;
      return null;
-    } else {
+    } else 
      this.cardvalidate = true;
-         
-    }
  }
+
+ validateCard() {
+  this.monthError=false;
+  this.yearError=false;
+  var date = new Date();
+  let year = parseInt(date.getFullYear().toString());
+  let month =  parseInt(date.getMonth().toString()) + 1;
+  if (this.checkYear < year)
+       this.yearError=true;
+  else if ( this.checkMonth==0 || this.checkMonth >12)
+      this.monthError=true;
+  else if (this.checkMonth < month &&(this.checkYear== year ||this.checkYear <year)) {
+      this.monthError=true;
+    }
+  else if (this.checkMonth >12 && this.checkYear >year) {
+    this.monthError=true;
+  }
+}
   
 
 }
