@@ -179,6 +179,7 @@ export class CheckoutComponent implements OnInit {
     this.oneTimePriceCartItems = this.cartItems.filter((x) => x.selectDelivery == CartTypeEnum.OneTimePrice);
     this.sidebartoggle = true;
     this.cartCalculation();
+    this.addPromo();
     this.getAddressByCustomerId(this.customerId);
     this.shippingAddressForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
@@ -660,7 +661,7 @@ export class CheckoutComponent implements OnInit {
     this.isShipmentMethod = id;
     console.log(this.isShipmentMethod);
   }
-  addPromo(type: number) {
+  addPromo() {
     this.promoPercentage = 0;
     let oneTimePriceWithoutOffer = this.cartItems.filter(
       (x) =>
@@ -668,6 +669,10 @@ export class CheckoutComponent implements OnInit {
         x.bundle != 'specialOffer'
     );
     if (oneTimePriceWithoutOffer.length > 0) {
+      if(this.promocode_onetime != null){
+        this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
+      }
+      this.promocode_onetime = this.sessionService.getSessionItem('promoCode');
       if (
         this.promocode_onetime != null ||
         this.promocode_onetime != '' ||
@@ -678,7 +683,6 @@ export class CheckoutComponent implements OnInit {
           .getPromoData(this.promocode_onetime)
           .subscribe((result) => {
             this.promoItem = result;
-           
             if (this.promoItem.errorMessage == null) {
               this.addPromoIcon = false;
               this.promocodeMessage="Code Applied";
@@ -692,7 +696,7 @@ export class CheckoutComponent implements OnInit {
                     this.promoPercentage.toFixed(2) +
                     "'."
                 );
-              
+                this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
               this.spinner.hide();
             } else {
               // this.isDisabled=false;
@@ -791,6 +795,7 @@ export class CheckoutComponent implements OnInit {
     this.totalDiscount = this.totalDiscount + this.discount15Percent;
     this.cartSummaryTotal =
       this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
+
   }
 
   getOrderTotal() {

@@ -55,6 +55,8 @@ export class CartComponent implements OnInit {
   specialOffer: any[];
   userLogin: any;
   show: boolean = false;
+  promocodeMessage:string="No code applied";
+  addPromoIcon:boolean = true;
   onTextChange(value) {
   }
 
@@ -107,6 +109,7 @@ export class CartComponent implements OnInit {
     }
     this.spinner.show();
     this.getSpecialItem();
+    this.addPromo();
     // this.promocode_onetime=this.sessionService.getSessionItem('promoCode');
     // if(this.promocode_onetime!=="null" && this.promocode_onetime !==undefined)
     // {
@@ -153,29 +156,57 @@ export class CartComponent implements OnInit {
   }
 
   addPromo() {
+    debugger;
     // this.sessionService.removeSessionItem('promoCode')
-    this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
+    if(this.promocode_onetime != null){
+      this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
+    }
     this.promocode_onetime = this.sessionService.getSessionItem('promoCode');
     this.isPromoCode = true;
     this.spinner.show();
     this.shopService.getPromoData(this.promocode_onetime).subscribe(result => {
       this.promoItem = result;
       if (this.promoItem.errorMessage == null) {
-        this.promoPercentage = (this.subtotalOneTimePrice * this.promoItem.discountPer) / 100;
+        this.addPromoIcon = false;
+        this.promocodeMessage="Code Applied";
+        this.promoPercentage =
+          (this.subtotalOneTimePrice * this.promoItem.percentOff) / 100;
         // this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
         this.cartCalculation();
-        //this.isDisabled=true;
-        this.toastrService.success("Promo code applied succesfully you save $'" + this.promoPercentage.toFixed(2) + "'.")
+       
+          this.toastrService.success(
+            "Promo code applied succesfully you save $'" +
+              this.promoPercentage.toFixed(2) +
+              "'."
+          );
+        
         this.spinner.hide();
-      }
-      else {
+      } else {
         // this.isDisabled=false;
         this.toastrService.error(this.promoItem.errorMessage);
+        this.sessionService.removeSessionItem('promoCode');
+        this.cartCalculation();
         this.spinner.hide();
       }
     })
   }
-
+  clearPromo(event: any) {
+    
+    if (
+      event.target.value == '' ||event.target.value == undefined ||event.target.value == null) {
+      this.sessionService.removeSessionItem('promoCode');
+      this.promocode_onetime = '';
+      this.promoPercentage = 0;
+      this.promocodeMessage="No code Applied";
+      this.addPromoIcon = true;
+      this.cartCalculation();
+    } else {
+      // this.promocodeMessage="Code Applied";
+      // this.addPromoIcon = false;
+      this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
+      //this.addPromo();
+    }
+  }
   getSpecialItem() {
     this.shopService.getSpecialItem().subscribe(result => {
       if (result == null) {
@@ -425,10 +456,19 @@ export class CartComponent implements OnInit {
 
     this.subTotalSubscriptionPrice = this.getSubTotal(this.subscriptionCartItems);
     this.discount15Percent = (this.subTotalSubscriptionPrice * 15) / 100;
+
     this.subTotalSubscriptionPriceAfterDiscount = this.subTotalSubscriptionPrice - this.discount15Percent;
 
-    this.totalDiscount = this.totalDiscount + this.discount15Percent+this.totalOneTimeDiscountPurchase;
+    this.totalDiscount = this.totalDiscount + this.discount15Percent + this.totalOneTimeDiscountPurchase;
+
     this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
+
+    // for promo code 
+   if(this.promoPercentage> 0){
+this.totalDiscount = this.totalDiscount + this.promoPercentage;
+this.cartSummaryTotal= this.cartSummaryTotal - this.promoPercentage;
+   }
+
     this.cartItems.forEach(function (item) {
       if(item.quantityModel>10 || item.quantityModel==0 ){
         if(!item.extraQuantity)

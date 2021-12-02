@@ -29,7 +29,7 @@ export class ShopComponent implements OnInit {
   quantity: any[] = [];
   years: any[] = [];
   showSubscription = false;
-  quantityValue: number = 1;
+  quantityValue:number= 1;
   cartTypes: any[] = [];
   productPrice: number = 0;
   filterValue: number = 1;
@@ -158,7 +158,7 @@ export class ShopComponent implements OnInit {
       {
         id: 'Others',
         name: 'Custom',
-        value: 11,
+        value: 0,
       },
     ];
   }
@@ -249,6 +249,7 @@ export class ShopComponent implements OnInit {
 
   open(content: any, product: any, adultCheck: any) {
     //this.bundle = 'single';
+    debugger;
     this.showActualPrice = false;
     if (this.showAgePopUp == true) {
       this.reProduct = product;
@@ -268,6 +269,8 @@ export class ShopComponent implements OnInit {
       this.selectDelivery = 1;
       this.subscriptionModel = 'singleDelivery';
       this.subscriptionModelduration = undefined;
+      product.quantity=1;
+     this.quantityValue=1;
       this.modalService.open(content, this.modalOptions).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
@@ -596,7 +599,7 @@ export class ShopComponent implements OnInit {
       productDetail.extraQuantity = null;
     }
     if (selectedvalue != null && selectedvalue != undefined) {
-      if (selectedvalue == 11 || selectedvalue > 10) {
+      if (selectedvalue == 0 || selectedvalue > 10) {
         this.showOtherTextbox = productDetail.itemCode;
         $('#showinput' + productDetail.itemCode).show();
       } else {
