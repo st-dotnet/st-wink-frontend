@@ -193,7 +193,7 @@ export class CheckoutComponent implements OnInit {
     this.onPaymentSubmitForm = this.formBuilder.group({
       cardName: ['', [Validators.required]],
       cardNumber: ['', [Validators.required,Validators.minLength(14),
-        Validators.maxLength(15)]],
+        Validators.maxLength(19)]],
       expiryMonth: ['', [Validators.required]],
       expiryYear: ['', [Validators.required]],
       cardCVV: ['', [Validators.required]],
@@ -362,7 +362,7 @@ export class CheckoutComponent implements OnInit {
       payment.country = 'US';
     }
     payment.amount = this.cartSummaryTotal;
-    payment.cardNumber = this.p.cardNumber.value;
+    payment.cardNumber = this.p.cardNumber.value.replace(/ /g, "");
     payment.cvv = this.p.cardCVV.value;
     payment.expMonth = this.p.expiryMonth.value;
     payment.expYear = this.p.expiryYear.value;
