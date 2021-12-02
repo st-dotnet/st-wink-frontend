@@ -2,7 +2,7 @@ import { ShopProductModel } from "@app/_models/shop";
 
 export class Common {
       static addToCart(product: any) {
-        debugger
+
         const productModel= new ShopProductModel();
         productModel.itemID=product.itemID;
         productModel.itemCode=product.itemCode;

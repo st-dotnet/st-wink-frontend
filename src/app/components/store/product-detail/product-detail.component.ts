@@ -330,6 +330,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart(product: any) {
+
     this.productItems =
       this.sessionService.getSessionObject('productCartItems');
     if (
@@ -605,6 +606,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   quantitychanged(cartitem: any, selectedvalue: number) {
+
     this.quantityCalculation(cartitem, selectedvalue);
     const item = this.cartItems.find((x) => x.itemCode == cartitem.itemCode);
 

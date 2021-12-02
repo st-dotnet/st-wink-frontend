@@ -30,7 +30,6 @@ export class ShopService {
   }
 
   checkOutItems(transactionalRequestModel: any) {
-    debugger
     return this.http.post<TransactionalRequestModel[]>(`${environment.apiUrl}${this.shopEndpoint}SubmitCheckout`,transactionalRequestModel);
   }
 
@@ -63,7 +62,7 @@ export class ShopService {
   generateCreditCardToken(cardNumber: any) {
     return this.http.get<string>(`${environment.apiUrl}${this.paymentEndpoint}GenerateCreditCardToken?cardNumber=${cardNumber}`);
   }
- 
+
   getClientToken()
   {
     return this.http.get<any>(`${environment.apiUrl}${this.paymentEndpoint}GetClientToken`);

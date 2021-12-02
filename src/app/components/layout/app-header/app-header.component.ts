@@ -129,8 +129,6 @@ ChecktourSession()
   ngOnInit(): void {
   // localStorage.setItem("IsVisted","");
     this.ChecktourSession();
-
-   // debugger;
     this.sessionService.cart$.subscribe(x => this.cartItems = x.length);
     if (this.windowWidth > 992) {
       this.isDesktopMenu = true;
@@ -161,9 +159,9 @@ ChecktourSession()
   }
 
   searchProduct(){
-    debugger
+
     //this.sessionService.setSessionItem("searchItem", this.searchText);
-    debugger
+
     this.router.navigate(["/store/search-products"]);
   }
   showSearchbar()

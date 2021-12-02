@@ -32,7 +32,6 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger
     this.route.params.subscribe((params) => {
       this.customerId = parseInt(params["id"]);
     });
@@ -52,7 +51,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   resetPasswordFormSubmit() {
-    debugger
+
     this.submitted = true;
     if (this.resetPasswordForm.invalid) {
       return;
@@ -68,7 +67,6 @@ export class ForgotPasswordComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: (result: any) => {
-          debugger
           if (result) {
             this.spinner.hide();
             this.toastrService.success('Password reset successfully');
@@ -85,7 +83,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   showHidePassword() {
-    this.showPassword = !this.showPassword;    
-  } 
- 
+    this.showPassword = !this.showPassword;
+  }
+
 }

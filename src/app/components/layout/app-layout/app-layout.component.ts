@@ -8,19 +8,19 @@ import { SessionService } from '@app/_services';
 })
 export class AppLayoutComponent implements OnInit {
   toggleDisplayDivIf: boolean = true;
-  @Input() myinputMsg:boolean; 
+  @Input() myinputMsg:boolean;
 
   constructor(private sessionService: SessionService) { }
 
   ngOnInit(): void {
-   
+
     //this.toggleDisplayDivIf = this.sessionService.getSessionItem("notification");
   }
 
   GetChildData(value){
-    debugger  
+
     this.toggleDisplayDivIf=value;
-    
+
   }
 
 }

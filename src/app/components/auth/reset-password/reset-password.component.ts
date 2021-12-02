@@ -47,7 +47,7 @@ export class ResetPasswordComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    debugger;
+
     // stop here if form is invalid
     if (this.emailForm.invalid) {
       return;
@@ -65,14 +65,13 @@ export class ResetPasswordComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: (result: any) => {
-          debugger
-          if (result.success == true) {            
+          if (result.success == true) {
             this.spinner.hide();
-            this.toastrService.success('Password Reset Link has been sent to your registered email.');            
+            this.toastrService.success('Password Reset Link has been sent to your registered email.');
           }else{
             this.toastrService.error(result.errorMessage);
             this.spinner.hide();
-          }         
+          }
         },
         error: (error) => {
           this.toastrService.error(error);
