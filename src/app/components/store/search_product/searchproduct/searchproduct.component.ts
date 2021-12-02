@@ -33,7 +33,7 @@ export class SearchproductComponent implements OnInit {
   quantity: { id: string; name: string; value: number; }[];
   bundles: { id: string; name: string; value: string; }[];
   delivery: { id: string; name: string; value: string; }[];
-  productItems: any; 
+  productItems: any;
   productItem: any;
   productCartItems: any[]=[];
   cartTypes: any[] = [];;
@@ -113,17 +113,17 @@ export class SearchproductComponent implements OnInit {
 
 
   getSearchProduct() {
-    debugger  
+
     if(this.searchText == undefined || this.searchText == ""  ){
       return this.toastrService.error("Please fill the input")
-    }    
+    }
     else{
       this.spinner.show();
       this.shopService.searchProduct(this.searchText).subscribe(result => {
         this.shopProductModels = result;
         this.spinner.hide();
         this.sessionService.removeSessionItem("searchItem")
-      })     
+      })
     }
   }
 
@@ -143,7 +143,7 @@ export class SearchproductComponent implements OnInit {
     });
   }
 
-  
+
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -165,6 +165,7 @@ export class SearchproductComponent implements OnInit {
   }
 
   addToCart(product: any) {
+
     this.productItems = this.sessionService.getSessionObject('productCartItems');
     if(this.selectDelivery == 1 && this.subscriptionModelduration == undefined){
       return this.toastrService.error("Please select the subscription plan");
@@ -262,7 +263,7 @@ export class SearchproductComponent implements OnInit {
           this.modalService.dismissAll();
         }
       }
-      //5% calculation 
+      //5% calculation
       if (product.bundle == 'multiple' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
         let multiple_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'multiple' && x.selectDelivery == 0 && x.subscriptionModel == 'singleDelivery')
         let old_multiple_singledelivery = multiple_singledelivery;
@@ -346,7 +347,7 @@ export class SearchproductComponent implements OnInit {
   }
 
   checkDelivery(type: CartTypeEnum) {
-    debugger;
+
     switch (type) {
       case CartTypeEnum.OneTimePrice:
         this.showSubscription = false;

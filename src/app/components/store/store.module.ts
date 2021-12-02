@@ -13,6 +13,10 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
 import { SearchproductComponent } from './search_product/searchproduct/searchproduct.component';
 import { NgYotpoModule } from '@ng-ecom-kit/ng-yotpo';
 import { GuidedTourModule } from 'src/lib/guided-tour.module';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+
 
 
 @NgModule({
@@ -26,6 +30,7 @@ import { GuidedTourModule } from 'src/lib/guided-tour.module';
   ],
   imports: [
     NgYotpoModule.forRoot({apiKey: 'jV57gp4RKXABm7N2zd94UnPq6pgfRerQyaeq3iQk'}),
+    NgxMaskModule.forRoot(),
     SharedModule,
     StoreRoutingModule,
     GuidedTourModule.forRoot()

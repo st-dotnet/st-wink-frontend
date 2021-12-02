@@ -33,6 +33,7 @@
     "ng2-search-filter": "^0.5.1",
     "ngx-bootstrap": "^6.2.0",
     "ngx-freshchat": "^0.2.0",
+    "ngx-mask": "^13.0.0",
     "ngx-owl-carousel-o": "^6.0.0",
     "ngx-spinner": "^12.0.0",
     "ngx-toastr": "^14.0.0",

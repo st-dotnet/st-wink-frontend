@@ -23,6 +23,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { TransactionalRequestModel } from 'src/app/_models/checkout';
 import * as braintree from 'braintree-web';
+import { MONTH } from 'ngx-bootstrap/chronos/units/constants';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-checkout',
@@ -36,6 +38,7 @@ export class CheckoutComponent implements OnInit {
   addrnew = false;
   sidebartoggle: boolean = true;
   sidebartoggle1: boolean = false;
+  isAddressSaveBtn: boolean = true;
   title = 'ng-bootstrap-modal-demo';
   closeResult: string;
   shippingAddressForm: FormGroup;
@@ -46,8 +49,8 @@ export class CheckoutComponent implements OnInit {
   filterTerm: any;
   cartItems: any[] = [];
   submitted = false;
-  paymentSubmitted= false;
-  cardvalidate= false;
+  paymentSubmitted = false;
+  cardvalidate = false;
   subscriptionCartItems: any[] = [];
   oneTimePriceCartItems: any[] = [];
   subtotalOneTimePrice: any = 0;
@@ -60,7 +63,6 @@ export class CheckoutComponent implements OnInit {
   paramsProductPrice: any;
   promocode_onetime: string;
   UserDetails: any;
-  cardToken:string;
   modalOptions: NgbModalOptions = {
     // backdrop: 'static',
     backdropClass: 'customBackdrop',
@@ -83,7 +85,7 @@ export class CheckoutComponent implements OnInit {
   showPanel1 = false;
   showPanel2 = true;
   showPanel3 = true;
- activeIds:string[] = ['checkoutstep1'];
+  activeIds: string[] = ['checkoutstep1'];
   enablebtn: boolean;
   //Shipping Address Variables
   firstName: string;
@@ -92,7 +94,7 @@ export class CheckoutComponent implements OnInit {
   city: string;
   state: string;
   zip: number;
-  country: string="US";
+  country: string = "US";
   isShipmentMethod: any;
   shippingAddressParam: any;
   //Card Information Variables
@@ -116,8 +118,13 @@ export class CheckoutComponent implements OnInit {
   displayAddress: string;
   shopProductsRequest: any[];
   shippingMethods: any[];
-  promocodeMessage:string="No code applied";
-  addPromoIcon:boolean = true;
+
+  checkMonth: number;
+  checkYear: number;
+
+  monthError: boolean=false;
+  yearError:  boolean=false;
+
   constructor(
     private modalService: NgbModal,
     private shopService: ShopService,
@@ -174,8 +181,7 @@ export class CheckoutComponent implements OnInit {
       this.state = this.newAddress?.state;
       this.zip = this.newAddress?.zip;
       this.country = this.newAddress?.country;
-      this.showPanel2 = true;
-      this.showPanel3 = true;
+      this.showPanel2 = false;
     }
     this.subscriptionCartItems = this.cartItems.filter(
       (x) => x.selectDelivery == CartTypeEnum.Subscription
@@ -198,10 +204,10 @@ export class CheckoutComponent implements OnInit {
 
     this.onPaymentSubmitForm = this.formBuilder.group({
       cardName: ['', [Validators.required]],
-      cardNumber: ['', [Validators.required,Validators.minLength(14),
-        Validators.maxLength(15)]],
-      expiryMonth: ['', [Validators.required]],
-      expiryYear: ['', [Validators.required]],
+      cardNumber: ['', [Validators.required, Validators.minLength(15),
+      Validators.maxLength(15)]],
+      expiryMonth: ['', [Validators.required, Validators.pattern("^(1[0-2]|[1-9])$")]],///
+      expiryYear: ['', [Validators.required, Validators.pattern("[\d]{2}\/[\d]{4}/")]],
       cardCVV: ['', [Validators.required]],
       isMakePrimaryCard: [''],
       newStreetAddress: [''],
@@ -330,11 +336,12 @@ export class CheckoutComponent implements OnInit {
     this.shopService.postAddress(this.customerId, this.shippingAddressParam)
       .subscribe((result: any) => {
         if (result.result) {
-          debugger;
           this.spinner.hide();
           this.showPanel2 = false;
           this.toastrService.success('Shipping address saved successfully');
-          this.activeIds= ['checkoutstep2'];
+          this.activeIds = ['checkoutstep2'];
+          this.showPanel1 = false;
+          this.isAddressSaveBtn = false;
           this.displayAddress =
             result.result.address1 +
             ' ' +
@@ -354,7 +361,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   onPaymentSubmit() {
-    
+
     this.paymentSubmitted = true;
     if (this.onPaymentSubmitForm.invalid) {
       return;
@@ -370,43 +377,46 @@ export class CheckoutComponent implements OnInit {
       payment.country = this.p.newCountry.value;
       payment.zip = this.p.newZip.value;
     } else {
-       (payment.address1 = this.f.streetAddress.value),
+      (payment.address1 = this.f.streetAddress.value),
         (payment.city = this.f.city.value),
         payment.state = this.f.state.value,
         (payment.zip = this.f.zip.value),
-      payment.country = this.f.country.value;
+        payment.country = this.f.country.value;
     }
     payment.amount = this.cartSummaryTotal;
     payment.cardNumber = this.p.cardNumber.value;
     payment.cvv = this.p.cardCVV.value;
     payment.expMonth = this.p.expiryMonth.value;
     payment.expYear = this.p.expiryYear.value;
-    payment.primary =true;
-    payment.active =true;
-    payment.cardType =1;
-    payment.customerId =this.customerId;
+    payment.primary = true;
+    payment.active = true;
+    payment.cardType = 1;
+    payment.customerId = this.customerId;
     const chargeCredit = new ChargeCreditCardTokenRequest();
-    chargeCredit.creditCardToken="41X1111WBCXTE1111",
-    chargeCredit.billingName="amar"
+    chargeCredit.creditCardToken = "41X1111WBCXTE1111",
+      chargeCredit.billingName = "amar"
     chargeCredit.billingAddress = "#street",//transactionRequest.ChargeCreditCardTokenRequest.BillingAddress,
-    chargeCredit.billingAddress2 = null,//transactionRequest.ChargeCreditCardTokenRequest.BillingAddress2,
-    chargeCredit.billingCity = "123456",//transactionRequest.ChargeCreditCardTokenRequest.BillingCity,
-    chargeCredit.billingZip = "123456",//transactionRequest.ChargeCreditCardTokenRequest.BillingZip,
-    chargeCredit.expirationMonth = 1,// transactionRequest.ChargeCreditCardTokenRequest.ExpirationMonth,
-    chargeCredit.expirationYear = 2023,//transactionRequest.ChargeCreditCardTokenRequest.ExpirationYear,
-    chargeCredit.billingCountry = "US",//transactionRequest.ChargeCreditCardTokenRequest.BillingCountry,
-    chargeCredit.billingState = "AA",//transactionRequest.ChargeCreditCardTokenRequest.BillingState,
-    chargeCredit.maxAmount = null,
-    this.shopService.generateCreditCardToken( payment.cardNumber).subscribe((result:any) => {
-      if (result.errorMessage =="") {
-        this.cardToken = result.token;
+      chargeCredit.billingAddress2 = null,//transactionRequest.ChargeCreditCardTokenRequest.BillingAddress2,
+      chargeCredit.billingCity = "123456",//transactionRequest.ChargeCreditCardTokenRequest.BillingCity,
+      chargeCredit.billingZip = "123456",//transactionRequest.ChargeCreditCardTokenRequest.BillingZip,
+      chargeCredit.expirationMonth = 1,// transactionRequest.ChargeCreditCardTokenRequest.ExpirationMonth,
+      chargeCredit.expirationYear = 2023,//transactionRequest.ChargeCreditCardTokenRequest.ExpirationYear,
+      chargeCredit.billingCountry = "US",//transactionRequest.ChargeCreditCardTokenRequest.BillingCountry,
+      chargeCredit.billingState = "AA",//transactionRequest.ChargeCreditCardTokenRequest.BillingState,
+      chargeCredit.maxAmount = null,
+      this.spinner.hide();
+    this.toastrService.success('Card Added');
+    this.activeIds = ['checkoutstep3'];
+    this.shopService.generateCreditCardToken(payment.cardNumber).subscribe((result: any) => {
+
+      if (result.isCompletedSuccessfully == true) {
         this.spinner.hide();
-        this.activeIds= ['checkoutstep3'];
-        this.showPanel3 = false;
-        this.toastrService.success('Payment Card is accepted');
+        this.showPanel3 = true;
+        this.toastrService.success('Payment is succesfull');
+        this.showPanel2 = false;
       } else {
         this.spinner.hide();
-        this.toastrService.error('Payment card is not declined');
+        this.toastrService.error('Payment is not unsuccessfull');
       }
     });
   }
@@ -704,21 +714,19 @@ export class CheckoutComponent implements OnInit {
           .getPromoData(this.promocode_onetime)
           .subscribe((result) => {
             this.promoItem = result;
-           
             if (this.promoItem.errorMessage == null) {
-              this.addPromoIcon = false;
-              this.promocodeMessage="Code Applied";
               this.promoPercentage =
                 (this.subtotalOneTimePrice * this.promoItem.percentOff) / 100;
               // this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
               this.cartCalculation();
-             
+              //this.isDisabled=true;
+              if (type == 0) {
                 this.toastrService.success(
                   "Promo code applied succesfully you save $'" +
-                    this.promoPercentage.toFixed(2) +
-                    "'."
+                  this.promoPercentage.toFixed(2) +
+                  "'."
                 );
-              
+              }
               this.spinner.hide();
             } else {
               // this.isDisabled=false;
@@ -733,24 +741,19 @@ export class CheckoutComponent implements OnInit {
       this.sessionService.removeSessionItem('promoCode');
       this.promocode_onetime = '';
       this.promoPercentage = 0;
-      this.promocodeMessage="No code Applied";
       this.cartCalculation();
     }
   }
 
   clearPromo(event: any) {
-    
+
     if (
-      event.target.value == '' ||event.target.value == undefined ||event.target.value == null) {
+      event.target.value == '' || event.target.value == undefined || event.target.value == null) {
       this.sessionService.removeSessionItem('promoCode');
       this.promocode_onetime = '';
       this.promoPercentage = 0;
-      this.promocodeMessage="No code Applied";
-      this.addPromoIcon = true;
       this.cartCalculation();
     } else {
-      // this.promocodeMessage="Code Applied";
-      // this.addPromoIcon = false;
       this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
       //this.addPromo();
     }
@@ -917,131 +920,146 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit() {
 
-    this.submitted = true; 
-      var startDate;
-     if (this.startDate == 'undefined') {
-    //     startDate = new Date();
-      } else {
-    //    //startDate = new Date(this.startDate);
-         startDate = new Date();
-      }
+    this.submitted = true;
+    var startDate;
+    if (this.startDate == 'undefined') {
+      //     startDate = new Date();
+    } else {
+      //    //startDate = new Date(this.startDate);
+      startDate = new Date();
+    }
 
-      this.spinner.show();
+    this.spinner.show();
 
-      this.cartItems.forEach((element) => {
-        this.orderDetails.push({
-          descriptionOverride: '',
-          other10EachOverride: 0,
-          other9EachOverride: 0,
-          other8EachOverride: 0,
-          other7EachOverride: 0,
-          other6EachOverride: 0,
-          other5EachOverride: 0,
-          other4EachOverride: 0,
-          other3EachOverride: 0,
-          other2EachOverride: 0,
-          other1EachOverride: 0,
-          commissionableVolumeEachOverride:element.commissionableVolumeEachOverride,
-          businessVolumeEachOverride: element.businessVolumeEachOverride,
-          shippingPriceEachOverride: element.shippingPriceEachOverride,
-          taxableEachOverride: element.taxableEachOverride,
-          priceEachOverride: element.priceEachOverride,
-          parentItemCode: element.parentItemCode,
-          quantity: element.quantityModel,
-          parentOrderDetailID: null,
-          orderDetailID: null,
-          itemCode: element.itemCode,
-          reference1: null,
-          advancedAutoOptions: '',
-        });
+    this.cartItems.forEach((element) => {
+      this.orderDetails.push({
+        descriptionOverride: '',
+        other10EachOverride: 0,
+        other9EachOverride: 0,
+        other8EachOverride: 0,
+        other7EachOverride: 0,
+        other6EachOverride: 0,
+        other5EachOverride: 0,
+        other4EachOverride: 0,
+        other3EachOverride: 0,
+        other2EachOverride: 0,
+        other1EachOverride: 0,
+        commissionableVolumeEachOverride: element.commissionableVolumeEachOverride,
+        businessVolumeEachOverride: element.businessVolumeEachOverride,
+        shippingPriceEachOverride: element.shippingPriceEachOverride,
+        taxableEachOverride: element.taxableEachOverride,
+        priceEachOverride: element.priceEachOverride,
+        parentItemCode: element.parentItemCode,
+        quantity: element.quantityModel,
+        parentOrderDetailID: null,
+        orderDetailID: null,
+        itemCode: element.itemCode,
+        reference1: null,
+        advancedAutoOptions: '',
       });
+    });
 
-      const createOrderRequest = new CreateOrderRequest();
-      
-      createOrderRequest.other17 = "0.0";
-      createOrderRequest.details = this.orderDetails;
-      createOrderRequest.suppressPackSlipPrice = true;
-      createOrderRequest.orderStatus = 1;
-      createOrderRequest.orderDate = startDate;
-      createOrderRequest.firstName = this.f.firstName.value;
-      createOrderRequest.lastName = this.f.lastName.value;
-      createOrderRequest.address1 = this.f.streetAddress.value;
-      createOrderRequest.address2 = '';
-      createOrderRequest.city = this.f.city.value;
-      createOrderRequest.state = 'TX';//this.f.state.value;
-      createOrderRequest.zip = this.f.zip.value;
-      createOrderRequest.country = 'US';//this.f.country.value
-      createOrderRequest.email = 'test@gmail.com';
-      createOrderRequest.phone = '1111111111111';
-      createOrderRequest.company = 'Test';
-      createOrderRequest.notes = 'abc';
+    const createOrderRequest = new CreateOrderRequest();
+
+    createOrderRequest.other17 = "0.0";
+    createOrderRequest.details = this.orderDetails;
+    createOrderRequest.suppressPackSlipPrice = true;
+    createOrderRequest.orderStatus = 1;
+    createOrderRequest.orderDate = startDate;
+    createOrderRequest.firstName = this.f.firstName.value;
+    createOrderRequest.lastName = this.f.lastName.value;
+    createOrderRequest.address1 = this.f.streetAddress.value;
+    createOrderRequest.address2 = '';
+    createOrderRequest.city = this.f.city.value;
+    createOrderRequest.state = 'TX';//this.f.state.value;
+    createOrderRequest.zip = this.f.zip.value;
+    createOrderRequest.country = 'US';//this.f.country.value
+    createOrderRequest.email = 'test@gmail.com';
+    createOrderRequest.phone = '1111111111111';
+    createOrderRequest.company = 'Test';
+    createOrderRequest.notes = 'abc';
 
 
-      const chargeCreditCardTokenRequest = new ChargeCreditCardTokenRequest();
-    
-      chargeCreditCardTokenRequest.maxAmount = this.cartSummaryTotal;
-      chargeCreditCardTokenRequest.otherData10 = '';
-      if (this.addrnew == false) {
-        chargeCreditCardTokenRequest.billingCountry = '';
-        chargeCreditCardTokenRequest.billingZip = '';
-        chargeCreditCardTokenRequest.billingState = '';
-        chargeCreditCardTokenRequest.billingCity = '';
-        chargeCreditCardTokenRequest.billingAddress2 = '';
-        chargeCreditCardTokenRequest.billingAddress = '';
-      } else {
-        chargeCreditCardTokenRequest.billingCountry = 'US';//this.f.country.value;
-        chargeCreditCardTokenRequest.billingZip = this.f.zip.value;
-        chargeCreditCardTokenRequest.billingState = 'TX';//this.f.state.value;
-        chargeCreditCardTokenRequest.billingCity = this.f.city.value;
-        chargeCreditCardTokenRequest.billingAddress2 = '';
-        chargeCreditCardTokenRequest.billingAddress = this.f.streetAddress.value;
-      }
-      chargeCreditCardTokenRequest.expirationMonth = this.p.expiryMonth.value;
-      chargeCreditCardTokenRequest.creditCardType = 0;
-      chargeCreditCardTokenRequest.cvcCode = this.p.cardCVV.value;
-      chargeCreditCardTokenRequest.billingCountry = this.f.country.value;
+    const chargeCreditCardTokenRequest = new ChargeCreditCardTokenRequest();
+
+    chargeCreditCardTokenRequest.maxAmount = this.cartSummaryTotal;
+    chargeCreditCardTokenRequest.otherData10 = '';
+    if (this.addrnew == false) {
+      chargeCreditCardTokenRequest.billingCountry = '';
+      chargeCreditCardTokenRequest.billingZip = '';
+      chargeCreditCardTokenRequest.billingState = '';
+      chargeCreditCardTokenRequest.billingCity = '';
+      chargeCreditCardTokenRequest.billingAddress2 = '';
+      chargeCreditCardTokenRequest.billingAddress = '';
+    } else {
+      chargeCreditCardTokenRequest.billingCountry = 'US';//this.f.country.value;
       chargeCreditCardTokenRequest.billingZip = this.f.zip.value;
-      chargeCreditCardTokenRequest.billingState = this.f.state.value;
+      chargeCreditCardTokenRequest.billingState = 'TX';//this.f.state.value;
       chargeCreditCardTokenRequest.billingCity = this.f.city.value;
       chargeCreditCardTokenRequest.billingAddress2 = '';
       chargeCreditCardTokenRequest.billingAddress = this.f.streetAddress.value;
-      chargeCreditCardTokenRequest.creditCardToken = this.cardToken;//"41X1111WBCXTE1111"
-      chargeCreditCardTokenRequest.expirationYear = this.p.expiryYear.value;
-      chargeCreditCardTokenRequest.billingName = this.f.firstName.value;
+    }
+    chargeCreditCardTokenRequest.expirationMonth = this.p.expiryMonth.value;
+    chargeCreditCardTokenRequest.creditCardType = 0;
+    chargeCreditCardTokenRequest.cvcCode = this.p.cardCVV.value;
+    chargeCreditCardTokenRequest.billingCountry = this.f.country.value;
+    chargeCreditCardTokenRequest.billingZip = this.f.zip.value;
+    chargeCreditCardTokenRequest.billingState = this.f.state.value;
+    chargeCreditCardTokenRequest.billingCity = this.f.city.value;
+    chargeCreditCardTokenRequest.billingAddress2 = '';
+    chargeCreditCardTokenRequest.billingAddress = this.f.streetAddress.value;
+    chargeCreditCardTokenRequest.creditCardToken = "41X1111WBCXTE1111";
+    chargeCreditCardTokenRequest.expirationYear = this.p.expiryYear.value;
+    chargeCreditCardTokenRequest.billingName = this.f.firstName.value;
 
-       const setAccountCreditCardTokenRequest = new SetAccountCreditCardTokenRequest();
-       setAccountCreditCardTokenRequest.creditCardToken =this.cardToken;
-       setAccountCreditCardTokenRequest.expirationMonth =this.p.expiryMonth.value;
-       setAccountCreditCardTokenRequest.expirationYear = this.p.expiryYear.value;
+    const setAccountCreditCardTokenRequest = new SetAccountCreditCardTokenRequest();
+    setAccountCreditCardTokenRequest.creditCardToken = "41X1111WBCXTE1111";
+    setAccountCreditCardTokenRequest.expirationMonth = this.p.expiryMonth.value;
+    setAccountCreditCardTokenRequest.expirationYear = this.p.expiryYear.value;
 
-      const transactionalRequestModel = new TransactionalRequestModel();
-      transactionalRequestModel.createOrderRequest = createOrderRequest;
-      transactionalRequestModel.chargeCreditCardTokenRequest = chargeCreditCardTokenRequest;
-      transactionalRequestModel.setListItemRequest = this.cartItems;
-      transactionalRequestModel.setAccountCreditCardTokenRequest= setAccountCreditCardTokenRequest;
-      this.shopService
-        .checkOutItems(transactionalRequestModel)
-        .subscribe((result: any) => {
-      if(result==null){
-        this.toastrService.success('Payment failed');
-      }else{ this.router.navigate(['/store/thankyou']);}
-         
-          this.spinner.hide();
-        });
-      // submit payload.nonce to the server from here
-   
+    const transactionalRequestModel = new TransactionalRequestModel();
+    transactionalRequestModel.createOrderRequest = createOrderRequest;
+    transactionalRequestModel.chargeCreditCardTokenRequest = chargeCreditCardTokenRequest;
+    transactionalRequestModel.setListItemRequest = this.cartItems;
+    transactionalRequestModel.setAccountCreditCardTokenRequest = setAccountCreditCardTokenRequest;
+    this.shopService
+      .checkOutItems(transactionalRequestModel)
+      .subscribe((result: any) => {
+        if (result == null) {
+          this.toastrService.success('Payment failed');
+        } else { this.router.navigate(['/store/thankyou']); }
+
+        this.spinner.hide();
+      });
+    // submit payload.nonce to the server from here
+
   }
   creditCardValidator(control: any) {
-    debugger;
+
     // Visa, MasterCard, American Express, Diners Club, Discover, JCB
     if (control.target.value.match(/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/)) {
-      this.cardvalidate = false;
-     return null;
-    } else {
-     this.cardvalidate = true;
-         
-    }
- }
-  
 
+      return null;
+    } else {
+      this.cardvalidate = true;
+    }
+  }
+
+  validateCard() {
+    this.monthError=false;
+    this.yearError=false;
+    var date = new Date();
+    let year = parseInt(date.getFullYear().toString());
+    let month =  parseInt(date.getMonth().toString()) + 1;
+    if (this.checkYear < year)
+         this.yearError=true;
+    else if ( this.checkMonth==0 || this.checkMonth >12)
+        this.monthError=true;
+    else if (this.checkMonth < month &&(this.checkYear== year ||this.checkYear <year)) {
+        this.monthError=true;
+      }
+    else if (this.checkMonth >12 && this.checkYear >year) {
+      this.monthError=true;
+    }
+  }
 }
