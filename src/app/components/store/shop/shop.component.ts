@@ -324,8 +324,7 @@ export class ShopComponent implements OnInit {
       this.sessionService.setSessionItem('categoryDescription', "All-Products");
     }
     if (this.showAgePopUp == true) {
-      this.modalService.open(adultCheck, this.modalOptions).result.then((result) => {
-        
+      this.modalService.open(adultCheck, this.modalOptions).result.then((result) => {   
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
