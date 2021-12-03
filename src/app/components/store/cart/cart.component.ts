@@ -158,12 +158,14 @@ export class CartComponent implements OnInit {
   addPromo() {
     debugger;
     // this.sessionService.removeSessionItem('promoCode')
-    if(this.promocode_onetime != null){
+    if(this.promocode_onetime != null && this.promocode_onetime !=undefined && this.promocode_onetime!=""){
       this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
     }
     this.promocode_onetime = this.sessionService.getSessionItem('promoCode');
+    if(this.promocode_onetime != null && this.promocode_onetime !=undefined && this.promocode_onetime!=""){
     this.isPromoCode = true;
     this.spinner.show();
+
     this.shopService.getPromoData(this.promocode_onetime).subscribe(result => {
       this.promoItem = result;
       if (this.promoItem.errorMessage == null) {
@@ -172,7 +174,6 @@ export class CartComponent implements OnInit {
         this.promoPercentage =
           (this.subtotalOneTimePrice * this.promoItem.percentOff) / 100;
         // this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
-        this.cartCalculation();
        
           this.toastrService.success(
             "Promo code applied succesfully you save $'" +
@@ -189,6 +190,9 @@ export class CartComponent implements OnInit {
         this.spinner.hide();
       }
     })
+  }
+  this.cartCalculation();
+       
   }
   clearPromo(event: any) {
     

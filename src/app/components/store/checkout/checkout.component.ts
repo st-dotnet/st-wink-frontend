@@ -674,8 +674,8 @@ export class CheckoutComponent implements OnInit {
       }
       this.promocode_onetime = this.sessionService.getSessionItem('promoCode');
       if (
-        this.promocode_onetime != null ||
-        this.promocode_onetime != '' ||
+        this.promocode_onetime != null &&
+        this.promocode_onetime != '' &&
         this.promocode_onetime != undefined
       ) {
         this.spinner.show();
