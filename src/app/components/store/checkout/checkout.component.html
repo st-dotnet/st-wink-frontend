@@ -78,7 +78,7 @@
                                                         <label class="form-label">Promo Code</label>
                                                         <span class="vali-promo">{{promocodeMessage}}</span>
                                                         <span class="btn-add-promo" (click)="addPromo()" *ngIf="addPromoIcon" >
-                
+
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                             height="14" viewBox="0 0 14 14">
                                                             <path _ngcontent-shj-c146="" id="Path_2014"
@@ -88,7 +88,7 @@
                                                         </svg>
                                                     </span>
                                                     <span class="btn-add-promo" *ngIf="!addPromoIcon">
-                
+
                                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
                                                             <defs>
                                                             <clipPath id="clip-path">
@@ -336,7 +336,7 @@
                                                     <label class="form-label">Promo Code</label>
                                                     <span class="vali-promo" >{{promocodeMessage}}</span>
                                                     <span class="btn-add-promo" (click)="addPromo()" *ngIf="addPromoIcon" >
-                
+
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                             height="14" viewBox="0 0 14 14">
                                                             <path _ngcontent-shj-c146="" id="Path_2014"
@@ -346,7 +346,7 @@
                                                         </svg>
                                                     </span>
                                                     <span class="btn-add-promo" *ngIf="!addPromoIcon">
-                
+
                                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
                                                             <defs>
                                                             <clipPath id="clip-path">
@@ -393,6 +393,12 @@
                                                 <td>You Saved</td>
                                                 <td>-${{promoPercentage | number :'.1-2'}}</td>
                                             </tr>
+
+                                            <tr>
+                                              <td>You Saved</td>
+                                              <td>${{onetimepurchasediscount|number:'.1-2'}}</td>
+                                          </tr>
+
                                             <tr>
                                                 <td>Subtotal</td>
                                                 <td>${{subtotalOneTimePrice| number :'.1-2'}}</td>
@@ -474,7 +480,8 @@
                                         <tfoot>
                                             <tr>
                                                 <td>You Saved</td>
-                                                <td>-${{totalDiscount | number:'.1-2'}}</td>
+                                                <td>-${{(totalDiscount+onetimepurchasediscount) | number:'.1-2'}}</td>
+                                                <!-- <td>-${{totalDiscount | number:'.1-2'}}</td> -->
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
@@ -756,7 +763,7 @@
                                                             <label class="form-label">Promo Code</label>
                                                             <span class="vali-promo">{{promocodeMessage}}</span>
                                                             <span class="btn-add-promo" (click)="addPromo()" *ngIf="addPromoIcon" >
-                    
+
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                                 height="14" viewBox="0 0 14 14">
                                                                 <path _ngcontent-shj-c146="" id="Path_2014"
@@ -766,7 +773,7 @@
                                                             </svg>
                                                         </span>
                                                         <span class="btn-add-promo" *ngIf="!addPromoIcon">
-                    
+
                                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
                                                                 <defs>
                                                                 <clipPath id="clip-path">
@@ -1131,7 +1138,7 @@
                                                         <label class="form-label">Promo Code</label>
                                                         <span class="vali-promo" >{{promocodeMessage}}</span>
                                                         <span class="btn-add-promo" (click)="addPromo()" *ngIf="addPromoIcon" >
-                    
+
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                                 height="14" viewBox="0 0 14 14">
                                                                 <path _ngcontent-shj-c146="" id="Path_2014"
@@ -1141,7 +1148,7 @@
                                                             </svg>
                                                         </span>
                                                         <span class="btn-add-promo" *ngIf="!addPromoIcon">
-                    
+
                                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
                                                                 <defs>
                                                                 <clipPath id="clip-path">
@@ -1159,7 +1166,7 @@
                                             </div>
                                         </ng-template>
                                     </ngb-panel>
-                               
+
                                     <!-- <ngb-panel id="loyalty-info">
                                         <ng-template ngbPanelTitle>
                                             <div class="heading-step1">

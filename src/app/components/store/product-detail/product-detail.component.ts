@@ -294,8 +294,8 @@ export class ProductDetailComponent implements OnInit {
       (x) => !isNaN(Number(x))
     );
     this.getProductDetail(this.itemCode);
-   
-    
+
+
     //var x = document.getElementById("data_val_item_code").getAttribute("data-product-id");
     //console.log("X is "+x);
   }

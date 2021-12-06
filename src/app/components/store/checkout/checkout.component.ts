@@ -123,6 +123,9 @@ export class CheckoutComponent implements OnInit {
   checkYear: number;
   monthError: boolean=false;
   yearError:  boolean=false;
+
+  onetimepurchasediscount:number;
+
   constructor(
     private modalService: NgbModal,
     private shopService: ShopService,
@@ -136,7 +139,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.onetimepurchasediscount= parseFloat(localStorage.getItem("One_time_purchage_discount"));
     this.isShipmentMethod = 1;
     this.UserDetails = JSON.parse(localStorage.getItem('user'));
     this.customerId = this.UserDetails.customerId;
@@ -340,7 +343,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   onPaymentSubmit() {
-    
+
     this.paymentSubmitted = true;
     if (this.onPaymentSubmitForm.invalid) {
       return;
@@ -690,7 +693,7 @@ export class CheckoutComponent implements OnInit {
                 (this.subtotalOneTimePrice * this.promoItem.percentOff) / 100;
               // this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
               this.cartCalculation();
-             
+
                 this.toastrService.success(
                   "Promo code applied succesfully you save $'" +
                     this.promoPercentage.toFixed(2) +
@@ -717,7 +720,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   clearPromo(event: any) {
-    
+
     if (
       event.target.value == '' ||event.target.value == undefined ||event.target.value == null) {
       this.sessionService.removeSessionItem('promoCode');
@@ -896,7 +899,7 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit() {
 
-    this.submitted = true; 
+    this.submitted = true;
       var startDate;
      if (this.startDate == 'undefined') {
     //     startDate = new Date();
@@ -936,7 +939,7 @@ export class CheckoutComponent implements OnInit {
       });
 
       const createOrderRequest = new CreateOrderRequest();
-      
+
       createOrderRequest.other17 = "0.0";
       createOrderRequest.details = this.orderDetails;
       createOrderRequest.suppressPackSlipPrice = true;
@@ -957,7 +960,7 @@ export class CheckoutComponent implements OnInit {
 
 
       const chargeCreditCardTokenRequest = new ChargeCreditCardTokenRequest();
-    
+
       chargeCreditCardTokenRequest.maxAmount = this.cartSummaryTotal;
       chargeCreditCardTokenRequest.otherData10 = '';
       if (this.addrnew == false) {
@@ -1037,6 +1040,6 @@ var card= control.target.value.replace(/ /g, "");
     this.monthError=true;
   }
 }
-  
+
 
 }

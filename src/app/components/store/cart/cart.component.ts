@@ -98,6 +98,7 @@ export class CartComponent implements OnInit {
       }
     });
     this.totalOneTimeDiscountPurchase=total;
+    localStorage.setItem("One_time_purchage_discount",total.toString());
   }
 
 
@@ -111,7 +112,7 @@ export class CartComponent implements OnInit {
     }
     this.spinner.show();
     this.getSpecialItem();
-   
+
     // this.promocode_onetime=this.sessionService.getSessionItem('promoCode');
     // if(this.promocode_onetime!=="null" && this.promocode_onetime !==undefined)
     // {
@@ -158,7 +159,7 @@ export class CartComponent implements OnInit {
   }
 
   addPromo() {
-   
+
     // this.sessionService.removeSessionItem('promoCode')
     if(this.promocode_onetime != null && this.promocode_onetime !=undefined && this.promocode_onetime!=""){
       this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
@@ -166,7 +167,7 @@ export class CartComponent implements OnInit {
     this.promocode_onetime = this.sessionService.getSessionItem('promoCode');
     if (this.sessionService.getSessionItem('user')) {
     if(this.promocode_onetime != null && this.promocode_onetime !=undefined && this.promocode_onetime!=""){
-   
+
 
       this.isPromoCode = true;
       this.spinner.show();
@@ -178,13 +179,13 @@ export class CartComponent implements OnInit {
         this.promoPercentage =
           (this.subtotalOneTimePrice * this.promoItem.percentOff) / 100;
         // this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
-       
+
           this.toastrService.success(
             "Promo code applied succesfully you save $'" +
               this.promoPercentage.toFixed(2) +
               "'."
           );
-        
+
         this.spinner.hide();
       } else {
         // this.isDisabled=false;
@@ -194,7 +195,7 @@ export class CartComponent implements OnInit {
         this.spinner.hide();
       }
     })
-  
+
   this.cartCalculation();
   }
     }
@@ -205,13 +206,13 @@ export class CartComponent implements OnInit {
    // let isTrue = true;
    // this.sessionService.setSessionItem('isTrue', isTrue);
   //  this.router.navigate(["/sign-in"]);
-  
+
   }
- 
-       
+
+
   }
   clearPromo(event: any) {
-    
+
     if (
       event.target.value == '' ||event.target.value == undefined ||event.target.value == null) {
       this.sessionService.removeSessionItem('promoCode');
@@ -483,7 +484,7 @@ export class CartComponent implements OnInit {
 
     this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
 
-    // for promo code 
+    // for promo code
    if(this.promoPercentage> 0){
 this.totalDiscount = this.totalDiscount + this.promoPercentage;
 this.cartSummaryTotal= this.cartSummaryTotal - this.promoPercentage;
