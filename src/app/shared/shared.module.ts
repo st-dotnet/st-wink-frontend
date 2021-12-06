@@ -33,6 +33,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     Ng2SearchPipeModule,
     NgbAccordionModule,
     TextMaskModule,
+
   ],
   exports: [
     CommonModule,

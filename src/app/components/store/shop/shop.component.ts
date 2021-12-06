@@ -55,6 +55,7 @@ export class ShopComponent implements OnInit {
   orderType: any;
   cartItems: any[] = [];
   showOtherTextbox = null;
+  selectedval:any;
 
   constructor(
     private sessionService: SessionService,
@@ -164,6 +165,7 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.filterTitle = this.sessionService.getSessionItem("categorySelect");
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.route.params.subscribe(params => {
@@ -269,6 +271,8 @@ export class ShopComponent implements OnInit {
       this.selectDelivery = 1;
       this.subscriptionModel = 'singleDelivery';
       this.subscriptionModelduration = undefined;
+       product.quantity=1;
+       this.quantityValue=1;
       this.modalService.open(content, this.modalOptions).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
@@ -301,10 +305,10 @@ export class ShopComponent implements OnInit {
   }
 
   nextToMove(content: any) {
-    
+
     this.showAgePopUp = false;
     // this.open(content, this.reProduct, "");
-    // 
+    //
     this.router.navigate(['/store/product', this.reProduct.itemCode])
     this.showAgePopUp = true;
     //this.modalService.dismissAll();
@@ -326,7 +330,7 @@ export class ShopComponent implements OnInit {
     }
     if (this.showAgePopUp == true) {
       this.modalService.open(adultCheck, this.modalOptions).result.then((result) => {
-        
+
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -350,7 +354,7 @@ export class ShopComponent implements OnInit {
     // }
    if(product.quantityModel==0 ||product.quantityModel==undefined )
     return this.toastrService.error("Please select the quantity");
- 
+
     this.productItems = this.sessionService.getSessionObject('productCartItems');
     if (this.selectDelivery == 1 && this.subscriptionModelduration == undefined) {
       return this.toastrService.error("Please select the subscription plan");
@@ -574,10 +578,13 @@ export class ShopComponent implements OnInit {
   }
 
   quantityForOneTime(productDetail: any, selectedvalue: number) {
+
     this.quantityCalculation(productDetail, selectedvalue);
   }
 
   quantitychanged(cartitem: any, selectedvalue: number) {
+    debugger;
+
     this.quantityCalculation(cartitem, selectedvalue);
     if (this.cartItems) {
       const item = this.cartItems.find((x) => x.itemCode == cartitem.itemCode);
@@ -592,16 +599,24 @@ export class ShopComponent implements OnInit {
   }
 
   quantityCalculation(productDetail: any, selectedvalue: number) {
+   // debugger;
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
-    if (selectedvalue < 10) {
+    if (selectedvalue <=10 ) {
       productDetail.extraQuantity = null;
+    }
+    else{
+      productDetail.extraQuantity = selectedvalue;
     }
     if (selectedvalue != null && selectedvalue != undefined) {
       if (selectedvalue == 0 || selectedvalue > 10) {
+
         this.showOtherTextbox = productDetail.itemCode;
         $('#showinput' + productDetail.itemCode).show();
+
       } else {
         $('#showinput' + productDetail.itemCode).hide();
+        //this.selectedval=selectedvalue;
+
       }
       if (this.cartItems) {
         for (var i = 0; i <= this.cartItems.length - 1; i++) {

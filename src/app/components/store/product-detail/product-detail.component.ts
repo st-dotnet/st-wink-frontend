@@ -49,9 +49,10 @@ export class ProductDetailComponent implements OnInit {
   productCartItems: any[] = [];
   product: any;
 
-  bundle: string;
+  bundle: string = 'single';
   selectDelivery: CartTypeEnum = 0;
-  subscriptionModel: string;
+  subscriptionModel: string = 'singleDelivery';
+
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -294,8 +295,9 @@ export class ProductDetailComponent implements OnInit {
       (x) => !isNaN(Number(x))
     );
     this.getProductDetail(this.itemCode);
-
-
+    this.bundle = 'single';
+    this.selectDelivery = 0;
+    this.subscriptionModel = 'singleDelivery';
     //var x = document.getElementById("data_val_item_code").getAttribute("data-product-id");
     //console.log("X is "+x);
   }
@@ -307,15 +309,11 @@ export class ProductDetailComponent implements OnInit {
   getProductDetail(itemCode) {
     this.spinner.show();
     this.shopService.GetProductDetail(itemCode).subscribe((result) => {
-      debugger;
       this.productDetail = result;
       this.productPrice = this.productDetail.price;
       this.itemCodeTitle = this.productDetail.itemCode;
       this.review = this.productDetail.itemID;
       this.spinner.hide();
-      this.bundle = 'single';
-      this.selectDelivery = 0;
-      this.subscriptionModel = 'singleDelivery';
       // const layout= `<div class='yotpo bottomLine' data-product-id='${this.productDetail.itemID}'>dsfsdfdfds</div>`;
       // this.review = this.sanitizer.bypassSecurityTrustHtml(layout);
     });
@@ -332,6 +330,9 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart(product: any) {
+
+    if(product.quantityModel==0 ||product.quantityModel==undefined )
+    return this.toastrService.error("Please select the quantity");
 
     this.productItems =
       this.sessionService.getSessionObject('productCartItems');
