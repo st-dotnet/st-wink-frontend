@@ -269,8 +269,6 @@ export class ShopComponent implements OnInit {
       this.selectDelivery = 1;
       this.subscriptionModel = 'singleDelivery';
       this.subscriptionModelduration = undefined;
-      product.quantity=1;
-     this.quantityValue=1;
       this.modalService.open(content, this.modalOptions).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {

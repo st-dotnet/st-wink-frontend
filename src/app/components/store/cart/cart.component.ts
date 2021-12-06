@@ -106,10 +106,12 @@ export class CartComponent implements OnInit {
     this.userLogin = this.sessionService.getSessionObject("user");
     if (this.userLogin) {
       this.show = true;
+      if( this.sessionService.getSessionItem('promoCode'))
+      {this.addPromo();}
     }
     this.spinner.show();
     this.getSpecialItem();
-    this.addPromo();
+   
     // this.promocode_onetime=this.sessionService.getSessionItem('promoCode');
     // if(this.promocode_onetime!=="null" && this.promocode_onetime !==undefined)
     // {
@@ -156,16 +158,18 @@ export class CartComponent implements OnInit {
   }
 
   addPromo() {
-    debugger;
+   
     // this.sessionService.removeSessionItem('promoCode')
     if(this.promocode_onetime != null && this.promocode_onetime !=undefined && this.promocode_onetime!=""){
       this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
     }
     this.promocode_onetime = this.sessionService.getSessionItem('promoCode');
+    if (this.sessionService.getSessionItem('user')) {
     if(this.promocode_onetime != null && this.promocode_onetime !=undefined && this.promocode_onetime!=""){
-    this.isPromoCode = true;
-    this.spinner.show();
+   
 
+      this.isPromoCode = true;
+      this.spinner.show();
     this.shopService.getPromoData(this.promocode_onetime).subscribe(result => {
       this.promoItem = result;
       if (this.promoItem.errorMessage == null) {
@@ -190,8 +194,20 @@ export class CartComponent implements OnInit {
         this.spinner.hide();
       }
     })
-  }
+  
   this.cartCalculation();
+  }
+    }
+  else{
+    this.toastrService.success(
+      "Please login before apply promo code"
+    );
+   // let isTrue = true;
+   // this.sessionService.setSessionItem('isTrue', isTrue);
+  //  this.router.navigate(["/sign-in"]);
+  
+  }
+ 
        
   }
   clearPromo(event: any) {

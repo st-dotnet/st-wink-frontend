@@ -109,6 +109,9 @@ export class SearchproductComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
+    this.bundle = 'single';
+    this.selectDelivery = 0;
+    this.subscriptionModel = 'singleDelivery';
   }
 
 
