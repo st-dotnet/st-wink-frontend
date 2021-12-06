@@ -38,6 +38,9 @@ export class SearchproductComponent implements OnInit {
   productCartItems: any[]=[];
   cartTypes: any[] = [];;
 
+  //showAgePopUp = false;
+  reProduct: any;
+
   constructor(private sessionService: SessionService,
     private modalService: NgbModal, private shopService: ShopService,
     private spinner: NgxSpinnerService, private router: Router,
@@ -107,6 +110,14 @@ export class SearchproductComponent implements OnInit {
       ]
     }
 
+
+    nextToMove(content: any) {
+      //this.showAgePopUp = false;
+      this.router.navigate(['/store/product', this.reProduct.itemCode])
+      //this.showAgePopUp = true;
+
+    }
+
   ngOnInit(): void {
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.bundle = 'single';
@@ -130,9 +141,24 @@ export class SearchproductComponent implements OnInit {
     }
   }
 
+  closeModal() {
+    this.modalService.dismissAll();
+    //this.router.navigate(['']{});
+  }
 
-  open(content: any, product: any) {
+  open(content: any, product: any,adult_check:any) {
+    if (product.itemID=="436" || product.itemID=="595" || product.itemID=="629") {
+      this.reProduct = product;
+      this.modalService.open(adult_check, this.modalOptions).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+        alert(this.closeResult);
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        //this.sessionService.setSessionObject("ignore_Comfort_patch","ComfortPatch");
+      });
+    }
     //this.bundle = 'single';
+    else{
     this.product = product;
     this.productPrice = product.price;
     this.showSubscription = false;
@@ -144,10 +170,8 @@ export class SearchproductComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+   }
   }
-
-
-
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

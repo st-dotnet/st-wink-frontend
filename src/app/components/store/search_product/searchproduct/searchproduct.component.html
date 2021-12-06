@@ -53,7 +53,7 @@
                 <span class="price-value">${{product.price}}</span>
               </div>
               <span class="more-info">
-                <a (click)="open(produt_view, product)" class="btn btn-add"><i class="fas fa-plus"></i></a>
+                <a (click)="open(produt_view, product,adult_check)" class="btn btn-add"><i class="fas fa-plus"></i></a>
               </span>
             </div>
           </div>
@@ -301,4 +301,20 @@
       </div>
     </form>
   </div>
+</ng-template>
+
+<ng-template #adult_check let-modal>
+    <div class="model-proo">
+        <div class="modal-body">
+            <div class="header18">
+                <h3>Are you over 18?</h3>
+            </div>
+            <div class="content18plus">
+                <div class="btn-same18">
+                    <button class="btn btn-no" (click)="closeModal()">NO</button>
+                    <button class="btn btn-yes" (click)="modal.dismiss('Cross click');nextToMove(produt_view)">YES</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </ng-template>

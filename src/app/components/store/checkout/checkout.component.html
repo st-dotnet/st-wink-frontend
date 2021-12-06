@@ -1219,8 +1219,9 @@
                                                                     <p class="you-sav">You Saved</p>
                                                                 </td>
                                                                 <td>
-                                                                    <p class="you-sav">-${{totalDiscount | number:'.1-2'}}
-                                                                    </p>
+                                                                  <p>-${{(totalDiscount+onetimepurchasediscount) | number:'.1-2'}}</p>
+                                                                    <!-- <p class="you-sav">-${{totalDiscount | number:'.1-2'}}
+                                                                    </p>-->
                                                                 </td>
                                                             </tr>
                                                             <tr>
