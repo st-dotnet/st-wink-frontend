@@ -5,7 +5,7 @@
               <ul class="breadcrumb">
                   <li><a [routerLink]="['/store']" (click)="goToList('All Products')">Shop</a></li>/
                   <li><a [routerLink]="['/store']" (click)="goToList(filterTitleShow)">{{filterTitleShow}}</a></li>/
-                  <li>{{productDetail.itemDescription}} {{bundletype}}</li>
+                  <li>{{productDetail?.itemDescription}} {{bundletype}}</li>
               </ul>
           </div>
       </div>
@@ -19,22 +19,22 @@
               <div id="custCarousel" class="carousel slide" data-ride="carousel" align="center">
                   <!-- slides -->
                   <div class="carousel-inner">
-                      <div class="carousel-item active"><img [src]="productDetail.image_03" /></div>
-                      <div class="carousel-item"><img [src]="productDetail.image_02" /></div>
-                      <div class="carousel-item"><img [src]="productDetail.image_01" /></div>
+                      <div class="carousel-item active"><img [src]="productDetail?.image_03" /></div>
+                      <div class="carousel-item"><img [src]="productDetail?.image_02" /></div>
+                      <div class="carousel-item"><img [src]="productDetail?.image_01" /></div>
                   </div>
                   <ol class="carousel-indicators list-inline">
                       <li class="list-inline-item active">
                           <a id="carousel-selector-0" class="selected" data-slide-to="0"
-                              data-target="#custCarousel"><img [src]="productDetail.image_03" /></a>
+                              data-target="#custCarousel"><img [src]="productDetail?.image_03" /></a>
                       </li>
                       <li class="list-inline-item active">
                           <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel"><img
-                                  [src]="productDetail.image_02" /></a>
+                                  [src]="productDetail?.image_02" /></a>
                       </li>
                       <li class="list-inline-item active">
                           <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel"><img
-                                  [src]="productDetail.image_01" /></a>
+                                  [src]="productDetail?.image_01" /></a>
                       </li>
                   </ol>
               </div>
@@ -42,7 +42,7 @@
           <div class="col-md-6 full-width">
               <div class="model-productview">
                   <div class="product-details">
-                      <h5 class="card-title">{{productDetail.itemDescription}}</h5>
+                      <h5 class="card-title">{{productDetail?.itemDescription}}</h5>
                       <div class="reviews-product">
 
                           <div [attr.data-product-id]="review" class="yotpo bottomLine">
@@ -83,28 +83,12 @@
 
                       <div class="prod-bundle-select">
                           <h3>Select Bundle</h3>
-                          <!-- <div *ngFor="let bundle of bundles" class="radio-bundle">
-                            <div class="form-check form-check-inline">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="inlineRadioOptions"
-                                id="{{bundle.id}}"
-                                value="{{bundle.value}}"
-                                (change)="checkBundle(bundle.value,productDetail.price)"
-                              />
-                              <label class="form-check-label" for="{{bundle.id}}"
-                                >{{bundle.name}}</label
-                              >
-                            </div>
-                          </div> -->
-
-
                           <div class="radio-bundle">
                               <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="1"
-                                      value="single" (change)="checkBundle('single',productDetail.price)" checked />
-                                  <label class="form-check-label" for="1">Single</label>
+
+                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="1" value="single" (change)="checkBundle('single',product.price)" checked />
+                                      <label class="form-check-label" for="1">Single</label>
+
                               </div>
                           </div>
 
@@ -112,45 +96,17 @@
                           <div class="radio-bundle">
                               <div class="form-check form-check-inline">
                                   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="2"
-                                      value="multiple" (change)="checkBundle('multiple',productDetail.price)" />
+                                      value="multiple" (change)="checkBundle('multiple',productDetail?.price)" />
                                   <label class="form-check-label" for="2">2-pk (Save 5%)</label>
                               </div>
                           </div>
                       </div>
-
-                      <!-- <div class="prod-bundle-select mt-0 delivery-radio">
-                            <h3>Select Delivery</h3>
-                                    <div class="radio-bundle">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="del-radio" id="inlineRadio3" value="option3">
-                                        <label class="form-check-label" for="inlineRadio3">Single Delivery</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="del-radio" id="inlineRadio4" value="option4">
-                                  <label class="form-check-label" for="inlineRadio4">Subscribe & Save 15%</label>
-                              </div>
-                          </div>
-                      </div> -->
                       <div class="prod-bundle-select mt-0 delivery-radio">
                           <h3>Select Delivery</h3>
-                          <!-- <div *ngFor="let type of cartTypes; let i = index" class="radio-bundle">
-                            <div class="form-check form-check-inline">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="inlineRadioOptionsdelivery"
-                                id="{{i}}{{type}}"
-                                value="{{type}}"
-                                (change)="checkDelivery(type)"
-                              />
-                              <label class="form-check-label" for="{{i}}{{type}}"
-                                >{{type == 0 ? 'Single Delivery' : 'Subscribe & Save 15%'}}</label>
-                            </div>
-                          </div> -->
                           <div class="radio-bundle">
                               <div class="form-check form-check-inline">
                                   <input class="form-check-input" type="radio" name="inlineRadioOptionsdelivery"
-                                      id="3" value="0" (change)="checkDelivery(0)" checked />
+                                      id="3" value="0" (change)="checkDelivery(0)"  />
                                   <label class="form-check-label" for="3">Single Delivery</label>
                               </div>
                           </div>
@@ -158,7 +114,7 @@
                           <div class="radio-bundle">
                               <div class="form-check form-check-inline">
                                   <input class="form-check-input" type="radio" name="inlineRadioOptionsdelivery"
-                                      id="4" value="1" (change)="checkDelivery(1)" />
+                                      id="4" value="1" (change)="checkDelivery(1)" checked />
                                   <label class="form-check-label" for="4">Subscribe & Save 15%</label>
                               </div>
                           </div>
@@ -207,8 +163,7 @@
                               </div>
                               <div *ngIf="showSubscription" class="form-group">
                                   <select (change)="getYearValue($event.target.value)" class="form-control">
-                                    <option class="dropdown-item" disabled selected value="0">Select
-                                      Quantity</option>
+                                      <!-- <option class="dropdown-item" disabled value="undefined">Select</option>     -->
                                       <option [value]="undefined" selected="true">Select</option>
                                       <option *ngFor="let year of years" [value]="year.value">
                                           {{year.name}}
@@ -224,14 +179,14 @@
                           <div class="custom-field">
                               <input type="number" id="showinput{{productDetail.itemCode}}"
                                   [(ngModel)]="productDetail.extraQuantity"
-                                  *ngIf="productDetail.quantityModel == '11'  || productDetail.extraQuantity !=null"
+                                  *ngIf="productDetail?.quantityModel == '11'  || productDetail?.extraQuantity !=null"
                                   (change)="quantitychanged(productDetail, $event.target.value)"
                                   class="form-control" />
                           </div>
                       </div>
                       <div class="cart-btn">
                           <button type="submit" (click)="addToCart(productDetail)"
-                              class="btn btn-cart">${{showActualPrice == true ? bundlePrice : productDetail.price}}
+                              class="btn btn-cart">${{showActualPrice == true ? bundlePrice : productDetail?.price}}
                               ADD</button>
                       </div>
                   </div>
@@ -240,135 +195,6 @@
       </div>
   </div>
 </section>
-<section class="product-gallery mob-ui visible-xs visible-sm">
-  <div class="container">
-      <div class="row">
-
-          <div class="col-md-6 full-width">
-              <div class="model-productview">
-                  <div class="product-details">
-                      <h5 class="card-title">{{productDetail.itemDescription}}</h5>
-                      <div class="reviews-product">
-
-                          <div [attr.data-product-id]="review" class="yotpo bottomLine">
-                          </div>
-                      </div>
-                      <h6 class="small">Perfect for ages 3+</h6>
-                      <div class="product-info">
-                          <p>Take the battle out of bedtime! Our Kids Sleep Melts are formulated with high-quality
-                              melatonin and natural ingredients to help your little one get the kind of sleep they
-                              need.
-                          </p>
-                      </div>
-                      <div class="prod-bundle-select">
-                          <h3>Select Bundle</h3>
-                          <div class="radio-bundle">
-                              <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="1"
-                                      value="single" (change)="checkBundle('single',productDetail.price)" checked />
-                                  <label class="form-check-label" for="1">Single</label>
-                              </div>
-                          </div>
-                          <div class="radio-bundle">
-                              <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="2"
-                                      value="multiple" (change)="checkBundle('multiple',productDetail.price)" />
-                                  <label class="form-check-label" for="2">2-pk (Save 5%)</label>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="prod-bundle-select mt-0 delivery-radio">
-                          <h3>Select Delivery <div class="ques_modal"> <span class="ques-ico question-icon-img"><a
-                                          (click)="showTooltip()"><i class="fas fa-question"
-                                              aria-hidden="true"></i></a></span></div>
-                          </h3>
-                          <div class="radio-bundle">
-                              <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="inlineRadioOptionsdelivery"
-                                      id="3" value="0" (change)="checkDelivery(0)" checked />
-                                  <label class="form-check-label" for="3">Single Delivery</label>
-                              </div>
-                          </div>
-                          <div class="radio-bundle">
-                              <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="inlineRadioOptionsdelivery"
-                                      id="4" value="1" (change)="checkDelivery(1)" />
-                                  <label class="form-check-label" for="4">Subscribe & Save 15%</label>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="custom-shiping">
-                          <!-- <div [className]="tooltipData ? 'tooltipcontent show' : 'tooltipcontent hide'">
-
-                              <p (click)="closeTooltip()">
-                              <p class="sec-title" style="font-weight: 700; font-size: 18px;">
-                                  Here’s how it works: </p>
-                              <p style="font-size: 14px;"> - Schedule your deliveries however you see fit. It is
-                                  completely customizable.</p>
-                              <p style="font-size: 14px;"> - Do you need to skip a shipment or adjust your next
-                                  shipment date? Just edit your recurring order in your account or give us a call.
-                              <p style="font-size: 14px;">
-                              <p style="font-size: 14px;"> - You get FREE 1st Class Shipping & 15% off every order.
-                              </p>
-                              <p style="font-size: 14px;"> - Setting up your Preferred Subscription Account
-                                  automatically lets you start earning rewards. Earn up to 20% of your order value
-                                  each month in store credit paid out in Loyalty Points directly into your account
-                                  just for having an active subscription.</p>
-                              <p><a (click)="closeTooltip()" class="btnclose">Go Back</a></p>
-
-                          </div> -->
-                          <h3>Customize Shipment</h3>
-                          <div class="choose-shipping">
-                              <div class="form-group">
-                                  <select (change)="quantityForOneTime(productDetail, $event.target.value)"
-                                      [(ngModel)]="quantityValue" class="form-control">
-                                      <option class="dropdown-item" disabled selected value="undefined">Select
-                                          Quantity</option>
-                                      <option *ngFor="let qty of quantity" [value]="qty.value">
-                                          {{qty.name}}
-                                      </option>
-                                  </select>
-
-                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
-                                      <path id="Path_2028" data-name="Path 2028"
-                                          d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
-                                          transform="translate(-342.315 -7.7)" />
-                                  </svg>
-                              </div>
-                              <div *ngIf="showSubscription" class="form-group">
-                                  <select (change)="getYearValue($event.target.value)" class="form-control">
-                                      <option [value]="undefined" selected="true">Select</option>
-                                      <option *ngFor="let year of years" [value]="year.value">
-                                          {{year.name}}
-                                      </option>
-                                  </select>
-                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
-                                      <path id="Path_2028" data-name="Path 2028"
-                                          d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
-                                          transform="translate(-342.315 -7.7)" />
-                                  </svg>
-                              </div>
-                          </div>
-                          <div class="custom-field">
-                              <input type="number" id="showinput{{productDetail.itemCode}}"
-                                  [(ngModel)]="productDetail.extraQuantity"
-                                  *ngIf="productDetail.quantityModel == '11'  || productDetail.extraQuantity !=null"
-                                  (change)="quantitychanged(productDetail, $event.target.value)"
-                                  class="form-control" />
-                          </div>
-                      </div>
-                      <div class="cart-btn">
-                          <button type="submit" (click)="addToCart(productDetail)"
-                              class="btn btn-cart">${{showActualPrice == true ? bundlePrice : productDetail.price}}
-                              ADD</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</section>
-
 <section class="energy_banner">
   <div class="container">
       <div class="row">
@@ -731,8 +557,8 @@
   <div class="container">
       <div class="row">
           <div class="col-md-12">
-              <yotpo-reviews-widget productId="{{review}}" name="{{productDetail.itemDescription}}" url="#"
-                  imageUrl="{{productDetail.largeImageUrl}}" description="{{productDetail.itemDescription}}">
+              <yotpo-reviews-widget productId="{{review}}" name="{{productDetail?.itemDescription}}" url="#"
+                  imageUrl="{{productDetail.largeImageUrl}}" description="{{productDetail?.itemDescription}}">
               </yotpo-reviews-widget>
 
               <!-- <div class="yotpo yotpo-main-widget" data-product-id="718"  data-price="24.99" data-currency="usd" data-name="The One Multi-Cleaner" data-url="#" data-image-url="/shopping/productimages/SP-THEONE_12_11_2020_500px.jpg">
