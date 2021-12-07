@@ -296,7 +296,7 @@ export class ProductDetailComponent implements OnInit {
     );
     this.getProductDetail(this.itemCode);
     this.bundle = 'single';
-    this.selectDelivery = 0;
+    this.selectDelivery = 1;
     this.subscriptionModel = 'singleDelivery';
     //var x = document.getElementById("data_val_item_code").getAttribute("data-product-id");
     //console.log("X is "+x);
@@ -330,15 +330,12 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart(product: any) {
-
     if(product.quantityModel==0 ||product.quantityModel==undefined )
     return this.toastrService.error("Please select the quantity");
 
     this.productItems =
       this.sessionService.getSessionObject('productCartItems');
-    if (
-      this.selectDelivery == 1 &&
-      this.subscriptionModelduration == undefined
+    if (this.selectDelivery == 1 && this.subscriptionModelduration == undefined
     ) {
       return this.toastrService.error('Please select the subscription plan');
     }
@@ -609,12 +606,12 @@ export class ProductDetailComponent implements OnInit {
   }
 
   quantitychanged(cartitem: any, selectedvalue: number) {
-
     this.quantityCalculation(cartitem, selectedvalue);
     const item = this.cartItems.find((x) => x.itemCode == cartitem.itemCode);
 
     if (item && selectedvalue > 10) {
       item.quantityModel = item.quantityModel + item.extraQuantity;
+      this.productDetail.quantityModel = item.quantityModel;
     }
   }
 
