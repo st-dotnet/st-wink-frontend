@@ -585,6 +585,10 @@ export class ShopComponent implements OnInit {
   quantitychanged(cartitem: any, selectedvalue: number) {
     debugger;
 
+    if(selectedvalue<=10)
+    {
+      $("#islectedval").val(selectedvalue);
+    }
     this.quantityCalculation(cartitem, selectedvalue);
     if (this.cartItems) {
       const item = this.cartItems.find((x) => x.itemCode == cartitem.itemCode);
@@ -604,9 +608,9 @@ export class ShopComponent implements OnInit {
     if (selectedvalue <=10 ) {
       productDetail.extraQuantity = null;
     }
-    else{
-      productDetail.extraQuantity = selectedvalue;
-    }
+     else{
+       productDetail.extraQuantity = selectedvalue;
+     }
     if (selectedvalue != null && selectedvalue != undefined) {
       if (selectedvalue == 0 || selectedvalue > 10) {
 

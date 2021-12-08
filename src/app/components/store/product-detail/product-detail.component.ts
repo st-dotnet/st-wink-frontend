@@ -606,6 +606,12 @@ export class ProductDetailComponent implements OnInit {
   }
 
   quantitychanged(cartitem: any, selectedvalue: number) {
+
+    debugger;
+    if(selectedvalue<=10)
+    {
+      $("#islectedvalchanged").val(selectedvalue);
+    }
     this.quantityCalculation(cartitem, selectedvalue);
     const item = this.cartItems.find((x) => x.itemCode == cartitem.itemCode);
 
