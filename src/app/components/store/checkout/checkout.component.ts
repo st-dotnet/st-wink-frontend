@@ -124,6 +124,8 @@ export class CheckoutComponent implements OnInit {
   monthError: boolean=false;
   yearError:  boolean=false;
 
+  code: string;
+
   onetimepurchasediscount:number;
 
   constructor(
@@ -291,7 +293,6 @@ export class CheckoutComponent implements OnInit {
   getAddressByCustomerId(id) {
     this.spinner.show();
     this.shopService.getAddressById(id).subscribe((result: any) => {
-      debugger;
       if (result.length > 0) {
         this.displayAddress =
           result[1].address1 +
@@ -323,7 +324,6 @@ export class CheckoutComponent implements OnInit {
     this.shopService.postAddress(this.customerId, this.shippingAddressParam)
       .subscribe((result: any) => {
         if (result.result) {
-          debugger;
           this.spinner.hide();
           this.showPanel2 = false;
           this.toastrService.success('Shipping address saved successfully');
@@ -664,6 +664,7 @@ export class CheckoutComponent implements OnInit {
     this.isShipmentMethod = id;
     console.log(this.isShipmentMethod);
   }
+
   addPromo() {
     this.promoPercentage = 0;
     let oneTimePriceWithoutOffer = this.cartItems.filter(
@@ -686,6 +687,7 @@ export class CheckoutComponent implements OnInit {
           .getPromoData(this.promocode_onetime)
           .subscribe((result) => {
             this.promoItem = result;
+            this.code = this.promoItem.code;
             if (this.promoItem.errorMessage == null) {
               this.addPromoIcon = false;
               this.promocodeMessage="Code Applied";
@@ -728,6 +730,7 @@ export class CheckoutComponent implements OnInit {
       this.promoPercentage = 0;
       this.promocodeMessage="No code Applied";
       this.addPromoIcon = true;
+      this.code ='';
       this.cartCalculation();
     } else {
       // this.promocodeMessage="Code Applied";

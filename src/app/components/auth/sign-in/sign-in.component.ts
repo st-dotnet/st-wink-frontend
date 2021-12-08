@@ -43,6 +43,7 @@ export class SignInComponent implements OnInit {
   get f() { return this.form.controls; }
 
   onSubmit() {
+    debugger;
     this.submitted = true;
     // stop here if form is invalid
     if (this.form.invalid) {
