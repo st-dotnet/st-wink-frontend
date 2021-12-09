@@ -84,12 +84,13 @@ export class SignUpComponent implements OnInit {
 
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | boolean {
-    let dirty = this.form.dirty;
-    if (dirty == false) {
-      return true;
-    } else if (dirty == true) {
-      return false;
-    }
+    // let dirty = this.form.dirty;
+    // if (dirty == false) {
+    //   return true;
+    // } else if (dirty == true) {
+    //   return false;
+    // }
+    return true;
   }
 
   getAge(fromdate: Date, todate) {
@@ -130,7 +131,7 @@ export class SignUpComponent implements OnInit {
 
     if (age < 14) {
       this.checkage = true;
-      this.toastrService.error('Must be 14 years or older to create an account');
+      //this.toastrService.error('Must be 14 years or older to create an account');
       return;
     }
     this.checkage = false;
@@ -224,5 +225,17 @@ export class SignUpComponent implements OnInit {
           this.loading = false;
         },
       });
+  }
+
+  verifyDate(type: any){
+    var today = new Date();
+    var age = this.getAge(this.f.dateOfBirth.value, today);
+
+    if (age < 14) {
+      this.checkage = true;
+      //this.toastrService.error('Must be 14 years or older to create an account');
+      return;
+    }
+    this.checkage = false;
   }
 }
