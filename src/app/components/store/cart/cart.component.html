@@ -269,7 +269,7 @@
                             delivery,
                             $event.target.value
                           )
-                        " [(ngModel)]="delivery.quantityModel" class="form-control">
+                        "  [ngModel]="delivery.quantityModel>10?'0':delivery.quantityModel" (ngModelChange)="delivery.quantityModel=$event" class="form-control">
                           <option *ngFor="let qty of quantity" [value]="qty.value">
                             {{ qty.name }}
                           </option>
@@ -299,7 +299,7 @@
                             delivery,
                             $event.target.value
                           )
-                        " [(ngModel)]="delivery.quantityModel" class="form-control">
+                        " [ngModel]="delivery.quantityModel>10?'0':delivery.quantityModel" (ngModelChange)="delivery.quantityModel=$event"  class="form-control">
                         <option *ngFor="let qty of quantity" [value]="qty.value">
                           {{ qty.name }}
                         </option>

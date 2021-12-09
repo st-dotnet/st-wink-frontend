@@ -250,6 +250,8 @@ export class ShopComponent implements OnInit {
   }
 
   open(content: any, product: any, adultCheck: any) {
+
+
     //this.bundle = 'single';
     debugger;
     this.showActualPrice = false;
@@ -263,7 +265,8 @@ export class ShopComponent implements OnInit {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         //this.sessionService.setSessionObject("ignore_Comfort_patch","ComfortPatch");
       });
-    } else {
+    }
+    else {
       this.product = product;
       this.productPrice = product.price;
       this.showSubscription = true;
@@ -279,6 +282,8 @@ export class ShopComponent implements OnInit {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
     }
+
+
   }
 
   private getDismissReason(reason: any): string {
@@ -348,10 +353,13 @@ export class ShopComponent implements OnInit {
   }
 
   addToCart(product: any) {
+
+
     // if(this.sessionService.getSessionObject("ignore_Comfort_patch")){
     //   this.toastrService.error('Sorry You are Under 18.');
     //   return;
     // }
+
    if(product.quantityModel==0 ||product.quantityModel==undefined )
     return this.toastrService.error("Please select the quantity");
 
@@ -403,6 +411,7 @@ export class ShopComponent implements OnInit {
       product.orderType = ShoppingCartItemType.AutoOrder;
     }
     if (this.productItems) {
+      debugger;
       //No percentage calucation
       if (product.bundle == 'single' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
         let single_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 0 && x.subscriptionModel == 'singleDelivery')
@@ -412,21 +421,13 @@ export class ShopComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel = single_singledelivery.quantityModel + +product.quantityModel;
-
-          if (this.product.quantityModel > product.quantityLimit) {
-            // this.productItems.push(old_single_singledelivery);
-            // this.toastrService.error('You Exceed your Quantity Limit 4');
+          product.quantityModel = parseInt(single_singledelivery.quantityModel) + parseInt( product.quantityModel);
+          product.extraQuantity =  product.quantityModel;
 
             this.productItems.push(product);
             this.toastrService.success('Product added successfully');
             this.modalService.dismissAll();
-          }
-          else {
-            this.productItems.push(product);
-            this.toastrService.success('Product added successfully');
-            this.modalService.dismissAll();
-          }
+
         }
         else {
           this.productItems.push(product);
@@ -443,8 +444,8 @@ export class ShopComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel = single_subscriptiondelivery.quantityModel + +product.quantityModel;
-
+          product.quantityModel = parseInt(single_subscriptiondelivery.quantityModel) + parseInt(product.quantityModel);
+          product.extraQuantity =  product.quantityModel;
           if (product.quantityModel > product.quantityLimit) {
             // this.productItems.push(old_single_subscriptiondelivery);
             // this.toastrService.error('You Exceed your Quantity Limit 4');
@@ -474,8 +475,8 @@ export class ShopComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel = multiple_singledelivery.quantityModel + +product.quantityModel;
-
+          product.quantityModel = parseInt(multiple_singledelivery.quantityModel) + parseInt(product.quantityModel);
+          product.extraQuantity =  product.quantityModel;
           if (product.quantityModel > product.quantityLimit) {
             // this.productItems.push(old_multiple_singledelivery);
             // this.toastrService.error('You Exceed your Quantity Limit 4');
@@ -505,8 +506,8 @@ export class ShopComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel = multiple_subscriptiondelivery.quantityModel + +product.quantityModel;
-
+          product.quantityModel = parseInt(multiple_subscriptiondelivery.quantityModel) + parseInt(product.quantityModel);
+           product.extraQuantity =  product.quantityModel;
           if (product.quantityModel > product.quantityLimit) {
             // this.productItems.push(old_multiple_subscriptiondelivery);
             // this.toastrService.error('You Exceed your Quantity Limit 4');
@@ -528,6 +529,7 @@ export class ShopComponent implements OnInit {
         }
       }
       this.sessionService.cartSession(this.productItems);
+
       this.sessionService.setSessionObject('productCartItems', this.productItems);
     }
     else {
@@ -631,6 +633,6 @@ export class ShopComponent implements OnInit {
       }
     }
     this.product.quantityModel = +selectedvalue;
-    this.sessionService.setSessionObject('productCartItems', this.cartItems);
+   // this.sessionService.setSessionObject('productCartItems', this.cartItems);
   }
 }

@@ -330,8 +330,11 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart(product: any) {
-    if(product.quantityModel==0 ||product.quantityModel==undefined )
-    return this.toastrService.error("Please select the quantity");
+
+
+
+    if (product.quantityModel == 0 || product.quantityModel == undefined)
+      return this.toastrService.error("Please select the quantity");
 
     this.productItems =
       this.sessionService.getSessionObject('productCartItems');
@@ -346,7 +349,7 @@ export class ProductDetailComponent implements OnInit {
       bundle: this.bundle,
       selectDelivery: this.selectDelivery,
       subscriptionModel: this.subscriptionModel,
-     // quantityModel: +this.quantityValue,
+      // quantityModel: +this.quantityValue,
       Price: 0,
       discount: 0,
       quantityLimit: 4,
@@ -417,19 +420,25 @@ export class ProductDetailComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel =
-            single_singledelivery.quantityModel + +product.quantityModel;
+          product.quantityModel = parseInt(single_singledelivery.quantityModel) + parseInt(product.quantityModel);
+          product.extraQuantity =  product.quantityModel;
+            // product.quantityModel =
+            // single_singledelivery.quantityModel + +product.quantityModel;
 
-          if (product.quantityModel > product.quantityLimit) {
-            // this.productItems.push(old_single_singledelivery);
-            // this.toastrService.error('You Exceed your Quantity Limit 4');
 
-            this.productItems.push(product);
-            this.toastrService.success('Product added successfully');
-          } else {
-            this.productItems.push(product);
-            this.toastrService.success('Product added successfully');
-          }
+          // if (product.quantityModel > product.quantityLimit) {
+          //   // this.productItems.push(old_single_singledelivery);
+          //   // this.toastrService.error('You Exceed your Quantity Limit 4');
+
+          //   this.productItems.push(product);
+          //   this.toastrService.success('Product added successfully');
+          // } else {
+          //   this.productItems.push(product);
+          //   this.toastrService.success('Product added successfully');
+          // }
+          this.productItems.push(product);
+          this.toastrService.success('Product added successfully');
+
         } else {
           this.productItems.push(product);
           this.toastrService.success('Product added successfully');
@@ -456,8 +465,10 @@ export class ProductDetailComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel =
-            single_subscriptiondelivery.quantityModel + +product.quantityModel;
+          product.quantityModel = parseInt(single_subscriptiondelivery.quantityModel) + parseInt(product.quantityModel);
+          product.extraQuantity =  product.quantityModel;
+            // product.quantityModel =
+            // single_subscriptiondelivery.quantityModel + +product.quantityModel;
 
           if (product.quantityModel > product.quantityLimit) {
             // this.productItems.push(old_single_subscriptiondelivery);
@@ -495,8 +506,10 @@ export class ProductDetailComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel =
-            multiple_singledelivery.quantityModel + +product.quantityModel;
+            //  product.quantityModel =
+            // multiple_singledelivery.quantityModel + +product.quantityModel;
+            product.quantityModel = parseInt(multiple_singledelivery.quantityModel) + parseInt(product.quantityModel);
+            product.extraQuantity =  product.quantityModel;
 
           if (product.quantityModel > product.quantityLimit) {
             // this.productItems.push(old_multiple_singledelivery);
@@ -534,9 +547,12 @@ export class ProductDetailComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel =
-            multiple_subscriptiondelivery.quantityModel +
-            +product.quantityModel;
+          // product.quantityModel =
+          //   multiple_subscriptiondelivery.quantityModel +
+          //   +product.quantityModel;
+
+          product.quantityModel = parseInt(multiple_subscriptiondelivery.quantityModel) + parseInt(product.quantityModel);
+          product.extraQuantity =  product.quantityModel;
 
           if (product.quantityModel > product.quantityLimit) {
             // this.productItems.push(old_multiple_subscriptiondelivery);
@@ -568,6 +584,7 @@ export class ProductDetailComponent implements OnInit {
       );
       this.toastrService.success('Product added successfully');
     }
+    //$(".hideiputfeild").hide();
   }
 
   checkBundle(bundle: string, productPrice: any) {
@@ -602,16 +619,16 @@ export class ProductDetailComponent implements OnInit {
   }
 
   quantityForOneTime(productDetail: any, selectedvalue: number) {
+    debugger;
     this.quantityCalculation(productDetail, selectedvalue);
   }
 
   quantitychanged(cartitem: any, selectedvalue: number) {
 
     debugger;
-    if(selectedvalue<=10)
-    {
-      $("#islectedvalchanged").val(selectedvalue);
-    }
+    // if (selectedvalue <= 10) {
+    //   $("#islectedvalchanged").val(selectedvalue);
+    // }
     this.quantityCalculation(cartitem, selectedvalue);
     const item = this.cartItems.find((x) => x.itemCode == cartitem.itemCode);
 
@@ -623,7 +640,7 @@ export class ProductDetailComponent implements OnInit {
 
   quantityCalculation(productDetail: any, selectedvalue: number) {
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
-    if (selectedvalue < 10) {
+    if (selectedvalue <=10) {
       productDetail.extraQuantity = null;
     }
     if (selectedvalue != null && selectedvalue != undefined) {
@@ -642,6 +659,6 @@ export class ProductDetailComponent implements OnInit {
       }
     }
     this.productDetail.quantityModel = +selectedvalue;
-    this.sessionService.setSessionObject('productCartItems', this.cartItems);
+   // this.sessionService.setSessionObject('productCartItems', this.cartItems);
   }
 }

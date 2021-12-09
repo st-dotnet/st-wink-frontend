@@ -125,8 +125,9 @@ export class CartComponent implements OnInit {
     this.cartItems.forEach(function (item) {
       if (item.quantityModel > 10 || item.quantityModel == 0) {
 
-        if (!item.extraQuantity) {
-          item.extraQuantity = item.quantityModel;
+        if(item.extraQuantity)
+        {
+        item.extraQuantity=item.quantityModel;
         }
       }
     });
@@ -500,8 +501,9 @@ export class CartComponent implements OnInit {
 
     this.cartItems.forEach(function (item) {
       if (item.quantityModel > 10 || item.quantityModel == 0) {
-        if (!item.extraQuantity) {
-          item.extraQuantity = item.quantityModel;
+        if(!item.extraQuantity)
+        {
+        item.extraQuantity=item.quantityModel;
         }
       }
     });
