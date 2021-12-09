@@ -55,17 +55,16 @@ export class CartComponent implements OnInit {
   specialOffer: any[];
   userLogin: any;
   show: boolean = false;
-  promocodeMessage:string="No code applied";
-  addPromoIcon:boolean = true;
+  promocodeMessage: string = "No code applied";
+  addPromoIcon: boolean = true;
   onTextChange(value) {
   }
-
 
   //quantityValue: any;
   subscriptionModel: any;
 
-  totalOneTimeDiscountPurchase:number=0;
-  Quantityupdate:any;
+  totalOneTimeDiscountPurchase: number = 0;
+  Quantityupdate: any;
 
   constructor(private modalService: NgbModal,
     private sessionService: SessionService,
@@ -78,37 +77,33 @@ export class CartComponent implements OnInit {
     this.bindDropDown();
   }
 
-
-  GetOneTimeSubDiscount(){
-  let total:number=0;
+  GetOneTimeSubDiscount() {
+    let total: number = 0;
     this.oneTimePriceCartItems.forEach(element => {
-      if(element.bundle == 'multiple'){
+      if (element.bundle == 'multiple') {
         // if(element.Quantityupdate){
         //  //total+= parseFloat(element.Quantityupdate);
         //  total+=  ((parseFloat(element.Price)*5)/100)*(element.extraQuantity);
         // }
-         if(element.extraQuantity){
+        if (element.extraQuantity) {
           //total+=  (parseFloat(element.bv) * 2 - parseFloat( element.Price))*(element.extraQuantity);
-          total+=  ((parseFloat(element.Price)*5)/100)*(element.extraQuantity);
+          total += ((parseFloat(element.Price) * 5) / 100) * (element.extraQuantity);
         }
-        else if(element.quantityModel){
-         // total+= (parseFloat(element.bv) * 2 - parseFloat( element.Price))*(element.quantityModel);
-          total+=  ((parseFloat(element.Price)*5)/100)*(element.quantityModel);
+        else if (element.quantityModel) {
+          // total+= (parseFloat(element.bv) * 2 - parseFloat( element.Price))*(element.quantityModel);
+          total += ((parseFloat(element.Price) * 5) / 100) * (element.quantityModel);
         }
       }
     });
-    this.totalOneTimeDiscountPurchase=total;
-    localStorage.setItem("One_time_purchage_discount",total.toString());
+    this.totalOneTimeDiscountPurchase = total;
+    localStorage.setItem("One_time_purchage_discount", total.toString());
   }
 
-
   ngOnInit() {
-
     this.userLogin = this.sessionService.getSessionObject("user");
     if (this.userLogin) {
       this.show = true;
-      if( this.sessionService.getSessionItem('promoCode'))
-      {this.addPromo();}
+      if (this.sessionService.getSessionItem('promoCode')) { this.addPromo(); }
     }
     this.spinner.show();
     this.getSpecialItem();
@@ -126,16 +121,14 @@ export class CartComponent implements OnInit {
   }
 
   onLoad() {
-
     this.cartItems = this.sessionService.getSessionObject('productCartItems');
-      this.cartItems.forEach(function (item) {
-       if(item.quantityModel>10 ||item.quantityModel==0){
+    this.cartItems.forEach(function (item) {
+      if (item.quantityModel > 10 || item.quantityModel == 0) {
 
-        if(!item.extraQuantity)
-        {
-        item.extraQuantity=item.quantityModel;
+        if (!item.extraQuantity) {
+          item.extraQuantity = item.quantityModel;
         }
-       }
+      }
     });
 
     if (this.cartItems == null || this.cartItems.length <= 0) {
@@ -159,66 +152,82 @@ export class CartComponent implements OnInit {
   }
 
   addPromo() {
+    if (this.promocode_onetime == undefined) {
+      this.promocode_onetime = this.sessionService.getSessionItem('promoCode');
 
-    // this.sessionService.removeSessionItem('promoCode')
-    if(this.promocode_onetime != null && this.promocode_onetime !=undefined && this.promocode_onetime!=""){
+      if (this.promocode_onetime != null && this.promocode_onetime != '' &&
+        this.promocode_onetime != undefined && this.promocode_onetime != "null") {
+        this.shopService
+          .getPromoData(this.promocode_onetime)
+          .subscribe((result) => {
+            this.promoItem = result;
+            if (this.promoItem.errorMessage == null) {
+              this.addPromoIcon = false;
+              this.promocodeMessage = "Code Applied";
+              this.promoPercentage =
+                (this.subtotalOneTimePrice * this.promoItem.percentOff) / 100;
+
+            }
+            this.cartCalculation();
+            this.spinner.hide();
+          });
+      }
+      return;
+    }
+
+    if (this.promocode_onetime != null && this.promocode_onetime != undefined && this.promocode_onetime != "") {
       this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
     }
     this.promocode_onetime = this.sessionService.getSessionItem('promoCode');
     if (this.sessionService.getSessionItem('user')) {
-    if(this.promocode_onetime != null && this.promocode_onetime !=undefined && this.promocode_onetime!=""){
+      if (this.promocode_onetime != null && this.promocode_onetime != undefined && this.promocode_onetime != "") {
+        this.isPromoCode = true;
+        this.spinner.show();
+        this.shopService.getPromoData(this.promocode_onetime).subscribe(result => {
+          this.promoItem = result;
+          if (this.promoItem.errorMessage == null) {
+            this.addPromoIcon = false;
+            this.promocodeMessage = "Code Applied";
+            this.promoPercentage =
+              (this.subtotalOneTimePrice * this.promoItem.percentOff) / 100;
+            // this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
 
-
-      this.isPromoCode = true;
-      this.spinner.show();
-    this.shopService.getPromoData(this.promocode_onetime).subscribe(result => {
-      this.promoItem = result;
-      if (this.promoItem.errorMessage == null) {
-        this.addPromoIcon = false;
-        this.promocodeMessage="Code Applied";
-        this.promoPercentage =
-          (this.subtotalOneTimePrice * this.promoItem.percentOff) / 100;
-        // this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
-
-          this.toastrService.success(
-            "Promo code applied succesfully you save $'" +
+            this.toastrService.success(
+              "Promo code applied succesfully you save $'" +
               this.promoPercentage.toFixed(2) +
               "'."
-          );
+            );
 
-        this.spinner.hide();
-      } else {
-        // this.isDisabled=false;
-        this.toastrService.error(this.promoItem.errorMessage);
-        this.sessionService.removeSessionItem('promoCode');
+            this.spinner.hide();
+          } else {
+            // this.isDisabled=false;
+            this.toastrService.error(this.promoItem.errorMessage);
+            this.sessionService.removeSessionItem('promoCode');
+            this.cartCalculation();
+            this.spinner.hide();
+          }
+        })
+
         this.cartCalculation();
-        this.spinner.hide();
       }
-    })
-
-  this.cartCalculation();
-  }
     }
-  else{
-    this.toastrService.success(
-      "Please login before apply promo code"
-    );
-   // let isTrue = true;
-   // this.sessionService.setSessionItem('isTrue', isTrue);
-  //  this.router.navigate(["/sign-in"]);
-
+    else {
+      this.toastrService.success(
+        "Please login before apply promo code"
+      );
+      // let isTrue = true;
+      // this.sessionService.setSessionItem('isTrue', isTrue);
+      //  this.router.navigate(["/sign-in"]);
+    }
   }
 
-
-  }
   clearPromo(event: any) {
-
     if (
-      event.target.value == '' ||event.target.value == undefined ||event.target.value == null) {
+      event.target.value == '' || event.target.value == undefined || event.target.value == null) {
       this.sessionService.removeSessionItem('promoCode');
       this.promocode_onetime = '';
       this.promoPercentage = 0;
-      this.promocodeMessage="No code Applied";
+      this.promocodeMessage = "No code Applied";
       this.addPromoIcon = true;
       this.cartCalculation();
     } else {
@@ -228,6 +237,7 @@ export class CartComponent implements OnInit {
       //this.addPromo();
     }
   }
+
   getSpecialItem() {
     this.shopService.getSpecialItem().subscribe(result => {
       if (result == null) {
@@ -257,7 +267,7 @@ export class CartComponent implements OnInit {
       quantityLimit: 1,
       isDiscountTime: true,
       isDisabled: true,
-      inputdata :this.inputdata,
+      inputdata: this.inputdata,
     }
     this.specialItem.price = items.Price;
     Object.entries(items).forEach(([key, value]) => { this.specialItem[key] = value });
@@ -270,7 +280,6 @@ export class CartComponent implements OnInit {
     this.onLoad();
 
   }
-
 
   open(content) {
     this.modalService.open(content, this.modalOptions).result.then((result) => {
@@ -382,10 +391,10 @@ export class CartComponent implements OnInit {
   checkOutItem() {
     if (this.sessionService.getSessionItem('user')) {
       this.sessionService.setSessionObject('productCartItems', this.cartItems);
-      if(this.cartItems.length>0)
-      this.router.navigate(["/store/checkout"]);
+      if (this.cartItems.length > 0)
+        this.router.navigate(["/store/checkout"]);
       else
-      this.toastrService.success('Add Item to Cart');
+        this.toastrService.success('Add Item to Cart');
     } else {
       let isTrue = true;
       this.sessionService.setSessionItem('isTrue', isTrue);
@@ -396,10 +405,11 @@ export class CartComponent implements OnInit {
   quantityForOneTime(cartitem: any, selectedvalue: number) {
     this.quantityCalculation(cartitem, selectedvalue);
   }
+
   quantitychanged(cartitem: any, selectedvalue: number) {
     this.quantityCalculation(cartitem, selectedvalue);
-    const item =  this.cartItems.find(x=>x.itemCode == cartitem.itemCode);
-    if(item && (selectedvalue>10 || selectedvalue==0)){
+    const item = this.cartItems.find(x => x.itemCode == cartitem.itemCode);
+    if (item && (selectedvalue > 10 || selectedvalue == 0)) {
       item.quantityModel = 0;
     }
 
@@ -411,7 +421,7 @@ export class CartComponent implements OnInit {
     }
 
     if (selectedvalue != null && selectedvalue != undefined) {
-      if (selectedvalue == 0 || selectedvalue >10) {
+      if (selectedvalue == 0 || selectedvalue > 10) {
         this.showOtherTextbox = cartitem.itemCode;
         $("#showinput" + cartitem.itemCode).show();
       }
@@ -431,12 +441,10 @@ export class CartComponent implements OnInit {
 
     }
     this.cartCalculation();
-
   }
 
-   quantityForSubscriptionTime(delivery: any, selectedvalue: number) {
+  quantityForSubscriptionTime(delivery: any, selectedvalue: number) {
     this.quantityCalculation(delivery, selectedvalue);
-
   }
 
   cartCalculation() {
@@ -485,32 +493,27 @@ export class CartComponent implements OnInit {
     this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
 
     // for promo code
-   if(this.promoPercentage> 0){
-this.totalDiscount = this.totalDiscount + this.promoPercentage;
-this.cartSummaryTotal= this.cartSummaryTotal - this.promoPercentage;
-   }
+    if (this.promoPercentage > 0) {
+      this.totalDiscount = this.totalDiscount + this.promoPercentage;
+      this.cartSummaryTotal = this.cartSummaryTotal - this.promoPercentage;
+    }
 
     this.cartItems.forEach(function (item) {
-      if(item.quantityModel>10 || item.quantityModel==0 ){
-        if(!item.extraQuantity)
-        {
-        item.extraQuantity=item.quantityModel;
+      if (item.quantityModel > 10 || item.quantityModel == 0) {
+        if (!item.extraQuantity) {
+          item.extraQuantity = item.quantityModel;
         }
       }
     });
-
-
   }
 
-
   getOrderTotal() {
-
     let multiplyprice = 0.00;
     let Temp = 0;
     for (var i = 0; i <= this.cartItems.length - 1; i++) {
       if (this.cartItems[i].bundle == 'multiple') {
         multiplyprice = parseFloat(this.cartItems[i].price) * 2;
-        multiplyprice = multiplyprice * parseFloat( this.cartItems[i].quantityModel);
+        multiplyprice = multiplyprice * parseFloat(this.cartItems[i].quantityModel);
       }
       else {
         multiplyprice = parseFloat(this.cartItems[i].price) * parseFloat(this.cartItems[i].quantityModel);

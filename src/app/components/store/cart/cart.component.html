@@ -85,7 +85,7 @@
                     <p>{{ cartItem.itemCode }}</p>
                     <div class="cart-quantity mob-sec">
                       <div class="form-group">
-                     
+
                         <!-- <select (change)="
                         quantityForOneTime(cartItem, $event.target.value)
                       " class="form-control" [(ngModel)]="cartItem.quantityModel">
@@ -97,9 +97,10 @@
                           [(ngModel)]="cartItem.extraQuantity"
                           *ngIf="cartItem.quantityModel == '0' || cartItem.extraQuantity !=null "
                           (change)="quantitychanged(cartItem, $event.target.value)" class="form-control"> -->
-                          <select (change)="
+                        <select (change)="
                           quantityForOneTime(cartItem, $event.target.value)
-                        " class="form-control" [ngModel]="cartItem.quantityModel>10?'0':cartItem.quantityModel" (ngModelChange)="cartItem.quantityModel=$event"  [disabled]="cartItem.bundle=='specialOffer'" >
+                        " class="form-control" [ngModel]="cartItem.quantityModel>10?'0':cartItem.quantityModel"
+                          (ngModelChange)="cartItem.quantityModel=$event" [disabled]="cartItem.bundle=='specialOffer'">
                           <option *ngFor="let qty of quantity" [value]="qty.value">
                             {{qty.name }}
                           </option>
@@ -108,7 +109,8 @@
                         <input type="number" style="margin-top: 10px;" id="showinput{{cartItem.itemCode}}"
                           [(ngModel)]="cartItem.extraQuantity"
                           *ngIf="cartItem.quantityModel == '0'||cartItem.quantityModel >10 || cartItem.extraQuantity !=null "
-                          (change)="quantitychanged(cartItem, $event.target.value)" class="form-control" [disabled]="cartItem.bundle=='specialOffer'" >
+                          (change)="quantitychanged(cartItem, $event.target.value)" class="form-control"
+                          [disabled]="cartItem.bundle=='specialOffer'">
 
                       </div>
                     </div>
@@ -120,16 +122,18 @@
 
                         <select (change)="
                         quantityForOneTime(cartItem, $event.target.value)
-                      " class="form-control" [ngModel]="cartItem.quantityModel>10?'0':cartItem.quantityModel" (ngModelChange)="cartItem.quantityModel=$event"  [disabled]="cartItem.bundle=='specialOffer'" >
-                        <option *ngFor="let qty of quantity" [value]="qty.value">
-                          {{qty.name }}
-                        </option>
-                      </select>
+                      " class="form-control" [ngModel]="cartItem.quantityModel>10?'0':cartItem.quantityModel"
+                          (ngModelChange)="cartItem.quantityModel=$event" [disabled]="cartItem.bundle=='specialOffer'">
+                          <option *ngFor="let qty of quantity" [value]="qty.value">
+                            {{qty.name }}
+                          </option>
+                        </select>
 
-                      <input type="number" style="margin-top: 10px;" id="showinput{{cartItem.itemCode}}"
-                        [(ngModel)]="cartItem.extraQuantity"
-                        *ngIf="cartItem.quantityModel == '0'||cartItem.quantityModel >10 || cartItem.extraQuantity !=null " [disabled]="cartItem.bundle=='specialOffer'" 
-                        (change)="quantitychanged(cartItem, $event.target.value)" class="form-control">
+                        <input type="number" style="margin-top: 10px;" id="showinput{{cartItem.itemCode}}"
+                          [(ngModel)]="cartItem.extraQuantity"
+                          *ngIf="cartItem.quantityModel == '0'||cartItem.quantityModel >10 || cartItem.extraQuantity !=null "
+                          [disabled]="cartItem.bundle=='specialOffer'"
+                          (change)="quantitychanged(cartItem, $event.target.value)" class="form-control">
                         <!-- <select (change)="
                           quantityForOneTime(cartItem, $event.target.value)
                         " class="form-control" [(ngModel)]="cartItem.quantityModel">
@@ -170,7 +174,8 @@
                     ? 'special-field datafilled form-group '
                     : 'special-field dataempty form-group'
                 ">
-                <input type="text" [(ngModel)]="promocode_onetime" class="form-control" (focusout)="clearPromo($event)" />
+                <input type="text" [(ngModel)]="promocode_onetime" class="form-control"
+                  (focusout)="clearPromo($event)" />
                 <label class="form-label">Promo Code</label>
                 <button class="btn-add-promo" (click)="addPromo()" *ngIf="addPromoIcon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
@@ -179,29 +184,33 @@
                       transform="translate(-194.9 -3)" />
                   </svg>
                 </button>
-                <button class="btn-add-promo"  *ngIf="!addPromoIcon">
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+                <button class="btn-add-promo" *ngIf="!addPromoIcon">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
+                    height="24" viewBox="0 0 24 24">
                     <defs>
-                    <clipPath id="clip-path">
-                    <rect width="24" height="24" fill="none"/>
-                    </clipPath>
+                      <clipPath id="clip-path">
+                        <rect width="24" height="24" fill="none" />
+                      </clipPath>
                     </defs>
-                    <g id="Icon_Done_Rounded" data-name="Icon / Done / Rounded" opacity="0.5" clip-path="url(#clip-path)">
-                    <rect id="Box" width="24" height="24" fill="none"/>
-                    <path id="Path_2036" data-name="Path 2036" d="M822.7,13.9l-3.5-3.5a.967.967,0,0,0-1.4,0,.967.967,0,0,0,0,1.4L822,16a.967.967,0,0,0,1.4,0L834,5.4A.967.967,0,0,0,834,4a.967.967,0,0,0-1.4,0Z" transform="translate(-814 2)"/>
+                    <g id="Icon_Done_Rounded" data-name="Icon / Done / Rounded" opacity="0.5"
+                      clip-path="url(#clip-path)">
+                      <rect id="Box" width="24" height="24" fill="none" />
+                      <path id="Path_2036" data-name="Path 2036"
+                        d="M822.7,13.9l-3.5-3.5a.967.967,0,0,0-1.4,0,.967.967,0,0,0,0,1.4L822,16a.967.967,0,0,0,1.4,0L834,5.4A.967.967,0,0,0,834,4a.967.967,0,0,0-1.4,0Z"
+                        transform="translate(-814 2)" />
                     </g>
-                    </svg>
+                  </svg>
                 </button>
                 <p class="noPromoMessage">{{promocodeMessage}}</p>
               </div>
-         
+
               <div class="prod-discount">
                 <div class="subtotal">
                   <p>Sub Discount</p>
                   <p>-$ {{totalOneTimeDiscountPurchase | number:'.1-2'}}</p>
                 </div>
-                <div class="subtotal"  *ngIf="!addPromoIcon">
-                  <p>Promo Discount</p>
+                <div class="subtotal" *ngIf="!addPromoIcon">
+                  <p>Promo Code</p>
                   <p>-$ {{promoPercentage | number:'.1-2'}}</p>
                 </div>
                 <div class="subtotal">

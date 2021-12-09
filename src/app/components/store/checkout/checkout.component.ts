@@ -47,8 +47,8 @@ export class CheckoutComponent implements OnInit {
   filterTerm: any;
   cartItems: any[] = [];
   submitted = false;
-  paymentSubmitted= false;
-  cardvalidate= false;
+  paymentSubmitted = false;
+  cardvalidate = false;
   subscriptionCartItems: any[] = [];
   oneTimePriceCartItems: any[] = [];
   subtotalOneTimePrice: any = 0;
@@ -61,7 +61,7 @@ export class CheckoutComponent implements OnInit {
   paramsProductPrice: any;
   promocode_onetime: string;
   UserDetails: any;
-  cardToken:string;
+  cardToken: string;
   modalOptions: NgbModalOptions = {
     // backdrop: 'static',
     backdropClass: 'customBackdrop',
@@ -84,7 +84,7 @@ export class CheckoutComponent implements OnInit {
   showPanel1 = false;
   showPanel2 = true;
   showPanel3 = true;
- activeIds:string[] = ['checkoutstep1'];
+  activeIds: string[] = ['checkoutstep1'];
   enablebtn: boolean;
   //Shipping Address Variables
   firstName: string;
@@ -93,7 +93,7 @@ export class CheckoutComponent implements OnInit {
   city: string;
   state: string;
   zip: number;
-  country: string="US";
+  country: string = "US";
   isShipmentMethod: any;
   shippingAddressParam: any;
   //Card Information Variables
@@ -117,16 +117,14 @@ export class CheckoutComponent implements OnInit {
   displayAddress: string;
   shopProductsRequest: any[];
   shippingMethods: any[];
-  promocodeMessage:string="No code applied";
-  addPromoIcon:boolean = true;
+  promocodeMessage: string = "Not Applied";
+  addPromoIcon: boolean = true;
   checkMonth: number;
   checkYear: number;
-  monthError: boolean=false;
-  yearError:  boolean=false;
-
+  monthError: boolean = false;
+  yearError: boolean = false;
   code: string;
-
-  onetimepurchasediscount:number;
+  onetimepurchasediscount: number;
 
   constructor(
     private modalService: NgbModal,
@@ -141,7 +139,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.onetimepurchasediscount= parseFloat(localStorage.getItem("One_time_purchage_discount"));
+    this.onetimepurchasediscount = parseFloat(localStorage.getItem("One_time_purchage_discount"));
     this.isShipmentMethod = 1;
     this.UserDetails = JSON.parse(localStorage.getItem('user'));
     this.customerId = this.UserDetails.customerId;
@@ -198,8 +196,8 @@ export class CheckoutComponent implements OnInit {
 
     this.onPaymentSubmitForm = this.formBuilder.group({
       cardName: ['', [Validators.required]],
-      cardNumber: ['', [Validators.required,Validators.minLength(14),
-        Validators.maxLength(19)]],
+      cardNumber: ['', [Validators.required, Validators.minLength(14),
+      Validators.maxLength(19)]],
       expiryMonth: ['', [Validators.required]],
       expiryYear: ['', [Validators.required]],
       cardCVV: ['', [Validators.required]],
@@ -297,7 +295,7 @@ export class CheckoutComponent implements OnInit {
         this.displayAddress =
           result[1].address1 +
           ' ' + result[1].city +
-          ' ' +result[1].state +
+          ' ' + result[1].state +
           ' ' + result[1].zip +
           ' ' + result[1].country;
         this.shippingAddressForm.get('firstName').setValue(result[1].firstName);
@@ -327,13 +325,13 @@ export class CheckoutComponent implements OnInit {
           this.spinner.hide();
           this.showPanel2 = false;
           this.toastrService.success('Shipping address saved successfully');
-          this.activeIds= ['checkoutstep2'];
+          this.activeIds = ['checkoutstep2'];
           this.displayAddress =
             result.result.address1 +
-            ' ' +result.result.city +
+            ' ' + result.result.city +
             ' ' + result.result.state +
-            ' ' +result.result.zip +
-            ' ' +result.result.country;
+            ' ' + result.result.zip +
+            ' ' + result.result.country;
         } else {
           this.toastrService.error(result.message);
           this.spinner.hide();
@@ -343,7 +341,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   onPaymentSubmit() {
-
     this.paymentSubmitted = true;
     if (this.onPaymentSubmitForm.invalid) {
       return;
@@ -359,27 +356,27 @@ export class CheckoutComponent implements OnInit {
       payment.country = 'US';
       payment.zip = this.p.newZip.value;
     } else {
-       (payment.address1 = this.f.streetAddress.value),
+      (payment.address1 = this.f.streetAddress.value),
         (payment.city = this.f.city.value),
         payment.state = this.f.state.value,
         (payment.zip = this.f.zip.value),
-      payment.country = 'US';
+        payment.country = 'US';
     }
     payment.amount = this.cartSummaryTotal;
     payment.cardNumber = this.p.cardNumber.value.replace(/ /g, "");
     payment.cvv = this.p.cardCVV.value;
     payment.expMonth = this.p.expiryMonth.value;
     payment.expYear = this.p.expiryYear.value;
-    payment.primary =true;
-    payment.active =true;
-    payment.cardType =1;
-    payment.customerId =this.customerId;
+    payment.primary = true;
+    payment.active = true;
+    payment.cardType = 1;
+    payment.customerId = this.customerId;
 
-    this.shopService.generateCreditCardToken( payment.cardNumber).subscribe((result:any) => {
-      if (result.errorMessage =="") {
+    this.shopService.generateCreditCardToken(payment.cardNumber).subscribe((result: any) => {
+      if (result.errorMessage == "") {
         this.cardToken = result.token;
         this.spinner.hide();
-        this.activeIds= ['checkoutstep3'];
+        this.activeIds = ['checkoutstep3'];
         this.showPanel3 = false;
         this.toastrService.success('Payment Card is accepted');
       } else {
@@ -484,7 +481,7 @@ export class CheckoutComponent implements OnInit {
     let isMakePrimaryCard;
 
     if (
-      this.cardName != ''&&
+      this.cardName != '' &&
       this.cardName != undefined &&
       this.cardName != null
     ) {
@@ -636,7 +633,6 @@ export class CheckoutComponent implements OnInit {
       default:
         break;
     }
-
   }
 
   open(content) {
@@ -662,7 +658,6 @@ export class CheckoutComponent implements OnInit {
 
   onItemChange(id: number) {
     this.isShipmentMethod = id;
-    console.log(this.isShipmentMethod);
   }
 
   addPromo() {
@@ -672,8 +667,31 @@ export class CheckoutComponent implements OnInit {
         x.selectDelivery == CartTypeEnum.OneTimePrice &&
         x.bundle != 'specialOffer'
     );
+    if (this.promocode_onetime == undefined) {
+      this.promocode_onetime = this.sessionService.getSessionItem('promoCode');
+      if (this.promocode_onetime != null && this.promocode_onetime != '' &&
+        this.promocode_onetime != undefined && this.promocode_onetime != "null") {
+        this.shopService
+          .getPromoData(this.promocode_onetime)
+          .subscribe((result) => {
+            this.promoItem = result;
+            this.code = this.promocode_onetime;
+            if (this.promoItem.errorMessage == null) {
+              this.addPromoIcon = false;
+              this.promocodeMessage = "Code Applied";
+              this.promoPercentage =
+                (this.subtotalOneTimePrice * this.promoItem.percentOff) / 100;
+
+            }
+            this.cartCalculation();
+            this.spinner.hide();
+          });
+      }
+      return;
+    }
+
     if (oneTimePriceWithoutOffer.length > 0) {
-      if(this.promocode_onetime != null){
+      if (this.promocode_onetime != null) {
         this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
       }
       this.promocode_onetime = this.sessionService.getSessionItem('promoCode');
@@ -690,18 +708,18 @@ export class CheckoutComponent implements OnInit {
             this.code = this.promoItem.code;
             if (this.promoItem.errorMessage == null) {
               this.addPromoIcon = false;
-              this.promocodeMessage="Code Applied";
+              this.promocodeMessage = "Code Applied";
               this.promoPercentage =
                 (this.subtotalOneTimePrice * this.promoItem.percentOff) / 100;
               // this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
               this.cartCalculation();
 
-                this.toastrService.success(
-                  "Promo code applied succesfully you save $'" +
-                    this.promoPercentage.toFixed(2) +
-                    "'."
-                );
-                this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
+              this.toastrService.success(
+                "Promo code applied succesfully you save $'" +
+                this.promoPercentage.toFixed(2) +
+                "'."
+              );
+              this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
               this.spinner.hide();
             } else {
               // this.isDisabled=false;
@@ -716,21 +734,20 @@ export class CheckoutComponent implements OnInit {
       this.sessionService.removeSessionItem('promoCode');
       this.promocode_onetime = '';
       this.promoPercentage = 0;
-      this.promocodeMessage="No code Applied";
+      this.promocodeMessage = "Not Applied";
       this.cartCalculation();
     }
   }
 
   clearPromo(event: any) {
-
     if (
-      event.target.value == '' ||event.target.value == undefined ||event.target.value == null) {
+      event.target.value == '' || event.target.value == undefined || event.target.value == null) {
       this.sessionService.removeSessionItem('promoCode');
       this.promocode_onetime = '';
       this.promoPercentage = 0;
-      this.promocodeMessage="No code Applied";
+      this.promocodeMessage = "Not Applied";
       this.addPromoIcon = true;
-      this.code ='';
+      this.code = '';
       this.cartCalculation();
     } else {
       // this.promocodeMessage="Code Applied";
@@ -825,7 +842,6 @@ export class CheckoutComponent implements OnInit {
   toggleShow() {
     this.sidebartoggle = !this.sidebartoggle;
     this.sidebartoggle1 = !this.sidebartoggle1;
-    console.log(this.sidebartoggle);
   }
 
   isDataAvailable = false;
@@ -903,146 +919,146 @@ export class CheckoutComponent implements OnInit {
   onSubmit() {
 
     this.submitted = true;
-      var startDate;
-     if (this.startDate == 'undefined') {
-    //     startDate = new Date();
-      } else {
-    //    //startDate = new Date(this.startDate);
-         startDate = new Date();
-      }
+    var startDate;
+    if (this.startDate == 'undefined') {
+      //     startDate = new Date();
+    } else {
+      //    //startDate = new Date(this.startDate);
+      startDate = new Date();
+    }
 
-      this.spinner.show();
+    this.spinner.show();
 
-      this.cartItems.forEach((element) => {
-        this.orderDetails.push({
-          descriptionOverride: '',
-          other10EachOverride: 0,
-          other9EachOverride: 0,
-          other8EachOverride: 0,
-          other7EachOverride: 0,
-          other6EachOverride: 0,
-          other5EachOverride: 0,
-          other4EachOverride: 0,
-          other3EachOverride: 0,
-          other2EachOverride: 0,
-          other1EachOverride: 0,
-          commissionableVolumeEachOverride:element.commissionableVolumeEachOverride,
-          businessVolumeEachOverride: element.businessVolumeEachOverride,
-          shippingPriceEachOverride: element.shippingPriceEachOverride,
-          taxableEachOverride: element.taxableEachOverride,
-          priceEachOverride: element.priceEachOverride,
-          parentItemCode: element.parentItemCode,
-          quantity: element.quantityModel,
-          parentOrderDetailID: null,
-          orderDetailID: null,
-          itemCode: element.itemCode,
-          reference1: null,
-          advancedAutoOptions: '',
-        });
+    this.cartItems.forEach((element) => {
+      this.orderDetails.push({
+        descriptionOverride: '',
+        other10EachOverride: 0,
+        other9EachOverride: 0,
+        other8EachOverride: 0,
+        other7EachOverride: 0,
+        other6EachOverride: 0,
+        other5EachOverride: 0,
+        other4EachOverride: 0,
+        other3EachOverride: 0,
+        other2EachOverride: 0,
+        other1EachOverride: 0,
+        commissionableVolumeEachOverride: element.commissionableVolumeEachOverride,
+        businessVolumeEachOverride: element.businessVolumeEachOverride,
+        shippingPriceEachOverride: element.shippingPriceEachOverride,
+        taxableEachOverride: element.taxableEachOverride,
+        priceEachOverride: element.priceEachOverride,
+        parentItemCode: element.parentItemCode,
+        quantity: element.quantityModel,
+        parentOrderDetailID: null,
+        orderDetailID: null,
+        itemCode: element.itemCode,
+        reference1: null,
+        advancedAutoOptions: '',
       });
+    });
 
-      const createOrderRequest = new CreateOrderRequest();
+    const createOrderRequest = new CreateOrderRequest();
 
-      createOrderRequest.other17 = "0.0";
-      createOrderRequest.details = this.orderDetails;
-      createOrderRequest.suppressPackSlipPrice = true;
-      createOrderRequest.orderStatus = 1;
-      createOrderRequest.orderDate = startDate;
-      createOrderRequest.firstName = this.f.firstName.value;
-      createOrderRequest.lastName = this.f.lastName.value;
-      createOrderRequest.address1 = this.f.streetAddress.value;
-      createOrderRequest.address2 = '';
-      createOrderRequest.city = this.f.city.value;
-      createOrderRequest.state = 'TX';//this.f.state.value;
-      createOrderRequest.zip = this.f.zip.value;
-      createOrderRequest.country = 'US';//this.f.country.value
-      createOrderRequest.email = 'test@gmail.com';
-      createOrderRequest.phone = '1111111111111';
-      createOrderRequest.company = 'Test';
-      createOrderRequest.notes = 'abc';
+    createOrderRequest.other17 = "0.0";
+    createOrderRequest.details = this.orderDetails;
+    createOrderRequest.suppressPackSlipPrice = true;
+    createOrderRequest.orderStatus = 1;
+    createOrderRequest.orderDate = startDate;
+    createOrderRequest.firstName = this.f.firstName.value;
+    createOrderRequest.lastName = this.f.lastName.value;
+    createOrderRequest.address1 = this.f.streetAddress.value;
+    createOrderRequest.address2 = '';
+    createOrderRequest.city = this.f.city.value;
+    createOrderRequest.state = 'TX';//this.f.state.value;
+    createOrderRequest.zip = this.f.zip.value;
+    createOrderRequest.country = 'US';//this.f.country.value
+    createOrderRequest.email = 'test@gmail.com';
+    createOrderRequest.phone = '1111111111111';
+    createOrderRequest.company = 'Test';
+    createOrderRequest.notes = 'abc';
 
 
-      const chargeCreditCardTokenRequest = new ChargeCreditCardTokenRequest();
+    const chargeCreditCardTokenRequest = new ChargeCreditCardTokenRequest();
 
-      chargeCreditCardTokenRequest.maxAmount = this.cartSummaryTotal;
-      chargeCreditCardTokenRequest.otherData10 = '';
-      if (this.addrnew == false) {
-        chargeCreditCardTokenRequest.billingCountry = '';
-        chargeCreditCardTokenRequest.billingZip = '';
-        chargeCreditCardTokenRequest.billingState = '';
-        chargeCreditCardTokenRequest.billingCity = '';
-        chargeCreditCardTokenRequest.billingAddress2 = '';
-        chargeCreditCardTokenRequest.billingAddress = '';
-      } else {
-        chargeCreditCardTokenRequest.billingCountry = 'US';//this.f.country.value;
-        chargeCreditCardTokenRequest.billingZip = this.f.zip.value;
-        chargeCreditCardTokenRequest.billingState = 'TX';//this.f.state.value;
-        chargeCreditCardTokenRequest.billingCity = this.f.city.value;
-        chargeCreditCardTokenRequest.billingAddress2 = '';
-        chargeCreditCardTokenRequest.billingAddress = this.f.streetAddress.value;
-      }
-      chargeCreditCardTokenRequest.expirationMonth = this.p.expiryMonth.value;
-      chargeCreditCardTokenRequest.creditCardType = 0;
-      chargeCreditCardTokenRequest.cvcCode = this.p.cardCVV.value;
-      chargeCreditCardTokenRequest.billingCountry = this.f.country.value;
+    chargeCreditCardTokenRequest.maxAmount = this.cartSummaryTotal;
+    chargeCreditCardTokenRequest.otherData10 = '';
+    if (this.addrnew == false) {
+      chargeCreditCardTokenRequest.billingCountry = '';
+      chargeCreditCardTokenRequest.billingZip = '';
+      chargeCreditCardTokenRequest.billingState = '';
+      chargeCreditCardTokenRequest.billingCity = '';
+      chargeCreditCardTokenRequest.billingAddress2 = '';
+      chargeCreditCardTokenRequest.billingAddress = '';
+    } else {
+      chargeCreditCardTokenRequest.billingCountry = 'US';//this.f.country.value;
       chargeCreditCardTokenRequest.billingZip = this.f.zip.value;
-      chargeCreditCardTokenRequest.billingState = this.f.state.value;
+      chargeCreditCardTokenRequest.billingState = 'TX';//this.f.state.value;
       chargeCreditCardTokenRequest.billingCity = this.f.city.value;
       chargeCreditCardTokenRequest.billingAddress2 = '';
       chargeCreditCardTokenRequest.billingAddress = this.f.streetAddress.value;
-      chargeCreditCardTokenRequest.creditCardToken = this.cardToken;//"41X1111WBCXTE1111"
-      chargeCreditCardTokenRequest.expirationYear = this.p.expiryYear.value;
-      chargeCreditCardTokenRequest.billingName = this.f.firstName.value;
+    }
+    chargeCreditCardTokenRequest.expirationMonth = this.p.expiryMonth.value;
+    chargeCreditCardTokenRequest.creditCardType = 0;
+    chargeCreditCardTokenRequest.cvcCode = this.p.cardCVV.value;
+    chargeCreditCardTokenRequest.billingCountry = this.f.country.value;
+    chargeCreditCardTokenRequest.billingZip = this.f.zip.value;
+    chargeCreditCardTokenRequest.billingState = this.f.state.value;
+    chargeCreditCardTokenRequest.billingCity = this.f.city.value;
+    chargeCreditCardTokenRequest.billingAddress2 = '';
+    chargeCreditCardTokenRequest.billingAddress = this.f.streetAddress.value;
+    chargeCreditCardTokenRequest.creditCardToken = this.cardToken;//"41X1111WBCXTE1111"
+    chargeCreditCardTokenRequest.expirationYear = this.p.expiryYear.value;
+    chargeCreditCardTokenRequest.billingName = this.f.firstName.value;
 
-       const setAccountCreditCardTokenRequest = new SetAccountCreditCardTokenRequest();
-       setAccountCreditCardTokenRequest.creditCardToken =this.cardToken;
-       setAccountCreditCardTokenRequest.expirationMonth =this.p.expiryMonth.value;
-       setAccountCreditCardTokenRequest.expirationYear = this.p.expiryYear.value;
+    const setAccountCreditCardTokenRequest = new SetAccountCreditCardTokenRequest();
+    setAccountCreditCardTokenRequest.creditCardToken = this.cardToken;
+    setAccountCreditCardTokenRequest.expirationMonth = this.p.expiryMonth.value;
+    setAccountCreditCardTokenRequest.expirationYear = this.p.expiryYear.value;
 
-      const transactionalRequestModel = new TransactionalRequestModel();
-      transactionalRequestModel.createOrderRequest = createOrderRequest;
-      transactionalRequestModel.chargeCreditCardTokenRequest = chargeCreditCardTokenRequest;
-      transactionalRequestModel.setListItemRequest = this.cartItems;
-      transactionalRequestModel.setAccountCreditCardTokenRequest= setAccountCreditCardTokenRequest;
-      this.shopService
-        .checkOutItems(transactionalRequestModel)
-        .subscribe((result: any) => {
-      if(result==null){
-        this.toastrService.success('Payment failed');
-      }else{ this.router.navigate(['/store/thankyou']);}
+    const transactionalRequestModel = new TransactionalRequestModel();
+    transactionalRequestModel.createOrderRequest = createOrderRequest;
+    transactionalRequestModel.chargeCreditCardTokenRequest = chargeCreditCardTokenRequest;
+    transactionalRequestModel.setListItemRequest = this.cartItems;
+    transactionalRequestModel.setAccountCreditCardTokenRequest = setAccountCreditCardTokenRequest;
+    this.shopService
+      .checkOutItems(transactionalRequestModel)
+      .subscribe((result: any) => {
+        if (result == null) {
+          this.toastrService.success('Payment failed');
+        } else { this.router.navigate(['/store/thankyou']); }
 
-          this.spinner.hide();
-        });
-      // submit payload.nonce to the server from here
+        this.spinner.hide();
+      });
+    // submit payload.nonce to the server from here
 
   }
   creditCardValidator(control: any) {
-var card= control.target.value.replace(/ /g, "");
+    var card = control.target.value.replace(/ /g, "");
     // Visa, MasterCard, American Express, Diners Club, Discover, JCB
     if (card.match(/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/)) {
       this.cardvalidate = false;
-     return null;
+      return null;
     } else
-     this.cardvalidate = true;
- }
-
- validateCard() {
-  this.monthError=false;
-  this.yearError=false;
-  var date = new Date();
-  let year = parseInt(date.getFullYear().toString());
-  let month =  parseInt(date.getMonth().toString()) + 1;
-  if (this.checkYear < year)
-       this.yearError=true;
-  else if ( this.checkMonth==0 || this.checkMonth >12)
-      this.monthError=true;
-  else if (this.checkMonth < month &&(this.checkYear== year ||this.checkYear <year)) {
-      this.monthError=true;
-    }
-  else if (this.checkMonth >12 && this.checkYear >year) {
-    this.monthError=true;
+      this.cardvalidate = true;
   }
-}
+
+  validateCard() {
+    this.monthError = false;
+    this.yearError = false;
+    var date = new Date();
+    let year = parseInt(date.getFullYear().toString());
+    let month = parseInt(date.getMonth().toString()) + 1;
+    if (this.checkYear < year)
+      this.yearError = true;
+    else if (this.checkMonth == 0 || this.checkMonth > 12)
+      this.monthError = true;
+    else if (this.checkMonth < month && (this.checkYear == year || this.checkYear < year)) {
+      this.monthError = true;
+    }
+    else if (this.checkMonth > 12 && this.checkYear > year) {
+      this.monthError = true;
+    }
+  }
 
 
 }

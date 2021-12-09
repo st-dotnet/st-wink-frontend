@@ -2,7 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12 show-deskk">
-                <div [className]="sidebartoggle1 ?  'hidesidebar toggle-sidebar hidden-lg' : 'showsidebar toggle-sidebar hidden-lg'">
+                <div
+                    [className]="sidebartoggle1 ?  'hidesidebar toggle-sidebar hidden-lg' : 'showsidebar toggle-sidebar hidden-lg'">
                     <div class="cart-sidebar sidebar-collapse">
                         <div class="sidebar-head">
                             <h2>
@@ -13,7 +14,8 @@
                                                 d="M541.8,7l-3.9,3.9L534,7a.967.967,0,0,0-1.4,0,.967.967,0,0,0,0,1.4l4.6,4.6a.967.967,0,0,0,1.4,0l4.6-4.6A.99.99,0,1,0,541.8,7Z"
                                                 transform="translate(-532.3 -6.7)" fill="#1cb1c5" />
                                         </svg>
-                                    </span><span class="down-ext">Hide Order Summary</span><span class="left-ext">Show Order Summary</span></a>
+                                    </span><span class="down-ext">Hide Order Summary</span><span class="left-ext">Show
+                                        Order Summary</span></a>
                             </h2>
                             <span class="amount-summary"> $40.00 </span>
                         </div>
@@ -41,7 +43,8 @@
                                 <div class=" search-box">
                                     <div class="search-bar-on">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" (click)="open(referr_user)" value="" placeholder="Find referral (Optional)" />
+                                            <input type="text" class="form-control" (click)="open(referr_user)" value=""
+                                                placeholder="Find referral (Optional)" />
                                             <span class="search"><svg xmlns="http://www.w3.org/2000/svg" width="16.947"
                                                     height="17.048" viewBox="0 0 16.947 17.048">
                                                     <path id="Path_2019" data-name="Path 2019"
@@ -71,39 +74,46 @@
                                 </div>
                             </ng-template>
                             <ng-template ngbPanelContent>
-                                            <div class="content-card steps-inner shipping-address-form">
-                                                <div class="col-md-12 loyalty-form p-0 mb-3">
-                                                    <div [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                        <input type="text" [(ngModel)]="promocode_onetime" class="form-control" name="promo-enter" (focusout)="clearPromo($event)" [ngModelOptions]="{standalone: true}"/>
-                                                        <label class="form-label">Promo Code</label>
-                                                        <span class="vali-promo">{{promocodeMessage}}</span>
-                                                        <span class="btn-add-promo" (click)="addPromo()" *ngIf="addPromoIcon" >
+                                <div class="content-card steps-inner shipping-address-form">
+                                    <div class="col-md-12 loyalty-form p-0 mb-3">
+                                        <div
+                                            [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                            <input type="text" [(ngModel)]="promocode_onetime" class="form-control"
+                                                name="promo-enter" (focusout)="clearPromo($event)"
+                                                [ngModelOptions]="{standalone: true}" />
+                                            <label class="form-label">Promo Code</label>
+                                            <span class="vali-promo">{{promocodeMessage}}</span>
+                                            <span class="btn-add-promo" (click)="addPromo()" *ngIf="addPromoIcon">
 
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14"
-                                                            height="14" viewBox="0 0 14 14">
-                                                            <path _ngcontent-shj-c146="" id="Path_2014"
-                                                                data-name="Path 2014"
-                                                                d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
-                                                                transform="translate(-194.9 -3)"></path>
-                                                        </svg>
-                                                    </span>
-                                                    <span class="btn-add-promo" *ngIf="!addPromoIcon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                    viewBox="0 0 14 14">
+                                                    <path _ngcontent-shj-c146="" id="Path_2014" data-name="Path 2014"
+                                                        d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
+                                                        transform="translate(-194.9 -3)"></path>
+                                                </svg>
+                                            </span>
+                                            <span class="btn-add-promo" *ngIf="!addPromoIcon">
 
-                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
-                                                            <defs>
-                                                            <clipPath id="clip-path">
-                                                            <rect width="24" height="24" fill="none"/>
-                                                            </clipPath>
-                                                            </defs>
-                                                            <g id="Icon_Done_Rounded" data-name="Icon / Done / Rounded" opacity="0.5" clip-path="url(#clip-path)">
-                                                            <rect id="Box" width="24" height="24" fill="none"/>
-                                                            <path id="Path_2036" data-name="Path 2036" d="M822.7,13.9l-3.5-3.5a.967.967,0,0,0-1.4,0,.967.967,0,0,0,0,1.4L822,16a.967.967,0,0,0,1.4,0L834,5.4A.967.967,0,0,0,834,4a.967.967,0,0,0-1.4,0Z" transform="translate(-814 2)"/>
-                                                            </g>
-                                                            </svg>
-                                                    </span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24"
+                                                    viewBox="0 0 24 24">
+                                                    <defs>
+                                                        <clipPath id="clip-path">
+                                                            <rect width="24" height="24" fill="none" />
+                                                        </clipPath>
+                                                    </defs>
+                                                    <g id="Icon_Done_Rounded" data-name="Icon / Done / Rounded"
+                                                        opacity="0.5" clip-path="url(#clip-path)">
+                                                        <rect id="Box" width="24" height="24" fill="none" />
+                                                        <path id="Path_2036" data-name="Path 2036"
+                                                            d="M822.7,13.9l-3.5-3.5a.967.967,0,0,0-1.4,0,.967.967,0,0,0,0,1.4L822,16a.967.967,0,0,0,1.4,0L834,5.4A.967.967,0,0,0,834,4a.967.967,0,0,0-1.4,0Z"
+                                                            transform="translate(-814 2)" />
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </ng-template>
                         </ngb-panel>
 
@@ -264,13 +274,13 @@
                     <div class="cart-sidebar sidebar-collapse">
                         <div class="sidebar-head">
                             <h2 class="title"> <span class="arrow-down">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="11.2" height="6.6"
-                                            viewBox="0 0 11.2 6.6">
-                                            <path id="Path_2040" data-name="Path 2040"
-                                                d="M541.8,7l-3.9,3.9L534,7a.967.967,0,0,0-1.4,0,.967.967,0,0,0,0,1.4l4.6,4.6a.967.967,0,0,0,1.4,0l4.6-4.6A.99.99,0,1,0,541.8,7Z"
-                                                transform="translate(-532.3 -6.7)" fill="#1cb1c5" />
-                                        </svg>
-                                    </span>Cart Summary
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11.2" height="6.6"
+                                        viewBox="0 0 11.2 6.6">
+                                        <path id="Path_2040" data-name="Path 2040"
+                                            d="M541.8,7l-3.9,3.9L534,7a.967.967,0,0,0-1.4,0,.967.967,0,0,0,0,1.4l4.6,4.6a.967.967,0,0,0,1.4,0l4.6-4.6A.99.99,0,1,0,541.8,7Z"
+                                            transform="translate(-532.3 -6.7)" fill="#1cb1c5" />
+                                    </svg>
+                                </span>Cart Summary
                             </h2>
                             <span class="amount-summary"> $40.00 </span>
                         </div>
@@ -298,7 +308,8 @@
                                 <div class=" search-box">
                                     <div class="search-bar-on">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" (click)="open(referr_user)" value="" placeholder="Find referral (Optional)" />
+                                            <input type="text" class="form-control" (click)="open(referr_user)" value=""
+                                                placeholder="Find referral (Optional)" />
                                             <span class="search"><svg xmlns="http://www.w3.org/2000/svg" width="16.947"
                                                     height="17.048" viewBox="0 0 16.947 17.048">
                                                     <path id="Path_2019" data-name="Path 2019"
@@ -330,39 +341,46 @@
                             <ng-template ngbPanelContent>
 
                                 <div class="content-card steps-inner shipping-address-form">
-                                            <div class="col-md-12 loyalty-form p-0 mb-3">
-                                                <div [className]="promocode_onetime ?  'special-field datafilled form-group' : 'special-field dataempty form-group'">
-                                                    <input type="text" [(ngModel)]="promocode_onetime" class="form-control" name="promo-enter" (focusout)="clearPromo($event)" [ngModelOptions]="{standalone: true}"/>
-                                                    <label class="form-label">Promo Code</label>
-                                                    <span class="vali-promo" >{{promocodeMessage}}</span>
-                                                    <span class="btn-add-promo" (click)="addPromo()" *ngIf="addPromoIcon" >
+                                    <div class="col-md-12 loyalty-form p-0 mb-3">
+                                        <div
+                                            [className]="promocode_onetime ?  'special-field datafilled form-group' : 'special-field dataempty form-group'">
+                                            <input type="text" [(ngModel)]="promocode_onetime" class="form-control"
+                                                name="promo-enter" (focusout)="clearPromo($event)"
+                                                [ngModelOptions]="{standalone: true}" />
+                                            <label class="form-label">Promo Code</label>
+                                            <span class="vali-promo">{{promocodeMessage}}</span>
+                                            <span class="btn-add-promo" (click)="addPromo()" *ngIf="addPromoIcon">
 
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14"
-                                                            height="14" viewBox="0 0 14 14">
-                                                            <path _ngcontent-shj-c146="" id="Path_2014"
-                                                                data-name="Path 2014"
-                                                                d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
-                                                                transform="translate(-194.9 -3)"></path>
-                                                        </svg>
-                                                    </span>
-                                                    <span class="btn-add-promo" *ngIf="!addPromoIcon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                    viewBox="0 0 14 14">
+                                                    <path _ngcontent-shj-c146="" id="Path_2014" data-name="Path 2014"
+                                                        d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
+                                                        transform="translate(-194.9 -3)"></path>
+                                                </svg>
+                                            </span>
+                                            <span class="btn-add-promo" *ngIf="!addPromoIcon">
 
-                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
-                                                            <defs>
-                                                            <clipPath id="clip-path">
-                                                            <rect width="24" height="24" fill="none"/>
-                                                            </clipPath>
-                                                            </defs>
-                                                            <g id="Icon_Done_Rounded" data-name="Icon / Done / Rounded" opacity="0.5" clip-path="url(#clip-path)">
-                                                            <rect id="Box" width="24" height="24" fill="none"/>
-                                                            <path id="Path_2036" data-name="Path 2036" d="M822.7,13.9l-3.5-3.5a.967.967,0,0,0-1.4,0,.967.967,0,0,0,0,1.4L822,16a.967.967,0,0,0,1.4,0L834,5.4A.967.967,0,0,0,834,4a.967.967,0,0,0-1.4,0Z" transform="translate(-814 2)"/>
-                                                            </g>
-                                                            </svg>
-                                                    </span>
-                                                </div>
-                                            </div>
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24"
+                                                    viewBox="0 0 24 24">
+                                                    <defs>
+                                                        <clipPath id="clip-path">
+                                                            <rect width="24" height="24" fill="none" />
+                                                        </clipPath>
+                                                    </defs>
+                                                    <g id="Icon_Done_Rounded" data-name="Icon / Done / Rounded"
+                                                        opacity="0.5" clip-path="url(#clip-path)">
+                                                        <rect id="Box" width="24" height="24" fill="none" />
+                                                        <path id="Path_2036" data-name="Path 2036"
+                                                            d="M822.7,13.9l-3.5-3.5a.967.967,0,0,0-1.4,0,.967.967,0,0,0,0,1.4L822,16a.967.967,0,0,0,1.4,0L834,5.4A.967.967,0,0,0,834,4a.967.967,0,0,0-1.4,0Z"
+                                                            transform="translate(-814 2)" />
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-                             </ng-template>
+                            </ng-template>
                         </ngb-panel>
 
                         <ngb-panel id="otp-sidebar">
@@ -389,15 +407,15 @@
                                             </tr>
                                         </tbody>
                                         <tfoot>
-                                            <tr *ngIf="isPromocode">
-                                                <td>You Saved</td>
+                                            <tr>
+                                                <td>Promo Code Applied</td>
                                                 <td>-${{promoPercentage | number :'.1-2'}}</td>
                                             </tr>
 
                                             <tr>
-                                              <td>You Saved</td>
-                                              <td>${{onetimepurchasediscount|number:'.1-2'}}</td>
-                                          </tr>
+                                                <td>You Saved</td>
+                                                <td>${{onetimepurchasediscount|number:'.1-2'}}</td>
+                                            </tr>
 
                                             <tr>
                                                 <td>Subtotal</td>
@@ -473,6 +491,10 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td>Promo Code</td>
+                                                <td>-${{promoPercentage | number :'.1-2'}}</td>
+                                            </tr>
+                                            <tr>
                                                 <td>Subscription Purchase</td>
                                                 <td>${{subTotalSubscriptionPriceAfterDiscount | number :'.1-2'}}</td>
                                             </tr>
@@ -503,7 +525,8 @@
                     <ngb-accordion [closeOthers]="false" [activeIds]="activeIds" class="panel-stepbar">
                         <ngb-panel [disabled]="showPanel1 ? true:null" id="checkoutstep1">
                             <ng-template ngbPanelTitle>
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="24" height="24" viewBox="0 0 24 24">
                                     <defs>
                                         <clipPath id="clip-path">
                                             <rect width="24" height="24" fill="none" />
@@ -528,41 +551,46 @@
                                                 <div class="heading-step1">
                                                     <h4>Subscription Schedule</h4>
                                                     <p>Start Date:<span class="data-span">{{startDate | date:
-                                                        'dd/MM/yyyy'}}</span></p>
+                                                            'dd/MM/yyyy'}}</span></p>
                                                     <span class="arrow-stepp">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
-                                                        viewBox="0 0 6.6 11.2">
-                                                        <path id="Path_2044" data-name="Path 2044"
-                                                            d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                            transform="translate(-630.6 -4.4)" />
-                                                    </svg>
-                                                </span>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                            height="11.2" viewBox="0 0 6.6 11.2">
+                                                            <path id="Path_2044" data-name="Path 2044"
+                                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                                transform="translate(-630.6 -4.4)" />
+                                                        </svg>
+                                                    </span>
                                                 </div>
                                             </ng-template>
                                             <ng-template ngbPanelContent>
                                                 <div class="content-card steps-inner">
-                                                    <div [className]="startDate ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'" id="subscr-schedule">
-                                                        <input type="text" class="form-control" bsDatepicker [minDate]="minDate" [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }" [ngModelOptions]="{standalone: true}" [(ngModel)]="startDate" />
+                                                    <div [className]="startDate ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'"
+                                                        id="subscr-schedule">
+                                                        <input type="text" class="form-control" bsDatepicker
+                                                            [minDate]="minDate"
+                                                            [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }"
+                                                            [ngModelOptions]="{standalone: true}"
+                                                            [(ngModel)]="startDate" />
                                                         <label class="form-label">Select Start Date</label>
                                                         <span class="btn-add-promo">
-                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
-                                                            height="24" viewBox="0 0 24 24">
-                                                            <defs>
-                                                                <clipPath id="clip-path">
-                                                                    <rect width="24" height="24" fill="none" />
-                                                                </clipPath>
-                                                            </defs>
-                                                            <g id="Icon_Event_Rounded"
-                                                                data-name="Icon / Event / Rounded" opacity="0.5"
-                                                                clip-path="url(#clip-path)">
-                                                                <rect id="Box" width="24" height="24" fill="none" />
-                                                                <path id="Path_2017" data-name="Path 2017"
-                                                                    d="M879.9,18h-12a1.075,1.075,0,0,1-1-1V7h14V17A1,1,0,0,1,879.9,18Zm-2-17V2h-8V1a1,1,0,0,0-2,0V2h-1a2.006,2.006,0,0,0-2,2V18a2.006,2.006,0,0,0,2,2h14a2.006,2.006,0,0,0,2-2V4a2.006,2.006,0,0,0-2-2h-1V1a1,1,0,0,0-2,0Zm0,10h-3a1.075,1.075,0,0,0-1,1v3a1.075,1.075,0,0,0,1,1h3a1.075,1.075,0,0,0,1-1V12A1,1,0,0,0,877.9,11Z"
-                                                                    transform="translate(-862 2)" />
-                                                            </g>
-                                                        </svg>
-                                                    </span>
+                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
+                                                                height="24" viewBox="0 0 24 24">
+                                                                <defs>
+                                                                    <clipPath id="clip-path">
+                                                                        <rect width="24" height="24" fill="none" />
+                                                                    </clipPath>
+                                                                </defs>
+                                                                <g id="Icon_Event_Rounded"
+                                                                    data-name="Icon / Event / Rounded" opacity="0.5"
+                                                                    clip-path="url(#clip-path)">
+                                                                    <rect id="Box" width="24" height="24" fill="none" />
+                                                                    <path id="Path_2017" data-name="Path 2017"
+                                                                        d="M879.9,18h-12a1.075,1.075,0,0,1-1-1V7h14V17A1,1,0,0,1,879.9,18Zm-2-17V2h-8V1a1,1,0,0,0-2,0V2h-1a2.006,2.006,0,0,0-2,2V18a2.006,2.006,0,0,0,2,2h14a2.006,2.006,0,0,0,2-2V4a2.006,2.006,0,0,0-2-2h-1V1a1,1,0,0,0-2,0Zm0,10h-3a1.075,1.075,0,0,0-1,1v3a1.075,1.075,0,0,0,1,1h3a1.075,1.075,0,0,0,1-1V12A1,1,0,0,0,877.9,11Z"
+                                                                        transform="translate(-862 2)" />
+                                                                </g>
+                                                            </svg>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </ng-template>
@@ -588,8 +616,11 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName?.errors }" />
-                                                                <div *ngIf="submitted && f.firstName?.errors" class="invalid-feedback">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="First Name" formControlName="firstName"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.firstName?.errors }" />
+                                                                <div *ngIf="submitted && f.firstName?.errors"
+                                                                    class="invalid-feedback">
                                                                     <div *ngIf="f.firstName?.errors.required">
                                                                         First Name is required</div>
                                                                 </div>
@@ -597,8 +628,11 @@
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName?.errors }" />
-                                                                <div *ngIf="submitted && f.lastName?.errors" class="invalid-feedback">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Last Name" formControlName="lastName"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.lastName?.errors }" />
+                                                                <div *ngIf="submitted && f.lastName?.errors"
+                                                                    class="invalid-feedback">
                                                                     <div *ngIf="f.lastName?.errors.required">
                                                                         Last Name is required</div>
                                                                 </div>
@@ -606,8 +640,12 @@
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control" formControlName="streetAddress" placeholder="Street Address" [ngClass]="{ 'is-invalid': submitted && f.streetAddress?.errors }" />
-                                                                <div *ngIf="submitted && f.streetAddress?.errors" class="invalid-feedback">
+                                                                <input type="text" class="form-control"
+                                                                    formControlName="streetAddress"
+                                                                    placeholder="Street Address"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.streetAddress?.errors }" />
+                                                                <div *ngIf="submitted && f.streetAddress?.errors"
+                                                                    class="invalid-feedback">
                                                                     <div *ngIf="f.streetAddress?.errors.required">
                                                                         Street Address is required</div>
                                                                 </div>
@@ -615,8 +653,11 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="City" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city?.errors }" />
-                                                                <div *ngIf="submitted && f.city?.errors" class="invalid-feedback">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="City" formControlName="city"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.city?.errors }" />
+                                                                <div *ngIf="submitted && f.city?.errors"
+                                                                    class="invalid-feedback">
                                                                     <div *ngIf="f.city?.errors.required">
                                                                         City is required</div>
                                                                 </div>
@@ -624,8 +665,11 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="State" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f.state?.errors }" />
-                                                                <div *ngIf="submitted && f.state?.errors" class="invalid-feedback">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="State" formControlName="state"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.state?.errors }" />
+                                                                <div *ngIf="submitted && f.state?.errors"
+                                                                    class="invalid-feedback">
                                                                     <div *ngIf="f.state?.errors.required">
                                                                         State is required</div>
                                                                 </div>
@@ -633,8 +677,11 @@
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="number" class="form-control" placeholder="Zip" formControlName="zip" [ngClass]="{ 'is-invalid': submitted && f.zip?.errors }" />
-                                                                <div *ngIf="submitted && f.zip?.errors" class="invalid-feedback">
+                                                                <input type="number" class="form-control"
+                                                                    placeholder="Zip" formControlName="zip"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.zip?.errors }" />
+                                                                <div *ngIf="submitted && f.zip?.errors"
+                                                                    class="invalid-feedback">
                                                                     <div *ngIf="f.zip?.errors.required">
                                                                         Zip is required</div>
                                                                 </div>
@@ -642,9 +689,11 @@
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="Country" value="US" readonly >
-                                                                <div *ngIf="submitted && f.country?.errors" class="invalid-feedback">
-                                                                    <div *ngIf="f.country?.errors.required" >
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Country" value="US" readonly>
+                                                                <div *ngIf="submitted && f.country?.errors"
+                                                                    class="invalid-feedback">
+                                                                    <div *ngIf="f.country?.errors.required">
                                                                         Country is required</div>
                                                                 </div>
                                                             </div>
@@ -660,50 +709,68 @@
                                                     <h4>Shipping Method</h4>
                                                     <p>$6.99 - USPS Ground Shipping - 1st Class</p>
                                                     <span class="arrow-stepp">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
-                                                        viewBox="0 0 6.6 11.2">
-                                                        <path id="Path_2044" data-name="Path 2044"
-                                                            d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                            transform="translate(-630.6 -4.4)" />
-                                                    </svg>
-                                                </span>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                            height="11.2" viewBox="0 0 6.6 11.2">
+                                                            <path id="Path_2044" data-name="Path 2044"
+                                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                                transform="translate(-630.6 -4.4)" />
+                                                        </svg>
+                                                    </span>
                                                 </div>
                                             </ng-template>
                                             <ng-template ngbPanelContent>
                                                 <div class="content-card steps-inner shipping-method">
                                                     <div class="method-shipp">
                                                         <ul>
-                                                            <li >
+                                                            <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="customRadio1"  [(ngModel)]="isShipmentMethod"  [checked]="isShipmentMethod === 1"  value="1" name="isShipmentMethod" (change)="onItemChange(1)" class="custom-control-input" >
-                                                                    <label class="custom-control-label" for="customRadio1">
-                                                                    <div class="shipping-list-item">
-                                                                        <h4>Get it today (Utah only)</h4>
-                                                                        <p>$0.00 Will Call Pickup</p>
-                                                                    </div>
-                                                                </label>
+                                                                    <input type="radio" id="customRadio1"
+                                                                        [(ngModel)]="isShipmentMethod"
+                                                                        [checked]="isShipmentMethod === 1" value="1"
+                                                                        name="isShipmentMethod"
+                                                                        (change)="onItemChange(1)"
+                                                                        class="custom-control-input">
+                                                                    <label class="custom-control-label"
+                                                                        for="customRadio1">
+                                                                        <div class="shipping-list-item">
+                                                                            <h4>Get it today (Utah only)</h4>
+                                                                            <p>$0.00 Will Call Pickup</p>
+                                                                        </div>
+                                                                    </label>
                                                                 </div>
                                                             </li>
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="customRadio2" [checked]="isShipmentMethod === 2"  [(ngModel)]="isShipmentMethod" value="2" (change)="onItemChange(2)" name="isShipmentMethod" class="custom-control-input">
-                                                                    <label class="custom-control-label" for="customRadio2">
-                                                                    <div class="shipping-list-item">
-                                                                        <h4>Get it by Fri, Feb 22nd</h4>
-                                                                        <p>FREE Shipping</p>
-                                                                    </div>
-                                                                </label>
+                                                                    <input type="radio" id="customRadio2"
+                                                                        [checked]="isShipmentMethod === 2"
+                                                                        [(ngModel)]="isShipmentMethod" value="2"
+                                                                        (change)="onItemChange(2)"
+                                                                        name="isShipmentMethod"
+                                                                        class="custom-control-input">
+                                                                    <label class="custom-control-label"
+                                                                        for="customRadio2">
+                                                                        <div class="shipping-list-item">
+                                                                            <h4>Get it by Fri, Feb 22nd</h4>
+                                                                            <p>FREE Shipping</p>
+                                                                        </div>
+                                                                    </label>
                                                                 </div>
                                                             </li>
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="customRadio3" [checked]="isShipmentMethod === 3"  [(ngModel)]="isShipmentMethod" value="3" (change)="onItemChange(3)" name="isShipmentMethod" class="custom-control-input">
-                                                                    <label class="custom-control-label" for="customRadio3">
-                                                                    <div class="shipping-list-item">
-                                                                        <h4>Get it by Wed, Feb 19th</h4>
-                                                                        <p>$8.99 Shipping</p>
-                                                                    </div>
-                                                                </label>
+                                                                    <input type="radio" id="customRadio3"
+                                                                        [checked]="isShipmentMethod === 3"
+                                                                        [(ngModel)]="isShipmentMethod" value="3"
+                                                                        (change)="onItemChange(3)"
+                                                                        name="isShipmentMethod"
+                                                                        class="custom-control-input">
+                                                                    <label class="custom-control-label"
+                                                                        for="customRadio3">
+                                                                        <div class="shipping-list-item">
+                                                                            <h4>Get it by Wed, Feb 19th</h4>
+                                                                            <p>$8.99 Shipping</p>
+                                                                        </div>
+                                                                    </label>
                                                                 </div>
                                                             </li>
                                                         </ul>
@@ -722,7 +789,8 @@
 
                         <ngb-panel [disabled]="showPanel2 ? true:null" id="checkoutstep2">
                             <ng-template ngbPanelTitle>
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="24" height="24" viewBox="0 0 24 24">
                                     <defs>
                                         <clipPath id="clip-path">
                                             <rect width="24" height="24" fill="none" />
@@ -740,52 +808,65 @@
                             </ng-template>
                             <ng-template ngbPanelContent>
                                 <form [formGroup]="onPaymentSubmitForm" (ngSubmit)="onPaymentSubmit()">
-                                    <ngb-accordion activeIds="promo-code,loyalty-info,cards-selection,card-info,billing-method">
+                                    <ngb-accordion
+                                        activeIds="promo-code,loyalty-info,cards-selection,card-info,billing-method">
                                         <ngb-panel id="promo-code">
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
                                                     <h4>Promo Code</h4>
                                                     <span class="arrow-stepp">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
-                                                        viewBox="0 0 6.6 11.2">
-                                                        <path id="Path_2044" data-name="Path 2044"
-                                                            d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                            transform="translate(-630.6 -4.4)" />
-                                                    </svg>
-                                                </span>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                            height="11.2" viewBox="0 0 6.6 11.2">
+                                                            <path id="Path_2044" data-name="Path 2044"
+                                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                                transform="translate(-630.6 -4.4)" />
+                                                        </svg>
+                                                    </span>
                                                 </div>
                                             </ng-template>
                                             <ng-template ngbPanelContent>
                                                 <div class="content-card steps-inner shipping-address-form">
                                                     <div class="col-md-12 loyalty-form p-0 mb-3">
-                                                        <div [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                            <input type="text" [(ngModel)]="promocode_onetime" class="form-control" name="promo-enter" (focusout)="clearPromo($event)" [ngModelOptions]="{standalone: true}"/>
+                                                        <div
+                                                            [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                                            <input type="text" [(ngModel)]="promocode_onetime"
+                                                                class="form-control" name="promo-enter"
+                                                                (focusout)="clearPromo($event)"
+                                                                [ngModelOptions]="{standalone: true}" />
                                                             <label class="form-label">Promo Code</label>
                                                             <span class="vali-promo">{{promocodeMessage}}</span>
-                                                            <span class="btn-add-promo" (click)="addPromo()" *ngIf="addPromoIcon" >
+                                                            <span class="btn-add-promo" (click)="addPromo()"
+                                                                *ngIf="addPromoIcon">
 
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14"
-                                                                height="14" viewBox="0 0 14 14">
-                                                                <path _ngcontent-shj-c146="" id="Path_2014"
-                                                                    data-name="Path 2014"
-                                                                    d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
-                                                                    transform="translate(-194.9 -3)"></path>
-                                                            </svg>
-                                                        </span>
-                                                        <span class="btn-add-promo" *ngIf="!addPromoIcon">
-
-                                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
-                                                                <defs>
-                                                                <clipPath id="clip-path">
-                                                                <rect width="24" height="24" fill="none"/>
-                                                                </clipPath>
-                                                                </defs>
-                                                                <g id="Icon_Done_Rounded" data-name="Icon / Done / Rounded" opacity="0.5" clip-path="url(#clip-path)">
-                                                                <rect id="Box" width="24" height="24" fill="none"/>
-                                                                <path id="Path_2036" data-name="Path 2036" d="M822.7,13.9l-3.5-3.5a.967.967,0,0,0-1.4,0,.967.967,0,0,0,0,1.4L822,16a.967.967,0,0,0,1.4,0L834,5.4A.967.967,0,0,0,834,4a.967.967,0,0,0-1.4,0Z" transform="translate(-814 2)"/>
-                                                                </g>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                    height="14" viewBox="0 0 14 14">
+                                                                    <path _ngcontent-shj-c146="" id="Path_2014"
+                                                                        data-name="Path 2014"
+                                                                        d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
+                                                                        transform="translate(-194.9 -3)"></path>
                                                                 </svg>
-                                                        </span>
+                                                            </span>
+                                                            <span class="btn-add-promo" *ngIf="!addPromoIcon">
+
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                    width="24" height="24" viewBox="0 0 24 24">
+                                                                    <defs>
+                                                                        <clipPath id="clip-path">
+                                                                            <rect width="24" height="24" fill="none" />
+                                                                        </clipPath>
+                                                                    </defs>
+                                                                    <g id="Icon_Done_Rounded"
+                                                                        data-name="Icon / Done / Rounded" opacity="0.5"
+                                                                        clip-path="url(#clip-path)">
+                                                                        <rect id="Box" width="24" height="24"
+                                                                            fill="none" />
+                                                                        <path id="Path_2036" data-name="Path 2036"
+                                                                            d="M822.7,13.9l-3.5-3.5a.967.967,0,0,0-1.4,0,.967.967,0,0,0,0,1.4L822,16a.967.967,0,0,0,1.4,0L834,5.4A.967.967,0,0,0,834,4a.967.967,0,0,0-1.4,0Z"
+                                                                            transform="translate(-814 2)" />
+                                                                    </g>
+                                                                </svg>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -796,57 +877,65 @@
                                                 <div class="heading-step1">
                                                     <h4>Loyalty Rewards</h4>
                                                     <span class="arrow-stepp">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
-                                                        viewBox="0 0 6.6 11.2">
-                                                        <path id="Path_2044" data-name="Path 2044"
-                                                            d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                            transform="translate(-630.6 -4.4)" />
-                                                    </svg>
-                                                </span>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                            height="11.2" viewBox="0 0 6.6 11.2">
+                                                            <path id="Path_2044" data-name="Path 2044"
+                                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                                transform="translate(-630.6 -4.4)" />
+                                                        </svg>
+                                                    </span>
                                                 </div>
                                             </ng-template>
                                             <ng-template ngbPanelContent>
                                                 <div class="content-card steps-inner shipping-address-form">
                                                     <div class="loyalty-desc">
-                                                        <div class="r-available">Rewards Available:<span class="value-r-available">$25</span></div>
-                                                        <div class="r-applied">Rewards Applied:<span class="value-r-applied">$0</span></div>
+                                                        <div class="r-available">Rewards Available:<span
+                                                                class="value-r-available">$25</span></div>
+                                                        <div class="r-applied">Rewards Applied:<span
+                                                                class="value-r-applied">$0</span></div>
                                                         <div class="loya-conver">
-                                                            <span class="loyal-conv-modal" (click)="open(loyal_conversion)">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="25" viewBox="0 0 24 25">
-                                                                <g id="Group_183" data-name="Group 183"
-                                                                    transform="translate(-830 -877)">
-                                                                    <g id="Ellipse_13" data-name="Ellipse 13"
-                                                                        transform="translate(830 878)" fill="none"
-                                                                        stroke="#1cb1c5" stroke-width="2">
-                                                                        <circle cx="12" cy="12" r="12" stroke="none" />
-                                                                        <circle cx="12" cy="12" r="11" fill="none" />
+                                                            <span class="loyal-conv-modal"
+                                                                (click)="open(loyal_conversion)">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="25" viewBox="0 0 24 25">
+                                                                    <g id="Group_183" data-name="Group 183"
+                                                                        transform="translate(-830 -877)">
+                                                                        <g id="Ellipse_13" data-name="Ellipse 13"
+                                                                            transform="translate(830 878)" fill="none"
+                                                                            stroke="#1cb1c5" stroke-width="2">
+                                                                            <circle cx="12" cy="12" r="12"
+                                                                                stroke="none" />
+                                                                            <circle cx="12" cy="12" r="11"
+                                                                                fill="none" />
+                                                                        </g>
+                                                                        <text id="_" data-name="?"
+                                                                            transform="translate(837 897)"
+                                                                            fill="#1cb1c5" font-size="18.6"
+                                                                            font-family="SegoeUI, Segoe UI">
+                                                                            <tspan x="0" y="0">?</tspan>
+                                                                        </text>
                                                                     </g>
-                                                                    <text id="_" data-name="?"
-                                                                        transform="translate(837 897)" fill="#1cb1c5"
-                                                                        font-size="18.6"
-                                                                        font-family="SegoeUI, Segoe UI">
-                                                                        <tspan x="0" y="0">?</tspan>
-                                                                    </text>
-                                                                </g>
-                                                            </svg>
-                                                        </span>
+                                                                </svg>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 loyalty-form p-0 mb-3">
-                                                        <div [className]="loyalPointz ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                            <input type="text" [(ngModel)]="loyalPointz"  value=""  class="form-control" [ngModelOptions]="{standalone: true}" />
+                                                        <div
+                                                            [className]="loyalPointz ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                                            <input type="text" [(ngModel)]="loyalPointz" value=""
+                                                                class="form-control"
+                                                                [ngModelOptions]="{standalone: true}" />
                                                             <label class="form-label">Loyalty points</label>
                                                             <span class="vali-promo">Points Not Applied</span>
                                                             <span class="btn-add-promo">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14"
-                                                                height="14" viewBox="0 0 14 14">
-                                                                <path _ngcontent-shj-c146="" id="Path_2014"
-                                                                    data-name="Path 2014"
-                                                                    d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
-                                                                    transform="translate(-194.9 -3)"></path>
-                                                            </svg>
-                                                        </span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                    height="14" viewBox="0 0 14 14">
+                                                                    <path _ngcontent-shj-c146="" id="Path_2014"
+                                                                        data-name="Path 2014"
+                                                                        d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
+                                                                        transform="translate(-194.9 -3)"></path>
+                                                                </svg>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -858,13 +947,13 @@
                                                 <div class="heading-step1">
                                                     <h4>Select Card</h4>
                                                     <span class="arrow-stepp">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
-                                                        viewBox="0 0 6.6 11.2">
-                                                        <path id="Path_2044" data-name="Path 2044"
-                                                            d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                            transform="translate(-630.6 -4.4)" />
-                                                    </svg>
-                                                </span>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                            height="11.2" viewBox="0 0 6.6 11.2">
+                                                            <path id="Path_2044" data-name="Path 2044"
+                                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                                transform="translate(-630.6 -4.4)" />
+                                                        </svg>
+                                                    </span>
                                                 </div>
                                             </ng-template>
                                             <ng-template ngbPanelContent>
@@ -873,27 +962,37 @@
                                                         <ul class="select-paycard">
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="cardlitem1" name="isSelectCard" value="IsVisaExpire" [ngModel]="isSelectCard" [selected]="true" (change)="onSelectCardChange(1)" class="custom-control-input">
-                                                                    <label class="custom-control-label" for="cardlitem1">
-                                                                    <div class="shipping-list-item">
-                                                                        <h4>Visa ending in 111 <a href=""
-                                                                                class="edit-cardopt">Edit</a></h4>
-                                                                        <div class="card-info">
-                                                                            <p class="name_oncard">john Doe</p>
-                                                                            <p class="card-expire">Expires 02/22</p>
+                                                                    <input type="radio" id="cardlitem1"
+                                                                        name="isSelectCard" value="IsVisaExpire"
+                                                                        [ngModel]="isSelectCard" [selected]="true"
+                                                                        (change)="onSelectCardChange(1)"
+                                                                        class="custom-control-input">
+                                                                    <label class="custom-control-label"
+                                                                        for="cardlitem1">
+                                                                        <div class="shipping-list-item">
+                                                                            <h4>Visa ending in 111 <a href=""
+                                                                                    class="edit-cardopt">Edit</a></h4>
+                                                                            <div class="card-info">
+                                                                                <p class="name_oncard">john Doe</p>
+                                                                                <p class="card-expire">Expires 02/22</p>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                </label>
+                                                                    </label>
                                                                 </div>
                                                             </li>
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="cardlitem2" name="isSelectCard" value="IsNewCard" [ngModel]="isSelectCard" (change)="onSelectCardChange(2)" class="custom-control-input">
-                                                                    <label class="custom-control-label" for="cardlitem2">
-                                                                    <div class="shipping-list-item">
-                                                                        <h4>Pay with new card</h4>
-                                                                    </div>
-                                                                </label>
+                                                                    <input type="radio" id="cardlitem2"
+                                                                        name="isSelectCard" value="IsNewCard"
+                                                                        [ngModel]="isSelectCard"
+                                                                        (change)="onSelectCardChange(2)"
+                                                                        class="custom-control-input">
+                                                                    <label class="custom-control-label"
+                                                                        for="cardlitem2">
+                                                                        <div class="shipping-list-item">
+                                                                            <h4>Pay with new card</h4>
+                                                                        </div>
+                                                                    </label>
                                                                 </div>
                                                             </li>
                                                         </ul>
@@ -901,18 +1000,18 @@
                                                 </div>
                                             </ng-template>
                                         </ngb-panel>
-                                        <ngb-panel id="card-info"  *ngIf="isCardDisabled">
+                                        <ngb-panel id="card-info" *ngIf="isCardDisabled">
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1" *ngIf="isCardDisabled">
                                                     <h4>Card</h4>
                                                     <span class="arrow-stepp">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
-                                                        viewBox="0 0 6.6 11.2">
-                                                        <path id="Path_2044" data-name="Path 2044"
-                                                            d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                            transform="translate(-630.6 -4.4)" />
-                                                    </svg>
-                                                </span>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                            height="11.2" viewBox="0 0 6.6 11.2">
+                                                            <path id="Path_2044" data-name="Path 2044"
+                                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                                transform="translate(-630.6 -4.4)" />
+                                                        </svg>
+                                                    </span>
                                                 </div>
                                             </ng-template>
                                             <ng-template ngbPanelContent>
@@ -928,21 +1027,37 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="cardName" placeholder="Name on card" name="card-name" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardName?.errors }" />
-                                                                    <div *ngIf="paymentSubmitted && p.cardName?.errors" class="invalid-feedback">
-                                                                        <div *ngIf="p.cardName?.errors.required">Card Name is required</div>
+                                                                    <input type="text" formControlName="cardName"
+                                                                        placeholder="Name on card" name="card-name"
+                                                                        class="form-control"
+                                                                        [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardName?.errors }" />
+                                                                    <div *ngIf="paymentSubmitted && p.cardName?.errors"
+                                                                        class="invalid-feedback">
+                                                                        <div *ngIf="p.cardName?.errors.required">Card
+                                                                            Name is required</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="cardNumber" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="0000 0000 0000 0000"    (change)="creditCardValidator($event)" placeholder="Card number" name="cardNumber" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardNumber?.errors }" />
-                                                                    <div *ngIf="paymentSubmitted && p.cardNumber?.errors" class="invalid-feedback">
-                                                                        <div *ngIf="p.cardNumber?.errors.required">Card Number is required</div>
-                                                                        <div *ngIf="p.cardNumber.errors.minlength">Card Number must be at least 14 numbers </div>
+                                                                    <input type="text" formControlName="cardNumber"
+                                                                        [showMaskTyped]="false"
+                                                                        [dropSpecialCharacters]="false"
+                                                                        mask="0000 0000 0000 0000"
+                                                                        (change)="creditCardValidator($event)"
+                                                                        placeholder="Card number" name="cardNumber"
+                                                                        class="form-control"
+                                                                        [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardNumber?.errors }" />
+                                                                    <div *ngIf="paymentSubmitted && p.cardNumber?.errors"
+                                                                        class="invalid-feedback">
+                                                                        <div *ngIf="p.cardNumber?.errors.required">Card
+                                                                            Number is required</div>
+                                                                        <div *ngIf="p.cardNumber.errors.minlength">Card
+                                                                            Number must be at least 14 numbers </div>
                                                                     </div>
                                                                     <div *ngIf="cardvalidate" class="cardvalidateerror">
-                                                                        <div *ngIf="cardvalidate">Card Number is not valid</div>
+                                                                        <div *ngIf="cardvalidate">Card Number is not
+                                                                            valid</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -950,33 +1065,60 @@
                                                         <div class="row">
                                                             <div class="col-6 col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="expiryMonth" [(ngModel)]="checkMonth" (change)="validateCard()" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="00" placeholder="Month" name="expiryMonth" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryMonth?.errors }" />
-                                                                    <div *ngIf="paymentSubmitted && p.expiryMonth?.errors" class="invalid-feedback">
-                                                                        <div *ngIf="p.expiryMonth?.errors.required">Expiry Month is required</div>
-                                                                        <div *ngIf="p.expiryMonth.errors.pattern">Invalid Month</div>
+                                                                    <input type="text" formControlName="expiryMonth"
+                                                                        [(ngModel)]="checkMonth"
+                                                                        (change)="validateCard()"
+                                                                        [showMaskTyped]="false"
+                                                                        [dropSpecialCharacters]="false" mask="00"
+                                                                        placeholder="Month" name="expiryMonth"
+                                                                        class="form-control"
+                                                                        [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryMonth?.errors }" />
+                                                                    <div *ngIf="paymentSubmitted && p.expiryMonth?.errors"
+                                                                        class="invalid-feedback">
+                                                                        <div *ngIf="p.expiryMonth?.errors.required">
+                                                                            Expiry Month is required</div>
+                                                                        <div *ngIf="p.expiryMonth.errors.pattern">
+                                                                            Invalid Month</div>
                                                                     </div>
-                                                                    <div *ngIf="monthError" class="invalid-feedback-customclass">
-                                                                      <div *ngIf="monthError">Month is not valid</div>
-                                                                  </div>
+                                                                    <div *ngIf="monthError"
+                                                                        class="invalid-feedback-customclass">
+                                                                        <div *ngIf="monthError">Month is not valid</div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-6 col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="expiryYear" [(ngModel)]="checkYear" (change)="validateCard()" placeholder="Year" name="expiryYear" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="0000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryYear?.errors }" />
-                                                                    <div *ngIf="paymentSubmitted && p.expiryYear?.errors" class="invalid-feedback">
-                                                                        <div *ngIf="p.expiryYear?.errors.required">Expiry Year is required</div>
+                                                                    <input type="text" formControlName="expiryYear"
+                                                                        [(ngModel)]="checkYear"
+                                                                        (change)="validateCard()" placeholder="Year"
+                                                                        name="expiryYear" [showMaskTyped]="false"
+                                                                        [dropSpecialCharacters]="false" mask="0000"
+                                                                        class="form-control"
+                                                                        [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryYear?.errors }" />
+                                                                    <div *ngIf="paymentSubmitted && p.expiryYear?.errors"
+                                                                        class="invalid-feedback">
+                                                                        <div *ngIf="p.expiryYear?.errors.required">
+                                                                            Expiry Year is required</div>
                                                                     </div>
-                                                                    <div *ngIf="yearError" class="invalid-feedback-customclass">
-                                                                      <div *ngIf="yearError">Year is not valid</div>
-                                                                  </div>
+                                                                    <div *ngIf="yearError"
+                                                                        class="invalid-feedback-customclass">
+                                                                        <div *ngIf="yearError">Year is not valid</div>
+                                                                    </div>
 
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="cardCVV" placeholder="CVV" name="cardCVV" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardCVV?.errors }" />
-                                                                    <div *ngIf="paymentSubmitted && p.cardCVV?.errors" class="invalid-feedback">
-                                                                        <div *ngIf="p.cardCVV?.errors.required">card CVV is required</div>
+                                                                    <input type="text" formControlName="cardCVV"
+                                                                        placeholder="CVV" name="cardCVV"
+                                                                        [showMaskTyped]="false"
+                                                                        [dropSpecialCharacters]="false" mask="000"
+                                                                        class="form-control"
+                                                                        [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardCVV?.errors }" />
+                                                                    <div *ngIf="paymentSubmitted && p.cardCVV?.errors"
+                                                                        class="invalid-feedback">
+                                                                        <div *ngIf="p.cardCVV?.errors.required">card CVV
+                                                                            is required</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -987,8 +1129,14 @@
                                                                 <ul class="conv-products mk-primary">
                                                                     <li>
                                                                         <div class="custom-control custom-radio">
-                                                                            <input type="checkbox" id="card-primary" formArrayName="isMakePrimaryCard" formControlName="isMakePrimaryCard" (change)="onCheckboxChange($event)" value="0" name="isMakePrimaryCard" class="custom-control-input">
-                                                                            <label class="custom-control-label" for="card-primary">
+                                                                            <input type="checkbox" id="card-primary"
+                                                                                formArrayName="isMakePrimaryCard"
+                                                                                formControlName="isMakePrimaryCard"
+                                                                                (change)="onCheckboxChange($event)"
+                                                                                value="0" name="isMakePrimaryCard"
+                                                                                class="custom-control-input">
+                                                                            <label class="custom-control-label"
+                                                                                for="card-primary">
                                                                                 Make primary card
                                                                             </label>
                                                                         </div>
@@ -1006,13 +1154,13 @@
                                                 <div class="heading-step1">
                                                     <h4>Billing Address</h4>
                                                     <span class="arrow-stepp">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
-                                                        viewBox="0 0 6.6 11.2">
-                                                        <path id="Path_2044" data-name="Path 2044"
-                                                            d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                            transform="translate(-630.6 -4.4)" />
-                                                    </svg>
-                                                </span>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                            height="11.2" viewBox="0 0 6.6 11.2">
+                                                            <path id="Path_2044" data-name="Path 2044"
+                                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                                transform="translate(-630.6 -4.4)" />
+                                                        </svg>
+                                                    </span>
                                                 </div>
                                             </ng-template>
                                             <ng-template ngbPanelContent>
@@ -1021,22 +1169,30 @@
                                                         <ul>
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="customRadio4" (change)="shippingAddressType('shippingAddress')" name="newCustomRadio" class="custom-control-input">
-                                                                    <label class="custom-control-label" for="customRadio4">
-                                                                    <div class="shipping-list-item">
-                                                                        <h4>Same as shipping address</h4>
-                                                                    </div>
-                                                                </label>
+                                                                    <input type="radio" id="customRadio4"
+                                                                        (change)="shippingAddressType('shippingAddress')"
+                                                                        name="newCustomRadio"
+                                                                        class="custom-control-input">
+                                                                    <label class="custom-control-label"
+                                                                        for="customRadio4">
+                                                                        <div class="shipping-list-item">
+                                                                            <h4>Same as shipping address</h4>
+                                                                        </div>
+                                                                    </label>
                                                                 </div>
                                                             </li>
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="customRadio5" (change)="shippingAddressType('newAddress')" type="radio" name="newCustomRadio" class="custom-control-input">
-                                                                    <label class="custom-control-label" for="customRadio5">
-                                                                    <div class="shipping-list-item">
-                                                                        <h4>Use different billing address</h4>
-                                                                    </div>
-                                                                </label>
+                                                                    <input type="radio" id="customRadio5"
+                                                                        (change)="shippingAddressType('newAddress')"
+                                                                        type="radio" name="newCustomRadio"
+                                                                        class="custom-control-input">
+                                                                    <label class="custom-control-label"
+                                                                        for="customRadio5">
+                                                                        <div class="shipping-list-item">
+                                                                            <h4>Use different billing address</h4>
+                                                                        </div>
+                                                                    </label>
                                                                 </div>
                                                             </li>
                                                         </ul>
@@ -1047,28 +1203,42 @@
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
-                                                                            <input type="text" formControlName="newStreetAddress" placeholder="Street address" name="newStreetAddress" class="form-control" />
+                                                                            <input type="text"
+                                                                                formControlName="newStreetAddress"
+                                                                                placeholder="Street address"
+                                                                                name="newStreetAddress"
+                                                                                class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <input type="text" formControlName="newCity" placeholder="City" name="newCity" class="form-control" />
+                                                                            <input type="text" formControlName="newCity"
+                                                                                placeholder="City" name="newCity"
+                                                                                class="form-control" />
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-6 col-md-4">
                                                                         <div class="form-group">
-                                                                            <input type="text" placeholder="State" name="newState" formControlName="newState" class="form-control" />
+                                                                            <input type="text" placeholder="State"
+                                                                                name="newState"
+                                                                                formControlName="newState"
+                                                                                class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-6 col-md-4">
                                                                         <div class="form-group">
-                                                                            <input type="number" placeholder="ZIP" name="newZip" formControlName="newZip" class="form-control" />
+                                                                            <input type="number" placeholder="ZIP"
+                                                                                name="newZip" formControlName="newZip"
+                                                                                class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
-                                                                            <input type="text" formControlName="newCountry" placeholder="Country" name="newCountry" class="form-control" />
+                                                                            <input type="text"
+                                                                                formControlName="newCountry"
+                                                                                placeholder="Country" name="newCountry"
+                                                                                class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1088,7 +1258,8 @@
 
                         <ngb-panel id="checkoutstep3" [disabled]="showPanel3 ? true:null">
                             <ng-template ngbPanelTitle>
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="24" height="24" viewBox="0 0 24 24">
                                     <defs>
                                         <clipPath id="clip-path">
                                             <rect width="24" height="24" fill="none" />
@@ -1121,23 +1292,28 @@
                                                 <h4>Have a promo code?</h4>
                                                 <p>{{promocodeMessage}}</p>
                                                 <span class="arrow-stepp">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
-                                                    viewBox="0 0 6.6 11.2">
-                                                    <path id="Path_2044" data-name="Path 2044"
-                                                        d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                        transform="translate(-630.6 -4.4)" />
-                                                </svg>
-                                            </span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
+                                                        viewBox="0 0 6.6 11.2">
+                                                        <path id="Path_2044" data-name="Path 2044"
+                                                            d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                            transform="translate(-630.6 -4.4)" />
+                                                    </svg>
+                                                </span>
                                             </div>
                                         </ng-template>
                                         <ng-template ngbPanelContent>
                                             <div class="content-card steps-inner shipping-address-form">
                                                 <div class="col-md-12 loyalty-form p-0 mb-3">
-                                                    <div [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                        <input type="text" [(ngModel)]="promocode_onetime" class="form-control" name="promo-enter" (focusout)="clearPromo($event)" [ngModelOptions]="{standalone: true}"/>
+                                                    <div
+                                                        [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                                        <input type="text" [(ngModel)]="promocode_onetime"
+                                                            class="form-control" name="promo-enter"
+                                                            (focusout)="clearPromo($event)"
+                                                            [ngModelOptions]="{standalone: true}" />
                                                         <label class="form-label">Promo Code</label>
-                                                        <span class="vali-promo" >{{promocodeMessage}}</span>
-                                                        <span class="btn-add-promo" (click)="addPromo()" *ngIf="addPromoIcon" >
+                                                        <span class="vali-promo">{{promocodeMessage}}</span>
+                                                        <span class="btn-add-promo" (click)="addPromo()"
+                                                            *ngIf="addPromoIcon">
 
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                                 height="14" viewBox="0 0 14 14">
@@ -1149,17 +1325,23 @@
                                                         </span>
                                                         <span class="btn-add-promo" *ngIf="!addPromoIcon">
 
-                                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
+                                                                height="24" viewBox="0 0 24 24">
                                                                 <defs>
-                                                                <clipPath id="clip-path">
-                                                                <rect width="24" height="24" fill="none"/>
-                                                                </clipPath>
+                                                                    <clipPath id="clip-path">
+                                                                        <rect width="24" height="24" fill="none" />
+                                                                    </clipPath>
                                                                 </defs>
-                                                                <g id="Icon_Done_Rounded" data-name="Icon / Done / Rounded" opacity="0.5" clip-path="url(#clip-path)">
-                                                                <rect id="Box" width="24" height="24" fill="none"/>
-                                                                <path id="Path_2036" data-name="Path 2036" d="M822.7,13.9l-3.5-3.5a.967.967,0,0,0-1.4,0,.967.967,0,0,0,0,1.4L822,16a.967.967,0,0,0,1.4,0L834,5.4A.967.967,0,0,0,834,4a.967.967,0,0,0-1.4,0Z" transform="translate(-814 2)"/>
+                                                                <g id="Icon_Done_Rounded"
+                                                                    data-name="Icon / Done / Rounded" opacity="0.5"
+                                                                    clip-path="url(#clip-path)">
+                                                                    <rect id="Box" width="24" height="24" fill="none" />
+                                                                    <path id="Path_2036" data-name="Path 2036"
+                                                                        d="M822.7,13.9l-3.5-3.5a.967.967,0,0,0-1.4,0,.967.967,0,0,0,0,1.4L822,16a.967.967,0,0,0,1.4,0L834,5.4A.967.967,0,0,0,834,4a.967.967,0,0,0-1.4,0Z"
+                                                                        transform="translate(-814 2)" />
                                                                 </g>
-                                                                </svg>
+                                                            </svg>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -1219,7 +1401,8 @@
                                                                     <p class="you-sav">You Saved</p>
                                                                 </td>
                                                                 <td>
-                                                                  <p>-${{(totalDiscount+onetimepurchasediscount) | number:'.1-2'}}</p>
+                                                                    <p>-${{(totalDiscount+onetimepurchasediscount) |
+                                                                        number:'.1-2'}}</p>
                                                                     <!-- <p class="you-sav">-${{totalDiscount | number:'.1-2'}}
                                                                     </p>-->
                                                                 </td>
@@ -1229,7 +1412,8 @@
                                                                     <p class="you-pay">You pay</p>
                                                                 </td>
                                                                 <td>
-                                                                    <p class="you-pay">${{cartSummaryTotal | number:'.1-2'}}
+                                                                    <p class="you-pay">${{cartSummaryTotal |
+                                                                        number:'.1-2'}}
                                                                     </p>
                                                                 </td>
                                                             </tr>
@@ -1276,7 +1460,9 @@
         <div class="modal-body">
             <div class="modal-content-conversion">
                 <div class="desc-loyalty">
-                    <p>Loyalty Points are earned through the Loyalty Rewards Program. When subscriptions totaling $50+ are shipped monthly, up to 20% of the order value can be earned back in Loyalty Points! Points have a dollar for dollar value, and can
+                    <p>Loyalty Points are earned through the Loyalty Rewards Program. When subscriptions totaling $50+
+                        are shipped monthly, up to 20% of the order value can be earned back in Loyalty Points! Points
+                        have a dollar for dollar value, and can
                         be used on one-time purchases of any standard products.
                     </p>
                     <p>Start earning rewards by creating your subscription today!</p>
@@ -1298,7 +1484,8 @@
             <h3 class="referrer-title" id="modal-basic-title">Who referred you?</h3>
             <div class="search-bar-on">
                 <div class="form-group">
-                    <input type="text" #myInput class="form-control" value="" [(ngModel)]="filterTerm" (input)="filterItem(myInput.value)" placeholder="Find referral (Optional)" />
+                    <input type="text" #myInput class="form-control" value="" [(ngModel)]="filterTerm"
+                        (input)="filterItem(myInput.value)" placeholder="Find referral (Optional)" />
                     <span class="search">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16.947" height="17.048"
                             viewBox="0 0 16.947 17.048">
@@ -1328,7 +1515,8 @@
                                             <h4 class="media-heading">{{referrer.referrer_name}}, ID #{{referrer.id}}
                                             </h4>
                                             <div class="refrrer-info">
-                                                <p class="wink-link">Wink Link:<span class="wlink-data">{{referrer.wink_link}}</span></p>
+                                                <p class="wink-link">Wink Link:<span
+                                                        class="wlink-data">{{referrer.wink_link}}</span></p>
                                                 <p class="location-referrer">{{referrer.referrer_location}}</p>
                                             </div>
                                         </div>
