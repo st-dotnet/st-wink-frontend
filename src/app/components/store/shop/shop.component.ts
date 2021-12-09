@@ -29,7 +29,7 @@ export class ShopComponent implements OnInit {
   quantity: any[] = [];
   years: any[] = [];
   showSubscription = false;
-  quantityValue:number= 1;
+  quantityValue: number = 1;
   cartTypes: any[] = [];
   productPrice: number = 0;
   filterValue: number = 1;
@@ -55,7 +55,7 @@ export class ShopComponent implements OnInit {
   orderType: any;
   cartItems: any[] = [];
   showOtherTextbox = null;
-  selectedval:any;
+  selectedval: any;
 
   constructor(
     private sessionService: SessionService,
@@ -165,7 +165,6 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.filterTitle = this.sessionService.getSessionItem("categorySelect");
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.route.params.subscribe(params => {
@@ -250,10 +249,7 @@ export class ShopComponent implements OnInit {
   }
 
   open(content: any, product: any, adultCheck: any) {
-
-
     //this.bundle = 'single';
-    debugger;
     this.showActualPrice = false;
     if (this.showAgePopUp == true) {
       this.reProduct = product;
@@ -261,7 +257,6 @@ export class ShopComponent implements OnInit {
         this.closeResult = `Closed with: ${result}`;
         alert(this.closeResult);
       }, (reason) => {
-
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         //this.sessionService.setSessionObject("ignore_Comfort_patch","ComfortPatch");
       });
@@ -274,16 +269,14 @@ export class ShopComponent implements OnInit {
       this.selectDelivery = 1;
       this.subscriptionModel = 'singleDelivery';
       this.subscriptionModelduration = undefined;
-       product.quantity=1;
-       this.quantityValue=1;
+      product.quantity = 1;
+      this.quantityValue = 1;
       this.modalService.open(content, this.modalOptions).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
     }
-
-
   }
 
   private getDismissReason(reason: any): string {
@@ -310,7 +303,6 @@ export class ShopComponent implements OnInit {
   }
 
   nextToMove(content: any) {
-
     this.showAgePopUp = false;
     // this.open(content, this.reProduct, "");
     //
@@ -353,17 +345,17 @@ export class ShopComponent implements OnInit {
   }
 
   addToCart(product: any) {
-
+    var user = this.sessionService.getSessionObject('user');
 
     // if(this.sessionService.getSessionObject("ignore_Comfort_patch")){
     //   this.toastrService.error('Sorry You are Under 18.');
     //   return;
     // }
 
-   if(product.quantityModel==0 ||product.quantityModel==undefined )
-    return this.toastrService.error("Please select the quantity");
+    if (product.quantityModel == 0 || product.quantityModel == undefined)
+      return this.toastrService.error("Please select the quantity");
 
-    this.productItems = this.sessionService.getSessionObject('productCartItems');
+    this.productItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
     if (this.selectDelivery == 1 && this.subscriptionModelduration == undefined) {
       return this.toastrService.error("Please select the subscription plan");
     }
@@ -411,7 +403,6 @@ export class ShopComponent implements OnInit {
       product.orderType = ShoppingCartItemType.AutoOrder;
     }
     if (this.productItems) {
-      debugger;
       //No percentage calucation
       if (product.bundle == 'single' && product.selectDelivery == 0 && product.subscriptionModel == 'singleDelivery') {
         let single_singledelivery = this.productItems.find(x => x.itemCode == product.itemCode && x.bundle == 'single' && x.selectDelivery == 0 && x.subscriptionModel == 'singleDelivery')
@@ -421,13 +412,12 @@ export class ShopComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel = parseInt(single_singledelivery.quantityModel) + parseInt( product.quantityModel);
-          product.extraQuantity =  product.quantityModel;
+          product.quantityModel = parseInt(single_singledelivery.quantityModel) + parseInt(product.quantityModel);
+          product.extraQuantity = product.quantityModel;
 
-            this.productItems.push(product);
-            this.toastrService.success('Product added successfully');
-            this.modalService.dismissAll();
-
+          this.productItems.push(product);
+          this.toastrService.success('Product added successfully');
+          this.modalService.dismissAll();
         }
         else {
           this.productItems.push(product);
@@ -445,7 +435,7 @@ export class ShopComponent implements OnInit {
             this.productItems.splice(index, 1);
           }
           product.quantityModel = parseInt(single_subscriptiondelivery.quantityModel) + parseInt(product.quantityModel);
-          product.extraQuantity =  product.quantityModel;
+          product.extraQuantity = product.quantityModel;
           if (product.quantityModel > product.quantityLimit) {
             // this.productItems.push(old_single_subscriptiondelivery);
             // this.toastrService.error('You Exceed your Quantity Limit 4');
@@ -476,7 +466,7 @@ export class ShopComponent implements OnInit {
             this.productItems.splice(index, 1);
           }
           product.quantityModel = parseInt(multiple_singledelivery.quantityModel) + parseInt(product.quantityModel);
-          product.extraQuantity =  product.quantityModel;
+          product.extraQuantity = product.quantityModel;
           if (product.quantityModel > product.quantityLimit) {
             // this.productItems.push(old_multiple_singledelivery);
             // this.toastrService.error('You Exceed your Quantity Limit 4');
@@ -507,7 +497,7 @@ export class ShopComponent implements OnInit {
             this.productItems.splice(index, 1);
           }
           product.quantityModel = parseInt(multiple_subscriptiondelivery.quantityModel) + parseInt(product.quantityModel);
-           product.extraQuantity =  product.quantityModel;
+          product.extraQuantity = product.quantityModel;
           if (product.quantityModel > product.quantityLimit) {
             // this.productItems.push(old_multiple_subscriptiondelivery);
             // this.toastrService.error('You Exceed your Quantity Limit 4');
@@ -530,13 +520,13 @@ export class ShopComponent implements OnInit {
       }
       this.sessionService.cartSession(this.productItems);
 
-      this.sessionService.setSessionObject('productCartItems', this.productItems);
+      this.sessionService.setSessionObject('productCartItems-' + user.loginName, this.productItems);
     }
     else {
       // Object.entries(items).forEach(([key, value]) => { product[key] = value });
       this.productCartItems.push(product);
       this.sessionService.cartSession(this.productCartItems);
-      this.sessionService.setSessionObject('productCartItems', this.productCartItems);
+      this.sessionService.setSessionObject('productCartItems-' + user.loginName, this.productCartItems);
       this.toastrService.success('Product added successfully');
       this.modalService.dismissAll();
     }
@@ -580,15 +570,11 @@ export class ShopComponent implements OnInit {
   }
 
   quantityForOneTime(productDetail: any, selectedvalue: number) {
-
     this.quantityCalculation(productDetail, selectedvalue);
   }
 
   quantitychanged(cartitem: any, selectedvalue: number) {
-    debugger;
-
-    if(selectedvalue<=10)
-    {
+    if (selectedvalue <= 10) {
       $("#islectedval").val(selectedvalue);
     }
     this.quantityCalculation(cartitem, selectedvalue);
@@ -605,14 +591,14 @@ export class ShopComponent implements OnInit {
   }
 
   quantityCalculation(productDetail: any, selectedvalue: number) {
-   // debugger;
-    this.cartItems = this.sessionService.getSessionObject('productCartItems');
-    if (selectedvalue <=10 ) {
+    var user = this.sessionService.getSessionObject('user');
+    this.cartItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
+    if (selectedvalue <= 10) {
       productDetail.extraQuantity = null;
     }
-     else{
-       productDetail.extraQuantity = selectedvalue;
-     }
+    else {
+      productDetail.extraQuantity = selectedvalue;
+    }
     if (selectedvalue != null && selectedvalue != undefined) {
       if (selectedvalue == 0 || selectedvalue > 10) {
 
@@ -633,6 +619,6 @@ export class ShopComponent implements OnInit {
       }
     }
     this.product.quantityModel = +selectedvalue;
-   // this.sessionService.setSessionObject('productCartItems', this.cartItems);
+    // this.sessionService.setSessionObject('productCartItems', this.cartItems);
   }
 }
