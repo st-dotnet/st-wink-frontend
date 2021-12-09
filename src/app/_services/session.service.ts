@@ -19,7 +19,8 @@ export class SessionService {
     private spinner: NgxSpinnerService,) {
     this.userSubject$ = new BehaviorSubject<any>(this.getSessionObject('user'));
     this.user$ = this.userSubject$.asObservable();
-    this.cartItems$ = new BehaviorSubject<any>(this.getSessionObject('productCartItems') ?? []);
+    var user = this.getSessionObject('user');
+    this.cartItems$ = new BehaviorSubject<any>(this.getSessionObject('productCartItems-'+user.loginName) ?? []);
     this.cart$ = this.cartItems$.asObservable();
   }
 
@@ -36,6 +37,7 @@ export class SessionService {
   }
 
   getSessionObject(key: any) {
+    debugger;
     return JSON.parse(localStorage.getItem(key));
   }
 
@@ -64,7 +66,7 @@ export class SessionService {
     setTimeout(() => {
       // remove user from local storage and set current user to null
       this.userSubject$.next(null);
-      this.clearSession();
+      //this.clearSession();
       this.router.navigate(['/sign-in']);
       this.spinner.hide();
     }, 1000);

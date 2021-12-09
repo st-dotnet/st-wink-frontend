@@ -2,17 +2,20 @@
     <nav class="navbar navbar-expand-lg start-demo-tour">
         <div class="container">
             <div class="logo-center">
-                <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img src="../../assets/logo-wink.png" /></a>
+                <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img
+                        src="../../assets/logo-wink.png" /></a>
             </div>
-            <button (click)="toggleDisplayDivIf()" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
-      </button>
+            <button (click)="toggleDisplayDivIf()" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+            </button>
             <div id="main-menu" class="show-mob">
                 <ul class="right-menu ">
                     <li><a (click)="searchProduct()"><i class="fa fa-search"></i></a></li>
 
                     <li class="cart-item"><a [routerLink]="['/store/cart']"><i class="fa fa-shopping-bag"></i><span
-                *ngIf="cartItems" class="cart-info">{{cartItems}}</span></a></li>
+                                *ngIf="cartItems" class="cart-info">{{cartItems}}</span></a></li>
 
                 </ul>
             </div>
@@ -23,7 +26,8 @@
                         <a class="nav-link" [routerLink]="['/store']" [routerLinkActive]="['active']">Shop</a>
                     </li>
                     <li class="nav-item Blog-demo-tour">
-                        <a class="nav-link" href="https://blog.winknaturals.com/" target=_blank [routerLinkActive]="['active']">Blog</a>
+                        <a class="nav-link" href="https://blog.winknaturals.com/" target=_blank
+                            [routerLinkActive]="['active']">Blog</a>
                     </li>
                     <li class="nav-item About-demo-tour">
                         <a class="nav-link" [routerLink]="['/about']" [routerLinkActive]="['active']">About</a>
@@ -44,43 +48,51 @@
               </li> -->
                 </ul>
                 <div class="logo-center">
-                    <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img src="../../assets/logo-wink.png" /></a>
+                    <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img
+                            src="../../assets/logo-wink.png" /></a>
                 </div>
                 <ul class="right-menu">
                     <li class="Search-demo-tour-class">
                         <a [routerLink]="['/store/search-products']"><i class="fa fa-search"></i></a>
                     </li>
-                    <li class="cart-item Cart-Item-demo-tour-class"><a [routerLink]="['/store/cart']"><i class="fa fa-shopping-bag"></i><span
-                *ngIf="cartItems" class="cart-info">{{cartItems}}</span></a></li>
-                    <li class="Login-demo-tour-class" *ngIf="!user"><a [routerLink]="['/sign-in']" class="log-links">SIGN IN</a></li>
-                    <li class="LogOut-demo-tour-class" *ngIf="user"><a (click)="logout()" class="log-links">Log out</a></li>
+                    <li class="cart-item Cart-Item-demo-tour-class"><a [routerLink]="['/store/cart']"><i
+                                class="fa fa-shopping-bag"></i><span *ngIf="cartItems"
+                                class="cart-info">{{cartItems}}</span></a></li>
+                    <li class="Login-demo-tour-class" *ngIf="!user"><a [routerLink]="['/sign-in']"
+                            class="log-links">SIGN IN</a></li>
+                    <li class="LogOut-demo-tour-class" *ngIf="user"><a (click)="logout()" class="log-links">Log out</a>
+                    </li>
                 </ul>
             </div>
-            <div class="collapse navbar-collapse m" id="main-menu" *ngIf="isMobileMenu" [className]="toggleDisplayDivIf ?  'showmenu' : 'hidemenu'">
+            <div class="collapse navbar-collapse m" id="main-menu" *ngIf="isMobileMenu"
+                [className]="toggleDisplayDivIf ?  'showmenu' : 'hidemenu'">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/store']" [routerLinkActive]="['active']" (click)="isMobileMenu=false;">Shop</a>
+                        <a class="nav-link" [routerLink]="['/store']" [routerLinkActive]="['active']"
+                            (click)="isMobileMenu=false;">Shop</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://blog.winknaturals.com/">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/about']" [routerLinkActive]="['active']" (click)="isMobileMenu=false;">About</a>
+                        <a class="nav-link" [routerLink]="['/about']" [routerLinkActive]="['active']"
+                            (click)="isMobileMenu=false;">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/enrollment']" [routerLinkActive]="['active']" (click)="isMobileMenu=false;">Join</a>
+                        <a class="nav-link" [routerLink]="['/enrollment']" [routerLinkActive]="['active']"
+                            (click)="isMobileMenu=false;">Join</a>
                     </li>
-                    <li class="nav-item" *ngIf="!user"><a [routerLink]="['/sign-in']" class="log-links nav-link" (click)="isMobileMenu=false;">SIGN IN</a></li>
-                    <li class="nav-item" *ngIf="user"><a (click)="logout()" class="log-links nav-link" (click)="isMobileMenu= false;">Log out</a></li>
+                    <li class="nav-item" *ngIf="!user"><a [routerLink]="['/sign-in']" class="log-links nav-link"
+                            (click)="isMobileMenu=false;">SIGN IN</a></li>
+                    <li class="nav-item" *ngIf="user"><a (click)="logout()" class="log-links nav-link"
+                            (click)="isMobileMenu= false;">Log out</a></li>
 
                 </ul>
                 <div class="logo-center">
-                    <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img src="../../assets/logo-wink.png" /></a>
+                    <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img
+                            src="../../assets/logo-wink.png" /></a>
                 </div>
             </div>
-
-
-
             <!-- <div class="searchOptionsbox" *ngIf="isSearchshow">
         <div class="close-ico">
           <a (click)="closeSearchbar()">

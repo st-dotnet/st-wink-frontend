@@ -26,7 +26,7 @@ export class SearchproductComponent implements OnInit {
     windowClass: 'prodview-modal'
   };
   bundle: string;
-  selectDelivery: CartTypeEnum=0;
+  selectDelivery: CartTypeEnum = 0;
   subscriptionModel: string;
   subscriptionModelduration: string;
   years: { id: string; name: string; value: string; }[];
@@ -35,103 +35,102 @@ export class SearchproductComponent implements OnInit {
   delivery: { id: string; name: string; value: string; }[];
   productItems: any;
   productItem: any;
-  productCartItems: any[]=[];
+  productCartItems: any[] = [];
   cartTypes: any[] = [];;
 
   //showAgePopUp = false;
   reProduct: any;
+  user: any;
 
   constructor(private sessionService: SessionService,
     private modalService: NgbModal, private shopService: ShopService,
     private spinner: NgxSpinnerService, private router: Router,
     private toastrService: ToastrService) {
-      this.bundles = [
-        {
-          id: '1',
-          name: 'Single',
-          value: 'single'
-        },
-        {
-          id: '2',
-          name: '2-pk (Save 5%)',
-          value: 'multiple'
-        }
-      ]
-      this.delivery = [
-        {
-          id: '3',
-          name: 'Single Delivery',
-          value: 'singleDelivery'
-        },
-        {
-          id: '4',
-          name: 'Subscribe & Save 15%',
-          value: 'subscribe'
-        }
-      ]
-      this.quantity = [
-        {
-          id: '1',
-          name: 'Qty 1',
-          value: 1
-        },
-        {
-          id: '2',
-          name: 'Qty 2',
-          value: 2
-        },
-        {
-          id: '3',
-          name: 'Qty 3',
-          value: 3
-        },
-        {
-          id: '4',
-          name: 'Qty 4',
-          value: 4
-        }
-      ]
-      this.years = [
-        {
-          id: '1',
-          name: 'Every Month',
-          value: 'everyMonth'
-        },
-        {
-          id: '2',
-          name: 'Every Week',
-          value: 'everyWeek'
-        },
-        {
-          id: '3',
-          name: 'Every Year',
-          value: 'everyYear'
-        }
-      ]
-    }
+    this.bundles = [
+      {
+        id: '1',
+        name: 'Single',
+        value: 'single'
+      },
+      {
+        id: '2',
+        name: '2-pk (Save 5%)',
+        value: 'multiple'
+      }
+    ]
+    this.delivery = [
+      {
+        id: '3',
+        name: 'Single Delivery',
+        value: 'singleDelivery'
+      },
+      {
+        id: '4',
+        name: 'Subscribe & Save 15%',
+        value: 'subscribe'
+      }
+    ]
+    this.quantity = [
+      {
+        id: '1',
+        name: 'Qty 1',
+        value: 1
+      },
+      {
+        id: '2',
+        name: 'Qty 2',
+        value: 2
+      },
+      {
+        id: '3',
+        name: 'Qty 3',
+        value: 3
+      },
+      {
+        id: '4',
+        name: 'Qty 4',
+        value: 4
+      }
+    ]
+    this.years = [
+      {
+        id: '1',
+        name: 'Every Month',
+        value: 'everyMonth'
+      },
+      {
+        id: '2',
+        name: 'Every Week',
+        value: 'everyWeek'
+      },
+      {
+        id: '3',
+        name: 'Every Year',
+        value: 'everyYear'
+      }
+    ]
+  }
 
+  nextToMove(content: any) {
+    //this.showAgePopUp = false;
+    this.router.navigate(['/store/product', this.reProduct.itemCode])
+    //this.showAgePopUp = true;
 
-    nextToMove(content: any) {
-      //this.showAgePopUp = false;
-      this.router.navigate(['/store/product', this.reProduct.itemCode])
-      //this.showAgePopUp = true;
-
-    }
+  }
 
   ngOnInit(): void {
+    this.user = this.sessionService.getSessionObject('user');
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.bundle = 'single';
     this.selectDelivery = 0;
     this.subscriptionModel = 'singleDelivery';
   }
 
-
   getSearchProduct() {
-
-    if(this.searchText == undefined || this.searchText == ""  ){
+    if (this.searchText == undefined || this.searchText == "") {
       return this.toastrService.error("Please fill the input")
     }
-    else{
+    else {
       this.spinner.show();
       this.shopService.searchProduct(this.searchText).subscribe(result => {
         this.shopProductModels = result;
@@ -146,8 +145,8 @@ export class SearchproductComponent implements OnInit {
     //this.router.navigate(['']{});
   }
 
-  open(content: any, product: any,adult_check:any) {
-    if (product.itemID=="436" || product.itemID=="595" || product.itemID=="629") {
+  open(content: any, product: any, adult_check: any) {
+    if (product.itemID == "436" || product.itemID == "595" || product.itemID == "629") {
       this.reProduct = product;
       this.modalService.open(adult_check, this.modalOptions).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
@@ -158,20 +157,21 @@ export class SearchproductComponent implements OnInit {
       });
     }
     //this.bundle = 'single';
-    else{
-    this.product = product;
-    this.productPrice = product.price;
-    this.showSubscription = false;
-    this.bundle = 'single';
-    this.selectDelivery = 0;
-    this.subscriptionModel = 'singleDelivery';
-    this.modalService.open(content, this.modalOptions).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-   }
+    else {
+      this.product = product;
+      this.productPrice = product.price;
+      this.showSubscription = false;
+      this.bundle = 'single';
+      this.selectDelivery = 0;
+      this.subscriptionModel = 'singleDelivery';
+      this.modalService.open(content, this.modalOptions).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }
   }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -192,11 +192,10 @@ export class SearchproductComponent implements OnInit {
   }
 
   addToCart(product: any) {
-
-    this.productItems = this.sessionService.getSessionObject('productCartItems');
-    if(this.selectDelivery == 1 && this.subscriptionModelduration == undefined){
+    this.productItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
+    if (this.selectDelivery == 1 && this.subscriptionModelduration == undefined) {
       return this.toastrService.error("Please select the subscription plan");
-      }
+    }
     if (this.selectDelivery == 1) {
       this.subscriptionModel = this.subscriptionModelduration;
     }
@@ -328,7 +327,7 @@ export class SearchproductComponent implements OnInit {
           }
           product.quantityModel = multiple_subscriptiondelivery.quantityModel + +product.quantityModel;
 
-          if(product.quantityModel > product.quantityLimit) {
+          if (product.quantityModel > product.quantityLimit) {
             this.productItems.push(old_multiple_subscriptiondelivery);
             this.toastrService.error('You Exceed your Quantity Limit 4');
           }
@@ -345,13 +344,13 @@ export class SearchproductComponent implements OnInit {
         }
       }
       this.sessionService.cartSession(this.productItems);
-      this.sessionService.setSessionObject('productCartItems', this.productItems);
+      this.sessionService.setSessionObject('productCartItems-' + this.user.loginName, this.productItems);
     }
     else {
       // Object.entries(items).forEach(([key, value]) => { product[key] = value });
       this.productCartItems.push(product);
       this.sessionService.cartSession(this.productCartItems);
-      this.sessionService.setSessionObject('productCartItems', this.productCartItems);
+      this.sessionService.setSessionObject('productCartItems-' + this.user.loginName, this.productCartItems);
       this.toastrService.success('Product added successfully');
       this.modalService.dismissAll();
     }
@@ -374,7 +373,6 @@ export class SearchproductComponent implements OnInit {
   }
 
   checkDelivery(type: CartTypeEnum) {
-
     switch (type) {
       case CartTypeEnum.OneTimePrice:
         this.showSubscription = false;

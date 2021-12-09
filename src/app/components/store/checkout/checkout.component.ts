@@ -125,6 +125,7 @@ export class CheckoutComponent implements OnInit {
   yearError: boolean = false;
   code: string;
   onetimepurchasediscount: number;
+  user: any;
 
   constructor(
     private modalService: NgbModal,
@@ -139,6 +140,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user = this.sessionService.getSessionObject('user');
     this.onetimepurchasediscount = parseFloat(localStorage.getItem("One_time_purchage_discount"));
     this.isShipmentMethod = 1;
     this.UserDetails = JSON.parse(localStorage.getItem('user'));
@@ -156,7 +158,7 @@ export class CheckoutComponent implements OnInit {
     this.unSubscriptionTotalPrice = this.sessionService.getSessionObject(
       'unSubscriptionTotal'
     );
-    this.cartItems = this.sessionService.getSessionObject('productCartItems');
+    this.cartItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
     this.newAddress = JSON.parse(localStorage.getItem('newShippingAddress'))
       ? JSON.parse(localStorage.getItem('newShippingAddress'))
       : '';
@@ -239,7 +241,6 @@ export class CheckoutComponent implements OnInit {
           }
         }
       }).then((hostedFieldsInstance) => {
-
         this.hostedFieldsInstance = hostedFieldsInstance;
 
         hostedFieldsInstance.on('focus', (event) => {
@@ -766,7 +767,7 @@ export class CheckoutComponent implements OnInit {
     this.totalDiscount = 0;
     this.cartSummaryTotal = 0;
     this.orderTotal = this.getOrderTotal();
-    this.cartItems = this.sessionService.getSessionObject('productCartItems');
+    this.cartItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
     //subsciption item List
     this.subscriptionCartItems = this.cartItems.filter(
       (x) => x.selectDelivery == CartTypeEnum.Subscription
@@ -917,7 +918,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit() {
-
     this.submitted = true;
     var startDate;
     if (this.startDate == 'undefined') {
@@ -1032,6 +1032,7 @@ export class CheckoutComponent implements OnInit {
     // submit payload.nonce to the server from here
 
   }
+
   creditCardValidator(control: any) {
     var card = control.target.value.replace(/ /g, "");
     // Visa, MasterCard, American Express, Diners Club, Discover, JCB
@@ -1059,6 +1060,5 @@ export class CheckoutComponent implements OnInit {
       this.monthError = true;
     }
   }
-
 
 }

@@ -53,7 +53,7 @@ export class CartComponent implements OnInit {
   productItems: any;
   isShowSpecial = true;
   specialOffer: any[];
-  userLogin: any;
+  user: any;
   show: boolean = false;
   promocodeMessage: string = "No code applied";
   addPromoIcon: boolean = true;
@@ -100,8 +100,8 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userLogin = this.sessionService.getSessionObject("user");
-    if (this.userLogin) {
+    this.user = this.sessionService.getSessionObject("user");
+    if (this.user) {
       this.show = true;
       if (this.sessionService.getSessionItem('promoCode')) { this.addPromo(); }
     }
@@ -121,7 +121,7 @@ export class CartComponent implements OnInit {
   }
 
   onLoad() {
-    this.cartItems = this.sessionService.getSessionObject('productCartItems');
+    this.cartItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
     this.cartItems.forEach(function (item) {
       if (item.quantityModel > 10 || item.quantityModel == 0) {
 
@@ -256,7 +256,7 @@ export class CartComponent implements OnInit {
   spacialItemAdd() {
     this.isShowSpecial = false;
 
-    this.productItems = this.sessionService.getSessionObject('productCartItems');
+    this.productItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
     const items = {
       bundle: 'specialOffer',
       selectDelivery: 0,
@@ -275,7 +275,7 @@ export class CartComponent implements OnInit {
     this.productItems.push(this.specialItem);
 
     this.sessionService.cartSession(this.productItems);
-    this.sessionService.setSessionObject('productCartItems', this.productItems);
+    this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.productItems);
 
     //this.oneTimePriceCartItems.push(this.specialItem);
     this.onLoad();
@@ -344,11 +344,11 @@ export class CartComponent implements OnInit {
   //Remove Item From Cart List
   removeItem(cartItem: any, type: any, bundle: string) {
     this.spinner.show();
-    this.sessionService.removeSessionItem('productCartItems');
+    this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
     switch (type) {
       case 0:
         this.cartItems = this.cartItems.filter(x => x !== cartItem);
-        this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
+        this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems) : this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
         this.updateCartSession();
         let cartItem0 = this.sessionService.getSessionObject("productCartItems");
         if (cartItem0 == null || cartItem0.length <= 0) {
@@ -357,7 +357,7 @@ export class CartComponent implements OnInit {
         break;
       case 1:
         this.cartItems = this.cartItems.filter(x => x !== cartItem);
-        this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
+        this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems) : this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
         this.updateCartSession();
         let cartItem1 = this.sessionService.getSessionObject("productCartItems");
         if (cartItem1 == null || cartItem1.length <= 0) {
@@ -381,7 +381,7 @@ export class CartComponent implements OnInit {
   }
 
   updateCartSession() {
-    const items = this.sessionService.getSessionObject('productCartItems');
+    const items = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
     this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
     this.oneTimePriceCartItemsCount = this.oneTimePriceCartItems.length;
@@ -391,7 +391,7 @@ export class CartComponent implements OnInit {
 
   checkOutItem() {
     if (this.sessionService.getSessionItem('user')) {
-      this.sessionService.setSessionObject('productCartItems', this.cartItems);
+      this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems);
       if (this.cartItems.length > 0)
         this.router.navigate(["/store/checkout"]);
       else
@@ -437,7 +437,7 @@ export class CartComponent implements OnInit {
 
         }
       }
-      this.sessionService.setSessionObject('productCartItems', this.cartItems);
+      this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems);
       this.GetOneTimeSubDiscount();
 
     }
@@ -462,7 +462,7 @@ export class CartComponent implements OnInit {
     if (this.isOtherValue)
       $("#showinput" + this.showOtherTextbox).show();
     this.orderTotal = this.getOrderTotal();
-    this.cartItems = this.sessionService.getSessionObject('productCartItems');
+    this.cartItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
     //subsciption item List
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
     //onetime item list

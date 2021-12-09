@@ -17,40 +17,37 @@ export class AppHeaderComponent implements OnInit {
     tourId: 'purchases-tour',
     useOrb: false,
     steps: [
-        {
-            title: 'Welcome to the Guided Tour Demo',
-            selector: '.start-demo-tour',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
-            orientation: Orientation.Bottom
+      {
+        title: 'Welcome to the Guided Tour Demo',
+        selector: '.start-demo-tour',
+        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
+        orientation: Orientation.Bottom
 
-        },
-        {
-            title: 'Shop',
-            selector: '.Shop-demo-tour',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
-            orientation: Orientation.Right
-
-        },
-        {
-            title: 'Blog',
-            selector: '.Blog-demo-tour',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
-            orientation: Orientation.Right
-
-        },
-        {
-            title: 'About Us',
-            selector: '.About-demo-tour',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
-            orientation: Orientation.Right
-
-        },
-        {
-          title: 'Join',
-          selector: '.Join-demo-tour',
-          content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
-          orientation: Orientation.Right
-        },
+      },
+      {
+        title: 'Shop',
+        selector: '.Shop-demo-tour',
+        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
+        orientation: Orientation.Right
+      },
+      {
+        title: 'Blog',
+        selector: '.Blog-demo-tour',
+        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
+        orientation: Orientation.Right
+      },
+      {
+        title: 'About Us',
+        selector: '.About-demo-tour',
+        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
+        orientation: Orientation.Right
+      },
+      {
+        title: 'Join',
+        selector: '.Join-demo-tour',
+        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
+        orientation: Orientation.Right
+      },
       // {
       //   title: 'Product',
       //   selector: '.Product-demo-tour-class',
@@ -58,38 +55,32 @@ export class AppHeaderComponent implements OnInit {
       //   orientation: Orientation.Right
 
       // },
-
       {
         title: 'Search',
         selector: '.Search-demo-tour-class',
         content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
         orientation: Orientation.Right
       },
-
       {
         title: 'Cart Item',
         selector: '.Cart-Item-demo-tour-class',
         content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
         orientation: Orientation.Right
-
       },
       // {
       //   title: 'LogOut',
       //   selector: '.LogOut-demo-tour-class',
       //   content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
       //   orientation: Orientation.Right
-
       // },
       {
         title: 'Login',
         selector: '.Login-demo-tour-class',
         content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum itaque eos nulla iste laboriosam nemo tempore omnis quaerat enim illum aut, necessitatibus possimus labore veniam accusantium cum, alias dignissimos voluptate.',
         orientation: Orientation.Right
-
       }
-
     ]
-};
+  };
 
   user: any;
   windowWidth: number;
@@ -97,44 +88,42 @@ export class AppHeaderComponent implements OnInit {
   isDesktopMenu: boolean = false;
   isSearchshow: boolean = false;
   cartItems: any = 0;
-  searchText:any;
+  searchText: any;
   ipAddress = '';
 
-  constructor(private sessionService: SessionService,private guidedTourService: GuidedTourService,private http:HttpClient,
+  constructor(private sessionService: SessionService, private guidedTourService: GuidedTourService, private http: HttpClient,
     private router: Router) {
     this.sessionService.user$.subscribe(x => this.user = x);
     this.windowWidth = window.innerWidth;
   }
 
-   public RestartTour() {
-    setTimeout(() => {
-      this.guidedTourService.startTour(this.dashboardTour);
-  }, 1000);
-}
-ChecktourSession()
-{
-      if(localStorage.getItem("IsVisted"))
-      {
-
-      }
-       else
-         {
-          //this.http.get("http://api.ipify.org/?format=json").subscribe((res:any)=>{
-            //this.ipAddress=res;
-          localStorage.setItem("IsVisted","visit");
-          this.RestartTour();
-       //});
-  }
-}
   ngOnInit(): void {
-  // localStorage.setItem("IsVisted","");
+    // localStorage.setItem("IsVisted","");
     this.ChecktourSession();
     this.sessionService.cart$.subscribe(x => this.cartItems = x.length);
     if (this.windowWidth > 992) {
       this.isDesktopMenu = true;
       this.isMobileMenu = false;
     }
+  }
 
+  public RestartTour() {
+    setTimeout(() => {
+      this.guidedTourService.startTour(this.dashboardTour);
+    }, 1000);
+  }
+
+  ChecktourSession() {
+    if (localStorage.getItem("IsVisted")) {
+
+    }
+    else {
+      //this.http.get("http://api.ipify.org/?format=json").subscribe((res:any)=>{
+      //this.ipAddress=res;
+      localStorage.setItem("IsVisted", "visit");
+      this.RestartTour();
+      //});
+    }
   }
 
   toggleDisplayDivIf() {
@@ -158,18 +147,17 @@ ChecktourSession()
     })
   }
 
-  searchProduct(){
-
+  searchProduct() {
     //this.sessionService.setSessionItem("searchItem", this.searchText);
-
     this.router.navigate(["/store/search-products"]);
   }
-  showSearchbar()
-  {
+
+  showSearchbar() {
     this.isSearchshow = true;
   }
-  closeSearchbar()
-  {
+
+  closeSearchbar() {
     this.isSearchshow = false;
   }
+
 }
