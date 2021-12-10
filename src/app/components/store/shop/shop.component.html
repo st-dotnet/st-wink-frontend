@@ -57,10 +57,10 @@
                 <h5 class="card-title">{{ product.itemDescription }}</h5>
                 <h6 class="small">Perfect for ages 3+</h6>
                 <div class="reviews-product">
-                     <!-- <div [attr.data-product-id]="product.itemID" class="yotpo bottomLine">
+                     <div [attr.data-product-id]="product.itemID" class="yotpo bottomLine">
                   </div>
                    <yotpo-star-rating [productId]="product.itemID" class="yotpo bottomLine" style="display:none;"  >
-                  </yotpo-star-rating> -->
+                  </yotpo-star-rating>
 
 
 
@@ -107,10 +107,10 @@
               <h5 class="card-title">{{ product?.itemDescription }}</h5>
               <div class="reviews-product">
 
-                <!-- <div [attr.data-product-id]="product.itemID" class="yotpo bottomLine">
+                 <div [attr.data-product-id]="product.itemID" class="yotpo bottomLine">
                 </div>
-                <yotpo-star-rating  style="display: none;">
-                </yotpo-star-rating> -->
+                <yotpo-star-rating  [productId]="product.itemID" style="display: none;">
+                </yotpo-star-rating>
                 <!-- <ul>
                                   <li><i class="fas fa-star"></i></li>
                                   <li><i class="fas fa-star"></i></li>
@@ -177,7 +177,6 @@
                       >{{type == 0 ? 'Single Delivery' : 'Subscribe & Save 15%'}}</label>
                   </div>
                 </div> -->
-
                 <div class="radio-bundle">
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="inlineRadioOptionsdelivery" id="3" value="0"
@@ -259,11 +258,12 @@
                 </div>
 
                 <div class="custom-field">
-                  <input type="number" id="showinput{{product.itemCode}}" [(ngModel)]="product.extraQuantity"
+                  <input type="number" id="showinput{{product.itemCode}}"  [(ngModel)]="product.extraQuantity"
                     *ngIf="product.quantityModel == '0'   || product.extraQuantity !=null"
                     (change)="quantitychanged(product, $event.target.value)" class="form-control" />
                 </div>
               </div>
+
               <div class="cart-btn">
                 <button type="submit" (click)="addToCart(product)" class="btn btn-cart">
                   ${{showActualPrice == true ? bundlePrice : product.price}} ADD
