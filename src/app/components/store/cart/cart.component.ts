@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
 })
 export class CartComponent implements OnInit {
   subscriptionPurchase = false;
-  inputdata: any;
+  inputdata:any;
   promocode_onetime: string;
   date_convertModal: string;
   data_learn: boolean = false;
@@ -107,15 +107,6 @@ export class CartComponent implements OnInit {
     }
     this.spinner.show();
     this.getSpecialItem();
-
-    // this.promocode_onetime=this.sessionService.getSessionItem('promoCode');
-    // if(this.promocode_onetime!=="null" && this.promocode_onetime !==undefined)
-    // {
-    //   this.addPromo();
-    // }
-    // else{
-    //   this.promocode_onetime='';
-    // }
     this.onLoad();
     this.GetOneTimeSubDiscount();
   }
@@ -131,6 +122,11 @@ export class CartComponent implements OnInit {
         }
       }
     });
+if(this.sessionService.getSessionObject('inputdata'))
+{
+  this.inputdata =this.sessionService.getSessionObject('inputdata');
+  this.inputdata = new Date(this.inputdata);
+}
 
     if (this.cartItems == null || this.cartItems.length <= 0) {
       this.enablebtn = true;
@@ -256,7 +252,10 @@ export class CartComponent implements OnInit {
   spacialItemAdd() {
     this.isShowSpecial = false;
 
+
     this.productItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
+    this.inputdata =this.sessionService.getSessionObject('inputdata');
+
     const items = {
       bundle: 'specialOffer',
       selectDelivery: 0,
@@ -275,9 +274,9 @@ export class CartComponent implements OnInit {
     this.productItems.push(this.specialItem);
 
     this.sessionService.cartSession(this.productItems);
+
     this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.productItems);
 
-    //this.oneTimePriceCartItems.push(this.specialItem);
     this.onLoad();
 
   }
@@ -621,6 +620,11 @@ export class CartComponent implements OnInit {
 
   customQuantity(quantity: any) {
     return `Qty ${quantity}`;
+  }
+
+
+  subscription(){
+    this.sessionService.setSessionObject('inputdata',this.inputdata.toDateString());
   }
 
 }

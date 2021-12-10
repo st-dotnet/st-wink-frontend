@@ -152,7 +152,12 @@ export class CheckoutComponent implements OnInit {
     this.discount15Percent = 0;
     this.subTotalSubscriptionPriceAfterDiscount = 0;
     this.cartSummaryTotal = 0;
-    this.startDate = this.sessionService.getSessionItem('startDate');
+    if(this.sessionService.getSessionObject('inputdata'))
+  {
+  this.startDate =this.sessionService.getSessionObject('inputdata');
+  this.startDate = new Date(this.startDate);
+  }
+
     this.subscriptionTotalPrice =
       this.sessionService.getSessionObject('subscriptionTotal');
     this.unSubscriptionTotalPrice = this.sessionService.getSessionObject(

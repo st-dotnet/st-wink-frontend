@@ -128,7 +128,6 @@
                             {{qty.name }}
                           </option>
                         </select>
-
                         <input type="number" style="margin-top: 10px;" id="showinput{{cartItem.itemCode}}"
                           [(ngModel)]="cartItem.extraQuantity"
                           *ngIf="cartItem.quantityModel == '0'||cartItem.quantityModel >10 || cartItem.extraQuantity !=null "
@@ -145,6 +144,7 @@
                           [(ngModel)]="cartItem.extraQuantity"
                           *ngIf="cartItem.quantityModel == '0' || cartItem.extraQuantity !=null "
                           (change)="quantitychanged(cartItem, $event.target.value)" class="form-control"> -->
+
 
 
                       </div>
@@ -316,42 +316,43 @@
             </div>
             <!-- discount section -->
 
-            <div class="additional-div">
-              <div class="other-additional-product">
-                <div class="promo-code">
-                  <div
-                    [className]="  delivery.inputdata ? 'special-field datafilled form-group ' : 'special-field dataempty form-group' ">
-                    <input type="text" [(ngModel)]="delivery.inputdata" class="form-control"
-                      value="{{delivery.inputdata| date}}" bsDatepicker [minDate]="minDate" [bsConfig]="{
-  isAnimated: true,
-  adaptivePosition: true,
-  selectFromOtherMonth: true
-  }" />
-                    <label class="form-label">Select Start Date</label>
-                    <span class="btn-add-promo">
-                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
-                        height="24" viewBox="0 0 24 24">
-                        <defs>
-                          <clipPath id="clip-path">
-                            <rect width="24" height="24" fill="none" />
-                          </clipPath>
-                        </defs>
-                        <g id="Icon_Event_Rounded" data-name="Icon / Event / Rounded" opacity="0.5"
-                          clip-path="url(#clip-path)">
-                          <rect id="Box" width="24" height="24" fill="none" />
-                          <path id="Path_2017" data-name="Path 2017"
-                            d="M879.9,18h-12a1.075,1.075,0,0,1-1-1V7h14V17A1,1,0,0,1,879.9,18Zm-2-17V2h-8V1a1,1,0,0,0-2,0V2h-1a2.006,2.006,0,0,0-2,2V18a2.006,2.006,0,0,0,2,2h14a2.006,2.006,0,0,0,2-2V4a2.006,2.006,0,0,0-2-2h-1V1a1,1,0,0,0-2,0Zm0,10h-3a1.075,1.075,0,0,0-1,1v3a1.075,1.075,0,0,0,1,1h3a1.075,1.075,0,0,0,1-1V12A1,1,0,0,0,877.9,11Z"
-                            transform="translate(-862 2)" />
-                        </g>
-                      </svg>
-                    </span>
-                  </div>
+          </div>
+          
+          <div class="additional-div">
+            <div class="other-additional-product">
+              <div class="promo-code">
+                <div
+                  [className]="inputdata ? 'special-field datafilled form-group ' : 'special-field dataempty form-group' ">
+                  <input type="text" [(ngModel)]="inputdata" class="form-control" (ngModelChange)="subscription()"
+                    value="{{inputdata| date:'MM/dd/yyyy'}}" bsDatepicker [minDate]="minDate" [bsConfig]="{
+             isAnimated: true,
+      adaptivePosition: true,
+selectFromOtherMonth: true
+}" />
+                  <label class="form-label">Select Start Date</label>
+                  <span class="btn-add-promo">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
+                      height="24" viewBox="0 0 24 24">
+                      <defs>
+                        <clipPath id="clip-path">
+                          <rect width="24" height="24" fill="none" />
+                        </clipPath>
+                      </defs>
+                      <g id="Icon_Event_Rounded" data-name="Icon / Event / Rounded" opacity="0.5"
+                        clip-path="url(#clip-path)">
+                        <rect id="Box" width="24" height="24" fill="none" />
+                        <path id="Path_2017" data-name="Path 2017"
+                          d="M879.9,18h-12a1.075,1.075,0,0,1-1-1V7h14V17A1,1,0,0,1,879.9,18Zm-2-17V2h-8V1a1,1,0,0,0-2,0V2h-1a2.006,2.006,0,0,0-2,2V18a2.006,2.006,0,0,0,2,2h14a2.006,2.006,0,0,0,2-2V4a2.006,2.006,0,0,0-2-2h-1V1a1,1,0,0,0-2,0Zm0,10h-3a1.075,1.075,0,0,0-1,1v3a1.075,1.075,0,0,0,1,1h3a1.075,1.075,0,0,0,1-1V12A1,1,0,0,0,877.9,11Z"
+                          transform="translate(-862 2)" />
+                      </g>
+                    </svg>
+                  </span>
                 </div>
-
-
-
-
               </div>
+
+
+
+
             </div>
           </div>
           <div class="prod-discount">
