@@ -20,7 +20,11 @@ export class SessionService {
     this.userSubject$ = new BehaviorSubject<any>(this.getSessionObject('user'));
     this.user$ = this.userSubject$.asObservable();
     var user = this.getSessionObject('user');
-    this.cartItems$ = new BehaviorSubject<any>(this.getSessionObject('productCartItems-'+user.loginName) ?? []);
+    console.log(user);
+    if (user != null) {
+      this.cartItems$ = new BehaviorSubject<any>(this.getSessionObject('productCartItems-' + user.loginName) ?? []);
+    }
+    this.cartItems$ = new BehaviorSubject<any>(this.getSessionObject('productCartItems') ?? []);
     this.cart$ = this.cartItems$.asObservable();
   }
 
