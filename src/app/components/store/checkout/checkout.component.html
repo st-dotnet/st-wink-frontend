@@ -1136,13 +1136,19 @@
                             <ng-template ngbPanelContent>
                                 <ngb-accordion activeIds="notifi-review,promo-code,loyalty-info,today-order">
                                     <ngb-panel id="notifi-review">
-                                        <ng-template ngbPanelTitle>
+                                <ng-template ngbPanelTitle>
                                             <div class="heading-step1">
-                                                <h4>Does everything look correct?</h4>
-                                                <p>Select <a href="">Place My Order</a> to continue</p>
+                                                <h4>Does everything look correct?</h4> 
                                             </div>
                                         </ng-template>
-                                    </ngb-panel>
+                                        <ng-template ngbPanelContent> 
+                                            <div class="content-card steps-inner shipping-address-form">
+                                                <div class="col-md-12 loyalty-form p-0 mb-3">
+                                         <p>Select   <button class="simplelink" (click)="onSubmit()">Place My Order</button>  to continue</p>
+                                         </div>
+                                         </div>
+                                         </ng-template>             
+                                     </ngb-panel>
 
                                     <ngb-panel id="promo-code">
                                         <ng-template ngbPanelTitle>

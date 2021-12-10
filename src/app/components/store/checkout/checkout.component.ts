@@ -626,15 +626,6 @@ export class CheckoutComponent implements OnInit {
         // take new card value and create token and store it to database and get;
         this.isCardDisabled = true;
         this.isCardType = id;
-        //console.log(id);
-        // setTimeout(() => {
-        //   this.shopService.getClientToken()
-        //     .subscribe(
-        //       (data: any) => {
-        //         console.log("Client Token", data.token);
-        //         this.createBraintreeUI(data.token);
-        //       });
-        // }, 1000);
         break;
       default:
         break;
@@ -974,7 +965,7 @@ export class CheckoutComponent implements OnInit {
     createOrderRequest.address1 = this.f.streetAddress.value;
     createOrderRequest.address2 = '';
     createOrderRequest.city = this.f.city.value;
-    createOrderRequest.state = 'TX';//this.f.state.value;
+    createOrderRequest.state = 'TX';
     createOrderRequest.zip = this.f.zip.value;
     createOrderRequest.country = 'US';//this.f.country.value
     createOrderRequest.email = 'test@gmail.com';
@@ -987,33 +978,27 @@ export class CheckoutComponent implements OnInit {
 
     chargeCreditCardTokenRequest.maxAmount = this.cartSummaryTotal;
     chargeCreditCardTokenRequest.otherData10 = '';
-    if (this.addrnew == false) {
-      chargeCreditCardTokenRequest.billingCountry = '';
-      chargeCreditCardTokenRequest.billingZip = '';
-      chargeCreditCardTokenRequest.billingState = '';
-      chargeCreditCardTokenRequest.billingCity = '';
+    
+    if (this.addrnew) {
+      chargeCreditCardTokenRequest.billingZip = this.p.newZip.value;
+      chargeCreditCardTokenRequest.billingCity = this.p.newCity.value;
       chargeCreditCardTokenRequest.billingAddress2 = '';
-      chargeCreditCardTokenRequest.billingAddress = '';
+      chargeCreditCardTokenRequest.billingAddress = this.p.newStreetAddress.value;
+      chargeCreditCardTokenRequest.billingState = this.p.newState.value;
     } else {
-      chargeCreditCardTokenRequest.billingCountry = 'US';//this.f.country.value;
       chargeCreditCardTokenRequest.billingZip = this.f.zip.value;
-      chargeCreditCardTokenRequest.billingState = 'TX';//this.f.state.value;
       chargeCreditCardTokenRequest.billingCity = this.f.city.value;
       chargeCreditCardTokenRequest.billingAddress2 = '';
+      chargeCreditCardTokenRequest.billingState = this.f.state.value;
       chargeCreditCardTokenRequest.billingAddress = this.f.streetAddress.value;
+
     }
+    chargeCreditCardTokenRequest.billingName = this.f.firstName.value;
+    chargeCreditCardTokenRequest.billingCountry = 'US';//this.f.country.value;
     chargeCreditCardTokenRequest.expirationMonth = this.p.expiryMonth.value;
     chargeCreditCardTokenRequest.creditCardType = 0;
-    chargeCreditCardTokenRequest.cvcCode = this.p.cardCVV.value;
-    chargeCreditCardTokenRequest.billingCountry = this.f.country.value;
-    chargeCreditCardTokenRequest.billingZip = this.f.zip.value;
-    chargeCreditCardTokenRequest.billingState = this.f.state.value;
-    chargeCreditCardTokenRequest.billingCity = this.f.city.value;
-    chargeCreditCardTokenRequest.billingAddress2 = '';
-    chargeCreditCardTokenRequest.billingAddress = this.f.streetAddress.value;
     chargeCreditCardTokenRequest.creditCardToken = this.cardToken;//"41X1111WBCXTE1111"
     chargeCreditCardTokenRequest.expirationYear = this.p.expiryYear.value;
-    chargeCreditCardTokenRequest.billingName = this.f.firstName.value;
 
     const setAccountCreditCardTokenRequest = new SetAccountCreditCardTokenRequest();
     setAccountCreditCardTokenRequest.creditCardToken = this.cardToken;

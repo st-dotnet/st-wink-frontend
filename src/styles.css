@@ -716,10 +716,10 @@ div#card-info ul.card-mat span.more-card {
     font-family: "g-regular";
     margin-top: 2px;
 }
-
+/* 
 div#notifi-review-header+div#notifi-review {
     display: none;
-}
+} */
 
 .checkout-steps-4 ngb-accordion .card-header p {
     margin: 0;
