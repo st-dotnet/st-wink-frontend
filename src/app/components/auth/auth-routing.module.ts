@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanDeactivateGuard } from '@app/_helpers/can-deactivate-guard';
+import { AccountSettingComponent } from '../account-setting/account-setting.component';
 
 
 // auth components
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent,canDeactivate: [CanDeactivateGuard] },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'forgot-password/:id', component: ForgotPasswordComponent },
+  { path: 'accountSetting', component: AccountSettingComponent }
 ];
 
 @NgModule({

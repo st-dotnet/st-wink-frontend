@@ -2,8 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12 show-deskk">
-                <div
-                    [className]="sidebartoggle1 ?  'hidesidebar toggle-sidebar hidden-lg' : 'showsidebar toggle-sidebar hidden-lg'">
+                <div [className]="sidebartoggle1 ?  'hidesidebar toggle-sidebar hidden-lg' : 'showsidebar toggle-sidebar hidden-lg'">
                     <div class="cart-sidebar sidebar-collapse">
                         <div class="sidebar-head">
                             <h2>
@@ -43,8 +42,7 @@
                                 <div class=" search-box">
                                     <div class="search-bar-on">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" (click)="open(referr_user)" value=""
-                                                placeholder="Find referral (Optional)" />
+                                            <input type="text" class="form-control" (click)="open(referr_user)" value="" placeholder="Find referral (Optional)" />
                                             <span class="search"><svg xmlns="http://www.w3.org/2000/svg" width="16.947"
                                                     height="17.048" viewBox="0 0 16.947 17.048">
                                                     <path id="Path_2019" data-name="Path 2019"
@@ -76,11 +74,8 @@
                             <ng-template ngbPanelContent>
                                 <div class="content-card steps-inner shipping-address-form">
                                     <div class="col-md-12 loyalty-form p-0 mb-3">
-                                        <div
-                                            [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                            <input type="text" [(ngModel)]="promocode_onetime" class="form-control"
-                                                name="promo-enter" (focusout)="clearPromo($event)"
-                                                [ngModelOptions]="{standalone: true}" />
+                                        <div [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                            <input type="text" [(ngModel)]="promocode_onetime" class="form-control" name="promo-enter" (focusout)="clearPromo($event)" [ngModelOptions]="{standalone: true}" />
                                             <label class="form-label">Promo Code</label>
                                             <span class="vali-promo">{{promocodeMessage}}</span>
                                             <span class="btn-add-promo" (click)="addPromo()" *ngIf="addPromoIcon">
@@ -308,8 +303,7 @@
                                 <div class=" search-box">
                                     <div class="search-bar-on">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" (click)="open(referr_user)" value=""
-                                                placeholder="Find referral (Optional)" />
+                                            <input type="text" class="form-control" (click)="open(referr_user)" value="" placeholder="Find referral (Optional)" />
                                             <span class="search"><svg xmlns="http://www.w3.org/2000/svg" width="16.947"
                                                     height="17.048" viewBox="0 0 16.947 17.048">
                                                     <path id="Path_2019" data-name="Path 2019"
@@ -342,11 +336,8 @@
 
                                 <div class="content-card steps-inner shipping-address-form">
                                     <div class="col-md-12 loyalty-form p-0 mb-3">
-                                        <div
-                                            [className]="promocode_onetime ?  'special-field datafilled form-group' : 'special-field dataempty form-group'">
-                                            <input type="text" [(ngModel)]="promocode_onetime" class="form-control"
-                                                name="promo-enter" (focusout)="clearPromo($event)"
-                                                [ngModelOptions]="{standalone: true}" />
+                                        <div [className]="promocode_onetime ?  'special-field datafilled form-group' : 'special-field dataempty form-group'">
+                                            <input type="text" [(ngModel)]="promocode_onetime" class="form-control" name="promo-enter" (focusout)="clearPromo($event)" [ngModelOptions]="{standalone: true}" />
                                             <label class="form-label">Promo Code</label>
                                             <span class="vali-promo">{{promocodeMessage}}</span>
                                             <span class="btn-add-promo" (click)="addPromo()" *ngIf="addPromoIcon">
@@ -525,8 +516,7 @@
                     <ngb-accordion [closeOthers]="false" [activeIds]="activeIds" class="panel-stepbar">
                         <ngb-panel [disabled]="showPanel1 ? true:null" id="checkoutstep1">
                             <ng-template ngbPanelTitle>
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    width="24" height="24" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
                                     <defs>
                                         <clipPath id="clip-path">
                                             <rect width="24" height="24" fill="none" />
@@ -564,13 +554,8 @@
                                             </ng-template>
                                             <ng-template ngbPanelContent>
                                                 <div class="content-card steps-inner">
-                                                    <div [className]="startDate ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'"
-                                                        id="subscr-schedule">
-                                                        <input type="text" class="form-control" bsDatepicker
-                                                            [minDate]="minDate"
-                                                            [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }"
-                                                            [ngModelOptions]="{standalone: true}"
-                                                            [(ngModel)]="startDate" />
+                                                    <div [className]="startDate ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'" id="subscr-schedule">
+                                                        <input type="text" class="form-control" bsDatepicker [minDate]="minDate" [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }" [ngModelOptions]="{standalone: true}" [(ngModel)]="startDate" />
                                                         <label class="form-label">Select Start Date</label>
                                                         <span class="btn-add-promo">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -616,11 +601,8 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="First Name" formControlName="firstName"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.firstName?.errors }" />
-                                                                <div *ngIf="submitted && f.firstName?.errors"
-                                                                    class="invalid-feedback">
+                                                                <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName?.errors }" />
+                                                                <div *ngIf="submitted && f.firstName?.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.firstName?.errors.required">
                                                                         First Name is required</div>
                                                                 </div>
@@ -628,11 +610,8 @@
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="Last Name" formControlName="lastName"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.lastName?.errors }" />
-                                                                <div *ngIf="submitted && f.lastName?.errors"
-                                                                    class="invalid-feedback">
+                                                                <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName?.errors }" />
+                                                                <div *ngIf="submitted && f.lastName?.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.lastName?.errors.required">
                                                                         Last Name is required</div>
                                                                 </div>
@@ -640,12 +619,8 @@
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control"
-                                                                    formControlName="streetAddress"
-                                                                    placeholder="Street Address"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.streetAddress?.errors }" />
-                                                                <div *ngIf="submitted && f.streetAddress?.errors"
-                                                                    class="invalid-feedback">
+                                                                <input type="text" class="form-control" formControlName="streetAddress" placeholder="Street Address" [ngClass]="{ 'is-invalid': submitted && f.streetAddress?.errors }" />
+                                                                <div *ngIf="submitted && f.streetAddress?.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.streetAddress?.errors.required">
                                                                         Street Address is required</div>
                                                                 </div>
@@ -653,11 +628,8 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="City" formControlName="city"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.city?.errors }" />
-                                                                <div *ngIf="submitted && f.city?.errors"
-                                                                    class="invalid-feedback">
+                                                                <input type="text" class="form-control" placeholder="City" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city?.errors }" />
+                                                                <div *ngIf="submitted && f.city?.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.city?.errors.required">
                                                                         City is required</div>
                                                                 </div>
@@ -665,11 +637,8 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="State" formControlName="state"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.state?.errors }" />
-                                                                <div *ngIf="submitted && f.state?.errors"
-                                                                    class="invalid-feedback">
+                                                                <input type="text" class="form-control" placeholder="State" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f.state?.errors }" />
+                                                                <div *ngIf="submitted && f.state?.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.state?.errors.required">
                                                                         State is required</div>
                                                                 </div>
@@ -677,11 +646,8 @@
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="number" class="form-control"
-                                                                    placeholder="Zip" formControlName="zip"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.zip?.errors }" />
-                                                                <div *ngIf="submitted && f.zip?.errors"
-                                                                    class="invalid-feedback">
+                                                                <input type="number" class="form-control" placeholder="Zip" formControlName="zip" [ngClass]="{ 'is-invalid': submitted && f.zip?.errors }" />
+                                                                <div *ngIf="submitted && f.zip?.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.zip?.errors.required">
                                                                         Zip is required</div>
                                                                 </div>
@@ -689,10 +655,8 @@
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="Country" value="US" readonly>
-                                                                <div *ngIf="submitted && f.country?.errors"
-                                                                    class="invalid-feedback">
+                                                                <input type="text" class="form-control" placeholder="Country" value="US" readonly>
+                                                                <div *ngIf="submitted && f.country?.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.country?.errors.required">
                                                                         Country is required</div>
                                                                 </div>
@@ -724,14 +688,8 @@
                                                         <ul>
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="customRadio1"
-                                                                        [(ngModel)]="isShipmentMethod"
-                                                                        [checked]="isShipmentMethod === 1" value="1"
-                                                                        name="isShipmentMethod"
-                                                                        (change)="onItemChange(1)"
-                                                                        class="custom-control-input">
-                                                                    <label class="custom-control-label"
-                                                                        for="customRadio1">
+                                                                    <input type="radio" id="customRadio1" [(ngModel)]="isShipmentMethod" [checked]="isShipmentMethod === 1" value="1" name="isShipmentMethod" (change)="onItemChange(1)" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="customRadio1">
                                                                         <div class="shipping-list-item">
                                                                             <h4>Get it today (Utah only)</h4>
                                                                             <p>$0.00 Will Call Pickup</p>
@@ -741,14 +699,8 @@
                                                             </li>
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="customRadio2"
-                                                                        [checked]="isShipmentMethod === 2"
-                                                                        [(ngModel)]="isShipmentMethod" value="2"
-                                                                        (change)="onItemChange(2)"
-                                                                        name="isShipmentMethod"
-                                                                        class="custom-control-input">
-                                                                    <label class="custom-control-label"
-                                                                        for="customRadio2">
+                                                                    <input type="radio" id="customRadio2" [checked]="isShipmentMethod === 2" [(ngModel)]="isShipmentMethod" value="2" (change)="onItemChange(2)" name="isShipmentMethod" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="customRadio2">
                                                                         <div class="shipping-list-item">
                                                                             <h4>Get it by Fri, Feb 22nd</h4>
                                                                             <p>FREE Shipping</p>
@@ -758,14 +710,8 @@
                                                             </li>
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="customRadio3"
-                                                                        [checked]="isShipmentMethod === 3"
-                                                                        [(ngModel)]="isShipmentMethod" value="3"
-                                                                        (change)="onItemChange(3)"
-                                                                        name="isShipmentMethod"
-                                                                        class="custom-control-input">
-                                                                    <label class="custom-control-label"
-                                                                        for="customRadio3">
+                                                                    <input type="radio" id="customRadio3" [checked]="isShipmentMethod === 3" [(ngModel)]="isShipmentMethod" value="3" (change)="onItemChange(3)" name="isShipmentMethod" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="customRadio3">
                                                                         <div class="shipping-list-item">
                                                                             <h4>Get it by Wed, Feb 19th</h4>
                                                                             <p>$8.99 Shipping</p>
@@ -789,8 +735,7 @@
 
                         <ngb-panel [disabled]="showPanel2 ? true:null" id="checkoutstep2">
                             <ng-template ngbPanelTitle>
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    width="24" height="24" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
                                     <defs>
                                         <clipPath id="clip-path">
                                             <rect width="24" height="24" fill="none" />
@@ -808,8 +753,7 @@
                             </ng-template>
                             <ng-template ngbPanelContent>
                                 <form [formGroup]="onPaymentSubmitForm" (ngSubmit)="onPaymentSubmit()">
-                                    <ngb-accordion
-                                        activeIds="promo-code,loyalty-info,cards-selection,card-info,billing-method">
+                                    <ngb-accordion activeIds="promo-code,loyalty-info,cards-selection,card-info,billing-method">
                                         <ngb-panel id="promo-code">
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
@@ -827,16 +771,11 @@
                                             <ng-template ngbPanelContent>
                                                 <div class="content-card steps-inner shipping-address-form">
                                                     <div class="col-md-12 loyalty-form p-0 mb-3">
-                                                        <div
-                                                            [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                            <input type="text" [(ngModel)]="promocode_onetime"
-                                                                class="form-control" name="promo-enter"
-                                                                (focusout)="clearPromo($event)"
-                                                                [ngModelOptions]="{standalone: true}" />
+                                                        <div [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                                            <input type="text" [(ngModel)]="promocode_onetime" class="form-control" name="promo-enter" (focusout)="clearPromo($event)" [ngModelOptions]="{standalone: true}" />
                                                             <label class="form-label">Promo Code</label>
                                                             <span class="vali-promo">{{promocodeMessage}}</span>
-                                                            <span class="btn-add-promo" (click)="addPromo()"
-                                                                *ngIf="addPromoIcon">
+                                                            <span class="btn-add-promo" (click)="addPromo()" *ngIf="addPromoIcon">
 
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                                     height="14" viewBox="0 0 14 14">
@@ -889,13 +828,10 @@
                                             <ng-template ngbPanelContent>
                                                 <div class="content-card steps-inner shipping-address-form">
                                                     <div class="loyalty-desc">
-                                                        <div class="r-available">Rewards Available:<span
-                                                                class="value-r-available">$25</span></div>
-                                                        <div class="r-applied">Rewards Applied:<span
-                                                                class="value-r-applied">$0</span></div>
+                                                        <div class="r-available">Rewards Available:<span class="value-r-available">$25</span></div>
+                                                        <div class="r-applied">Rewards Applied:<span class="value-r-applied">$0</span></div>
                                                         <div class="loya-conver">
-                                                            <span class="loyal-conv-modal"
-                                                                (click)="open(loyal_conversion)">
+                                                            <span class="loyal-conv-modal" (click)="open(loyal_conversion)">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                     height="25" viewBox="0 0 24 25">
                                                                     <g id="Group_183" data-name="Group 183"
@@ -920,11 +856,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 loyalty-form p-0 mb-3">
-                                                        <div
-                                                            [className]="loyalPointz ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                            <input type="text" [(ngModel)]="loyalPointz" value=""
-                                                                class="form-control"
-                                                                [ngModelOptions]="{standalone: true}" />
+                                                        <div [className]="loyalPointz ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                                            <input type="text" [(ngModel)]="loyalPointz" value="" class="form-control" [ngModelOptions]="{standalone: true}" />
                                                             <label class="form-label">Loyalty points</label>
                                                             <span class="vali-promo">Points Not Applied</span>
                                                             <span class="btn-add-promo">
@@ -962,13 +895,8 @@
                                                         <ul class="select-paycard">
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="cardlitem1"
-                                                                        name="isSelectCard" value="IsVisaExpire"
-                                                                        [ngModel]="isSelectCard" [selected]="true"
-                                                                        (change)="onSelectCardChange(1)"
-                                                                        class="custom-control-input">
-                                                                    <label class="custom-control-label"
-                                                                        for="cardlitem1">
+                                                                    <input type="radio" id="cardlitem1" name="isSelectCard" value="IsVisaExpire" [ngModel]="isSelectCard" [selected]="true" (change)="onSelectCardChange(1)" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="cardlitem1">
                                                                         <div class="shipping-list-item">
                                                                             <h4>Visa ending in 111 <a href=""
                                                                                     class="edit-cardopt">Edit</a></h4>
@@ -982,13 +910,8 @@
                                                             </li>
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="cardlitem2"
-                                                                        name="isSelectCard" value="IsNewCard"
-                                                                        [ngModel]="isSelectCard"
-                                                                        (change)="onSelectCardChange(2)"
-                                                                        class="custom-control-input">
-                                                                    <label class="custom-control-label"
-                                                                        for="cardlitem2">
+                                                                    <input type="radio" id="cardlitem2" name="isSelectCard" value="IsNewCard" [ngModel]="isSelectCard" (change)="onSelectCardChange(2)" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="cardlitem2">
                                                                         <div class="shipping-list-item">
                                                                             <h4>Pay with new card</h4>
                                                                         </div>
@@ -1027,37 +950,23 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="cardName"
-                                                                        placeholder="Name on card" name="card-name"
-                                                                        class="form-control"
-                                                                        [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardName?.errors }" />
-                                                                    <div *ngIf="paymentSubmitted && p.cardName?.errors"
-                                                                        class="invalid-feedback">
-                                                                        <div *ngIf="p.cardName?.errors.required">Card
-                                                                            Name is required</div>
+                                                                    <input type="text" formControlName="cardName" placeholder="Name on card" name="card-name" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardName?.errors }" />
+                                                                    <div *ngIf="paymentSubmitted && p.cardName?.errors" class="invalid-feedback">
+                                                                        <div *ngIf="p.cardName?.errors.required">Card Name is required</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="cardNumber"
-                                                                        [showMaskTyped]="false"
-                                                                        [dropSpecialCharacters]="false"
-                                                                        mask="0000 0000 0000 0000"
-                                                                        (change)="creditCardValidator($event)"
-                                                                        placeholder="Card number" name="cardNumber"
-                                                                        class="form-control"
-                                                                        [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardNumber?.errors }" />
-                                                                    <div *ngIf="paymentSubmitted && p.cardNumber?.errors"
-                                                                        class="invalid-feedback">
-                                                                        <div *ngIf="p.cardNumber?.errors.required">Card
-                                                                            Number is required</div>
-                                                                        <div *ngIf="p.cardNumber.errors.minlength">Card
-                                                                            Number must be at least 14 numbers </div>
+                                                                    <input type="text" formControlName="cardNumber" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="0000 0000 0000 0000" (change)="creditCardValidator($event)" placeholder="Card number" name="cardNumber" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardNumber?.errors }"
+                                                                    />
+                                                                    <div *ngIf="paymentSubmitted && p.cardNumber?.errors" class="invalid-feedback">
+                                                                        <div *ngIf="p.cardNumber?.errors.required">Card Number is required</div>
+                                                                        <div *ngIf="p.cardNumber.errors.minlength">Card Number must be at least 14 numbers </div>
                                                                     </div>
                                                                     <div *ngIf="cardvalidate" class="cardvalidateerror">
-                                                                        <div *ngIf="cardvalidate">Card Number is not
-                                                                            valid</div>
+                                                                        <div *ngIf="cardvalidate">Card Number is not valid
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1065,43 +974,28 @@
                                                         <div class="row">
                                                             <div class="col-6 col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="expiryMonth"
-                                                                        [(ngModel)]="checkMonth"
-                                                                        (change)="validateCard()"
-                                                                        [showMaskTyped]="false"
-                                                                        [dropSpecialCharacters]="false" mask="00"
-                                                                        placeholder="Month" name="expiryMonth"
-                                                                        class="form-control"
-                                                                        [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryMonth?.errors }" />
-                                                                    <div *ngIf="paymentSubmitted && p.expiryMonth?.errors"
-                                                                        class="invalid-feedback">
+                                                                    <input type="text" formControlName="expiryMonth" [(ngModel)]="checkMonth" (change)="validateCard()" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="00" placeholder="Month" name="expiryMonth" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryMonth?.errors }"
+                                                                    />
+                                                                    <div *ngIf="paymentSubmitted && p.expiryMonth?.errors" class="invalid-feedback">
                                                                         <div *ngIf="p.expiryMonth?.errors.required">
                                                                             Expiry Month is required</div>
                                                                         <div *ngIf="p.expiryMonth.errors.pattern">
                                                                             Invalid Month</div>
                                                                     </div>
-                                                                    <div *ngIf="monthError"
-                                                                        class="invalid-feedback-customclass">
+                                                                    <div *ngIf="monthError" class="invalid-feedback-customclass">
                                                                         <div *ngIf="monthError">Month is not valid</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-6 col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="expiryYear"
-                                                                        [(ngModel)]="checkYear"
-                                                                        (change)="validateCard()" placeholder="Year"
-                                                                        name="expiryYear" [showMaskTyped]="false"
-                                                                        [dropSpecialCharacters]="false" mask="0000"
-                                                                        class="form-control"
-                                                                        [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryYear?.errors }" />
-                                                                    <div *ngIf="paymentSubmitted && p.expiryYear?.errors"
-                                                                        class="invalid-feedback">
+                                                                    <input type="text" formControlName="expiryYear" [(ngModel)]="checkYear" (change)="validateCard()" placeholder="Year" name="expiryYear" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="0000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryYear?.errors }"
+                                                                    />
+                                                                    <div *ngIf="paymentSubmitted && p.expiryYear?.errors" class="invalid-feedback">
                                                                         <div *ngIf="p.expiryYear?.errors.required">
                                                                             Expiry Year is required</div>
                                                                     </div>
-                                                                    <div *ngIf="yearError"
-                                                                        class="invalid-feedback-customclass">
+                                                                    <div *ngIf="yearError" class="invalid-feedback-customclass">
                                                                         <div *ngIf="yearError">Year is not valid</div>
                                                                     </div>
 
@@ -1109,16 +1003,9 @@
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="cardCVV"
-                                                                        placeholder="CVV" name="cardCVV"
-                                                                        [showMaskTyped]="false"
-                                                                        [dropSpecialCharacters]="false" mask="000"
-                                                                        class="form-control"
-                                                                        [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardCVV?.errors }" />
-                                                                    <div *ngIf="paymentSubmitted && p.cardCVV?.errors"
-                                                                        class="invalid-feedback">
-                                                                        <div *ngIf="p.cardCVV?.errors.required">card CVV
-                                                                            is required</div>
+                                                                    <input type="text" formControlName="cardCVV" placeholder="CVV" name="cardCVV" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardCVV?.errors }" />
+                                                                    <div *ngIf="paymentSubmitted && p.cardCVV?.errors" class="invalid-feedback">
+                                                                        <div *ngIf="p.cardCVV?.errors.required">card CVV is required</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1129,14 +1016,8 @@
                                                                 <ul class="conv-products mk-primary">
                                                                     <li>
                                                                         <div class="custom-control custom-radio">
-                                                                            <input type="checkbox" id="card-primary"
-                                                                                formArrayName="isMakePrimaryCard"
-                                                                                formControlName="isMakePrimaryCard"
-                                                                                (change)="onCheckboxChange($event)"
-                                                                                value="0" name="isMakePrimaryCard"
-                                                                                class="custom-control-input">
-                                                                            <label class="custom-control-label"
-                                                                                for="card-primary">
+                                                                            <input type="checkbox" id="card-primary" formArrayName="isMakePrimaryCard" formControlName="isMakePrimaryCard" (change)="onCheckboxChange($event)" value="0" name="isMakePrimaryCard" class="custom-control-input">
+                                                                            <label class="custom-control-label" for="card-primary">
                                                                                 Make primary card
                                                                             </label>
                                                                         </div>
@@ -1169,12 +1050,8 @@
                                                         <ul>
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="customRadio4"
-                                                                        (change)="shippingAddressType('shippingAddress')"
-                                                                        name="newCustomRadio"
-                                                                        class="custom-control-input">
-                                                                    <label class="custom-control-label"
-                                                                        for="customRadio4">
+                                                                    <input type="radio" id="customRadio4" (change)="shippingAddressType('shippingAddress')" name="newCustomRadio" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="customRadio4">
                                                                         <div class="shipping-list-item">
                                                                             <h4>Same as shipping address</h4>
                                                                         </div>
@@ -1183,12 +1060,8 @@
                                                             </li>
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="customRadio5"
-                                                                        (change)="shippingAddressType('newAddress')"
-                                                                        type="radio" name="newCustomRadio"
-                                                                        class="custom-control-input">
-                                                                    <label class="custom-control-label"
-                                                                        for="customRadio5">
+                                                                    <input type="radio" id="customRadio5" (change)="shippingAddressType('newAddress')" type="radio" name="newCustomRadio" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="customRadio5">
                                                                         <div class="shipping-list-item">
                                                                             <h4>Use different billing address</h4>
                                                                         </div>
@@ -1203,42 +1076,28 @@
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
-                                                                            <input type="text"
-                                                                                formControlName="newStreetAddress"
-                                                                                placeholder="Street address"
-                                                                                name="newStreetAddress"
-                                                                                class="form-control" />
+                                                                            <input type="text" formControlName="newStreetAddress" placeholder="Street address" name="newStreetAddress" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <input type="text" formControlName="newCity"
-                                                                                placeholder="City" name="newCity"
-                                                                                class="form-control" />
+                                                                            <input type="text" formControlName="newCity" placeholder="City" name="newCity" class="form-control" />
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-6 col-md-4">
                                                                         <div class="form-group">
-                                                                            <input type="text" placeholder="State"
-                                                                                name="newState"
-                                                                                formControlName="newState"
-                                                                                class="form-control" />
+                                                                            <input type="text" placeholder="State" name="newState" formControlName="newState" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-6 col-md-4">
                                                                         <div class="form-group">
-                                                                            <input type="number" placeholder="ZIP"
-                                                                                name="newZip" formControlName="newZip"
-                                                                                class="form-control" />
+                                                                            <input type="number" placeholder="ZIP" name="newZip" formControlName="newZip" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
-                                                                            <input type="text"
-                                                                                formControlName="newCountry"
-                                                                                placeholder="Country" name="newCountry"
-                                                                                class="form-control" />
+                                                                            <input type="text" formControlName="newCountry" placeholder="Country" name="newCountry" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1258,8 +1117,7 @@
 
                         <ngb-panel id="checkoutstep3" [disabled]="showPanel3 ? true:null">
                             <ng-template ngbPanelTitle>
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    width="24" height="24" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
                                     <defs>
                                         <clipPath id="clip-path">
                                             <rect width="24" height="24" fill="none" />
@@ -1304,16 +1162,11 @@
                                         <ng-template ngbPanelContent>
                                             <div class="content-card steps-inner shipping-address-form">
                                                 <div class="col-md-12 loyalty-form p-0 mb-3">
-                                                    <div
-                                                        [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                        <input type="text" [(ngModel)]="promocode_onetime"
-                                                            class="form-control" name="promo-enter"
-                                                            (focusout)="clearPromo($event)"
-                                                            [ngModelOptions]="{standalone: true}" />
+                                                    <div [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                                        <input type="text" [(ngModel)]="promocode_onetime" class="form-control" name="promo-enter" (focusout)="clearPromo($event)" [ngModelOptions]="{standalone: true}" />
                                                         <label class="form-label">Promo Code</label>
                                                         <span class="vali-promo">{{promocodeMessage}}</span>
-                                                        <span class="btn-add-promo" (click)="addPromo()"
-                                                            *ngIf="addPromoIcon">
+                                                        <span class="btn-add-promo" (click)="addPromo()" *ngIf="addPromoIcon">
 
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                                 height="14" viewBox="0 0 14 14">
@@ -1349,14 +1202,13 @@
                                         </ng-template>
                                     </ngb-panel>
 
-                                    <!-- <ngb-panel id="loyalty-info">
+                                    <ngb-panel id="loyalty-info">
                                         <ng-template ngbPanelTitle>
                                             <div class="heading-step1">
-                                                <h4>Loyalty points</h4>
-                                                <p>No points applied</p>
+                                                <h4>Loyalty Rewards</h4>
                                                 <span class="arrow-stepp">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
-                                                        viewBox="0 0 6.6 11.2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                        height="11.2" viewBox="0 0 6.6 11.2">
                                                         <path id="Path_2044" data-name="Path 2044"
                                                             d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
                                                             transform="translate(-630.6 -4.4)" />
@@ -1364,8 +1216,55 @@
                                                 </span>
                                             </div>
                                         </ng-template>
-
-                                    </ngb-panel> -->
+                                        <ng-template ngbPanelContent>
+                                            <div class="content-card steps-inner shipping-address-form">
+                                                <div class="loyalty-desc">
+                                                    <div class="r-available">Rewards Available:<span class="value-r-available">$25</span></div>
+                                                    <div class="r-applied">Rewards Applied:<span class="value-r-applied">$0</span></div>
+                                                    <div class="loya-conver">
+                                                        <span class="loyal-conv-modal" (click)="open(loyal_conversion)">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="25" viewBox="0 0 24 25">
+                                                                <g id="Group_183" data-name="Group 183"
+                                                                    transform="translate(-830 -877)">
+                                                                    <g id="Ellipse_13" data-name="Ellipse 13"
+                                                                        transform="translate(830 878)" fill="none"
+                                                                        stroke="#1cb1c5" stroke-width="2">
+                                                                        <circle cx="12" cy="12" r="12"
+                                                                            stroke="none" />
+                                                                        <circle cx="12" cy="12" r="11"
+                                                                            fill="none" />
+                                                                    </g>
+                                                                    <text id="_" data-name="?"
+                                                                        transform="translate(837 897)"
+                                                                        fill="#1cb1c5" font-size="18.6"
+                                                                        font-family="SegoeUI, Segoe UI">
+                                                                        <tspan x="0" y="0">?</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </svg>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 loyalty-form p-0 mb-3">
+                                                    <div [className]="loyalPointz ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                                        <input type="text" [(ngModel)]="loyalPointz" value="" class="form-control" [ngModelOptions]="{standalone: true}" />
+                                                        <label class="form-label">Loyalty points</label>
+                                                        <span class="vali-promo">Points Not Applied</span>
+                                                        <span class="btn-add-promo">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                height="14" viewBox="0 0 14 14">
+                                                                <path _ngcontent-shj-c146="" id="Path_2014"
+                                                                    data-name="Path 2014"
+                                                                    d="M207.9,11h-5v5a1,1,0,0,1-2,0V11h-5a1,1,0,0,1,0-2h5V4a1,1,0,0,1,2,0V9h5a1,1,0,0,1,0,2Z"
+                                                                    transform="translate(-194.9 -3)"></path>
+                                                            </svg>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngb-panel>
 
                                     <ngb-panel id="today-order">
                                         <ng-template ngbPanelTitle>
@@ -1401,8 +1300,8 @@
                                                                     <p class="you-sav">You Saved</p>
                                                                 </td>
                                                                 <td>
-                                                                    <p>-${{(totalDiscount+onetimepurchasediscount) |
-                                                                        number:'.1-2'}}</p>
+                                                                    <p>-${{(totalDiscount+onetimepurchasediscount) | number:'.1-2'}}
+                                                                    </p>
                                                                     <!-- <p class="you-sav">-${{totalDiscount | number:'.1-2'}}
                                                                     </p>-->
                                                                 </td>
@@ -1412,8 +1311,7 @@
                                                                     <p class="you-pay">You pay</p>
                                                                 </td>
                                                                 <td>
-                                                                    <p class="you-pay">${{cartSummaryTotal |
-                                                                        number:'.1-2'}}
+                                                                    <p class="you-pay">${{cartSummaryTotal | number:'.1-2'}}
                                                                     </p>
                                                                 </td>
                                                             </tr>
@@ -1460,9 +1358,7 @@
         <div class="modal-body">
             <div class="modal-content-conversion">
                 <div class="desc-loyalty">
-                    <p>Loyalty Points are earned through the Loyalty Rewards Program. When subscriptions totaling $50+
-                        are shipped monthly, up to 20% of the order value can be earned back in Loyalty Points! Points
-                        have a dollar for dollar value, and can
+                    <p>Loyalty Points are earned through the Loyalty Rewards Program. When subscriptions totaling $50+ are shipped monthly, up to 20% of the order value can be earned back in Loyalty Points! Points have a dollar for dollar value, and can
                         be used on one-time purchases of any standard products.
                     </p>
                     <p>Start earning rewards by creating your subscription today!</p>
@@ -1484,8 +1380,7 @@
             <h3 class="referrer-title" id="modal-basic-title">Who referred you?</h3>
             <div class="search-bar-on">
                 <div class="form-group">
-                    <input type="text" #myInput class="form-control" value="" [(ngModel)]="filterTerm"
-                        (input)="filterItem(myInput.value)" placeholder="Find referral (Optional)" />
+                    <input type="text" #myInput class="form-control" value="" [(ngModel)]="filterTerm" (input)="filterItem(myInput.value)" placeholder="Find referral (Optional)" />
                     <span class="search">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16.947" height="17.048"
                             viewBox="0 0 16.947 17.048">
@@ -1515,8 +1410,7 @@
                                             <h4 class="media-heading">{{referrer.referrer_name}}, ID #{{referrer.id}}
                                             </h4>
                                             <div class="refrrer-info">
-                                                <p class="wink-link">Wink Link:<span
-                                                        class="wlink-data">{{referrer.wink_link}}</span></p>
+                                                <p class="wink-link">Wink Link:<span class="wlink-data">{{referrer.wink_link}}</span></p>
                                                 <p class="location-referrer">{{referrer.referrer_location}}</p>
                                             </div>
                                         </div>

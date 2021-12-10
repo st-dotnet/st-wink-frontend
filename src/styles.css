@@ -653,6 +653,7 @@ section.client-reviews .client-testimonial-box .owl-nav {
     width: 100%;
     text-align: left;
     position: relative;
+    text-decoration: none;
 }
 
 .panel-stepbar #checkoutstep1-header.card-header,
@@ -1458,8 +1459,17 @@ div#refered-sidebar {
     padding: 20px;
 }
 
-.content-card.steps-inner.promo-checkout {
+
+/* .content-card.steps-inner.promo-checkout {
     padding: 20px;
+} */
+
+.enrollment-paged div#checkoutstep3 ngb-accordion.accordion .card-header button {
+    padding-bottom: 0px;
+}
+
+.enrollment-paged div#checkoutstep3 ngb-accordion.accordion .card-body {
+    padding: 7px 15px;
 }
 
 .enrollment-page .final-cta-bottom .plce-order-cta {
@@ -1633,6 +1643,89 @@ section.reviews-yotpo yotpo-reviews-widget h2.yotpo-main-title {
     color: #3e3e3e;
 }
 
+.enrollment-paged ngb-accordion .card .card-header+div ngb-accordion.accordion .card {
+    background: #fff;
+}
+
+.enrollment-paged ngb-accordion .card .card-header+div ngb-accordion.accordion .card .card-header+div {
+    background: #fff;
+    padding-top: 0px !important;
+}
+
+.enrollment-paged .card {
+    background: none !important;
+    border: none;
+    overflow: visible !important;
+}
+
+.enrollment-main-div .enrollment-paged .card .card-header {
+    background: #ffffff;
+    border: none !important;
+    box-shadow: 0 0px 5px #d0d0d0 !important;
+    border-radius: 3px !important;
+}
+
+.enrollment-main-div .card .card-header {
+    box-shadow: 0 0px 5px #d0d0d0 !important;
+    border: none;
+}
+
+.enrollment-paged .card .card-header button {
+    background: #fff;
+}
+
+.enrollment-paged .card-header {
+    padding: 0px !important;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, .03);
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+}
+
+div#checkoutstep3 .card {
+    box-shadow: 0 0px 5px #d0d0d0 !important;
+    margin: 0px 0px 20px;
+}
+
+div#checkoutstep4 .card {
+    box-shadow: 0 0px 5px #d0d0d0 !important;
+    margin: 0px 0px 20px;
+}
+
+.loya-conver {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loyalty-desc {
+    margin-bottom: 13px;
+    position: relative;
+}
+
+div#checkoutstep3 ul.select-paycard h4 {
+    font-size: 18px;
+    font-family: 'g-demibold';
+    color: #000;
+    margin: 0 0 3px 0;
+}
+
+.enrollment-pages .btn-link {
+    color: #101010;
+}
+
+.enrollment-pages a {
+    color: #181818;
+}
+
+.enrollment-steps-5 ngb-accordion .card ngb-accordion.accordion .card .card-header+div .card-body {
+    padding: 10px 15px !important;
+}
+
+.enrollment-steps-5 ngb-accordion .card ngb-accordion.accordion .card .card-header button {
+    padding-top: 20px;
+}
+
 
 /* MEDIA */
 
@@ -1711,7 +1804,6 @@ section.reviews-yotpo yotpo-reviews-widget h2.yotpo-main-title {
     ngx-guided-tour {
         display: none;
     }
-    
     .mob-check .show-deskk .showsidebar.toggle-sidebar .sidebar-head span.down-ext {
         display: none;
     }
@@ -1779,17 +1871,19 @@ section.reviews-yotpo yotpo-reviews-widget h2.yotpo-main-title {
         max-width: 100%;
         flex: none;
     }
-  
     section.product-gallery {
         position: relative;
         margin-bottom: 620px;
     }
-    
-    section.product-gallery .banner_products-slides+.full-width {position: absolute;bottom: -610px;left: 50%;transform: translateX(-50%);}
-    
-    section.product-gallery .banner_products-slides+.full-width .model-productview {    box-shadow: 0 0 15px #ab9f9fab;}
-
-
+    section.product-gallery .banner_products-slides+.full-width {
+        position: absolute;
+        bottom: -610px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    section.product-gallery .banner_products-slides+.full-width .model-productview {
+        box-shadow: 0 0 15px #ab9f9fab;
+    }
     .banner-ads {
         margin-top: 30px !important;
     }
@@ -1886,11 +1980,9 @@ section.reviews-yotpo yotpo-reviews-widget h2.yotpo-main-title {
 }
 
 @media (max-width: 767px) {
-
     section.product-gallery .banner_products-slides+.full-width {
         bottom: -590px;
     }
-   
     .r-listing-head .media-body .r-date-post {
         display: none;
     }
@@ -1961,6 +2053,7 @@ section.reviews-yotpo yotpo-reviews-widget h2.yotpo-main-title {
         bottom: -620px;
     }
 }
+
 @media (max-width: 575px) {
     ngb-modal-window.prodview-modal .modal-dialog {
         margin: 25px auto 0;

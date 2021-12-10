@@ -14,9 +14,17 @@ span.arrow-stepp {
 
 .enrollment-page .card.ng-star-inserted .card-header {
     padding: 0px;
+    background-color: rgb(0 0 0 / 0%);
 }
 
-.card.ng-star-inserted {
+.enrollment-righ .card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, .03) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+}
+
+.enrollment-righ .card.ng-star-inserted {
     background-color: unset !important;
 }
 
@@ -155,4 +163,207 @@ p.you-pay {
     text-transform: uppercase;
     font-size: 15px;
     border: 1px solid #1cb1c5;
+}
+
+.pinfo input.personalInfo {
+    padding: 14px 10px;
+    height: 50px;
+}
+
+span.ssnId {
+    padding: 0px 4px;
+}
+
+.col-xs-12.verifibtn {
+    text-align: center;
+    margin-top: 22px;
+}
+
+button.btn.btn-info.verify-btn {
+    color: #17a2b8;
+    background: transparent;
+    padding: 8px 57px;
+    border-radius: 30px;
+    font-size: 18px;
+}
+
+label.control-label.visible-xs.required.requiredField {
+    padding: 0px 5px;
+    color: gray;
+    font-size: 12px;
+}
+
+.saveprocessed.continuebtn.ng-star-inserted {
+    margin: 23px 0px;
+    padding-bottom: 20px;
+}
+
+.saveprocessed.continuebtn.ng-star-inserted button {
+    box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px, rgb(0 0 0 / 30%) 0px 18px 36px -18px;
+    max-width: 365px;
+    padding: 16px 32px;
+}
+
+select#Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599 {
+    height: 50px;
+}
+
+.col-xs-4.shiping-box {
+    box-shadow: 0 0px 5px #d0d0d0 !important;
+    margin: 0px 19px;
+    padding-top: 20px;
+    background: white;
+}
+
+.saveprocessed.continue {
+    padding: 50px 0px;
+}
+
+.saveprocessed1.continuebtn button {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    background-color: #1cb1c5;
+    border-radius: 40px;
+    padding: 10px 10px;
+    font-family: 'g-demibold';
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 15px;
+    border: 1px solid #1cb1c5;
+}
+
+.saveprocessed1.continuebtn {
+    text-align: center;
+}
+
+.saveprocessed.conti.ng-star-inserted {
+    padding: 20px 0px;
+}
+
+.saveprocessed {
+    padding: 20px 0px;
+}
+
+.enrollment-paged .card .card-header {
+    background: #ffffff;
+    border: none;
+    /* box-shadow: 0 0px 5px #d0d0d0 !important; */
+    border-radius: 3px !important;
+}
+
+.enrollment-main-div .card-header {
+    box-shadow: none !important;
+}
+
+div#checkoutstep3 .card {
+    box-shadow: 0 0px 5px #d0d0d0 !important;
+    margin: 0px 19px 20px;
+}
+
+.loya-conver {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loyalty-desc {
+    margin-bottom: 13px;
+    position: relative;
+}
+
+.enrollment-pages .btn-link {
+    color: #101010;
+}
+
+select {
+    padding: 5px 15px;
+    height: 48px;
+}
+
+.enrollment-paged .card-header h4 {
+    margin: 0;
+}
+
+.method-cardselect ul {
+    padding: 0 15px;
+    list-style-type: none;
+}
+
+.method-cardselect ul li {
+    margin-bottom: 20px;
+}
+
+.method-cardselect ul li .custom-control {
+    padding-left: 15px;
+}
+
+.method-cardselect ul.select-paycard {
+    margin-bottom: 18px;
+}
+
+.method-cardselect ul.select-paycard h4 {
+    font-size: 18px;
+    font-family: 'g-demibold';
+    color: #000;
+    margin: 0 0 3px 0;
+}
+
+.method-cardselect ul.select-paycard .card-info p {
+    margin: 0;
+    color: rgba(0 0 0/0.8);
+    font-size: 12px;
+    font-family: 'g-medium';
+}
+
+.method-cardselect ul h4 a.edit-cardopt {
+    font-size: 12px;
+    font-family: 'g-demibold';
+    color: #17b0cc;
+    margin: 0 0 3px 0;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.method-cardselect ul.select-paycard li:not(:first-child) {
+    border-top: 1px solid #e6e6e6;
+    padding-top: 20px;
+    margin-bottom: 0px !important;
+}
+
+.method-cardselect ul li label .cardselecting-list-item .card-info p {
+    margin: 0;
+    color: rgba(0 0 0/0.8);
+    font-size: 14px;
+}
+
+.method-cardselect ul li .custom-control input {
+    top: 5px;
+    left: 5px;
+}
+
+.method-cardselect ul li label:after {
+    background-color: #ffffff;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    left: -22px;
+    top: 9px;
+}
+
+.method-cardselect ul li label:before {
+    border: 2px solid #747474;
+    left: -25px;
+    top: 6px;
+}
+
+.method-cardselect ul li input:checked~.custom-control-label::after {
+    background-color: #1CB1C5;
+    background-image: none !important;
+}
+
+.method-cardselect ul li input:checked~.custom-control-label::before {
+    background-color: #fff;
+    border-color: #1CB1C5;
 }

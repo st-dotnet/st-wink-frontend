@@ -1,0 +1,171 @@
+    .card-headingWraper {
+        padding: 20px 20px;
+    }
+    
+    .card.heading {
+        margin: 20px 0px;
+    }
+    
+    .accordion>.card:not(:last-of-type) {
+        border-bottom: 1px solid #80808038;
+    }
+    
+    .card.heading h5 {
+        font-size: 30px;
+        color: black;
+        font-weight: 600;
+    }
+    /* small accordion */
+    
+    .smallAcordion-wraper,
+    .card-body.small-wraper {
+        padding: 0;
+    }
+    
+    h4.main-heading {
+        font-size: 20px;
+        color: black;
+    }
+    
+    .firstDiv {
+        background: transparent;
+        border: navajowhite;
+    }
+    
+    .card.small-open {
+        margin: 10px 0px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        border: none;
+        margin: 10px;
+    }
+    
+    .card.small-open i.fas.fa-angle-down.rotate-icon {
+        float: right;
+        padding-top: 7px;
+    }
+    
+    .card-body.small-wraper {
+        background-color: #f7f7f7;
+    }
+    
+    .col-md-10.col-xl-6.smallAcordion-wraper {
+        flex: 0 0 90%;
+        max-width: 100%;
+    }
+    
+    .emailsection input#exampleInputEmail1,
+    input#number {
+        padding: 13px;
+        height: auto;
+        border: 2px solid #85868742;
+        margin-bottom: 30px;
+    }
+    
+    .form-group.emailsection,
+    .numbersection,
+    .numbersection.home {
+        position: relative;
+    }
+    
+    .form-group.emailsection label.emailLable {
+        position: absolute;
+        bottom: 97px;
+        left: 15px;
+        background-color: white;
+        padding: 5px 6px;
+        color: #80808085;
+    }
+    
+    label.number {
+        position: absolute;
+        bottom: 30px;
+        left: 15px;
+        background-color: white;
+        padding: 5px 6px;
+        color: #80808085;
+    }
+    
+    label.emailLable.home {
+        position: absolute;
+        bottom: 175px;
+        left: 15px;
+        background-color: white;
+        padding: 5px 6px;
+        color: #80808085;
+    }
+    
+    .custom-control.custom-checkbox.mycheckbox {
+        display: initial;
+    }
+    
+    .emailbtns button.cancle-btn {
+        padding: 7px 30px;
+        border: 1px solid #1cb1c5;
+        border-radius: 30px;
+        background-color: transparent;
+        color: #1cb1c5;
+        text-transform: uppercase;
+    }
+    
+    .emailbtns button.save-btn {
+        padding: 9px 45px;
+        border: none;
+        border-radius: 30px;
+        background: #1cb1c5;
+        color: white;
+        box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+        text-transform: uppercase;
+    }
+    
+    .emailbtns {
+        text-align: center;
+        display: flex;
+        justify-content: space-around;
+        margin: 12px;
+    }
+    
+    .cancles,
+    .saves {
+        margin: 5px;
+    }
+    /* table css */
+    
+    body {
+        padding: 0 2em;
+        font-family: Montserrat, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        color: #444;
+        background: #eee;
+    }
+    
+    h1 {
+        font-weight: normal;
+        letter-spacing: -1px;
+        color: #34495E;
+    }
+    
+    .rwd-table {
+        background: #f6f6f6;
+        color: rgb(0, 0, 0);
+        border-radius: .4em;
+        overflow: hidden;
+        width: 100%;
+    }
+    
+    tr {
+        border-color: lighten(#34495E, 10%);
+    }
+    
+    th,
+    td {
+        margin: .5em 1em;
+        @media (min-width: $breakpoint-alpha) {
+            padding: 1em !important;
+        }
+    }
+    
+    th,
+    td:before {
+        color: #dd5;
+    }
