@@ -112,7 +112,14 @@ export class CartComponent implements OnInit {
   }
 
   onLoad() {
-    this.cartItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
+    if (this.sessionService.getSessionItem('user')) {
+      this.cartItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
+    }
+    else{
+      this.cartItems = this.sessionService.getSessionObject('productCartItems');
+    }
+
+
     this.cartItems.forEach(function (item) {
       if (item.quantityModel > 10 || item.quantityModel == 0) {
 
@@ -253,7 +260,15 @@ if(this.sessionService.getSessionObject('inputdata'))
     this.isShowSpecial = false;
 
 
-    this.productItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
+    //this.productItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
+    if (this.sessionService.getSessionItem('user')) {
+      this.productItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
+    }
+    else{
+      this.productItems = this.sessionService.getSessionObject('productCartItems');
+    }
+
+
     this.inputdata =this.sessionService.getSessionObject('inputdata');
 
     const items = {
@@ -275,7 +290,14 @@ if(this.sessionService.getSessionObject('inputdata'))
 
     this.sessionService.cartSession(this.productItems);
 
-    this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.productItems);
+    //this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.productItems);
+
+    if (this.sessionService.getSessionItem('user')) {
+      this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.productItems);
+    }
+    else{
+      this.sessionService.setSessionObject('productCartItems', this.productItems);
+    }
 
     this.onLoad();
 
@@ -343,11 +365,24 @@ if(this.sessionService.getSessionObject('inputdata'))
   //Remove Item From Cart List
   removeItem(cartItem: any, type: any, bundle: string) {
     this.spinner.show();
-    this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
+   // this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
+    if (this.sessionService.getSessionItem('user')) {
+      this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
+    }
+    else{
+      this.sessionService.removeSessionItem('productCartItems');
+    }
+
     switch (type) {
       case 0:
         this.cartItems = this.cartItems.filter(x => x !== cartItem);
-        this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems) : this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
+        if (this.sessionService.getSessionItem('user')){
+          this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems) : this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
+        }
+        else{
+          this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
+        }
+
         this.updateCartSession();
        var singleItems =this.cartItems.filter(x => x !== cartItem && x.subscriptionModel === "singleDelivery") ;
        if(singleItems ==null || singleItems.length<=0)
@@ -362,7 +397,14 @@ if(this.sessionService.getSessionObject('inputdata'))
         break;
       case 1:
         this.cartItems = this.cartItems.filter(x => x !== cartItem);
-        this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems) : this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
+        //this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems) : this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
+        if (this.sessionService.getSessionItem('user')){
+          this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems) : this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
+        }
+        else{
+          this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems',this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
+        }
+
         this.updateCartSession();
         let cartItem1 = this.sessionService.getSessionObject("productCartItems");
 
@@ -388,7 +430,14 @@ if(this.sessionService.getSessionObject('inputdata'))
   }
 
   updateCartSession() {
-    const items = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
+    var items;
+    if (this.sessionService.getSessionItem('user')){
+      items = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
+    }
+    else{
+      items = this.sessionService.getSessionObject('productCartItems');
+    }
+
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
     this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
     this.oneTimePriceCartItemsCount = this.oneTimePriceCartItems.length;
@@ -444,7 +493,14 @@ if(this.sessionService.getSessionObject('inputdata'))
 
         }
       }
-      this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems);
+      //this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems);
+      if (this.sessionService.getSessionItem('user')){
+        this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems);
+      }
+      else{
+        this.sessionService.setSessionObject('productCartItems', this.cartItems);
+      }
+
       this.GetOneTimeSubDiscount();
 
     }
@@ -469,7 +525,15 @@ if(this.sessionService.getSessionObject('inputdata'))
     if (this.isOtherValue)
       $("#showinput" + this.showOtherTextbox).show();
     this.orderTotal = this.getOrderTotal();
-    this.cartItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
+    //this.cartItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
+
+    if (this.sessionService.getSessionItem('user')){
+      this.cartItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
+    }
+    else{
+      this.cartItems = this.sessionService.getSessionObject('productCartItems');
+    }
+
     //subsciption item List
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
     //onetime item list

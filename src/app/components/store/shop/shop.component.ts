@@ -8,6 +8,7 @@ import { environment } from '@environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CartTypeEnum, ShoppingCartItemType } from '@app/_models/cart-type-enum';
+
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -232,7 +233,6 @@ export class ShopComponent implements OnInit {
       this.category = this.type != null ? parseInt(this.type) : this.categoryId;
       this.GetProductsList(this.categoryId, this.filterValue);
     })
-
   }
 
   onCategoryChange() {
@@ -351,11 +351,15 @@ export class ShopComponent implements OnInit {
     //   this.toastrService.error('Sorry You are Under 18.');
     //   return;
     // }
-
     if (product.quantityModel == 0 || product.quantityModel == undefined)
       return this.toastrService.error("Please select the quantity");
 
-    this.productItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
+      if (this.sessionService.getSessionItem('user')) {
+        this.productItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
+      }
+      else{
+        this.productItems = this.sessionService.getSessionObject('productCartItems');
+      }
     if (this.selectDelivery == 1 && this.subscriptionModelduration == undefined) {
       return this.toastrService.error("Please select the subscription plan");
     }
@@ -372,7 +376,6 @@ export class ShopComponent implements OnInit {
       quantityLimit: 4,
       isDisabled: null,
       orderType: 0
-
     }
     Object.entries(items).forEach(([key, value]) => { product[key] = value });
     //No percentage calculation
@@ -520,13 +523,27 @@ export class ShopComponent implements OnInit {
       }
       this.sessionService.cartSession(this.productItems);
 
-      this.sessionService.setSessionObject('productCartItems-' + user.loginName, this.productItems);
+      //this.sessionService.setSessionObject('productCartItems-' + user.loginName, this.productItems);
+
+      if (this.sessionService.getSessionItem('user')){
+        this.sessionService.setSessionObject('productCartItems-' + user.loginName, this.productItems);
+      }
+      else{
+        this.sessionService.setSessionObject('productCartItems',this.productItems);
+      }
     }
     else {
       // Object.entries(items).forEach(([key, value]) => { product[key] = value });
       this.productCartItems.push(product);
       this.sessionService.cartSession(this.productCartItems);
-      this.sessionService.setSessionObject('productCartItems-' + user.loginName, this.productCartItems);
+      //this.sessionService.setSessionObject('productCartItems-' + user.loginName, this.productCartItems);
+
+      if (this.sessionService.getSessionItem('user')){
+        this.sessionService.setSessionObject('productCartItems-' + user.loginName, this.productCartItems);
+      }
+      else{
+        this.sessionService.setSessionObject('productCartItems', this.productCartItems);
+      }
       this.toastrService.success('Product added successfully');
       this.modalService.dismissAll();
     }
@@ -592,7 +609,14 @@ export class ShopComponent implements OnInit {
 
   quantityCalculation(productDetail: any, selectedvalue: number) {
     var user = this.sessionService.getSessionObject('user');
-    this.cartItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
+    //this.cartItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
+
+    if (this.sessionService.getSessionItem('user')) {
+      this.cartItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
+    }
+    else{
+      this.cartItems = this.sessionService.getSessionObject('productCartItems');
+    }
     if (selectedvalue <= 10) {
       productDetail.extraQuantity = null;
     }

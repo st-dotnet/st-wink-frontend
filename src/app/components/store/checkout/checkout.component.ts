@@ -163,7 +163,15 @@ export class CheckoutComponent implements OnInit {
     this.unSubscriptionTotalPrice = this.sessionService.getSessionObject(
       'unSubscriptionTotal'
     );
-    this.cartItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
+    //this.cartItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
+
+    if (this.sessionService.getSessionItem('user')){
+      this.cartItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
+    }
+    else{
+      this.cartItems = this.sessionService.getSessionObject('productCartItems');
+    }
+
     this.newAddress = JSON.parse(localStorage.getItem('newShippingAddress'))
       ? JSON.parse(localStorage.getItem('newShippingAddress'))
       : '';
@@ -763,7 +771,15 @@ export class CheckoutComponent implements OnInit {
     this.totalDiscount = 0;
     this.cartSummaryTotal = 0;
     this.orderTotal = this.getOrderTotal();
-    this.cartItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
+    //this.cartItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
+
+    if (this.sessionService.getSessionItem('user')){
+      this.cartItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
+    }
+    else{
+      this.cartItems = this.sessionService.getSessionObject('productCartItems');
+    }
+
     //subsciption item List
     this.subscriptionCartItems = this.cartItems.filter(
       (x) => x.selectDelivery == CartTypeEnum.Subscription

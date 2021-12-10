@@ -90,7 +90,42 @@ export class SearchproductComponent implements OnInit {
         id: '4',
         name: 'Qty 4',
         value: 4
-      }
+      },
+      {
+        id: '5',
+        name: 'Qty 5',
+        value: 5,
+      },
+      {
+        id: '6',
+        name: 'Qty 6',
+        value: 6,
+      },
+      {
+        id: '7',
+        name: 'Qty 7',
+        value: 7,
+      },
+      {
+        id: '8',
+        name: 'Qty 8',
+        value: 8,
+      },
+      {
+        id: '9',
+        name: 'Qty 9',
+        value: 9,
+      },
+      {
+        id: '10',
+        name: 'Qty 10',
+        value: 10,
+      },
+      {
+        id: 'Others',
+        name: 'Custom',
+        value: 0,
+      },
     ]
     this.years = [
       {
@@ -192,7 +227,13 @@ export class SearchproductComponent implements OnInit {
   }
 
   addToCart(product: any) {
-    this.productItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
+    if (this.sessionService.getSessionItem('user')) {
+      this.productItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
+    }
+    else{
+      this.productItems = this.sessionService.getSessionObject('productCartItems');
+    }
+
     if (this.selectDelivery == 1 && this.subscriptionModelduration == undefined) {
       return this.toastrService.error("Please select the subscription plan");
     }
@@ -244,17 +285,25 @@ export class SearchproductComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel = single_singledelivery.quantityModel + +product.quantityModel;
 
-          if (this.product.quantityModel > product.quantityLimit) {
-            this.productItems.push(old_single_singledelivery);
-            this.toastrService.error('You Exceed your Quantity Limit 4');
-          }
-          else {
-            this.productItems.push(product);
-            this.toastrService.success('Product added successfully');
-            this.modalService.dismissAll();
-          }
+          //product.quantityModel = single_singledelivery.quantityModel + +product.quantityModel;
+          product.quantityModel = parseInt(single_singledelivery.quantityModel) + parseInt(product.quantityModel);
+          product.extraQuantity = product.quantityModel;
+
+
+          // if (this.product.quantityModel > product.quantityLimit) {
+          //   this.productItems.push(old_single_singledelivery);
+          //   this.toastrService.error('You Exceed your Quantity Limit 4');
+          // }
+          // else {
+          //   this.productItems.push(product);
+          //   this.toastrService.success('Product added successfully');
+          //   this.modalService.dismissAll();
+          // }
+
+             this.productItems.push(product);
+             this.toastrService.success('Product added successfully');
+             this.modalService.dismissAll();
         }
         else {
           this.productItems.push(product);
@@ -274,8 +323,12 @@ export class SearchproductComponent implements OnInit {
           product.quantityModel = single_subscriptiondelivery.quantityModel + +product.quantityModel;
 
           if (product.quantityModel > product.quantityLimit) {
-            this.productItems.push(old_single_subscriptiondelivery);
-            this.toastrService.error('You Exceed your Quantity Limit 4');
+            //this.productItems.push(old_single_subscriptiondelivery);
+            //this.toastrService.error('You Exceed your Quantity Limit 4');
+
+            this.productItems.push(product);
+            this.toastrService.success('Product added successfully');
+            this.modalService.dismissAll();
           }
           else {
             this.productItems.push(product);
@@ -298,11 +351,16 @@ export class SearchproductComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel = multiple_singledelivery.quantityModel + +product.quantityModel;
+          //product.quantityModel = multiple_singledelivery.quantityModel + +product.quantityModel;
+          product.quantityModel = parseInt(multiple_singledelivery.quantityModel) + parseInt(product.quantityModel);
+          product.extraQuantity = product.quantityModel;
 
           if (product.quantityModel > product.quantityLimit) {
-            this.productItems.push(old_multiple_singledelivery);
-            this.toastrService.error('You Exceed your Quantity Limit 4');
+           // this.productItems.push(old_multiple_singledelivery);
+            //this.toastrService.error('You Exceed your Quantity Limit 4');
+            this.productItems.push(product);
+            this.toastrService.success('Product added successfully');
+            this.modalService.dismissAll();
           }
           else {
             this.productItems.push(product);
@@ -325,11 +383,16 @@ export class SearchproductComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel = multiple_subscriptiondelivery.quantityModel + +product.quantityModel;
+          //product.quantityModel = multiple_subscriptiondelivery.quantityModel + +product.quantityModel;
+          product.quantityModel = parseInt(multiple_subscriptiondelivery.quantityModel) + parseInt(product.quantityModel);
+          product.extraQuantity = product.quantityModel;
 
           if (product.quantityModel > product.quantityLimit) {
-            this.productItems.push(old_multiple_subscriptiondelivery);
-            this.toastrService.error('You Exceed your Quantity Limit 4');
+            //this.productItems.push(old_multiple_subscriptiondelivery);
+            //this.toastrService.error('You Exceed your Quantity Limit 4');
+            this.productItems.push(product);
+            this.toastrService.success('Product added successfully');
+            this.modalService.dismissAll();
           }
           else {
             this.productItems.push(product);
@@ -344,13 +407,25 @@ export class SearchproductComponent implements OnInit {
         }
       }
       this.sessionService.cartSession(this.productItems);
-      this.sessionService.setSessionObject('productCartItems-' + this.user.loginName, this.productItems);
+      if (this.sessionService.getSessionItem('user')) {
+        this.sessionService.setSessionObject('productCartItems-' + this.user.loginName, this.productItems);
+      }
+      else{
+      this.sessionService.setSessionObject('productCartItems', this.productItems);
+      }
+
     }
     else {
       // Object.entries(items).forEach(([key, value]) => { product[key] = value });
       this.productCartItems.push(product);
       this.sessionService.cartSession(this.productCartItems);
-      this.sessionService.setSessionObject('productCartItems-' + this.user.loginName, this.productCartItems);
+      if (this.sessionService.getSessionItem('user')) {
+        this.sessionService.setSessionObject('productCartItems-' + this.user.loginName, this.productCartItems);
+      }
+      else{
+
+      this.sessionService.setSessionObject('productCartItems', this.productCartItems);
+      }
       this.toastrService.success('Product added successfully');
       this.modalService.dismissAll();
     }
