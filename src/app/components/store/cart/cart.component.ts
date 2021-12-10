@@ -193,7 +193,7 @@ if(this.sessionService.getSessionObject('inputdata'))
             this.addPromoIcon = false;
             this.promocodeMessage = "Code Applied";
             this.promoPercentage =
-              (this.subtotalOneTimePrice * this.promoItem.percentOff) / 100;
+              (this.subtotalOneTimePrice==null?0: parseFloat( this.subtotalOneTimePrice.toString()) * parseFloat(this.promoItem.percentOff)) / 100;
             // this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
 
             this.toastrService.success(
@@ -258,8 +258,6 @@ if(this.sessionService.getSessionObject('inputdata'))
 
   spacialItemAdd() {
     this.isShowSpecial = false;
-
-
     //this.productItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
     if (this.sessionService.getSessionItem('user')) {
       this.productItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
