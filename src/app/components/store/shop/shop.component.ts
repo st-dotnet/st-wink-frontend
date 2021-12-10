@@ -166,6 +166,7 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    debugger;
     this.filterTitle = this.sessionService.getSessionItem("categorySelect");
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.route.params.subscribe(params => {
@@ -189,16 +190,17 @@ export class ShopComponent implements OnInit {
   }
 
   getAllCategoryById() {
+
     this.spinner.show();
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
       this.categoryModels = result;
-      this.categoryModels.forEach(element => {
+      this.categoryModels?.forEach(element => {
         this.categoryTitle.push({
           webCategoryID: element.webCategoryID,
           webCategoryDescription: element.webCategoryDescription
         });
       });
-      const category = this.categoryModels.find(x => x.webCategoryDescription == this.type);
+      const category = this.categoryModels?.find(x => x.webCategoryDescription == this.type);
       this.category = category != null ? category.webCategoryID : 0;
       this.shopService.GetProductsList(this.category, this.filterValue).subscribe(result => {
         this.shopProductModels = result;
@@ -216,16 +218,17 @@ export class ShopComponent implements OnInit {
   }
 
   GetDDLCategoryById() {
+    debugger;
     this.spinner.show();
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
       this.categoryModels = result;
-      this.categoryModels.forEach(element => {
+      this.categoryModels?.forEach(element => {
         this.categoryTitle.push({
           webCategoryID: element.webCategoryID,
           webCategoryDescription: element.webCategoryDescription
         });
       });
-      var data = this.categoryModels.find(x => x.webCategoryDescription.toString() === "All Products");
+      var data = this.categoryModels?.find(x => x.webCategoryDescription.toString() === "All Products");
       if (data) {
         data.webCategoryDescription = "Select Category";
       }
