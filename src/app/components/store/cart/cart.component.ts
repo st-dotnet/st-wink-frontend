@@ -349,8 +349,14 @@ if(this.sessionService.getSessionObject('inputdata'))
         this.cartItems = this.cartItems.filter(x => x !== cartItem);
         this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems) : this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
         this.updateCartSession();
+       var singleItems =this.cartItems.filter(x => x !== cartItem && x.subscriptionModel === "singleDelivery") ;
+       if(singleItems ==null || singleItems.length<=0)
+       {
+        this.sessionService.removeSessionItem('promoCode');
+       }
         let cartItem0 = this.sessionService.getSessionObject("productCartItems");
         if (cartItem0 == null || cartItem0.length <= 0) {
+          this.sessionService.removeSessionItem('promoCode');
           this.enablebtn = true;
         }
         break;
@@ -359,7 +365,9 @@ if(this.sessionService.getSessionObject('inputdata'))
         this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems) : this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
         this.updateCartSession();
         let cartItem1 = this.sessionService.getSessionObject("productCartItems");
+
         if (cartItem1 == null || cartItem1.length <= 0) {
+          this.sessionService.removeSessionItem('promoCode');
           this.enablebtn = true;
         }
         break;
