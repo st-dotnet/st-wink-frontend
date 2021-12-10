@@ -156,6 +156,7 @@ if(this.sessionService.getSessionObject('inputdata'))
   }
 
   addPromo() {
+    debugger;
     if (this.promocode_onetime == undefined) {
       this.promocode_onetime = this.sessionService.getSessionItem('promoCode');
 
@@ -169,8 +170,7 @@ if(this.sessionService.getSessionObject('inputdata'))
               this.addPromoIcon = false;
               this.promocodeMessage = "Code Applied";
               this.promoPercentage =
-                (this.subtotalOneTimePrice * this.promoItem.percentOff) / 100;
-
+                (this.subtotalOneTimePrice==null?0:(parseFloat(this.subtotalOneTimePrice.toString())) * parseFloat(this.promoItem.percentOff)) / 100;
             }
             this.cartCalculation();
             this.spinner.hide();
@@ -555,6 +555,7 @@ if(this.sessionService.getSessionObject('inputdata'))
     //     this.totalDiscount=this.totalDiscount+this.promoPercentage;
     // }
 
+    debugger;
     this.subTotalSubscriptionPrice = this.getSubTotal(this.subscriptionCartItems);
     this.discount15Percent = (this.subTotalSubscriptionPrice * 15) / 100;
 
@@ -563,6 +564,7 @@ if(this.sessionService.getSessionObject('inputdata'))
     this.totalDiscount = this.totalDiscount + this.discount15Percent + this.totalOneTimeDiscountPurchase;
 
     this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
+
 
     // for promo code
     if (this.promoPercentage > 0) {
