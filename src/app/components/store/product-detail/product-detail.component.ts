@@ -340,9 +340,9 @@ export class ProductDetailComponent implements OnInit {
       if (this.sessionService.getSessionItem('user')) {
         this.productItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
       }
-      else{
-        this.productItems = this.sessionService.getSessionObject('productCartItems');
-      }
+  if( this.productItems==null)
+        {this.productItems = this.sessionService.getSessionObject('productCartItems');}
+      
 
     // this.productItems =
     //   this.sessionService.getSessionObject('productCartItems-' + user.loginName);
@@ -657,9 +657,8 @@ export class ProductDetailComponent implements OnInit {
     if (this.sessionService.getSessionItem('user')) {
       this.cartItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
     }
-    else{
-      this.cartItems = this.sessionService.getSessionObject('productCartItems');
-    }
+    if( this.cartItems==null)
+    {this.cartItems = this.sessionService.getSessionObject('productCartItems');}
 
     if (selectedvalue <= 10) {
       productDetail.extraQuantity = null;

@@ -115,9 +115,8 @@ export class CartComponent implements OnInit {
     if (this.sessionService.getSessionItem('user')) {
       this.cartItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
     }
-    else{
-      this.cartItems = this.sessionService.getSessionObject('productCartItems');
-    }
+    if( this.cartItems==null)
+    {this.cartItems = this.sessionService.getSessionObject('productCartItems');}
 
 
     this.cartItems.forEach(function (item) {
@@ -156,7 +155,6 @@ if(this.sessionService.getSessionObject('inputdata'))
   }
 
   addPromo() {
-    debugger;
     if (this.promocode_onetime == undefined) {
       this.promocode_onetime = this.sessionService.getSessionItem('promoCode');
 
@@ -216,7 +214,7 @@ if(this.sessionService.getSessionObject('inputdata'))
       }
     }
     else {
-      this.toastrService.success(
+      this.toastrService.warning(
         "Please login before apply promo code"
       );
       // let isTrue = true;
@@ -262,11 +260,9 @@ if(this.sessionService.getSessionObject('inputdata'))
     if (this.sessionService.getSessionItem('user')) {
       this.productItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
     }
-    else{
-      this.productItems = this.sessionService.getSessionObject('productCartItems');
-    }
-
-
+    if( this.productItems==null)
+    {this.productItems = this.sessionService.getSessionObject('productCartItems');}
+     
     this.inputdata =this.sessionService.getSessionObject('inputdata');
 
     const items = {
@@ -432,9 +428,8 @@ if(this.sessionService.getSessionObject('inputdata'))
     if (this.sessionService.getSessionItem('user')){
       items = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
     }
-    else{
-      items = this.sessionService.getSessionObject('productCartItems');
-    }
+    if( this.productItems==null)
+    {this.productItems = this.sessionService.getSessionObject('productCartItems');}
 
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
     this.oneTimePriceCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.OneTimePrice);
@@ -444,6 +439,13 @@ if(this.sessionService.getSessionObject('inputdata'))
   }
 
   checkOutItem() {
+    this.cartItems.map((obj) => {
+      ;
+      obj.inputdata = this.inputdata;
+      // or via brackets
+      // obj['total'] = 2;
+      return obj;
+  })
     if (this.sessionService.getSessionItem('user')) {
       this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems);
       if (this.cartItems.length > 0)
@@ -528,9 +530,8 @@ if(this.sessionService.getSessionObject('inputdata'))
     if (this.sessionService.getSessionItem('user')){
       this.cartItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
     }
-    else{
-      this.cartItems = this.sessionService.getSessionObject('productCartItems');
-    }
+    if( this.cartItems==null)
+        {this.cartItems = this.sessionService.getSessionObject('productCartItems');}
 
     //subsciption item List
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
@@ -547,13 +548,8 @@ if(this.sessionService.getSessionObject('inputdata'))
     }
 
     this.subtotalOneTimePrice = this.getSubTotal(this.oneTimePriceCartItems);
-    // if(this.promocode_onetime!=="null" || this.promocode_onetime!==undefined)
-    // {
-    //     this.subtotalOneTimePrice=this.subtotalOneTimePrice-this.promoPercentage;
-    //     this.totalDiscount=this.totalDiscount+this.promoPercentage;
-    // }
+   
 
-    debugger;
     this.subTotalSubscriptionPrice = this.getSubTotal(this.subscriptionCartItems);
     this.discount15Percent = (this.subTotalSubscriptionPrice * 15) / 100;
 

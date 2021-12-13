@@ -120,7 +120,6 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
     this.submitted = true;
     // stop here if form is invalid
     if (this.form.invalid) {
@@ -175,7 +174,6 @@ export class SignUpComponent implements OnInit {
           } else if (res.errorMessage != null && res.errorMessage != "") {
             this.toastrService.error(res.errorMessage);
           } else {
-            debugger;
             this.form.reset();
             this.router.navigate([''], { relativeTo: this.route });
             this.toastrService.success('User registration successfully');

@@ -41,7 +41,6 @@ export class SessionService {
   }
 
   getSessionObject(key: any) {
-    debugger;
     return JSON.parse(localStorage.getItem(key));
   }
 

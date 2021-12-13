@@ -230,10 +230,9 @@ export class SearchproductComponent implements OnInit {
     if (this.sessionService.getSessionItem('user')) {
       this.productItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
     }
-    else{
-      this.productItems = this.sessionService.getSessionObject('productCartItems');
-    }
-
+    if( this.productItems==null)
+        {this.productItems = this.sessionService.getSessionObject('productCartItems');}
+        
     if (this.selectDelivery == 1 && this.subscriptionModelduration == undefined) {
       return this.toastrService.error("Please select the subscription plan");
     }
