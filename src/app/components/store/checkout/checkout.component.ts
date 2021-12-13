@@ -168,7 +168,7 @@ export class CheckoutComponent implements OnInit {
     if (this.sessionService.getSessionItem('user')){
       this.cartItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
     }
-    if( this.cartItems==null)
+    if( this.cartItems==null || this.cartItems.length==0)
         {this.cartItems = this.sessionService.getSessionObject('productCartItems');}
 
     this.newAddress = JSON.parse(localStorage.getItem('newShippingAddress'))
@@ -776,7 +776,7 @@ export class CheckoutComponent implements OnInit {
     if (this.sessionService.getSessionItem('user')){
       this.cartItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
     }
-    if( this.cartItems==null)
+    if( this.cartItems==null || this.cartItems.length==0)
     {this.cartItems = this.sessionService.getSessionObject('productCartItems');}
 
     //subsciption item List

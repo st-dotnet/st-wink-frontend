@@ -115,7 +115,8 @@ export class CartComponent implements OnInit {
     if (this.sessionService.getSessionItem('user')) {
       this.cartItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
     }
-    if( this.cartItems==null)
+    debugger;
+    if( this.cartItems==null || this.cartItems.length==0)
     {this.cartItems = this.sessionService.getSessionObject('productCartItems');}
 
 
@@ -188,18 +189,21 @@ if(this.sessionService.getSessionObject('inputdata'))
         this.shopService.getPromoData(this.promocode_onetime).subscribe(result => {
           this.promoItem = result;
           if (this.promoItem.errorMessage == null) {
-            this.addPromoIcon = false;
-            this.promocodeMessage = "Code Applied";
+          
             this.promoPercentage =
               (this.subtotalOneTimePrice==null?0: parseFloat( this.subtotalOneTimePrice.toString()) * parseFloat(this.promoItem.percentOff)) / 100;
             // this.subtotalOneTimePrice = this.subtotalOneTimePrice - this.promoPercentage;
-
-            this.toastrService.success(
-              "Promo code applied succesfully you save $'" +
-              this.promoPercentage.toFixed(2) +
-              "'."
-            );
-
+             if(this.promoPercentage >0){
+              this.addPromoIcon = false;
+              this.promocodeMessage = "Code Applied";
+              this.toastrService.success(
+                "Promo code applied succesfully you save $'" +
+                this.promoPercentage.toFixed(2) +
+                "'."
+              );
+  
+             }
+          
             this.spinner.hide();
           } else {
             // this.isDisabled=false;
@@ -214,7 +218,7 @@ if(this.sessionService.getSessionObject('inputdata'))
       }
     }
     else {
-      this.toastrService.warning(
+      this.toastrService.error(
         "Please login before apply promo code"
       );
       // let isTrue = true;
@@ -530,7 +534,7 @@ if(this.sessionService.getSessionObject('inputdata'))
     if (this.sessionService.getSessionItem('user')){
       this.cartItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
     }
-    if( this.cartItems==null)
+    if( this.cartItems==null || this.cartItems.length==0)
         {this.cartItems = this.sessionService.getSessionObject('productCartItems');}
 
     //subsciption item List

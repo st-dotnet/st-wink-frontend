@@ -614,7 +614,7 @@ export class ShopComponent implements OnInit {
     if (this.sessionService.getSessionItem('user')) {
       this.cartItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
     }
-    if( this.cartItems==null)
+    if( this.cartItems==null || this.cartItems.length==0)
     {this.cartItems = this.sessionService.getSessionObject('productCartItems');}
     if (selectedvalue <= 10) {
       productDetail.extraQuantity = null;
