@@ -552,7 +552,7 @@ section.client-reviews .client-testimonial-box .owl-nav {
     background: transparent;
     box-shadow: none !important;
     border-radius: 0 !important;
-    pointer-events: none;
+    /* pointer-events: none; */
     padding-bottom: 10px;
 }
 
@@ -598,11 +598,12 @@ section.client-reviews .client-testimonial-box .owl-nav {
 }
 
 .checkout-steps-3 ngb-accordion ngb-accordion .card-header .heading-step1 h4 {
-    color: rgba(0 0 0/0.7);
+    color: rgb(0 0 0 / 72%);
     font-family: "g-medium";
     font-size: 20px;
     line-height: 22px;
     margin-top: 5px;
+    font-weight: 600;
 }
 
 .checkout-steps-3 ngb-accordion ngb-accordion .card-header button:hover,
@@ -695,7 +696,7 @@ section.client-reviews .client-testimonial-box .owl-nav {
 }
 
 div#billing-method .method-shipp .shipping-list-item h4 {
-    color: rgba(0 0 0/0.6);
+    color: rgb(0 0 0 / 87%);
 }
 
 div#card-info ul.card-mat {
@@ -717,6 +718,8 @@ div#card-info ul.card-mat span.more-card {
     font-family: "g-regular";
     margin-top: 2px;
 }
+
+
 /* 
 div#notifi-review-header+div#notifi-review {
     display: none;
@@ -838,9 +841,10 @@ div#checkoutstep4 ngb-accordion .card-header button:hover {
     border: none;
 }
 
-.checkout-steps-3 span.arrow-stepp {
+
+/* .checkout-steps-3 span.arrow-stepp {
     display: none;
-}
+} */
 
 .reviews-yotpo .yotpo .promoted-products-box .yotpo-main-title {
     margin-bottom: 34px;
