@@ -2,9 +2,10 @@ section.enrollment-page.grid-checkout {
     padding: 100px 0px;
 }
 
-span.arrow-stepp {
+
+/* span.arrow-stepp {
     display: none;
-}
+} */
 
 .enrollment-righ .card.ng-star-inserted {
     border-bottom-right-radius: 0;
@@ -167,7 +168,8 @@ p.you-pay {
 
 .pinfo input.personalInfo {
     padding: 14px 10px;
-    height: 50px;
+    height: 56px;
+    border: 2px solid #8080807d;
 }
 
 span.ssnId {
@@ -182,7 +184,7 @@ span.ssnId {
 button.btn.btn-info.verify-btn {
     color: #17a2b8;
     background: transparent;
-    padding: 8px 57px;
+    padding: 8px 124px;
     border-radius: 30px;
     font-size: 18px;
 }
@@ -206,6 +208,7 @@ label.control-label.visible-xs.required.requiredField {
 
 select#Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599 {
     height: 50px;
+    border: 2px solid #8080807d;
 }
 
 .col-xs-4.shiping-box {
@@ -220,12 +223,11 @@ select#Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599 {
 }
 
 .saveprocessed1.continuebtn button {
-    width: 100%;
-    max-width: 280px;
+    width: 50%;
     margin: 0 auto;
     background-color: #1cb1c5;
     border-radius: 40px;
-    padding: 10px 10px;
+    padding: 15px 15px;
     font-family: 'g-demibold';
     color: #fff;
     text-transform: uppercase;
@@ -279,7 +281,8 @@ div#checkoutstep3 .card {
 
 select {
     padding: 5px 15px;
-    height: 48px;
+    height: 56px;
+    border: 2px solid #8080807d;
 }
 
 .enrollment-paged .card-header h4 {
@@ -366,4 +369,8 @@ select {
 .method-cardselect ul li input:checked~.custom-control-label::before {
     background-color: #fff;
     border-color: #1CB1C5;
+}
+
+.form-group {
+    margin-bottom: unset !important;
 }

@@ -659,7 +659,8 @@ section.client-reviews .client-testimonial-box .owl-nav {
 .panel-stepbar #checkoutstep1-header.card-header,
 .panel-stepbar #checkoutstep2-header.card-header,
 .panel-stepbar #checkoutstep3-header.card-header,
-.panel-stepbar #checkoutstep4-header.card-header {
+.panel-stepbar #checkoutstep4-header.card-header,
+.panel-stepbar #checkoutstep5-header.card-header {
     padding: 0;
     margin-bottom: 12px;
 }
@@ -819,8 +820,9 @@ div#checkoutstep4 ngb-accordion .card-header button:hover {
     margin: 0;
     color: rgba(0 0 0/0.7);
     font-family: "g-medium";
-    font-size: 20px;
+    font-size: 22px;
     line-height: 22px;
+    font-weight: 500;
 }
 
 .sidebar-ui .card .card-header button.btn-link {
@@ -1598,7 +1600,7 @@ ul.conv-products.styl-check {
 
 .birthday-holder span.btn-add-promo {
     position: absolute;
-    top: 50%;
+    top: 30%;
     right: 10px;
     transform: translateY(-50%);
 }
