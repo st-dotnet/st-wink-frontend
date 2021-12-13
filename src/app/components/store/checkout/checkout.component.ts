@@ -1030,7 +1030,11 @@ export class CheckoutComponent implements OnInit {
       .subscribe((result: any) => {
         if (result == null) {
           this.toastrService.success('Payment failed');
-        } else { this.router.navigate(['/store/thankyou']); }
+        } else { 
+          this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
+          this.sessionService.removeSessionItem('productCartItems');
+       
+          this.router.navigate(['/store/thankyou']); }
 
         this.spinner.hide();
       });

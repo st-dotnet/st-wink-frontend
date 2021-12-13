@@ -115,7 +115,7 @@ export class CartComponent implements OnInit {
     if (this.sessionService.getSessionItem('user')) {
       this.cartItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
     }
-    debugger;
+
     if( this.cartItems==null || this.cartItems.length==0)
     {this.cartItems = this.sessionService.getSessionObject('productCartItems');}
 
@@ -288,8 +288,6 @@ if(this.sessionService.getSessionObject('inputdata'))
 
     this.sessionService.cartSession(this.productItems);
 
-    //this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.productItems);
-
     if (this.sessionService.getSessionItem('user')) {
       this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.productItems);
     }
@@ -363,7 +361,6 @@ if(this.sessionService.getSessionObject('inputdata'))
   //Remove Item From Cart List
   removeItem(cartItem: any, type: any, bundle: string) {
     this.spinner.show();
-   // this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
     if (this.sessionService.getSessionItem('user')) {
       this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
     }
@@ -420,9 +417,6 @@ if(this.sessionService.getSessionObject('inputdata'))
     }
     this.total = true;
     this.spinner.hide();
-    // this.quantityForOneTime('', 0);
-    // this.quantityForSubscriptionTime('', 0);
-
     this.GetOneTimeSubDiscount();
     this.cartCalculation();
   }
@@ -432,7 +426,7 @@ if(this.sessionService.getSessionObject('inputdata'))
     if (this.sessionService.getSessionItem('user')){
       items = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
     }
-    if( this.productItems==null)
+    if(this.productItems==null || this.productItems.length==0)
     {this.productItems = this.sessionService.getSessionObject('productCartItems');}
 
     this.subscriptionCartItems = this.cartItems.filter(x => x.selectDelivery == CartTypeEnum.Subscription);
@@ -446,8 +440,6 @@ if(this.sessionService.getSessionObject('inputdata'))
     this.cartItems.map((obj) => {
       ;
       obj.inputdata = this.inputdata;
-      // or via brackets
-      // obj['total'] = 2;
       return obj;
   })
     if (this.sessionService.getSessionItem('user')) {
@@ -494,17 +486,14 @@ if(this.sessionService.getSessionObject('inputdata'))
 
           //cartitem.Quantityupdate=(this.cartItems[i].bv * 2 - this.cartItems[i].Price)*selectedvalue;
           this.cartItems[i].quantityModel = +selectedvalue;
-
         }
       }
-      //this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems);
       if (this.sessionService.getSessionItem('user')){
         this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems);
       }
-      else{
+      if( this.cartItems==null || this.cartItems.length==0)
         this.sessionService.setSessionObject('productCartItems', this.cartItems);
-      }
-
+      
       this.GetOneTimeSubDiscount();
 
     }
@@ -523,7 +512,6 @@ if(this.sessionService.getSessionObject('inputdata'))
     this.subTotalSubscriptionPrice = 0;
     this.discount15Percent = 0;
     this.subTotalSubscriptionPriceAfterDiscount = 0;
-    this.totalDiscount = 0;
     this.cartSummaryTotal = 0;
 
     if (this.isOtherValue)
