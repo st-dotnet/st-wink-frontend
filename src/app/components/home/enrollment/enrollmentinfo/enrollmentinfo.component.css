@@ -1,11 +1,24 @@
 section.enrollment-page.grid-checkout {
-    padding: 100px 0px;
+    padding-bottom: 100px;
+}
+
+section.enrollment-upperBar {
+    margin-top: 50px;
 }
 
 
 /* span.arrow-stepp {
     display: none;
 } */
+
+section.enrollment-upperBar a {
+    display: flex;
+    align-items: center;
+    color: #1cb1c5;
+    font-family: "g-demibold";
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
 .enrollment-righ .card.ng-star-inserted {
     border-bottom-right-radius: 0;
@@ -27,6 +40,14 @@ section.enrollment-page.grid-checkout {
 
 .enrollment-righ .card.ng-star-inserted {
     background-color: unset !important;
+}
+
+.enrollment-righ .heading-step1.ng-star-inserted {
+    padding-left: 20px;
+}
+
+.enrollment-righ .heading-step1.ng-star-inserted h4 {
+    color: black;
 }
 
 div#refered-sidebar {
@@ -169,7 +190,7 @@ p.you-pay {
 .pinfo input.personalInfo {
     padding: 14px 10px;
     height: 56px;
-    border: 2px solid #8080807d;
+    border: 1.5px solid #3c3a3ae3;
 }
 
 span.ssnId {
@@ -184,9 +205,20 @@ span.ssnId {
 button.btn.btn-info.verify-btn {
     color: #17a2b8;
     background: transparent;
-    padding: 8px 124px;
     border-radius: 30px;
     font-size: 18px;
+    width: 100%;
+}
+
+.enrollment-main-div .saveprocessed1.continuebtn button {
+    width: 100%;
+    box-shadow: rgb(0 0 0 / 25%) 0px 4px 12px;
+    letter-spacing: 3px;
+}
+
+.enrollment-paged .col-sm-6.sepratePart.pinfo {
+    display: flex;
+    width: 100%;
 }
 
 label.control-label.visible-xs.required.requiredField {
@@ -207,8 +239,8 @@ label.control-label.visible-xs.required.requiredField {
 }
 
 select#Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599 {
-    height: 50px;
-    border: 2px solid #8080807d;
+    height: 56px;
+    border: 1.5px solid #282727e0;
 }
 
 .col-xs-4.shiping-box {
@@ -282,7 +314,7 @@ div#checkoutstep3 .card {
 select {
     padding: 5px 15px;
     height: 56px;
-    border: 2px solid #8080807d;
+    border: 1.5px solid #020202b5
 }
 
 .enrollment-paged .card-header h4 {
@@ -373,4 +405,67 @@ select {
 
 .form-group {
     margin-bottom: unset !important;
+    width: 100%;
+}
+
+.enrollment-main-div .row.different-billing .form-group {
+    margin: 20px 0px;
+}
+
+.enrollment-main-div .card-infoo.visaInfor .form-group {
+    margin: 18px 0px;
+}
+
+.enrollment-main-div .card-infoo.visaInfor input.form-control {
+    height: 56px;
+}
+
+.enrollment-main-div .card-infoo.visaInfor ul.conv-products.mk-primary {
+    padding: 11px 5px 6px 3px;
+}
+
+.enrollment-main-div .card-infoo ul li {
+    list-style: none;
+}
+
+.card-infoo ul.conv-products.mk-primary {
+    text-align: left;
+    padding: 8px 5px 6px 0px;
+}
+
+.enrollment-main-div .card-infoo.visaInfor ul li label.custom-control-label {
+    font-weight: 500;
+    color: black;
+}
+
+.enrollment-page table {
+    width: 100%;
+}
+
+.enrollment-page table tr {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-infoo .form-group {
+    margin: 10px 0px;
+}
+
+.card-infoo .form-group input.form-control {
+    height: 50px;
+}
+
+
+/* media  css */
+
+@media (min-width: 992px) {
+    .enrollment-main-div .saveprocessed1.continuebtn button {
+        width: 50%;
+    }
+    .enrollment-paged .form-group.seprate3 {
+        padding: 0px 18px 0px 0px;
+    }
+    button.btn.btn-info.verify-btn {
+        width: 50%;
+    }
 }
