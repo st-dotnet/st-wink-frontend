@@ -638,7 +638,8 @@ section.client-reviews .client-testimonial-box .owl-nav {
 .panel-stepbar #checkoutstep1-header.card-header .btn[aria-expanded="true"],
 .panel-stepbar #checkoutstep2-header.card-header .btn[aria-expanded="true"],
 .panel-stepbar #checkoutstep3-header.card-header .btn[aria-expanded="true"],
-.panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"] {
+.panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"],
+.panel-stepbar #checkoutstep5-header.card-header .btn[aria-expanded="true"] {
     color: #fff;
     background-color: #2196f3;
     padding: 15px 15px;
@@ -669,7 +670,8 @@ section.client-reviews .client-testimonial-box .owl-nav {
 .panel-stepbar #checkoutstep1-header.card-header .btn[aria-expanded="true"]:before,
 .panel-stepbar #checkoutstep2-header.card-header .btn[aria-expanded="true"]:before,
 .panel-stepbar #checkoutstep3-header.card-header .btn[aria-expanded="true"]:before,
-.panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"]:before {
+.panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"]:before,
+.panel-stepbar #checkoutstep5-header.card-header .btn[aria-expanded="true"]:before {
     width: 30px;
     height: 30px;
     border-top: solid 20px rgb(33 150 243);
@@ -777,6 +779,12 @@ div#checkoutstep4 ngb-accordion .card-header button:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 10px;
+}
+
+.sidebar-head p {
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .sidebar-head h2 {
@@ -1441,7 +1449,7 @@ div#card-info form#cardForm footer.panel__footer {
 /* enrollment page css */
 
 div#refered-sidebar {
-    padding: 20px;
+    padding: 0px 20px;
 }
 
 .enrollment-page .col-xs-12,
@@ -1655,7 +1663,8 @@ section.reviews-yotpo yotpo-reviews-widget h2.yotpo-main-title {
 
 .enrollment-paged ngb-accordion .card .card-header+div ngb-accordion.accordion .card .card-header+div {
     background: #fff;
-    padding-top: 0px !important;
+    /* padding-top: 0px !important; */
+    padding: 5px 19px;
 }
 
 .enrollment-paged .card {
