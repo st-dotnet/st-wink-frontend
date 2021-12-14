@@ -20,9 +20,10 @@
                         </div>
                     </div>
                 </div>
+
                 <div *ngIf="sidebartoggle1" class="sidebar-ui">
                     <ngb-accordion activeIds="enter-payment">
-                        <ngb-panel id="refered-sidebar">
+                        <ngb-panel *ngIf="subscriptionCartItems.length > 0" id="refered-sidebar">
                             <ng-template ngbPanelTitle>
                                 <div class="heading-step1">
                                     <h4>Referred By</h4>
@@ -514,7 +515,7 @@
             <div class="col-sm-12 col-md-12 col-lg-7 col-lg-pull-5">
                 <div class="checkout-steps-3">
                     <ngb-accordion [closeOthers]="false" [activeIds]="activeIds" class="panel-stepbar">
-                        <ngb-panel [disabled]="showPanel1 ? true:null" id="checkoutstep1">
+                        <ngb-panel id="checkoutstep1">
                             <ng-template ngbPanelTitle>
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
                                     <defs>
@@ -530,7 +531,7 @@
                                             transform="translate(-238 2)" fill="#1cc584" />
                                     </g>
                                 </svg>
-                                <span>1 of 3 - Enter Shipping</span>
+                                <span>1 of 3 - Shipping</span>
                             </ng-template>
 
                             <ng-template ngbPanelContent>
@@ -758,6 +759,7 @@
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
                                                     <h4>Promo Code</h4>
+                                                    <p>No Code applied</p>
                                                     <span class="arrow-stepp">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
                                                             height="11.2" viewBox="0 0 6.6 11.2">
@@ -815,6 +817,7 @@
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
                                                     <h4>Loyalty Rewards</h4>
+                                                    <p>No Points applied</p>
                                                     <span class="arrow-stepp">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
                                                             height="11.2" viewBox="0 0 6.6 11.2">
@@ -879,6 +882,7 @@
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
                                                     <h4>Select Card</h4>
+                                                    <p>Visa ending in 1111</p>
                                                     <span class="arrow-stepp">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
                                                             height="11.2" viewBox="0 0 6.6 11.2">
@@ -1034,6 +1038,7 @@
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
                                                     <h4>Billing Address</h4>
+                                                    <p>Same as shipping Address</p>
                                                     <span class="arrow-stepp">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
                                                             height="11.2" viewBox="0 0 6.6 11.2">
@@ -1136,19 +1141,19 @@
                             <ng-template ngbPanelContent>
                                 <ngb-accordion activeIds="notifi-review,promo-code,loyalty-info,today-order">
                                     <ngb-panel id="notifi-review">
-                                <ng-template ngbPanelTitle>
+                                        <ng-template ngbPanelTitle>
                                             <div class="heading-step1">
-                                                <h4>Does everything look correct?</h4> 
+                                                <h4>Does everything look correct?</h4>
                                             </div>
                                         </ng-template>
-                                        <ng-template ngbPanelContent> 
+                                        <ng-template ngbPanelContent>
                                             <div class="content-card steps-inner shipping-address-form">
                                                 <div class="col-md-12 loyalty-form p-0 mb-3">
-                                         <p>Select   <button class="simplelink" (click)="onSubmit()">Place My Order</button>  to continue</p>
-                                         </div>
-                                         </div>
-                                         </ng-template>             
-                                     </ngb-panel>
+                                                    <p>Select <button class="simplelink" (click)="onSubmit()">Place My Order</button> to continue</p>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngb-panel>
 
                                     <ngb-panel id="promo-code">
                                         <ng-template ngbPanelTitle>
