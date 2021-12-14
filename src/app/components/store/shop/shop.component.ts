@@ -583,7 +583,7 @@ export class ShopComponent implements OnInit {
   onProductFilter(event: any) {
     this.spinner.show();
     this.filterValue = parseInt(event.target.value);
-    this.GetProductsList(this.categoryId, this.filterValue);
+    this.GetProductsList(this.category, this.filterValue);
   }
 
   quantityForOneTime(productDetail: any, selectedvalue: number) {

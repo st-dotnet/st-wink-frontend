@@ -97,14 +97,14 @@ export class CheckoutComponent implements OnInit {
   isShipmentMethod: any;
   shippingAddressParam: any;
   //Card Information Variables
-  isCardType: number;
+  isCardType: number= 2;
   //if card type 2 means new card details
   cardName: string;
   cardNumber: number;
   expiryMonth: number;
   expiryYear: number;
   cardCVV: number;
-  isCardDisabled: boolean = false;
+  isCardDisabled: boolean = true;
   isMakePrimaryCard: boolean = false;
   paymentParam: any;
   // New Billing Address
@@ -137,6 +137,18 @@ export class CheckoutComponent implements OnInit {
     private toastrService: ToastrService
   ) {
     this.minDate.setDate(this.minDate.getDate() + 1);
+    this.user = this.sessionService.getSessionObject("user");
+    debugger;
+    if (!this.user ) {
+      this.router.navigate(["/sign-in"]);
+    }
+    else
+     var items =this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
+      if(items.length<0){
+        toastrService.warning("please Add product from Shopping page");
+        this.router.navigate(["/store"]);
+      }
+    
   }
 
   ngOnInit(): void {

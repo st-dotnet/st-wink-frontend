@@ -882,7 +882,7 @@
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
                                                     <h4>Select Card</h4>
-                                                    <p>Visa ending in 1111</p>
+                                                    <!-- <p>Visa ending in 1111</p>
                                                     <span class="arrow-stepp">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
                                                             height="11.2" viewBox="0 0 6.6 11.2">
@@ -890,14 +890,14 @@
                                                                 d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
                                                                 transform="translate(-630.6 -4.4)" />
                                                         </svg>
-                                                    </span>
+                                                    </span> -->
                                                 </div>
                                             </ng-template>
                                             <ng-template ngbPanelContent>
                                                 <div class="content-card steps-inner shipping-method">
                                                     <div class="method-cardselect">
                                                         <ul class="select-paycard">
-                                                            <li>
+                                                            <!-- <li>
                                                                 <div class="custom-control custom-radio">
                                                                     <input type="radio" id="cardlitem1" name="isSelectCard" value="IsVisaExpire" [ngModel]="isSelectCard" [selected]="true" (change)="onSelectCardChange(1)" class="custom-control-input">
                                                                     <label class="custom-control-label" for="cardlitem1">
@@ -911,10 +911,10 @@
                                                                         </div>
                                                                     </label>
                                                                 </div>
-                                                            </li>
+                                                            </li> -->
                                                             <li>
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="cardlitem2" name="isSelectCard" value="IsNewCard" [ngModel]="isSelectCard" (change)="onSelectCardChange(2)" class="custom-control-input">
+                                                                    <input type="radio" id="cardlitem2" name="isSelectCard" value="IsNewCard" [checked]="true" [ngModel]="isSelectCard" (change)="onSelectCardChange(2)" class="custom-control-input">
                                                                     <label class="custom-control-label" for="cardlitem2">
                                                                         <div class="shipping-list-item">
                                                                             <h4>Pay with new card</h4>
