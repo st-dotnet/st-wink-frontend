@@ -146,7 +146,7 @@
                           <!-- <h3>Customize Shipment <span class="ques-ico"><a href="#"><i class="fas fa-question" aria-hidden="true"></i></a></span></h3> -->
                           <div class="choose-shipping">
                               <div class="form-group">
-                                  <select id="islectedvalchanged"   [ngModel]="productDetail.quantityModel>10?'11':productDetail.quantityModel" (ngModelChange)="productDetail.quantityModel=$event" (change)="quantityForOneTime(productDetail, $event.target.value)"
+                                  <select id="islectedvalchanged"   [ngModel]="productDetail.quantityModel>10?'0':productDetail.quantityModel" (ngModelChange)="productDetail.quantityModel=$event" (change)="quantityForOneTime(productDetail, $event.target.value)"
                                        class="form-control hidedropdownfeild">
                                       <option class="dropdown-item" disabled selected value="undefined">Select
                                           Quantity</option>
@@ -180,7 +180,7 @@
                           <div class="custom-field">
                               <input type="number" [showMaskTyped]="false"  mask="000" [dropSpecialCharacters]="false" id="showinput{{productDetail.itemCode}}"
                                   [(ngModel)]="productDetail.extraQuantity"
-                                  *ngIf="productDetail?.quantityModel >10  || productDetail?.extraQuantity !=null"
+                                  *ngIf="productDetail?.quantityModel ==0  || productDetail?.extraQuantity !=null"
                                   (change)="quantitychanged(productDetail, $event.target.value)"
                                   class="form-control" />
                           </div>

@@ -247,7 +247,7 @@ export class ProductDetailComponent implements OnInit {
       {
         id: 'Others',
         name: 'Custom',
-        value: 11,
+        value: 0,
       },
     ];
     this.delivery = [
@@ -333,8 +333,9 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart(product: any) {
     var user = this.sessionService.getSessionObject('user');
-
+debugger;
     if (product.quantityModel == 0 || product.quantityModel == undefined)
+    
       return this.toastrService.error("Please select the quantity");
 
       if (this.sessionService.getSessionItem('user')) {
@@ -653,7 +654,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   quantityCalculation(productDetail: any, selectedvalue: number) {
-    //this.cartItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
+  
     if (this.sessionService.getSessionItem('user')) {
       this.cartItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
     }
@@ -664,7 +665,7 @@ export class ProductDetailComponent implements OnInit {
       productDetail.extraQuantity = null;
     }
     if (selectedvalue != null && selectedvalue != undefined) {
-      if (selectedvalue == 11 || selectedvalue > 10) {
+      if (selectedvalue == 0 || selectedvalue > 10) {
         this.showOtherTextbox = productDetail.itemCode;
         $('#showinput' + productDetail.itemCode).show();
       } else {
