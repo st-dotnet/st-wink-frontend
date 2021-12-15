@@ -583,7 +583,7 @@ export class ProductDetailComponent implements OnInit {
           this.toastrService.success('Product added successfully');
         }
       }
-      this.sessionService.cartSession(this.productItems);
+
 
       //this.sessionService.setSessionObject('productCartItems-' + user.loginName,this.productItems);
       if (this.sessionService.getSessionItem('user')) {
@@ -592,7 +592,7 @@ export class ProductDetailComponent implements OnInit {
       else{
         this.sessionService.setSessionObject('productCartItems',this.productItems);
       }
-
+      this.sessionService.cartSession(this.productItems);
     } else {
       // Object.entries(items).forEach(([key, value]) => { product[key] = value });
       this.productCartItems.push(product);

@@ -69,14 +69,18 @@ export class SignInComponent implements OnInit {
            this.isTrue = this.sessionService.getSessionItem('isTrue');
           if(this.isTrue == "true"){            
             setTimeout(() => {              
-            this.router.navigate(["/store/checkout"]);
+            this.router.navigate(["/store/checkout"]).then(() => {
+              window.location.reload();
+            });
               this.spinner.hide();  
                 }, 1000);
           }else{
             if(res.typeOfCustomer=="4" || res.typeOfCustomer=="5" || res.typeOfCustomer=="3")
             window.location.href = "https://sellers.winknaturals.com/login";
             else
-            this.router.navigateByUrl(returnUrl);            
+            this.router.navigateByUrl(returnUrl).then(() => {
+              window.location.reload();
+            });         
           this.spinner.hide();  
           }         
           this.loading = false;

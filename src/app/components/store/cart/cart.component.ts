@@ -286,7 +286,7 @@ if(this.sessionService.getSessionObject('inputdata'))
     Object.entries(items).forEach(([key, value]) => { this.specialItem[key] = value });
     this.productItems.push(this.specialItem);
 
-    this.sessionService.cartSession(this.productItems);
+   
 
     if (this.sessionService.getSessionItem('user')) {
       this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.productItems);
@@ -294,7 +294,7 @@ if(this.sessionService.getSessionObject('inputdata'))
     else{
       this.sessionService.setSessionObject('productCartItems', this.productItems);
     }
-
+    this.sessionService.cartSession(this.productItems);
     this.onLoad();
 
   }

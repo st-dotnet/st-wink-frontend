@@ -22,8 +22,13 @@ export class SessionService {
     var user = this.getSessionObject('user');
     debugger;
     if (user != null) {
+      if(this.getSessionObject('productCartItems-' + user.loginName))
+      {
       this.cartItems$ = new BehaviorSubject<any>(this.getSessionObject('productCartItems-' + user.loginName) ?? []);
-    }
+      }
+      else
+      this.cartItems$ = new BehaviorSubject<any>(this.getSessionObject('productCartItems') ?? []);
+     }
    else
       this.cartItems$ = new BehaviorSubject<any>(this.getSessionObject('productCartItems') ?? []);
     

@@ -133,20 +133,6 @@
                           *ngIf="cartItem.quantityModel == '0'||cartItem.quantityModel >10 || cartItem.extraQuantity !=null "
                           [disabled]="cartItem.bundle=='specialOffer'" 
                           (change)="quantitychanged(cartItem, $event.target.value)" class="form-control" maxlength="3"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
-                        <!-- <select (change)="
-                          quantityForOneTime(cartItem, $event.target.value)
-                        " class="form-control" [(ngModel)]="cartItem.quantityModel">
-                          <option *ngFor="let qty of quantity" [value]="qty.value">
-                            {{qty.name }}
-                          </option>
-                        </select>
-                        <input type="number" style="margin-top: 10px;" id="showinput{{cartItem.itemCode}}"
-                          [(ngModel)]="cartItem.extraQuantity"
-                          *ngIf="cartItem.quantityModel == '0' || cartItem.extraQuantity !=null "
-                          (change)="quantitychanged(cartItem, $event.target.value)" class="form-control"> -->
-
-
-
                       </div>
                       <div class="price">
                         <p class="price-product">${{ cartItem.Price | number:'.1-2' }}</p>

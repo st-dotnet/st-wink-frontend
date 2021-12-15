@@ -405,14 +405,14 @@ export class SearchproductComponent implements OnInit {
           this.modalService.dismissAll();
         }
       }
-      this.sessionService.cartSession(this.productItems);
+   
       if (this.sessionService.getSessionItem('user')) {
         this.sessionService.setSessionObject('productCartItems-' + this.user.loginName, this.productItems);
       }
       else{
       this.sessionService.setSessionObject('productCartItems', this.productItems);
       }
-
+      this.sessionService.cartSession(this.productItems);
     }
     else {
       // Object.entries(items).forEach(([key, value]) => { product[key] = value });
