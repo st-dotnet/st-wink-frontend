@@ -368,9 +368,10 @@ export class CheckoutComponent implements OnInit {
 
   onPaymentSubmit() {
     this.paymentSubmitted = true;
-    if (this.onPaymentSubmitForm.invalid) {
+    if (this.onPaymentSubmitForm.invalid || this.monthError || this.yearError) {
       return;
     }
+
     this.spinner.show();
     const payment = new Payment();
     payment.name = this.f.firstName.value;

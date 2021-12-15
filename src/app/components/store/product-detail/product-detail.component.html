@@ -181,12 +181,12 @@
                               <input type="number" [showMaskTyped]="false"  mask="000" [dropSpecialCharacters]="false" id="showinput{{productDetail.itemCode}}"
                                   [(ngModel)]="productDetail.extraQuantity"
                                   *ngIf="productDetail?.quantityModel ==0  || productDetail?.extraQuantity !=null"
-                                  (change)="quantitychanged(productDetail, $event.target.value)"
+                                  (change)="quantitychanged(productDetail, $event.target.value)"  maxlength="3"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                   class="form-control" />
                           </div>
                       </div>
                       <div class="cart-btn">
-                          <button type="submit" (click)="addToCart(productDetail)"
+                          <button type="submit" (click)="addToCart(productDetail)" [disabled]="cartBtn ? true : false"
                               class="btn btn-cart">${{showActualPrice == true ? bundlePrice : productDetail?.price}}
                               ADD</button>
                       </div>

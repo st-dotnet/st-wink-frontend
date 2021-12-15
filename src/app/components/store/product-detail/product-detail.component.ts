@@ -43,6 +43,7 @@ export class ProductDetailComponent implements OnInit {
   bundletype: string;
   bundlePrice: any = 0;
   showActualPrice: boolean;
+  cartBtn:Boolean = false;
   toggleDisplayDivIf() {
     this.isShowDivIf = !this.isShowDivIf;
   }
@@ -300,8 +301,7 @@ export class ProductDetailComponent implements OnInit {
     this.bundle = 'single';
     this.selectDelivery = 1;
     this.subscriptionModel = 'singleDelivery';
-    //var x = document.getElementById("data_val_item_code").getAttribute("data-product-id");
-    //console.log("X is "+x);
+ 
   }
 
   toggleShow() {
@@ -333,22 +333,21 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart(product: any) {
     var user = this.sessionService.getSessionObject('user');
-debugger;
+    this.cartBtn = true;
     if (product.quantityModel == 0 || product.quantityModel == undefined)
-    
+    {
+      this.cartBtn = false;
       return this.toastrService.error("Please select the quantity");
-
+    }
       if (this.sessionService.getSessionItem('user')) {
         this.productItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
       }
   if( this.productItems==null)
         {this.productItems = this.sessionService.getSessionObject('productCartItems');}
       
-
-    // this.productItems =
-    //   this.sessionService.getSessionObject('productCartItems-' + user.loginName);
     if (this.selectDelivery == 1 && this.subscriptionModelduration == undefined
     ) {
+      this.cartBtn = false;
       return this.toastrService.error('Please select the subscription plan');
     }
     if (this.selectDelivery == 1) {
@@ -429,7 +428,8 @@ debugger;
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel = parseInt(single_singledelivery.quantityModel) + parseInt(product.quantityModel);
+       //   product.quantityModel = parseInt(single_singledelivery.quantityModel) + parseInt(product.quantityModel);
+       product.quantityModel = parseInt(product.quantityModel);
           product.extraQuantity = product.quantityModel;
           // product.quantityModel =
           // single_singledelivery.quantityModel + +product.quantityModel;
@@ -474,24 +474,27 @@ debugger;
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel = parseInt(single_subscriptiondelivery.quantityModel) + parseInt(product.quantityModel);
+         // product.quantityModel = parseInt(single_subscriptiondelivery.quantityModel) + parseInt(product.quantityModel);
           product.extraQuantity = product.quantityModel;
           // product.quantityModel =
           // single_subscriptiondelivery.quantityModel + +product.quantityModel;
 
-          if (product.quantityModel > product.quantityLimit) {
-            // this.productItems.push(old_single_subscriptiondelivery);
-            // this.toastrService.error('You Exceed your Quantity Limit 4');
+          // if (product.quantityModel > product.quantityLimit) {
+          //   // this.productItems.push(old_single_subscriptiondelivery);
+          //   // this.toastrService.error('You Exceed your Quantity Limit 4');
 
+          //   this.productItems.push(product);
+          //   this.toastrService.success('Product added successfully');
+         
+          // } else {
             this.productItems.push(product);
             this.toastrService.success('Product added successfully');
-          } else {
-            this.productItems.push(product);
-            this.toastrService.success('Product added successfully');
-          }
+           
+        //  }
         } else {
           this.productItems.push(product);
           this.toastrService.success('Product added successfully');
+        
         }
       }
       //5% calculation
@@ -517,23 +520,25 @@ debugger;
           }
           //  product.quantityModel =
           // multiple_singledelivery.quantityModel + +product.quantityModel;
-          product.quantityModel = parseInt(multiple_singledelivery.quantityModel) + parseInt(product.quantityModel);
+         // product.quantityModel = parseInt(multiple_singledelivery.quantityModel) + parseInt(product.quantityModel);
           product.extraQuantity = product.quantityModel;
 
-          if (product.quantityModel > product.quantityLimit) {
-            // this.productItems.push(old_multiple_singledelivery);
-            // this.toastrService.error('You Exceed your Quantity Limit 4');
+          // if (product.quantityModel > product.quantityLimit) {
+          //   // this.productItems.push(old_multiple_singledelivery);
+          //   // this.toastrService.error('You Exceed your Quantity Limit 4');
 
+          //   this.productItems.push(product);
+          //   this.toastrService.success('Product added successfully');
+
+          // } else {
             this.productItems.push(product);
             this.toastrService.success('Product added successfully');
-          } else {
-            this.productItems.push(product);
-            this.toastrService.success('Product added successfully');
-          }
+        //  }
         } else {
           this.productItems.push(product);
           this.toastrService.success('Product added successfully');
         }
+
       }
       //5% cal + 15 % cal
       if (
@@ -560,19 +565,19 @@ debugger;
           //   multiple_subscriptiondelivery.quantityModel +
           //   +product.quantityModel;
 
-          product.quantityModel = parseInt(multiple_subscriptiondelivery.quantityModel) + parseInt(product.quantityModel);
+        //  product.quantityModel = parseInt(multiple_subscriptiondelivery.quantityModel) + parseInt(product.quantityModel);
           product.extraQuantity = product.quantityModel;
 
-          if (product.quantityModel > product.quantityLimit) {
-            // this.productItems.push(old_multiple_subscriptiondelivery);
-            // this.toastrService.error('You Exceed your Quantity Limit 4');
+          // if (product.quantityModel > product.quantityLimit) {
+          //   // this.productItems.push(old_multiple_subscriptiondelivery);
+          //   // this.toastrService.error('You Exceed your Quantity Limit 4');
 
+          //   this.productItems.push(product);
+          //   this.toastrService.success('Product added successfully');
+          // } else {
             this.productItems.push(product);
             this.toastrService.success('Product added successfully');
-          } else {
-            this.productItems.push(product);
-            this.toastrService.success('Product added successfully');
-          }
+         // }
         } else {
           this.productItems.push(product);
           this.toastrService.success('Product added successfully');
@@ -602,6 +607,7 @@ debugger;
       }
       this.toastrService.success('Product added successfully');
     }
+    this.cartBtn = false;
     //$(".hideiputfeild").hide();
   }
 
@@ -648,7 +654,7 @@ debugger;
     const item = this.cartItems.find((x) => x.itemCode == cartitem.itemCode);
 
     if (item && selectedvalue > 10) {
-      item.quantityModel = item.quantityModel + item.extraQuantity;
+     // item.quantityModel = item.quantityModel + item.extraQuantity;
       this.productDetail.quantityModel = item.quantityModel;
     }
   }

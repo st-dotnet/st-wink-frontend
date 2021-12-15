@@ -24,9 +24,9 @@ export class SessionService {
     if (user != null) {
       this.cartItems$ = new BehaviorSubject<any>(this.getSessionObject('productCartItems-' + user.loginName) ?? []);
     }
-    if( this.cartItems$.value == null){
+   else
       this.cartItems$ = new BehaviorSubject<any>(this.getSessionObject('productCartItems') ?? []);
-    }
+    
     this.cart$ = this.cartItems$.asObservable();
   }
 

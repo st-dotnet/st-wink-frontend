@@ -109,7 +109,7 @@
                         <input type="number" style="margin-top: 10px;" id="showinput{{cartItem.itemCode}}"
                           [(ngModel)]="cartItem.extraQuantity"
                           *ngIf="cartItem.quantityModel == '0'||cartItem.quantityModel >10 || cartItem.extraQuantity !=null "
-                          (change)="quantitychanged(cartItem, $event.target.value)" class="form-control"
+                          (change)="quantitychanged(cartItem, $event.target.value)" class="form-control" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                           [disabled]="cartItem.bundle=='specialOffer'">
 
                       </div>
@@ -131,8 +131,8 @@
                         <input type="number" style="margin-top: 10px;" id="showinput{{cartItem.itemCode}}"
                           [(ngModel)]="cartItem.extraQuantity"
                           *ngIf="cartItem.quantityModel == '0'||cartItem.quantityModel >10 || cartItem.extraQuantity !=null "
-                          [disabled]="cartItem.bundle=='specialOffer'"
-                          (change)="quantitychanged(cartItem, $event.target.value)" class="form-control">
+                          [disabled]="cartItem.bundle=='specialOffer'" 
+                          (change)="quantitychanged(cartItem, $event.target.value)" class="form-control" maxlength="3"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                         <!-- <select (change)="
                           quantityForOneTime(cartItem, $event.target.value)
                         " class="form-control" [(ngModel)]="cartItem.quantityModel">
@@ -277,7 +277,7 @@
                         <input type="number" style="margin-top: 10px;" id="showinput{{delivery.itemCode}}"
                           [(ngModel)]="delivery.extraQuantity"
                           *ngIf="delivery.quantityModel == '0' || delivery.extraQuantity !=null"
-                          (change)="quantitychanged(delivery, $event.target.value)" class="form-control">
+                          (change)="quantitychanged(delivery, $event.target.value)" class="form-control" maxlength="3"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                       </div>
                     </div>
                   </div>
@@ -307,7 +307,7 @@
                       <input type="number" style="margin-top: 10px;" id="showinput{{delivery.itemCode}}"
                         [(ngModel)]="delivery.extraQuantity"
                         *ngIf="delivery.quantityModel == '0' || delivery.extraQuantity !=null"
-                        (change)="quantitychanged(delivery, $event.target.value)" class="form-control">
+                        (change)="quantitychanged(delivery, $event.target.value)" class="form-control" maxlength="3"   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                     </div>
                     <p class="price-product">${{ delivery.Price | number:'.1-2' }}</p>
                   </div>
