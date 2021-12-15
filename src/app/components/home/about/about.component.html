@@ -1,11 +1,11 @@
 <section class="banner-top">
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12 p-0">
-            <img src="../../assets/about-banner.jfif"/>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 p-0">
+                <img src="../../assets/New_About_2021.jpg" />
+            </div>
         </div>
     </div>
-</div>
 
 </section>
 
@@ -15,14 +15,19 @@
             <div class="col-md-12">
                 <div class="content-wrapper">
                     <h4>About Us</h4>
-                    <p>Our founder, Danny Villarreal, helped co-found a different natural care company you might recognize (Zarbee’s), taking it from a small startup into a full line of natural products carried in over 60,000 different stores and retailers across the country. Building from that experience and expertise, Danny enlisted the help of his wife, Shalayne Villarreal, in building the e-commerce side of Wink and creating a viable business opportunity for individual sellers with the launch of our Wink Venture Program in March of 2018.</p>
-                    <p>At Wink Naturals, we are committed to the families we serve. Our mission To Impact And Strengthen Families evolved right along with our product line when we realized just how huge of a void there was for people looking for quality natural and drug-free products to better serve their families.</p>
-                    <p>Every product we make is manufactured in an FDA approved, GMP Certified manufacturing facility right here in the United States. We aren't the first company to offer natural products but we like to think we’re doing it best, and we’re pretty proud of the thousands of positive reviews and repeat customers we’ve earned in just a few short years. We back up every product we sell with our “100% Happy Guarantee”. If you’re not completely satisfied please email us directly and we’ll make it right ( hello@winknaturals.com).</p>
+                    <p>Our founder, Danny Villarreal, helped co-found a different natural care company you might recognize (Zarbee’s), taking it from a small startup into a full line of natural products carried in over 60,000 different stores and retailers
+                        across the country. Building from that experience and expertise, Danny enlisted the help of his wife, Shalayne Villarreal, in building the e-commerce side of Wink and creating a viable business opportunity for individual sellers
+                        with the launch of our Wink Venture Program in March of 2018.</p>
+                    <p>At Wink Naturals, we are committed to the families we serve. Our mission To Impact And Strengthen Families evolved right along with our product line when we realized just how huge of a void there was for people looking for quality
+                        natural and drug-free products to better serve their families.</p>
+                    <p>Every product we make is manufactured in an FDA approved, GMP Certified manufacturing facility right here in the United States. We aren't the first company to offer natural products but we like to think we’re doing it best, and we’re
+                        pretty proud of the thousands of positive reviews and repeat customers we’ve earned in just a few short years. We back up every product we sell with our “100% Happy Guarantee”. If you’re not completely satisfied please email us
+                        directly and we’ll make it right ( hello@winknaturals.com).</p>
                     <div class="about-address">
-                    <p class="addr-title">Wink Naturals Headquarters is located at</p>
-                    <p>564 W 700 S #205 Pleasant Grove, UT 84062</p>
-                    <p>Mobile: <a href="tel:8887995656">888-799-5656</a></p>
-                    <p>Email: <a href="mailto:hello@winknaturals.com">hello@winknaturals.com</a></p>
+                        <p class="addr-title">Wink Naturals Headquarters is located at</p>
+                        <p>564 W 700 S #205 Pleasant Grove, UT 84062</p>
+                        <p>Mobile: <a href="tel:8887995656">888-799-5656</a></p>
+                        <p>Email: <a href="mailto:hello@winknaturals.com">hello@winknaturals.com</a></p>
                     </div>
 
                 </div>
@@ -43,45 +48,41 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                 <input type="text" class="form-control" formControlName="name" placeholder="Name"
-                                 [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
-                                 <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                                 <div *ngIf="f.name.errors.required">Name is required</div>
-                                 </div>
+                                    <input type="text" class="form-control" formControlName="name" placeholder="Name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                        <div *ngIf="f.name.errors.required">Name is required</div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                <input type="text" class="form-control" formControlName="phoneNumber" [textMask]="{mask: maskMobileNo}" placeholder="Phone Number"
-                                [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
-                                <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
-                                <div *ngIf="f.phoneNumber.errors.required">Phone number is required</div>
-                                <div *ngIf="f.phoneNumber.errors.minlength">Phone number must be at least 10-12 numbers with country
-                                code</div>
-                                </div> 
+                                    <input type="text" class="form-control" formControlName="phoneNumber" [textMask]="{mask: maskMobileNo}" placeholder="Phone Number" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
+                                    <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+                                        <div *ngIf="f.phoneNumber.errors.required">Phone number is required</div>
+                                        <div *ngIf="f.phoneNumber.errors.minlength">Phone number must be at least 10-12 numbers with country code
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                <input type="email" class="form-control" formControlName="email" placeholder="Email Address"
-                                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                                <div *ngIf="f.email.errors.required">Email is required</div>
-                                <div *ngIf="f.email.errors.email">Please enter vaild email address</div>
-                                <div *ngIf="f.email.errors.pattern">Email format is not vaild</div>
-                                </div>
-                                </div>
-                                </div>
-                                <div class="col-md-6">
-                                <div class="form-group">
-                                <textarea type="text" class="form-control" formControlName="notes" placeholder="Notes"
-                                [ngClass]="{ 'is-invalid': submitted && f.notes.errors }"> </textarea>
-                                <div *ngIf="submitted && f.notes.errors" class="invalid-feedback">
-                                <div *ngIf="f.notes.errors.required">Notes is required</div>
-                                </div>                                   
-                                </div>
-                                </div>
-                                <div class="col-md-12 btn-right-sub">
-                                    <button type="submit" class="form-control btn btn-submit">Submit</button>
+                                    <input type="email" class="form-control" formControlName="email" placeholder="Email Address" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                        <div *ngIf="f.email.errors.email">Please enter vaild email address</div>
+                                        <div *ngIf="f.email.errors.pattern">Email format is not vaild</div>
+                                    </div>
                                 </div>
                             </div>
-                    </form>                    
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <textarea type="text" class="form-control" formControlName="notes" placeholder="Notes" [ngClass]="{ 'is-invalid': submitted && f.notes.errors }"> </textarea>
+                                    <div *ngIf="submitted && f.notes.errors" class="invalid-feedback">
+                                        <div *ngIf="f.notes.errors.required">Notes is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 btn-right-sub">
+                                <button type="submit" class="form-control btn btn-submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
