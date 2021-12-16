@@ -239,13 +239,20 @@
                 <h3>Customize Shipment</h3>
                 <div class="choose-shipping">
                   <div class="form-group">
-                    <select [(ngModel)]="quantityValue"  [ngModelOptions]="{standalone: true}" class="form-control">
+                    <!-- <select [(ngModel)]="quantityValue"  [ngModelOptions]="{standalone: true}" class="form-control">
                       <option class="dropdown-item" disabled selected value="undefined">Select Quantity</option>
                       <option *ngFor="let qty of quantity" [value]="qty.value">
                       {{qty.name}}
                        </option>
-                    </select>
-
+                    </select> -->
+                    <select id="islectedval"  (change)="quantityForOneTime(product, $event.target.value)"
+                    class="form-control">
+                      <option class="dropdown-item" disabled selected  value="undefined">Select
+                      Quantity</option>
+                    <option *ngFor="let qty of quantity"  [value]="qty.value">
+                      {{qty.name}}
+                    </option>
+                  </select>
                     <!-- <select  [ngModel]="quantityValue" class="form-control">
                       <option class="dropdown-item" disabled selected value="undefined">Select Quantity</option>
                       <option *ngFor="let tech of quantity" [ngValue]="tech">
@@ -285,6 +292,11 @@
                       />
                     </svg>
                   </div>
+                </div>
+                <div class="custom-field">
+                  <input type="number" id="showinput{{product.itemCode}}"  [(ngModel)]="product.extraQuantity"
+                    *ngIf="product.quantityModel == '0'   || product.extraQuantity !=null"
+                    (change)="quantitychanged(product, $event.target.value)" class="form-control"  maxlength="3"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                 </div>
               </div>
               <div class="cart-btn">

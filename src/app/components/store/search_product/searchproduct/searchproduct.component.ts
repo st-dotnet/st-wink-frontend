@@ -226,6 +226,62 @@ export class SearchproductComponent implements OnInit {
     this.router.navigate(['/store/product', product.itemCode]);
   }
 
+  quantityForOneTime(productDetail: any, selectedvalue: number) {
+    this.quantityCalculation(productDetail, selectedvalue);
+  }
+
+  quantitychanged(cartitem: any, selectedvalue: number) {
+    if (selectedvalue <= 10) {
+      $("#islectedval").val(selectedvalue);
+    }
+    this.quantityCalculation(cartitem, selectedvalue);
+    if (this.productCartItems) {
+      const item = this.productCartItems.find((x) => x.itemCode == cartitem.itemCode);
+
+      if (item && selectedvalue > 10) {
+        item.quantityModel = item.quantityModel + item.extraQuantity;
+      }
+    }
+    else {
+      this.product.quantityModel = selectedvalue;
+      }
+  }
+
+  quantityCalculation(productDetail: any, selectedvalue: number) {
+    var user = this.sessionService.getSessionObject('user');
+    //this.cartItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
+
+    if (this.sessionService.getSessionItem('user')) {
+      this.productCartItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
+    }
+    if( this.productCartItems==null || this.productCartItems.length==0)
+    {this.productCartItems = this.sessionService.getSessionObject('productCartItems');}
+    if (selectedvalue <= 10) {
+      productDetail.extraQuantity = null;
+    }
+    else {
+      productDetail.extraQuantity = selectedvalue;
+    }
+    if (selectedvalue != null && selectedvalue != undefined) {
+      if (selectedvalue == 0 || selectedvalue > 10) {
+
+      
+        $('#showinput' + productDetail.itemCode).show();
+      } else {
+        $('#showinput' + productDetail.itemCode).hide();
+        //this.selectedval=selectedvalue;
+      }
+      if (this.productCartItems) {
+        for (var i = 0; i <= this.productCartItems.length - 1; i++) {
+          if (this.productCartItems[i].itemCode == productDetail.itemCode) {
+            this.productCartItems[i].quantityModel = +selectedvalue;
+          }
+        }
+      }
+    }
+    this.product.quantityModel = +selectedvalue;
+    // this.sessionService.setSessionObject('productCartItems', this.cartItems);
+  }
   addToCart(product: any) {
     if (this.sessionService.getSessionItem('user')) {
       this.productItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);

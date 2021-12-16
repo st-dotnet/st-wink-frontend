@@ -138,13 +138,14 @@ export class CheckoutComponent implements OnInit {
   ) {
     this.minDate.setDate(this.minDate.getDate() + 1);
     this.user = this.sessionService.getSessionObject("user");
-    debugger;
     if (!this.user ) {
       this.router.navigate(["/sign-in"]);
     }
     else
      var items =this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
-      if(items.length<0){
+     if(items==null)
+     var items =this.sessionService.getSessionObject('productCartItems');
+      if(items ==null || items.length<0){
         toastrService.warning("please Add product from Shopping page");
         this.router.navigate(["/store"]);
       }
