@@ -119,7 +119,7 @@ export class CartComponent implements OnInit {
     if( this.cartItems==null || this.cartItems.length==0)
     {this.cartItems = this.sessionService.getSessionObject('productCartItems');}
 
-
+if(this.cartItems!=null){
     this.cartItems.forEach(function (item) {
       if (item.quantityModel > 10 || item.quantityModel == 0) {
 
@@ -129,6 +129,7 @@ export class CartComponent implements OnInit {
         }
       }
     });
+  }
 if(this.sessionService.getSessionObject('inputdata'))
 {
   this.inputdata =this.sessionService.getSessionObject('inputdata');
@@ -344,6 +345,7 @@ if(this.sessionService.getSessionObject('inputdata'))
   //Remove Item From Cart List
   removeItem(cartItem: any, type: any, bundle: string) {
     this.spinner.show();
+    
     if (this.sessionService.getSessionItem('user')) {
       this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
     }
@@ -356,6 +358,8 @@ if(this.sessionService.getSessionObject('inputdata'))
         this.cartItems = this.cartItems.filter(x => x !== cartItem);
         if (this.sessionService.getSessionItem('user')){
           this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems) : this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
+          this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
+      
         }
         else{
           this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems', this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
@@ -523,18 +527,18 @@ if(this.sessionService.getSessionObject('inputdata'))
     }
 
     this.subtotalOneTimePrice = this.getSubTotal(this.oneTimePriceCartItems);
-   debugger;
+   
 
     this.subTotalSubscriptionPrice = this.getSubTotal(this.subscriptionCartItems);
 
     this.discount15Percent = (this.subTotalSubscriptionPrice * 15) / 100;
-debugger;
+
     this.subTotalSubscriptionPriceAfterDiscount = this.subTotalSubscriptionPrice - this.discount15Percent;
 
     this.totalDiscount = this.totalDiscount + this.discount15Percent + this.totalOneTimeDiscountPurchase;
 
     this.cartSummaryTotal = this.subtotalOneTimePrice + this.subTotalSubscriptionPriceAfterDiscount;
-debugger;
+
     this.promocode_onetime = this.sessionService.getSessionItem('promoCode');
     if( this.promocode_onetime )
     {
@@ -560,7 +564,7 @@ debugger;
   getOrderTotal() {
     let multiplyprice = 0.00;
     let Temp = 0;
-    debugger; 
+     
     for (var i = 0; i <= this.cartItems.length - 1; i++) {
       if (this.cartItems[i].bundle == 'multiple') {
         multiplyprice = this.ParseFloat(this.cartItems[i].price) * 2;
@@ -578,7 +582,7 @@ debugger;
   getSubTotal(ProductList: any[]) {
     let multiplyprice = 0;
     let Temp = 0;
-    debugger;
+    
     for (var i = 0; i <= ProductList.length - 1; i++) {
       multiplyprice = parseFloat(ProductList[i].Price) * parseFloat(ProductList[i].quantityModel);
       Temp = Temp + multiplyprice;
@@ -681,5 +685,5 @@ debugger;
     str = str.toString();
     str = str.slice(0, (str.indexOf(".")) + 2 + 1); 
     return Number(str);   
-}
+  }
 }
