@@ -11,6 +11,10 @@ import { EnrollmentPacksComponent } from './enrollment/enrollment-packs/enrollme
 import { EnrollmentComponent } from './enrollment/enrollment-info/enrollment-info.component';
 import { EnrollmentInfoComponent } from './enrollment/enrollmentinfo/enrollmentinfo.component';
 
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -22,6 +26,8 @@ import { EnrollmentInfoComponent } from './enrollment/enrollmentinfo/enrollmenti
   imports: [
     SharedModule,
     HomeRoutingModule,
+    NgxMaskModule.forRoot(),
+
   ]
 })
 export class HomeModule { }
