@@ -347,7 +347,7 @@ export class ShopComponent implements OnInit {
 
   addToCart(product: any) {
     var user = this.sessionService.getSessionObject('user');
-
+debugger;
     // if(this.sessionService.getSessionObject("ignore_Comfort_patch")){
     //   this.toastrService.error('Sorry You are Under 18.');
     //   return;
@@ -358,7 +358,7 @@ export class ShopComponent implements OnInit {
       if (this.sessionService.getSessionItem('user')) {
         this.productItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
       }
-      if( this.productItems==null)
+      if(this.productItems==null || this.productItems.length==0)
       {this.productItems = this.sessionService.getSessionObject('productCartItems');}
     if (this.selectDelivery == 1 && this.subscriptionModelduration == undefined) {
       return this.toastrService.error("Please select the subscription plan");
@@ -524,7 +524,7 @@ export class ShopComponent implements OnInit {
       this.sessionService.cartSession(this.productItems);
 
       //this.sessionService.setSessionObject('productCartItems-' + user.loginName, this.productItems);
-
+debugger;
       if (this.sessionService.getSessionItem('user')){
         this.sessionService.setSessionObject('productCartItems-' + user.loginName, this.productItems);
       }

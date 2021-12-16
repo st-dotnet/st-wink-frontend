@@ -235,8 +235,8 @@ export class SearchproductComponent implements OnInit {
       $("#islectedval").val(selectedvalue);
     }
     this.quantityCalculation(cartitem, selectedvalue);
-    if (this.productCartItems) {
-      const item = this.productCartItems.find((x) => x.itemCode == cartitem.itemCode);
+    if (this.productItems) {
+      const item = this.productItems.find((x) => x.itemCode == cartitem.itemCode);
 
       if (item && selectedvalue > 10) {
         item.quantityModel = item.quantityModel + item.extraQuantity;
@@ -252,10 +252,10 @@ export class SearchproductComponent implements OnInit {
     //this.cartItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
 
     if (this.sessionService.getSessionItem('user')) {
-      this.productCartItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
+      this.productItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
     }
-    if( this.productCartItems==null || this.productCartItems.length==0)
-    {this.productCartItems = this.sessionService.getSessionObject('productCartItems');}
+    if( this.productItems==null || this.productItems.length==0)
+    {this.productItems = this.sessionService.getSessionObject('productCartItems');}
     if (selectedvalue <= 10) {
       productDetail.extraQuantity = null;
     }
@@ -271,10 +271,10 @@ export class SearchproductComponent implements OnInit {
         $('#showinput' + productDetail.itemCode).hide();
         //this.selectedval=selectedvalue;
       }
-      if (this.productCartItems) {
-        for (var i = 0; i <= this.productCartItems.length - 1; i++) {
-          if (this.productCartItems[i].itemCode == productDetail.itemCode) {
-            this.productCartItems[i].quantityModel = +selectedvalue;
+      if (this.productItems) {
+        for (var i = 0; i <= this.productItems.length - 1; i++) {
+          if (this.productItems[i].itemCode == productDetail.itemCode) {
+            this.productItems[i].quantityModel = +selectedvalue;
           }
         }
       }
@@ -283,6 +283,10 @@ export class SearchproductComponent implements OnInit {
     // this.sessionService.setSessionObject('productCartItems', this.cartItems);
   }
   addToCart(product: any) {
+debugger;
+    if (product.quantityModel == 0 || product.quantityModel == undefined)
+    return this.toastrService.error("Please select the quantity");
+
     if (this.sessionService.getSessionItem('user')) {
       this.productItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
     }
@@ -299,7 +303,7 @@ export class SearchproductComponent implements OnInit {
       bundle: this.bundle,
       selectDelivery: this.selectDelivery,
       subscriptionModel: this.subscriptionModel,
-      quantityModel: +this.quantityValue,
+     // quantityModel: +this.quantityValue,
       Price: 0,
       discount: 0,
       quantityLimit: 4,
@@ -339,10 +343,11 @@ export class SearchproductComponent implements OnInit {
           const index: number = this.productItems.indexOf(single_singledelivery);
           if (index !== -1) {
             this.productItems.splice(index, 1);
+            
           }
 
           //product.quantityModel = single_singledelivery.quantityModel + +product.quantityModel;
-          product.quantityModel = parseInt(single_singledelivery.quantityModel) + parseInt(product.quantityModel);
+          product.quantityModel = single_singledelivery.quantityModel + parseInt(product.quantityModel);
           product.extraQuantity = product.quantityModel;
 
 
@@ -375,8 +380,8 @@ export class SearchproductComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel = single_subscriptiondelivery.quantityModel + +product.quantityModel;
-
+          product.quantityModel = single_subscriptiondelivery.quantityModel +product.quantityModel;
+          product.extraQuantity = product.quantityModel;
           if (product.quantityModel > product.quantityLimit) {
             //this.productItems.push(old_single_subscriptiondelivery);
             //this.toastrService.error('You Exceed your Quantity Limit 4');
