@@ -252,10 +252,11 @@ export class SearchproductComponent implements OnInit {
     //this.cartItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
 
     if (this.sessionService.getSessionItem('user')) {
-      this.productCartItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
+      this.productItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
     }
-    if( this.productCartItems==null || this.productCartItems.length==0)
-    {this.productCartItems = this.sessionService.getSessionObject('productCartItems');}
+    
+    if( this.productItems==null || this.productItems.length==0)
+    {this.productItems = this.sessionService.getSessionObject('productCartItems');}
     if (selectedvalue <= 10) {
       productDetail.extraQuantity = null;
     }
@@ -271,10 +272,10 @@ export class SearchproductComponent implements OnInit {
         $('#showinput' + productDetail.itemCode).hide();
         //this.selectedval=selectedvalue;
       }
-      if (this.productCartItems) {
-        for (var i = 0; i <= this.productCartItems.length - 1; i++) {
-          if (this.productCartItems[i].itemCode == productDetail.itemCode) {
-            this.productCartItems[i].quantityModel = +selectedvalue;
+      if (this.productItems) {
+        for (var i = 0; i <= this.productItems.length - 1; i++) {
+          if (this.productItems[i].itemCode == productDetail.itemCode) {
+            this.productItems[i].quantityModel = +selectedvalue;
           }
         }
       }
@@ -299,7 +300,7 @@ export class SearchproductComponent implements OnInit {
       bundle: this.bundle,
       selectDelivery: this.selectDelivery,
       subscriptionModel: this.subscriptionModel,
-      quantityModel: +this.quantityValue,
+      //quantityModel: +this.quantityValue,
       Price: 0,
       discount: 0,
       quantityLimit: 4,
