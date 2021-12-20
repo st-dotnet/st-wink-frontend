@@ -142,6 +142,7 @@ export class AppHeaderComponent implements OnInit {
       if (result.value) {
         this.sessionService.logout();
         this.user = this.sessionService.removeSessionItem("user");
+        this.user = this.sessionService.removeSessionItem("promoCode");
         this.sessionService.cartSession(0)
       } else if (result.dismiss === Swal.DismissReason.cancel) {
       }

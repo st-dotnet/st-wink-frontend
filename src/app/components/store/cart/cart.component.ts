@@ -382,6 +382,7 @@ if(this.sessionService.getSessionObject('inputdata'))
         //this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems) : this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
         if (this.sessionService.getSessionItem('user')){
           this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems) : this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
+          this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems',this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
         }
         else{
           this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems',this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
