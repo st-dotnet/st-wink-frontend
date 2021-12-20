@@ -13,14 +13,14 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  @ViewChild('recaptcha', {static: true }) recaptchaElement: ElementRef;
+  @ViewChild('recaptcha', { static: true }) recaptchaElement: ElementRef;
 
   form: FormGroup;
   showPassword: boolean = false;
   loading = false;
-  isTrue:any;
-  submitted:any;
-
+  isTrue: any;
+  submitted: any;
+  productItems: any[] = [];
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -66,23 +66,36 @@ export class SignInComponent implements OnInit {
           }
           // get return url from query parameters or default to home page
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
-           this.isTrue = this.sessionService.getSessionItem('isTrue');
-          if(this.isTrue == "true"){            
-            setTimeout(() => {              
-            this.router.navigate(["/store/checkout"]).then(() => {
-              window.location.reload();
-            });
-              this.spinner.hide();  
-                }, 1000);
-          }else{
-            if(res.typeOfCustomer=="4" || res.typeOfCustomer=="5" || res.typeOfCustomer=="3")
-            window.location.href = "https://sellers.winknaturals.com/login";
+          let cardCart: any[] = [];
+          let productItems = this.sessionService.getSessionObject('productCartItems');
+          if (productItems) {
+            let tempCart = this.sessionService.getSessionObject('productCartItems-' + res.loginName);
+            if (tempCart) {
+              tempCart?.forEach(element => {
+                productItems.push(element);
+              });
+            }
+            this.sessionService.setSessionObject('productCartItems-' + res.loginName, productItems);
+            this.sessionService.removeSessionItem('productCartItems');
+
+          }
+          this.isTrue = this.sessionService.getSessionItem('isTrue');
+          if (this.isTrue == "true") {
+            setTimeout(() => {
+              this.router.navigate(["/store/checkout"]).then(() => {
+                window.location.reload();
+              });
+              this.spinner.hide();
+            }, 1000);
+          } else {
+            if (res.typeOfCustomer == "4" || res.typeOfCustomer == "5" || res.typeOfCustomer == "3")
+              window.location.href = "https://sellers.winknaturals.com/login";
             else
-            this.router.navigateByUrl(returnUrl).then(() => {
-              window.location.reload();
-            });         
-          this.spinner.hide();  
-          }         
+              this.router.navigateByUrl(returnUrl).then(() => {
+                window.location.reload();
+              });
+            this.spinner.hide();
+          }
           this.loading = false;
           // this.spinner.hide();         
         },
@@ -91,7 +104,7 @@ export class SignInComponent implements OnInit {
           this.toastrService.error();
           this.loading = false;
         }
-      
+
       });
   }
 

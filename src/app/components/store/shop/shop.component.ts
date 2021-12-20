@@ -189,7 +189,6 @@ export class ShopComponent implements OnInit {
   }
 
   getAllCategoryById() {
-
     this.spinner.show();
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
       this.categoryModels = result;
@@ -352,6 +351,7 @@ export class ShopComponent implements OnInit {
     //   this.toastrService.error('Sorry You are Under 18.');
     //   return;
     // }
+    debugger;
     if (product.quantityModel == 0 || product.quantityModel == undefined)
       return this.toastrService.error("Please select the quantity");
 
@@ -374,7 +374,7 @@ export class ShopComponent implements OnInit {
       // quantityModel: +this.quantityValue,
       Price: 0,
       discount: 0,
-      quantityLimit: 100,
+      quantityLimit: 4,
       isDisabled: null,
       orderType: 0
     }
