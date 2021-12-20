@@ -216,8 +216,9 @@ export class CheckoutComponent implements OnInit {
       lastName: ['', [Validators.required]],
       streetAddress: ['', [Validators.required]],
       city: ['', [Validators.required]],
-      state: ['', [Validators.required]],
-      zip: ['', [Validators.required]],
+      state: ['', [Validators.required,Validators.pattern('^[a-zA-Z \-\']+')]],
+      zip: ['', [Validators.required,Validators.minLength(5),
+             Validators.maxLength(8)]],
       country: ['US'],
     });
 
