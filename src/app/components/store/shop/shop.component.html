@@ -47,8 +47,6 @@
     <div class="row prod-wrapp Product-demo-tour-class">
       <div class="col-md-3 prod-list-item " *ngFor="let product of shopProductModels">
         <div class="card">
-          <!-- <img src="../../assets/products-sample.png" class="card-img-top" alt="products-sample"> -->
-          <!-- <img [src]="'data:image/jpg;base64,'+data.productImage.fileContents" class="card-img-top" alt="products-sample"/> -->
           <a (click)="RedirectToProduct(adult_check,product,'')"><img [src]="product.image_03" class="card-img-top"
               alt="products-sample" /></a>
           <div class="card-body">

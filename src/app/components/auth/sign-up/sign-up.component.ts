@@ -28,7 +28,7 @@ export class SignUpComponent implements OnInit {
   maskMobileNo = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   //datemask= [/\d/, /\d/, '/', /\d/, /\d/, '/',/\d/, /\d/,/\d/, /\d/];
 
-  isTrue: string;
+  isLoggedIn: string;
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -143,7 +143,7 @@ export class SignUpComponent implements OnInit {
       canLogin: true,
       recaptcha: this.f.recaptcha.value ? this.f.recaptcha.value : '',
       dateOfBirth: this.f.dateOfBirth.value ? this.f.dateOfBirth.value : '',
-      email: this.f.emailAddress.value.toLowerCase( ) ? this.f.emailAddress.value.toLowerCase( ) : '',
+      email: this.f.emailAddress.value.toLowerCase() ? this.f.emailAddress.value.toLowerCase() : '',
       loginName: this.f.userName.value,
       loginPassword: this.f.confirmPassword.value
         ? this.f.confirmPassword.value
@@ -164,10 +164,15 @@ export class SignUpComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: (res) => {
-          this.isTrue = this.sessionService.getSessionItem('isTrue');
-          if (this.isTrue == "true") {
+          this.isLoggedIn = this.sessionService.getSessionItem('isLoggedIn');
+          if (this.isLoggedIn == "true") {
             setTimeout(() => {
               this.form.reset();
+              let tempCart = this.sessionService.getSessionItem('productCartItems');
+              if (tempCart) {
+                this.sessionService.setSessionObject('productCartItems-' + res.loginName, tempCart);
+                this.sessionService.removeSessionItem('productCartItems');
+              }
               this.router.navigate(["/store/checkout"]);
               this.spinner.hide();
             }, 1000);
@@ -225,7 +230,7 @@ export class SignUpComponent implements OnInit {
       });
   }
 
-  verifyDate(type: any){
+  verifyDate(type: any) {
     var today = new Date();
     var age = this.getAge(this.f.dateOfBirth.value, today);
 

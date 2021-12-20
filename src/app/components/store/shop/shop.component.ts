@@ -358,6 +358,7 @@ debugger;
       if (this.sessionService.getSessionItem('user')) {
         this.productItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
       }
+
       if(this.productItems==null || this.productItems.length==0)
       {this.productItems = this.sessionService.getSessionObject('productCartItems');}
     if (this.selectDelivery == 1 && this.subscriptionModelduration == undefined) {
@@ -373,7 +374,7 @@ debugger;
       // quantityModel: +this.quantityValue,
       Price: 0,
       discount: 0,
-      quantityLimit: 4,
+      quantityLimit: 100,
       isDisabled: null,
       orderType: 0
     }

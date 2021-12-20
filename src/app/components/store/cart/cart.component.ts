@@ -112,6 +112,7 @@ export class CartComponent implements OnInit {
   }
 
   onLoad() {
+    this.cartItems = this.sessionService.getSessionObject('productCartItems');
     if (this.sessionService.getSessionItem('user')) {
       this.cartItems = this.sessionService.getSessionObject('productCartItems-'+this.user.loginName);
     }
@@ -205,8 +206,8 @@ if(this.sessionService.getSessionObject('inputdata'))
       this.toastrService.error(
         "Please login before apply promo code"
       );
-      // let isTrue = true;
-      // this.sessionService.setSessionItem('isTrue', isTrue);
+      // let isLoggedIn = true;
+      // this.sessionService.setSessionItem('isLoggedIn', isLoggedIn);
       //  this.router.navigate(["/sign-in"]);
     }
   }
@@ -274,6 +275,7 @@ if(this.sessionService.getSessionObject('inputdata'))
 
     if (this.sessionService.getSessionItem('user')) {
       this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.productItems);
+      this.sessionService.removeSessionItem('productCartItems');
     }
     else{
       this.sessionService.setSessionObject('productCartItems', this.productItems);
@@ -430,19 +432,18 @@ if(this.sessionService.getSessionObject('inputdata'))
 
   checkOutItem() {
     this.cartItems.map((obj) => {
-      ;
       obj.inputdata = this.inputdata;
       return obj;
   })
     if (this.sessionService.getSessionItem('user')) {
-      this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems);
+      this.sessionService.setSessionObject('productCartItems-'+ this.user.loginName, this.cartItems);
+      this.sessionService.removeSessionItem('productCartItems');
       if (this.cartItems.length > 0)
         this.router.navigate(["/store/checkout"]);
       else
         this.toastrService.success('Add Item to Cart');
     } else {
-      let isTrue = true;
-      this.sessionService.setSessionItem('isTrue', isTrue);
+      this.sessionService.setSessionItem('isLoggedIn', true);
       this.router.navigate(["/sign-in"]);
     }
   }
@@ -482,6 +483,7 @@ if(this.sessionService.getSessionObject('inputdata'))
       }
       if (this.sessionService.getSessionItem('user')){
         this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems);
+        
       }
       if( this.cartItems==null || this.cartItems.length==0)
         this.sessionService.setSessionObject('productCartItems', this.cartItems);

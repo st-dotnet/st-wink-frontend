@@ -18,7 +18,7 @@ export class SignInComponent implements OnInit {
   form: FormGroup;
   showPassword: boolean = false;
   loading = false;
-  isTrue:any;
+  isLoggedIn:any;
   submitted:any;
 
   constructor(private formBuilder: FormBuilder,
@@ -66,8 +66,8 @@ export class SignInComponent implements OnInit {
           }
           // get return url from query parameters or default to home page
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
-           this.isTrue = this.sessionService.getSessionItem('isTrue');
-          if(this.isTrue == "true"){            
+           this.isLoggedIn = this.sessionService.getSessionItem('isLoggedIn');
+          if(this.isLoggedIn == "true"){            
             setTimeout(() => {              
             this.router.navigate(["/store/checkout"]).then(() => {
               window.location.reload();
