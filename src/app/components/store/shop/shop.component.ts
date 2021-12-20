@@ -371,7 +371,6 @@ export class ShopComponent implements OnInit {
       bundle: this.bundle,
       selectDelivery: this.selectDelivery,
       subscriptionModel: this.subscriptionModel,
-      // quantityModel: +this.quantityValue,
       Price: 0,
       discount: 0,
       quantityLimit: 4,
@@ -601,6 +600,7 @@ export class ShopComponent implements OnInit {
 
       if (item && selectedvalue > 10) {
         item.quantityModel = item.quantityModel + item.extraQuantity;
+        item.extraQuantity =  item.quantityModel;
       }
     }
     else {

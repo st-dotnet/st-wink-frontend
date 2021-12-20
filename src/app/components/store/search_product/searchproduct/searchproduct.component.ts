@@ -287,7 +287,7 @@ export class SearchproductComponent implements OnInit {
     if (this.sessionService.getSessionItem('user')) {
       this.productItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
     }
-    if( this.productItems==null)
+    if( this.productItems==null ||this.productItems.length==0)
         {this.productItems = this.sessionService.getSessionObject('productCartItems');}
         
     if (this.selectDelivery == 1 && this.subscriptionModelduration == undefined) {
