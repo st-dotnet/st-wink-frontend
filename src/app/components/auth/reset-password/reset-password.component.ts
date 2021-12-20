@@ -57,7 +57,7 @@ export class ResetPasswordComponent implements OnInit {
       customerId: 0,
       loginName: "",
       newPassword: "",
-      url: "https://winknaturalsreplicatedsite-frontend.azurewebsites.net/#/forgot-password",
+      url: "https://winknaturalsreplicatedsite-stage-frontend.azurewebsites.net/#/forgot-password",
     };
     this.loading = true;
     this.spinner.show();
