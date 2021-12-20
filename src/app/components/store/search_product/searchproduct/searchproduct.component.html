@@ -29,7 +29,8 @@
       <ng-template #elseBlock>
       <div class="col-md-3 prod-list-item" *ngFor="let product of shopProductModels">
         <div class="card">
-          <img [src]="product.image_03" class="card-img-top" alt="products-sample" />
+          <a routerLinkActive="active"
+          (click)="RedirectToProduct(product)">     <img [src]="product.image_03" class="card-img-top" alt="products-sample" /></a>
           <div class="card-body">
             <div class="product-details">
               <h5 class="card-title">{{ product?.itemDescription }}</h5>
@@ -98,7 +99,7 @@
         <div class="card">
           <div class="product-view-image">
             <!-- <img src="../../assets/product-view-sample.png" class="card-img-top" alt="products-sample"> -->
-            <img
+           <img
               [src]="product.image_03"
               class="card-img-top"
               alt="products-sample"
