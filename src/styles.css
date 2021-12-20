@@ -622,6 +622,19 @@ section.client-reviews .client-testimonial-box .owl-nav {
     margin-left: 6px;
 }
 
+section.account-page.profile-page.grid-checkout div#basic1-header {
+    padding: 0px;
+}
+
+section.account-page.profile-page.grid-checkout div#contactInfo-header {
+    padding: 0px;
+}
+
+section.account-page.profile-page .card {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #80808045;
+}
+
 .panel-stepbar #checkoutstep1-header.card-header .btn[aria-expanded="true"]:focus,
 .panel-stepbar #checkoutstep2-header.card-header .btn[aria-expanded="true"]:focus,
 .panel-stepbar #checkoutstep3-header.card-header .btn[aria-expanded="true"]:focus,
@@ -638,7 +651,10 @@ section.client-reviews .client-testimonial-box .owl-nav {
 .panel-stepbar #checkoutstep1-header.card-header .btn[aria-expanded="true"],
 .panel-stepbar #checkoutstep2-header.card-header .btn[aria-expanded="true"],
 .panel-stepbar #checkoutstep3-header.card-header .btn[aria-expanded="true"],
-.panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"] {
+.panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"],
+.panel-stepbar #basic1-header.card-header .btn[aria-expanded="true"],
+.panel-stepbar #contactInfo-header.card-header .btn[aria-expanded="true"],
+.panel-stepbar #checkoutstep5-header.card-header .btn[aria-expanded="true"] {
     color: #fff;
     background-color: #2196f3;
     padding: 15px 15px;
@@ -1733,8 +1749,27 @@ div#checkoutstep3 ul.select-paycard h4 {
     padding: 10px 15px !important;
 }
 
+section.account-page ngb-accordion .card ngb-accordion.accordion .card .card-header+div .card-body {
+    padding: 0px 0px !important;
+}
+
 .enrollment-steps-5 ngb-accordion .card ngb-accordion.accordion .card .card-header button {
     padding-top: 20px;
+}
+
+section.account-page.profile-page.grid-checkout button.btn.btn-link.ng-star-inserted {
+    pointer-events: none;
+}
+
+section.account-page.profile-page ngb-accordion.accordion.panel-stepbar {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+section.account-page.profile-page ngb-accordion.accordion.panel-stepbar .card {
+    width: 100%;
+    max-width: 49%;
 }
 
 
@@ -1816,6 +1851,13 @@ div#checkoutstep3 ul.select-paycard h4 {
 }
 
 @media (max-width: 991px) {
+    section.account-page.profile-page ngb-accordion.accordion.panel-stepbar {
+        display: block;
+        width: 100%;
+    }
+    section.account-page.profile-page ngb-accordion.accordion.panel-stepbar .card {
+        max-width: 100%;
+    }
     ngx-guided-tour {
         display: none;
     }
@@ -2104,4 +2146,8 @@ div#checkoutstep3 ul.select-paycard h4 {
     .prod-bundle-select .radio-bundle label {
         font-size: 12px !important;
     }
+}
+
+button.btn.btn-link.ng-star-inserted {
+    border-radius: unset;
 }

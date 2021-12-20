@@ -1,8 +1,8 @@
-<div  [className]="toggleDisplayDivIf ?  'wrapped-site' : 'wrapped-site noti-remove'">
-<app-notification-bar (myOutput) ="GetChildData($event)"></app-notification-bar>
-<app-header></app-header>
-<div class="main-content" >
-    <router-outlet></router-outlet>
-</div>
-<app-footer></app-footer>
+<div [className]="toggleDisplayDivIf ?  'wrapped-site' : 'wrapped-site noti-remove'">
+    <app-notification-bar (myOutput)="GetChildData($event)"></app-notification-bar>
+    <app-header></app-header>
+    <div class="main-content heightfixed">
+        <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
 </div>

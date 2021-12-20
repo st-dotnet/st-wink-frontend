@@ -1,0 +1,285 @@
+<!-- <p>profile works!</p> -->
+<!-- <section class="backlink-header mob-check account-profile-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 back-link mb-4">
+                <a [routerLink]="['/store/cart']"><svg aria-hidden="true" focusable="false" data-prefix="far"
+                        data-icon="angle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
+                        class="svg-inline--fa fa-angle-left fa-w-6 fa-3x">
+                        <path fill="currentColor"
+                            d="M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z"
+                            class=""></path>
+                    </svg>Back to CART</a>
+            </div>
+
+            <div class="visible-lg col-lg-4">
+                <div class="sidebar-checkout">
+                    <div class="cart-sidebar">
+                        <div class="sidebar-head">
+                            <h2>Order Summary</h2><span class="amount-summary"></span>
+                            <p>$74.96</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!-- profile sedction0 -->
+
+<section class="account-page profile-page grid-checkout">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ngb-accordion activeIds="basic1,contactInfo" class="panel-stepbar myDivee">
+
+
+                    <ngb-panel id="basic1">
+                        <ng-template ngbPanelTitle>
+                            <div class="heading-step1 profile-section">
+
+                                <h4>Basic Information </h4>
+                                <span class="editBtn"> 
+                                    <a href="#" class="editbtn_profile" >Edit</a>
+                                </span>
+
+                                <span class="vali-promo"> </span>
+                                <!-- <span class="arrow-stepp">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                    height="11.2" viewBox="0 0 6.6 11.2">
+                                    <path id="Path_2044" data-name="Path 2044"
+                                        d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                        transform="translate(-630.6 -4.4)" />
+                                </svg>
+                            </span> -->
+                            </div>
+                        </ng-template>
+                        <ng-template ngbPanelContent>
+
+                            <form>
+                                <div class="form-group">
+                                    <label for="text">Firstname</label>
+                                    <div class="content-readable">
+                                        <p class="field-text"> </p>
+                                    </div>
+                                    <div class="content-editable">
+
+                                    </div>
+                                    <input aria-required="true" class="form-control personalInfo" data-val="true" data-val-required="First Name is required" id="Customer_FirstName" name="Customer.FirstName" placeholder="First Name" required="true" role="textbox" type="text" value="" />
+                                    <span class="field-validation-valid" data-valmsg-for="Customer.FirstName" data-valmsg-replace="true"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="text">Username</label>
+                                    <input type="text" class="form-control" placeholder="User name">
+
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                </div>
+                                <form>
+                                    <div class="form-group emailsection">
+                                        <label class="emailLable" for="exampleInputEmail1">Email* </label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                        <small id="emailHelp" class="form-text text-muted"> </small>
+
+                                    </div>
+
+                                </form>
+
+
+
+
+                                <div class="emailbtns">
+                                    <div class="saves">
+                                        <a href="#"> <button class="save-btn">Save</button></a>
+                                    </div>
+                                    <div class="cancles">
+                                        <a href="#"> <button class="cancle-btn">Cancle</button></a>
+                                    </div>
+
+                                </div>
+
+
+
+                            </form>
+                        </ng-template>
+                    </ngb-panel>
+
+
+
+                    <ngb-panel id="contactInfo">
+                        <ng-template ngbPanelTitle>
+                            <div class="heading-step1">
+                                <h4>Contact Information </h4>
+                                <span class="editBtn"> 
+                                    <a href="#" class="editbtn_profile" >Edit</a>
+                                </span>
+                                <span class="arrow-stepp">
+                               
+                            </span>
+                            </div>
+                        </ng-template>
+                        <ng-template ngbPanelContent>
+                            <div class="panel-body">
+                                <div id="view-logininformation-798275e4-d1dd-4d37-a977-497293c0fe5d">
+                                    <div class="row ">
+                                        <div class=" col-sm-12 pinfo">
+                                            <form>
+
+                                                <div class="form-group numbersection">
+
+                                                    <label class="emailLable number" for="exampleInputPassword1">Mobile Phone*
+                                                    </label>
+                                                    <input type="number" class="form-control" id="number" placeholder="Home">
+                                                    <p>Required*</p>
+
+                                                </div>
+                                                <div class="form-group numbersection home">
+                                                    <label class="emailLable number home" for="exampleInputPassword1">Home Phone*</label>
+                                                    <input type="number" class="form-control" id="number" placeholder="Mobile">
+                                                    <br>
+                                                    <label class="emailLable number home" for="exampleInputPassword1">Addresses</label>
+                                                    <input type="number" class="form-control" id="number" placeholder="Addresses">
+                                                    <br>
+
+
+                                                    <!-- <div class="notibar">
+                                                        <span>Notification Status</span>
+
+                                                    </div> -->
+
+                                                    <div class="emailbtns">
+                                                        <div class="saves">
+                                                            <a href="#"> <button class="save-btn">Save</button></a>
+                                                        </div>
+                                                        <div class="cancles">
+                                                            <a href="#"> <button class="cancle-btn">Cancle</button></a>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+
+
+                </ngb-accordion>
+            </div>
+
+            <!-- <div class="col-sm-4">
+                <ngb-accordion activeIds="checkoutstep8">
+                    <ngb-panel id="checkoutstep4">
+                        <ng-template ngbPanelTitle>
+                            <div class="cart-sidebar">
+                                <div class="sidebar-head">
+                                    <h4>Name</h4>
+                                    <span>Amanda Walsh, ID#42</span>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template ngbPanelContent>
+                            <div class="panel panel-default">
+
+                                <div class="panel-body">
+                                    <div id="birthday-focus"></div>
+
+                                    <div id="view-personalinformation-1096f503-5302-4912-be36-767e0b8bfe04">
+                                        <div class="row margin-5">
+                                            <div class="col-sm-12 pinfo ">
+                                                <div class="form-group">
+                                                    <input aria-required="true" class="form-control personalInfo" data-val="true" data-val-required="First Name is required" id="Customer_FirstName" name="Customer.FirstName" placeholder="First Name" required="true" role="textbox" type="text" value="" />
+                                                    <span class="field-validation-valid" data-valmsg-for="Customer.FirstName" data-valmsg-replace="true"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input value="5" data-val="true" data-val-number="The field PayableTypeID must be a number." data-val-required="The PayableTypeID field is required." id="Customer_PayableTypeID" name="Customer.PayableTypeID" type="hidden" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+                    ... ...
+                    <ngb-panel id="checkoutstep5">
+                        <ng-template ngbPanelTitle>
+                            <div class="cart-sidebar">
+                                <div class="sidebar-head">
+                                    <h4>User</h4>
+                                    <span>Amanda Walsh, ID#42</span>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template ngbPanelContent>
+                            <div class="panel panel-default">
+
+                                <div class="panel-body">
+                                    <div id="birthday-focus"></div>
+
+                                    <div id="view-personalinformation-1096f503-5302-4912-be36-767e0b8bfe04">
+                                        <div class="row margin-5">
+                                            <div class="col-sm-12 pinfo ">
+                                                <div class="form-group">
+                                                    <input aria-required="true" class="form-control personalInfo" data-val="true" data-val-required="First Name is required" id="Customer_FirstName" name="Customer.FirstName" placeholder="First Name" required="true" role="textbox" type="text" value="" />
+                                                    <span class="field-validation-valid" data-valmsg-for="Customer.FirstName" data-valmsg-replace="true"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input value="5" data-val="true" data-val-number="The field PayableTypeID must be a number." data-val-required="The PayableTypeID field is required." id="Customer_PayableTypeID" name="Customer.PayableTypeID" type="hidden" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+                    ... ...
+                    <ngb-panel id="checkoutstep3">
+                        <ng-template ngbPanelTitle>
+                            <div class="cart-sidebar">
+                                <div class="sidebar-head">
+                                    <h4>Name</h4>
+                                    <span>Amanda Walsh, ID#42</span>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template ngbPanelContent>
+                            <div class="panel panel-default">
+
+                                <div class="panel-body">
+                                    <div id="birthday-focus"></div>
+
+                                    <div id="view-personalinformation-1096f503-5302-4912-be36-767e0b8bfe04">
+                                        <div class="row margin-5">
+                                            <div class="col-sm-12 pinfo ">
+                                                <div class="form-group">
+                                                    <input aria-required="true" class="form-control personalInfo" data-val="true" data-val-required="First Name is required" id="Customer_FirstName" name="Customer.FirstName" placeholder="First Name" required="true" role="textbox" type="text" value="" />
+                                                    <span class="field-validation-valid" data-valmsg-for="Customer.FirstName" data-valmsg-replace="true"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input value="5" data-val="true" data-val-number="The field PayableTypeID must be a number." data-val-required="The PayableTypeID field is required." id="Customer_PayableTypeID" name="Customer.PayableTypeID" type="hidden" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+
+
+                </ngb-accordion>
+            </div> -->
+
+        </div>
+    </div>
+</section>

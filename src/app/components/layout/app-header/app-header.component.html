@@ -2,12 +2,9 @@
     <nav class="navbar navbar-expand-lg start-demo-tour">
         <div class="container">
             <div class="logo-center">
-                <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img
-                        src="../../assets/logo-wink.png" /></a>
+                <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img src="../../assets/logo-wink.png" /></a>
             </div>
-            <button (click)="toggleDisplayDivIf()" class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button (click)="toggleDisplayDivIf()" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
             </button>
             <div id="main-menu" class="show-mob">
@@ -16,6 +13,8 @@
 
                     <li class="cart-item"><a [routerLink]="['/store/cart']"><i class="fa fa-shopping-bag"></i><span
                                 *ngIf="cartItems" class="cart-info">{{cartItems}}</span></a></li>
+
+
 
                 </ul>
             </div>
@@ -26,8 +25,7 @@
                         <a class="nav-link" [routerLink]="['/store']" [routerLinkActive]="['active']">Shop</a>
                     </li>
                     <li class="nav-item Blog-demo-tour">
-                        <a class="nav-link" href="https://blog.winknaturals.com/" target=_blank
-                            [routerLinkActive]="['active']">Blog</a>
+                        <a class="nav-link" href="https://blog.winknaturals.com/" target=_blank [routerLinkActive]="['active']">Blog</a>
                     </li>
                     <li class="nav-item About-demo-tour">
                         <a class="nav-link" [routerLink]="['/about']" [routerLinkActive]="['active']">About</a>
@@ -47,9 +45,33 @@
                 </ul>
               </li> -->
                 </ul>
+
+
+                <ul class="navbar-nav other-links">
+                    <!-- <li class="nav-item Shop-demo-tour">
+                        <a class="nav-link" [routerLink]="['account-settings/profile']" [routerLinkActive]="['active']">Profile</a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['account-settings/orders']" [routerLinkActive]="['active']">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['account-settings/payments']" [routerLinkActive]="['active']">Payments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['account-settings/addresses']" [routerLinkActive]="['active']">Addresses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['account-settings/loyaltypoints']" [routerLinkActive]="['active']">Loyalty Points</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['account-settings/subscriptions']" [routerLinkActive]="['active']">Subscriptions</a>
+                    </li> -->
+
+                </ul>
+
+
                 <div class="logo-center">
-                    <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img
-                            src="../../assets/logo-wink.png" /></a>
+                    <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img src="../../assets/logo-wink.png" /></a>
                 </div>
                 <ul class="right-menu">
                     <li class="Search-demo-tour-class">
@@ -58,39 +80,55 @@
                     <li class="cart-item Cart-Item-demo-tour-class"><a [routerLink]="['/store/cart']"><i
                                 class="fa fa-shopping-bag"></i><span *ngIf="cartItems"
                                 class="cart-info">{{cartItems}}</span></a></li>
-                    <li class="Login-demo-tour-class" *ngIf="!user"><a [routerLink]="['/sign-in']"
-                            class="log-links">SIGN IN</a></li>
+                    <li><a class="button" href="#popup1"><i class="fas fa-user-circle"></i></a></li>
+
+                    <!-- <a class="button" href="#popup1">Let me Pop up</a> -->
+                    <li class="Login-demo-tour-class" *ngIf="!user"><a [routerLink]="['/sign-in']" class="log-links">SIGN IN</a></li>
                     <li class="LogOut-demo-tour-class" *ngIf="user"><a (click)="logout()" class="log-links">Log out</a>
                     </li>
                 </ul>
             </div>
-            <div class="collapse navbar-collapse m" id="main-menu" *ngIf="isMobileMenu"
-                [className]="toggleDisplayDivIf ?  'showmenu' : 'hidemenu'">
+            <div class="collapse navbar-collapse m" id="main-menu" *ngIf="isMobileMenu" [className]="toggleDisplayDivIf ?  'showmenu' : 'hidemenu'">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/store']" [routerLinkActive]="['active']"
-                            (click)="isMobileMenu=false;">Shop</a>
+                        <a class="nav-link" [routerLink]="['/store']" [routerLinkActive]="['active']" (click)="isMobileMenu=false;">Shop</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://blog.winknaturals.com/">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/about']" [routerLinkActive]="['active']"
-                            (click)="isMobileMenu=false;">About</a>
+                        <a class="nav-link" [routerLink]="['/about']" [routerLinkActive]="['active']" (click)="isMobileMenu=false;">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/enrollment']" [routerLinkActive]="['active']"
-                            (click)="isMobileMenu=false;">Join</a>
+                        <a class="nav-link" [routerLink]="['/enrollment']" [routerLinkActive]="['active']" (click)="isMobileMenu=false;">Join</a>
                     </li>
-                    <li class="nav-item" *ngIf="!user"><a [routerLink]="['/sign-in']" class="log-links nav-link"
-                            (click)="isMobileMenu=false;">SIGN IN</a></li>
-                    <li class="nav-item" *ngIf="user"><a (click)="logout()" class="log-links nav-link"
-                            (click)="isMobileMenu= false;">Log out</a></li>
+                    <li class="nav-item" *ngIf="!user"><a [routerLink]="['/sign-in']" class="log-links nav-link" (click)="isMobileMenu=false;">SIGN IN</a></li>
+                    <li class="nav-item" *ngIf="user"><a (click)="logout()" class="log-links nav-link" (click)="isMobileMenu= false;">Log out</a></li>
+
+                </ul>
+                <ul class="navbar-nav other-links">
+                    <li class="nav-item Shop-demo-tour">
+                        <a class="nav-link" [routerLink]="['account-settings/profile']" [routerLinkActive]="['active']">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['account-settings/orders']" [routerLinkActive]="['active']">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['account-settings/payments']" [routerLinkActive]="['active']">Payments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['account-settings/addresses']" [routerLinkActive]="['active']">Addresses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['account-settings/loyaltypoints']" [routerLinkActive]="['active']">Loyalty Points</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['account-settings/subscriptions']" [routerLinkActive]="['active']">Subscriptions</a>
+                    </li>
 
                 </ul>
                 <div class="logo-center">
-                    <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img
-                            src="../../assets/logo-wink.png" /></a>
+                    <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img src="../../assets/logo-wink.png" /></a>
                 </div>
             </div>
             <!-- <div class="searchOptionsbox" *ngIf="isSearchshow">
@@ -115,5 +153,53 @@
       </div> -->
         </div>
     </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </header>
+
+
+
+
+<div id="popup1" class="overlay">
+    <div class="popup">
+
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+            <ul class="navbar-nav other-links">
+                <li class="nav-item Shop-demo-tour">
+                    <a class="nav-link" [routerLink]="['account-settings/profile']" [routerLinkActive]="['active']">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['account-settings/orders']" [routerLinkActive]="['active']">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['account-settings/payments']" [routerLinkActive]="['active']">Payments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['account-settings/addresses']" [routerLinkActive]="['active']">Addresses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['account-settings/loyaltypoints']" [routerLinkActive]="['active']">Loyalty Points</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['account-settings/subscriptions']" [routerLinkActive]="['active']">Subscriptions</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+
 <ngx-guided-tour></ngx-guided-tour>
