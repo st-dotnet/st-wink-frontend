@@ -295,7 +295,7 @@
                 </div>
                 <div class="custom-field">
                   <input type="number" id="showinput{{product.itemCode}}"  [(ngModel)]="product.extraQuantity"
-                    *ngIf="product.quantityModel == '0'   || product.extraQuantity !=null"
+                    *ngIf="product.quantityModel == '0'   || product.quantityModel>10"
                     (change)="quantitychanged(product, $event.target.value)" class="form-control"  maxlength="3"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                 </div>
               </div>

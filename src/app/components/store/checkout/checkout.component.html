@@ -642,15 +642,18 @@
                                                                 <div *ngIf="submitted && f.state?.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.state?.errors.required">
                                                                         State is required</div>
+                                                                        <div *ngIf="f.state?.errors.pattern">
+                                                                            only alphabetic  allowed</div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="number" class="form-control" placeholder="Zip" formControlName="zip" [ngClass]="{ 'is-invalid': submitted && f.zip?.errors }" />
+                                                                <input type="number" class="form-control" placeholder="Zip" formControlName="zip" [ngClass]="{ 'is-invalid': submitted && f.zip?.errors }"  maxlength="8"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  />
                                                                 <div *ngIf="submitted && f.zip?.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.zip?.errors.required">
                                                                         Zip is required</div>
+                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>
