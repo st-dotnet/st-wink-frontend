@@ -191,7 +191,6 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
                                                                     <div class="row margin-5">
                                                                         <div class="col-sm-12 pinfo">
                                                                             <div class="form-group">
@@ -211,12 +210,10 @@
                                                                                 <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
                                                                             </div>
                                                                         </div>
-
                                                                         <div class="col-sm-12 pinfo">
                                                                             <div class="form-group">
                                                                                 <!-- <label class="control-label required" for="Customer_MobilePhone" aria-required="true">Mobile
                                                                                 Phone</label> -->
-
                                                                                 <input aria-required="true" formControlName="mobileno" [ngClass]="{ 'is-invalid': submitted && f.mobileno?.errors }" class="form-control personalInfo" [textMask]="{mask: maskMobileNo}"
                                                                                     id="Customer_MobilePhone" name="Customer.MobilePhone" placeholder="Mobile Phone" required="true" role="textbox" type="tel" value="" maxlength="13" />
                                                                                     <div *ngIf="submitted && f.mobileno?.errors" class="invalid-feedback">
@@ -242,9 +239,7 @@
                                                                                         <div *ngIf="f.taxId?.errors.required">
                                                                                           TaxId Number is required</div>
                                                                                           </div>
-
-
-                                                                                </div>
+                                                                                       </div>
                                                                                 <script>
                                                                                     require([
                                                                                         "jquery",
@@ -260,7 +255,6 @@
                                                                                 <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
                                                                             </div>
                                                                         </div>
-
                                                                         <div class="col-sm-12 pinfo">
                                                                             <div class="form-group">
                                                                                 <span class="ssnId">In order to be paid commision, you must provide your SSN/Tax ID</span>
@@ -279,14 +273,12 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
                                                                     <div class="form-group">
                                                                         <input value="5" data-val="true" data-val-number="The field PayableTypeID must be a number." data-val-required="The PayableTypeID field is required." id="Customer_PayableTypeID" name="Customer.PayableTypeID" type="hidden" />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                     </ng-template>
                                                 </ngb-panel>
 
@@ -365,9 +357,9 @@
                                                                                         <div class=" pinfo">
                                                                                             <div class="form-group">
                                                                                                 <!-- <label class="control-label visible-xs" for="Customer_MainAddress_State">State</label> -->
-                                                                                                <select class="form-control pinfo valid" formControlName="state" (change)="changestate($event)"  data-role="State" data-val="true" data-val-required="State is required" id="Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599" name="Customer.MainAddress.State" aria-required="true" aria-invalid="false"
+                                                                                                <select class="form-control pinfo valid" formControlName="state" (change)="changestate($event)" [ngClass]="{ 'is-invalid': submitted && f.state?.errors }"  data-role="State" data-val="true" data-val-required="State is required" id="Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599" name="Customer.MainAddress.State" aria-required="true" aria-invalid="false"
                                                                                                     aria-describedby="Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599-error">
-                                                                                                    <option value="">Select State</option>
+                                                                                                    <option disabled value="">Select State</option>
                                                                                                     <option *ngFor="let item of states"  [value]="item.val">
                                                                                                     {{item.name}}
                                                                                                     </option>
@@ -472,11 +464,9 @@
                                                                         <span id="webalias-preview"></span>
                                                                     </div>
                                                                 </div>
-                                                                <div class="row ">
+                                                                <div class="row">
                                                                     <div class=" col-sm-12 pinfo">
                                                                         <div class="form-group">
-
-
                                                                             <input class="form-control personalInfo" placeholder="Username" formControlName="userName" [ngClass]="{ 'is-invalid': submitted && f.userName?.errors }" type="text" >
                                                                             <div *ngIf="submitted && f.userName?.errors" class="invalid-feedback">
                                                                               <div *ngIf="f.userName?.errors.required">
@@ -508,8 +498,6 @@
                                                                                     </div>
                                                                                 <!-- <span class="field-validation-valid" data-valmsg-for="Customer.Password" data-valmsg-replace="true"></span> -->
                                                                             </div>
-
-
                                                                         </div>
                                                                         <div class="req">
                                                                             <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
@@ -517,7 +505,6 @@
                                                                     </div>
                                                                     <div class="col-sm-12 pinfo">
                                                                         <div class="form-group">
-
                                                                             <input class="form-control personalInfo" formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword?.errors }"
                                                                                 placeholder="Confirm password" type="password">
 
@@ -527,7 +514,6 @@
                                                                                   <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
                                                                                 </div>
                                                                             <!-- <span class="field-validation-valid" data-valmsg-for="Customer.ConfirmPassword" data-valmsg-replace="true"></span> -->
-
                                                                         </div>
                                                                         <div class="req">
                                                                             <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
@@ -535,10 +521,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="space-5"></div>
-
                                                             </div>
-
-
                                                         </div>
                                                     </ng-template>
                                                 </ngb-panel>
@@ -593,7 +576,6 @@
                                                         </div>
                                                     </ng-template>
                                                     <ng-template ngbPanelContent>
-
                                                         <div class="panel panel-default">
                                                             <div class="panel-body">
                                                                 <div id="view-shippinginformation-46eb3f62-b697-4e2f-8ab6-f98db0570322" data-role="hidecountry">
@@ -697,7 +679,7 @@
 
                                                                                                                 <option *ngFor="let item of states"  [value]="item.val">
                                                                                                                   {{item.name}}
-                                                                                                                  </option>
+                                                                                                                </option>
                                                                                                         <!-- <option value="AA">
                                                                                                             AA Military
                                                                                                         </option>
@@ -737,9 +719,9 @@
                                                                                                     </div>
                                                                                                 </div>
 
-                                                                                                <div class="col-sm-6  pinfo">
+                                                                                                <!-- <div class="col-sm-6  pinfo">
                                                                                                     <div class="form-group">
-                                                                                                        <select class="form-control personalInfo" data-role="State" data-val="true" data-val-required="State is required" id="ShippingAddress_State_ad88eac7-33f2-4734-86ff-cffef2906e71" name="ShippingAddress.State"> -->
+                                                                                                        <select class="form-control personalInfo" data-role="State" data-val="true" data-val-required="State is required" id="ShippingAddress_State_ad88eac7-33f2-4734-86ff-cffef2906e71" name="ShippingAddress.State">
                                                                                                         <option value="AA">Country
                                                                                                         </option>
                                                                                                         <option value="AE">AE Military
@@ -777,14 +759,11 @@
                                                                                                         </select>
                                                                                                         <span class="field-validation-valid" data-valmsg-for="ShippingAddress.State" data-valmsg-replace="true"></span>
                                                                                                     </div>
-                                                                                                </div>
-
-
+                                                                                                </div> -->
                                                                                             </div>
-
                                                                                             <div class="row margin-5">
                                                                                                 <div class="col-xs-12 verifibtn">
-                                                                                                    <button type="button" class="btn btn-info verify-btn" data-role="verify">
+                                                                                                    <button type="button" (click)="verifyShippingAddress()" class="btn btn-info verify-btn" data-role="verify">
                                                                                                     Verify Address
                                                                                                 </button>
                                                                                                 </div>
@@ -1377,7 +1356,6 @@
                                         </div>
                                     </ng-template>
                                 </ngb-panel>
-
                             </ngb-accordion>
                         </div>
                     </div>
@@ -1388,7 +1366,6 @@
                 <div class="enrollment-page">
                     <div class="showsidebar toggle-sidebar hidden-lg">
                         <div class="cart-sidebar sidebar-collapse">
-
                         </div>
                     </div>
                     <div class="sidebar-ui">

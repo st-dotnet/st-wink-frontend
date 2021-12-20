@@ -4,6 +4,7 @@ import { SessionService } from '@app/_services';
 import {EnrollmentService} from '@app/_services/enrollment.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-enrollment-packs',
@@ -13,8 +14,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class EnrollmentPacksComponent implements OnInit {
 
   EnrollmentPacksData:enrollmentpacksModel[];
-  
-  constructor(private sessionService: SessionService,private enrollmentService:EnrollmentService,
+
+  constructor(private sessionService: SessionService,private enrollmentService:EnrollmentService,private toastrService: ToastrService,
     private spinner: NgxSpinnerService,
     private domSanitizer: DomSanitizer) {
     this.sessionService.scrollToTop();
@@ -27,12 +28,12 @@ export class EnrollmentPacksComponent implements OnInit {
   getPacks()
   {
      this.spinner.show();
-    this.enrollmentService.GetAllPacks()
+     this.enrollmentService.GetAllPacks()
     .subscribe(response => {
       //this.toastrService.success('Contact information saved successfully');
       this.EnrollmentPacksData=response ;
       this.spinner.hide();
-     
+
       //this.domSanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${image}`);
       console.log(this.EnrollmentPacksData)
     }, error => {
@@ -43,4 +44,9 @@ export class EnrollmentPacksComponent implements OnInit {
     });
   }
 
+  addToCart(EnrollmentPacksData:any){
+    debugger;
+   this.sessionService.setSessionObject("enrollmentPacksData",EnrollmentPacksData);
+   this.toastrService.success("Item Added!");
+  }
 }

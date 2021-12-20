@@ -22,4 +22,9 @@ export class EnrollmentService {
   {
     return this.http.post<any>(`${environment.apiUrl}${this.shoppingEndpoint}checkout/shipping`,address);
   }
+
+  submitcheckout(transectionalmodel:any)
+  {
+    return this.http.post<any>(`${environment.apiUrl}${this.enrollmentEndpoint}SubmitCheckout`,transectionalmodel);
+  }
 }
