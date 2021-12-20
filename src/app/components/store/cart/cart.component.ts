@@ -352,7 +352,6 @@ if(this.sessionService.getSessionObject('inputdata'))
     else{
       this.sessionService.removeSessionItem('productCartItems');
     }
-
     switch (type) {
       case 0:
         this.cartItems = this.cartItems.filter(x => x !== cartItem);
@@ -382,6 +381,7 @@ if(this.sessionService.getSessionObject('inputdata'))
         //this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems) : this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
         if (this.sessionService.getSessionItem('user')){
           this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems-'+this.user.loginName, this.cartItems) : this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
+          this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems',this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
         }
         else{
           this.cartItems.length > 0 ? this.sessionService.setSessionObject('productCartItems',this.cartItems) : this.sessionService.removeSessionItem('productCartItems');
@@ -394,10 +394,15 @@ if(this.sessionService.getSessionObject('inputdata'))
           this.sessionService.removeSessionItem('promoCode');
           this.enablebtn = true;
         }
+    
+
         break;
       default:
         break;
     }
+    let  subscription =this.cartItems.filter(x=>x.subscriptionModel!= "singleDelivery");
+    if(subscription==null || this.cartItems.length ==0)
+    this.sessionService.removeSessionItem('inputdata');
     this.specialOffer = this.cartItems.filter(x => x.bundle == 'specialOffer');
     if (this.specialOffer.length == 0) {
       this.isShowSpecial = true;

@@ -235,8 +235,8 @@ export class SearchproductComponent implements OnInit {
       $("#islectedval").val(selectedvalue);
     }
     this.quantityCalculation(cartitem, selectedvalue);
-    if (this.productItems) {
-      const item = this.productItems.find((x) => x.itemCode == cartitem.itemCode);
+    if (this.productCartItems) {
+      const item = this.productCartItems.find((x) => x.itemCode == cartitem.itemCode);
 
       if (item && selectedvalue > 10) {
         item.quantityModel = item.quantityModel + item.extraQuantity;
@@ -254,6 +254,7 @@ export class SearchproductComponent implements OnInit {
     if (this.sessionService.getSessionItem('user')) {
       this.productItems = this.sessionService.getSessionObject('productCartItems-' + user.loginName);
     }
+    
     if( this.productItems==null || this.productItems.length==0)
     {this.productItems = this.sessionService.getSessionObject('productCartItems');}
     if (selectedvalue <= 10) {
@@ -283,10 +284,6 @@ export class SearchproductComponent implements OnInit {
     // this.sessionService.setSessionObject('productCartItems', this.cartItems);
   }
   addToCart(product: any) {
-debugger;
-    if (product.quantityModel == 0 || product.quantityModel == undefined)
-    return this.toastrService.error("Please select the quantity");
-
     if (this.sessionService.getSessionItem('user')) {
       this.productItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
     }
@@ -303,7 +300,7 @@ debugger;
       bundle: this.bundle,
       selectDelivery: this.selectDelivery,
       subscriptionModel: this.subscriptionModel,
-     // quantityModel: +this.quantityValue,
+      //quantityModel: +this.quantityValue,
       Price: 0,
       discount: 0,
       quantityLimit: 4,
@@ -343,11 +340,10 @@ debugger;
           const index: number = this.productItems.indexOf(single_singledelivery);
           if (index !== -1) {
             this.productItems.splice(index, 1);
-            
           }
 
           //product.quantityModel = single_singledelivery.quantityModel + +product.quantityModel;
-          product.quantityModel = single_singledelivery.quantityModel + parseInt(product.quantityModel);
+          product.quantityModel = parseInt(single_singledelivery.quantityModel) + parseInt(product.quantityModel);
           product.extraQuantity = product.quantityModel;
 
 
@@ -380,8 +376,8 @@ debugger;
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel = single_subscriptiondelivery.quantityModel +product.quantityModel;
-          product.extraQuantity = product.quantityModel;
+          product.quantityModel = single_subscriptiondelivery.quantityModel + +product.quantityModel;
+
           if (product.quantityModel > product.quantityLimit) {
             //this.productItems.push(old_single_subscriptiondelivery);
             //this.toastrService.error('You Exceed your Quantity Limit 4');
