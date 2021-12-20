@@ -638,8 +638,7 @@ section.client-reviews .client-testimonial-box .owl-nav {
 .panel-stepbar #checkoutstep1-header.card-header .btn[aria-expanded="true"],
 .panel-stepbar #checkoutstep2-header.card-header .btn[aria-expanded="true"],
 .panel-stepbar #checkoutstep3-header.card-header .btn[aria-expanded="true"],
-.panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"],
-.panel-stepbar #checkoutstep5-header.card-header .btn[aria-expanded="true"] {
+.panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"] {
     color: #fff;
     background-color: #2196f3;
     padding: 15px 15px;
@@ -656,6 +655,7 @@ section.client-reviews .client-testimonial-box .owl-nav {
     text-align: left;
     position: relative;
     text-decoration: none;
+    justify-content: space-between;
 }
 
 .panel-stepbar #checkoutstep1-header.card-header,
@@ -670,8 +670,7 @@ section.client-reviews .client-testimonial-box .owl-nav {
 .panel-stepbar #checkoutstep1-header.card-header .btn[aria-expanded="true"]:before,
 .panel-stepbar #checkoutstep2-header.card-header .btn[aria-expanded="true"]:before,
 .panel-stepbar #checkoutstep3-header.card-header .btn[aria-expanded="true"]:before,
-.panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"]:before,
-.panel-stepbar #checkoutstep5-header.card-header .btn[aria-expanded="true"]:before {
+.panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"]:before {
     width: 30px;
     height: 30px;
     border-top: solid 20px rgb(33 150 243);
@@ -706,7 +705,6 @@ div#card-info ul.card-mat {
     padding: 0;
     display: flex;
     align-items: center;
-    padding-left: 11px;
 }
 
 div#card-info ul.card-mat li:not(:first-child) {
@@ -743,11 +741,11 @@ div#checkoutstep4 ngb-accordion .card-header p {
 }
 
 div#checkoutstep4 ngb-accordion .card-header h4 {
-    color: #000000b3;
     font-family: g-medium;
-    font-size: 20px;
+    font-size: 24px;
     line-height: 22px;
     margin-top: 0;
+    font-weight: 500;
 }
 
 div#checkoutstep4 ngb-accordion .card-header p {
@@ -1464,11 +1462,6 @@ div#refered-sidebar {
     padding-left: 15px;
 }
 
-.table-today-order {
-    max-width: 240px;
-    margin: 0 auto;
-}
-
 .enrollment-page div#otp-sidebar {
     padding: 20px;
 }
@@ -1612,7 +1605,7 @@ ul.conv-products.styl-check {
 
 .birthday-holder span.btn-add-promo {
     position: absolute;
-    top: 30%;
+    top: 40%;
     right: 10px;
     transform: translateY(-50%);
 }
@@ -1663,8 +1656,11 @@ section.reviews-yotpo yotpo-reviews-widget h2.yotpo-main-title {
 
 .enrollment-paged ngb-accordion .card .card-header+div ngb-accordion.accordion .card .card-header+div {
     background: #fff;
-    /* padding-top: 0px !important; */
     padding: 5px 19px;
+}
+
+section.account-page .card-body div#promo-code {
+    padding: 0px !important;
 }
 
 .enrollment-paged .card {
@@ -1794,6 +1790,10 @@ div#checkoutstep3 ul.select-paycard h4 {
     }
     .main-content {
         padding-top: 150px;
+    }
+    .table-today-order {
+        max-width: 240px;
+        margin: 0 auto;
     }
 }
 
@@ -1944,7 +1944,7 @@ div#checkoutstep3 ul.select-paycard h4 {
         padding: 15px 5px;
     }
     .sidebar-ui {
-        padding: 0 15px;
+        padding: 0 3px;
     }
     .showsidebar.toggle-sidebar {
         margin-bottom: 20px;
