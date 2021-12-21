@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   //apiUrl: 'https://localhost:44336/api/',
   apiUrl: 'https://winknaturalsreplicatedsite-stage.azurewebsites.net/api/',
-  productImageApiUrl: 'https://localhost:44336/files/'
+  productImageApiUrl: 'https://localhost:44336/files/',
+  webAppUrl: 'https://winknaturalsreplicatedsite-stage-frontend.azurewebsites.net/#/'
 };
 /*
  * For easier debugging in development mode, you can import the following file
