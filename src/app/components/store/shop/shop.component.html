@@ -149,14 +149,14 @@
                 <div class="radio-bundle">
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="1" value="single"
-                      (change)="checkBundle('single',product.price)" checked />
+                      (click)="checkBundle('single',product.price)" checked />
                     <label class="form-check-label" for="1">Single</label>
                   </div>
                 </div>
                 <div class="radio-bundle">
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="2" value="multiple"
-                      (change)="checkBundle('multiple',product.price)" />
+                      (click)="checkBundle('multiple',product.price)" />
                     <label class="form-check-label" for="2">2-pk (Save 5%)</label>
                   </div>
                 </div>
@@ -180,7 +180,7 @@
                 <div class="radio-bundle">
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="inlineRadioOptionsdelivery" id="3" value="0"
-                      (change)="checkDelivery(0)" />
+                      (click)="checkDelivery(0)" />
                     <label class="form-check-label" for="3">Single Delivery</label>
                   </div>
                 </div>
@@ -188,7 +188,7 @@
                 <div class="radio-bundle">
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="inlineRadioOptionsdelivery" id="4" value="1"
-                      checked (change)="checkDelivery(1)" />
+                      checked (click)="checkDelivery(1)" />
                     <label class="form-check-label" for="4">Subscribe & Save 15%</label>
                   </div>
                 </div>
