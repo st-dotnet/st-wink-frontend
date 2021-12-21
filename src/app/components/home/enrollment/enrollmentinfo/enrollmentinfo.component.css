@@ -468,9 +468,9 @@ select {
     .enrollment-main-div .saveprocessed1.continuebtn button {
         width: 50%;
     }
-    .enrollment-paged .form-group.seprate3 {
+    /* .enrollment-paged .form-group.seprate3 {
         padding: 0px 18px 0px 0px;
-    }
+    } */
     button.btn.btn-info.verify-btn {
         width: 50%;
     }

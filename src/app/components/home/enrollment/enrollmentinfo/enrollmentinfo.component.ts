@@ -24,7 +24,7 @@ import {
 })
 export class EnrollmentInfoComponent implements OnInit {
   addrnew = false;
-  personalInfo: FormGroup;
+  personalInfo!: FormGroup;
   shippingAddressForm: FormGroup;
   onPaymentSubmitForm: FormGroup;
   submitted: boolean = false;
@@ -49,8 +49,8 @@ export class EnrollmentInfoComponent implements OnInit {
   cartItems: any[] = [];
   user: any;
   personalInfoPannel:boolean=false;
-  shippingAddressPannel:boolean=true;
-  paymentPannel:boolean=true;
+  shippingAddressPannel:boolean=false;
+  paymentPannel:boolean=false;
   reviewOrderPannel:boolean=true;
 
   activeIds: string[] = ['checkoutstep1'];
@@ -379,7 +379,7 @@ export class EnrollmentInfoComponent implements OnInit {
 
 
     this.UserDetails = JSON.parse(localStorage.getItem('user'));
-    this.customerId = this.UserDetails.customerId;
+   // this.customerId = this.UserDetails.customerId;
     this.personalInfo = this.formBuilder.group(
       {
         firstName: ['', [Validators.required]],
@@ -485,18 +485,14 @@ export class EnrollmentInfoComponent implements OnInit {
     }
     if (!this.isAddressveify) {
       this.toastrService.error('Please Verify Address');
-
      this.shippingAddressPannel=true;
      this.paymentPannel=true;
      this.reviewOrderPannel=true;
      this.spinner.hide();
       return;
     }
-    else{
-      this.spinner.show();
-      this.shippingAddressPannel=false;
-      this.activeIds = ['checkoutstep2'];
-    }
+    this.shippingAddressPannel=false;
+    this.activeIds = ['checkoutstep2'];
     this.spinner.hide();
     //this.spinner.show();
   }
@@ -527,7 +523,7 @@ export class EnrollmentInfoComponent implements OnInit {
   }
 
   verifyadress() {
-    debugger;
+
     if (
       !this.f.address.value ||
       !this.f.city.value ||
@@ -561,7 +557,6 @@ export class EnrollmentInfoComponent implements OnInit {
   }
 
   verifyShippingAddress() {
-    debugger;
     if (
       !this.s.streetAddress.value ||
       !this.s.city.value ||
@@ -598,19 +593,16 @@ export class EnrollmentInfoComponent implements OnInit {
     this.addressSubmitted = true;
     this.spinner.show();
     if (this.shippingAddressForm.invalid) {
-
-
       this.spinner.hide();
       return;
     }
     if(!this.isShipmentAddressveify){
       this.toastrService.error('Please Verify Address');
-
-      this.paymentPannel=true;
       this.spinner.hide();
     }
     else{
       this.paymentPannel=false;
+      this.activeIds = ['checkoutstep3'];
       this.spinner.hide();
     }
   }
