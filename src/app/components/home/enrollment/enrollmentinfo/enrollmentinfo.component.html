@@ -850,7 +850,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <div class="col-6 col-md-3">
+                                                                    <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <input type="text" formControlName="expiryMonth" [(ngModel)]="checkMonth" (change)="validateCard()" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="00" placeholder="Month" name="expiryMonth" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryMonth?.errors }"
                                                                             />
@@ -865,7 +865,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-6 col-md-3">
+                                                                    <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <input type="text" formControlName="expiryYear" [(ngModel)]="checkYear" (change)="validateCard()" placeholder="Year" name="expiryYear" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="0000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryYear?.errors }"
                                                                             />
@@ -879,7 +879,7 @@
 
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-3">
+                                                                    <div class="col-md-12">
                                                                         <div class="form-group">
                                                                             <input type="text" formControlName="cardCVV" placeholder="CVV" name="cardCVV" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardCVV?.errors }" />
                                                                             <div *ngIf="paymentSubmitted && p.cardCVV?.errors" class="invalid-feedback">
@@ -904,8 +904,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
-                                                        </div>
+                                                      </div>
                                                     </ng-template>
                                                 </ngb-panel>
                                                 <ngb-panel id="billing-method">
@@ -913,14 +912,6 @@
                                                         <div class="heading-step1">
                                                             <h4>Billing Address</h4>
                                                             <p>Same as shipping Address</p>
-                                                            <!-- <span class="arrow-stepp">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
-                                                                    height="11.2" viewBox="0 0 6.6 11.2">
-                                                                    <path id="Path_2044" data-name="Path 2044"
-                                                                        d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                                        transform="translate(-630.6 -4.4)" />
-                                                                </svg>
-                                                            </span> -->
                                                         </div>
                                                     </ng-template>
                                                     <ng-template ngbPanelContent>
@@ -1015,17 +1006,9 @@
                                                     <div class="heading-step1">
                                                         <h4>Have a promo code?</h4>
                                                         <p>No code applied</p>
-                                                        <!-- <span class="arrow-stepp">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
-                                                            height="11.2" viewBox="0 0 6.6 11.2">
-                                                            <path id="Path_2044" data-name="Path 2044"
-                                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                                transform="translate(-630.6 -4.4)" />
-                                                        </svg>
-                                                    </span> -->
                                                     </div>
                                                 </ng-template>
-                                                <!-- <div class="forformcontrol" formGroupName="reviewFormGroup"> -->
+
                                                 <ng-template ngbPanelContent>
                                                     <div class="content-card steps-inner promo-checkout">
                                                         <div class="col-md-12 p-0 mb-3">
@@ -1071,15 +1054,15 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Shipping</td>
-                                                                        <td>$6.96</td>
+                                                                        <td>Not yet Calculated</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Tax</td>
-                                                                        <td>$3.42</td>
+                                                                        <td>Not yet Calculated</td>
                                                                     </tr>
                                                                 </tbody>
                                                                 <tfoot>
-                                                                    <tr>
+                                                                    <!-- <tr>
                                                                         <td>
                                                                             <p class="you-sav">You Saved</p>
                                                                         </td>
@@ -1087,7 +1070,7 @@
                                                                             <p class="you-sav">-${{totalDiscount | number:'.1-2'}}
                                                                             </p>
                                                                         </td>
-                                                                    </tr>
+                                                                    </tr> -->
                                                                     <tr>
                                                                         <td>
                                                                             <p class="you-pay">You pay</p>

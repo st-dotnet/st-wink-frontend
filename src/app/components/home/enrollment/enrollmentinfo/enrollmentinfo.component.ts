@@ -36,7 +36,7 @@ export class EnrollmentInfoComponent implements OnInit {
   isAddressveify: boolean = false;
   isShipmentAddressveify: boolean = false;
 
-  maskMobileNo = [/\d/,/\d/,/\d/,'-',/\d/,/\d/,/\d/,'-',/\d/,/\d/,/\d/,/\d/,];
+  maskMobileNo = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/,];
   checkMonth: number;
   checkYear: number;
   monthError: boolean = false;
@@ -46,15 +46,15 @@ export class EnrollmentInfoComponent implements OnInit {
   UserDetails: any;
   cardToken: string;
   cartSummaryTotal: number = 0;
-  cartItems: any[] = [];
+  cartItems: any[]=[];
   user: any;
-  personalInfoPannel:boolean=false;
-  shippingAddressPannel:boolean=false;
-  paymentPannel:boolean=false;
-  reviewOrderPannel:boolean=true;
+  personalInfoPannel: boolean = false;
+  shippingAddressPannel: boolean = false;
+  paymentPannel: boolean = false;
+  reviewOrderPannel: boolean = false;
 
   activeIds: string[] = ['checkoutstep1'];
-  enrollmentdata:any[]=[];
+  enrollmentdata: any;
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -375,11 +375,20 @@ export class EnrollmentInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.isShipmentMethod = 1;
-    this.enrollmentdata=this.sessionService.getSessionObject("enrollmentPacksData");
-
-
+    debugger;
+    this.enrollmentdata = this.sessionService.getSessionObject("enrollmentPacksData");
+    if(this.enrollmentdata ){
+      this.enrollmentdata.productImage =null;
+      this.cartItems.push(this.enrollmentdata);
+      this.cartSummaryTotal = this.enrollmentdata.price;
+    }
+    // this.cartItems = this.sessionService.getSessionObject("enrollmentPacksData");
+    // if (this.cartItems == null || this.cartItems.length == 0 || this.cartItems == undefined)
+    //    this.toastrService.error("please add the product");
+    //    else
+       
     this.UserDetails = JSON.parse(localStorage.getItem('user'));
-   // this.customerId = this.UserDetails.customerId;
+    // this.customerId = this.UserDetails.customerId;
     this.personalInfo = this.formBuilder.group(
       {
         firstName: ['', [Validators.required]],
@@ -457,15 +466,6 @@ export class EnrollmentInfoComponent implements OnInit {
       newZip: [''],
       newCountry: [''],
     });
-
-    // if (this.sessionService.getSessionItem('user')) {
-    //   this.cartItems = this.sessionService.getSessionObject(
-    //     'productCartItems-' + this.user.loginName
-    //   );
-    // }
-    // if (this.cartItems == null || this.cartItems.length == 0) {
-    //   this.cartItems = this.sessionService.getSessionObject('productCartItems');
-    // }
   }
 
   onItemChange(id: number) {
@@ -485,25 +485,19 @@ export class EnrollmentInfoComponent implements OnInit {
     }
     if (!this.isAddressveify) {
       this.toastrService.error('Please Verify Address');
-     this.shippingAddressPannel=true;
-     this.paymentPannel=true;
-     this.reviewOrderPannel=true;
-     this.spinner.hide();
+      this.shippingAddressPannel = true;
+      this.paymentPannel = true;
+      this.reviewOrderPannel = true;
+      this.spinner.hide();
       return;
     }
-    this.shippingAddressPannel=false;
+    this.shippingAddressPannel = false;
     this.activeIds = ['checkoutstep2'];
     this.spinner.hide();
-    //this.spinner.show();
-  }
-  // onPaymentSubmit() {
-  //   this.paymentSubmitted = true;
-  //   if (this.onPaymentSubmitForm.invalid || this.monthError || this.yearError) {
-  //     return;
-  //   }
-  // }
 
-  changeAddressstate(e){
+  }
+
+  changeAddressstate(e) {
     this.shippingstatename.setValue(e.target.value, {
       onlySelf: true,
     });
@@ -580,10 +574,10 @@ export class EnrollmentInfoComponent implements OnInit {
       console.log(this.verifyAddressResponse);
       if (this.verifyAddressResponse.address) {
         this.toastrService.success('Address is Verified');
-        this.isShipmentAddressveify=true;
+        this.isShipmentAddressveify = true;
       } else {
         this.toastrService.error('Address is Not Verified');
-        this.isShipmentAddressveify=false;
+        this.isShipmentAddressveify = false;
       }
       this.spinner.hide();
     });
@@ -596,12 +590,12 @@ export class EnrollmentInfoComponent implements OnInit {
       this.spinner.hide();
       return;
     }
-    if(!this.isShipmentAddressveify){
+    if (!this.isShipmentAddressveify) {
       this.toastrService.error('Please Verify Address');
       this.spinner.hide();
     }
-    else{
-      this.paymentPannel=false;
+    else {
+      this.paymentPannel = false;
       this.activeIds = ['checkoutstep3'];
       this.spinner.hide();
     }
@@ -626,8 +620,8 @@ export class EnrollmentInfoComponent implements OnInit {
         //console.log(id);
 
         break;
-        case 2:
-        // take new card value and create token and store it to database and get;
+      case 2:
+
         this.isCardDisabled = true;
         this.isCardType = id;
         break;
@@ -685,13 +679,13 @@ export class EnrollmentInfoComponent implements OnInit {
         if (result.errorMessage == '') {
           console.log(result);
           this.cardToken = result.token;
-          this.reviewOrderPannel=false;
+          this.reviewOrderPannel = false;
           this.spinner.hide();
           // this.activeIds = ['checkoutstep3'];
           //this.showPanel3 = false;
           this.toastrService.success('Payment Card is accepted');
         } else {
-          this.reviewOrderPannel=true;
+          this.reviewOrderPannel = true;
           this.spinner.hide();
           this.toastrService.error('Payment card is not declined');
         }
@@ -700,7 +694,6 @@ export class EnrollmentInfoComponent implements OnInit {
 
   //Place my order
   onSubmit() {
-    debugger;
     const createCustomerRequest = new CreateCustomerRequest();
     createCustomerRequest.loginName = '';
     createCustomerRequest.firstName = this.f.firstName.value;
@@ -712,10 +705,10 @@ export class EnrollmentInfoComponent implements OnInit {
     createCustomerRequest.mainCity = this.f.city.value;
     createCustomerRequest.mainState = this.f.state.value;
     createCustomerRequest.mainZip = this.f.zip.value;
-    createCustomerRequest.mailState = '';
-    createCustomerRequest.mailCountry = '';
-    createCustomerRequest.otherState = '';
-    createCustomerRequest.otherCountry = '';
+    createCustomerRequest.mailState = 'TX';
+    createCustomerRequest.mailCountry = 'USA';
+    createCustomerRequest.otherState = 'TX';
+    createCustomerRequest.otherCountry = 'USA';
     createCustomerRequest.middleName = this.f.middleName.value;
     createCustomerRequest.nameSuffix = '';
     createCustomerRequest.mainCountry = 'US';
@@ -729,7 +722,7 @@ export class EnrollmentInfoComponent implements OnInit {
       chargeCreditCardTokenRequest.billingCity = this.p.newCity.value;
       chargeCreditCardTokenRequest.billingAddress2 = '';
       chargeCreditCardTokenRequest.billingAddress =
-   this.p.newStreetAddress.value;
+        this.p.newStreetAddress.value;
       chargeCreditCardTokenRequest.billingState = this.p.newState.value;
     } else {
       chargeCreditCardTokenRequest.billingZip = this.f.zip.value;
@@ -763,10 +756,7 @@ export class EnrollmentInfoComponent implements OnInit {
     createOrderRequest.phone = '1111111111111';
     createOrderRequest.company = 'Test';
     createOrderRequest.notes = 'abc';
-
-    //const createAutoOrderRequest=new CreateAutoOrderRequest();
-    //createAutoOrderRequest.details='';
-
+    createOrderRequest.orderDate = new Date();
     const setAccountCreditCardTokenRequest = new SetAccountCreditCardTokenRequest();
     setAccountCreditCardTokenRequest.creditCardToken = this.cardToken;
     setAccountCreditCardTokenRequest.expirationMonth = this.p.expiryMonth.value;
@@ -777,7 +767,7 @@ export class EnrollmentInfoComponent implements OnInit {
     transactionalRequestModel.createOrderRequest = createOrderRequest;
     transactionalRequestModel.chargeCreditCardTokenRequest =
       chargeCreditCardTokenRequest;
-    transactionalRequestModel.setListItemRequest=this.cartItems;
+    transactionalRequestModel.setListItemRequest = this.cartItems;
     transactionalRequestModel.setAccountCreditCardTokenRequest =
       setAccountCreditCardTokenRequest;
     this.enrollmentService
