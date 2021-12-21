@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AccountService, SessionService } from '@app/_services';
+import { environment } from '@environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs/operators';
@@ -57,7 +58,7 @@ export class ResetPasswordComponent implements OnInit {
       customerId: 0,
       loginName: "",
       newPassword: "",
-      url: "https://winknaturalsreplicatedsite-frontend.azurewebsites.net/#/forgot-password",
+      url: `${environment.webAppUrl}forgot-password`
     };
     this.loading = true;
     this.spinner.show();

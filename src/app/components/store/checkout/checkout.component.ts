@@ -146,7 +146,7 @@ export class CheckoutComponent implements OnInit {
      if(items==null)
      var items =this.sessionService.getSessionObject('productCartItems');
       if(items ==null || items.length<0){
-        toastrService.warning("please Add product from Shopping page");
+        toastrService.error("please Add product from Shopping page");
         this.router.navigate(["/store"]);
       }
     
@@ -216,8 +216,9 @@ export class CheckoutComponent implements OnInit {
       lastName: ['', [Validators.required]],
       streetAddress: ['', [Validators.required]],
       city: ['', [Validators.required]],
-      state: ['', [Validators.required]],
-      zip: ['', [Validators.required]],
+      state: ['', [Validators.required,Validators.pattern('^[a-zA-Z \-\']+')]],
+      zip: ['', [Validators.required,Validators.minLength(5),
+             Validators.maxLength(8)]],
       country: ['US'],
     });
 

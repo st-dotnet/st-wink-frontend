@@ -29,7 +29,8 @@
       <ng-template #elseBlock>
       <div class="col-md-3 prod-list-item" *ngFor="let product of shopProductModels">
         <div class="card">
-          <img [src]="product.image_03" class="card-img-top" alt="products-sample" />
+          <a routerLinkActive="active"
+          (click)="RedirectToProduct(product)">     <img [src]="product.image_03" class="card-img-top" alt="products-sample" /></a>
           <div class="card-body">
             <div class="product-details">
               <h5 class="card-title">{{ product?.itemDescription }}</h5>
@@ -98,7 +99,7 @@
         <div class="card">
           <div class="product-view-image">
             <!-- <img src="../../assets/product-view-sample.png" class="card-img-top" alt="products-sample"> -->
-            <img
+           <img
               [src]="product.image_03"
               class="card-img-top"
               alt="products-sample"
@@ -188,20 +189,7 @@
               </div>
               <div class="prod-bundle-select mt-0 delivery-radio">
                 <h3>Select Delivery</h3>
-                <!-- <div *ngFor="let type of cartTypes; let i = index" class="radio-bundle">
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptionsdelivery"
-                      id="{{i}}{{type}}"
-                      value="{{type}}"
-                      (change)="checkDelivery(type)"
-                    />
-                    <label class="form-check-label" for="{{i}}{{type}}"
-                      >{{type == 0 ? 'Single Delivery' : 'Subscribe & Save 15%'}}</label>
-                  </div>
-                </div> -->
+            
 
                 <div class="radio-bundle">
                   <div class="form-check form-check-inline">
@@ -239,12 +227,7 @@
                 <h3>Customize Shipment</h3>
                 <div class="choose-shipping">
                   <div class="form-group">
-                    <!-- <select [(ngModel)]="quantityValue"  [ngModelOptions]="{standalone: true}" class="form-control">
-                      <option class="dropdown-item" disabled selected value="undefined">Select Quantity</option>
-                      <option *ngFor="let qty of quantity" [value]="qty.value">
-                      {{qty.name}}
-                       </option>
-                    </select> -->
+              
                     <select id="islectedval"  (change)="quantityForOneTime(product, $event.target.value)"
                     class="form-control">
                       <option class="dropdown-item" disabled selected  value="undefined">Select
@@ -295,7 +278,7 @@
                 </div>
                 <div class="custom-field">
                   <input type="number" id="showinput{{product.itemCode}}"  [(ngModel)]="product.extraQuantity"
-                    *ngIf="product.quantityModel == '0'   || product.extraQuantity !=null"
+                    *ngIf="product.quantityModel == '0'   || product.quantityModel>10"
                     (change)="quantitychanged(product, $event.target.value)" class="form-control"  maxlength="3"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                 </div>
               </div>
