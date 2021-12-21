@@ -26,7 +26,7 @@
                 <div class="enrollment-righ">
                     <div class="enrollment-main-div">
                         <div class="enrollment-steps-5">
-                            <ngb-accordion activeIds="checkoutstep5" class="panel-stepbar">
+                            <ngb-accordion [activeIds]="" class="panel-stepbar">
                                 <ngb-panel id="checkoutstep5" class="oneToFour">
                                     <ng-template ngbPanelTitle>
                                         <span>Your Enroller</span>
@@ -35,7 +35,7 @@
 
 
                                 <!-- 1 of 4  -->
-                                <ngb-panel id="checkoutstep1" class="oneToFour">
+                                <ngb-panel id="checkoutstep1" [disabled]="personalInfoPannel ? true:null" class="oneToFour">
 
                                     <ng-template ngbPanelTitle>
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
@@ -537,7 +537,7 @@
                                 </ngb-panel>
 
                                 <!-- 2 of 4  -->
-                                <ngb-panel id="checkoutstep2">
+                                <ngb-panel id="checkoutstep2" [disabled]="shippingAddressPannel ? true:null">
                                     <ng-template ngbPanelTitle>
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
                                         <defs>
@@ -674,12 +674,16 @@
                                                                                                     <div class=" pinfo">
                                                                                                         <div class="form-group">
                                                                                                             <!-- <label class="control-label visible-xs" for="Customer_MainAddress_State">State</label> -->
-                                                                                                            <select class="form-control pinfo valid" data-role="State" data-val="true" data-val-required="State is required" id="Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599" name="Customer.MainAddress.State" aria-required="true" aria-invalid="false"
+                                                                                                            <select  formControlName="state" (change)="changeAddressstate($event)" [ngClass]="{ 'is-invalid': addressSubmitted && s.state?.errors }" class="form-control pinfo valid" data-role="State" data-val="true" data-val-required="State is required" id="Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599" name="Customer.MainAddress.State" aria-required="true" aria-invalid="false"
                                                                                                                 aria-describedby="Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599-error">
-
+                                                                                                                <option disabled value="">Select State</option>
                                                                                                                 <option *ngFor="let item of states"  [value]="item.val">
                                                                                                                   {{item.name}}
                                                                                                                 </option>
+
+
+
+
                                                                                                         <!-- <option value="AA">
                                                                                                             AA Military
                                                                                                         </option>
@@ -711,11 +715,25 @@
                                                                                                         <option value="WY">Wyoming
                                                                                                         </option> -->
                                                                                                     </select>
+
+                                                                                                    <div *ngIf="addressSubmitted && s.state?.errors" class="invalid-feedback">
+                                                                                                      <div *ngIf="s.state.errors.required">State is required</div>
+                                                                                                    </div>
                                                                                                             <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.State" data-valmsg-replace="true"></span>
                                                                                                         </div>
                                                                                                         <div class="req">
                                                                                                             <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
                                                                                                         </div>
+
+                                                                                                        <div class="form-group seprate3">
+
+                                                                                                          <input formControlName="zip" [ngClass]="{ 'is-invalid': addressSubmitted && s.zip?.errors }" class="form-control personalInfo cityDiv" data-role="City" data-val="true" data-val-required="City is required" id="Customer_MainAddress_City" name="Customer.MainAddress.City" placeholder="City" type="text" value="" />
+                                                                                                          <div *ngIf="addressSubmitted && s.zip.errors" class="invalid-feedback">
+                                                                                                            <div *ngIf="s.zip.errors.required">Zip is required</div>
+                                                                                                          </div>
+                                                                                                          <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.City" data-valmsg-replace="true"></span>
+                                                                                                      </div>
+
                                                                                                     </div>
                                                                                                 </div>
 
@@ -842,7 +860,7 @@
                                 <!-- 3 of 4  -->
 
 
-                                <ngb-panel id="checkoutstep3" class="payment-wrapper">
+                                <ngb-panel id="checkoutstep3" [disabled]="paymentPannel ? true:null" class="payment-wrapper">
                                     <ng-template ngbPanelTitle>
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
                                         <defs>
@@ -1230,7 +1248,7 @@
 
 
                                 <!-- 4 of 4  -->
-                                <ngb-panel id="checkoutstep4">
+                                <ngb-panel id="checkoutstep4" [disabled]="reviewOrderPannel ? true:null">
                                     <ng-template ngbPanelTitle>
                                         <span>4 of 4 - Review Order</span>
                                     </ng-template>

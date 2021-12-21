@@ -34,6 +34,8 @@ export class EnrollmentInfoComponent implements OnInit {
   isShipmentMethod: any;
   verifyAddressResponse: any;
   isAddressveify: boolean = false;
+  isShipmentAddressveify: boolean = false;
+
   maskMobileNo = [/\d/,/\d/,/\d/,'-',/\d/,/\d/,/\d/,'-',/\d/,/\d/,/\d/,/\d/,];
   checkMonth: number;
   checkYear: number;
@@ -46,7 +48,12 @@ export class EnrollmentInfoComponent implements OnInit {
   cartSummaryTotal: number = 0;
   cartItems: any[] = [];
   user: any;
+  personalInfoPannel:boolean=false;
+  shippingAddressPannel:boolean=true;
+  paymentPannel:boolean=true;
+  reviewOrderPannel:boolean=true;
 
+  activeIds: string[] = ['checkoutstep1'];
   enrollmentdata:any[]=[];
 
   constructor(
@@ -451,14 +458,14 @@ export class EnrollmentInfoComponent implements OnInit {
       newCountry: [''],
     });
 
-    if (this.sessionService.getSessionItem('user')) {
-      this.cartItems = this.sessionService.getSessionObject(
-        'productCartItems-' + this.user.loginName
-      );
-    }
-    if (this.cartItems == null || this.cartItems.length == 0) {
-      this.cartItems = this.sessionService.getSessionObject('productCartItems');
-    }
+    // if (this.sessionService.getSessionItem('user')) {
+    //   this.cartItems = this.sessionService.getSessionObject(
+    //     'productCartItems-' + this.user.loginName
+    //   );
+    // }
+    // if (this.cartItems == null || this.cartItems.length == 0) {
+    //   this.cartItems = this.sessionService.getSessionObject('productCartItems');
+    // }
   }
 
   onItemChange(id: number) {
@@ -469,14 +476,28 @@ export class EnrollmentInfoComponent implements OnInit {
   newAddress: any;
 
   onpersonalInfoSubmit() {
+    debugger;
     this.submitted = true;
+    this.spinner.show();
     if (this.personalInfo.invalid) {
+      this.spinner.hide();
       return;
     }
     if (!this.isAddressveify) {
       this.toastrService.error('Please Verify Address');
+
+     this.shippingAddressPannel=true;
+     this.paymentPannel=true;
+     this.reviewOrderPannel=true;
+     this.spinner.hide();
       return;
     }
+    else{
+      this.spinner.show();
+      this.shippingAddressPannel=false;
+      this.activeIds = ['checkoutstep2'];
+    }
+    this.spinner.hide();
     //this.spinner.show();
   }
   // onPaymentSubmit() {
@@ -486,6 +507,12 @@ export class EnrollmentInfoComponent implements OnInit {
   //   }
   // }
 
+  changeAddressstate(e){
+    this.shippingstatename.setValue(e.target.value, {
+      onlySelf: true,
+    });
+  }
+
   changestate(e) {
     this.statename.setValue(e.target.value, {
       onlySelf: true,
@@ -494,6 +521,9 @@ export class EnrollmentInfoComponent implements OnInit {
 
   get statename() {
     return this.personalInfo.get('state');
+  }
+  get shippingstatename() {
+    return this.shippingAddressForm.get('state');
   }
 
   verifyadress() {
@@ -535,8 +565,8 @@ export class EnrollmentInfoComponent implements OnInit {
     if (
       !this.s.streetAddress.value ||
       !this.s.city.value ||
-      !this.s.state.value ||
-      !this.s.zip.value
+      !this.s.state.value //||
+      //!this.s.zip.value
     ) {
       this.toastrService.error('Plase fill All Address Feilds');
       return;
@@ -545,7 +575,7 @@ export class EnrollmentInfoComponent implements OnInit {
       Address: this.s.streetAddress.value,
       City: this.s.city.value,
       State: this.s.state.value,
-      Zip: this.s.zip.value,
+      Zip: '76123',//this.s.zip.value,
       Country: 'United States',
     };
     this.spinner.show();
@@ -555,18 +585,33 @@ export class EnrollmentInfoComponent implements OnInit {
       console.log(this.verifyAddressResponse);
       if (this.verifyAddressResponse.address) {
         this.toastrService.success('Address is Verified');
-        //this.isAddressveify=true;
+        this.isShipmentAddressveify=true;
       } else {
         this.toastrService.error('Address is Not Verified');
-        //this.isAddressveify=false;
+        this.isShipmentAddressveify=false;
       }
       this.spinner.hide();
     });
   }
   onAddressSubmit() {
+    debugger;
     this.addressSubmitted = true;
+    this.spinner.show();
     if (this.shippingAddressForm.invalid) {
+
+
+      this.spinner.hide();
       return;
+    }
+    if(!this.isShipmentAddressveify){
+      this.toastrService.error('Please Verify Address');
+
+      this.paymentPannel=true;
+      this.spinner.hide();
+    }
+    else{
+      this.paymentPannel=false;
+      this.spinner.hide();
     }
   }
 
@@ -648,11 +693,13 @@ export class EnrollmentInfoComponent implements OnInit {
         if (result.errorMessage == '') {
           console.log(result);
           this.cardToken = result.token;
+          this.reviewOrderPannel=false;
           this.spinner.hide();
           // this.activeIds = ['checkoutstep3'];
           //this.showPanel3 = false;
           this.toastrService.success('Payment Card is accepted');
         } else {
+          this.reviewOrderPannel=true;
           this.spinner.hide();
           this.toastrService.error('Payment card is not declined');
         }
@@ -680,7 +727,6 @@ export class EnrollmentInfoComponent implements OnInit {
     createCustomerRequest.middleName = this.f.middleName.value;
     createCustomerRequest.nameSuffix = '';
     createCustomerRequest.mainCountry = 'US';
-    createCustomerRequest.mainCounty = 'US';
 
     const chargeCreditCardTokenRequest = new ChargeCreditCardTokenRequest();
     chargeCreditCardTokenRequest.maxAmount = this.cartSummaryTotal;
@@ -691,7 +737,7 @@ export class EnrollmentInfoComponent implements OnInit {
       chargeCreditCardTokenRequest.billingCity = this.p.newCity.value;
       chargeCreditCardTokenRequest.billingAddress2 = '';
       chargeCreditCardTokenRequest.billingAddress =
-        this.p.newStreetAddress.value;
+   this.p.newStreetAddress.value;
       chargeCreditCardTokenRequest.billingState = this.p.newState.value;
     } else {
       chargeCreditCardTokenRequest.billingZip = this.f.zip.value;
@@ -722,7 +768,6 @@ export class EnrollmentInfoComponent implements OnInit {
     createOrderRequest.state = 'TX';
     createOrderRequest.zip = this.f.zip.value;
     createOrderRequest.country = 'US'; //this.f.country.value
-    createOrderRequest.email = 'test@gmail.com';
     createOrderRequest.phone = '1111111111111';
     createOrderRequest.company = 'Test';
     createOrderRequest.notes = 'abc';
@@ -740,7 +785,7 @@ export class EnrollmentInfoComponent implements OnInit {
     transactionalRequestModel.createOrderRequest = createOrderRequest;
     transactionalRequestModel.chargeCreditCardTokenRequest =
       chargeCreditCardTokenRequest;
-    transactionalRequestModel.setListItemRequest = this.cartItems;
+    transactionalRequestModel.setListItemRequest=this.cartItems;
     transactionalRequestModel.setAccountCreditCardTokenRequest =
       setAccountCreditCardTokenRequest;
     this.enrollmentService
