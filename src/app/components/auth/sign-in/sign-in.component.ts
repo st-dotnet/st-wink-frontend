@@ -71,10 +71,7 @@ export class SignInComponent implements OnInit {
           if (productItems) {
             let tempCart = this.sessionService.getSessionObject('productCartItems-' + res.loginName);
             if (tempCart) {
-               cardCart = tempCart.filter(array => productItems.some(filter => filter.itemCode != array.itemCode && filter.bundle != array.bundle && 
-                                                      filter.selectDelivery!= array.selectDelivery && filter.subscriptionModel != array.subscriptionModel ));
-              cardCart?.forEach(element => {
-                
+              tempCart?.forEach(element => {
                 productItems.push(element);
               });
             }

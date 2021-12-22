@@ -17,6 +17,7 @@ import { AppLayoutComponent } from './components/layout/app-layout/app-layout.co
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { GuidedTourModule } from 'src/lib/guided-tour.module';
 import {JwtInterceptor} from'./_helpers/jwt.interceptor';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {JwtInterceptor} from'./_helpers/jwt.interceptor';
     SharedModule,
     AppRoutingModule,
     NgxFreshChatModule,
+    NgbAccordionModule,
     GuidedTourModule.forRoot()
   ],
   providers: [
