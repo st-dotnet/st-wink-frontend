@@ -98,6 +98,9 @@ export class AccountService {
     return this.http.get<any>(`${environment.apiUrl}${this.accountEndPoint}SeachOrderList`);
   }
 
+  getCustomerAutoOrders(){
+    return this.http.get<any>(`${environment.apiUrl}${this.accountEndPoint}GetCustomerAutoOrders`);
+  }
 }
 
 

@@ -9,7 +9,7 @@
                             <div class="subsc-cta">
                                 <h4><button class="btn bta-subsc">Create Subscription</button></h4>
                             </div>
-                            <ngb-accordion activeIds="" class="order-listing">
+                            <ngb-accordion activeIds="" *ngFor="let item of customerOrderData" class="order-listing">
                                 <h3>Active Subscriptions</h3>
                                 <ngb-panel id="order-listing">
                                     <ng-template ngbPanelTitle>
@@ -17,7 +17,8 @@
                                         <div class="order-list-title">
                                             <div class="content-head-order">
                                                 <div class="order-name">
-                                                    <div class="top-left-order">ID<span class="order-number">#46504</span></div>
+                                                    <!-- <div class="top-left-order">ID<span class="order-number">#46504</span></div> -->
+                                                    <div class="top-left-order">ID<span class="order-number">#{{item.autoOrderID}}</span></div>
                                                     <div class="top-product-preview">
                                                         <ul class="ordered-previews">
                                                             <li><img src="/assets/product-ordered.png" /></li>
@@ -26,7 +27,8 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <div class="total-amount-order">Est. Total<span class="amount-num">$63.56</span>
+                                                <!-- <div class="total-amount-order">Est. Total<span class="amount-num">$63.56</span> -->
+                                                  <div class="total-amount-order">Est. Total<span class="amount-num">${{item.subtotal}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -44,7 +46,7 @@
                                         <div class="content-order-listing">
                                             <div class="placed-info">
                                                 <label class="form-label">Schedule:</label>
-                                                <div class="place-date schedule-info">Runs 20th of the month, every 2 months</div>
+                                                <div class="place-date schedule-info">Runs {{item.createdDate| date}} of the month, every 2 months</div>
                                             </div>
                                             <div class="placed-info">
                                                 <label class="form-label">Next Run Date:</label>
@@ -53,9 +55,11 @@
                                             <div class="shipping-addr">
                                                 <label>Ship to:</label>
                                                 <p class="next-date">
-                                                    <span>Amanda Hall</span>
+                                                    <!-- <span>Amanda Hall</span>
                                                     <span>1455 S State St</span>
-                                                    <span>Orem, UT 84097, US</span>
+                                                    <span>Orem, UT 84097, US</span> -->
+                                                    <span>{{item.shippingAddress.address1}}</span>
+                                                    <span>{{item.shippingAddress.address2}}</span>
                                                 </p>
                                             </div>
                                             <div class="billing-to">
@@ -68,15 +72,17 @@
                                                     <h4>Order Summary:</h4>
                                                     <table class="table order-summary">
                                                         <tbody>
-                                                            <tr>
+                                                            <tr *ngFor="let detail of item.details">
                                                                 <td style="width:40px;">
-                                                                    <img src="/assets/product-ordered.png" />
+                                                                    <img [src]="detail.reference1"  />
                                                                 </td>
                                                                 <td>
-                                                                    <div class="info-orders">(1) Pre & Pro Biotic Quick Melts 30-Count</div>
-                                                                    <div class="order-sku">SKU: <span class="sku-data">SP-BIOTIC-030</span></div>
+                                                                    <!-- <div class="info-orders">(1) Pre & Pro Biotic Quick Melts 30-Count</div>
+                                                                    <div class="order-sku">SKU: <span class="sku-data">SP-BIOTIC-030</span></div> -->
+                                                                    <div class="info-orders">{{detail.description}}</div>
+                                                                    <div class="order-sku">SKU: <span class="sku-data">{{detail.itemCode}}</span></div>
                                                                 </td>
-                                                            </tr>
+                                                            <!-- </tr>
                                                             <tr>
                                                                 <td style="width:40px;">
                                                                     <img src="/assets/product-ordered.png" />
@@ -94,7 +100,7 @@
                                                                     <div class="info-orders">(3) Pre & Pro Biotic Quick Melts 30-Count</div>
                                                                     <div class="order-sku">SKU: <span class="sku-data">SP-BIOTIC-580</span></div>
                                                                 </td>
-                                                            </tr>
+                                                            </tr> -->
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -116,7 +122,7 @@
 
                                     </ng-template>
                                 </ngb-panel>
-                                <ngb-panel id="order-listing">
+                                <!-- <ngb-panel id="order-listing">
                                     <ng-template ngbPanelTitle>
 
                                         <div class="order-list-title">
@@ -535,9 +541,7 @@
                                         </div>
 
                                     </ng-template>
-                                </ngb-panel>
-
-
+                                </ngb-panel> -->
                             </ngb-accordion>
                         </div>
                     </div>
@@ -569,11 +573,8 @@
 
                         </div>
                     </div>
-
                 </div>
             </div>
-
-
         </div>
     </div>
 </section>

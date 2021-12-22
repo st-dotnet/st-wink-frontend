@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from '@app/_services';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-subscriptions',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubscriptionsComponent implements OnInit {
 
-  constructor() { }
+customerOrderData:any;
+
+  constructor(private accountService: AccountService, private spinner: NgxSpinnerService,
+    private toastrService: ToastrService){
+ }
 
   ngOnInit(): void {
+  this.getCustomerAutoOrders();
   }
-
+  getCustomerAutoOrders(){
+    this.spinner.show();
+    this.accountService.getCustomerAutoOrders().subscribe((response)=>{
+      this.customerOrderData=response.result;
+      console.log(response.result);
+      this.spinner.hide();
+   });
+  }
 }

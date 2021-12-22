@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
-import { User } from '@app/_models/user';
 import { AccountService, SessionService } from '@app/_services';
 import { ShopService } from '@app/_services/shop.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -13,15 +11,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProfileComponent implements OnInit {
 
-
-
-
-
-
-
-
   fieldprofile1: any;
   fieldprofile2: any;
+
   UserDetails: any;
   currentuser: any;
   password: any;
@@ -29,13 +21,11 @@ export class ProfileComponent implements OnInit {
 
   constructor(private accountService: AccountService, private spinner: NgxSpinnerService,
     private toastrService: ToastrService,
-    private shopService: ShopService,
     private sessionService: SessionService) { }
 
   ngOnInit(): void {
     this.getuserdetails();
   }
-
   getuserdetails(){
     this.spinner.show();
     this.currentuser = this.sessionService.getSessionObject("user");
@@ -45,7 +35,6 @@ export class ProfileComponent implements OnInit {
       this.spinner.hide();
     });
   }
-
   submit(fieldName: string,feildname:string) {
     if(feildname=='' || feildname==null){
       this.toastrService.error(`${fieldName} is required.`);
@@ -66,7 +55,6 @@ export class ProfileComponent implements OnInit {
      this.getuserdetails();
      this.spinner.hide();
    });
-
 }
 
 
