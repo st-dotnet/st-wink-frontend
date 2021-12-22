@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SessionService } from '@app/_services';
+import { AccountService, SessionService } from '@app/_services';
 import { ShopService } from '@app/_services/shop.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -13,10 +14,12 @@ import { ToastrService } from 'ngx-toastr';
 export class AddressesComponent implements OnInit {
   user: any;
   addressess:any[]=[];
-  constructor(private shopService: ShopService,  private sessionService: SessionService,
+  shippingAddressForm: FormGroup;
+  addressSubmitted: boolean = false;
+  constructor(private shopService: ShopService, private accountService: AccountService, private sessionService: SessionService,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private toastrService: ToastrService) { }
+    private toastrService: ToastrService,    private formBuilder: FormBuilder) { }
 
    
   ngOnInit(): void {
@@ -24,7 +27,13 @@ export class AddressesComponent implements OnInit {
     if(this.user){
       this.getAddressByCustomerId(this.user.customerId);
     }
-  
+    this.shippingAddressForm = this.formBuilder.group({
+      streetAddress: ['',[Validators.required]],
+      city: ['', [Validators.required]],
+      state: ['', [Validators.required]],
+      zip: ['', [Validators.required]],
+      country: ['',[Validators.required]],
+    });
   }
   getAddressByCustomerId(id) {
     debugger;
@@ -35,5 +44,31 @@ export class AddressesComponent implements OnInit {
       this.addressess = result?.result?.customers;   
       }});
   };
+  get s() {
+    return this.shippingAddressForm.controls;
+  }
+  onAddressSubmit(){
+    debugger;
+    this.addressSubmitted =true;
+    this.spinner.show();
 
+    if (this.shippingAddressForm.invalid) {
+      this.spinner.hide();
+      return;
+    }
+    let address = {
+      address1: this.s.streetAddress.value,
+      address2: "",
+      city: this.s.city.value,
+      state: this.s.state.value,
+      zip: this.s.zip.value
+     // country: this.s.country.value
+   
+    };
+    this.accountService.SaveAddress(address).subscribe((Response) => {
+      console.log(Response);
+      this.getAddressByCustomerId(this.user.customerId);
+       this.spinner.hide();
+     });
+  }
 }

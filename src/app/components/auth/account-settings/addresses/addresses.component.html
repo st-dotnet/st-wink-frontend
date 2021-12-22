@@ -64,70 +64,62 @@
                                     <ng-template ngbPanelContent>
                                         <div class="panel-body">
                                             <div id="view-logininformation-798275e4-d1dd-4d37-a977-497293c0fe5d">
+                                                <form [formGroup]="shippingAddressForm" (ngSubmit)="onAddressSubmit()">
                                                 <div class="row ">
                                                     <div class=" col-sm-12 pinfo">
-                                                        <form>
-                                                            <div [className]="fieldprofile3?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
 
-                                                                <input class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="ShippingAddress_Address1" name="ShippingAddress.Address1" type="text" value="">
-                                                                <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address1" data-valmsg-replace="true"></span>
-                                                                <label for="form-label">Street address</label>
+                                                                <input formControlName="streetAddress" placeholder="Street address" [ngClass]="{ 'is-invalid': addressSubmitted && s.streetAddress?.errors }" class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="ShippingAddress_Address1" name="ShippingAddress.Address1" type="text" value="">
+                                                                <!-- <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address1" data-valmsg-replace="true"></span> -->
+                                                                <div *ngIf="addressSubmitted && s.streetAddress.errors" class="field-validation-valid">
+                                                                    <div *ngIf="s.streetAddress.errors.required">street Address is required</div>
+                                                                  </div>
+                                                                <!-- <label for="form-label">Street address</label>  -->
                                                                 <p></p>
-                                                            </div>
-                                                        </form>
+
                                                     </div>
-
-
-
-
                                                     <div class="col-sm-6">
-                                                        <form>
-                                                            <div [className]="fieldprofile3?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                                <input class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="ShippingAddress_Address1" name="ShippingAddress.Address1" type="text" value="">
-                                                                <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address1" data-valmsg-replace="true"></span>
-                                                                <label for="form-label">City</label>
+
+                                                                <input class="form-control personalInfo"  placeholder="City" formControlName="city"[ngClass]="{ 'is-invalid': addressSubmitted && s.city?.errors }"  data-role="City" data-val="true" data-val-required="city is required" id="ShippingAddress_city" name="ShippingAddress.city" type="text" value="">
+                                                                <div *ngIf="addressSubmitted && s.city.errors" class="field-validation-valid">
+                                                                    <div *ngIf="s.city.errors.required">city is required</div>
+                                                                  </div>
                                                                 <p></p>
-                                                            </div>
-                                                        </form>
                                                     </div>
 
                                                     <div class="col-sm-6">
-                                                        <form>
-                                                            <div [className]="fieldprofile3?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                                <input class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="ShippingAddress_Address1" name="ShippingAddress.Address1" type="text" value="">
-                                                                <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address1" data-valmsg-replace="true"></span>
-                                                                <label for="form-label">State</label>
+                                                          
+                                                                <input class="form-control personalInfo"   placeholder="State" formControlName="state" [ngClass]="{ 'is-invalid': addressSubmitted && s.state?.errors }" data-role="state" data-val="true" data-val-required="state is required" id="ShippingAddress_state" name="ShippingAddress.state" type="text" value="">
+                                                                <!-- <span class="field-validation-valid" data-valmsg-for="ShippingAddress.state" data-valmsg-replace="true"></span> -->
+                                                                <div *ngIf="addressSubmitted && s.state.errors" class="field-validation-valid">
+                                                                    <div *ngIf="s.state.errors.required">state is required</div>
+                                                                  </div>
                                                                 <p></p>
-                                                            </div>
-                                                        </form>
                                                     </div>
                                                     <div class=" col-sm-12 pinfo">
-                                                        <form>
-                                                            <div [className]="fieldprofile3?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-
-                                                                <input class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="ShippingAddress_Address1" name="ShippingAddress.Address1" type="text" value="">
-                                                                <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address1" data-valmsg-replace="true"></span>
-                                                                <label for="form-label">Zip</label>
+                                                            <div>
+                                                                <input class="form-control personalInfo"  placeholder="Zip" formControlName="zip" [ngClass]="{ 'is-invalid': addressSubmitted && s.zip?.errors }"  data-role="zip" data-val="true" data-val-required="zip is required" id="ShippingAddress_zip" name="ShippingAddress.zip" type="text" value="">
+                                                                <!-- <span class="field-validation-valid" data-valmsg-for="ShippingAddress.zip" data-valmsg-replace="true"></span> -->
+                                                                <div *ngIf="addressSubmitted && s.zip.errors" class="field-validation-valid">
+                                                                    <div *ngIf="s.zip.errors.required">zip is required</div>
+                                                                  </div>
                                                                 <p></p>
                                                             </div>
-
-                                                            <div [className]="fieldprofile3?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-
-                                                                <input class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="ShippingAddress_Address1" name="ShippingAddress.Address1" type="text" value="">
-                                                                <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address1" data-valmsg-replace="true"></span>
-                                                                <label for="form-label">Country</label>
+                                                            <div>
+                                                                <input class="form-control personalInfo" formControlName="country" placeholder="Country" [ngClass]="{ 'is-invalid': addressSubmitted && s.country?.errors }" data-role="country" data-val="true" data-val-required="countryis required" id="ShippingAddress_country" name="ShippingAddress.country" type="text" value="">
+                                                                <!-- <span class="field-validation-valid" data-valmsg-for="ShippingAddress.country" data-valmsg-replace="true"></span> -->
+                                                                <div *ngIf="addressSubmitted && s.country.errors" class="field-validation-valid">
+                                                                    <div *ngIf="s.country.errors.required">country is required</div>
+                                                                  </div>
                                                                 <p></p>
                                                             </div>
-                                                        </form>
+                                                        
                                                     </div>
 
                                                     <div class=" col-sm-12 pinfo">
                                                         <div class="emailbtns">
-                                                            <!-- <div class="cancles">
-                                                                <a href="#"> <button class="cancle-btn">Cancle</button></a>
-                                                            </div> -->
+                                                           
                                                             <div class="saves">
-                                                                <a href="#"> <button class="save-btn">Save Changes</button></a>
+                                                                <button class="save-btn">Save Changes</button>
                                                             </div>
 
                                                         </div>
@@ -135,6 +127,7 @@
 
 
                                                 </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </ng-template>
