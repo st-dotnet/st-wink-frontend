@@ -1,0 +1,188 @@
+section.account-page.grid-checkout .emailbtns {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+section.account-page.grid-checkout button.cancle-btn,
+button.save-btn {
+    border: 1px solid #1cb1c5;
+    border-radius: 30px;
+    width: 100%;
+    padding: 5px 40px;
+    background: transparent;
+    color: #1cb1c5;
+    text-transform: uppercase;
+}
+
+section.account-page.grid-checkout button.save-btn {
+    width: 100%;
+    padding: 5px 50px;
+    background: #1cb1c5;
+    color: white;
+}
+
+section.account-page.grid-checkout small#emailHelp {
+    display: flex;
+}
+
+section.account-page.grid-checkout .form-group.numbersection {
+    position: relative;
+}
+
+label.emailLable.number {
+    position: absolute;
+    top: -11px;
+    left: 13px;
+    background: white;
+    padding: 1px 8px;
+    font-size: 12px;
+}
+
+.form-group.numbersection p {
+    font-size: 10px;
+    padding: 10px;
+}
+
+.custom-control.custom-checkbox {
+    padding: 10px 20px;
+}
+
+section.account-page.grid-checkout .card-header+div {
+    background: #fff;
+    padding: 0px;
+}
+
+section.backlink-header.mob-check.account-setting-upperBar {
+    width: 100%;
+    padding: 30px 0 0;
+}
+
+section.backlink-header.mob-check.account-setting-upperBar a {
+    display: flex;
+    align-items: center;
+    color: #1cb1c5;
+    font-family: "g-demibold";
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+section.backlink-header.mob-check.account-setting-upperBar svg.svg-inline--fa.fa-angle-left.fa-w-6.fa-3x {
+    width: 7px;
+    margin: 0px 5px;
+}
+
+section.account-page.grid-checkout {
+    padding-bottom: 50px;
+}
+
+.heading-step1.ng-star-inserted {
+    width: 100%;
+    /* padding: 10px 20px; */
+}
+
+svg {
+    float: right;
+    margin-top: 10px;
+}
+
+.totalAmount {
+    display: flex;
+    justify-content: space-between;
+}
+
+.heading-step1.ng-star-inserted img {
+    margin: 0px 5px;
+}
+
+.ordersuMary {
+    display: flex;
+}
+
+.ordersuMary img {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.heading-step1.ng-star-inserted h4 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+section.account-page .card-body div#promo-code {
+    padding: 0px !important;
+}
+
+.account-page .heading-step1.profile-section span {
+    font-size: 14px;
+}
+
+section.account-page svg {
+    position: absolute;
+}
+
+section.account-page .form-group.numbersection input#number {
+    height: 55px;
+}
+
+section.account-page .heading-step1.profile-section h3 {
+    font-size: 50px;
+}
+
+section.account-page ngb-accordion .card ngb-accordion.accordion .card .card-header+div .card-body {
+    padding: 0px 0px !important;
+}
+
+.pointsWraper {
+    border-top: 1px solid #80808030;
+    padding-top: 10px;
+}
+
+section.account-page .pointsWraper .mainsDiv {
+    display: flex;
+    justify-content: space-between;
+}
+
+section.account-page .pointsWraper .mainsDiv strong {
+    font-weight: 400;
+}
+
+section.account-page .pointsWraper .mainSecondDiv p {
+    font-size: 12px;
+}
+
+section.account-page .order-section svg {
+    right: 19px;
+    top: 50px !important;
+}
+
+.heading-step1.order-section {
+    padding-bottom: 16px;
+}
+
+.trackDiv {
+    text-align: center;
+    margin: 10px 10px 27px 5px;
+}
+
+.trackDiv button {
+    width: 100%;
+    border-radius: 30px;
+    text-transform: uppercase;
+}
+
+button.trackBtn {
+    border: none;
+    background-color: #1cb1c5;
+    color: #ffffffc9;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 8px 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+button.viewBtn {
+    border: 1px solid #1cb1c5;
+    background-color: white;
+    color: #1cb1c5;
+    padding: 5px 20px;
+}
