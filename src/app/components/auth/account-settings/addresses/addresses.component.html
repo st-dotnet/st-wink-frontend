@@ -9,11 +9,11 @@
 
                             <ngb-accordion activeIds="">
 
-                                <ngb-panel id="promo-sidebar1">
+                                <ngb-panel id="promo-sidebar1"  *ngFor="let address of addressess; let i = index">
                                     <ng-template ngbPanelTitle>
                                         <div class="heading-step1 profile-section">
                                             <h4> Primary address</h4>
-                                            <span class="highlight-info">Amanda Hall 564 w 700 STE 205</span>
+                                            <span class="highlight-info">{{ address.mainAddress1 }} {{ address.mainAddress2 }}</span>
                                             <span class="vali-promo"> </span>
                                             <span class="arrow-stepp">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
@@ -27,15 +27,14 @@
                                     </ng-template>
                                     <ng-template ngbPanelContent>
                                         <form>
-
                                             <div class="addresTwo">
-                                                <span>Amanda Hall</span><br>
-                                                <span>564 w 700</span><br>
-                                                <span>Orem, UT 84025</span>
+                                                <span> {{ address.mainAddress1 }} {{ address.mainAddress2 }}</span><br>
+                                                <span>{{address.mainCity}}</span><br>
+                                                <span>{{address.mainState}}{{ address.mainCounty}} {{address.mainZip}}</span>
                                             </div>
                                             <div class="emailbtns">
                                                 <div class="cancles">
-                                                    <a href="#"> <button class="cancle-btn">Cancle</button></a>
+                                                    <a href="#"> <button class="cancle-btn">Cancel</button></a>
                                                 </div>
                                                 <div class="saves">
                                                     <a href="#"> <button class="save-btn">Save</button></a>
@@ -45,56 +44,6 @@
                                         </form>
                                     </ng-template>
                                 </ngb-panel>
-
-
-                                <ngb-panel id="promo-sidebar">
-                                    <ng-template ngbPanelTitle>
-                                        <div class="heading-step1 profile-section">
-                                            <h4>Address #2</h4>
-                                            <span class="highlight-info">Amanda Hall 564 w 700 STE 205</span>
-                                            <span class="vali-promo"> </span>
-                                            <span class="arrow-stepp">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
-                                                height="11.2" viewBox="0 0 6.6 11.2">
-                                                <path id="Path_2044" data-name="Path 2044"
-                                                    d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                    transform="translate(-630.6 -4.4)" />
-                                            </svg>
-                                        </span>
-                                        </div>
-                                    </ng-template>
-                                    <ng-template ngbPanelContent>
-
-                                        <!-- <div [className]="fieldprofile2?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                <input type="text" class="form-control" [(ngModel)]="fieldprofile2" [ngModelOptions]="{standalone: true}">
-                                                <label class="form-label">User Name</label>
-
-
-                                            </div> -->
-                                        <div class="addresTwo">
-                                            <span>Amanda Hall</span><br>
-                                            <span>564 w 700</span><br>
-                                            <span>Orem, UT 84025</span>
-                                        </div>
-                                        <div class="emailbtns">
-                                            <div class="saves">
-                                                <a href="#"> <button class="save-btn"> Make Primary</button></a>
-                                            </div>
-                                            <div class="cancles">
-                                                <a href="#"> <button class="cancle-btn">Edit Address</button></a>
-                                            </div>
-
-                                            <div class="delete">
-                                                <a href="#"> <i class="fas fa-trash"> <span> Delete</span></i></a>
-                                            </div>
-
-
-                                        </div>
-
-                                    </ng-template>
-                                </ngb-panel>
-
-
 
                                 <ngb-panel id="otp-sidebar2">
                                     <ng-template ngbPanelTitle>
