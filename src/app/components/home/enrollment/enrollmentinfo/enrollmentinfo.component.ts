@@ -55,6 +55,7 @@ export class EnrollmentInfoComponent implements OnInit {
 
   activeIds: string[] = ['checkoutstep1'];
   enrollmentdata: any;
+  itemDescription: any;
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -375,10 +376,10 @@ export class EnrollmentInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.isShipmentMethod = 1;
-    debugger;
     this.enrollmentdata = this.sessionService.getSessionObject("enrollmentPacksData");
     if(this.enrollmentdata ){
       this.enrollmentdata.productImage =null;
+      this.itemDescription = this.enrollmentdata?.itemDescription;
       this.cartItems.push(this.enrollmentdata);
       this.cartSummaryTotal = this.enrollmentdata.price;
     }
@@ -561,7 +562,7 @@ export class EnrollmentInfoComponent implements OnInit {
       Address: this.s.streetAddress.value,
       City: this.s.city.value,
       State: this.s.state.value,
-      Zip: '76123',//this.s.zip.value,
+      Zip: this.s.zip.value,
       Country: 'United States',
     };
     this.spinner.show();

@@ -1093,7 +1093,7 @@
                                 <ng-template ngbPanelTitle>
                                     <div class="heading-step1">
                                         <h4>Today's Order</h4>
-                                        <p>Starter Kit Name</p>
+                                        <p>{{itemDescription}}</p>
                                         <span class="arrow-stepp">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
                                                 viewBox="0 0 6.6 11.2">
@@ -1109,25 +1109,17 @@
                                         <table>
                                             <tbody>
                                                 <tr>
-                                                    <td>One-Time Purchase</td>
-                                                    <td>$ 65.78</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Subscription Purchase</td>
-                                                    <td>$ 65.78</td>
+                                                    <td>{{itemDescription}}</td>
+                                                    <td>${{cartSummaryTotal | number:'.1-2'}}</td>
                                                 </tr>
                                                 <hr>
                                             </tbody>
                                             <tfoot>
-                                                <tr>
-                                                    <td>You Saved</td>
-                                                    <td>-$ 65.78</td>
-
-                                                </tr>
+                                             
 
                                                 <tr>
                                                     <td>Total</td>
-                                                    <td>$ 65.78</td>
+                                                    <td>${{cartSummaryTotal | number:'.1-2'}}</td>
                                                 </tr>
                                             </tfoot>
                                         </table>
