@@ -622,19 +622,6 @@ section.client-reviews .client-testimonial-box .owl-nav {
     margin-left: 6px;
 }
 
-section.account-page.profile-page.grid-checkout div#basic1-header {
-    padding: 0px;
-}
-
-section.account-page.profile-page.grid-checkout div#contactInfo-header {
-    padding: 0px;
-}
-
-section.account-page.profile-page .card {
-    margin-bottom: 30px;
-    border-bottom: 1px solid #80808045;
-}
-
 .panel-stepbar #checkoutstep1-header.card-header .btn[aria-expanded="true"]:focus,
 .panel-stepbar #checkoutstep2-header.card-header .btn[aria-expanded="true"]:focus,
 .panel-stepbar #checkoutstep3-header.card-header .btn[aria-expanded="true"]:focus,
@@ -651,10 +638,7 @@ section.account-page.profile-page .card {
 .panel-stepbar #checkoutstep1-header.card-header .btn[aria-expanded="true"],
 .panel-stepbar #checkoutstep2-header.card-header .btn[aria-expanded="true"],
 .panel-stepbar #checkoutstep3-header.card-header .btn[aria-expanded="true"],
-.panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"],
-.panel-stepbar #basic1-header.card-header .btn[aria-expanded="true"],
-.panel-stepbar #contactInfo-header.card-header .btn[aria-expanded="true"],
-.panel-stepbar #checkoutstep5-header.card-header .btn[aria-expanded="true"] {
+.panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"] {
     color: #fff;
     background-color: #2196f3;
     padding: 15px 15px;
@@ -1694,7 +1678,7 @@ section.account-page .card-body div#promo-code {
 
 .enrollment-main-div .card .card-header {
     box-shadow: 0 0px 5px #d0d0d0 !important;
-    border: none;
+    /* border: none; */
 }
 
 .enrollment-paged .card .card-header button {
@@ -1749,27 +1733,54 @@ div#checkoutstep3 ul.select-paycard h4 {
     padding: 10px 15px !important;
 }
 
-section.account-page ngb-accordion .card ngb-accordion.accordion .card .card-header+div .card-body {
-    padding: 0px 0px !important;
-}
-
 .enrollment-steps-5 ngb-accordion .card ngb-accordion.accordion .card .card-header button {
     padding-top: 20px;
 }
 
-section.account-page.profile-page.grid-checkout button.btn.btn-link.ng-star-inserted {
-    pointer-events: none;
+
+/* css for address page */
+
+.addresses-page button.btn.btn-link {
+    width: 100%;
+    text-align: left;
 }
 
-section.account-page.profile-page ngb-accordion.accordion.panel-stepbar {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+.addresses-page .accordion>.card:not(:last-of-type) {
+    border-bottom: 1px solid #80808052;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-bottom: 20px;
 }
 
-section.account-page.profile-page ngb-accordion.accordion.panel-stepbar .card {
-    width: 100%;
-    max-width: 49%;
+.address-paged .card-header {
+    padding: 4px;
+    background-color: white;
+}
+
+.address-paged div#promo-sidebar1-header {
+    border: none;
+    box-shadow: none;
+}
+
+.address-paged .card .card-header {
+    box-shadow: none !important;
+    /* border: none; */
+}
+
+.address-page .accordion>.card>.card-header {
+    border: none;
+}
+
+.address-page .card.ng-star-inserted {
+    box-shadow: rgb(50 50 93 / 3%) 0px 6px 12px -2px, rgb(0 0 0 / 14%) 0px 3px 7px -3px;
+}
+
+.address-page button.btn.btn-link.ng-star-inserted:focus {
+    box-shadow: none;
+}
+
+.card.ng-star-inserted button {
+    text-decoration: none;
 }
 
 
@@ -1851,13 +1862,6 @@ section.account-page.profile-page ngb-accordion.accordion.panel-stepbar .card {
 }
 
 @media (max-width: 991px) {
-    section.account-page.profile-page ngb-accordion.accordion.panel-stepbar {
-        display: block;
-        width: 100%;
-    }
-    section.account-page.profile-page ngb-accordion.accordion.panel-stepbar .card {
-        max-width: 100%;
-    }
     ngx-guided-tour {
         display: none;
     }
@@ -2146,8 +2150,4 @@ section.account-page.profile-page ngb-accordion.accordion.panel-stepbar .card {
     .prod-bundle-select .radio-bundle label {
         font-size: 12px !important;
     }
-}
-
-button.btn.btn-link.ng-star-inserted {
-    border-radius: unset;
 }
