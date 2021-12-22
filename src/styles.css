@@ -622,6 +622,19 @@ section.client-reviews .client-testimonial-box .owl-nav {
     margin-left: 6px;
 }
 
+section.account-page.profile-page.grid-checkout div#basic1-header {
+    padding: 0px;
+}
+
+section.account-page.profile-page.grid-checkout div#contactInfo-header {
+    padding: 0px;
+}
+
+section.account-page.profile-page .card {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #80808045;
+}
+
 .panel-stepbar #checkoutstep1-header.card-header .btn[aria-expanded="true"]:focus,
 .panel-stepbar #checkoutstep2-header.card-header .btn[aria-expanded="true"]:focus,
 .panel-stepbar #checkoutstep3-header.card-header .btn[aria-expanded="true"]:focus,
@@ -638,7 +651,10 @@ section.client-reviews .client-testimonial-box .owl-nav {
 .panel-stepbar #checkoutstep1-header.card-header .btn[aria-expanded="true"],
 .panel-stepbar #checkoutstep2-header.card-header .btn[aria-expanded="true"],
 .panel-stepbar #checkoutstep3-header.card-header .btn[aria-expanded="true"],
-.panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"] {
+.panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"],
+.panel-stepbar #basic1-header.card-header .btn[aria-expanded="true"],
+.panel-stepbar #contactInfo-header.card-header .btn[aria-expanded="true"],
+.panel-stepbar #checkoutstep5-header.card-header .btn[aria-expanded="true"] {
     color: #fff;
     background-color: #2196f3;
     padding: 15px 15px;
@@ -1733,8 +1749,225 @@ div#checkoutstep3 ul.select-paycard h4 {
     padding: 10px 15px !important;
 }
 
+section.account-page ngb-accordion .card ngb-accordion.accordion .card .card-header+div .card-body {
+    padding: 0px 0px !important;
+}
+
 .enrollment-steps-5 ngb-accordion .card ngb-accordion.accordion .card .card-header button {
     padding-top: 20px;
+}
+
+
+/* section.account-page.profile-page.grid-checkout button.btn.btn-link.ng-star-inserted {
+    pointer-events: none;
+} */
+
+section.account-page.profile-page ngb-accordion.accordion.panel-stepbar {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+section.account-page.profile-page ngb-accordion.accordion.panel-stepbar .card {
+    width: 100%;
+    max-width: 49%;
+}
+
+
+/* Account page -profile */
+
+.account-paged .card-header button {
+    width: 100%;
+    text-align: left;
+}
+
+.account-paged .card {
+    margin-bottom: 18px;
+    border-bottom: 1px solid #dfdfdf !important;
+    box-shadow: 0 0px 5px #d0d0d0 !important;
+}
+
+.account-paged .enrollment-main-div .card-header {
+    background: #fff;
+    box-shadow: none !important;
+}
+
+.account-paged .card button span.arrow-stepp {
+    position: absolute;
+    right: 30px;
+}
+
+.account-paged .card button[aria-expanded="true"] span.arrow-stepp svg {
+    transform: rotateZ(90deg);
+}
+
+.account-paged .card button:focus,
+.account-paged .card button:hover {
+    outline: none;
+    box-shadow: none;
+}
+
+.account-paged .card button[aria-expanded="true"] span.highlight-info {
+    display: none;
+}
+
+.account-paged .card-body {
+    padding: 0px 32px;
+}
+
+.account-paged .special-field.dataempty input:focus~label,
+.account-paged .special-field.datafilled input:focus~label {
+    top: -10px;
+    left: 18px;
+}
+
+.account-paged .special-field.datafilled input~label {
+    top: -10px !important;
+    left: 18px;
+}
+
+
+/* Loyalty Points */
+
+.content-spacer-top {
+    padding: 50px 0 40px;
+}
+
+.table-loyal {
+    margin-top: 40px;
+}
+
+
+/* Orders CSS */
+
+ngb-accordion.order-listing ul.ordered-previews {
+    list-style-type: none;
+    padding: 0px;
+    display: flex;
+    margin-bottom: 8px;
+}
+
+ngb-accordion.order-listing ul.ordered-previews li:not(:first-child) {
+    margin-left: 5px;
+}
+
+.content-head-order {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-head-order .top-left-order {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+ngb-accordion.order-listing .card-header button {
+    color: #000;
+    padding: 0;
+}
+
+ngb-accordion.order-listing .card-header button:hover {
+    text-decoration: none;
+}
+
+.content-head-order .order-name {
+    width: 70%;
+}
+
+.content-head-order .total-amount-order {
+    width: 30%;
+}
+
+.order-list-title {
+    position: relative;
+}
+
+.account-paged .card button .order-list-title+span.arrow-stepp {
+    bottom: 8px;
+    right: 2px !important;
+}
+
+ngb-accordion.accordion.order-listing button {
+    position: relative;
+}
+
+.order-list-title+span.arrow-stepp svg {
+    width: 17px;
+    height: 17px;
+}
+
+ngb-accordion.accordion.order-listing button[aria-expanded="true"] span.arrow-stepp {
+    bottom: -30px;
+}
+
+ngb-accordion.accordion.order-listing button[aria-expanded="true"] .content-head-order .top-product-preview {
+    display: none;
+}
+
+ngb-accordion.accordion.order-listing .card-body {
+    padding: 0 25px;
+}
+
+.content-order-listing .placed-info {
+    margin-bottom: 10px;
+}
+
+.content-order-listing .placed-info label {
+    font-family: 'g-demibold';
+    margin-bottom: 2px;
+}
+
+.content-order-listing .shipping-addr {
+    margin-bottom: 10px;
+}
+
+.content-order-listing .shipping-addr label {
+    width: 100%;
+    font-family: 'g-demibold';
+    margin-bottom: 3px;
+}
+
+.content-order-listing .shipping-addr label span.status-shipping {
+    text-align: right;
+    width: 110px;
+    float: right;
+    font-family: 'g-regular';
+    font-size: 16px;
+}
+
+.billing-to label {
+    font-family: 'g-demibold';
+}
+
+p.address-orders {
+    font-size: 15px;
+}
+
+p.address-orders span {
+    display: block;
+}
+
+.order-summ-tble h4 {
+    font-family: 'g-demibold';
+    font-size: 16px;
+}
+
+.card-preview {
+    margin-bottom: 20px;
+}
+
+ngb-accordion.accordion.order-listing .emailbtns {
+    padding: 20px 10px 40px;
+    max-width: 460px;
+    margin: 0 auto;
+}
+
+ngb-accordion.accordion.order-listing .emailbtns .trck-order {
+    margin-bottom: 15px;
+}
+
+ngb-accordion.accordion.order-listing div#order-listing-header button:focus {
+    text-decoration: none;
 }
 
 
@@ -1816,6 +2049,19 @@ div#checkoutstep3 ul.select-paycard h4 {
 }
 
 @media (max-width: 991px) {
+    .table-loyal.card .content-points.card-body {
+        padding: 0 10px;
+    }
+    .account-page .showsidebar.toggle-sidebar {
+        display: none;
+    }
+    section.account-page.profile-page ngb-accordion.accordion.panel-stepbar {
+        display: block;
+        width: 100%;
+    }
+    section.account-page.profile-page ngb-accordion.accordion.panel-stepbar .card {
+        max-width: 100%;
+    }
     ngx-guided-tour {
         display: none;
     }
@@ -2104,4 +2350,8 @@ div#checkoutstep3 ul.select-paycard h4 {
     .prod-bundle-select .radio-bundle label {
         font-size: 12px !important;
     }
+}
+
+button.btn.btn-link.ng-star-inserted {
+    border-radius: unset;
 }
