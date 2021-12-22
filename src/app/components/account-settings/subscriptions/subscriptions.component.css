@@ -55,3 +55,13 @@ section.account-page.grid-checkout button.trck-order-btn {
 .pagination-points ul.pagination li a {
     background: transparent;
 }
+
+ul.links-remove button.btn.btn-gck {
+    color: #1cb1c5;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+ul.links-remove button.btn.btn-gck:hover {
+    color: #000;
+}

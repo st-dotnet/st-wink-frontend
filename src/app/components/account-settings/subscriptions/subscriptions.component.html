@@ -106,17 +106,14 @@
                                             <div class="trck-order">
                                                 <a href="#"> <button class="trck-order-btn">Edit Subscription</button></a>
                                             </div>
-
                                             <div class="view-invoice">
-                                                <a href="#"> <button class="cancel-subscrp"><i class="fa fa-trash"></i>Cancel Subscription</button></a>
+                                                <button (click)="open(removesubscmdel)" class="cancel-subscrp"><i class="fa fa-trash"></i>Cancel Subscription</button>
                                             </div>
-
-
                                         </div>
 
                                     </ng-template>
                                 </ngb-panel>
-                                <ngb-panel id="order-listing">
+                                <ngb-panel id="order-listing1">
                                     <ng-template ngbPanelTitle>
 
                                         <div class="order-list-title">
@@ -221,7 +218,7 @@
 
                                     </ng-template>
                                 </ngb-panel>
-                                <ngb-panel id="order-listing">
+                                <ngb-panel id="order-listing2">
                                     <ng-template ngbPanelTitle>
 
                                         <div class="order-list-title">
@@ -326,7 +323,7 @@
 
                                     </ng-template>
                                 </ngb-panel>
-                                <ngb-panel id="order-listing">
+                                <ngb-panel id="order-listing3">
                                     <ng-template ngbPanelTitle>
 
                                         <div class="order-list-title">
@@ -431,7 +428,7 @@
 
                                     </ng-template>
                                 </ngb-panel>
-                                <ngb-panel id="order-listing">
+                                <ngb-panel id="order-listing4">
                                     <ng-template ngbPanelTitle>
 
                                         <div class="order-list-title">
@@ -536,8 +533,6 @@
 
                                     </ng-template>
                                 </ngb-panel>
-
-
                             </ngb-accordion>
                         </div>
                     </div>
@@ -577,3 +572,24 @@
         </div>
     </div>
 </section>
+
+<ng-template #removesubscmdel let-modal [ngClass]="{'remove_subscription_modal': true}">
+    <div class="model-data">
+        <div class="model-removesubscript">
+            <div class="content">
+                <div class="header-remo">
+                    <h3>Cancel this subscription?</h3>
+                    <p>This action cannot be undone</p>
+                </div>
+                <div class="contentbody">
+                    <div class="btn-modelsusbs">
+                        <ul class="links-remove">
+                            <li><button class="btn btn-gck" aria-label="Close" (click)="modal.dismiss('Cross click')">Go Back</button></li>
+                            <li><button class="btn btn-gck">Accept</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -1971,6 +1971,47 @@ ngb-accordion.accordion.order-listing div#order-listing-header button:focus {
 }
 
 
+/* Model remove */
+
+.model-removesubscript .content {
+    background-color: #fff;
+    padding: 30px 18px;
+    border-radius: 4px;
+}
+
+.model-removesubscript .content .header-remo h3 {
+    font-size: 24px;
+    font-family: 'g-medium';
+    margin-bottom: 4px;
+}
+
+.model-removesubscript .content .header-remo p {
+    font-size: 16px;
+}
+
+.model-removesubscript .content .contentbody .btn-modelsusbs ul.links-remove {
+    list-style-type: none;
+    padding: 0px;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 0 0 0;
+}
+
+.subsc-cta {
+    max-width: 320px;
+    margin: 20px 0 20px 0;
+}
+
+.subsc-cta button.btn.bta-subsc {
+    width: 100%;
+    padding: 6px 36px;
+    background: #1cb1c5;
+    color: white;
+    border-radius: 30px;
+    border: 1px solid #1cb1c5;
+}
+
+
 /* MEDIA */
 
 @media (min-width: 1367px) {
@@ -2049,6 +2090,40 @@ ngb-accordion.accordion.order-listing div#order-listing-header button:focus {
 }
 
 @media (max-width: 991px) {
+    .product-filters {
+        padding: 0 !important;
+        max-width: 90% !important;
+        right: 0px !important;
+    }
+    button.toggleclicked i.fa-bars:before {
+        content: "\f00d";
+    }
+    div#main-menu.showmenu li a.nav-link {
+        font-size: 26px;
+        padding-bottom: 4px !important;
+        padding-top: 4px !important;
+        text-transform: capitalize !important;
+    }
+    ul.navbar-nav.other-links li a {
+        font-size: 18px !important;
+    }
+    ul.navbar-nav.other-links:before {
+        content: '';
+        position: absolute;
+        width: 40%;
+        height: 1px;
+        background-color: rgba(0, 0, 0, 0.12);
+        left: 10px;
+        top: 0px;
+    }
+    ul.navbar-nav.other-links {
+        margin-top: 20px;
+        padding-top: 20px;
+        position: relative;
+    }
+    ul.navbar-nav {
+        padding-top: 15px;
+    }
     .table-loyal.card .content-points.card-body {
         padding: 0 10px;
     }
@@ -2241,6 +2316,10 @@ ngb-accordion.accordion.order-listing div#order-listing-header button:focus {
 }
 
 @media (max-width: 767px) {
+    .subsc-cta {
+        max-width: 320px;
+        margin: 20px 0 20px 0;
+    }
     section.product-gallery .banner_products-slides+.full-width {
         bottom: -590px;
     }

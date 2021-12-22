@@ -4,19 +4,25 @@
             <div class="logo-center">
                 <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img src="../../assets/logo-wink.png" /></a>
             </div>
-            <button (click)="toggleDisplayDivIf()" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+            <button (click)="toggleDisplayDivIf()" [className]="isMobileMenu ?  'toggleclicked navbar-toggler' : 'toggleunclicked navbar-toggler'" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
             </button>
             <div id="main-menu" class="show-mob">
                 <ul class="right-menu ">
-                    <li><a (click)="searchProduct()"><i class="fa fa-search"></i></a></li>
+                    <!-- <li><a (click)="searchProduct()"><i class="fa fa-search"></i></a></li> -->
 
-                    <li class="cart-item"><a [routerLink]="['/store/cart']"><i class="fa fa-shopping-bag"></i><span
-                                *ngIf="cartItems" class="cart-info">{{cartItems}}</span></a></li>
+                    <li><a (click)="searchProducts()"><i class="fa fa-search"></i></a>
+                    </li>
 
-
-
+                    <li class="cart-item"><a [routerLink]="['/store/cart']"><i class="fa fa-shopping-bag"></i>
+                        <span *ngIf="cartItems" class="cart-info">{{cartItems}}</span></a></li>
                 </ul>
+                <div [className]="isSearchbarshow ?  'show_searchbar searchbar' : 'hide_searchbar searchbar'" *ngIf="isSearchbarshow">
+                    <input type="text" class="form-control" />
+                    <i class="fa fa-search"></i>
+                    <a (click)="closebarSearch()"><i class="fa fa-times"></i></a>
+                </div>
             </div>
             <!-- <span (click)="RestartTour()" class="start-demo-tour"></span> -->
             <div class="collapse navbar-collapse d   " *ngIf="isDesktopMenu" id="main-menu">
@@ -33,56 +39,48 @@
                     <li class="nav-item Join-demo-tour">
                         <a class="nav-link" [routerLink]="['/enrollment']" [routerLinkActive]="['active']">Join</a>
                     </li>
-                    <!-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
-              </li> -->
-                </ul>
-
-
-                <ul class="navbar-nav other-links">
-                    <!-- <li class="nav-item Shop-demo-tour">
-                        <a class="nav-link" [routerLink]="['account-settings/profile']" [routerLinkActive]="['active']">Profile</a>
-                    </li> -->
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['account-settings/orders']" [routerLinkActive]="['active']">Orders</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['account-settings/payments']" [routerLinkActive]="['active']">Payments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['account-settings/addresses']" [routerLinkActive]="['active']">Addresses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['account-settings/loyaltypoints']" [routerLinkActive]="['active']">Loyalty Points</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['account-settings/subscriptions']" [routerLinkActive]="['active']">Subscriptions</a>
-                    </li> -->
-
-                </ul>
-
 
                 <div class="logo-center">
                     <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img src="../../assets/logo-wink.png" /></a>
                 </div>
                 <ul class="right-menu">
                     <li class="Search-demo-tour-class">
-                        <a [routerLink]="['/store/search-products']"><i class="fa fa-search"></i></a>
+                        <div class="searchbar">
+                            <input type="text" class="form-control" />
+                            <i class="fa fa-search"></i>
+                        </div>
+
+                        <!-- <a [routerLink]="['/store/search-products']"></a> -->
                     </li>
                     <li class="cart-item Cart-Item-demo-tour-class"><a [routerLink]="['/store/cart']"><i
                                 class="fa fa-shopping-bag"></i><span *ngIf="cartItems"
                                 class="cart-info">{{cartItems}}</span></a></li>
-                    <li><a class="button" href="#popup1"><i class="fas fa-user-circle"></i></a></li>
+                    <li><a class="button" (click)="show_submenus()"><i class="fas fa-user-circle"></i></a>
+                        <ul *ngIf="isAccountMenus" [className]="isAccountMenus ?  'subshow navbar-nav other-links' : 'subhide navbar-nav other-links'">
+                            <li class="nav-item Shop-demo-tour">
+                                <a class="nav-link" [routerLink]="['account-settings/profile']" (click)="isAccountMenus=false;" [routerLinkActive]="['active']">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['account-settings/orders']" (click)="isAccountMenus=false;" [routerLinkActive]="['active']">Orders</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['account-settings/payments']" (click)="isAccountMenus=false;" [routerLinkActive]="['active']">Payments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['account-settings/addresses']" (click)="isAccountMenus=false;" [routerLinkActive]="['active']">Addresses</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['account-settings/loyaltypoints']" (click)="isAccountMenus=false;" [routerLinkActive]="['active']">Loyalty Points</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['account-settings/subscriptions']" (click)="isAccountMenus=false;" [routerLinkActive]="['active']">Subscriptions</a>
+                            </li>
 
-                    <!-- <a class="button" href="#popup1">Let me Pop up</a> -->
+                        </ul>
+
+                    </li>
+
                     <li class="Login-demo-tour-class" *ngIf="!user"><a [routerLink]="['/sign-in']" class="log-links">SIGN IN</a></li>
                     <li class="LogOut-demo-tour-class" *ngIf="user"><a (click)="logout()" class="log-links">Log out</a>
                     </li>
@@ -103,7 +101,7 @@
                         <a class="nav-link" [routerLink]="['/enrollment']" [routerLinkActive]="['active']" (click)="isMobileMenu=false;">Join</a>
                     </li>
                     <li class="nav-item" *ngIf="!user"><a [routerLink]="['/sign-in']" class="log-links nav-link" (click)="isMobileMenu=false;">SIGN IN</a></li>
-                    <li class="nav-item" *ngIf="user"><a (click)="logout()" class="log-links nav-link" (click)="isMobileMenu= false;">Log out</a></li>
+                    <!-- <li class="nav-item" *ngIf="user"><a (click)="logout()" class="log-links nav-link" (click)="isMobileMenu= false;">Log out</a></li> -->
 
                 </ul>
                 <ul class="navbar-nav other-links">
@@ -131,75 +129,12 @@
                     <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img src="../../assets/logo-wink.png" /></a>
                 </div>
             </div>
-            <!-- <div class="searchOptionsbox" *ngIf="isSearchshow">
-        <div class="close-ico">
-          <a (click)="closeSearchbar()">
-            <svg id="Icon_Close_Rounded" data-name="Icon / Close / Rounded" xmlns="http://www.w3.org/2000/svg" width="24"
-            height="24" viewBox="0 0 24 24">
-            <rect id="Box" width="24" height="24" fill="none" />
-            <path id="Path_2016" data-name="Path 2016"
-              d="M111.8,3.3a.967.967,0,0,0-1.4,0l-4.9,4.9-4.9-4.9a.99.99,0,0,0-1.4,1.4l4.9,4.9-4.9,4.9a.99.99,0,0,0,1.4,1.4l4.9-4.9,4.9,4.9a.99.99,0,1,0,1.4-1.4l-4.9-4.9,4.9-4.9A.967.967,0,0,0,111.8,3.3Z"
-              transform="translate(-94 2)" fill="#000" />
-          </svg>
-          </a>
 
-        </div>
-        <div class="searchOption-inner">
-          <input class="form-control" type="text" [(ngModel)]="searchText" name="search" placeholder="Search Product" />
-          <button type="submit" class="search-ico" (click)="searchProduct()">
-            <i class="fa fa-search"></i>
-          </button>
-        </div>
-      </div> -->
         </div>
     </nav>
 
-
-
-
-
-
-
-
-
-
-
-
-
 </header>
 
-
-
-
-<div id="popup1" class="overlay">
-    <div class="popup">
-
-        <a class="close" href="#">&times;</a>
-        <div class="content">
-            <ul class="navbar-nav other-links">
-                <li class="nav-item Shop-demo-tour">
-                    <a class="nav-link" [routerLink]="['account-settings/profile']" [routerLinkActive]="['active']">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['account-settings/orders']" [routerLinkActive]="['active']">Orders</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['account-settings/payments']" [routerLinkActive]="['active']">Payments</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['account-settings/addresses']" [routerLinkActive]="['active']">Addresses</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['account-settings/loyaltypoints']" [routerLinkActive]="['active']">Loyalty Points</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['account-settings/subscriptions']" [routerLinkActive]="['active']">Subscriptions</a>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-</div>
 
 
 <ngx-guided-tour></ngx-guided-tour>

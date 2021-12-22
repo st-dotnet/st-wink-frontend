@@ -12,6 +12,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./app-header.component.css']
 })
 export class AppHeaderComponent implements OnInit {
+  isAccountMenus:boolean = false;
+  isSearchbarshow : boolean = false;
 
   public dashboardTour: GuidedTour = {
     tourId: 'purchases-tour',
@@ -160,6 +162,21 @@ export class AppHeaderComponent implements OnInit {
 
   closeSearchbar() {
     this.isSearchshow = false;
+  }
+
+  show_submenus()
+  {
+    this.isAccountMenus = !this.isAccountMenus;
+  }
+
+  searchProducts()
+  {
+    this.isSearchbarshow = true;
+  }
+
+  closebarSearch()
+  {
+    this.isSearchbarshow = false;
   }
 
 }
