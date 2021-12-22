@@ -461,7 +461,20 @@ select {
   font-size: 80%;
   color: #dc3545;
 }
+button.simplelink {
+    display: inline-block !important;
+    padding: 0;
+    width: auto !important;
+    border: none;
+    background: none;
+    font-size: inherit !important;
+    color: #2196f3 !important;
+    cursor: pointer;
+}
 
+button.simplelink:hover {
+    cursor: pointer;
+}
 /* media  css */
 
 @media (min-width: 992px) {

@@ -38,8 +38,8 @@
             </div>
         </div>
 
-        <div class="continue">
-            <button class="btn btn-info" routerLink="/enrollment/enrolleeinfo" routerLinkActive="active">Continue</button>
+        <div class="continue" >
+            <button class="btn btn-info"  [disabled]="isOrderContinue ? true:null" routerLink="/enrollment/enrolleeinfo" routerLinkActive="active" >Continue</button>
         </div>
 
     </div>

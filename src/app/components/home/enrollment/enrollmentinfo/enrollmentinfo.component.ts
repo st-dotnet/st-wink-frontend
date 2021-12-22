@@ -49,9 +49,9 @@ export class EnrollmentInfoComponent implements OnInit {
   cartItems: any[]=[];
   user: any;
   personalInfoPannel: boolean = false;
-  shippingAddressPannel: boolean = false;
-  paymentPannel: boolean = false;
-  reviewOrderPannel: boolean = false;
+  shippingAddressPannel: boolean = true;
+  paymentPannel: boolean = true;
+  reviewOrderPannel: boolean = true;
 
   activeIds: string[] = ['checkoutstep1'];
   enrollmentdata: any;
@@ -382,10 +382,7 @@ export class EnrollmentInfoComponent implements OnInit {
       this.cartItems.push(this.enrollmentdata);
       this.cartSummaryTotal = this.enrollmentdata.price;
     }
-    // this.cartItems = this.sessionService.getSessionObject("enrollmentPacksData");
-    // if (this.cartItems == null || this.cartItems.length == 0 || this.cartItems == undefined)
-    //    this.toastrService.error("please add the product");
-    //    else
+ 
        
     this.UserDetails = JSON.parse(localStorage.getItem('user'));
     // this.customerId = this.UserDetails.customerId;
@@ -640,12 +637,10 @@ export class EnrollmentInfoComponent implements OnInit {
 
   //payment submit
   onPaymentSubmit() {
-    debugger;
     this.paymentSubmitted = true;
     if (this.onPaymentSubmitForm.invalid || this.monthError || this.yearError) {
       return;
     }
-
     this.spinner.show();
     const payment = new Payment();
     payment.name = this.f.firstName.value;
@@ -681,8 +676,8 @@ export class EnrollmentInfoComponent implements OnInit {
           this.cardToken = result.token;
           this.reviewOrderPannel = false;
           this.spinner.hide();
-          // this.activeIds = ['checkoutstep3'];
-          //this.showPanel3 = false;
+          this.activeIds = ['checkoutstep4'];
+          this.reviewOrderPannel = false;
           this.toastrService.success('Payment Card is accepted');
         } else {
           this.reviewOrderPannel = true;
@@ -694,6 +689,7 @@ export class EnrollmentInfoComponent implements OnInit {
 
   //Place my order
   onSubmit() {
+    debugger;
     const createCustomerRequest = new CreateCustomerRequest();
     createCustomerRequest.loginName = '';
     createCustomerRequest.firstName = this.f.firstName.value;

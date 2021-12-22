@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 export class EnrollmentPacksComponent implements OnInit {
 
   EnrollmentPacksData:enrollmentpacksModel[];
-
+  isOrderContinue: boolean = true;
   constructor(private sessionService: SessionService,private enrollmentService:EnrollmentService,private toastrService: ToastrService,
     private spinner: NgxSpinnerService,
     private domSanitizer: DomSanitizer) {
@@ -45,7 +45,7 @@ export class EnrollmentPacksComponent implements OnInit {
   }
 
   addToCart(EnrollmentPacksData:any){
-    debugger;
+ this.isOrderContinue = false;
    this.sessionService.setSessionObject("enrollmentPacksData",EnrollmentPacksData);
    this.toastrService.success("Item Added!");
   }
