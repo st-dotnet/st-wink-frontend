@@ -60,7 +60,7 @@ div#refered-sidebar {
 }
 
 .method-shipp ul li {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .method-shipp ul li .custom-control {
@@ -115,6 +115,11 @@ div#refered-sidebar {
     list-style-type: none;
 }
 
+.table-today-order {
+    max-width: 240px;
+    margin: 0 auto;
+}
+
 .table-today-order table {
     width: 100%;
 }
@@ -152,7 +157,6 @@ p.you-sav {
     color: #1CC584;
     font-size: 20px;
     font-family: 'g-medium';
-    font-weight: 600;
 }
 
 p.you-pay {
@@ -161,7 +165,6 @@ p.you-pay {
     font-family: 'g-medium';
     color: rgba(0 0 0/0.7);
     margin: 0;
-    font-weight: 600;
 }
 
 .saveprocessed {
@@ -442,7 +445,6 @@ select {
 .enrollment-page table tr {
     display: flex;
     justify-content: space-between;
-    padding: 0px 42px 0px 1px;
 }
 
 .card-infoo .form-group {
@@ -451,118 +453,38 @@ select {
 
 .card-infoo .form-group input.form-control {
     height: 50px;
-    margin-bottom: 20px;
+}
+.invalid-feedback-customclass {
+
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+button.simplelink {
+    display: inline-block !important;
+    padding: 0;
+    width: auto !important;
+    border: none;
+    background: none;
+    font-size: inherit !important;
+    color: #2196f3 !important;
+    cursor: pointer;
 }
 
-.enrollment-main-div .heading-step1.ng-star-inserted p {
-    font-size: 16px;
-    margin-bottom: 0px;
+button.simplelink:hover {
+    cursor: pointer;
 }
-
-h4.cardSection {
-    font-size: 24px;
-    font-weight: 600;
-}
-
-.enrollment-steps-5 span p {
-    font-size: 14px;
-    margin-bottom: 0px;
-}
-
-.search-bar-on.searchIcon {
-    position: relative;
-}
-
-span.search.searchcon {
-    position: absolute;
-    top: 3px;
-    right: 5px;
-}
-
-span.search.searchcon svg {
-    color: gray;
-    opacity: 0.5;
-}
-
-.torder {
-    display: flex;
-    justify-content: space-between;
-    padding: 0px 42px 5px 1px;
-}
-
-.enrollment-page .card-header {
-    border-bottom: unset !important;
-}
-
-strong.yourwebsite p {
-    padding-top: 10px;
-}
-
-.title-ywrty a {
-    color: #000000e0;
-}
-
-.title-ywrty {
-    position: relative;
-}
-
-svg.question {
-    position: absolute;
-    top: 21px;
-    left: 247px;
-}
-
-.col-lg-8.col-md-12.back-link.mb-4 a {
-    display: flex;
-    align-items: center;
-    color: #1cb1c5;
-    font-family: "g-demibold";
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-section.backlink-header.mob-check.account-setting-upperBar svg.svg-inline--fa.fa-angle-left.fa-w-6.fa-3x {
-    width: 7px;
-    margin: 0px 5px;
-}
-
-section.backlink-header.mob-check.account-setting-upperBar {
-    width: 100%;
-    padding: 30px 0 0;
-}
-
-p.doesdiv a {
-    color: #1cb1c5;
-}
-
-.form-group.verifybtn {
-    text-align: center;
-    padding: 20px 20px;
-}
-
-button {
-    border-radius: 30px;
-    width: 100%;
-    background: transparent;
-    border: 1px solid #1cb1c5;
-    padding: 5px;
-    color: #1cb1c5;
-    text-transform: uppercase;
-    font-weight: 500;
-}
-
-
 /* media  css */
 
 @media (min-width: 992px) {
     .enrollment-main-div .saveprocessed1.continuebtn button {
         width: 50%;
     }
+    /* .enrollment-paged .form-group.seprate3 {
+        padding: 0px 18px 0px 0px;
+    } */
     button.btn.btn-info.verify-btn {
         width: 50%;
-    }
-    .table-today-order {
-        max-width: 240px;
-        margin: 0 auto;
     }
 }

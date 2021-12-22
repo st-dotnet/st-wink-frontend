@@ -32,14 +32,14 @@
                     <div class="pack-info" [innerHtml]="data.longDetail1">
                     </div>
                     <div class="pack-cta">
-                        <button class="btn btn-info">Add To Order</button>
+                        <button class="btn btn-info" (click)="addToCart(data)" >Add To Order</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="continue">
-            <button class="btn btn-info" routerLink="/enrollment/enrolleeinfo" routerLinkActive="active">Continue</button>
+        <div class="continue" >
+            <button class="btn btn-info"  [disabled]="isOrderContinue ? true:null" routerLink="/enrollment/enrolleeinfo" routerLinkActive="active" >Continue</button>
         </div>
 
     </div>
