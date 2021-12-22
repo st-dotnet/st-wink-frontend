@@ -1,0 +1,57 @@
+.content-head-order .total-amount-order {
+    text-align: right;
+    padding-top: 0px;
+    font-size: 20px;
+}
+
+.Subscription-page .content-head-order .order-name {
+    width: 50%;
+}
+
+.Subscription-page .content-head-order .total-amount-order {
+    width: 50%;
+}
+
+.content-head-order .total-amount-order span.amount-num {
+    margin-left: 5px;
+}
+
+section.account-page.grid-checkout button.cancel-subscrp {
+    border: none;
+    border-radius: 30px;
+    width: 100%;
+    padding: 5px 33px;
+    background: transparent;
+    color: #cf3b2c;
+    text-transform: uppercase;
+}
+
+section.account-page.grid-checkout button.cancel-subscrp i {
+    margin-right: 8px;
+}
+
+section.account-page.grid-checkout button.trck-order-btn {
+    width: 100%;
+    padding: 6px 36px;
+    background: #1cb1c5;
+    color: white;
+    border-radius: 30px;
+    border: 1px solid #1cb1c5;
+}
+
+.pagination-points ul.pagination {
+    justify-content: end;
+}
+
+.pagination-points ul.pagination li a {
+    font-size: 18px;
+    color: #8b8b8b;
+}
+
+.pagination-points ul.pagination a.page-link {
+    border: none;
+}
+
+.pagination-points ul.pagination li a {
+    background: transparent;
+}
