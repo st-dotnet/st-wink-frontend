@@ -1,0 +1,450 @@
+section.address-page.grid-checkout {
+    padding: 50px 0px;
+}
+
+section.address-page.profile-page.grid-checkout {
+    padding-top: 70px;
+}
+
+.address-profile-page .back-link a svg {
+    width: 7px;
+    margin-right: 4px;
+}
+
+.address-profile-page .back-link a {
+    display: flex;
+    align-items: center;
+    color: #1cb1c5;
+    font-family: 'g-demibold';
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-top: 10px;
+}
+
+.address-profile-page {
+    width: 100%;
+    padding: 60px 0 0;
+}
+
+.heading-step1.profile-section span {
+    font-size: 14px;
+}
+
+.heading-step1.profile-section h4 {
+    margin-bottom: 0px;
+}
+
+section.address-page.grid-checkout .emailbtns {
+    justify-content: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.emailbtns.paypall.ng-star-inserted {
+    padding: 0px !important;
+}
+
+section.address-page.grid-checkout button.cancle-btn,
+button.save-btn {
+    border: 1px solid #1cb1c5;
+    border-radius: 30px;
+    width: 100%;
+    padding: 5px 33px;
+    background: transparent;
+    color: #1cb1c5;
+    text-transform: uppercase;
+}
+
+.paymentPage button.save-btn {
+    width: auto;
+    padding: 6px 36px;
+    background: #1cb1c5;
+    color: white;
+}
+
+.paymentPage .saves.paypal button.save-btn {
+    width: 100%;
+    padding: 6px 36px;
+    background: #1cb1c5;
+    color: white;
+}
+
+section.address-page.grid-checkout small#emailHelp {
+    display: flex;
+    align-items: center;
+}
+
+section.address-page.grid-checkout .form-group.numbersection {
+    position: relative;
+}
+
+label.emailLable.number {
+    position: absolute;
+    top: -11px;
+    left: 13px;
+    background: white;
+    padding: 1px 8px;
+    font-size: 12px;
+}
+
+.form-group.numbersection p {
+    font-size: 10px;
+    padding: 10px;
+}
+
+span.highlight-info {
+    color: black;
+    font-size: 13px;
+}
+
+.address-paged label.form-label {
+    position: absolute;
+    top: 10px;
+    left: 18px;
+    background-color: #fff;
+    padding: 0 3px;
+    font-family: "g-medium";
+    color: rgba(0 0 0/0.6);
+    margin: 0;
+    font-size: 16px;
+    transition: all ease 0.5s;
+    pointer-events: none;
+}
+
+
+/* .custom-control.custom-checkbox {
+    padding: 10px 20px;
+} */
+
+section.address-page.grid-checkout .card-header+div {
+    background: #fff;
+    padding: 0px;
+}
+
+section.backlink-header.mob-check.address-setting-upperBar {
+    width: 100%;
+    padding: 30px 0 0;
+}
+
+section.backlink-header.mob-check.address-setting-upperBar a {
+    display: flex;
+    align-items: center;
+    color: #1cb1c5;
+    font-family: "g-demibold";
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+section.backlink-header.mob-check.address-setting-upperBar svg.svg-inline--fa.fa-angle-left.fa-w-6.fa-3x {
+    width: 7px;
+    margin: 0px 5px;
+}
+
+section.address-page.grid-checkout {
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+.heading-step1.ng-star-inserted {
+    width: 100%;
+    /* padding: 10px 20px; */
+}
+
+svg {
+    float: right;
+    margin-top: -30px;
+}
+
+.totalAmount {
+    display: flex;
+    justify-content: space-between;
+}
+
+.heading-step1.ng-star-inserted img {
+    margin: 0px 5px;
+}
+
+.ordersuMary {
+    display: flex;
+}
+
+.ordersuMary img {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.heading-step1.ng-star-inserted h4 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+section.address-page .card-body div#promo-code {
+    padding: 0px !important;
+}
+
+.address-page .heading-step1.profile-section span {
+    font-size: 14px;
+}
+
+section.address-page .form-group.numbersection input#number {
+    height: 55px;
+}
+
+section.address-page .heading-step1.profile-section h3 {
+    font-size: 50px;
+}
+
+section.address-page ngb-accordion .card ngb-accordion.accordion .card .card-header+div .card-body {
+    padding: 0px 0px !important;
+}
+
+.pointsWraper {
+    border-top: 1px solid #80808030;
+    padding-top: 10px;
+}
+
+section.address-page .pointsWraper .mainsDiv {
+    display: flex;
+    justify-content: space-between;
+}
+
+section.address-page .pointsWraper .mainsDiv strong {
+    font-weight: 400;
+}
+
+section.address-page .pointsWraper .mainSecondDiv p {
+    font-size: 12px;
+}
+
+section.address-page .order-section svg {
+    right: 19px;
+    top: 50px !important;
+}
+
+.heading-step1.order-section {
+    padding-bottom: 16px;
+}
+
+.trackDiv {
+    text-align: center;
+    margin: 10px 10px 27px 5px;
+}
+
+.trackDiv button {
+    width: 100%;
+    border-radius: 30px;
+    text-transform: uppercase;
+}
+
+button.trackBtn {
+    border: none;
+    background-color: #1cb1c5;
+    color: #ffffffc9;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 8px 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+button.viewBtn {
+    border: 1px solid #1cb1c5;
+    background-color: white;
+    color: #1cb1c5;
+    padding: 5px 20px;
+}
+
+.address-page .card-header {
+    padding: unset !important;
+}
+
+.address-page div#basic1-header button {
+    pointer-events: none;
+}
+
+.address-page div#basic1-header button span.arrow-stepp {
+    display: none;
+}
+
+.address-page .card {
+    margin-bottom: 30px;
+    overflow: visible !important;
+}
+
+.form-group.numbersection {
+    margin-top: 20px;
+}
+
+span.arrow-stepp {
+    display: block;
+}
+
+section.address-page.profile-page.grid-checkout a.editbtn_profile {
+    width: auto !important;
+    padding: 2px 15px 2px 14px !important;
+    margin-top: -22px !important;
+    font-size: 16px !important;
+    background-color: transparent;
+    border: 1px solid white !important;
+    border-radius: 11px !important;
+    color: white !important;
+    float: right;
+}
+
+section.address-page.profile-page.grid-checkout input {
+    height: 56px;
+}
+
+section.address-page.profile-page.grid-checkout button.btn.btn-link.ng-star-inserted {
+    pointer-events: none;
+}
+
+.notibar {
+    padding: 9px 20px 25px 0px;
+    border-bottom: 1px solid #80808045;
+    margin-bottom: 20px;
+}
+
+section.address-page.profile-page.grid-checkout .heading-step1 {
+    position: relative;
+}
+
+section.address-page.profile-page.grid-checkout span.editBtn {
+    position: absolute;
+    top: 19px;
+    right: 5px;
+}
+
+button.btn.btn-link.ng-star-inserted {
+    border-radius: unset;
+}
+
+.card .card-header {
+    background: #fff;
+    padding: 20px 19px;
+}
+
+.heading-step1.profile-section h4 {
+    color: #000000a6;
+    font-family: 'g-regular';
+    font-weight: 500;
+}
+
+.heading-step1.profile-section span {
+    color: #000000b0;
+    font-family: 'g-regular';
+    font-weight: 500;
+}
+
+.address-paged .heading-step1 h4 {
+    color: #000000bf;
+    font-family: 'g-regular';
+    font-weight: 600;
+}
+
+.address-paged form input {
+    height: 50px;
+}
+
+h1.profileField {
+    padding-bottom: 10px;
+}
+
+section.address-page .delete {
+    padding: 5px 5px;
+    font-family: 'g-regular';
+    text-align: center;
+    margin-top: 10px;
+}
+
+section.address-page .delete span {
+    padding-left: 5px;
+    font-family: 'g-regular';
+}
+
+section.address-page .delete a {
+    color: #f10929;
+}
+
+.addresses-page button.btn.btn-link {
+    width: 100%;
+    text-align: left;
+}
+
+.addresses-page .card.ng-star-inserted {
+    margin-bottom: 20px;
+}
+
+.addresses-page .cancles {
+    margin: 20px 0px;
+}
+
+.paymentPage .address-paged .card-header {
+    padding: 11px 2px;
+    background-color: white;
+}
+
+.paymentPage .payment-walletss {
+    padding: 30px 5px 0px 5px;
+}
+
+.paymentPage ul.card-mat {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.paymentPage ul li {
+    margin: 0px 9px 0px 0px;
+}
+
+.paymentPage .primaryBtn {
+    display: flex;
+    align-items: center;
+}
+
+.paymentPage .primaryBtn input {
+    margin-right: 10px;
+    width: 17px;
+    height: 17px;
+}
+
+.paymentPage button.save-btn {
+    margin: 20px 0px;
+}
+
+.paymentPage .saves.paypal button.save-btn {
+    margin: 0px;
+}
+
+.saveWraper .saves {
+    text-align: center;
+}
+
+.emailbtns.secondarybtn .saves button.save-btn {
+    width: 100% !important;
+}
+
+.emailbtns.secondarybtn .cancles {
+    margin: 0px 10px !important;
+}
+
+.payment-wallets {
+    padding-bottom: 5px;
+}
+
+@media (min-width: 992px) {
+    section.address-page .delete {
+        margin-top: 0px;
+    }
+    span.arrow-stepp {
+        display: block;
+    }
+    section.address-page.grid-checkout .emailbtns {
+        display: flex;
+        align-items: center;
+    }
+    .addresses-page .cancles {
+        margin: 0px 12px;
+    }
+}

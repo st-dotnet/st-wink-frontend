@@ -1,616 +1,322 @@
-<!-- <p>profile works!</p> -->
-<section class="backlink-header mob-check account-profile-page">
+<section class="address-page grid-checkout paymentPage">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-12 back-link mb-4">
-                <a [routerLink]="['/store/cart']"><svg aria-hidden="true" focusable="false" data-prefix="far"
-                        data-icon="angle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
-                        class="svg-inline--fa fa-angle-left fa-w-6 fa-3x">
-                        <path fill="currentColor"
-                            d="M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z"
-                            class=""></path>
-                    </svg>Back to CART</a>
-            </div>
+            <div class="col-sm-8 address-paged  col-lg-push-8">
+                <div class="enrollment-righ addresses-page paymentPage">
+                    <div class="enrollment-main-div">
+                        <div class="enrollment-steps-5 addressed paymentPage">
+                            <h1 class="profileField">Payments</h1>
+                            <div class="payment-wallets">
+                                <h4>Your Credit Cards</h4>
+                            </div>
 
-            <div class="visible-lg col-lg-4">
-                <div class="sidebar-checkout">
-                    <div class="cart-sidebar">
-                        <div class="sidebar-head">
-                            <h2>Order Summary</h2><span class="amount-summary"></span>
-                            <p>$74.96</p>
+                            <ngb-accordion activeIds="">
+
+                                <ngb-panel id="promo-sidebar1">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="heading-step1 profile-section">
+                                            <h4> Primary Card</h4>
+                                            <span class="highlight-info">Visa ending in 1111</span>
+                                            <span class="vali-promo"> </span>
+                                            <span class="arrow-stepp">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                height="11.2" viewBox="0 0 6.6 11.2">
+                                                <path id="Path_2044" data-name="Path 2044"
+                                                    d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                    transform="translate(-630.6 -4.4)" />
+                                            </svg>
+                                        </span>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <div class="addresTwo ">
+                                            <span>Amanda Hall</span><br>
+                                            <span>564 w 700</span><br>
+                                            <span>Orem, UT 84025</span>
+                                        </div>
+                                        <div class="emailbtns secondarybtn">
+
+                                            <div class="cancles">
+                                                <a href="#"> <button class="cancle-btn">Edit Address</button></a>
+                                            </div>
+
+                                            <div class="delete">
+                                                <a href="#"> <i class="fas fa-trash"> <span> Delete</span></i></a>
+                                            </div>
+
+
+                                        </div>
+                                    </ng-template>
+                                </ngb-panel>
+
+                                <ngb-panel id="promos-sidebar1">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="heading-step1 profile-section">
+                                            <h4>Add New Card</h4>
+                                            <span class="highlight-info">Click to Add</span>
+                                            <span class="vali-promo"> </span>
+                                            <span class="arrow-stepp">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                height="11.2" viewBox="0 0 6.6 11.2">
+                                                <path id="Path_2044" data-name="Path 2044"
+                                                    d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                    transform="translate(-630.6 -4.4)" />
+                                            </svg>
+                                        </span>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+
+                                        <div class="content-card steps-inner shipping-address-form">
+                                            <ul class="card-mat">
+                                                <li><img src="../../assets/card-ui-1.png" /></li>
+                                                <li><img src="../../assets/card-ui-2.png" /></li>
+                                                <li><img src="../../assets/card-ui-3.png" /></li>
+                                                <li><img src="../../assets/card-ui-4.png" /></li>
+                                                <li><span class="more-card">and more</span></li>
+                                            </ul>
+                                            <div class="card-infoo">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="cardName" placeholder="Name on card" name="card-name" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardName?.errors }" />
+                                                            <div *ngIf="paymentSubmitted && p.cardName?.errors" class="invalid-feedback">
+                                                                <div *ngIf="p.cardName?.errors.required">Card Name is required</div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="cardNumber" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="0000 0000 0000 0000" (change)="creditCardValidator($event)" placeholder="Card number" name="cardNumber" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardNumber?.errors }"
+                                                            />
+                                                            <div *ngIf="paymentSubmitted && p.cardNumber?.errors" class="invalid-feedback">
+                                                                <div *ngIf="p.cardNumber?.errors.required">Card Number is required</div>
+                                                                <div *ngIf="p.cardNumber.errors.minlength">Card Number must be at least 14 numbers </div>
+                                                            </div>
+                                                            <div *ngIf="cardvalidate" class="cardvalidateerror">
+                                                                <div *ngIf="cardvalidate">Card Number is not valid
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="expiryMonth" [(ngModel)]="checkMonth" (change)="validateCard()" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="00" placeholder="Month" name="expiryMonth" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryMonth?.errors }"
+                                                            />
+                                                            <div *ngIf="paymentSubmitted && p.expiryMonth?.errors" class="invalid-feedback">
+                                                                <div *ngIf="p.expiryMonth?.errors.required">
+                                                                    Expiry Month is required</div>
+                                                                <div *ngIf="p.expiryMonth.errors.pattern">
+                                                                    Invalid Month</div>
+                                                            </div>
+                                                            <div *ngIf="monthError" class="invalid-feedback-customclass">
+                                                                <div *ngIf="monthError">Month is not valid</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="expiryYear" [(ngModel)]="checkYear" (change)="validateCard()" placeholder="Year" name="expiryYear" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="0000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryYear?.errors }"
+                                                            />
+                                                            <div *ngIf="paymentSubmitted && p.expiryYear?.errors" class="invalid-feedback">
+                                                                <div *ngIf="p.expiryYear?.errors.required">
+                                                                    Expiry Year is required</div>
+                                                            </div>
+                                                            <div *ngIf="yearError" class="invalid-feedback-customclass">
+                                                                <div *ngIf="yearError">Year is not valid</div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="cardCVV" placeholder="CVV" name="cardCVV" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardCVV?.errors }" />
+                                                            <div *ngIf="paymentSubmitted && p.cardCVV?.errors" class="invalid-feedback">
+                                                                <div *ngIf="p.cardCVV?.errors.required">card CVV is required</div>
+
+                                                            </div>
+                                                            <div class="req">
+                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
+                                                            </div>
+                                                            <input type="text" formControlName="cardCVV" placeholder="Street Address" name="cardCVV" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardCVV?.errors }" />
+                                                            <div *ngIf="paymentSubmitted && p.cardCVV?.errors" class="invalid-feedback">
+                                                                <div *ngIf="p.cardCVV?.errors.required">Street Address</div>
+
+                                                            </div>
+                                                            <div class="req">
+                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
+                                                            </div>
+
+
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <input type="text" formControlName="expiryMonth" mask="00" placeholder="City" name="expiryMonth" class="form-control" />
+
+
+                                                                        <div class="invalid-feedback-customclass">
+                                                                            <div *ngIf="monthError">Month is not valid</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <input type="text" formControlName="expiryYear" placeholder="State" name="expiryYear" mask="0000" class="form-control" />
+
+                                                                        <div *ngIf="paymentSubmitted && p.expiryYear?.errors " class="invalid-feedback ">
+                                                                            <div *ngIf="p.expiryYear?.errors.required ">
+                                                                                Expiry Year is required</div>
+                                                                        </div>
+                                                                        <div *ngIf="yearError " class="invalid-feedback-customclass ">
+                                                                            <div *ngIf="yearError ">Year is not valid</div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <input type="text " formControlName="cardCVV " placeholder="ZIP " name="cardCVV " [showMaskTyped]="false " [dropSpecialCharacters]="false " mask="000 " class="form-control " [ngClass]="{
+                                                                            'is-invalid': paymentSubmitted && p.cardCVV?.errors } " />
+                                                            <div *ngIf="paymentSubmitted && p.cardCVV?.errors " class="invalid-feedback ">
+                                                                <div *ngIf="p.cardCVV?.errors.required ">Zip</div>
+
+                                                            </div>
+
+                                                            <div class="req ">
+                                                                <label class="control-label visible-xs required requiredField " for="Customer_MainAddress_City "></label>
+                                                            </div>
+
+                                                            <input type="text " formControlName="cardCVV " placeholder="Country " name="cardCVV " [showMaskTyped]="false " [dropSpecialCharacters]="false " mask="000 " class="form-control " [ngClass]="{
+                                                                            'is-invalid': paymentSubmitted && p.cardCVV?.errors } " />
+                                                            <div *ngIf="paymentSubmitted && p.cardCVV?.errors " class="invalid-feedback ">
+                                                                <div *ngIf="p.cardCVV?.errors.required ">Country</div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="primaryBtn">
+                                                <input type="checkbox"> <strong>Make  Primary Card</strong>
+                                            </div>
+
+                                            <div class="saveWraper">
+                                                <div class="saves">
+                                                    <a href="#"> <button class="save-btn">Save Changes</button></a>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </ng-template>
+                                </ngb-panel>
+
+
+                                <ngb-panel id="promod-sidebar1">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="heading-step1 profile-section ">
+                                            <h4> Secondary Card</h4>
+                                            <span class="highlight-info ">Visa ending in 1111</span>
+                                            <span class="vali-promo "> </span>
+                                            <span class="arrow-stepp ">
+                                            <svg xmlns="http://www.w3.org/2000/svg " width="6.6 "
+                                                height="11.2 " viewBox="0 0 6.6 11.2 ">
+                                                <path id="Path_2044 " data-name="Path 2044 "
+                                                    d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z "
+                                                    transform="translate(-630.6 -4.4) " />
+                                            </svg>
+                                        </span>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+
+
+                                        <div class="addresTwo ">
+                                            <span>Amanda Hall</span><br>
+                                            <span>564 w 700</span><br>
+                                            <span>Orem, UT 84025</span>
+                                        </div>
+                                        <div class="emailbtns secondarybtn">
+                                            <div class="saves">
+                                                <a href="#"> <button class="save-btn"> Make Primary</button></a>
+                                            </div>
+                                            <div class="cancles">
+                                                <a href="#"> <button class="cancle-btn">Edit Address</button></a>
+                                            </div>
+
+                                            <div class="delete">
+                                                <a href="#"> <i class="fas fa-trash"> <span> Delete</span></i></a>
+                                            </div>
+
+
+                                        </div>
+
+                                    </ng-template>
+                                </ngb-panel>
+
+                            </ngb-accordion>
+                            <div class="payment-walletss ">
+                                <h4>Your Wallets</h4>
+                            </div>
+
+                            <ngb-accordion activeIds=" ">
+
+                                <ngb-panel id="promo-sidebar1 ">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="heading-step1 profile-section ">
+                                            <h4>PayPal</h4>
+                                            <span class="highlight-info ">Click to add</span>
+                                            <span class="vali-promo "> </span>
+                                            <span class="arrow-stepp ">
+                                            <svg xmlns="http://www.w3.org/2000/svg " width="6.6 "
+                                                height="11.2 " viewBox="0 0 6.6 11.2 ">
+                                                <path id="Path_2044 " data-name="Path 2044 "
+                                                    d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z "
+                                                    transform="translate(-630.6 -4.4) " />
+                                            </svg>
+                                        </span>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+
+                                        <div class="emailbtns paypall">
+                                            <div class="saves paypal">
+                                                <a href="#"> <button class="save-btn"> <i> PayPal</i></button></a>
+                                            </div>
+                                            <div class="cancles">
+                                                <a href="#"> <button class="cancle-btn">Disconnect PayPal</button></a>
+                                            </div>
+
+
+
+
+                                        </div>
+
+                                    </ng-template>
+                                </ngb-panel>
+
+
+
+
+
+
+
+
+
+                            </ngb-accordion>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<!-- profile sedction0 -->
-
-<section class="account-page grid-checkout">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8">
-                <ngb-accordion activeIds="checkoutstep4" class="panel-stepbar myDivee">
-                    <ngb-panel id="checkoutstep3" class="payment-wrapper">
-                        <ng-template ngbPanelTitle>
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
-                            <defs>
-                                <clipPath id="clip-path">
-                                    <rect width="24" height="24" fill="none" />
-                                </clipPath>
-                            </defs>
-                            <g id="Icon_Check_Circle_Rounded" data-name="Icon / Check Circle / Rounded"
-                                clip-path="url(#clip-path)">
-                                <rect id="Box" width="24" height="24" fill="none" />
-                                <path id="Path_2034" data-name="Path 2034"
-                                    d="M247.2,14.3l-3.6-3.6a.967.967,0,0,1,0-1.4.967.967,0,0,1,1.4,0l2.9,2.9,6.9-6.9a.99.99,0,0,1,1.4,1.4l-7.6,7.6A.967.967,0,0,1,247.2,14.3ZM249.9,0a10,10,0,1,0,10,10A10.029,10.029,0,0,0,249.9,0Z"
-                                    transform="translate(-238 2)" fill="#1cc584" />
-                            </g>
-                        </svg>
-                            <h4> Orders</h4>
-                        </ng-template>
-                        <ng-template ngbPanelContent>
-                            <form [formGroup]="onPaymentSubmitForm" (ngSubmit)="onPaymentSubmit()">
-                                <ngb-accordion activeIds="promo-code,loyalty-info,cards-selection,card-info,billing-method">
-                                    <ngb-panel id="promo-code">
-                                        <ng-template ngbPanelTitle>
-                                            <div class="heading-step1 order-section">
-                                                <div class="totalAmount">
-                                                    <h4>Order #53186</h4>
-                                                    <h4>Total: $63.64</h4>
-                                                </div>
-                                                <span>
-                                                    <img src="http://localhost:4200/assets/003.png  
-                                                    " alt="">
-                                                    <img src="http://localhost:4200/assets/001.png
-                                                    " alt="">
-                                                    <img src="http://localhost:4200/assets/003.png  
-                                                    " alt="">
-                                                 
-                                                    <img src="http://localhost:4200/assets/003.png  
-                                                    " alt="">
-                                                </span>
-
-                                                <span class="arrow-stepp">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
-                                                        viewBox="0 0 6.6 11.2">
-                                                        <path id="Path_2044" data-name="Path 2044"
-                                                            d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                            transform="translate(-630.6 -4.4)" />
-                                                    </svg>
-                                                </span>
-
-                                            </div>
-                                        </ng-template>
-
-
-                                        <ng-template ngbPanelContent>
-                                            <div class="content-card steps-inner shipping-address-form">
-                                                <div class="col-md-12 loyalty-form p-0 mb-3">
-                                                    <div class="order-bottomContent">
-                                                        <div class="placed">
-                                                            <strong>Placed:</strong>
-                                                            <p>12/20/22</p>
-                                                        </div>
-
-                                                        <div class="placed">
-                                                            <strong>Shipping Address:</strong>
-                                                            <p>Amanda Hall 1455 S State St Orem, UT 84097, US</p>
-                                                        </div>
-                                                        <div class="placed">
-                                                            <strong>Billed to:</strong>
-                                                            <p>Card ending in ********7705</p>
-                                                        </div>
-
-                                                        <div class="placed ">
-                                                            <strong>Order Summary:</strong>
-                                                        </div>
-
-                                                        <div class="ordersuMary">
-                                                            <div class="orderImg">
-                                                                <img src="http://localhost:4200/assets/001.png
-                                                        " alt="">
-                                                            </div>
-                                                            <div class="orderRight">
-                                                                <p>(1) Pre & Pro Biotic Quick Melts 30-Count
-                                                                    <br> SKU: SP-BIOTIC-030
-                                                                </p>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="trackDiv"><button class="trackBtn">Tracke Order</button></div>
-                                                <div class="trackDiv"><button class="viewBtn">View Invoice</button></div>
-                                            </div>
-                                        </ng-template>
-                                    </ngb-panel>
-                                    <ngb-panel id="promo-code1">
-                                        <ng-template ngbPanelTitle>
-                                            <div class="heading-step1 order-section">
-                                                <div class="totalAmount">
-                                                    <h4>Order #53186</h4>
-                                                    <h4>Total: $63.64</h4>
-                                                </div>
-                                                <span>
-                                                    <img src="http://localhost:4200/assets/001.png
-                                                    " alt="">
-                                                    <img src="http://localhost:4200/assets/002.png
-                                                    " alt="">
-                                                    <img src="http://localhost:4200/assets/003.png  
-                                                    " alt="">
-                                                </span>
-
-                                                <span class="arrow-stepp">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
-                                                        viewBox="0 0 6.6 11.2">
-                                                        <path id="Path_2044" data-name="Path 2044"
-                                                            d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                            transform="translate(-630.6 -4.4)" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                        </ng-template>
-
-                                        <ng-template ngbPanelContent>
-                                            <div class="content-card steps-inner shipping-address-form">
-                                                <div class="col-md-12 loyalty-form p-0 mb-3">
-                                                    <div class="order-bottomContent">
-                                                        <div class="placed">
-                                                            <strong>Placed:</strong>
-                                                            <p>12/20/22</p>
-                                                        </div>
-
-                                                        <div class="placed">
-                                                            <strong>Shipping Address:</strong>
-                                                            <p>Amanda Hall 1455 S State St Orem, UT 84097, US</p>
-                                                        </div>
-                                                        <div class="placed">
-                                                            <strong>Billed to:</strong>
-                                                            <p>Card ending in ********7705</p>
-                                                        </div>
-
-                                                        <div class="placed ">
-                                                            <strong>Order Summary:</strong>
-                                                        </div>
-
-                                                        <div class="ordersuMary">
-                                                            <div class="orderImg">
-                                                                <img src="http://localhost:4200/assets/001.png
-                                                        " alt="">
-                                                            </div>
-                                                            <div class="orderRight">
-                                                                <p>(1) Pre & Pro Biotic Quick Melts 30-Count
-                                                                    <br> SKU: SP-BIOTIC-030
-                                                                </p>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="ordersuMary">
-                                                            <div class="orderImg">
-                                                                <img src="http://localhost:4200/assets/001.png
-                                                        " alt="">
-                                                            </div>
-                                                            <div class="orderRight">
-                                                                <p>(1) Pre & Pro Biotic Quick Melts 30-Count
-                                                                    <br> SKU: SP-BIOTIC-030
-                                                                </p>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="trackDiv"><button class="trackBtn">Tracke Order</button></div>
-                                                <div class="trackDiv"><button class="viewBtn">View Invoice</button></div>
-                                            </div>
-                                        </ng-template>
-                                    </ngb-panel>
-
-                                    <ngb-panel id="cards-selection">
-                                        <ng-template ngbPanelTitle>
-                                            <div class="heading-step1 order-section">
-                                                <div class="totalAmount">
-                                                    <h4>Order #53186</h4>
-                                                    <h4>Total: $63.64</h4>
-                                                </div>
-                                                <span>
-                                                    <img src="http://localhost:4200/assets/001.png
-                                                    " alt="">
-                                                  
-                                                    <img src="http://localhost:4200/assets/003.png  
-                                                    " alt="">
-                                                    <img src="http://localhost:4200/assets/003.png  
-                                                    " alt="">
-                                                </span>
-
-                                                <span class="arrow-stepp">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
-                                                        viewBox="0 0 6.6 11.2">
-                                                        <path id="Path_2044" data-name="Path 2044"
-                                                            d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                            transform="translate(-630.6 -4.4)" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                        </ng-template>
-
-                                        <ng-template ngbPanelContent>
-                                            <div class="content-card steps-inner shipping-address-form">
-                                                <div class="col-md-12 loyalty-form p-0 mb-3">
-                                                    <div class="order-bottomContent">
-                                                        <div class="placed">
-                                                            <strong>Placed:</strong>
-                                                            <p>12/20/22</p>
-                                                        </div>
-
-                                                        <div class="placed">
-                                                            <strong>Shipping Address:</strong>
-                                                            <p>Amanda Hall 1455 S State St Orem, UT 84097, US</p>
-                                                        </div>
-                                                        <div class="placed">
-                                                            <strong>Billed to:</strong>
-                                                            <p>Card ending in ********7705</p>
-                                                        </div>
-
-                                                        <div class="placed ">
-                                                            <strong>Order Summary:</strong>
-                                                        </div>
-
-                                                        <div class="ordersuMary">
-                                                            <div class="orderImg">
-                                                                <img src="http://localhost:4200/assets/001.png
-                                                        " alt="">
-                                                            </div>
-                                                            <div class="orderRight">
-                                                                <p>(1) Pre & Pro Biotic Quick Melts 30-Count
-                                                                    <br> SKU: SP-BIOTIC-030
-                                                                </p>
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="ordersuMary">
-                                                            <div class="orderImg">
-                                                                <img src="http://localhost:4200/assets/001.png
-                                                        " alt="">
-                                                            </div>
-                                                            <div class="orderRight">
-                                                                <p>(1) Pre & Pro Biotic Quick Melts 30-Count
-                                                                    <br> SKU: SP-BIOTIC-030
-                                                                </p>
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="ordersuMary">
-                                                            <div class="orderImg">
-                                                                <img src="http://localhost:4200/assets/001.png
-                                                        " alt="">
-                                                            </div>
-                                                            <div class="orderRight">
-                                                                <p>(1) Pre & Pro Biotic Quick Melts 30-Count
-                                                                    <br> SKU: SP-BIOTIC-030
-                                                                </p>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="ordersuMary">
-                                                            <div class="orderImg">
-                                                                <img src="http://localhost:4200/assets/001.png
-                                                        " alt="">
-                                                            </div>
-                                                            <div class="orderRight">
-                                                                <p>(1) Pre & Pro Biotic Quick Melts 30-Count
-                                                                    <br> SKU: SP-BIOTIC-030
-                                                                </p>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="trackDiv"><button class="trackBtn">Tracke Order</button></div>
-                                                <div class="trackDiv"><button class="viewBtn">View Invoice</button></div>
-                                            </div>
-                                        </ng-template>
-                                    </ngb-panel>
-                                    <ngb-panel id="card-info" *ngIf="isCardDisabled">
-                                        <ng-template ngbPanelTitle>
-                                            <div class="heading-step1 order-section">
-                                                <div class="totalAmount">
-                                                    <h4>Order #53186</h4>
-                                                    <h4>Total: $63.64</h4>
-                                                </div>
-                                                <span>
-                                                    <img src="http://localhost:4200/assets/001.png
-                                                    " alt="">
-                                                    <img src="http://localhost:4200/assets/002.png
-                                                    " alt="">
-                                                    <img src="http://localhost:4200/assets/003.png  
-                                                    " alt="">
-                                                    <img src="http://localhost:4200/assets/001.png
-                                                    " alt="">
-                                                </span>
-
-                                                <span class="arrow-stepp">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
-                                                        viewBox="0 0 6.6 11.2">
-                                                        <path id="Path_2044" data-name="Path 2044"
-                                                            d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                            transform="translate(-630.6 -4.4)" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                        </ng-template>
-
-                                        <ng-template ngbPanelContent>
-                                            <div class="content-card steps-inner shipping-address-form">
-                                                <div class="col-md-12 loyalty-form p-0 mb-3">
-                                                    <div class="order-bottomContent">
-                                                        <div class="placed">
-                                                            <strong>Placed:</strong>
-                                                            <p>12/20/22</p>
-                                                        </div>
-
-                                                        <div class="placed">
-                                                            <strong>Shipping Address:</strong>
-                                                            <p>Amanda Hall 1455 S State St Orem, UT 84097, US</p>
-                                                        </div>
-                                                        <div class="placed">
-                                                            <strong>Billed to:</strong>
-                                                            <p>Card ending in ********7705</p>
-                                                        </div>
-
-                                                        <div class="placed ">
-                                                            <strong>Order Summary:</strong>
-                                                        </div>
-
-                                                        <div class="ordersuMary">
-                                                            <div class="orderImg">
-                                                                <img src="http://localhost:4200/assets/001.png
-                                                        " alt="">
-                                                            </div>
-                                                            <div class="orderRight">
-                                                                <p>(1) Pre & Pro Biotic Quick Melts 30-Count
-                                                                    <br> SKU: SP-BIOTIC-030
-                                                                </p>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="ordersuMary">
-                                                            <div class="orderImg">
-                                                                <img src="http://localhost:4200/assets/001.png
-                                                        " alt="">
-                                                            </div>
-                                                            <div class="orderRight">
-                                                                <p>(1) Pre & Pro Biotic Quick Melts 30-Count
-                                                                    <br> SKU: SP-BIOTIC-030
-                                                                </p>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="trackDiv"><button class="trackBtn">Tracke Order</button></div>
-                                                <div class="trackDiv"><button class="viewBtn">View Invoice</button></div>
-                                            </div>
-                                        </ng-template>
-                                    </ngb-panel>
-                                    <ngb-panel id="billing-method">
-                                        <ng-template ngbPanelTitle>
-                                            <div class="heading-step1 order-section">
-                                                <div class="totalAmount">
-                                                    <h4>Order #53186</h4>
-                                                    <h4>Total: $63.64</h4>
-                                                </div>
-                                                <span>
-                                                    <img src="http://localhost:4200/assets/001.png
-                                                    " alt="">
-                                                    <img src="http://localhost:4200/assets/002.png
-                                                    " alt="">
-                                                  
-                                                </span>
-
-                                                <span class="arrow-stepp">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
-                                                        viewBox="0 0 6.6 11.2">
-                                                        <path id="Path_2044" data-name="Path 2044"
-                                                            d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                            transform="translate(-630.6 -4.4)" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                        </ng-template>
-
-                                        <ng-template ngbPanelContent>
-
-                                            <div class="order-bottomContent">
-                                                <div class="placed">
-                                                    <strong>Placed:</strong>
-                                                    <p>12/20/22</p>
-                                                </div>
-
-                                                <div class="placed">
-                                                    <strong>Shipping Address:</strong>
-                                                    <p>Amanda Hall 1455 S State St Orem, UT 84097, US</p>
-                                                </div>
-                                                <div class="placed">
-                                                    <strong>Billed to:</strong>
-                                                    <p>Card ending in ********7705</p>
-                                                </div>
-
-                                                <div class="placed ">
-                                                    <strong>Order Summary:</strong>
-                                                </div>
-
-                                                <div class="ordersuMary">
-                                                    <div class="orderImg">
-                                                        <img src="http://localhost:4200/assets/001.png
-                                                        " alt="">
-                                                    </div>
-                                                    <div class="orderRight">
-                                                        <p>(1) Pre & Pro Biotic Quick Melts 30-Count
-                                                            <br> SKU: SP-BIOTIC-030
-                                                        </p>
-
-                                                    </div>
-                                                </div>
-                                                <div class="trackDiv"><button class="trackBtn">Tracke Order</button></div>
-                                                <div class="trackDiv"><button class="viewBtn">View Invoice</button></div>
-                                            </div>
-
-
-                                        </ng-template>
-                                    </ngb-panel>
-                                </ngb-accordion>
-
-                            </form>
-                        </ng-template>
-                    </ngb-panel>
-
-
-                    <ngb-panel id="checkoutstep5">
-                        <ng-template ngbPanelTitle>
-                            <div class="cart-sidebar">
-                                <div class="sidebar-head">
-                                    <h4>User Name</h4>
-                                    <span></span>
-                                </div>
-                            </div>
-                        </ng-template>
-                        <ng-template ngbPanelContent>
-                            <div class="panel panel-default">
-
-                                <div class="panel-body">
-                                    <div id="birthday-focus"></div>
-
-                                    <div id="view-personalinformation-1096f503-5302-4912-be36-767e0b8bfe04">
-                                        <div class="row margin-5">
-                                            <div class="col-sm-12 pinfo ">
-                                                <div class="form-group">
-                                                    <input aria-required="true" class="form-control personalInfo" data-val="true" data-val-required="First Name is required" id="Customer_FirstName" name="Customer.FirstName" placeholder="First Name" required="true" role="textbox" type="text" value="" />
-                                                    <span class="field-validation-valid" data-valmsg-for="Customer.FirstName" data-valmsg-replace="true"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <input value="5" data-val="true" data-val-number="The field PayableTypeID must be a number." data-val-required="The PayableTypeID field is required." id="Customer_PayableTypeID" name="Customer.PayableTypeID" type="hidden" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </ngb-panel>
-
-
-                </ngb-accordion>
-            </div>
-
-            <div class="col-sm-4">
-                <ngb-accordion activeIds="checkoutstep8">
-                    <ngb-panel id="checkoutstep4">
-                        <ng-template ngbPanelTitle>
-                            <div class="cart-sidebar">
-                                <div class="sidebar-head">
-                                    <h4>Name</h4>
-                                    <span>Amanda Walsh, ID#42</span>
-                                </div>
-                            </div>
-                        </ng-template>
-                        <ng-template ngbPanelContent>
-                            <div class="panel panel-default">
-
-                                <div class="panel-body">
-                                    <div id="birthday-focus"></div>
-
-                                    <div id="view-personalinformation-1096f503-5302-4912-be36-767e0b8bfe04">
-                                        <div class="row margin-5">
-                                            <div class="col-sm-12 pinfo ">
-                                                <div class="form-group">
-                                                    <input aria-required="true" class="form-control personalInfo" data-val="true" data-val-required="First Name is required" id="Customer_FirstName" name="Customer.FirstName" placeholder="First Name" required="true" role="textbox" type="text" value="" />
-                                                    <span class="field-validation-valid" data-valmsg-for="Customer.FirstName" data-valmsg-replace="true"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <input value="5" data-val="true" data-val-number="The field PayableTypeID must be a number." data-val-required="The PayableTypeID field is required." id="Customer_PayableTypeID" name="Customer.PayableTypeID" type="hidden" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </ngb-panel>
-                    ... ...
-                    <ngb-panel id="checkoutstep5">
-                        <ng-template ngbPanelTitle>
-                            <div class="cart-sidebar">
-                                <div class="sidebar-head">
-                                    <h4>User</h4>
-                                    <span>Amanda Walsh, ID#42</span>
-                                </div>
-                            </div>
-                        </ng-template>
-                        <ng-template ngbPanelContent>
-                            <div class="panel panel-default">
-
-                                <div class="panel-body">
-                                    <div id="birthday-focus"></div>
-
-                                    <div id="view-personalinformation-1096f503-5302-4912-be36-767e0b8bfe04">
-                                        <div class="row margin-5">
-                                            <div class="col-sm-12 pinfo ">
-                                                <div class="form-group">
-                                                    <input aria-required="true" class="form-control personalInfo" data-val="true" data-val-required="First Name is required" id="Customer_FirstName" name="Customer.FirstName" placeholder="First Name" required="true" role="textbox" type="text" value="" />
-                                                    <span class="field-validation-valid" data-valmsg-for="Customer.FirstName" data-valmsg-replace="true"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <input value="5" data-val="true" data-val-number="The field PayableTypeID must be a number." data-val-required="The PayableTypeID field is required." id="Customer_PayableTypeID" name="Customer.PayableTypeID" type="hidden" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </ngb-panel>
-                    ... ...
-                    <ngb-panel id="checkoutstep3">
-                        <ng-template ngbPanelTitle>
-                            <div class="cart-sidebar">
-                                <div class="sidebar-head">
-                                    <h4>Name</h4>
-                                    <span>Amanda Walsh, ID#42</span>
-                                </div>
-                            </div>
-                        </ng-template>
-                        <ng-template ngbPanelContent>
-                            <div class="panel panel-default">
-
-                                <div class="panel-body">
-                                    <div id="birthday-focus"></div>
-
-                                    <div id="view-personalinformation-1096f503-5302-4912-be36-767e0b8bfe04">
-                                        <div class="row margin-5">
-                                            <div class="col-sm-12 pinfo ">
-                                                <div class="form-group">
-                                                    <input aria-required="true" class="form-control personalInfo" data-val="true" data-val-required="First Name is required" id="Customer_FirstName" name="Customer.FirstName" placeholder="First Name" required="true" role="textbox" type="text" value="" />
-                                                    <span class="field-validation-valid" data-valmsg-for="Customer.FirstName" data-valmsg-replace="true"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <input value="5" data-val="true" data-val-number="The field PayableTypeID must be a number." data-val-required="The PayableTypeID field is required." id="Customer_PayableTypeID" name="Customer.PayableTypeID" type="hidden" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </ngb-panel>
-
-
-                </ngb-accordion>
-            </div>
-
         </div>
     </div>
 </section>

@@ -937,6 +937,37 @@ div#checkoutstep4 ngb-accordion .card-header button:hover {
     height: 15px;
 }
 
+
+/* paymnet css */
+
+.paymentPage ngb-accordion.accordion .card-header button.btn-link[aria-expanded="true"] span.arrow-stepp svg,
+.sidebar-ui ngb-accordion.accordion .card-header button.btn-link[aria-expanded="true"] span.arrow-stepp svg {
+    top: 3px;
+    transform: rotateZ(90deg);
+    position: absolute;
+    right: 5px;
+}
+
+.paymentPage ngb-accordion.accordion .card-header button.btn-link {
+    position: relative;
+}
+
+.paymentPage ngb-accordion.accordion .card-header button.btn-link[aria-expanded="true"] span.arrow-stepp,
+.sidebar-ui ngb-accordion.accordion .card-header button.btn-link[aria-expanded="true"] span.arrow-stepp {
+    transform: translateY(-50%);
+    transition: all ease 0.5s;
+    position: absolute;
+    right: 13px;
+}
+
+.paymentPage ngb-accordion.accordion .card-header button.btn-link[aria-expanded="false"] span.arrow-stepp,
+.sidebar-ui ngb-accordion.accordion .card-header button.btn-link[aria-expanded="false"] span.arrow-stepp {
+    transform: translateY(-50%);
+    transition: all ease 0.5s;
+    position: absolute;
+    right: 13px;
+}
+
 .conv_subscription_modal .modal-body {
     padding: 30px;
 }
@@ -1752,6 +1783,13 @@ div#checkoutstep3 ul.select-paycard h4 {
     margin-bottom: 20px;
 }
 
+.paymentPage .addresses-page .accordion>.card:not(:last-of-type) {
+    border-bottom: 1px solid #80808052;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-bottom: 10px;
+}
+
 .address-paged .card-header {
     padding: 4px;
     background-color: white;
@@ -1781,6 +1819,13 @@ div#checkoutstep3 ul.select-paycard h4 {
 
 .card.ng-star-inserted button {
     text-decoration: none;
+}
+
+
+/* payment page css */
+
+.paymentPage button.btn.btn-link.collapsed.ng-star-inserted {
+    padding: 13px 9px;
 }
 
 

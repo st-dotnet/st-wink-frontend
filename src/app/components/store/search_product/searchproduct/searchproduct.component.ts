@@ -284,6 +284,7 @@ export class SearchproductComponent implements OnInit {
     // this.sessionService.setSessionObject('productCartItems', this.cartItems);
   }
   addToCart(product: any) {
+    debugger;
     if (this.sessionService.getSessionItem('user')) {
       this.productItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
     }
@@ -343,7 +344,8 @@ export class SearchproductComponent implements OnInit {
           }
 
           //product.quantityModel = single_singledelivery.quantityModel + +product.quantityModel;
-          product.quantityModel = parseInt(single_singledelivery.quantityModel) + parseInt(product.quantityModel);
+       //   product.quantityModel = parseInt(single_singledelivery.quantityModel) + parseInt(product.quantityModel);
+       product.quantityModel =  product.quantityModel ;
           product.extraQuantity = product.quantityModel;
 
 
@@ -376,7 +378,8 @@ export class SearchproductComponent implements OnInit {
           if (index !== -1) {
             this.productItems.splice(index, 1);
           }
-          product.quantityModel = single_subscriptiondelivery.quantityModel + +product.quantityModel;
+        //  product.quantityModel = single_subscriptiondelivery.quantityModel + +product.quantityModel;
+          product.quantityModel =  product.quantityModel;
 
           if (product.quantityModel > product.quantityLimit) {
             //this.productItems.push(old_single_subscriptiondelivery);
@@ -408,7 +411,8 @@ export class SearchproductComponent implements OnInit {
             this.productItems.splice(index, 1);
           }
           //product.quantityModel = multiple_singledelivery.quantityModel + +product.quantityModel;
-          product.quantityModel = parseInt(multiple_singledelivery.quantityModel) + parseInt(product.quantityModel);
+          // product.quantityModel = parseInt(multiple_singledelivery.quantityModel) + parseInt(product.quantityModel);
+          product.quantityModel =  product.quantityModel ; 
           product.extraQuantity = product.quantityModel;
 
           if (product.quantityModel > product.quantityLimit) {
@@ -440,7 +444,8 @@ export class SearchproductComponent implements OnInit {
             this.productItems.splice(index, 1);
           }
           //product.quantityModel = multiple_subscriptiondelivery.quantityModel + +product.quantityModel;
-          product.quantityModel = parseInt(multiple_subscriptiondelivery.quantityModel) + parseInt(product.quantityModel);
+          // product.quantityModel = parseInt(multiple_subscriptiondelivery.quantityModel) + parseInt(product.quantityModel);
+          product.quantityModel=  product.quantityModel;
           product.extraQuantity = product.quantityModel;
 
           if (product.quantityModel > product.quantityLimit) {
