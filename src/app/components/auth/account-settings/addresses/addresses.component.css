@@ -365,7 +365,9 @@ section.address-page .delete a {
 .addresses-page .cancles {
     margin: 20px 0px;
 }
-
+.field-validation-valid {
+    color: #dc3545 !important;
+    }
 @media (min-width: 992px) {
     span.arrow-stepp {
         display: block;

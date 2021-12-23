@@ -20,8 +20,8 @@ export class OrdersComponent implements OnInit {
   getCustomerAutoOrders(){
     this.spinner.show();
     this.accountService.getCustomerOrders().subscribe((response)=>{
-     // this.customerOrderData=response.result.orders;
-      console.log(response);
+     this.customerOrderData=response.result.orders;
+     // console.log(response);
       this.spinner.hide();
    });
   }

@@ -56,7 +56,7 @@
                     <li class="cart-item Cart-Item-demo-tour-class"><a [routerLink]="['/store/cart']"><i
                                 class="fa fa-shopping-bag"></i><span *ngIf="cartItems"
                                 class="cart-info">{{cartItems}}</span></a></li>
-                    <li><a class="button" (click)="show_submenus()"><i class="fas fa-user-circle"></i></a>
+                    <li *ngIf="user"><a class="button" (click)="show_submenus()"><i class="fas fa-user-circle"></i></a>
                         <ul *ngIf="isAccountMenus" [className]="isAccountMenus ?  'subshow navbar-nav other-links' : 'subhide navbar-nav other-links'">
                             <li class="nav-item Shop-demo-tour">
                                 <a class="nav-link" [routerLink]="['account-settings/profile']" (click)="isAccountMenus=false;" [routerLinkActive]="['active']">Profile</a>

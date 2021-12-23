@@ -28,7 +28,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- <div class="total-amount-order">Est. Total<span class="amount-num">$63.56</span> -->
-                                                  <div class="total-amount-order">Est. Total<span class="amount-num">${{item.subtotal}}</span>
+                                                <div class="total-amount-order">Est. Total<span class="amount-num">${{item.subtotal}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -74,7 +74,7 @@
                                                         <tbody>
                                                             <tr *ngFor="let detail of item.details">
                                                                 <td style="width:40px;">
-                                                                    <img [src]="detail.reference1"  />
+                                                                    <img [src]="detail.reference1" />
                                                                 </td>
                                                                 <td>
                                                                     <!-- <div class="info-orders">(1) Pre & Pro Biotic Quick Melts 30-Count</div>
@@ -82,7 +82,7 @@
                                                                     <div class="info-orders">{{detail.description}}</div>
                                                                     <div class="order-sku">SKU: <span class="sku-data">{{detail.itemCode}}</span></div>
                                                                 </td>
-                                                          </tr>
+                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -104,7 +104,7 @@
 
                                     </ng-template>
                                 </ngb-panel>
-                              </ngb-accordion>
+                            </ngb-accordion>
                         </div>
                     </div>
                 </div>

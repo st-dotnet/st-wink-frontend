@@ -97,9 +97,6 @@ span.highlight-info {
     pointer-events: none;
 }
 
-
-
-
 section.account-page.grid-checkout .card-header+div {
     background: #fff;
     padding: 0px;
@@ -334,14 +331,10 @@ button.btn.btn-link.ng-star-inserted {
 h1.profileField {
     padding-bottom: 20px;
 }
-
-@media (min-width: 1367px) {
-    span.arrow-stepp {
-        display: block;
-    }
-}
-@media (min-width: 1367px) {
-    span.arrow-stepp {
-        display: none;
-    }
+.signoutBtn button {
+    border: none;
+    background: transparent;
+    font-family: 'g-regular';
+    font-weight: 600;
+    color: #1cb1c5;
 }
