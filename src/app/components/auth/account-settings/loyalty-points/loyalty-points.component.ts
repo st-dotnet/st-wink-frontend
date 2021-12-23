@@ -27,11 +27,11 @@ export class LoyaltyPointsComponent implements OnInit {
     this.spinner.show();
     this.accountService.getLoyalityPoints().subscribe((response)=>{
       this.loyalityData=response;
+      console.log(this.loyalityData);
       this.loyalityData?.forEach(element => {
-        this.total+= parseFloat(element.amount);
+        this.total+= parseFloat(element.balance);
       });
       this.spinner.hide();
     });
-
   }
 }

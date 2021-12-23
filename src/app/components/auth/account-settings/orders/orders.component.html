@@ -6,8 +6,110 @@
                     <div class="enrollment-main-div">
                         <div class="enrollment-steps-5">
                             <h1 class="orderField">Orders</h1>
-                            <ngb-accordion activeIds="" class="order-listing">
+                            <ngb-accordion activeIds="" class="order-listing" *ngFor="let item of customerOrderData">
                                 <ngb-panel id="order-listing">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="order-list-title">
+                                            <div class="content-head-order">
+                                                <div class="order-name">
+                                                    <div class="top-left-order">Order<span class="order-number">#{{item.orderID}}</span></div>
+                                                    <div class="top-product-preview">
+                                                        <ul class="ordered-previews">
+                                                            <li><img src="/assets/product-ordered.png" /></li>
+                                                            <li><img src="/assets/product-ordered.png" /></li>
+                                                            <li><img src="/assets/product-ordered.png" /></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="total-amount-order">Total:<span class="amount-num">${{item.total}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <span class="arrow-stepp">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                height="11.2" viewBox="0 0 6.6 11.2">
+                                                <path id="Path_2044" data-name="Path 2044"
+                                                    d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                    transform="translate(-630.6 -4.4)" />
+                                            </svg>
+                                        </span>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <div class="content-order-listing">
+                                            <div class="placed-info">
+                                                <label class="form-label">Placed:</label>
+                                                <div class="place-date">{{item.createdDate| date}}</div>
+                                            </div>
+                                            <div class="shipping-addr">
+                                                <label>Shipping Address: <span class="status-shipping">Accepted</span></label>
+                                                <p class="address-orders">
+                                                    <!-- <span>Amanda Hall</span>
+                                                    <span>1455 S State St</span>
+                                                    <span>Orem, UT 84097, US</span> -->
+                                                     <span>{{item.address1}}</span>
+                                                    <span>{{item.address2}}</span>
+                                                </p>
+                                            </div>
+
+                                            <div class="billing-to">
+                                                <label>Billed to:</label>
+                                                <div class="card-preview">
+                                                    <p>Card ending in <span class="card-num-prev">*******7755</span></p>
+                                                </div>
+
+                                                <div class="order-summ-tble">
+                                                    <h4>Order Summary:</h4>
+                                                    <table class="table order-summary">
+                                                        <tbody>
+                                                             <tr *ngFor="let detail of item.details">
+                                                                <td style="width:40px;">
+                                                                    <img src="/assets/product-ordered.png" />
+                                                                </td>
+                                                                <td>
+                                                                    <div class="info-orders">{{detail.description}}</div>
+                                                                    <div class="order-sku">SKU: <span class="sku-data">{{detail.itemCode}}</span></div>
+                                                                </td>
+                                                            </tr>
+                                                            <!-- <tr>
+                                                                <td style="width:40px;">
+                                                                    <img src="/assets/product-ordered.png" />
+                                                                </td>
+                                                                <td>
+                                                                    <div class="info-orders">(2) Pre & Pro Biotic Quick Melts 30-Count</div>
+                                                                    <div class="order-sku">SKU: <span class="sku-data">SP-BIOTIC-475</span></div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="width:40px;">
+                                                                    <img src="/assets/product-ordered.png" />
+                                                                </td>
+                                                                <td>
+                                                                    <div class="info-orders">(3) Pre & Pro Biotic Quick Melts 30-Count</div>
+                                                                    <div class="order-sku">SKU: <span class="sku-data">SP-BIOTIC-580</span></div>
+                                                                </td>
+                                                            </tr> -->
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="emailbtns">
+                                            <div class="trck-order">
+                                                <a href="#"> <button class="trck-order-btn">Track Order</button></a>
+                                            </div>
+
+                                            <div class="view-invoice">
+                                                <a href="#"> <button class="view-invoice-btn">View Invouce</button></a>
+                                            </div>
+
+
+                                        </div>
+
+                                    </ng-template>
+                                </ngb-panel>
+                                <!-- <ngb-panel id="order-listing">
                                     <ng-template ngbPanelTitle>
 
                                         <div class="order-list-title">
@@ -410,109 +512,7 @@
                                         </div>
 
                                     </ng-template>
-                                </ngb-panel>
-                                <ngb-panel id="order-listing">
-                                    <ng-template ngbPanelTitle>
-
-                                        <div class="order-list-title">
-                                            <div class="content-head-order">
-                                                <div class="order-name">
-                                                    <div class="top-left-order">Order<span class="order-number">#4654</span></div>
-                                                    <div class="top-product-preview">
-                                                        <ul class="ordered-previews">
-                                                            <li><img src="/assets/product-ordered.png" /></li>
-                                                            <li><img src="/assets/product-ordered.png" /></li>
-                                                            <li><img src="/assets/product-ordered.png" /></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="total-amount-order">Total:<span class="amount-num">$63.78</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <span class="arrow-stepp">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
-                                                height="11.2" viewBox="0 0 6.6 11.2">
-                                                <path id="Path_2044" data-name="Path 2044"
-                                                    d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                    transform="translate(-630.6 -4.4)" />
-                                            </svg>
-                                        </span>
-                                    </ng-template>
-                                    <ng-template ngbPanelContent>
-                                        <div class="content-order-listing">
-                                            <div class="placed-info">
-                                                <label class="form-label">Placed:</label>
-                                                <div class="place-date">12/21/22</div>
-                                            </div>
-                                            <div class="shipping-addr">
-                                                <label>Shipping Address: <span class="status-shipping">Accepted</span></label>
-                                                <p class="address-orders">
-                                                    <span>Amanda Hall</span>
-                                                    <span>1455 S State St</span>
-                                                    <span>Orem, UT 84097, US</span>
-                                                </p>
-                                            </div>
-                                            <div class="billing-to">
-                                                <label>Billed to:</label>
-                                                <div class="card-preview">
-                                                    <p>Card ending in <span class="card-num-prev">*******7755</span></p>
-                                                </div>
-
-                                                <div class="order-summ-tble">
-                                                    <h4>Order Summary:</h4>
-                                                    <table class="table order-summary">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="width:40px;">
-                                                                    <img src="/assets/product-ordered.png" />
-                                                                </td>
-                                                                <td>
-                                                                    <div class="info-orders">(1) Pre & Pro Biotic Quick Melts 30-Count</div>
-                                                                    <div class="order-sku">SKU: <span class="sku-data">SP-BIOTIC-030</span></div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="width:40px;">
-                                                                    <img src="/assets/product-ordered.png" />
-                                                                </td>
-                                                                <td>
-                                                                    <div class="info-orders">(2) Pre & Pro Biotic Quick Melts 30-Count</div>
-                                                                    <div class="order-sku">SKU: <span class="sku-data">SP-BIOTIC-475</span></div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="width:40px;">
-                                                                    <img src="/assets/product-ordered.png" />
-                                                                </td>
-                                                                <td>
-                                                                    <div class="info-orders">(3) Pre & Pro Biotic Quick Melts 30-Count</div>
-                                                                    <div class="order-sku">SKU: <span class="sku-data">SP-BIOTIC-580</span></div>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="emailbtns">
-                                            <div class="trck-order">
-                                                <a href="#"> <button class="trck-order-btn">Track Order</button></a>
-                                            </div>
-
-                                            <div class="view-invoice">
-                                                <a href="#"> <button class="view-invoice-btn">View Invouce</button></a>
-                                            </div>
-
-
-                                        </div>
-
-                                    </ng-template>
-                                </ngb-panel>
-
+                                </ngb-panel> -->
                             </ngb-accordion>
                         </div>
                     </div>
@@ -536,19 +536,14 @@
                     </nav>
                 </div>
             </div>
-
             <div class="col-sm-4 enrollment-pages profile-page  col-lg-pull-4 ">
                 <div class="enrollment-page profile-page">
                     <div class="showsidebar toggle-sidebar hidden-lg">
                         <div class="cart-sidebar sidebar-collapse">
-
                         </div>
                     </div>
-
                 </div>
             </div>
-
-
         </div>
     </div>
 </section>
