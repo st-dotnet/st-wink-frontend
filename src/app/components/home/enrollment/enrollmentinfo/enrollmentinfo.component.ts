@@ -390,18 +390,18 @@ export class EnrollmentInfoComponent implements OnInit {
     this.personalInfo = this.formBuilder.group(
       {
         firstName: ['', [Validators.required]],
-        middleName: ['', [Validators.required]],
+        // middleName: ['', [Validators.required]],
         lastName: ['', [Validators.required]],
         dateOfBirth: ['', [Validators.required]],
-        company: ['', [Validators.required]],
-        officePhone: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(10),
-            Validators.maxLength(15),
-          ],
-        ],
+        // company: ['', [Validators.required]],
+        // officePhone: [
+        //   '',
+        //   [
+        //     Validators.required,
+        //     Validators.minLength(10),
+        //     Validators.maxLength(15),
+        //   ],
+        // ],
         mobileno: [
           '',
           [
