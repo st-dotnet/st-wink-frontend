@@ -1,7 +1,7 @@
 .content-head-order .total-amount-order {
     text-align: right;
     padding-top: 8px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .content-head-order .total-amount-order span.amount-num {
@@ -25,6 +25,7 @@ section.account-page.grid-checkout button.trck-order-btn {
     color: white;
     border-radius: 30px;
     border: 1px solid #1cb1c5;
+    text-transform: uppercase;
 }
 
 .pagination-points ul.pagination {

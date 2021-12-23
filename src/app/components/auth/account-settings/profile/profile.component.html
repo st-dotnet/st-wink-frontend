@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-sm-8 account-paged  col-lg-push-8">
+            <div class="col-sm-12 col-md-12 col-lg-8 account-paged  col-lg-push-8">
                 <div class="enrollment-righ">
                     <div class="enrollment-main-div">
                         <div class="enrollment-steps-5">
@@ -35,7 +35,7 @@
                                             </div>
                                             <div class="emailbtns">
                                                 <div class="cancles">
-                                                    <a href="#"> <button class="cancle-btn">Cancle</button></a>
+                                                    <a href="#"> <button class="cancle-btn">Cancel</button></a>
                                                 </div>
                                                 <div class="saves">
                                                     <a href="#"> <button class="save-btn" (click)="submit('First Name',UserDetails.firstName)">Save</button></a>
@@ -49,7 +49,7 @@
                                 <ngb-panel id="promo-sidebar">
                                     <ng-template ngbPanelTitle>
                                         <div class="heading-step1 profile-section">
-                                            <h4>User Name</h4>
+                                            <h4>Username</h4>
                                             <span class="highlight-info">{{UserDetails?.loginName}}</span>
                                             <span class="vali-promo"> </span>
                                             <span class="arrow-stepp">
@@ -72,7 +72,7 @@
                                             </div>
                                             <div class="emailbtns">
                                                 <div class="cancles">
-                                                    <a href="#"> <button class="cancle-btn">Cancle</button></a>
+                                                    <a href="#"> <button class="cancle-btn">Cancel</button></a>
                                                 </div>
                                                 <div class="saves">
                                                     <a href="#"> <button class="save-btn" (click)="submit('login Name',UserDetails.loginName)">Save</button></a>
@@ -114,7 +114,7 @@
                                                             </div>
                                                             <div class="emailbtns">
                                                                 <div class="cancles">
-                                                                    <a href="#"> <button class="cancle-btn">Cancle</button></a>
+                                                                    <a href="#"> <button class="cancle-btn">Cancel</button></a>
                                                                 </div>
                                                                 <div class="saves">
                                                                     <a href="#"> <button class="save-btn" (click)="submit('password',UserDetails.LoginPassword)">Save</button></a>
@@ -170,7 +170,7 @@
                                                             </div>
                                                             <div class="emailbtns">
                                                                 <div class="cancles">
-                                                                    <a href="#"> <button class="cancle-btn">Cancle</button></a>
+                                                                    <a href="#"> <button class="cancle-btn">Cancel</button></a>
                                                                 </div>
                                                                 <div class="saves">
                                                                     <a href="#"> <button class="save-btn" (click)="submit('email',UserDetails.email)">Save</button></a>
@@ -190,7 +190,8 @@
                                     <ng-template ngbPanelTitle>
                                         <div class="heading-step1">
                                             <h4>Phone Number </h4>
-                                            <span class="highlight-info">{{UserDetails?.mobilePhone}}, {{UserDetails?.mobilePhone}}</span>
+                                            <!-- <span class="highlight-info">{{UserDetails?.mobilePhone}}, {{UserDetails?.mobilePhone}}</span> -->
+                                            <span class="highlight-info">Mobile, Home</span>
                                             <span class="arrow-stepp">
                                           <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
                                               height="11.2" viewBox="0 0 6.6 11.2">
@@ -230,7 +231,7 @@
                                                             </div>
                                                             <div class="emailbtns">
                                                                 <div class="cancles">
-                                                                    <a href="#"> <button class="cancle-btn">Cancle</button></a>
+                                                                    <a href="#"> <button class="cancle-btn">Cancel</button></a>
                                                                 </div>
                                                                 <div class="saves">
                                                                     <a href="#"> <button class="save-btn" (click)="submit('Mobile Phone and Home Phone',UserDetails.mobilePhone)">Save</button></a>
@@ -249,7 +250,11 @@
                             </ngb-accordion>
                             <div class="signoutBtn">
 
-                                <i class="fas fa-sign-out-alt"> <strong> Sign Out</strong></i>
+                                <div class="svgFile"> <span><svg xmlns="http://www.w3.org/2000/svg" width="17.099" height="15.389" viewBox="0 0 17.099 15.389">
+                                    <path id="Path_2161" data-name="Path 2161" d="M14.824,6.42,13.619,7.625,15.825,9.84H7.13v1.71h8.695l-2.206,2.206,1.205,1.214L19.1,10.695ZM3.71,4.71h6.84V3H3.71A1.715,1.715,0,0,0,2,4.71V16.679a1.715,1.715,0,0,0,1.71,1.71h6.84v-1.71H3.71Z" transform="translate(-2 -3)" fill="#333"/>
+                                    </svg></span></div>
+                                <div class="svgBtn">
+                                    <button> Sign Out</button></div>
 
                             </div>
                         </div>
@@ -257,7 +262,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-4 enrollment-pages profile-page  col-lg-pull-4 ">
+            <div class="col-sm-12 col-md-12 col-lg-4 enrollment-pages profile-page  col-lg-pull-4 ">
                 <div class="enrollment-page profile-page">
                     <div class="showsidebar toggle-sidebar hidden-lg">
                         <div class="cart-sidebar sidebar-collapse">

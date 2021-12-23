@@ -55,18 +55,46 @@ button.save-btn {
     text-transform: uppercase;
 }
 
+.savesChanges .save-btn {
+    border-radius: 30px;
+    width: 100%;
+    padding: 5px 33px;
+    background: #1cb1c5;
+    color: white;
+    text-transform: uppercase;
+}
+
+.saveses button.save-btns {
+    border-radius: 30px;
+    width: auto;
+    padding: 5px 66px;
+    background: #1cb1c5;
+    color: white;
+    text-transform: uppercase;
+    border: none;
+    margin-bottom: 20px;
+}
+
 .paymentPage button.save-btn {
     width: auto;
     padding: 6px 36px;
-    background: #1cb1c5;
+    /* background: #0070BA; */
     color: white;
+    /* text-transform: capitalize; */
+}
+
+.paymentPage .primaryBtn span {
+    font-size: 20px;
+    color: black;
 }
 
 .paymentPage .saves.paypal button.save-btn {
     width: 100%;
     padding: 6px 36px;
-    background: #1cb1c5;
     color: white;
+    background: #0070BA;
+    text-transform: capitalize;
+    font-weight: 600;
 }
 
 section.address-page.grid-checkout small#emailHelp {
@@ -359,6 +387,8 @@ section.address-page .delete {
 section.address-page .delete span {
     padding-left: 5px;
     font-family: 'g-regular';
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
 section.address-page .delete a {
@@ -421,16 +451,24 @@ section.address-page .delete a {
     text-align: center;
 }
 
+.saveWraper {
+    text-align: center;
+}
+
 .emailbtns.secondarybtn .saves button.save-btn {
     width: 100% !important;
 }
 
 .emailbtns.secondarybtn .cancles {
-    margin: 0px 10px !important;
+    margin: 0px 0px !important;
 }
 
 .payment-wallets {
     padding-bottom: 5px;
+}
+
+.saveses {
+    margin-right: 10px;
 }
 
 @media (min-width: 992px) {
@@ -442,7 +480,6 @@ section.address-page .delete a {
     }
     section.address-page.grid-checkout .emailbtns {
         display: flex;
-        align-items: center;
     }
     .addresses-page .cancles {
         margin: 0px 12px;
