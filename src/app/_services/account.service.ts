@@ -106,6 +106,12 @@ export class AccountService {
 
 
 
+//For Declined : https://localhost:44336/api/Account/DeclinedCustomerOrders_SQL
+//ShipcustomerOrder: https://localhost:44336/api/Account/ShippedCustomerOrders_SQL
+//For Preview Invoice : https://localhost:44336/api/Account/GetOrderInvoice
+
+
+
 
 
 

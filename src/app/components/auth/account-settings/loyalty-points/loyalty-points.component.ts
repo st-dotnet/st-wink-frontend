@@ -3,7 +3,6 @@ import { AccountService, SessionService } from '@app/_services';
 import { ShopService } from '@app/_services/shop.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-
 @Component({
   selector: 'app-loyalty-points',
   templateUrl: './loyalty-points.component.html',
@@ -33,6 +32,6 @@ export class LoyaltyPointsComponent implements OnInit {
       });
       this.spinner.hide();
     });
-  }
 
+  }
 }

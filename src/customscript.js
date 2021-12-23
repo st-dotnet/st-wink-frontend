@@ -4,7 +4,7 @@
 // var t = document.getElementsByTagName("script")[0]; t.parentNode.insertBefore(e, t)
 // })();
 // setTimeout(function () {
-// debugger;
+
 // var api = new Yotpo.API(yotpo);
 // console.log("api", api);
 // api.refreshWidgets();

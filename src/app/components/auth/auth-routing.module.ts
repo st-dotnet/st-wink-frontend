@@ -3,15 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { CanDeactivateGuard } from '@app/_helpers/can-deactivate-guard';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { AddressesComponent } from './account-settings/addresses/addresses.component';
+
 import { LoyaltyPointsComponent } from './account-settings/loyalty-points/loyalty-points.component';
 import { OrdersComponent } from './account-settings/orders/orders.component';
 import { PaymentsComponent } from './account-settings/payments/payments.component';
+
 import { ProfileComponent } from './account-settings/profile/profile.component';
 import { SubscriptionsComponent } from './account-settings/subscriptions/subscriptions.component';
-
-
-
-
 // auth components
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';

@@ -1,13 +1,17 @@
-section.account-page.profile-page.grid-checkout {
+section.address-page.grid-checkout {
+    padding: 50px 0px;
+}
+
+section.address-page.profile-page.grid-checkout {
     padding-top: 70px;
 }
 
-.account-profile-page .back-link a svg {
+.address-profile-page .back-link a svg {
     width: 7px;
     margin-right: 4px;
 }
 
-.account-profile-page .back-link a {
+.address-profile-page .back-link a {
     display: flex;
     align-items: center;
     color: #1cb1c5;
@@ -17,7 +21,7 @@ section.account-page.profile-page.grid-checkout {
     padding-top: 10px;
 }
 
-.account-profile-page {
+.address-profile-page {
     width: 100%;
     padding: 60px 0 0;
 }
@@ -30,37 +34,47 @@ section.account-page.profile-page.grid-checkout {
     margin-bottom: 0px;
 }
 
-section.account-page.grid-checkout .emailbtns {
-    display: flex;
-    justify-content: end;
+section.address-page.grid-checkout .emailbtns {
+    justify-content: center;
     padding-bottom: 20px;
+    padding-top: 20px;
 }
 
-section.account-page.grid-checkout button.cancle-btn,
+.emailbtns.paypall.ng-star-inserted {
+    padding: 0px !important;
+}
+
+section.address-page.grid-checkout button.cancle-btn,
 button.save-btn {
     border: 1px solid #1cb1c5;
     border-radius: 30px;
     width: 100%;
-    padding: 5px 40px;
+    padding: 5px 33px;
     background: transparent;
     color: #1cb1c5;
     text-transform: uppercase;
 }
 
-section.account-page.grid-checkout button.save-btn {
-    width: 100%;
-    padding: 6px 50px;
+.paymentPage button.save-btn {
+    width: auto;
+    padding: 6px 36px;
     background: #1cb1c5;
     color: white;
-    margin: 0px 10px;
 }
 
-section.account-page.grid-checkout small#emailHelp {
+.paymentPage .saves.paypal button.save-btn {
+    width: 100%;
+    padding: 6px 36px;
+    background: #1cb1c5;
+    color: white;
+}
+
+section.address-page.grid-checkout small#emailHelp {
     display: flex;
     align-items: center;
 }
 
-section.account-page.grid-checkout .form-group.numbersection {
+section.address-page.grid-checkout .form-group.numbersection {
     position: relative;
 }
 
@@ -83,7 +97,7 @@ span.highlight-info {
     font-size: 13px;
 }
 
-.account-paged label.form-label {
+.address-paged label.form-label {
     position: absolute;
     top: 10px;
     left: 18px;
@@ -98,19 +112,21 @@ span.highlight-info {
 }
 
 
+/* .custom-control.custom-checkbox {
+    padding: 10px 20px;
+} */
 
-
-section.account-page.grid-checkout .card-header+div {
+section.address-page.grid-checkout .card-header+div {
     background: #fff;
     padding: 0px;
 }
 
-section.backlink-header.mob-check.account-setting-upperBar {
+section.backlink-header.mob-check.address-setting-upperBar {
     width: 100%;
     padding: 30px 0 0;
 }
 
-section.backlink-header.mob-check.account-setting-upperBar a {
+section.backlink-header.mob-check.address-setting-upperBar a {
     display: flex;
     align-items: center;
     color: #1cb1c5;
@@ -119,12 +135,12 @@ section.backlink-header.mob-check.account-setting-upperBar a {
     letter-spacing: 1px;
 }
 
-section.backlink-header.mob-check.account-setting-upperBar svg.svg-inline--fa.fa-angle-left.fa-w-6.fa-3x {
+section.backlink-header.mob-check.address-setting-upperBar svg.svg-inline--fa.fa-angle-left.fa-w-6.fa-3x {
     width: 7px;
     margin: 0px 5px;
 }
 
-section.account-page.grid-checkout {
+section.address-page.grid-checkout {
     padding-bottom: 50px;
     padding-top: 50px;
 }
@@ -137,7 +153,6 @@ section.account-page.grid-checkout {
 svg {
     float: right;
     margin-top: -30px;
-    margin-top: 4px;
 }
 
 .totalAmount {
@@ -161,28 +176,25 @@ svg {
 .heading-step1.ng-star-inserted h4 {
     font-size: 20px;
     font-weight: 600;
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 0px;
 }
 
-section.account-page .card-body div#promo-code {
+section.address-page .card-body div#promo-code {
     padding: 0px !important;
 }
 
-.account-page .heading-step1.profile-section span {
+.address-page .heading-step1.profile-section span {
     font-size: 14px;
 }
 
-section.account-page .form-group.numbersection input#number {
+section.address-page .form-group.numbersection input#number {
     height: 55px;
 }
 
-section.account-page .heading-step1.profile-section h3 {
+section.address-page .heading-step1.profile-section h3 {
     font-size: 50px;
 }
 
-section.account-page ngb-accordion .card ngb-accordion.accordion .card .card-header+div .card-body {
+section.address-page ngb-accordion .card ngb-accordion.accordion .card .card-header+div .card-body {
     padding: 0px 0px !important;
 }
 
@@ -191,20 +203,20 @@ section.account-page ngb-accordion .card ngb-accordion.accordion .card .card-hea
     padding-top: 10px;
 }
 
-section.account-page .pointsWraper .mainsDiv {
+section.address-page .pointsWraper .mainsDiv {
     display: flex;
     justify-content: space-between;
 }
 
-section.account-page .pointsWraper .mainsDiv strong {
+section.address-page .pointsWraper .mainsDiv strong {
     font-weight: 400;
 }
 
-section.account-page .pointsWraper .mainSecondDiv p {
+section.address-page .pointsWraper .mainSecondDiv p {
     font-size: 12px;
 }
 
-section.account-page .order-section svg {
+section.address-page .order-section svg {
     right: 19px;
     top: 50px !important;
 }
@@ -241,19 +253,19 @@ button.viewBtn {
     padding: 5px 20px;
 }
 
-.profile-page .card-header {
+.address-page .card-header {
     padding: unset !important;
 }
 
-.profile-page div#basic1-header button {
+.address-page div#basic1-header button {
     pointer-events: none;
 }
 
-.profile-page div#basic1-header button span.arrow-stepp {
+.address-page div#basic1-header button span.arrow-stepp {
     display: none;
 }
 
-.profile-page .card {
+.address-page .card {
     margin-bottom: 30px;
     overflow: visible !important;
 }
@@ -266,7 +278,7 @@ span.arrow-stepp {
     display: block;
 }
 
-section.account-page.profile-page.grid-checkout a.editbtn_profile {
+section.address-page.profile-page.grid-checkout a.editbtn_profile {
     width: auto !important;
     padding: 2px 15px 2px 14px !important;
     margin-top: -22px !important;
@@ -278,11 +290,11 @@ section.account-page.profile-page.grid-checkout a.editbtn_profile {
     float: right;
 }
 
-section.account-page.profile-page.grid-checkout input {
+section.address-page.profile-page.grid-checkout input {
     height: 56px;
 }
 
-section.account-page.profile-page.grid-checkout button.btn.btn-link.ng-star-inserted {
+section.address-page.profile-page.grid-checkout button.btn.btn-link.ng-star-inserted {
     pointer-events: none;
 }
 
@@ -292,15 +304,11 @@ section.account-page.profile-page.grid-checkout button.btn.btn-link.ng-star-inse
     margin-bottom: 20px;
 }
 
-.emailbtns .saves {
-    margin: 0px 24px;
-}
-
-section.account-page.profile-page.grid-checkout .heading-step1 {
+section.address-page.profile-page.grid-checkout .heading-step1 {
     position: relative;
 }
 
-section.account-page.profile-page.grid-checkout span.editBtn {
+section.address-page.profile-page.grid-checkout span.editBtn {
     position: absolute;
     top: 19px;
     right: 5px;
@@ -316,32 +324,127 @@ button.btn.btn-link.ng-star-inserted {
 }
 
 .heading-step1.profile-section h4 {
-    color: #000000bf;
+    color: #000000a6;
+    font-family: 'g-regular';
+    font-weight: 500;
 }
 
 .heading-step1.profile-section span {
-    color: #000000bf;
+    color: #000000b0;
+    font-family: 'g-regular';
+    font-weight: 500;
 }
 
-.account-paged .heading-step1 h4 {
+.address-paged .heading-step1 h4 {
     color: #000000bf;
+    font-family: 'g-regular';
+    font-weight: 600;
 }
 
-.account-paged form input {
+.address-paged form input {
     height: 50px;
 }
 
 h1.profileField {
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
-@media (min-width: 1367px) {
+section.address-page .delete {
+    padding: 5px 5px;
+    font-family: 'g-regular';
+    text-align: center;
+    margin-top: 10px;
+}
+
+section.address-page .delete span {
+    padding-left: 5px;
+    font-family: 'g-regular';
+}
+
+section.address-page .delete a {
+    color: #f10929;
+}
+
+.addresses-page button.btn.btn-link {
+    width: 100%;
+    text-align: left;
+}
+
+.addresses-page .card.ng-star-inserted {
+    margin-bottom: 20px;
+}
+
+.addresses-page .cancles {
+    margin: 20px 0px;
+}
+
+.paymentPage .address-paged .card-header {
+    padding: 11px 2px;
+    background-color: white;
+}
+
+.paymentPage .payment-walletss {
+    padding: 30px 5px 0px 5px;
+}
+
+.paymentPage ul.card-mat {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.paymentPage ul li {
+    margin: 0px 9px 0px 0px;
+}
+
+.paymentPage .primaryBtn {
+    display: flex;
+    align-items: center;
+}
+
+.paymentPage .primaryBtn input {
+    margin-right: 10px;
+    width: 17px;
+    height: 17px;
+}
+
+.paymentPage button.save-btn {
+    margin: 20px 0px;
+}
+
+.paymentPage .saves.paypal button.save-btn {
+    margin: 0px;
+}
+
+.saveWraper .saves {
+    text-align: center;
+}
+
+.emailbtns.secondarybtn .saves button.save-btn {
+    width: 100% !important;
+}
+
+.emailbtns.secondarybtn .cancles {
+    margin: 0px 10px !important;
+}
+
+.payment-wallets {
+    padding-bottom: 5px;
+}
+
+@media (min-width: 992px) {
+    section.address-page .delete {
+        margin-top: 0px;
+    }
     span.arrow-stepp {
         display: block;
     }
-}
-@media (min-width: 1367px) {
-    span.arrow-stepp {
-        display: none;
+    section.address-page.grid-checkout .emailbtns {
+        display: flex;
+        align-items: center;
+    }
+    .addresses-page .cancles {
+        margin: 0px 12px;
     }
 }

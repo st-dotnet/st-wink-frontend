@@ -629,12 +629,10 @@ section.account-page.profile-page.grid-checkout div#basic1-header {
 section.account-page.profile-page.grid-checkout div#contactInfo-header {
     padding: 0px;
 }
-
 section.account-page.profile-page .card {
     margin-bottom: 30px;
     border-bottom: 1px solid #80808045;
 }
-
 .panel-stepbar #checkoutstep1-header.card-header .btn[aria-expanded="true"]:focus,
 .panel-stepbar #checkoutstep2-header.card-header .btn[aria-expanded="true"]:focus,
 .panel-stepbar #checkoutstep3-header.card-header .btn[aria-expanded="true"]:focus,
@@ -951,6 +949,37 @@ div#checkoutstep4 ngb-accordion .card-header button:hover {
     top: 50%;
     width: 15px;
     height: 15px;
+}
+
+
+/* paymnet css */
+
+.paymentPage ngb-accordion.accordion .card-header button.btn-link[aria-expanded="true"] span.arrow-stepp svg,
+.sidebar-ui ngb-accordion.accordion .card-header button.btn-link[aria-expanded="true"] span.arrow-stepp svg {
+    top: 3px;
+    transform: rotateZ(90deg);
+    position: absolute;
+    right: 5px;
+}
+
+.paymentPage ngb-accordion.accordion .card-header button.btn-link {
+    position: relative;
+}
+
+.paymentPage ngb-accordion.accordion .card-header button.btn-link[aria-expanded="true"] span.arrow-stepp,
+.sidebar-ui ngb-accordion.accordion .card-header button.btn-link[aria-expanded="true"] span.arrow-stepp {
+    transform: translateY(-50%);
+    transition: all ease 0.5s;
+    position: absolute;
+    right: 13px;
+}
+
+.paymentPage ngb-accordion.accordion .card-header button.btn-link[aria-expanded="false"] span.arrow-stepp,
+.sidebar-ui ngb-accordion.accordion .card-header button.btn-link[aria-expanded="false"] span.arrow-stepp {
+    transform: translateY(-50%);
+    transition: all ease 0.5s;
+    position: absolute;
+    right: 13px;
 }
 
 .conv_subscription_modal .modal-body {
@@ -1694,7 +1723,7 @@ section.account-page .card-body div#promo-code {
 
 .enrollment-main-div .card .card-header {
     box-shadow: 0 0px 5px #d0d0d0 !important;
-    border: none;
+    /* border: none; */
 }
 
 .enrollment-paged .card .card-header button {
@@ -2059,11 +2088,9 @@ ngb-accordion.accordion.order-listing div#order-listing-header button:focus {
 .address-page button.btn.btn-link.ng-star-inserted:focus {
     box-shadow: none;
 }
-
 .card.ng-star-inserted button {
     text-decoration: none;
 }
-
 
 /* payment page css */
 
@@ -2490,7 +2517,6 @@ ngb-accordion.accordion.order-listing div#order-listing-header button:focus {
         font-size: 12px !important;
     }
 }
-
 button.btn.btn-link.ng-star-inserted {
     border-radius: unset;
 }

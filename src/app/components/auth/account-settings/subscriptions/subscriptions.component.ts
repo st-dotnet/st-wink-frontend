@@ -27,4 +27,6 @@ customerOrderData:any;
       this.spinner.hide();
    });
   }
+
+
 }
