@@ -331,3 +331,10 @@ button.btn.btn-link.ng-star-inserted {
 h1.profileField {
     padding-bottom: 20px;
 }
+.signoutBtn button {
+    border: none;
+    background: transparent;
+    font-family: 'g-regular';
+    font-weight: 600;
+    color: #1cb1c5;
+}
