@@ -1,22 +1,22 @@
 <section class="account-page grid-checkout">
-  <div class="container">
-      <div class="row">
+    <div class="container">
+        <div class="row">
 
-          <div class="col-sm-8 account-paged  col-lg-push-8">
-              <div class="enrollment-righ">
-                  <div class="enrollment-main-div">
-                      <div class="enrollment-steps-5">
-                          <h1 class="profileField">Profile</h1>
+            <div class="col-sm-8 account-paged  col-lg-push-8">
+                <div class="enrollment-righ">
+                    <div class="enrollment-main-div">
+                        <div class="enrollment-steps-5">
+                            <h1 class="profileField">Profile</h1>
 
-                          <ngb-accordion activeIds="">
+                            <ngb-accordion activeIds="">
 
-                              <ngb-panel id="promo-sidebar1">
-                                  <ng-template ngbPanelTitle>
-                                      <div class="heading-step1 profile-section">
-                                          <h4>Name</h4>
-                                          <span class="highlight-info">{{UserDetails?.firstName}}</span>
-                                          <span class="vali-promo"> </span>
-                                          <span class="arrow-stepp">
+                                <ngb-panel id="promo-sidebar1">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="heading-step1 profile-section">
+                                            <h4>Name</h4>
+                                            <span class="highlight-info">{{UserDetails?.firstName}}</span>
+                                            <span class="vali-promo"> </span>
+                                            <span class="arrow-stepp">
                                           <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
                                               height="11.2" viewBox="0 0 6.6 11.2">
                                               <path id="Path_2044" data-name="Path 2044"
@@ -24,35 +24,35 @@
                                                   transform="translate(-630.6 -4.4)" />
                                           </svg>
                                       </span>
-                                      </div>
-                                  </ng-template>
-                                  <ng-template ngbPanelContent>
-                                      <form>
-                                          <div [className]="UserDetails.firstName?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                              <!-- <label for="text">Name</label> -->
-                                              <input type="text" class="form-control" [(ngModel)]="UserDetails.firstName" [ngModelOptions]="{standalone: true}">
-                                              <label class="form-label">Name</label>
-                                          </div>
-                                          <div class="emailbtns">
-                                              <div class="cancles">
-                                                  <a href="#"> <button class="cancle-btn">Cancle</button></a>
-                                              </div>
-                                              <div class="saves">
-                                                  <a href="#"> <button class="save-btn" (click)="submit('First Name',UserDetails.firstName)">Save</button></a>
-                                              </div>
-                                          </div>
-                                      </form>
-                                  </ng-template>
-                              </ngb-panel>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <form>
+                                            <div [className]="UserDetails.firstName?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                                <!-- <label for="text">Name</label> -->
+                                                <input type="text" class="form-control" [(ngModel)]="UserDetails.firstName" [ngModelOptions]="{standalone: true}">
+                                                <label class="form-label">Name</label>
+                                            </div>
+                                            <div class="emailbtns">
+                                                <div class="cancles">
+                                                    <a href="#"> <button class="cancle-btn">Cancle</button></a>
+                                                </div>
+                                                <div class="saves">
+                                                    <a href="#"> <button class="save-btn" (click)="submit('First Name',UserDetails.firstName)">Save</button></a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </ng-template>
+                                </ngb-panel>
 
 
-                              <ngb-panel id="promo-sidebar">
-                                  <ng-template ngbPanelTitle>
-                                      <div class="heading-step1 profile-section">
-                                          <h4>User Name</h4>
-                                          <span class="highlight-info">{{UserDetails?.loginName}}</span>
-                                          <span class="vali-promo"> </span>
-                                          <span class="arrow-stepp">
+                                <ngb-panel id="promo-sidebar">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="heading-step1 profile-section">
+                                            <h4>User Name</h4>
+                                            <span class="highlight-info">{{UserDetails?.loginName}}</span>
+                                            <span class="vali-promo"> </span>
+                                            <span class="arrow-stepp">
                                           <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
                                               height="11.2" viewBox="0 0 6.6 11.2">
                                               <path id="Path_2044" data-name="Path 2044"
@@ -60,38 +60,38 @@
                                                   transform="translate(-630.6 -4.4)" />
                                           </svg>
                                       </span>
-                                      </div>
-                                  </ng-template>
-                                  <ng-template ngbPanelContent>
-                                      <form>
-                                          <div [className]="UserDetails.loginName?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                              <input type="text" class="form-control" [(ngModel)]="UserDetails.loginName" [ngModelOptions]="{standalone: true}">
-                                              <label class="form-label">User Name</label>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <form>
+                                            <div [className]="UserDetails.loginName?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                                <input type="text" class="form-control" [(ngModel)]="UserDetails.loginName" [ngModelOptions]="{standalone: true}">
+                                                <label class="form-label">User Name</label>
 
 
-                                          </div>
-                                          <div class="emailbtns">
-                                              <div class="cancles">
-                                                  <a href="#"> <button class="cancle-btn">Cancle</button></a>
-                                              </div>
-                                              <div class="saves">
-                                                  <a href="#"> <button class="save-btn" (click)="submit('login Name',UserDetails.loginName)">Save</button></a>
-                                              </div>
+                                            </div>
+                                            <div class="emailbtns">
+                                                <div class="cancles">
+                                                    <a href="#"> <button class="cancle-btn">Cancle</button></a>
+                                                </div>
+                                                <div class="saves">
+                                                    <a href="#"> <button class="save-btn" (click)="submit('login Name',UserDetails.loginName)">Save</button></a>
+                                                </div>
 
-                                          </div>
-                                      </form>
-                                  </ng-template>
-                              </ngb-panel>
+                                            </div>
+                                        </form>
+                                    </ng-template>
+                                </ngb-panel>
 
 
 
-                              <ngb-panel id="otp-sidebar2">
-                                  <ng-template ngbPanelTitle>
-                                      <div class="heading-step1 profile-section">
-                                          <h4>Password </h4>
-                                          <span class="highlight-info">*********</span>
+                                <ngb-panel id="otp-sidebar2">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="heading-step1 profile-section">
+                                            <h4>Password </h4>
+                                            <span class="highlight-info">*********</span>
 
-                                          <span class="arrow-stepp">
+                                            <span class="arrow-stepp">
                                           <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
                                               height="11.2" viewBox="0 0 6.6 11.2">
                                               <path id="Path_2044" data-name="Path 2044"
@@ -99,44 +99,44 @@
                                                   transform="translate(-630.6 -4.4)" />
                                           </svg>
                                       </span>
-                                      </div>
-                                  </ng-template>
-                                  <ng-template ngbPanelContent>
-                                      <div class="panel-body">
-                                          <div id="view-logininformation-798275e4-d1dd-4d37-a977-497293c0fe5d">
-                                              <div class="row ">
-                                                  <div class=" col-sm-12 pinfo">
-                                                      <form>
-                                                          <div [className]="password?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <div class="panel-body">
+                                            <div id="view-logininformation-798275e4-d1dd-4d37-a977-497293c0fe5d">
+                                                <div class="row ">
+                                                    <div class=" col-sm-12 pinfo">
+                                                        <form>
+                                                            <div [className]="password?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
 
-                                                              <input type="password" class="form-control" [(ngModel)]="UserDetails.LoginPassword" [ngModelOptions]="{standalone: true}" id="exampleInputPassword1">
-                                                              <label for="form-label">Password</label>
-                                                          </div>
-                                                          <div class="emailbtns">
-                                                              <div class="cancles">
-                                                                  <a href="#"> <button class="cancle-btn">Cancle</button></a>
-                                                              </div>
-                                                              <div class="saves">
-                                                                  <a href="#"> <button class="save-btn" (click)="submit('password',UserDetails.LoginPassword)">Save</button></a>
-                                                              </div>
+                                                                <input type="password" class="form-control" [(ngModel)]="UserDetails.LoginPassword" [ngModelOptions]="{standalone: true}" id="exampleInputPassword1">
+                                                                <label for="form-label">Password</label>
+                                                            </div>
+                                                            <div class="emailbtns">
+                                                                <div class="cancles">
+                                                                    <a href="#"> <button class="cancle-btn">Cancle</button></a>
+                                                                </div>
+                                                                <div class="saves">
+                                                                    <a href="#"> <button class="save-btn" (click)="submit('password',UserDetails.LoginPassword)">Save</button></a>
+                                                                </div>
 
-                                                          </div>
-                                                      </form>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </ng-template>
-                              </ngb-panel>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ngb-panel>
 
 
-                              <ngb-panel id="otp-sidebar">
-                                  <ng-template ngbPanelTitle>
-                                      <div class="heading-step1 profile-section">
-                                          <h4>Email </h4>
-                                          <span class="highlight-info">{{UserDetails?.email}}</span>
+                                <ngb-panel id="otp-sidebar">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="heading-step1 profile-section">
+                                            <h4>Email </h4>
+                                            <span class="highlight-info">{{UserDetails?.email}}</span>
 
-                                          <span class="arrow-stepp">
+                                            <span class="arrow-stepp">
                                           <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
                                               height="11.2" viewBox="0 0 6.6 11.2">
                                               <path id="Path_2044" data-name="Path 2044"
@@ -144,19 +144,19 @@
                                                   transform="translate(-630.6 -4.4)" />
                                           </svg>
                                       </span>
-                                      </div>
-                                  </ng-template>
-                                  <ng-template ngbPanelContent>
-                                      <div class="panel-body">
-                                          <div id="view-logininformation-798275e4-d1dd-4d37-a977-497293c0fe5d">
-                                              <div class="row ">
-                                                  <div class=" col-sm-12 pinfo">
-                                                      <form>
-                                                          <div [className]="UserDetails.email?  'special-field datafilled form-group ' : 'special-field dataempty form-group emailsection'">
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <div class="panel-body">
+                                            <div id="view-logininformation-798275e4-d1dd-4d37-a977-497293c0fe5d">
+                                                <div class="row ">
+                                                    <div class=" col-sm-12 pinfo">
+                                                        <form>
+                                                            <div [className]="UserDetails.email?  'special-field datafilled form-group ' : 'special-field dataempty form-group emailsection'">
 
-                                                              <input type="email" class="form-control" [(ngModel)]="UserDetails.email" [ngModelOptions]="{standalone: true}" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                                              <label class="emailLable" for="exampleInputEmail1">Email* </label>
-                                                              <small id="emailHelp" class="form-text text-muted">
+                                                                <input type="email" class="form-control" [(ngModel)]="UserDetails.email" [ngModelOptions]="{standalone: true}" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                                                <label class="emailLable" for="exampleInputEmail1">Email* </label>
+                                                                <small id="emailHelp" class="form-text text-muted">
                                                                   <div
                                                                       class="custom-control custom-checkbox mycheckbox">
                                                                       <input type="checkbox"
@@ -167,31 +167,31 @@
                                                                   </div>We'll never share your email with anyone
                                                                   else.
                                                               </small>
-                                                          </div>
-                                                          <div class="emailbtns">
-                                                              <div class="cancles">
-                                                                  <a href="#"> <button class="cancle-btn">Cancle</button></a>
-                                                              </div>
-                                                              <div class="saves">
-                                                                  <a href="#"> <button class="save-btn" (click)="submit('email',UserDetails.email)" >Save</button></a>
-                                                              </div>
+                                                            </div>
+                                                            <div class="emailbtns">
+                                                                <div class="cancles">
+                                                                    <a href="#"> <button class="cancle-btn">Cancle</button></a>
+                                                                </div>
+                                                                <div class="saves">
+                                                                    <a href="#"> <button class="save-btn" (click)="submit('email',UserDetails.email)">Save</button></a>
+                                                                </div>
 
-                                                          </div>
-                                                          <label for="text"></label>
-                                                      </form>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </ng-template>
-                              </ngb-panel>
+                                                            </div>
+                                                            <label for="text"></label>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ngb-panel>
 
-                              <ngb-panel id="otp-sidebar3">
-                                  <ng-template ngbPanelTitle>
-                                      <div class="heading-step1">
-                                          <h4>Phone Number </h4>
-                                          <span class="highlight-info">{{UserDetails?.mobilePhone}}, {{UserDetails?.mobilePhone}}</span>
-                                          <span class="arrow-stepp">
+                                <ngb-panel id="otp-sidebar3">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="heading-step1">
+                                            <h4>Phone Number </h4>
+                                            <span class="highlight-info">{{UserDetails?.mobilePhone}}, {{UserDetails?.mobilePhone}}</span>
+                                            <span class="arrow-stepp">
                                           <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
                                               height="11.2" viewBox="0 0 6.6 11.2">
                                               <path id="Path_2044" data-name="Path 2044"
@@ -199,86 +199,76 @@
                                                   transform="translate(-630.6 -4.4)" />
                                           </svg>
                                       </span>
-                                      </div>
-                                  </ng-template>
-                                  <ng-template ngbPanelContent>
-                                      <div class="panel-body">
-                                          <div id="view-logininformation-798275e4-d1dd-4d37-a977-497293c0fe5d">
-                                              <div class="row ">
-                                                  <div class=" col-sm-12 pinfo">
-                                                      <form>
-                                                          <div [className]="UserDetails.mobilePhone?  'special-field datafilled form-group ' : 'special-field dataempty form-group emailsection'">
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <div class="panel-body">
+                                            <div id="view-logininformation-798275e4-d1dd-4d37-a977-497293c0fe5d">
+                                                <div class="row ">
+                                                    <div class=" col-sm-12 pinfo">
+                                                        <form>
+                                                            <div [className]="UserDetails.mobilePhone?  'special-field datafilled form-group ' : 'special-field dataempty form-group emailsection'">
 
-                                                              <input type="tell" class="form-control" id="Phone"  [(ngModel)]="UserDetails.mobilePhone" [ngModelOptions]="{standalone: true}">
+                                                                <input type="tell" class="form-control" id="Phone" [(ngModel)]="UserDetails.mobilePhone" [ngModelOptions]="{standalone: true}">
 
-                                                              <label class="emailLable number" for="exampleInputPassword1" >Mobile Phone*
+                                                                <label class="emailLable number" for="exampleInputPassword1">Mobile Phone*
                                                               </label>
-                                                              <p>Required*</p>
+                                                                <p>Required*</p>
 
-                                                          </div>
-                                                          <div [className]="UserDetails.mobilePhone?  'special-field datafilled form-group ' : 'special-field dataempty form-group emailsection numbersection home'">
+                                                            </div>
+                                                            <div [className]="UserDetails.mobilePhone?  'special-field datafilled form-group ' : 'special-field dataempty form-group emailsection numbersection home'">
 
-                                                              <input type="tell" class="form-control"  [(ngModel)]="UserDetails.phone" [ngModelOptions]="{standalone: true}" id="Phone">
-                                                              <label class="emailLable number home" for="exampleInputPassword1">Home Phone*</label>
+                                                                <input type="tell" class="form-control" [(ngModel)]="UserDetails.phone" [ngModelOptions]="{standalone: true}" id="Phone">
+                                                                <label class="emailLable number home" for="exampleInputPassword1">Home Phone*</label>
+                                                            </div>
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="defaultCheckedDisabled2">
+                                                                <label class="custom-control-label" for="defaultCheckedDisabled2">yes, I would
+                                                                  like to receive notification via text
+                                                                  Message </label>
 
-                                                              <div class="custom-control custom-checkbox">
-                                                                  <input type="checkbox" class="custom-control-input" id="defaultCheckedDisabled2">
-                                                                  <label class="custom-control-label" for="defaultCheckedDisabled2">yes, I would
-                                                                      like to receive notification via text
-                                                                      Message </label>
+                                                            </div>
+                                                            <div class="emailbtns">
+                                                                <div class="cancles">
+                                                                    <a href="#"> <button class="cancle-btn">Cancle</button></a>
+                                                                </div>
+                                                                <div class="saves">
+                                                                    <a href="#"> <button class="save-btn" (click)="submit('Mobile Phone and Home Phone',UserDetails.mobilePhone)">Save</button></a>
+                                                                </div>
 
-                                                              </div>
-                                                              <div class="emailbtns">
-                                                                  <div class="cancles">
-                                                                      <a href="#"> <button class="cancle-btn">Cancle</button></a>
-                                                                  </div>
-                                                                  <div class="saves">
-                                                                      <a href="#"> <button class="save-btn" (click)="submit('Mobile Phone and Home Phone',UserDetails.mobilePhone)">Save</button></a>
-                                                                  </div>
-
-                                                              </div>
-                                                          </div>
-                                                      </form>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </ng-template>
-                              </ngb-panel>
-
-
-                          </ngb-accordion>
-                          <div class="signoutBtn">
-
-                              <i class="fas fa-sign-out-alt"> <strong> Sign Out</strong></i>
-
-                          </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ngb-panel>
 
 
+                            </ngb-accordion>
+                            <div class="signoutBtn">
+
+                                <i class="fas fa-sign-out-alt"> <strong> Sign Out</strong></i>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 enrollment-pages profile-page  col-lg-pull-4 ">
+                <div class="enrollment-page profile-page">
+                    <div class="showsidebar toggle-sidebar hidden-lg">
+                        <div class="cart-sidebar sidebar-collapse">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
 
-
-
-
-
-                      
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="col-sm-4 enrollment-pages profile-page  col-lg-pull-4 ">
-              <div class="enrollment-page profile-page">
-                  <div class="showsidebar toggle-sidebar hidden-lg">
-                      <div class="cart-sidebar sidebar-collapse">
-
-                      </div>
-                  </div>
-
-              </div>
-          </div>
-
-
-      </div>
-  </div>
+        </div>
+    </div>
 </section>
