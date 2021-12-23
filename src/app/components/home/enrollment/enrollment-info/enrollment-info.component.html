@@ -1,82 +1,78 @@
 <section class="enrollment-info">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="content-enrollment">
-          <h3>Simplify Parenting, Help Others, Make Money</h3>
-          <p>We pride ourselves on our problem solving skills at Wink Naturals and our Venture Sellers are out there
-            helping other families solve their most common problems every single day by simply sharing, not selling, the
-            Wink products they already love and use. We are poised and ready to crack the untapped family care market
-            WIDE open, join us and be a part of all the good we have going on and the greatness yet to come!</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="content-enrollment">
+                    <h3>Simplify Parenting, Help Others, Make Money</h3>
+                    <p>We pride ourselves on our problem solving skills at Wink Naturals and our Venture Sellers are out there helping other families solve their most common problems every single day by simply sharing, not selling, the Wink products they
+                        already love and use. We are poised and ready to crack the untapped family care market WIDE open, join us and be a part of all the good we have going on and the greatness yet to come!</p>
 
-          <div class="listing-content mt-4">
-            <h4>What’s included?</h4>
-            <ul class="list-items">
-              <li>25-40% commissions</li>
-              <li>Fast Start bonuses</li>
-              <li>No required autoships</li>
-              <li>No recruiting required</li>
-              <li>No outlandish fees or sales quotas</li>
-              <li>Flexible and family friendly to meet your lifestyle needs</li>
-              <li>Commissions paid weekly and monthly</li>
-            </ul>
-          </div>
-          <div class="enrollment-btn">
-            <p>Enrollment is now open!</p>
-            <p><a (click)="open(enroll_config)">JOIN NOW</a></p>
-          </div>
+                    <div class="listing-content mt-4">
+                        <h4>What’s included?</h4>
+                        <ul class="list-items">
+                            <li>25-40% commissions</li>
+                            <li>Fast Start bonuses</li>
+                            <li>No required autoships</li>
+                            <li>No recruiting required</li>
+                            <li>No outlandish fees or sales quotas</li>
+                            <li>Flexible and family friendly to meet your lifestyle needs</li>
+                            <li>Commissions paid weekly and monthly</li>
+                        </ul>
+                    </div>
+                    <div class="enrollment-btn">
+                        <p>Enrollment is now open!</p>
+                        <p><a (click)="open(enroll_config)">JOIN NOW</a></p>
+                    </div>
 
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="content-video-enrollment">
+                    <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" src="https://fast.wistia.net/embed/iframe/ajrey1hj1m" width="495" height="280"></iframe>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="content-video-enrollment">
-          <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no"
-            class="wistia_embed" name="wistia_embed" src="https://fast.wistia.net/embed/iframe/ajrey1hj1m" width="495"
-            height="280"></iframe>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
 
 
 <ng-template #enroll_config let-modal>
-  <div [ngClass]="{'enrollconfig_modal': true}">
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Enrollment Configuration</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <div [ngClass]="{'enrollconfig_modal': true}">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Enrollment Configuration</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
-    </div>
-    <div class="modal-body">
-      <h4>Let's get started</h4>
-      <div class="option-enroll">
-        <p>If you have been referred, please enter the Member ID or the Member's username. Otherwise click "Not
-          Referred"</p>
-        <ul>
-          <li><a (click)="toggleShow()">Choose Member</a></li>
-          <li><a routerLink="/enrollment/enrollment-packs" routerLinkActive="active" (click)="modal.close()">Not
+        </div>
+        <div class="modal-body">
+            <h4>Let's get started</h4>
+            <div class="option-enroll">
+                <p>If you have been referred, please enter the Member ID or the Member's username. Otherwise click "Not Referred"
+                </p>
+                <ul>
+                    <li><a (click)="toggleShow()">Choose Member</a></li>
+                    <li><a routerLink="/enrollment/enrollment-packs" routerLinkActive="active" (click)="modal.close()">Not
               Referred</a></li>
-        </ul>
-      </div>
-      <div class="enroll-member" *ngIf="isClickedMember">
-        <h5>Find Your Referrer</h5>
-        <p>Search for your referrer by entering their Customer ID, First or Last name.</p>
-        <form class="member-search">
-          <div class="form-group">
-            <input type="text" name="search" placeholder="Search Member" /><button type="submit"><i
+                </ul>
+            </div>
+            <div class="enroll-member" *ngIf="isClickedMember">
+                <h5>Find Your Referrer</h5>
+                <p>Search for your referrer by entering their Customer ID, First or Last name.</p>
+                <form class="member-search">
+                    <div class="form-group">
+                        <input type="text" name="search" placeholder="Search Member" /><button type="submit"><i
                 class="fas fa-search"></i></button>
-          </div>
-        </form>
-      </div>
+                    </div>
+                </form>
+            </div>
 
-    </div>
-    <div class="modal-footer">
-      <div class="enrollment-btn">
-        <p><a href="" routerLink="/enrollment/enrollment-packs" routerLinkActive="active" (click)="modal.close()">JOIN
+        </div>
+        <div class="modal-footer">
+            <div class="enrollment-btn">
+                <p><a href="" routerLink="/enrollment/enrollment-packs" routerLinkActive="active" (click)="modal.close()">JOIN
             NOW</a></p>
-      </div>
+            </div>
 
+        </div>
     </div>
-  </div>
 </ng-template>
