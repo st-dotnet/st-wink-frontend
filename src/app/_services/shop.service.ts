@@ -63,6 +63,9 @@ export class ShopService {
     return this.http.get<string>(`${environment.apiUrl}${this.paymentEndpoint}GenerateCreditCardToken?cardNumber=${cardNumber}`);
   }
 
+  getCustomerAddressById(customerId: number) {
+    return this.http.get<any[]>(`${environment.apiUrl}${this.shopEndpoint}GetCustomer?partyId=${customerId}`);
+  }
   getClientToken()
   {
     return this.http.get<any>(`${environment.apiUrl}${this.paymentEndpoint}GetClientToken`);

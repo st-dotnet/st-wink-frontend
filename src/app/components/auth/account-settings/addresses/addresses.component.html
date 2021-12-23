@@ -9,11 +9,11 @@
 
                             <ngb-accordion activeIds="">
 
-                                <ngb-panel id="promo-sidebar1">
+                                <ngb-panel id="promo-sidebar1"  *ngFor="let address of addressess; let i = index">
                                     <ng-template ngbPanelTitle>
                                         <div class="heading-step1 profile-section">
                                             <h4> Primary address</h4>
-                                            <span class="highlight-info">Amanda Hall 564 w 700 STE 205</span>
+                                            <span class="highlight-info">{{ address.mainAddress1 }} {{ address.mainAddress2 }}</span>
                                             <span class="vali-promo"> </span>
                                             <span class="arrow-stepp">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
@@ -27,15 +27,14 @@
                                     </ng-template>
                                     <ng-template ngbPanelContent>
                                         <form>
-
                                             <div class="addresTwo">
-                                                <span>Amanda Hall</span><br>
-                                                <span>564 w 700</span><br>
-                                                <span>Orem, UT 84025</span>
+                                                <span> {{ address.mainAddress1 }} {{ address.mainAddress2 }}</span><br>
+                                                <span>{{address.mainCity}}</span><br>
+                                                <span>{{address.mainState}}{{ address.mainCounty}} {{address.mainZip}}</span>
                                             </div>
                                             <div class="emailbtns">
                                                 <div class="cancles">
-                                                    <a href="#"> <button class="cancle-btn">Cancle</button></a>
+                                                    <a href="#"> <button class="cancle-btn">Cancel</button></a>
                                                 </div>
                                                 <div class="saves">
                                                     <a href="#"> <button class="save-btn">Save</button></a>
@@ -45,56 +44,6 @@
                                         </form>
                                     </ng-template>
                                 </ngb-panel>
-
-
-                                <ngb-panel id="promo-sidebar">
-                                    <ng-template ngbPanelTitle>
-                                        <div class="heading-step1 profile-section">
-                                            <h4>Address #2</h4>
-                                            <span class="highlight-info">Amanda Hall 564 w 700 STE 205</span>
-                                            <span class="vali-promo"> </span>
-                                            <span class="arrow-stepp">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
-                                                height="11.2" viewBox="0 0 6.6 11.2">
-                                                <path id="Path_2044" data-name="Path 2044"
-                                                    d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                    transform="translate(-630.6 -4.4)" />
-                                            </svg>
-                                        </span>
-                                        </div>
-                                    </ng-template>
-                                    <ng-template ngbPanelContent>
-
-                                        <!-- <div [className]="fieldprofile2?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                <input type="text" class="form-control" [(ngModel)]="fieldprofile2" [ngModelOptions]="{standalone: true}">
-                                                <label class="form-label">User Name</label>
-
-
-                                            </div> -->
-                                        <div class="addresTwo">
-                                            <span>Amanda Hall</span><br>
-                                            <span>564 w 700</span><br>
-                                            <span>Orem, UT 84025</span>
-                                        </div>
-                                        <div class="emailbtns">
-                                            <div class="saves">
-                                                <a href="#"> <button class="save-btn"> Make Primary</button></a>
-                                            </div>
-                                            <div class="cancles">
-                                                <a href="#"> <button class="cancle-btn">Edit Address</button></a>
-                                            </div>
-
-                                            <div class="delete">
-                                                <a href="#"> <i class="fas fa-trash"> <span> Delete</span></i></a>
-                                            </div>
-
-
-                                        </div>
-
-                                    </ng-template>
-                                </ngb-panel>
-
-
 
                                 <ngb-panel id="otp-sidebar2">
                                     <ng-template ngbPanelTitle>
@@ -115,70 +64,62 @@
                                     <ng-template ngbPanelContent>
                                         <div class="panel-body">
                                             <div id="view-logininformation-798275e4-d1dd-4d37-a977-497293c0fe5d">
+                                                <form [formGroup]="shippingAddressForm" (ngSubmit)="onAddressSubmit()">
                                                 <div class="row ">
                                                     <div class=" col-sm-12 pinfo">
-                                                        <form>
-                                                            <div [className]="fieldprofile3?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
 
-                                                                <input class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="ShippingAddress_Address1" name="ShippingAddress.Address1" type="text" value="">
-                                                                <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address1" data-valmsg-replace="true"></span>
-                                                                <label for="form-label">Street address</label>
+                                                                <input formControlName="streetAddress" placeholder="Street address" [ngClass]="{ 'is-invalid': addressSubmitted && s.streetAddress?.errors }" class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="ShippingAddress_Address1" name="ShippingAddress.Address1" type="text" value="">
+                                                                <!-- <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address1" data-valmsg-replace="true"></span> -->
+                                                                <div *ngIf="addressSubmitted && s.streetAddress.errors" class="field-validation-valid">
+                                                                    <div *ngIf="s.streetAddress.errors.required">street Address is required</div>
+                                                                  </div>
+                                                                <!-- <label for="form-label">Street address</label>  -->
                                                                 <p></p>
-                                                            </div>
-                                                        </form>
+
                                                     </div>
-
-
-
-
                                                     <div class="col-sm-6">
-                                                        <form>
-                                                            <div [className]="fieldprofile3?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                                <input class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="ShippingAddress_Address1" name="ShippingAddress.Address1" type="text" value="">
-                                                                <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address1" data-valmsg-replace="true"></span>
-                                                                <label for="form-label">City</label>
+
+                                                                <input class="form-control personalInfo"  placeholder="City" formControlName="city"[ngClass]="{ 'is-invalid': addressSubmitted && s.city?.errors }"  data-role="City" data-val="true" data-val-required="city is required" id="ShippingAddress_city" name="ShippingAddress.city" type="text" value="">
+                                                                <div *ngIf="addressSubmitted && s.city.errors" class="field-validation-valid">
+                                                                    <div *ngIf="s.city.errors.required">city is required</div>
+                                                                  </div>
                                                                 <p></p>
-                                                            </div>
-                                                        </form>
                                                     </div>
 
                                                     <div class="col-sm-6">
-                                                        <form>
-                                                            <div [className]="fieldprofile3?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-                                                                <input class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="ShippingAddress_Address1" name="ShippingAddress.Address1" type="text" value="">
-                                                                <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address1" data-valmsg-replace="true"></span>
-                                                                <label for="form-label">State</label>
+                                                          
+                                                                <input class="form-control personalInfo"   placeholder="State" formControlName="state" [ngClass]="{ 'is-invalid': addressSubmitted && s.state?.errors }" data-role="state" data-val="true" data-val-required="state is required" id="ShippingAddress_state" name="ShippingAddress.state" type="text" value="">
+                                                                <!-- <span class="field-validation-valid" data-valmsg-for="ShippingAddress.state" data-valmsg-replace="true"></span> -->
+                                                                <div *ngIf="addressSubmitted && s.state.errors" class="field-validation-valid">
+                                                                    <div *ngIf="s.state.errors.required">state is required</div>
+                                                                  </div>
                                                                 <p></p>
-                                                            </div>
-                                                        </form>
                                                     </div>
                                                     <div class=" col-sm-12 pinfo">
-                                                        <form>
-                                                            <div [className]="fieldprofile3?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-
-                                                                <input class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="ShippingAddress_Address1" name="ShippingAddress.Address1" type="text" value="">
-                                                                <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address1" data-valmsg-replace="true"></span>
-                                                                <label for="form-label">Zip</label>
+                                                            <div>
+                                                                <input class="form-control personalInfo"  placeholder="Zip" formControlName="zip" [ngClass]="{ 'is-invalid': addressSubmitted && s.zip?.errors }"  data-role="zip" data-val="true" data-val-required="zip is required" id="ShippingAddress_zip" name="ShippingAddress.zip" type="text" value="">
+                                                                <!-- <span class="field-validation-valid" data-valmsg-for="ShippingAddress.zip" data-valmsg-replace="true"></span> -->
+                                                                <div *ngIf="addressSubmitted && s.zip.errors" class="field-validation-valid">
+                                                                    <div *ngIf="s.zip.errors.required">zip is required</div>
+                                                                  </div>
                                                                 <p></p>
                                                             </div>
-
-                                                            <div [className]="fieldprofile3?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
-
-                                                                <input class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="ShippingAddress_Address1" name="ShippingAddress.Address1" type="text" value="">
-                                                                <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address1" data-valmsg-replace="true"></span>
-                                                                <label for="form-label">Country</label>
+                                                            <div>
+                                                                <input class="form-control personalInfo" formControlName="country" placeholder="Country" [ngClass]="{ 'is-invalid': addressSubmitted && s.country?.errors }" data-role="country" data-val="true" data-val-required="countryis required" id="ShippingAddress_country" name="ShippingAddress.country" type="text" value="">
+                                                                <!-- <span class="field-validation-valid" data-valmsg-for="ShippingAddress.country" data-valmsg-replace="true"></span> -->
+                                                                <div *ngIf="addressSubmitted && s.country.errors" class="field-validation-valid">
+                                                                    <div *ngIf="s.country.errors.required">country is required</div>
+                                                                  </div>
                                                                 <p></p>
                                                             </div>
-                                                        </form>
+                                                        
                                                     </div>
 
                                                     <div class=" col-sm-12 pinfo">
                                                         <div class="emailbtns">
-                                                            <!-- <div class="cancles">
-                                                                <a href="#"> <button class="cancle-btn">Cancle</button></a>
-                                                            </div> -->
+                                                           
                                                             <div class="saves">
-                                                                <a href="#"> <button class="save-btn">Save Changes</button></a>
+                                                                <button class="save-btn">Save Changes</button>
                                                             </div>
 
                                                         </div>
@@ -186,6 +127,7 @@
 
 
                                                 </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </ng-template>

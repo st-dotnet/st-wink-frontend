@@ -16,27 +16,27 @@ export class CreateOrderRequest {
   other19: string;
   other20: string;
   orderType: any;
-  taxRateOverride: number | null;
-  shippingAmountOverride: number | null;
+  taxRateOverride?: number;
+  shippingAmountOverride: number;
   other13: string;
-  useManualOrderID: boolean | null;
-  transferVolumeToID: number | null;
-  returnOrderID: number | null;
+  useManualOrderID?: boolean;
+  transferVolumeToID?: number;
+  returnOrderID?: number;
   overwriteExistingOrder: boolean;
   existingOrderID: number;
-  partyID: number | null;
+  partyID: number;
   details: OrderDetailRequest[];
   suppressPackSlipPrice: boolean;
   transferVolumeToKey: string;
   returnOrderKey: string;
   manualOrderKey: string;
-  manualOrderID: number | null;
+  manualOrderID?: number;
   existingOrderKey: string;
   other12: string;
   notes: string;
   customerID: number;
   orderStatus: any;
-  orderDate: string;
+  orderDate: any;
   currencyCode: string;
   warehouseID: number;
   shipMethodID: number;
@@ -79,30 +79,30 @@ export class CreateCustomerRequest {
   field2: string;
   field1: string;
   birthDate: string;
-  isSalesTaxExempt: boolean | null;
+  isSalesTaxExempt?: boolean;
   currencyCode: string;
-  salesTaxExemptExpireDate: string | null;
+  salesTaxExemptExpireDate: any;
   payableToName: string;
-  defaultWarehouseID: number | null;
+  defaultWarehouseID?: number;
   sponsorKey: string;
-  otherAddressVerified: boolean | null;
-  mailAddressVerified: boolean | null;
-  mainAddressVerified: boolean | null;
-  useBinaryHoldingTank: boolean | null;
-  binaryPlacementPreference: number | null;
+  otherAddressVerified: boolean;
+  mailAddressVerified: boolean;
+  mainAddressVerified: boolean;
+  useBinaryHoldingTank: boolean;
+  binaryPlacementPreference?: number;
   nameSuffix: string;
   middleName: string;
-  date5: string | null;
-  date4: string | null;
-  date3: string | null;
-  date2: string | null;
-  date1: string | null;
+  date5: any;
+  date4: any;
+  date3: any;
+  date2: any;
+  date1: any;
   vatRegistration: string;
-  gender: any | null;
+  gender: any;
   languageID: number;
   taxIDType: string;
-  checkThreshold: number | null;
-  payableType: any | null;
+  checkThreshold?: number;
+  payableType?: any;
   entryDate: string;
   salesTaxID: string;
   taxID: string;
@@ -121,7 +121,7 @@ export class CreateCustomerRequest {
   phone2: string;
   phone: string;
   email: string;
-  customerStatus: number | null;
+  customerStatus?: number;
   customerType: number;
   company: string;
   lastName: string;
@@ -165,12 +165,12 @@ export class ChargeCreditCardTokenRequest {
   otherData2: string;
   otherData1: string;
   clientIPAddress: string;
-  merchantWarehouseIDOverride: number | null;
-  maxAmount: number | null;
+  merchantWarehouseIDOverride?: number;
+  maxAmount?: number;
   otherData10: string;
   orderID: number;
-  expirationMonth: number | null;
-  creditCardType: number | null;
+  expirationMonth?: number;
+  creditCardType?: number;
   issueNumber: string;
   cvcCode: string;
   billingCountry: string;
@@ -181,7 +181,7 @@ export class ChargeCreditCardTokenRequest {
   billingAddress: string;
   billingName: string;
   creditCardToken: string;
-  expirationYear: number | null;
+  expirationYear?: number;
   orderKey: string;
 }
 
@@ -211,14 +211,14 @@ export class CreateAutoOrderRequest {
   customerID: number;
   frequency: any;
   startDate: string;
-  stopDate: string | null;
-  specificDayInterval: number | null;
+  stopDate: any;
+  specificDayInterval?: number;
   currencyCode: string;
   warehouseID: number;
   shipMethodID: number;
   priceType: number;
   paymentType: any;
-  processType: any | null;
+  processType: any;
   firstName: string;
   middleName: string;
   lastName: string;
@@ -232,10 +232,10 @@ export class CreateAutoOrderRequest {
 }
 
 export class SetAccountCreditCardTokenRequest {
-  tokenType: number | null;
+  tokenType?: number;
   movePrimaryToSecondary: boolean;
   customerKey: string;
-  hideFromWeb: boolean | null;
+  hideFromWeb: boolean;
   billingCountry: string;
   billingZip: string;
   billingState: string;
@@ -244,7 +244,7 @@ export class SetAccountCreditCardTokenRequest {
   billingAddress2: string;
   useMainAddress: boolean;
   billingName: string;
-  creditCardType: number | null;
+  creditCardType?: number;
   expirationYear: number;
   expirationMonth: number;
   creditCardToken: string;
@@ -255,35 +255,35 @@ export class SetAccountCreditCardTokenRequest {
 }
 
 export class OrderDetailRequest {
-  descriptionOverride: string;
-  other10EachOverride: number | null;
-  other9EachOverride: number | null;
-  other8EachOverride: number | null;
-  other7EachOverride: number | null;
-  other6EachOverride: number | null;
-  other5EachOverride: number | null;
-  other4EachOverride: number | null;
-  other3EachOverride: number | null;
-  other2EachOverride: number | null;
-  other1EachOverride: number | null;
-  commissionableVolumeEachOverride: number | null;
-  businessVolumeEachOverride: number | null;
-  shippingPriceEachOverride: number | null;
-  taxableEachOverride: number | null;
-  priceEachOverride: number | null;
+  descriptionOverride?: string;
+  other10EachOverride?: number;
+  other9EachOverride?: number;
+  other8EachOverride?: number;
+  other7EachOverride?: number;
+  other6EachOverride?: number;
+  other5EachOverride?: number;
+  other4EachOverride?: number;
+  other3EachOverride?: number;
+  other2EachOverride?: number;
+  other1EachOverride?: number;
+  commissionableVolumeEachOverride?: number;
+  businessVolumeEachOverride?: number;
+  shippingPriceEachOverride?: number;
+  taxableEachOverride?: number;
+  priceEachOverride?: number;
   parentItemCode: string;
   quantity: number;
-  parentOrderDetailID: string | null;
-  orderDetailID: string | null;
+  parentOrderDetailID: any;
+  orderDetailID: any;
   itemCode: string;
   reference1: string;
   advancedAutoOptions: AdvancedAutoOptionsRequest;
 }
 
 export class AdvancedAutoOptionsRequest {
-  processWhileDate: string | null;
-  skipUntilDate: string | null;
-  detailStartDate: string | null;
-  detailEndDate: string | null;
-  detailInterval: number | null;
+  processWhileDate: any;
+  skipUntilDate: any;
+  detailStartDate: any;
+  detailEndDate: any;
+  detailInterval?: number;
 }
