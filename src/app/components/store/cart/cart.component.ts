@@ -157,7 +157,6 @@ if(this.sessionService.getSessionObject('inputdata'))
   }
 
   addPromo() {
-  
     if (this.promocode_onetime != null && this.promocode_onetime != undefined && this.promocode_onetime != "") {
       this.sessionService.setSessionItem('promoCode', this.promocode_onetime);
     }
@@ -183,7 +182,10 @@ if(this.sessionService.getSessionObject('inputdata'))
                 "'."
               );
               if (this.promoPercentage > 0) {
-                this.totalDiscount = this.ParseFloat(this.totalDiscount.toString()) + this.ParseFloat(this.promoPercentage.toString());
+                //old code
+                 //this.totalDiscount = this.ParseFloat(this.totalDiscount.toString()) + this.ParseFloat(this.promoPercentage.toString());
+                 //new code  by parveen
+                 this.totalDiscount = this.ParseFloat(this.totalDiscount.toFixed(2)) + this.ParseFloat(this.promoPercentage.toFixed(2));
                  this.cartSummaryTotal = this.cartSummaryTotal - this.promoPercentage;
                }
              }
