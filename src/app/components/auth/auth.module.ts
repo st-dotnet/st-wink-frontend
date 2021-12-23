@@ -11,13 +11,14 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
 import { CanDeactivateGuard } from '@app/_helpers/can-deactivate-guard';
-import { AccountSettingsComponent } from '../account-settings/account-settings.component';
-import { ProfileComponent } from '../account-settings/profile/profile.component';
-import { OrdersComponent } from '../account-settings/orders/orders.component';
-import { SubscriptionsComponent } from '../account-settings/subscriptions/subscriptions.component';
-import { LoyaltyPointsComponent } from '../account-settings/loyalty-points/loyalty-points.component';
-import { AddressesComponent } from '../account-settings/addresses/addresses.component';
-import { PaymentsComponent } from '../account-settings/payments/payments.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { ProfileComponent } from './account-settings/profile/profile.component';
+import { OrdersComponent } from './account-settings/orders/orders.component';
+import { SubscriptionsComponent } from './account-settings/subscriptions/subscriptions.component';
+import { LoyaltyPointsComponent } from './account-settings/loyalty-points/loyalty-points.component';
+import { AddressesComponent } from './account-settings/addresses/addresses.component';
+import { PaymentsComponent } from './account-settings/payments/payments.component';
+
 
 
 

@@ -1,0 +1,146 @@
+<section class="account-page grid-checkout content-spacer-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 account-paged  col-lg-push-8">
+                <div class="enrollment-righ">
+                    <div class="enrollment-main-div">
+                        <div class="enrollment-steps-5">
+                            <h1 class="profileField">Loyal Points</h1>
+                            <div class="table-loyal card">
+                                <div class="head-loyal-info card-header">
+                                    <h4 class="title-points">Points Total</h4>
+                                    <h3 class="value-points">${{total|number:'.1-2'}}</h3>
+                                </div>
+                                <div class="content-points card-body">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr  *ngFor="let item of loyalityData">
+                                                <td>
+                                                    <h4 class="title-data-points">Order:{{item.orderID}}</h4>
+                                                    <p class="summary-points">
+                                                        <span class="date-points">{{item.transactionDate|date}}</span>
+                                                        <span class="cate-points">{{item.pointTransactionType.pointTransactionTypeDescription}}</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+
+                                                    <p *ngIf="item.pointTransactionType.pointTransactionTypeDescription=='Adjustment' || item.pointTransactionType.pointTransactionTypeDescription=='Point Redemption'" class="price-data cut-bonus">-{{item.formattedAmount}}</p>
+                                                    <!-- <p *ngIf="item.pointTransactionType.pointTransactionTypeDescription=='Point Redemption'" class="price-data cut-bonus">-{{item.formattedAmount}}</p> -->
+                                                </td>
+
+                                            </tr>
+                                            <!-- <tr>
+                                                <td>
+                                                    <h4 class="title-data-points">Order: 52987</h4>
+                                                    <p class="summary-points">
+                                                        <span class="date-points">12/20/2021</span>
+                                                        <span class="cate-points">Point Redemption</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="price-data cut-bonus">-$15.16</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h4 class="title-data-points">Order: 48575</h4>
+                                                    <p class="summary-points">
+                                                        <span class="date-points">12/20/2021</span>
+                                                        <span class="cate-points">Adjustment</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="price-data cut-bonus">-$15.16</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h4 class="title-data-points">Credits Expired</h4>
+                                                    <p class="summary-points">
+                                                        <span class="date-points">12/20/2021</span>
+                                                        <span class="cate-points">Adjustment</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="price-data cut-bonus">-$10.00</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h4 class="title-data-points">Bonus</h4>
+                                                    <p class="summary-points">
+                                                        <span class="date-points">12/20/2021</span>
+                                                        <span class="cate-points">Adjustment</span></p>
+                                                </td>
+                                                <td>
+                                                    <p class="price-data bonus">+$12.52</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h4 class="title-data-points">Order: 52987</h4>
+                                                    <p class="summary-points">
+                                                        <span class="date-points">12/20/2021</span>
+                                                        <span class="cate-points">Point Redemption</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="price-data cut-bonus">-$15.16</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h4 class="title-data-points">Bonus</h4>
+                                                    <p class="summary-points">
+                                                        <span class="date-points">12/20/2021</span>
+                                                        <span class="cate-points">Adjustment</span></p>
+                                                </td>
+                                                <td>
+                                                    <p class="price-data bonus">+$8.00</p>
+                                                </td>
+                                            </tr> -->
+
+                                        </tbody>
+                                    </table>
+
+                                    <div class="pagination-points">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#" aria-label="Previous">
+                                                        <i class="fa fa-angle-left"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#" aria-label="Next">
+                                                        <i class="fa fa-angle-right"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-4 enrollment-pages profile-page  col-lg-pull-4 ">
+                <div class="enrollment-page profile-page">
+                    <div class="showsidebar toggle-sidebar hidden-lg">
+                        <div class="cart-sidebar sidebar-collapse">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>

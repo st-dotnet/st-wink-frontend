@@ -8,6 +8,9 @@ import { map } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class AccountService {
   private readonly authenticationEndpoint = 'authentication/';
+  private readonly shoppingEndPoint = 'shopping/';
+  private readonly accountEndPoint = 'Account/';
+
 
   constructor(
     private http: HttpClient,
@@ -37,6 +40,7 @@ export class AccountService {
       }));
   }
 
+
   forgetPasswordEmail(model: any) {
     return this.http.post<any>(`${environment.apiUrl}${this.authenticationEndpoint}sendForgotPasswordEmail`, model);
   }
@@ -45,7 +49,74 @@ export class AccountService {
     return this.http.post<any>(`${environment.apiUrl}${this.authenticationEndpoint}UpdateCustomer`, model);
   }
 
- emailVerify(model: any) {
+   emailVerify(model: any) {
     return this.http.post<any>(`${environment.apiUrl}${this.authenticationEndpoint}ValidateCustomer`, model);
   }
+
+  getCustomer(partyId: number) {
+    return this.http.get<any>(`${environment.apiUrl}${this.shoppingEndPoint}GetCustomer?partyId=${partyId}`);
+  }
+
+  updateCustomer(model: any) {
+    return this.http.post<any>(`${environment.apiUrl}${this.shoppingEndPoint}UpdateCustomer`,model);
+  }
+
+
+  getLoyalityPoints() {
+    return this.http.get<any>(`${environment.apiUrl}${this.accountEndPoint}Points`);
+  }
+
+  GetShipMethod() {
+    return this.http.get<any>(`${environment.apiUrl}${this.accountEndPoint}GetShipMethod`);
+  }
+
+  GetCustomerOrders() {
+    return this.http.get<any>(`${environment.apiUrl}${this.accountEndPoint}GetCustomerOrders_SQL`);
+  }
+
+  GetCustomerBilling() {
+    return this.http.get<any>(`${environment.apiUrl}${this.accountEndPoint}GetCustomerBilling`);
+  }
+
+  SaveAddress(model:any) {
+    return this.http.post<any>(`${environment.apiUrl}${this.accountEndPoint}SaveAddress`,model);
+  }
+
+  GetshippingAddress() {
+    return this.http.get<any>(`${environment.apiUrl}${this.shoppingEndPoint}GetshippingAddress`);
+  }
+
+  DeleteCustomer(model:any) {
+    return this.http.post<any>(`${environment.apiUrl}${this.shoppingEndPoint}DeleteCustomer`,model);
+  }
+
+  CancelledCustomerOrders(model:any) {
+    return this.http.post<any>(`${environment.apiUrl}${this.accountEndPoint}CancelledCustomerOrders_SQL`,model);
+  }
+
+  SeachOrderList(model:any) {
+    return this.http.get<any>(`${environment.apiUrl}${this.accountEndPoint}SeachOrderList`);
+  }
+
+  getCustomerAutoOrders(){
+    return this.http.get<any>(`${environment.apiUrl}${this.accountEndPoint}GetCustomerAutoOrders`);
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

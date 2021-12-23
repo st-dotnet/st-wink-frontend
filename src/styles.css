@@ -2012,6 +2012,66 @@ ngb-accordion.accordion.order-listing div#order-listing-header button:focus {
 }
 
 
+/* css for address page */
+
+.addresses-page button.btn.btn-link {
+    width: 100%;
+    text-align: left;
+}
+
+.addresses-page .accordion>.card:not(:last-of-type) {
+    border-bottom: 1px solid #80808052;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-bottom: 20px;
+}
+
+.paymentPage .addresses-page .accordion>.card:not(:last-of-type) {
+    border-bottom: 1px solid #80808052;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-bottom: 10px;
+}
+
+.address-paged .card-header {
+    padding: 4px;
+    background-color: white;
+}
+
+.address-paged div#promo-sidebar1-header {
+    border: none;
+    box-shadow: none;
+}
+
+.address-paged .card .card-header {
+    box-shadow: none !important;
+    /* border: none; */
+}
+
+.address-page .accordion>.card>.card-header {
+    border: none;
+}
+
+.address-page .card.ng-star-inserted {
+    box-shadow: rgb(50 50 93 / 3%) 0px 6px 12px -2px, rgb(0 0 0 / 14%) 0px 3px 7px -3px;
+}
+
+.address-page button.btn.btn-link.ng-star-inserted:focus {
+    box-shadow: none;
+}
+
+.card.ng-star-inserted button {
+    text-decoration: none;
+}
+
+
+/* payment page css */
+
+.paymentPage button.btn.btn-link.collapsed.ng-star-inserted {
+    padding: 13px 9px;
+}
+
+
 /* MEDIA */
 
 @media (min-width: 1367px) {
