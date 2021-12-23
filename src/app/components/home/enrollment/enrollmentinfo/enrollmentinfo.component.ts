@@ -427,8 +427,7 @@ export class EnrollmentInfoComponent implements OnInit {
         address: ['', [Validators.required]],
         city: ['', [Validators.required]],
         zip: ['', [Validators.required]],
-        state: ['', [Validators.required]],
-        country:['',[Validators.required]]
+        state: ['', [Validators.required]]
       },
       {
         validator: MustMatch('password', 'confirmPassword'),

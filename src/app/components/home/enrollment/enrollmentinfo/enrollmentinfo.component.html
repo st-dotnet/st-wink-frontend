@@ -117,7 +117,7 @@
                                                                                     <!-- <label class="control-label" for="Customer_MiddleName">Middle -->
                                                                                     <!-- Name</label> -->
 
-                                                                                    <input class="form-control personalInfo" formControlName="middleName" [ngClass]="{ 'is-invalid': submitted && f.middleName?.errors }" placeholder="Middle name" type="text" />
+                                                                                    <input class="form-control personalInfo" placeholder="Middle name" type="text" />
                                                                                     <!-- <div *ngIf="submitted && f.middleName?.errors" class="invalid-feedback">
                                                                                         <div *ngIf="f.middleName?.errors.required">
                                                                                             Midddle Name is required</div>
@@ -203,7 +203,7 @@
                                                                                 <div class="form-group">
                                                                                     <!-- <label class="control-label" for="Customer_Company">Company</label> -->
 
-                                                                                    <input class="form-control personalInfo" formControlName="company" [ngClass]="{'is-invalid': submitted && f.company?.errors }" placeholder="Company" type="text" />
+                                                                                    <input class="form-control personalInfo"  placeholder="Company" type="text" />
                                                                                     <!-- <div *ngIf="submitted && f.company?.errors" class="invalid-feedback">
                                                                                         <div *ngIf="f.company?.errors.required">
                                                                                             Company is required</div>
@@ -221,7 +221,7 @@
                                                                                     <!-- <label class="control-label" for="Customer_SecondaryPhone">Office
                                                                                 Phone</label> -->
 
-                                                                                    <input class="form-control personalInfo" formControlName="officePhone" [ngClass]="{ 'is-invalid': submitted && f.officePhone?.errors }" [textMask]="{mask: maskMobileNo}" placeholder="Office phone" role="textbox" type="tel" value="" maxlength="13" />
+                                                                                    <input class="form-control personalInfo"  [textMask]="{mask: maskMobileNo}" placeholder="Office phone" role="textbox" type="tel" value="" maxlength="13" />
 
                                                                                     <!-- <div *ngIf="submitted && f.officePhone?.errors" class="invalid-feedback">
                                                                                         <div *ngIf="f.officePhone?.errors.required">
