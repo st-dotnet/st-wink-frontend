@@ -688,7 +688,7 @@ export class EnrollmentInfoComponent implements OnInit {
           this.spinner.hide();
           this.toastrService.error('Payment card is not declined');
         }
-        this.router.navigate(['/store/thankyou']); 
+       
       });
   }
 
@@ -699,7 +699,7 @@ export class EnrollmentInfoComponent implements OnInit {
     createCustomerRequest.loginName = '';
     createCustomerRequest.firstName = this.f.firstName.value;
     createCustomerRequest.lastName = this.f.lastName.value;
-    createCustomerRequest.company = this.f.company.value;
+    // createCustomerRequest.company = this.f.company.value;
     createCustomerRequest.email = this.f.email.value;
     createCustomerRequest.phone = this.f.mobileno.value;
     createCustomerRequest.mainAddress1 = this.f.address.value;
@@ -710,7 +710,7 @@ export class EnrollmentInfoComponent implements OnInit {
     createCustomerRequest.mailCountry = 'USA';
     createCustomerRequest.otherState = 'TX';
     createCustomerRequest.otherCountry = 'USA';
-    createCustomerRequest.middleName = this.f.middleName.value;
+    // createCustomerRequest.middleName = this.f.middleName.value;
     createCustomerRequest.nameSuffix = '';
     createCustomerRequest.mainCountry = 'US';
 
@@ -776,6 +776,7 @@ export class EnrollmentInfoComponent implements OnInit {
       .subscribe((Response: any) => {
         console.log(Response);
       });
+      this.router.navigate(['/store/thankyou']); 
   }
 
   validateEmail(email: string) {
