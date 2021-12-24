@@ -1,16 +1,22 @@
-<section class="backlink-header mob-check enrollment-upperBar">
+<section class="backlink-header mob-check account-setting-upperBar">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 back-link mb-4">
-                <a [routerLink]="['/store/cart']">
-                    Back to CART</a>
+            <div class="col-lg-8 col-md-12 back-link mb-4">
+                <a [routerLink]="['/store/cart']"><svg aria-hidden="true" focusable="false" data-prefix="far"
+                        data-icon="angle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
+                        class="svg-inline--fa fa-angle-left fa-w-6 fa-3x">
+                        <path fill="currentColor"
+                            d="M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z"
+                            class=""></path>
+                    </svg>Back to CART</a>
             </div>
+
             <div class="visible-lg col-lg-4">
                 <div class="sidebar-checkout">
                     <div class="cart-sidebar">
                         <div class="sidebar-head">
                             <h2>Order Summary</h2><span class="amount-summary"></span>
-                            <p>${{cartSummaryTotal | number:'.1-2'}}</p>
+                            <p>$74.96</p>
                         </div>
                     </div>
                 </div>
@@ -19,19 +25,34 @@
     </div>
 </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
 <section class="enrollment-page grid-checkout">
     <div class="container">
         <div class="row">
+
+
             <div class="col-sm-8 enrollment-paged  col-lg-push-8">
                 <div class="enrollment-righ">
                     <div class="enrollment-main-div">
                         <div class="enrollment-steps-5">
-                            <ngb-accordion [closeOthers]="false" [activeIds]="activeIds" class="panel-stepbar">
-                                <ngb-panel id="checkoutstep5" class="oneToFour">
-                                    <ng-template ngbPanelTitle>
-                                        <span>Your Enroller</span>
+                            <ngb-accordion activeIds="checkoutstep5" class="panel-stepbar">
+                                <ngb-panel id="checkoutstep5" class="">
 
-                                        <span class="arrow-stepp">
+                                    <ng-template ngbPanelTitle>
+                                        <span>Your Enroller <br> <p>Amanda Walsh, ID#42</p></span>
+                                        <div class="ero">
+                                            <span class="arrow-stepp">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
                                                 viewBox="0 0 6.6 11.2">
                                                 <path id="Path_2044" data-name="Path 2044"
@@ -39,283 +60,510 @@
                                                     transform="translate(-630.6 -4.4)" />
                                             </svg>
                                         </span>
+                                        </div>
                                     </ng-template>
+
                                 </ngb-panel>
 
 
                                 <!-- 1 of 4  -->
-                                <ngb-panel id="checkoutstep1" [disabled]="personalInfoPannel ? true:null" class="oneToFour">
-
+                                <ngb-panel id="checkoutstep1" class="oneToFour">
                                     <ng-template ngbPanelTitle>
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
-                                            <defs>
-                                                <clipPath id="clip-path">
-                                                    <rect width="24" height="24" fill="none" />
-                                                </clipPath>
-                                            </defs>
-                                            <g id="Icon_Check_Circle_Rounded" data-name="Icon / Check Circle / Rounded"
-                                                clip-path="url(#clip-path)">
-                                                <rect id="Box" width="24" height="24" fill="none" />
-                                                <path id="Path_2034" data-name="Path 2034"
-                                                    d="M247.2,14.3l-3.6-3.6a.967.967,0,0,1,0-1.4.967.967,0,0,1,1.4,0l2.9,2.9,6.9-6.9a.99.99,0,0,1,1.4,1.4l-7.6,7.6A.967.967,0,0,1,247.2,14.3ZM249.9,0a10,10,0,1,0,10,10A10.029,10.029,0,0,0,249.9,0Z"
-                                                    transform="translate(-238 2)" fill="#1cc584" />
-                                            </g>
-                                        </svg>
+                                        <defs>
+                                            <clipPath id="clip-path">
+                                                <rect width="24" height="24" fill="none" />
+                                            </clipPath>
+                                        </defs>
+                                        <g id="Icon_Check_Circle_Rounded" data-name="Icon / Check Circle / Rounded"
+                                            clip-path="url(#clip-path)">
+                                            <rect id="Box" width="24" height="24" fill="none" />
+                                            <path id="Path_2034" data-name="Path 2034"
+                                                d="M247.2,14.3l-3.6-3.6a.967.967,0,0,1,0-1.4.967.967,0,0,1,1.4,0l2.9,2.9,6.9-6.9a.99.99,0,0,1,1.4,1.4l-7.6,7.6A.967.967,0,0,1,247.2,14.3ZM249.9,0a10,10,0,1,0,10,10A10.029,10.029,0,0,0,249.9,0Z"
+                                                transform="translate(-238 2)" fill="#1cc584" />
+                                        </g>
+                                    </svg>
 
                                         <span>1 of 4 - Enrollment</span>
                                     </ng-template>
 
                                     <ng-template ngbPanelContent>
-                                        <form [formGroup]="personalInfo" (ngSubmit)="onpersonalInfoSubmit()">
-                                            <div class="sidebar-ui">
-                                                <ngb-accordion activeIds="refered-sidebar,promo-sidebar,otp-sidebar">
-                                                    <ngb-panel id="refered-sidebar">
-                                                        <ng-template ngbPanelTitle>
-                                                            <div class="heading-step1">
-                                                                <h4>Personal Information</h4>
-                                                                <span *ngIf="!toShowData" class="vali-promo"> </span>
-                                                                <p *ngIf="toShowData" class="Refered-value mb-0"></p>
-                                                                <span class="arrow-stepp">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
-                                                                        height="11.2" viewBox="0 0 6.6 11.2">
-                                                                        <path id="Path_2044" data-name="Path 2044"
-                                                                            d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                                            transform="translate(-630.6 -4.4)" />
-                                                                    </svg>
-                                                                </span>
+                                        <div class="sidebar-ui">
+                                            <ngb-accordion activeIds="refered-sidebar,promo-sidebar,otp-sidebar">
+                                                <ngb-panel id="refered-sidebar">
+                                                    <ng-template ngbPanelTitle>
+                                                        <div class="heading-step1">
+                                                            <h4>Personal Information</h4>
+                                                            <span *ngIf="!toShowData" class="vali-promo"> </span>
+                                                            <p *ngIf="toShowData" class="Refered-value mb-0"></p>
+                                                            <span class="arrow-stepp">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                                height="11.2" viewBox="0 0 6.6 11.2">
+                                                                <path id="Path_2044" data-name="Path 2044"
+                                                                    d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                                    transform="translate(-630.6 -4.4)" />
+                                                            </svg>
+                                                        </span>
+                                                        </div>
+                                                    </ng-template>
+                                                    <ng-template ngbPanelContent>
+                                                        <div class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <div id="birthday-focus"></div>
+
+                                                                <div id="view-personalinformation-1096f503-5302-4912-be36-767e0b8bfe04">
+                                                                    <div class="row margin-5">
+                                                                        <div class="col-sm-12 pinfo ">
+                                                                            <div class="form-group">
+                                                                                <!-- <label class="control-label required" for="Customer_FirstName">First
+                                                                                Name</label> -->
+
+                                                                                <input aria-required="true" class="form-control personalInfo" data-val="true" data-val-required="First Name is required" id="Customer_FirstName" name="Customer.FirstName" placeholder="First name" required="true" role="textbox" type="text" value="" />
+                                                                                <span class="field-validation-valid" data-valmsg-for="Customer.FirstName" data-valmsg-replace="true"></span>
+                                                                            </div>
+                                                                            <div class="req">
+                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-sm-12 pinfo">
+                                                                            <div class="form-group">
+                                                                                <!-- <label class="control-label" for="Customer_MiddleName">Middle -->
+                                                                                <!-- Name</label> -->
+
+                                                                                <input class="form-control personalInfo" id="Customer_MiddleName" name="Customer.MiddleName" placeholder="Middle name" role="textbox" type="text" value="" />
+                                                                                <span class="field-validation-valid" data-valmsg-for="Customer.MiddleName" data-valmsg-replace="true"></span>
+                                                                            </div>
+                                                                            <div class="req">
+                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-sm-12 pinfo">
+                                                                            <div class="form-group">
+                                                                                <!-- <label class="control-label required" for="Customer_LastName">Last
+                                                                                Name</label> -->
+
+                                                                                <input aria-required="true" class="form-control personalInfo" data-val="true" data-val-required="Last Name is required" id="Customer_LastName" name="Customer.LastName" placeholder="Last name" required="true" role="textbox" type="text" value="" />
+                                                                                <span class="field-validation-valid" data-valmsg-for="Customer.LastName" data-valmsg-replace="true"></span>
+                                                                            </div>
+
+                                                                            <div class="req">
+                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="space-5"></div>
+                                                                    <div class="row margin-5">
+                                                                        <div class="col-sm-12 pinfo">
+                                                                            <div class="form-group birthday-holder">
+
+                                                                                <!-- <div [className]="startDate ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'" id="subscr-schedule"> -->
+                                                                                <input type="text" class="form-control personalInfo" placeholder="Birthday " bsDatepicker [minDate]="minDate" [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }" [ngModelOptions]="{standalone: true}" />
+
+                                                                                <span class="btn-add-promo">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
+                                                                                        height="24" viewBox="0 0 24 24">
+                                                                                        <defs>
+                                                                                            <clipPath id="clip-path">
+                                                                                                <rect width="24" height="24" fill="none" />
+                                                                                            </clipPath>
+                                                                                        </defs>
+                                                                                        <g id="Icon_Event_Rounded"
+                                                                                            data-name="Icon / Event / Rounded" opacity="0.5"
+                                                                                            clip-path="url(#clip-path)">
+                                                                                            <rect id="Box" width="24" height="24" fill="none" />
+                                                                                            <path id="Path_2017" data-name="Path 2017"
+                                                                                                d="M879.9,18h-12a1.075,1.075,0,0,1-1-1V7h14V17A1,1,0,0,1,879.9,18Zm-2-17V2h-8V1a1,1,0,0,0-2,0V2h-1a2.006,2.006,0,0,0-2,2V18a2.006,2.006,0,0,0,2,2h14a2.006,2.006,0,0,0,2-2V4a2.006,2.006,0,0,0-2-2h-1V1a1,1,0,0,0-2,0Zm0,10h-3a1.075,1.075,0,0,0-1,1v3a1.075,1.075,0,0,0,1,1h3a1.075,1.075,0,0,0,1-1V12A1,1,0,0,0,877.9,11Z"
+                                                                                                transform="translate(-862 2)" />
+                                                                                        </g>
+                                                                                    </svg>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="req">
+                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row ">
+                                                                        <div class="col-sm-12 pinfo">
+                                                                            <div class="form-group">
+                                                                                <!-- <label class="control-label" for="Customer_Company">Company</label> -->
+
+                                                                                <input class="form-control personalInfo" id="Customer_Company" name="Customer.Company" placeholder="Company" role="textbox" type="text" value="" />
+                                                                                <span class="field-validation-valid" data-valmsg-for="Customer.Company" data-valmsg-replace="true"></span>
+                                                                            </div>
+                                                                            <div class="req">
+                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row margin-5">
+                                                                        <div class="col-sm-12 pinfo">
+                                                                            <div class="form-group">
+                                                                                <!-- <label class="control-label" for="Customer_SecondaryPhone">Office
+                                                                                Phone</label> -->
+
+                                                                                <input class="form-control personalInfo" data-restrict-input="phone" data-val="true" data-val-regex="Not a valid phone number" data-val-regex-pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" id="Customer_SecondaryPhone" name="Customer.SecondaryPhone"
+                                                                                    placeholder="Office phone" role="textbox" type="tel" value="" maxlength="13" />
+                                                                                <span class="field-validation-valid" data-valmsg-for="Customer.SecondaryPhone" data-valmsg-replace="true"></span>
+                                                                            </div>
+                                                                            <div class="req">
+                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-sm-12 pinfo">
+                                                                            <div class="form-group">
+                                                                                <!-- <label class="control-label required" for="Customer_MobilePhone" aria-required="true">Mobile
+                                                                                Phone</label> -->
+
+                                                                                <input aria-required="true" class="form-control personalInfo" data-restrict-input="phone" data-val="true" data-val-regex="Not a valid phone number" data-val-regex-pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" data-val-required="Mobile Phone"
+                                                                                    id="Customer_MobilePhone" name="Customer.MobilePhone" placeholder="Mobile phone" required="true" role="textbox" type="tel" value="" maxlength="13" />
+                                                                                <span class="field-validation-valid" data-valmsg-for="Customer.MobilePhone" data-valmsg-replace="true"></span>
+                                                                            </div>
+                                                                            <div class="req">
+                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="space-5"></div>
+                                                                    <div class="row margin-5">
+                                                                        <div class="col-sm-12 pinfo">
+                                                                            <div class="form-group">
+                                                                                <div class="input-group">
+                                                                                    <input aria-required="true" class="form-control personalInfo" data-val="true" data-val-regexif="The field SSN / Tax ID  is invalid." data-val-regexif-cases='[{"Condition":"gv(&apos;*.MainAddress.Country&apos;) == \"US\"","RegularExpression":"^\\d{9}$"}]'
+                                                                                        data-val-required="SSN / Tax ID  is required" id="Customer_TaxID" name="Customer.TaxID" placeholder="SSN / Tax ID " required="true" role="textbox" type="text" value=""
+                                                                                        data-original-title="" title="" />
+
+                                                                                </div>
+                                                                                <script>
+                                                                                    require([
+                                                                                        "jquery",
+                                                                                        "bootstrap",
+                                                                                    ], function($) {
+                                                                                        $("#Customer_TaxID").popover();
+                                                                                    });
+                                                                                </script>
+
+                                                                                <span class="field-validation-valid" data-valmsg-for="Customer.TaxID" data-valmsg-replace="true"></span>
+                                                                            </div>
+                                                                            <div class="req">
+                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-sm-12 pinfo">
+                                                                            <div class="form-group">
+                                                                                <span class="ssnId">In order to be paid commissions, you must provide your SSN /Tax ID</span>
+                                                                                <input aria-required="true" class="form-control personalInfo" data-val="true" data-val-regex="This is not a correct email format" data-val-regex-pattern="^[^@]+@[^@]+\.[^@]+$" data-val-required="Email is required" id="Customer_Email" name="Customer.Email"
+                                                                                    placeholder="Email" required="true" role="textbox" type="email" value="" />
+                                                                                <span class="field-validation-valid" data-valmsg-for="Customer.Email" data-valmsg-replace="true"></span>
+                                                                            </div>
+                                                                            <div class="req">
+                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <input value="5" data-val="true" data-val-number="The field PayableTypeID must be a number." data-val-required="The PayableTypeID field is required." id="Customer_PayableTypeID" name="Customer.PayableTypeID" type="hidden" />
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </ng-template>
-                                                        <ng-template ngbPanelContent>
+                                                        </div>
+                                                    </ng-template>
+                                                </ngb-panel>
 
-                                                            <div class="panel panel-default">
+                                                <ngb-panel id="promo-sidebar">
+                                                    <ng-template ngbPanelTitle>
 
-                                                                <div class="panel-body">
-                                                                    <div id="birthday-focus"></div>
+                                                        <div class="heading-step1">
 
-                                                                    <div id="view-personalinformation-1096f503-5302-4912-be36-767e0b8bfe04">
-                                                                        <div class="row margin-5">
-                                                                            <div class="col-sm-12 pinfo ">
+                                                            <h4>Your Address</h4>
+                                                            <span class="vali-promo"> </span>
+                                                            <span class="arrow-stepp">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                                height="11.2" viewBox="0 0 6.6 11.2">
+                                                                <path id="Path_2044" data-name="Path 2044"
+                                                                    d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                                    transform="translate(-630.6 -4.4)" />
+                                                            </svg>
+                                                        </span>
+                                                        </div>
+                                                    </ng-template>
+                                                    <ng-template ngbPanelContent>
+                                                        <div class="content-card steps-inner promo-checkout">
+                                                            <div class="col-sm-12 pinfo p-0 mb-3">
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-body">
+                                                                        <div id="view-homeaddress-c7158129-9038-4c0c-86e5-da5c0c059912" data-role="hidecountry">
+                                                                            <div class="view-address" id="view-address-ffefb3da-6e6d-4ed5-96e0-18b4850ed599">
+                                                                                <input data-role="AddressType" data-val="true" data-val-required="The AddressType field is required." id="Customer_MainAddress_AddressType" name="Customer.MainAddress.AddressType" type="hidden" value="Main" />
+
+                                                                                <div class="form-group" style="display: none">
+                                                                                    <label class="control-label required " for="Customer_MainAddress_Country">Country</label>
+                                                                                    <select class="form-control personalInfo" data-address-bind="#Customer_MainAddress_Address2_ffefb3da-6e6d-4ed5-96e0-18b4850ed599" data-region-bind="#Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599" data-role="Country" data-val="true" data-val-required="Country is required"
+                                                                                        id="Customer_MainAddress_Country" name="Customer.MainAddress.Country">
+                                                                                    <option selected="selected"
+                                                                                        value="US">
+                                                                                        United States
+                                                                                    </option>
+                                                                                </select>
+                                                                                    <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.Country" data-valmsg-replace="true"></span>
+                                                                                </div>
+                                                                                <div class="space-5"></div>
+
                                                                                 <div class="form-group">
-                                                                                    <!-- <label class="control-label required" for="Customer_FirstName">First
-                                                                                Name</label> -->
 
-                                                                                    <input class="form-control personalInfo" formControlName="firstname" [ngClass]="{ 'is-invalid': submitted && f.firstName?.errors }" placeholder="First name" />
-                                                                                    <div *ngIf="submitted && f.firstName?.errors" class="invalid-feedback">
-                                                                                        <div *ngIf="f.firstName?.errors.required">
-                                                                                            First Name is required</div>
+                                                                                    <input class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="Customer_MainAddress_Address1" name="Customer.MainAddress.Address1" placeholder="Street address" type="text" value="" />
+                                                                                    <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.Address1" data-valmsg-replace="true"></span>
+                                                                                    <div class="space-5"></div>
+                                                                                    <div class="form-group" style="display: none">
+                                                                                        <input class="form-control" data-role="Address2" id="Customer_MainAddress_Address2_ffefb3da-6e6d-4ed5-96e0-18b4850ed599" name="Customer.MainAddress.Address2" placeholder="Apartment, suite, unit, building, floor, etc." type="text" value="" />
+                                                                                        <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.Address2" data-valmsg-replace="true"></span>
                                                                                     </div>
-                                                                                    <!-- <span class="field-validation-valid" data-valmsg-for="Customer.FirstName" data-valmsg-replace="true"></span> -->
-                                                                                </div>
-                                                                                <div class="req">
-                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="col-sm-12 pinfo">
-                                                                                <div class="form-group">
-                                                                                    <!-- <label class="control-label" for="Customer_MiddleName">Middle -->
-                                                                                    <!-- Name</label> -->
-
-                                                                                    <input class="form-control personalInfo" formControlName="middleName" [ngClass]="{ 'is-invalid': submitted && f.middleName?.errors }" placeholder="Middle name" type="text" />
-                                                                                    <!-- <div *ngIf="submitted && f.middleName?.errors" class="invalid-feedback">
-                                                                                        <div *ngIf="f.middleName?.errors.required">
-                                                                                            Midddle Name is required</div>
-                                                                                    </div> -->
-                                                                                    <!-- <span class="field-validation-valid" data-valmsg-for="Customer.MiddleName" data-valmsg-replace="true"></span> -->
-                                                                                </div>
-                                                                                <div class="req">
-                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="col-sm-12 pinfo">
-                                                                                <div class="form-group">
-                                                                                    <!-- <label class="control-label required" for="Customer_LastName">Last
-                                                                                Name</label> -->
-                                                                                    <input aria-required="true" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName?.errors }" class="form-control personalInfo" placeholder="Last name" type="text" />
-                                                                                    <div *ngIf="submitted && f.lastName?.errors" class="invalid-feedback">
-                                                                                        <div *ngIf="f.middleName?.errors.required">
-                                                                                            Last Name is required</div>
+                                                                                    <div class="req">
+                                                                                        <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
                                                                                     </div>
-                                                                                    <!-- <span class="field-validation-valid" data-valmsg-for="Customer.LastName" data-valmsg-replace="true"></span> -->
                                                                                 </div>
 
-                                                                                <div class="req">
-                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
 
-                                                                        <div class="space-5"></div>
-                                                                        <div class="row margin-5">
-                                                                            <div class="col-sm-12 pinfo">
-                                                                                <div class="form-group birthday-holder">
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-4 sepratePart pinfo">
+                                                                                        <div class="form-group seprate3">
 
-                                                                                    <!-- <div [className]="startDate ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'" id="subscr-schedule"> -->
-                                                                                    <input type="text" formControlName="dateOfBirth" [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth?.errors }" readonly class="form-control personalInfo" placeholder="Birthday " bsDatepicker [minDate]="minDate" [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }"
-                                                                                    />
-                                                                                    <div *ngIf="submitted && f.lastName?.errors" class="invalid-feedback">
-                                                                                        <div *ngIf="f.dateOfBirth?.errors.required">
-                                                                                            Date Of Birth is required
+
+                                                                                            <input class="form-control personalInfo cityDiv" data-role="City" data-val="true" data-val-required="City is required" id="Customer_MainAddress_City" name="Customer.MainAddress.City" placeholder="City" type="text" value="" />
+                                                                                            <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.City" data-valmsg-replace="true"></span>
                                                                                         </div>
+                                                                                        <div class="req">
+                                                                                            <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
+                                                                                        </div>
+
+
                                                                                     </div>
-                                                                                    <span class="btn-add-promo">
-                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                            width="24" height="24"
-                                                                                            viewBox="0 0 24 24">
-                                                                                            <defs>
-                                                                                                <clipPath
-                                                                                                    id="clip-path">
-                                                                                                    <rect width="24"
-                                                                                                        height="24"
-                                                                                                        fill="none" />
-                                                                                                </clipPath>
-                                                                                            </defs>
-                                                                                            <g id="Icon_Event_Rounded"
-                                                                                                data-name="Icon / Event / Rounded"
-                                                                                                opacity="0.5"
-                                                                                                clip-path="url(#clip-path)">
-                                                                                                <rect id="Box"
-                                                                                                    width="24"
-                                                                                                    height="24"
-                                                                                                    fill="none" />
-                                                                                                <path id="Path_2017"
-                                                                                                    data-name="Path 2017"
-                                                                                                    d="M879.9,18h-12a1.075,1.075,0,0,1-1-1V7h14V17A1,1,0,0,1,879.9,18Zm-2-17V2h-8V1a1,1,0,0,0-2,0V2h-1a2.006,2.006,0,0,0-2,2V18a2.006,2.006,0,0,0,2,2h14a2.006,2.006,0,0,0,2-2V4a2.006,2.006,0,0,0-2-2h-1V1a1,1,0,0,0-2,0Zm0,10h-3a1.075,1.075,0,0,0-1,1v3a1.075,1.075,0,0,0,1,1h3a1.075,1.075,0,0,0,1-1V12A1,1,0,0,0,877.9,11Z"
-                                                                                                    transform="translate(-862 2)" />
-                                                                                            </g>
-                                                                                        </svg>
-                                                                                    </span>
-                                                                                </div>
-                                                                                <div class="req">
-                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
 
-                                                                        <div class="row ">
-                                                                            <div class="col-sm-12 pinfo">
-                                                                                <div class="form-group">
-                                                                                    <!-- <label class="control-label" for="Customer_Company">Company</label> -->
 
-                                                                                    <input class="form-control personalInfo" formControlName="company" [ngClass]="{ 'is-invalid': submitted && f.company?.errors }" placeholder="Company" type="text" />
-                                                                                    <!-- <div *ngIf="submitted && f.company?.errors" class="invalid-feedback">
-                                                                                        <div *ngIf="f.company?.errors.required">
-                                                                                            Company is required</div>
-                                                                                    </div> -->
-                                                                                    <!-- <span class="field-validation-valid" data-valmsg-for="Customer.Company" data-valmsg-replace="true"></span> -->
-                                                                                </div>
-                                                                                <div class="req">
-                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row margin-5">
-                                                                            <div class="col-sm-12 pinfo">
-                                                                                <div class="form-group">
-                                                                                    <!-- <label class="control-label" for="Customer_SecondaryPhone">Office
-                                                                                Phone</label> -->
+                                                                                    <div class="col-sm-4 pinfo">
+                                                                                        <div class="form-group">
 
-                                                                                    <input class="form-control personalInfo" formControlName="officePhone" [ngClass]="{ 'is-invalid': submitted && f.officePhone?.errors }" [textMask]="{mask: maskMobileNo}" placeholder="Office phone" role="textbox" type="tel" value="" maxlength="13" />
 
-                                                                                    <!-- <div *ngIf="submitted && f.officePhone?.errors" class="invalid-feedback">
-                                                                                        <div *ngIf="f.officePhone?.errors.required">
-                                                                                            Office Phone is required</div>
-                                                                                    </div> -->
-                                                                                    <!-- <span class="field-validation-valid" data-valmsg-for="Customer.SecondaryPhone" data-valmsg-replace="true"></span> -->
-                                                                                </div>
-                                                                                <div class="req">
-                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-12 pinfo">
-                                                                                <div class="form-group">
-                                                                                    <!-- <label class="control-label required" for="Customer_MobilePhone" aria-required="true">Mobile
-                                                                                Phone</label> -->
-                                                                                    <input aria-required="true" formControlName="mobileno" [ngClass]="{ 'is-invalid': submitted && f.mobileno?.errors }" class="form-control personalInfo" [textMask]="{mask: maskMobileNo}" id="Customer_MobilePhone" name="Customer.MobilePhone" placeholder="Mobile Phone"
-                                                                                        required="true" role="textbox" type="tel" value="" maxlength="13" />
-                                                                                    <div *ngIf="submitted && f.mobileno?.errors" class="invalid-feedback">
-                                                                                        <div *ngIf="f.mobileno?.errors.required">
-                                                                                            Mobile Number is required
+                                                                                            <input class="form-control personalInfo" data-role="Zip" data-val="true" data-val-required="Zipcode is required" id="Customer_MainAddress_Zip" name="Customer.MainAddress.Zip" placeholder="State" type="text" value="" />
+                                                                                            <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.Zip" data-valmsg-replace="true"></span>
+                                                                                        </div>
+                                                                                        <div class="req">
+                                                                                            <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
                                                                                         </div>
                                                                                     </div>
 
-                                                                                    <!-- <span class="field-validation-valid" data-valmsg-for="Customer.MobilePhone" data-valmsg-replace="true"></span> -->
-                                                                                </div>
-                                                                                <div class="req">
-                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="space-5"></div>
-                                                                        <div class="row margin-5">
-                                                                            <div class="col-sm-12 pinfo">
-                                                                                <div class="form-group">
-                                                                                    <div class="input-group">
-                                                                                        <input aria-required="true" formControlName="taxId" [ngClass]="{ 'is-invalid': submitted && f.taxId?.errors }" class="form-control personalInfo" data-val="true" data-val-regexif="The field SSN / Tax ID  is invalid." data-val-regexif-cases='[{"Condition":"gv(&apos;*.MainAddress.Country&apos;) == \"US\"","RegularExpression":"^\\d{9}$"}]'
-                                                                                            data-val-required="SSN / Tax ID  is required" id="Customer_TaxID" name="Customer.TaxID" placeholder="SSN / Tax ID " required="true" role="textbox" type="text" value=""
-                                                                                            data-original-title="" title="" />
-                                                                                        <div *ngIf="submitted && f.taxId?.errors" class="invalid-feedback">
-                                                                                            <div *ngIf="f.taxId?.errors.required">
-                                                                                                TaxId Number is required
-                                                                                            </div>
+                                                                                    <div class="col-sm-4 pinfo">
+                                                                                        <div class="form-group">
+
+                                                                                            <input class="form-control personalInfo" data-role="Zip" data-val="true" data-val-required="Zipcode is required" id="Customer_MainAddress_Zip" name="Customer.MainAddress.Zip" placeholder="ZIP" type="text" value="" />
+                                                                                            <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.Zip" data-valmsg-replace="true"></span>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <script>
-                                                                                        require([
-                                                                                            "jquery",
-                                                                                            "bootstrap",
-                                                                                        ], function($) {
-                                                                                            $("#Customer_TaxID").popover();
-                                                                                        });
-                                                                                    </script>
+                                                                                </div>
 
-                                                                                    <!-- <span class="field-validation-valid" data-valmsg-for="Customer.TaxID" data-valmsg-replace="true"></span> -->
-                                                                                </div>
-                                                                                <div class="req">
-                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-12 pinfo">
-                                                                                <div class="form-group">
-                                                                                    <span class="ssnId">In order to be
-                                                                                        paid commision, you must provide
-                                                                                        your SSN/Tax ID</span>
-                                                                                    <input aria-required="true" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email?.errors }" class="form-control personalInfo" placeholder="Email" type="email" />
-                                                                                    <div *ngIf="submitted && f.email?.errors" class="invalid-feedback">
-                                                                                        <div *ngIf="f.email.errors.required">
-                                                                                            Email is required</div>
-                                                                                        <div *ngIf="f.email.errors.email">
-                                                                                            Please enter vaild email address
-                                                                                        </div>
-                                                                                        <div *ngIf="f.email.errors.pattern">
-                                                                                            Email format is not vaild
-                                                                                        </div>
+
+                                                                                <div class="col-sm-12 pinfo">
+                                                                                    <div class="form-group verifybtn">
+                                                                                        <button>Verify  Address</button>
+
                                                                                     </div>
+                                                                                </div>
 
-                                                                                    <!-- <span class="field-validation-valid" data-valmsg-for="Customer.Email" data-valmsg-replace="true"></span> -->
-                                                                                </div>
-                                                                                <div class="req">
-                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                                </div>
+
+                                                                                <div class="space-20"></div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <input value="5" data-val="true" data-val-number="The field PayableTypeID must be a number." data-val-required="The PayableTypeID field is required." id="Customer_PayableTypeID" name="Customer.PayableTypeID" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </ng-template>
-                                                    </ngb-panel>
+                                                        </div>
+                                                    </ng-template>
+                                                </ngb-panel>
 
-                                                    <ngb-panel id="promo-sidebar">
-                                                        <ng-template ngbPanelTitle>
-                                                            <div class="heading-step1">
-                                                                <h4>Your Address</h4>
-                                                                <span class="vali-promo"> </span>
-                                                                <span class="arrow-stepp">
+                                                <ngb-panel id="otp-sidebar">
+                                                    <ng-template ngbPanelTitle>
+
+                                                        <div class="heading-step1">
+
+                                                            <h4>Your Personal Site & Login </h4>
+                                                            <div id="webalias-preview-container" class="title-ywrty" style="overflow-x: visible;">
+                                                                <strong class="yourwebsite"><p>Your Website: </p></strong>
+                                                                <p> <a href="winknaturals.com">winknaturals.com/-------</a></p>
+                                                                <span id="webalias-preview">
+                                                                    <svg class="question" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                            height="25" viewBox="0 0 24 25">
+                                                                            <g id="Group_183" data-name="Group 183"
+                                                                                transform="translate(-830 -877)">
+                                                                                <g id="Ellipse_13" data-name="Ellipse 13"
+                                                                                    transform="translate(830 878)" fill="none"
+                                                                                    stroke="#1cb1c5" stroke-width="2">
+                                                                                    <circle cx="12" cy="12" r="12"
+                                                                                        stroke="none" />
+                                                                                    <circle cx="12" cy="12" r="11"
+                                                                                        fill="none" />
+                                                                                </g>
+                                                                                <text id="_" data-name="?"
+                                                                                    transform="translate(837 897)"
+                                                                                    fill="#1cb1c5" font-size="18.6"
+                                                                                    font-family="SegoeUI, Segoe UI">
+                                                                                    <tspan x="0" y="0">?</tspan>
+                                                                                </text>
+                                                                            </g>
+                                                                        </svg>
+                                                                </span>
+                                                                <!-- 
+                                                                <div class="loya-conver quesMark">
+                                                                    <span class="loyal-conv-modal" (click)="open(loyal_conversion)">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                            height="25" viewBox="0 0 24 25">
+                                                                            <g id="Group_183" data-name="Group 183"
+                                                                                transform="translate(-830 -877)">
+                                                                                <g id="Ellipse_13" data-name="Ellipse 13"
+                                                                                    transform="translate(830 878)" fill="none"
+                                                                                    stroke="#1cb1c5" stroke-width="2">
+                                                                                    <circle cx="12" cy="12" r="12"
+                                                                                        stroke="none" />
+                                                                                    <circle cx="12" cy="12" r="11"
+                                                                                        fill="none" />
+                                                                                </g>
+                                                                                <text id="_" data-name="?"
+                                                                                    transform="translate(837 897)"
+                                                                                    fill="#1cb1c5" font-size="18.6"
+                                                                                    font-family="SegoeUI, Segoe UI">
+                                                                                    <tspan x="0" y="0">?</tspan>
+                                                                                </text>
+                                                                            </g>
+                                                                        </svg>
+                                                                    </span>
+                                                                </div> -->
+                                                            </div>
+
+                                                            <span class="arrow-stepp">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                                height="11.2" viewBox="0 0 6.6 11.2">
+                                                                <path id="Path_2044" data-name="Path 2044"
+                                                                    d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                                    transform="translate(-630.6 -4.4)" />
+                                                            </svg>
+                                                        </span>
+                                                        </div>
+                                                    </ng-template>
+                                                    <ng-template ngbPanelContent>
+                                                        <div class="panel-body">
+
+                                                            <div id="view-logininformation-798275e4-d1dd-4d37-a977-497293c0fe5d">
+                                                                <div class="row margin-5">
+
+                                                                </div>
+                                                                <div class="row ">
+                                                                    <div class=" col-sm-12 pinfo">
+                                                                        <div class="form-group">
+
+
+                                                                            <input aria-required="true" class="form-control personalInfo" data-val="true" data-val-regex="Make sure your username doesn't contain any spaces or special characters, and is at least 3 characters long" data-val-regex-pattern="^[a-zA-Z0-9]{3,}$" data-val-remote="This username isn't available"
+                                                                                data-val-remote-additionalfields="*.LoginName" data-val-remote-url="/app/isloginnameavailable" data-val-required="Username is required" id="Customer_LoginName" name="Customer.LoginName"
+                                                                                placeholder="Username" required="true" role="textbox" type="text" value="">
+                                                                            <span class="field-validation-valid" data-valmsg-for="Customer.LoginName" data-valmsg-replace="true"></span>
+                                                                        </div>
+                                                                        <div class="req">
+                                                                            <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="space-5"></div>
+
+                                                                <div class="row">
+                                                                    <div class="col-sm-12 pinfo">
+                                                                        <div class="form-group">
+
+
+                                                                            <div id="view-newpassword-af1adb45-47c1-4f87-b1f3-a2bbc71a5486">
+
+                                                                                <input aria-required="true" class="form-control personalInfo" data-restrict-input="password" data-val="true" data-val-regex="Password must be at least 8 characters long, contain at least 1 number, and contain at least one uppercase character" data-val-regex-pattern="^.{1,50}$"
+                                                                                    data-val-required="Password is required" id="Customer_Password" name="Customer.Password" placeholder="Password" required="true" role="textbox" type="password">
+                                                                                <span class="field-validation-valid" data-valmsg-for="Customer.Password" data-valmsg-replace="true"></span>
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                        <div class="req">
+                                                                            <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-12 pinfo">
+                                                                        <div class="form-group">
+
+                                                                            <input class="form-control personalInfo" data-val="true" data-val-equalto="Your passwords do not match." data-val-equalto-other="Customer.Password" data-val-required="Please confirm your password" id="Customer_ConfirmPassword" name="Customer.ConfirmPassword"
+                                                                                placeholder="Confirm password" type="password" value="">
+                                                                            <span class="field-validation-valid" data-valmsg-for="Customer.ConfirmPassword" data-valmsg-replace="true"></span>
+
+                                                                        </div>
+                                                                        <div class="req">
+                                                                            <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="space-5"></div>
+
+                                                            </div>
+
+
+                                                        </div>
+                                                    </ng-template>
+                                                </ngb-panel>
+
+                                            </ngb-accordion>
+                                        </div>
+                                        <div class="saveprocessed1 continuebtn">
+                                            <button type="submit">Save & Continue</button>
+                                        </div>
+                                    </ng-template>
+                                </ngb-panel>
+
+                                <!-- 2 of 4  -->
+                                <ngb-panel id="checkoutstep2">
+                                    <ng-template ngbPanelTitle>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+                                        <defs>
+                                            <clipPath id="clip-path">
+                                                <rect width="24" height="24" fill="none" />
+                                            </clipPath>
+                                        </defs>
+                                        <g id="Icon_Check_Circle_Rounded" data-name="Icon / Check Circle / Rounded"
+                                            clip-path="url(#clip-path)">
+                                            <rect id="Box" width="24" height="24" fill="none" />
+                                            <path id="Path_2034" data-name="Path 2034"
+                                                d="M247.2,14.3l-3.6-3.6a.967.967,0,0,1,0-1.4.967.967,0,0,1,1.4,0l2.9,2.9,6.9-6.9a.99.99,0,0,1,1.4,1.4l-7.6,7.6A.967.967,0,0,1,247.2,14.3ZM249.9,0a10,10,0,1,0,10,10A10.029,10.029,0,0,0,249.9,0Z"
+                                                transform="translate(-238 2)" fill="#1cc584" />
+                                        </g>
+                                    </svg>
+                                        <span>2 of 4 - Enter Shipping</span>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <div class="sidebar-ui">
+
+                                            <ngb-accordion activeIds="address-shipping">
+
+                                                <ngb-panel id="address-shippinged">
+
+
+                                                    <ng-template ngbPanelTitle>
+                                                        <div class="heading-step1">
+                                                            <h4>Subscription Schedule</h4>
+                                                            <p>Start Date:<span class="data-span">{{startDate | date:
+                                                                        'MM/dd/yyyy'}}</span></p>
+                                                            <span class="arrow-stepp">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
                                                                         height="11.2" viewBox="0 0 6.6 11.2">
                                                                         <path id="Path_2044" data-name="Path 2044"
@@ -323,551 +571,281 @@
                                                                             transform="translate(-630.6 -4.4)" />
                                                                     </svg>
                                                                 </span>
+                                                        </div>
+                                                    </ng-template>
+
+
+
+
+                                                    <ng-template ngbPanelContent>
+
+                                                        <div class="content-card steps-inner">
+                                                            <div [className]="startDate ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'" id="subscr-schedule">
+                                                                <input type="text" class="form-control" bsDatepicker [minDate]="minDate" [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }" [ngModelOptions]="{standalone: true}" [(ngModel)]="startDate" />
+                                                                <label class="form-label">Select Start Date</label>
+                                                                <span class="btn-add-promo">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
+                                                                        height="24" viewBox="0 0 24 24">
+                                                                        <defs>
+                                                                            <clipPath id="clip-path">
+                                                                                <rect width="24" height="24" fill="none" />
+                                                                            </clipPath>
+                                                                        </defs>
+                                                                        <g id="Icon_Event_Rounded"
+                                                                            data-name="Icon / Event / Rounded" opacity="0.5"
+                                                                            clip-path="url(#clip-path)">
+                                                                            <rect id="Box" width="24" height="24" fill="none" />
+                                                                            <path id="Path_2017" data-name="Path 2017"
+                                                                                d="M879.9,18h-12a1.075,1.075,0,0,1-1-1V7h14V17A1,1,0,0,1,879.9,18Zm-2-17V2h-8V1a1,1,0,0,0-2,0V2h-1a2.006,2.006,0,0,0-2,2V18a2.006,2.006,0,0,0,2,2h14a2.006,2.006,0,0,0,2-2V4a2.006,2.006,0,0,0-2-2h-1V1a1,1,0,0,0-2,0Zm0,10h-3a1.075,1.075,0,0,0-1,1v3a1.075,1.075,0,0,0,1,1h3a1.075,1.075,0,0,0,1-1V12A1,1,0,0,0,877.9,11Z"
+                                                                                transform="translate(-862 2)" />
+                                                                        </g>
+                                                                    </svg>
+                                                                </span>
                                                             </div>
-                                                        </ng-template>
-                                                        <ng-template ngbPanelContent>
-                                                            <div class="content-card steps-inner promo-checkout">
-                                                                <div class="col-sm-12 pinfo p-0 mb-3">
-                                                                    <div class="panel panel-default">
-                                                                        <div class="panel-body">
-                                                                            <div id="view-homeaddress-c7158129-9038-4c0c-86e5-da5c0c059912" data-role="hidecountry">
-                                                                                <div class="view-address" id="view-address-ffefb3da-6e6d-4ed5-96e0-18b4850ed599">
-                                                                                    <input data-role="AddressType" data-val="true" data-val-required="The AddressType field is required." id="Customer_MainAddress_AddressType" name="Customer.MainAddress.AddressType" type="hidden" value="Main" />
+                                                        </div>
 
-                                                                                    <div class="form-group" style="display: none">
-                                                                                        <label class="control-label required " for="Customer_MainAddress_Country">Country</label>
-                                                                                        <select class="form-control personalInfo" data-address-bind="#Customer_MainAddress_Address2_ffefb3da-6e6d-4ed5-96e0-18b4850ed599" data-region-bind="#Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599" data-role="Country" data-val="true" data-val-required="Country is required"
-                                                                                            id="Customer_MainAddress_Country" name="Customer.MainAddress.Country">
-                                                                                            <option selected="selected"
-                                                                                                value="US">
-                                                                                                United States
-                                                                                            </option>
-                                                                                        </select>
-                                                                                        <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.Country" data-valmsg-replace="true"></span>
-                                                                                    </div>
+                                                    </ng-template>
+                                                </ngb-panel>
+
+                                                <ngb-panel id="address-shipping">
+
+                                                    <ng-template ngbPanelTitle>
+                                                        <div class="heading-step1">
+                                                            <h4>Shipping Address</h4>
+                                                            <span *ngIf="!toShowData" class="vali-promo"> </span>
+                                                            <p *ngIf="toShowData" class="Refered-value mb-0"></p>
+                                                            <span class="arrow-stepp">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                                            height="11.2" viewBox="0 0 6.6 11.2">
+                                                            <path id="Path_2044" data-name="Path 2044"
+                                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                                transform="translate(-630.6 -4.4)" />
+                                                        </svg>
+                                                    </span>
+                                                        </div>
+                                                    </ng-template>
+                                                    <ng-template ngbPanelContent>
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-body">
+                                                                <div id="view-shippinginformation-46eb3f62-b697-4e2f-8ab6-f98db0570322" data-role="hidecountry">
+                                                                    <div class="row margin-5">
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <div id="shipping-address-container">
+                                                                                    <div id="view-shippingaddress-f8c7ad21-7272-425a-b1e1-4271be30fcf0">
+                                                                                        <div class="row margin-5">
+                                                                                            <div class="col-xs-6 pinfo">
+                                                                                                <div class="form-group">
+                                                                                                    <input aria-required="true" class="form-control personalInfo" data-val="true" data-val-required="First Name is required" id="ShippingAddress_FirstName" name="ShippingAddress.FirstName" placeholder="First name" required="true" role="textbox" type="text"
+                                                                                                        value="">
+                                                                                                    <span class="field-validation-valid" data-valmsg-for="ShippingAddress.FirstName" data-valmsg-replace="true"></span>
+                                                                                                </div>
+                                                                                                <div class="req">
+                                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-xs-6 pinfo ">
+                                                                                                <div class="form-group">
 
 
-                                                                                    <div class="space-5"></div>
+                                                                                                    <input aria-required="true" class="form-control personalInfo" data-val="true" data-val-required="Last Name is required" id="ShippingAddress_LastName" name="ShippingAddress.LastName" placeholder="Last name" required="true" role="textbox" type="text" value="">
+                                                                                                    <span class="field-validation-valid" data-valmsg-for="ShippingAddress.LastName" data-valmsg-replace="true"></span>
+                                                                                                </div>
 
-                                                                                    <div class="form-group">
-
-                                                                                        <input class="form-control personalInfo" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address?.errors }" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="Customer_MainAddress_Address1" name="Customer.MainAddress.Address1"
-                                                                                            placeholder="Street address" type="text" value="" />
-                                                                                        <div *ngIf="submitted && f.address?.errors" class="invalid-feedback">
-                                                                                            <div *ngIf="f.address.errors.required">
-                                                                                                Address is required
                                                                                             </div>
                                                                                         </div>
 
-                                                                                        <div class="space-5"></div>
-                                                                                        <div class="form-group" style="display: none">
-                                                                                            <input class="form-control" data-role="Address2" id="Customer_MainAddress_Address2_ffefb3da-6e6d-4ed5-96e0-18b4850ed599" name="Customer.MainAddress.Address2" placeholder="Apartment, suite, unit, building, floor, etc." type="text" value="" />
-                                                                                            <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.Address2" data-valmsg-replace="true"></span>
-                                                                                        </div>
-                                                                                        <div class="req">
-                                                                                            <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                                        </div>
-                                                                                    </div>
 
 
-                                                                                    <div class="row margin-5">
-                                                                                        <div class="col-sm-6 sepratePart pinfo">
-                                                                                            <div class="form-group seprate3">
+                                                                                        <div class="view-address" id="view-address-ad88eac7-33f2-4734-86ff-cffef2906e71">
 
-                                                                                                <input class="form-control personalInfo cityDiv" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city?.errors }" data-role="City" data-val="true" data-val-required="City is required" id="Customer_MainAddress_City" name="Customer.MainAddress.City"
-                                                                                                    placeholder="City" type="text" value="" />
-                                                                                                <div *ngIf="submitted && f.city?.errors" class="invalid-feedback">
-                                                                                                    <div *ngIf="f.city.errors.required">
-                                                                                                        City is required
-                                                                                                    </div>
+                                                                                            <input data-role="AddressType" data-val="true" data-val-required="The AddressType field is required." id="ShippingAddress_AddressType" name="ShippingAddress.AddressType" type="hidden" value="New">
+
+
+                                                                                            <div class="form-group" style="display: none;">
+                                                                                                <label class="control-label required" for="ShippingAddress_Country">Country</label>
+                                                                                                <select class="form-control personalInfo " data-address-bind="#ShippingAddress_Address2_ad88eac7-33f2-4734-86ff-cffef2906e71" data-region-bind="#ShippingAddress_State_ad88eac7-33f2-4734-86ff-cffef2906e71" data-role="Country" data-val="true" data-val-required="Country is required"
+                                                                                                    id="ShippingAddress_Country" name="ShippingAddress.Country">
+                                                                                        <option selected="selected"
+                                                                                            value="US">United States
+                                                                                        </option>
+                                                                                    </select>
+                                                                                                <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Country" data-valmsg-replace="true"></span>
+                                                                                            </div>
+                                                                                            <div class="req">
+                                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
+                                                                                            </div>
+                                                                                            <div class="space-5"></div>
+
+                                                                                            <div class="form-group pinfo">
+
+                                                                                                <input class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="ShippingAddress_Address1" name="ShippingAddress.Address1" placeholder="Street address" type="text" value="">
+                                                                                                <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address1" data-valmsg-replace="true"></span>
+
+                                                                                                <div class="space-5"></div>
+                                                                                                <div class="form-group" style="display: none;">
+                                                                                                    <input class="form-control personalInfo" data-role="Address2" id="ShippingAddress_Address2_ad88eac7-33f2-4734-86ff-cffef2906e71" name="ShippingAddress.Address2" placeholder="Apartment, suite, unit, building, floor, etc." type="text" value="">
+                                                                                                    <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address2" data-valmsg-replace="true"></span>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="req">
                                                                                                 <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
                                                                                             </div>
-                                                                                        </div>
 
-                                                                                        <div class="col-sm-6 sepratePart pinfo">
-                                                                                            <div class=" pinfo">
-                                                                                                <div class="form-group">
-                                                                                                    <select class="form-control pinfo valid" formControlName="state" (change)="changestate($event)" [ngClass]="{ 'is-invalid': submitted && f.state?.errors }" data-role="State" data-val="true" data-val-required="State is required" id="Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599"
-                                                                                                        name="Customer.MainAddress.State" aria-required="true" aria-invalid="false" aria-describedby="Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599-error">
-                                                                                                        <option disabled
-                                                                                                            value="">
-                                                                                                            Select State
-                                                                                                        </option>
-                                                                                                        <option
-                                                                                                            *ngFor="let item of states"
-                                                                                                            [value]="item.val">
-                                                                                                            {{item.name}}
-                                                                                                        </option>
-                                                                                                    </select>
 
-                                                                                                    <div *ngIf="submitted && f.state?.errors" class="invalid-feedback">
-                                                                                                        <div *ngIf="f.state.errors.required">
-                                                                                                            State is required
-                                                                                                        </div>
+                                                                                            <div class="row ">
+
+                                                                                                <div class="col-sm-6 sepratePart pinfo">
+                                                                                                    <div class="form-group seprate3">
+
+                                                                                                        <input class="form-control personalInfo cityDiv" data-role="City" data-val="true" data-val-required="City is required" id="Customer_MainAddress_City" name="Customer.MainAddress.City" placeholder="City" type="text" value="" />
+                                                                                                        <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.City" data-valmsg-replace="true"></span>
                                                                                                     </div>
-                                                                                                    <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.State" data-valmsg-replace="true"></span>
+
+
+
                                                                                                 </div>
-                                                                                                <div class="req">
-                                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
 
-
-
-                                                                                        <div class="col-sm-12 pinfo">
-                                                                                            <div class="form-group">
-
-                                                                                                <input class="form-control personalInfo" formControlName="zip" [ngClass]="{ 'is-invalid': submitted && f.zip?.errors }" data-role="Zip" data-val="true" data-val-required="Zipcode is required" id="Customer_MainAddress_Zip" name="Customer.MainAddress.Zip"
-                                                                                                    placeholder="Zip" type="text" value="" />
-
-                                                                                                <div *ngIf="submitted && f.zip?.errors" class="invalid-feedback">
-                                                                                                    <div *ngIf="f.zip.errors.required">
-                                                                                                        City is required
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.Zip" data-valmsg-replace="true"></span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-
-
-                                                                                    <div class="row margin-5">
-                                                                                        <div class="col-xs-12 verifibtn">
-                                                                                            <button type="button" class="btn btn-info verify-btn" (click)="verifyadress()" data-role="verify">
-                                                                                                Verify Address
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="space-20"></div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </ng-template>
-                                                    </ngb-panel>
-
-                                                    <ngb-panel id="otp-sidebar">
-                                                        <ng-template ngbPanelTitle>
-                                                            <div class="heading-step1">
-                                                                <h4> Personal Site & Login </h4>
-
-                                                                <span class="arrow-stepp">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
-                                                                        height="11.2" viewBox="0 0 6.6 11.2">
-                                                                        <path id="Path_2044" data-name="Path 2044"
-                                                                            d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                                            transform="translate(-630.6 -4.4)" />
-                                                                    </svg>
-                                                                </span>
-                                                            </div>
-                                                        </ng-template>
-                                                        <ng-template ngbPanelContent>
-                                                            <div class="panel-body">
-
-                                                                <div id="view-logininformation-798275e4-d1dd-4d37-a977-497293c0fe5d">
-                                                                    <div class="row margin-5">
-                                                                        <div id="webalias-preview-container" class="title-yw" style="overflow-x: visible;">
-                                                                            <span>
-                                                                                <p>Your Website: </p>
-                                                                            </span>
-                                                                            <p> <a href="winknaturals.com">winknaturals.com</a>
-                                                                            </p>
-
-                                                                            <span id="webalias-preview"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class=" col-sm-12 pinfo">
-                                                                            <div class="form-group">
-                                                                                <input class="form-control personalInfo" placeholder="Username" formControlName="userName" [ngClass]="{ 'is-invalid': submitted && f.userName?.errors }" type="text">
-                                                                                <div *ngIf="submitted && f.userName?.errors" class="invalid-feedback">
-                                                                                    <div *ngIf="f.userName?.errors.required">
-                                                                                        User name is required</div>
-                                                                                </div>
-
-                                                                            </div>
-                                                                            <div class="req">
-                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                    <div class="space-5"></div>
-
-                                                                    <div class="row">
-                                                                        <div class="col-sm-12 pinfo">
-                                                                            <div class="form-group">
-
-
-                                                                                <div id="view-newpassword-af1adb45-47c1-4f87-b1f3-a2bbc71a5486">
-
-                                                                                    <input class="form-control personalInfo" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password?.errors }" placeholder="Password" type="password">
-
-                                                                                    <div *ngIf="submitted && f.password?.errors" class="invalid-feedback">
-                                                                                        <div *ngIf="f.password.errors.required">
-                                                                                            Password is required</div>
-                                                                                        <div *ngIf="f.password.errors.minlength">
-                                                                                            Password must be at least 6 characters
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="req">
-                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-sm-12 pinfo">
-                                                                            <div class="form-group">
-                                                                                <input class="form-control personalInfo" formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword?.errors }" placeholder="Confirm password" type="password">
-
-                                                                                <div *ngIf="submitted && f.confirmPassword?.errors" class="invalid-feedback">
-                                                                                    <div *ngIf="f.confirmPassword.errors.required">
-                                                                                        Confirm Password is required
-                                                                                    </div>
-                                                                                    <div *ngIf="f.confirmPassword.errors.minlength">
-                                                                                        Confirm Password must be at least 6 characters</div>
-                                                                                    <div *ngIf="f.confirmPassword.errors.mustMatch">
-                                                                                        Passwords must match</div>
-                                                                                </div>
-
-                                                                            </div>
-                                                                            <div class="req">
-                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="space-5"></div>
-                                                                </div>
-                                                            </div>
-                                                        </ng-template>
-                                                    </ngb-panel>
-
-                                                </ngb-accordion>
-                                            </div>
-                                            <div class="saveprocessed1 continuebtn">
-                                                <button type="submit">Save and Continue</button>
-                                            </div>
-                                        </form>
-                                    </ng-template>
-
-                                </ngb-panel>
-
-                                <!-- 2 of 4  -->
-                                <ngb-panel id="checkoutstep2" [disabled]="shippingAddressPannel ? true:null">
-                                    <ng-template ngbPanelTitle>
-                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
-                                            <defs>
-                                                <clipPath id="clip-path">
-                                                    <rect width="24" height="24" fill="none" />
-                                                </clipPath>
-                                            </defs>
-                                            <g id="Icon_Check_Circle_Rounded" data-name="Icon / Check Circle / Rounded"
-                                                clip-path="url(#clip-path)">
-                                                <rect id="Box" width="24" height="24" fill="none" />
-                                                <path id="Path_2034" data-name="Path 2034"
-                                                    d="M247.2,14.3l-3.6-3.6a.967.967,0,0,1,0-1.4.967.967,0,0,1,1.4,0l2.9,2.9,6.9-6.9a.99.99,0,0,1,1.4,1.4l-7.6,7.6A.967.967,0,0,1,247.2,14.3ZM249.9,0a10,10,0,1,0,10,10A10.029,10.029,0,0,0,249.9,0Z"
-                                                    transform="translate(-238 2)" fill="#1cc584" />
-                                            </g>
-                                        </svg>
-                                        <span>2 of 4 - Enter Shipping</span>
-                                    </ng-template>
-                                    <ng-template ngbPanelContent>
-                                        <form [formGroup]="shippingAddressForm" (ngSubmit)="onAddressSubmit()">
-                                            <div class="sidebar-ui">
-                                                <ngb-accordion activeIds="address-shipping">
-                                                    <ngb-panel id="address-shipping">
-                                                        <ng-template ngbPanelTitle>
-                                                            <div class="heading-step1">
-                                                                <h4>Shipping Address</h4>
-                                                                <span *ngIf="!toShowData" class="vali-promo"> </span>
-                                                                <p *ngIf="toShowData" class="Refered-value mb-0"></p>
-                                                                <span class="arrow-stepp">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
-                                                                        height="11.2" viewBox="0 0 6.6 11.2">
-                                                                        <path id="Path_2044" data-name="Path 2044"
-                                                                            d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                                            transform="translate(-630.6 -4.4)" />
-                                                                    </svg>
-                                                                </span>
-                                                            </div>
-                                                        </ng-template>
-                                                        <ng-template ngbPanelContent>
-                                                            <div class="panel panel-default">
-                                                                <div class="panel-body">
-                                                                    <div id="view-shippinginformation-46eb3f62-b697-4e2f-8ab6-f98db0570322" data-role="hidecountry">
-                                                                        <div class="row margin-5">
-                                                                            <div class="col-md-12">
-                                                                                <div class="form-group">
-                                                                                    <div id="shipping-address-container">
-                                                                                        <div id="view-shippingaddress-f8c7ad21-7272-425a-b1e1-4271be30fcf0">
-                                                                                            <div class="row margin-5">
-                                                                                                <div class="col-xs-6 pinfo">
+                                                                                                <div class="col-sm-6  pinfo">
                                                                                                     <div class="form-group">
-                                                                                                        <input formControlName="firstName" [ngClass]="{ 'is-invalid': addressSubmitted && s.firstName?.errors }" aria-required="true" class="form-control personalInfo" data-val="true" data-val-required="First Name is required" id="ShippingAddress_FirstName" name="ShippingAddress.FirstName"
-                                                                                                            placeholder="First name" required="true" role="textbox" type="text" value="">
-                                                                                                        <div *ngIf="addressSubmitted && s.firstName.errors" class="invalid-feedback">
-                                                                                                            <div *ngIf="s.firstName.errors.required">
-                                                                                                                First Name is required
-                                                                                                            </div>
+                                                                                                        <input class="form-control personalInfo cityDiv" data-role="City" data-val="true" data-val-required="City is required" id="Customer_MainAddress_City" name="Customer.MainAddress.City" placeholder="State" type="text" value="" />
 
-                                                                                                        </div>
-
-
-                                                                                                        <span class="field-validation-valid" data-valmsg-for="ShippingAddress.FirstName" data-valmsg-replace="true"></span>
+                                                                                                        <span class="field-validation-valid" data-valmsg-for="ShippingAddress.State" data-valmsg-replace="true"></span>
                                                                                                     </div>
+
+                                                                                                </div>
+
+
+
+                                                                                            </div>
+                                                                                            <div class="row">
+                                                                                                <div class="col-xs-6 pinfo ">
                                                                                                     <div class="req">
                                                                                                         <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
                                                                                                     </div>
-                                                                                                </div>
-                                                                                                <div class="col-xs-6 pinfo ">
                                                                                                     <div class="form-group">
-                                                                                                        <input aria-required="true" formControlName="lastName" [ngClass]="{ 'is-invalid': addressSubmitted && s.lastName?.errors }" class="form-control personalInfo" data-val="true" data-val-required="Last Name is required" id="ShippingAddress_LastName" name="ShippingAddress.LastName"
-                                                                                                            placeholder="Last name" required="true" role="textbox" type="text" value="">
-                                                                                                        <div *ngIf="addressSubmitted && s.lastName.errors" class="invalid-feedback">
-                                                                                                            <div *ngIf="s.lastName.errors.required">
-                                                                                                                Last Name is required
-                                                                                                            </div>
-                                                                                                        </div>
+
+
+                                                                                                        <input aria-required="true" class="form-control personalInfo" data-val="true" data-val-required="Last Name is required" id="ShippingAddress_LastName" name="ShippingAddress.LastName" placeholder="ZIP" required="true" role="textbox" type="text" value="">
                                                                                                         <span class="field-validation-valid" data-valmsg-for="ShippingAddress.LastName" data-valmsg-replace="true"></span>
                                                                                                     </div>
+
+                                                                                                </div>
+
+                                                                                                <div class="col-xs-6 pinfo ">
+                                                                                                    <div class="req">
+                                                                                                        <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+
+                                                                                                        <input class="form-control personalInfo cityDiv" data-role="City" data-val="true" data-val-required="City is required" id="Customer_MainAddress_City" name="Customer.MainAddress.City" placeholder="Country" type="text" value="" />
+
+                                                                                                    </div>
+
                                                                                                 </div>
                                                                                             </div>
-                                                                                            <div class="view-address" id="view-address-ad88eac7-33f2-4734-86ff-cffef2906e71">
-                                                                                                <input data-role="AddressType" data-val="true" data-val-required="The AddressType field is required." id="ShippingAddress_AddressType" name="ShippingAddress.AddressType" type="hidden" value="New">
-                                                                                                <div class="form-group" style="display: none;">
-                                                                                                    <label class="control-label required" for="ShippingAddress_Country">Country</label>
-                                                                                                    <select class="form-control personalInfo " data-address-bind="#ShippingAddress_Address2_ad88eac7-33f2-4734-86ff-cffef2906e71" data-region-bind="#ShippingAddress_State_ad88eac7-33f2-4734-86ff-cffef2906e71" data-role="Country" data-val="true" data-val-required="Country is required"
-                                                                                                        id="ShippingAddress_Country" name="ShippingAddress.Country">
-                                                                                                        <option
-                                                                                                            selected="selected"
-                                                                                                            value="US">
-                                                                                                            United
-                                                                                                            States
-                                                                                                        </option>
-                                                                                                    </select>
-                                                                                                    <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Country" data-valmsg-replace="true"></span>
-                                                                                                </div>
-                                                                                                <div class="req">
-                                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                                                                </div>
-                                                                                                <div class="space-5">
-                                                                                                </div>
-
-                                                                                                <div class="form-group pinfo">
-
-                                                                                                    <input formControlName="streetAddress" [ngClass]="{ 'is-invalid': addressSubmitted && s.streetAddress?.errors }" class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="ShippingAddress_Address1"
-                                                                                                        name="ShippingAddress.Address1" placeholder="Street address" type="text" value="">
-                                                                                                    <div *ngIf="addressSubmitted && s.streetAddress.errors" class="invalid-feedback">
-                                                                                                        <div *ngIf="s.streetAddress.errors.required">
-                                                                                                            street Address is required
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                    <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address1" data-valmsg-replace="true"></span>
-
-                                                                                                    <div class="space-5">
-                                                                                                    </div>
-                                                                                                    <div class="form-group" style="display: none;">
-                                                                                                        <input class="form-control personalInfo" data-role="Address2" id="ShippingAddress_Address2_ad88eac7-33f2-4734-86ff-cffef2906e71" name="ShippingAddress.Address2" placeholder="Apartment, suite, unit, building, floor, etc." type="text" value="">
-                                                                                                        <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address2" data-valmsg-replace="true"></span>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="req">
-                                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                                                                </div>
 
 
-                                                                                                <div class="row margin-5">
-
-                                                                                                    <div class="col-sm-6 sepratePart pinfo">
-                                                                                                        <div class="form-group seprate3">
-
-                                                                                                            <input formControlName="city" [ngClass]="{ 'is-invalid': addressSubmitted && s.city?.errors }" class="form-control personalInfo cityDiv" data-role="City" data-val="true" data-val-required="City is required" id="Customer_MainAddress_City" name="Customer.MainAddress.City"
-                                                                                                                placeholder="City" type="text" value="" />
-                                                                                                            <div *ngIf="addressSubmitted && s.city.errors" class="invalid-feedback">
-                                                                                                                <div *ngIf="s.city.errors.required">
-                                                                                                                    City is required
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                            <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.City" data-valmsg-replace="true"></span>
-                                                                                                        </div>
-
-                                                                                                    </div>
-                                                                                                    <div class="col-sm-6 sepratePart pinfo">
-
-                                                                                                        <div class="form-group">
-                                                                                                            <!-- <label class="control-label visible-xs" for="Customer_MainAddress_State">State</label> -->
-                                                                                                            <select formControlName="state" (change)="changeAddressstate($event)" [ngClass]="{ 'is-invalid': addressSubmitted && s.state?.errors }" class="form-control pinfo valid" data-role="State" data-val="true" data-val-required="State is required" id="Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599"
-                                                                                                                name="Customer.MainAddress.State" aria-required="true" aria-invalid="false" aria-describedby="Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599-error">
-                                                                                                                <option
-                                                                                                                    disabled
-                                                                                                                    value="">
-                                                                                                                    Select
-                                                                                                                    State
-                                                                                                                </option>
-                                                                                                                <option
-                                                                                                                    *ngFor="let item of states"
-                                                                                                                    [value]="item.val">
-                                                                                                                    {{item.name}}
-                                                                                                                </option>
-                                                                                                            </select>
-
-                                                                                                            <div *ngIf="addressSubmitted && s.state?.errors" class="invalid-feedback">
-                                                                                                                <div *ngIf="s.state.errors.required">
-                                                                                                                    State is required
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                            <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.State" data-valmsg-replace="true"></span>
-                                                                                                        </div>
-
-                                                                                                    </div>
-
-                                                                                                    <div class="col-sm-12 sepratePart pinfo">
-                                                                                                        <div class="req">
-                                                                                                            <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                                                                        </div>
-                                                                                                        <div class="form-group seprate3">
-
-                                                                                                            <input formControlName="zip" [ngClass]="{ 'is-invalid': addressSubmitted && s.zip?.errors }" class="form-control personalInfo cityDiv" data-role="Zip" data-val="true" data-val-required="Zip is required" id="Customer_MainAddress_City" name="Customer.MainAddress.Zip"
-                                                                                                                placeholder="Zip" type="text" value="" />
-                                                                                                            <div *ngIf="addressSubmitted && s.zip.errors" class="invalid-feedback">
-                                                                                                                <div *ngIf="s.zip.errors.required">
-                                                                                                                    Zip is required
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                            <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.Zip" data-valmsg-replace="true"></span>
 
 
-                                                                                                        </div>
-                                                                                                    </div>
-
-                                                                                                </div>
-                                                                                                <div class="row margin-5">
-                                                                                                    <div class="col-xs-12 verifibtn">
-                                                                                                        <button type="button" (click)="verifyShippingAddress()" class="btn btn-info verify-btn" data-role="verify">
-                                                                                                            Verify
-                                                                                                            Address
-                                                                                                        </button>
-                                                                                                    </div>
-                                                                                                </div>
-
-                                                                                                <div class="space-20">
-                                                                                                </div>
-                                                                                            </div>
+                                                                                            <div class="space-20"></div>
                                                                                         </div>
-
                                                                                     </div>
+
                                                                                 </div>
                                                                             </div>
-
                                                                         </div>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </ng-template>
-                                                    </ngb-panel>
-                                                </ngb-accordion>
-                                            </div>
-                                            <div class="row margin-5">
-                                                <div class="col-xs-4 shiping-box">
-                                                    <div class="heading-step1">
-                                                        <h4>Shipping Method</h4>
-                                                    </div>
-
-                                                    <div class="content-card steps-inner shipping-method">
-                                                        <div class="method-shipp">
-                                                            <ul>
-                                                                <li>
-                                                                    <div class="custom-control custom-radio">
-                                                                        <input type="radio" id="customRadio1" [(ngModel)]="isShipmentMethod" [checked]="isShipmentMethod === 1" value="1" name="isShipmentMethod" (change)="onItemChange(1)" class="custom-control-input">
-                                                                        <label class="custom-control-label" for="customRadio1">
-                                                                            <div class="shipping-list-item">
-                                                                                <h4>Get it today (Utah only)</h4>
-                                                                                <p>$0.00 Will Call Pickup</p>
-                                                                            </div>
-                                                                        </label>
-                                                                    </div>
-                                                                </li>
-                                                                <li>
-                                                                    <div class="custom-control custom-radio">
-                                                                        <input type="radio" id="customRadio2" [checked]="isShipmentMethod === 2" [(ngModel)]="isShipmentMethod" value="2" (change)="onItemChange(2)" name="isShipmentMethod" class="custom-control-input">
-                                                                        <label class="custom-control-label" for="customRadio2">
-                                                                            <div class="shipping-list-item">
-                                                                                <h4>Get it by Fri, Feb 22nd</h4>
-                                                                                <p>FREE Shipping</p>
-                                                                            </div>
-                                                                        </label>
-                                                                    </div>
-                                                                </li>
-                                                                <li>
-                                                                    <div class="custom-control custom-radio">
-                                                                        <input type="radio" id="customRadio3" [checked]="isShipmentMethod === 3" [(ngModel)]="isShipmentMethod" value="3" (change)="onItemChange(3)" name="isShipmentMethod" class="custom-control-input">
-                                                                        <label class="custom-control-label" for="customRadio3">
-                                                                            <div class="shipping-list-item">
-                                                                                <h4>Get it by Wed, Feb 19th</h4>
-                                                                                <p>$8.99 Shipping</p>
-                                                                            </div>
-                                                                        </label>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
                                                         </div>
+                                                    </ng-template>
+                                                </ngb-panel>
+                                            </ngb-accordion>
+                                        </div>
+
+
+                                        <div class="row margin-5">
+                                            <div class="col-xs-4 shiping-box">
+                                                <div class="heading-step1">
+                                                    <h4>Shipping Method</h4>
+                                                </div>
+
+                                                <div class="content-card steps-inner shipping-method">
+                                                    <div class="method-shipp">
+                                                        <ul>
+                                                            <li>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="customRadio1" [(ngModel)]="isShipmentMethod" [checked]="isShipmentMethod === 1" value="1" name="isShipmentMethod" (change)="onItemChange(1)" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="customRadio1">
+                                                                    <div class="shipping-list-item">
+                                                                        <h4>Get it today (Utah only)</h4>
+                                                                        <p>$0.00 Will Call Pickup</p>
+                                                                    </div>
+                                                                </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="customRadio2" [checked]="isShipmentMethod === 2" [(ngModel)]="isShipmentMethod" value="2" (change)="onItemChange(2)" name="isShipmentMethod" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="customRadio2">
+                                                                    <div class="shipping-list-item">
+                                                                        <h4>Get it by Fri, Feb 22nd</h4>
+                                                                        <p>FREE Shipping</p>
+                                                                    </div>
+                                                                </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="customRadio3" [checked]="isShipmentMethod === 3" [(ngModel)]="isShipmentMethod" value="3" (change)="onItemChange(3)" name="isShipmentMethod" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="customRadio3">
+                                                                    <div class="shipping-list-item">
+                                                                        <h4>Get it by Wed, Feb 19th</h4>
+                                                                        <p>$8.99 Shipping</p>
+                                                                    </div>
+                                                                </label>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="saveprocessed conti">
-                                                <button type="submit">Save & Continue</button>
-                                            </div>
-                                        </form>
-
+                                        </div>
+                                        <div class="saveprocessed conti">
+                                            <button type="submit">Save & Continue</button>
+                                        </div>
                                     </ng-template>
                                 </ngb-panel>
                                 <!-- 3 of 4  -->
 
 
-                                <ngb-panel id="checkoutstep3" [disabled]="paymentPannel ? true:null" class="payment-wrapper">
+                                <ngb-panel id="checkoutstep3" class="payment-wrapper">
                                     <ng-template ngbPanelTitle>
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
-                                            <defs>
-                                                <clipPath id="clip-path">
-                                                    <rect width="24" height="24" fill="none" />
-                                                </clipPath>
-                                            </defs>
-                                            <g id="Icon_Check_Circle_Rounded" data-name="Icon / Check Circle / Rounded"
-                                                clip-path="url(#clip-path)">
-                                                <rect id="Box" width="24" height="24" fill="none" />
-                                                <path id="Path_2034" data-name="Path 2034"
-                                                    d="M247.2,14.3l-3.6-3.6a.967.967,0,0,1,0-1.4.967.967,0,0,1,1.4,0l2.9,2.9,6.9-6.9a.99.99,0,0,1,1.4,1.4l-7.6,7.6A.967.967,0,0,1,247.2,14.3ZM249.9,0a10,10,0,1,0,10,10A10.029,10.029,0,0,0,249.9,0Z"
-                                                    transform="translate(-238 2)" fill="#1cc584" />
-                                            </g>
-                                        </svg>
-                                        <h4> 3 of 4 - Payment </h4>
+                                        <defs>
+                                            <clipPath id="clip-path">
+                                                <rect width="24" height="24" fill="none" />
+                                            </clipPath>
+                                        </defs>
+                                        <g id="Icon_Check_Circle_Rounded" data-name="Icon / Check Circle / Rounded"
+                                            clip-path="url(#clip-path)">
+                                            <rect id="Box" width="24" height="24" fill="none" />
+                                            <path id="Path_2034" data-name="Path 2034"
+                                                d="M247.2,14.3l-3.6-3.6a.967.967,0,0,1,0-1.4.967.967,0,0,1,1.4,0l2.9,2.9,6.9-6.9a.99.99,0,0,1,1.4,1.4l-7.6,7.6A.967.967,0,0,1,247.2,14.3ZM249.9,0a10,10,0,1,0,10,10A10.029,10.029,0,0,0,249.9,0Z"
+                                                transform="translate(-238 2)" fill="#1cc584" />
+                                        </g>
+                                    </svg>
+                                        <h4> 3 of - Payment </h4>
                                     </ng-template>
                                     <ng-template ngbPanelContent>
                                         <form [formGroup]="onPaymentSubmitForm" (ngSubmit)="onPaymentSubmit()">
-                                            <ngb-accordion activeIds="card-info,billing-method">
-
+                                            <ngb-accordion activeIds="promo-code,loyalty-info,cards-selection,card-info,billing-method">
                                                 <ngb-panel id="card-info">
-                                                    <ng-template ngbPanelTitle>
-                                                        <div class="heading-step1">
-                                                            <h4>Card</h4>
-                                                            <!-- <span class="arrow-stepp">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
-                                                                    height="11.2" viewBox="0 0 6.6 11.2">
-                                                                    <path id="Path_2044" data-name="Path 2044"
-                                                                        d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                                        transform="translate(-630.6 -4.4)" />
-                                                                </svg>
-                                                            </span> -->
-                                                        </div>
-                                                    </ng-template>
                                                     <ng-template ngbPanelContent>
+                                                        <h4 class="cardSection"> Card</h4>
                                                         <div class="content-card steps-inner shipping-address-form">
                                                             <ul class="card-mat">
                                                                 <li><img src="../../assets/card-ui-1.png" /></li>
@@ -882,12 +860,9 @@
                                                                         <div class="form-group">
                                                                             <input type="text" formControlName="cardName" placeholder="Name on card" name="card-name" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardName?.errors }" />
                                                                             <div *ngIf="paymentSubmitted && p.cardName?.errors" class="invalid-feedback">
-                                                                                <div *ngIf="p.cardName?.errors.required">
-                                                                                    Card Name is required</div>
+                                                                                <div *ngIf="p.cardName?.errors.required">Card Name is required</div>
                                                                             </div>
-                                                                            <div class="req">
-                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                                            </div>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-12">
@@ -895,17 +870,12 @@
                                                                             <input type="text" formControlName="cardNumber" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="0000 0000 0000 0000" (change)="creditCardValidator($event)" placeholder="Card number" name="cardNumber" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardNumber?.errors }"
                                                                             />
                                                                             <div *ngIf="paymentSubmitted && p.cardNumber?.errors" class="invalid-feedback">
-                                                                                <div *ngIf="p.cardNumber?.errors.required">
-                                                                                    Card Number is required</div>
-                                                                                <div *ngIf="p.cardNumber.errors.minlength">
-                                                                                    Card Number must be at least 14 numbers </div>
+                                                                                <div *ngIf="p.cardNumber?.errors.required">Card Number is required</div>
+                                                                                <div *ngIf="p.cardNumber.errors.minlength">Card Number must be at least 14 numbers </div>
                                                                             </div>
                                                                             <div *ngIf="cardvalidate" class="cardvalidateerror">
                                                                                 <div *ngIf="cardvalidate">Card Number is not valid
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="req">
-                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -922,8 +892,7 @@
                                                                                     Invalid Month</div>
                                                                             </div>
                                                                             <div *ngIf="monthError" class="invalid-feedback-customclass">
-                                                                                <div *ngIf="monthError">Month is not valid
-                                                                                </div>
+                                                                                <div *ngIf="monthError">Month is not valid</div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -936,41 +905,28 @@
                                                                                     Expiry Year is required</div>
                                                                             </div>
                                                                             <div *ngIf="yearError" class="invalid-feedback-customclass">
-                                                                                <div *ngIf="yearError">Year is not valid
-                                                                                </div>
+                                                                                <div *ngIf="yearError">Year is not valid</div>
                                                                             </div>
 
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-12">
+                                                                    <div class="col-sm-12">
                                                                         <div class="form-group">
+                                                                            <input type="text" formControlName="cardCVV" placeholder="CVV" name="cardCVV" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardCVV?.errors }" />
+                                                                            <div *ngIf="paymentSubmitted && p.cardCVV?.errors" class="invalid-feedback">
+                                                                                <div *ngIf="p.cardCVV?.errors.required">card CVV is required</div>
+
+                                                                            </div>
                                                                             <div class="req">
                                                                                 <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
                                                                             </div>
-                                                                            <input type="text" formControlName="cardCVV" placeholder="CVV" name="cardCVV" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardCVV?.errors }" />
-                                                                            <div *ngIf="paymentSubmitted && p.cardCVV?.errors" class="invalid-feedback">
-                                                                                <div *ngIf="p.cardCVV?.errors.required">
-                                                                                    card CVV is required</div>
-                                                                            </div>
                                                                         </div>
                                                                     </div>
 
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <ul class="conv-products mk-primary">
-                                                                            <li>
-                                                                                <div class="custom-control custom-radio">
-                                                                                    <input type="checkbox" id="card-primary" formArrayName="isMakePrimaryCard" formControlName="isMakePrimaryCard" (change)="onCheckboxChange($event)" value="0" name="isMakePrimaryCard" class="custom-control-input">
-                                                                                    <label class="custom-control-label" for="card-primary">
-                                                                                        Make primary card
-                                                                                    </label>
-                                                                                </div>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
+
                                                             </div>
+
                                                         </div>
                                                     </ng-template>
                                                 </ngb-panel>
@@ -978,6 +934,7 @@
                                                     <ng-template ngbPanelTitle>
                                                         <div class="heading-step1">
                                                             <h4>Billing Address</h4>
+
                                                         </div>
                                                     </ng-template>
                                                     <ng-template ngbPanelContent>
@@ -986,7 +943,7 @@
                                                                 <ul>
                                                                     <li>
                                                                         <div class="custom-control custom-radio">
-                                                                            <input type="radio" id="customRadio4" (change)="shippingAddressType('shippingAddress')" [checked]="true" name="newCustomRadio" class="custom-control-input">
+                                                                            <input type="radio" id="customRadio4" (change)="shippingAddressType('shippingAddress')" name="newCustomRadio" class="custom-control-input">
                                                                             <label class="custom-control-label" for="customRadio4">
                                                                                 <div class="shipping-list-item">
                                                                                     <h4>Same as shipping address</h4>
@@ -999,8 +956,7 @@
                                                                             <input type="radio" id="customRadio5" (change)="shippingAddressType('newAddress')" type="radio" name="newCustomRadio" class="custom-control-input">
                                                                             <label class="custom-control-label" for="customRadio5">
                                                                                 <div class="shipping-list-item">
-                                                                                    <h4>Use different billing address
-                                                                                    </h4>
+                                                                                    <h4>Use different billing address</h4>
                                                                                 </div>
                                                                             </label>
                                                                         </div>
@@ -1054,27 +1010,22 @@
 
 
                                 <!-- 4 of 4  -->
-                                <ngb-panel id="checkoutstep4" [disabled]="reviewOrderPannel ? true:null">
+                                <ngb-panel id="checkoutstep4">
                                     <ng-template ngbPanelTitle>
                                         <span>4 of 4 - Review Order</span>
                                     </ng-template>
                                     <ng-template ngbPanelContent>
-                                        <ngb-accordion activeIds="notifi-review,promo-code,loyalty-info,today-order">
+                                        <ngb-accordion activeIds="today-order">
                                             <ngb-panel id="notifi-review">
                                                 <ng-template ngbPanelTitle>
                                                     <div class="heading-step1">
                                                         <h4>Does everything look correct?</h4>
-                                                    </div>
-                                                </ng-template>
-                                                <ng-template ngbPanelContent>
-                                                    <div class="content-card steps-inner shipping-address-form">
-                                                        <div class="col-md-12 loyalty-form p-0 mb-3">
-                                                            <p>Select <button class="simplelink" (click)="onSubmit()">Place My Order</button> to continue
-                                                            </p>
-                                                        </div>
+                                                        <p class="doesdiv">Select <a href="">Place My Order</a> to continue</p>
                                                     </div>
                                                 </ng-template>
                                             </ngb-panel>
+
+
                                             <ngb-panel id="today-order">
                                                 <ng-template ngbPanelTitle>
                                                     <div class="heading-step1">
@@ -1088,7 +1039,7 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Order Total</td>
-                                                                        <td>${{cartSummaryTotal | number:'.1-2'}}</td>
+                                                                        <td>${{orderTotal | number:'.1-2'}}</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Subtotal</td>
@@ -1104,10 +1055,15 @@
                                                                     </tr>
                                                                 </tbody>
                                                                 <tfoot>
-
                                                                     <tr>
                                                                         <td>
-                                                                            <p class="you-pay">You pay</p>
+
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <p class="you-pay">You Pay</p>
                                                                         </td>
                                                                         <td>
                                                                             <p class="you-pay">${{cartSummaryTotal | number:'.1-2'}}
@@ -1126,20 +1082,20 @@
                                                 <button type="submit" (click)="onSubmit()">Place My Order</button>
                                             </div>
                                             <div class="verified-batch">
-                                                <span class="batch-icon"><svg xmlns="http://www.w3.org/2000/svg"
-                                                        width="27" height="36.001" viewBox="0 0 27 36.001">
-                                                        <path _ngcontent-shi-c146="" id="Icon_awesome-award"
-                                                            data-name="Icon awesome-award"
-                                                            d="M6.829,25.5c-.611-.611-.293-.439-1.766-.833a5.073,5.073,0,0,1-1.788-.937L.084,31.549A1.125,1.125,0,0,0,1.169,33.1l3.7-.141,2.548,2.692A1.125,1.125,0,0,0,9.281,35.3l3.66-8.973A5.046,5.046,0,0,1,6.829,25.5Zm20.087,6.052-3.19-7.822a5.062,5.062,0,0,1-1.788.937c-1.481.4-1.157.224-1.766.833a5.047,5.047,0,0,1-6.112.829l3.66,8.973a1.125,1.125,0,0,0,1.858.349l2.549-2.692,3.7.141a1.125,1.125,0,0,0,1.085-1.549Zm-8.423-7.643c1.074-1.093,1.2-1,2.727-1.416a2.857,2.857,0,0,0,2-2.038c.526-2,.39-1.756,1.825-3.217a2.917,2.917,0,0,0,.733-2.783c-.525-2-.526-1.717,0-3.715a2.917,2.917,0,0,0-.733-2.783c-1.435-1.461-1.3-1.221-1.825-3.217a2.857,2.857,0,0,0-2-2.038c-1.96-.535-1.724-.4-3.161-1.857A2.8,2.8,0,0,0,15.325.1c-1.96.534-1.686.535-3.649,0A2.8,2.8,0,0,0,8.941.844C7.506,2.3,7.742,2.166,5.781,2.7a2.857,2.857,0,0,0-2,2.038c-.525,2-.39,1.756-1.825,3.217a2.915,2.915,0,0,0-.733,2.783c.525,1.994.526,1.716,0,3.714a2.919,2.919,0,0,0,.733,2.784c1.435,1.461,1.3,1.22,1.825,3.217a2.857,2.857,0,0,0,2,2.038c1.574.429,1.691.361,2.727,1.416a2.794,2.794,0,0,0,3.5.409,2.79,2.79,0,0,1,2.99,0A2.793,2.793,0,0,0,18.492,23.906ZM6.867,12.372A6.634,6.634,0,1,1,13.5,19.124a6.693,6.693,0,0,1-6.633-6.751Z"
-                                                            transform="translate(0 0.001)" fill="#333" opacity="0.5">
-                                                        </path>
-                                                    </svg></span>
+                                                <span class="batch-icon"><svg xmlns="http://www.w3.org/2000/svg" width="27"
+                                                    height="36.001" viewBox="0 0 27 36.001">
+                                                    <path _ngcontent-shi-c146="" id="Icon_awesome-award"
+                                                        data-name="Icon awesome-award"
+                                                        d="M6.829,25.5c-.611-.611-.293-.439-1.766-.833a5.073,5.073,0,0,1-1.788-.937L.084,31.549A1.125,1.125,0,0,0,1.169,33.1l3.7-.141,2.548,2.692A1.125,1.125,0,0,0,9.281,35.3l3.66-8.973A5.046,5.046,0,0,1,6.829,25.5Zm20.087,6.052-3.19-7.822a5.062,5.062,0,0,1-1.788.937c-1.481.4-1.157.224-1.766.833a5.047,5.047,0,0,1-6.112.829l3.66,8.973a1.125,1.125,0,0,0,1.858.349l2.549-2.692,3.7.141a1.125,1.125,0,0,0,1.085-1.549Zm-8.423-7.643c1.074-1.093,1.2-1,2.727-1.416a2.857,2.857,0,0,0,2-2.038c.526-2,.39-1.756,1.825-3.217a2.917,2.917,0,0,0,.733-2.783c-.525-2-.526-1.717,0-3.715a2.917,2.917,0,0,0-.733-2.783c-1.435-1.461-1.3-1.221-1.825-3.217a2.857,2.857,0,0,0-2-2.038c-1.96-.535-1.724-.4-3.161-1.857A2.8,2.8,0,0,0,15.325.1c-1.96.534-1.686.535-3.649,0A2.8,2.8,0,0,0,8.941.844C7.506,2.3,7.742,2.166,5.781,2.7a2.857,2.857,0,0,0-2,2.038c-.525,2-.39,1.756-1.825,3.217a2.915,2.915,0,0,0-.733,2.783c.525,1.994.526,1.716,0,3.714a2.919,2.919,0,0,0,.733,2.784c1.435,1.461,1.3,1.22,1.825,3.217a2.857,2.857,0,0,0,2,2.038c1.574.429,1.691.361,2.727,1.416a2.794,2.794,0,0,0,3.5.409,2.79,2.79,0,0,1,2.99,0A2.793,2.793,0,0,0,18.492,23.906ZM6.867,12.372A6.634,6.634,0,1,1,13.5,19.124a6.693,6.693,0,0,1-6.633-6.751Z"
+                                                        transform="translate(0 0.001)" fill="#333" opacity="0.5"></path>
+                                                </svg></span>
                                                 <span class="batch-text">Every order is backed by our 100% Happy
-                                                    Guarantee</span>
+                                                Guarantee</span>
                                             </div>
                                         </div>
                                     </ng-template>
                                 </ngb-panel>
+
                             </ngb-accordion>
                         </div>
                     </div>
@@ -1150,16 +1106,17 @@
                 <div class="enrollment-page">
                     <div class="showsidebar toggle-sidebar hidden-lg">
                         <div class="cart-sidebar sidebar-collapse">
+
                         </div>
                     </div>
-                    <div class="sidebar-ui">
+                    <div class="sidebar-ui urenroler">
                         <ngb-accordion activeIds="enter-payment">
                             <ngb-panel id="refered-sidebar">
                                 <ng-template ngbPanelTitle>
                                     <div class="heading-step1">
                                         <h4>Your Enroller</h4>
                                         <span *ngIf="!toShowData" class="vali-promo">Amanda Walsh, ID#42</span>
-                                        <p *ngIf="toShowData" class="Refered-value mb-0"></p>
+                                        <p *ngIf="toShowData" class="Refered-value mb-0">{{refName}}, ID #{{refId}}</p>
                                         <span class="arrow-stepp">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
                                                 viewBox="0 0 6.6 11.2">
@@ -1171,32 +1128,35 @@
                                     </div>
                                 </ng-template>
                                 <ng-template ngbPanelContent>
-                                    <div class="search-box">
-                                        <div class="search-bar-on">
+                                    <div class=" search-box">
+                                        <div class="search-bar-on searchIcon">
                                             <div class="form-group">
-                                                <input type="text" class="form-control personalInfo" (click)="open(referr_user)" value="" placeholder="Find referral (Optional)" />
-                                                <span class="search"><svg xmlns="http://www.w3.org/2000/svg"
-                                                        width="16.947" height="17.048" viewBox="0 0 16.947 17.048">
+                                                <input type="text" class="form-control" (click)="open(referr_user)" value="" placeholder="Find referral (Optional)" />
+                                                <span class="search searchcon"><svg xmlns="http://www.w3.org/2000/svg" width="16.947"
+                                                        height="17.048" viewBox="0 0 16.947 17.048">
                                                         <path id="Path_2019" data-name="Path 2019"
                                                             d="M151.4,12a4.5,4.5,0,1,1,4.5-4.5A4.481,4.481,0,0,1,151.4,12Zm6,0h-.8l-.3-.3a6.593,6.593,0,0,0,1.5-5.3,6.471,6.471,0,0,0-5.6-5.3,6.53,6.53,0,0,0-2,12.9,6.593,6.593,0,0,0,5.3-1.5l.3.3v.8l4.2,4.2a1.061,1.061,0,0,0,1.5-1.5Z"
                                                             transform="translate(-144.853 -1.052)" />
                                                     </svg>
                                                 </span>
-                                                <div class="req">
-                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                </div>
                                             </div>
-                                            <span class="text-value">Customer ID, First or Last Name</span>
+                                            <p></p>
+                                            <span class="text-value ">Customer ID, First or Last Name</span>
                                         </div>
                                     </div>
                                 </ng-template>
                             </ngb-panel>
+
+
                             <ngb-panel id="today-order-sidebar">
                                 <ng-template ngbPanelTitle>
-                                    <div class="heading-step1">
+                                    <div class="heading-step1 enrollmentOrder">
                                         <h4>Today's Order</h4>
-                                        <p>{{itemDescription}}</p>
-                                        <span class="arrow-stepp">
+                                        <div class="torder">
+                                            <span>Starter Kit Name</span>
+                                            <span>$ 65.78</span>
+                                        </div>
+                                        <span class="arrow-stepp myarrow">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
                                                 viewBox="0 0 6.6 11.2">
                                                 <path id="Path_2044" data-name="Path 2044"
@@ -1211,17 +1171,26 @@
                                         <table>
                                             <tbody>
                                                 <tr>
-                                                    <td>{{itemDescription}}</td>
-                                                    <td>${{cartSummaryTotal | number:'.1-2'}}</td>
+                                                    <td></td>
+
                                                 </tr>
-                                                <hr>
+                                                <tr>
+
+                                                    <td></td>
+                                                </tr>
+
+
                                             </tbody>
                                             <tfoot>
+                                                <tr>
 
+                                                    <td></td>
+
+                                                </tr>
 
                                                 <tr>
                                                     <td>Total</td>
-                                                    <td>${{cartSummaryTotal | number:'.1-2'}}</td>
+                                                    <td>$ 65.78</td>
                                                 </tr>
                                             </tfoot>
                                         </table>
