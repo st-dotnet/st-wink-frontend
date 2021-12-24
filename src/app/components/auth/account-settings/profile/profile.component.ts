@@ -3,6 +3,7 @@ import { AccountService, SessionService } from '@app/_services';
 import { ShopService } from '@app/_services/shop.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -27,10 +28,11 @@ export class ProfileComponent implements OnInit {
     this.getuserdetails();
   }
   getuserdetails(){
+    debugger;
     this.spinner.show();
     this.currentuser = this.sessionService.getSessionObject("user");
     this.accountService.getCustomer(this.currentuser.customerId).subscribe((response) => {
-      this.UserDetails = response.result.customers[0];
+      this.UserDetails = response.customers[0];
       console.log(this.UserDetails);
       this.spinner.hide();
     });
@@ -66,5 +68,22 @@ export class ProfileComponent implements OnInit {
     /^\d{10}$/;
     return re.test(String(mobile).toLowerCase());
   }
-
+  logout() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want to logout.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.value) {
+        this.sessionService.logout();
+        this.sessionService.removeSessionItem("user");
+        this.sessionService.removeSessionItem("promoCode");
+        this.sessionService.cartSession(0);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+      }
+    })
+  }
 }

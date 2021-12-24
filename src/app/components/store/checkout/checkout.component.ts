@@ -183,7 +183,14 @@ export class CheckoutComponent implements OnInit {
     }
     if( this.cartItems==null || this.cartItems.length==0)
         {this.cartItems = this.sessionService.getSessionObject('productCartItems');}
-
+    let onetimeOfferpromo=   this.cartItems.filter(
+          (x) =>
+            x.selectDelivery == CartTypeEnum.OneTimePrice &&
+            x.bundle != 'specialOffer'
+        );
+        if(onetimeOfferpromo.length>0){
+          this.isPromocode =true;
+        }
     this.newAddress = JSON.parse(localStorage.getItem('newShippingAddress'))
       ? JSON.parse(localStorage.getItem('newShippingAddress'))
       : '';
@@ -349,17 +356,18 @@ export class CheckoutComponent implements OnInit {
     this.shippingAddressParam = this.getShippingAddressParam(1);
     this.shopService.postAddress(this.customerId, this.shippingAddressParam)
       .subscribe((result: any) => {
-        if (result.result) {
+        debugger;
+        if (result) {
           this.spinner.hide();
           this.showPanel2 = false;
           this.toastrService.success('Shipping address saved successfully');
           this.activeIds = ['checkoutstep2'];
           this.displayAddress =
-            result.result.address1 +
-            ' ' + result.result.city +
-            ' ' + result.result.state +
-            ' ' + result.result.zip +
-            ' ' + result.result.country;
+            result.address1 +
+            ' ' + result.city +
+            ' ' + result.state +
+            ' ' + result.zip +
+            ' ' + result.country;
         } else {
           this.toastrService.error(result.message);
           this.spinner.hide();

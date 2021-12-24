@@ -22,8 +22,8 @@ customerOrderData:any;
   getCustomerAutoOrders(){
     this.spinner.show();
     this.accountService.getCustomerAutoOrders().subscribe((response)=>{
-      this.customerOrderData=response.result;
-      console.log(response.result);
+      this.customerOrderData=response;
+     
       this.spinner.hide();
    });
   }

@@ -83,10 +83,18 @@
                 <ul class="right-menu">
                     <li class="Search-demo-tour-class">
                         <div class="searchbar">
-                            <input type="text" class="form-control" placeholder="Search" />
+                            <input type="text" class="form-control"  [(ngModel)]="searchText"  (keyup)="getSearchProduct(searchText)" placeholder="Search" />
+                           
                             <i class="fa fa-search"></i>
                         </div>
-
+                     
+                            <ul [className]="flag ?  'subshow search-result' : ' subhide  search-result'"  >  
+                                <li class="productlist" *ngFor="let product of products | slice:0:15; let i=index">  
+                                    <a (click)="onselectProduct(product)">{{product.itemCode}}</a>  
+                                </li>             
+                            </ul>  
+                      
+                    
                         <!-- <a [routerLink]="['/store/search-products']"></a> -->
                     </li>
                     <li class="cart-item Cart-Item-demo-tour-class"><a [routerLink]="['/store/cart']"><i

@@ -41,7 +41,7 @@ export class AddressesComponent implements OnInit {
     this.shopService.getCustomerAddressById(id).subscribe((result: any) => {
    this.spinner.hide();
       if (result!=null) {
-      this.addressess = result?.result?.customers;   
+      this.addressess = result?.customers;   
       }});
   };
   get s() {

@@ -489,7 +489,13 @@ span.search {
     border-color: #dc3545 !important;
 }
 
+.invalid-feedback+.req {
+    display: none;
+}
 
+.invalid-feedback {
+    margin-bottom: 12px;
+}
 /* media  css */
 
 @media (min-width: 992px) {

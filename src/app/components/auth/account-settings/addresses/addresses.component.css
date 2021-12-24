@@ -376,6 +376,9 @@ section.address-page .delete a {
     padding-left: 0px;
 }
 
+.field-validation-valid {
+    color: #dc3545 !important;
+    }
 @media (min-width: 992px) {
     span.arrow-stepp {
         display: block;
