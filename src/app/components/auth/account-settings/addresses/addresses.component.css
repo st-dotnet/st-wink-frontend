@@ -366,6 +366,16 @@ section.address-page .delete a {
     margin: 20px 0px;
 }
 
+.addresses-page .cityState {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15px;
+}
+
+.addresses-page .cityState .col-sm-6 {
+    padding-left: 0px;
+}
+
 @media (min-width: 992px) {
     span.arrow-stepp {
         display: block;
@@ -375,5 +385,8 @@ section.address-page .delete a {
     }
     .addresses-page .cancles {
         margin: 0px 12px;
+    }
+    .addresses-page .cityState {
+        width: 100%;
     }
 }

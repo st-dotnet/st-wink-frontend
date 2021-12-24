@@ -471,6 +471,16 @@ section.address-page .delete a {
     margin-right: 10px;
 }
 
+.paymentPage .cityState {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15px;
+}
+
+.paymentPage .cityState .col-sm-6 {
+    padding-left: 0px;
+}
+
 @media (min-width: 992px) {
     section.address-page .delete {
         margin-top: 0px;
@@ -483,5 +493,8 @@ section.address-page .delete a {
     }
     .addresses-page .cancles {
         margin: 0px 12px;
+    }
+    .paymentPage .cityState {
+        width: 100%;
     }
 }

@@ -102,35 +102,39 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <input type="text" formControlName="expiryMonth" [(ngModel)]="checkMonth" (change)="validateCard()" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="00" placeholder="Month" name="expiryMonth" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryMonth?.errors }"
-                                                            />
-                                                            <div *ngIf="paymentSubmitted && p.expiryMonth?.errors" class="invalid-feedback">
-                                                                <div *ngIf="p.expiryMonth?.errors.required">
-                                                                    Expiry Month is required</div>
-                                                                <div *ngIf="p.expiryMonth.errors.pattern">
-                                                                    Invalid Month</div>
-                                                            </div>
-                                                            <div *ngIf="monthError" class="invalid-feedback-customclass">
-                                                                <div *ngIf="monthError">Month is not valid</div>
+                                                    <div class="cityState">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <input type="text" formControlName="expiryMonth" [(ngModel)]="checkMonth" (change)="validateCard()" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="00" placeholder="Month" name="expiryMonth" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryMonth?.errors }"
+                                                                />
+                                                                <div *ngIf="paymentSubmitted && p.expiryMonth?.errors" class="invalid-feedback">
+                                                                    <div *ngIf="p.expiryMonth?.errors.required">
+                                                                        Expiry Month is required</div>
+                                                                    <div *ngIf="p.expiryMonth.errors.pattern">
+                                                                        Invalid Month</div>
+                                                                </div>
+                                                                <div *ngIf="monthError" class="invalid-feedback-customclass">
+                                                                    <div *ngIf="monthError">Month is not valid</div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <input type="text" formControlName="expiryYear" [(ngModel)]="checkYear" (change)="validateCard()" placeholder="Year" name="expiryYear" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="0000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryYear?.errors }"
-                                                            />
-                                                            <div *ngIf="paymentSubmitted && p.expiryYear?.errors" class="invalid-feedback">
-                                                                <div *ngIf="p.expiryYear?.errors.required">
-                                                                    Expiry Year is required</div>
-                                                            </div>
-                                                            <div *ngIf="yearError" class="invalid-feedback-customclass">
-                                                                <div *ngIf="yearError">Year is not valid</div>
-                                                            </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <input type="text" formControlName="expiryYear" [(ngModel)]="checkYear" (change)="validateCard()" placeholder="Year" name="expiryYear" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="0000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryYear?.errors }"
+                                                                />
+                                                                <div *ngIf="paymentSubmitted && p.expiryYear?.errors" class="invalid-feedback">
+                                                                    <div *ngIf="p.expiryYear?.errors.required">
+                                                                        Expiry Year is required</div>
+                                                                </div>
+                                                                <div *ngIf="yearError" class="invalid-feedback-customclass">
+                                                                    <div *ngIf="yearError">Year is not valid</div>
+                                                                </div>
 
+                                                            </div>
                                                         </div>
                                                     </div>
+
+
                                                     <div class="col-sm-12">
                                                         <div class="form-group">
                                                             <input type="text" formControlName="cardCVV" placeholder="CVV" name="cardCVV" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardCVV?.errors }" />
@@ -152,28 +156,30 @@
 
 
                                                             <div class="row">
-                                                                <div class="col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <input type="text" formControlName="expiryMonth" mask="00" placeholder="City" name="expiryMonth" class="form-control" />
+                                                                <div class="cityState">
+                                                                    <div class="col-sm-6">
+                                                                        <div class="form-group">
+                                                                            <input type="text" formControlName="expiryMonth" mask="00" placeholder="City" name="expiryMonth" class="form-control" />
 
 
-                                                                        <div class="invalid-feedback-customclass">
-                                                                            <div *ngIf="monthError">Month is not valid</div>
+                                                                            <div class="invalid-feedback-customclass">
+                                                                                <div *ngIf="monthError">Month is not valid</div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <input type="text" formControlName="expiryYear" placeholder="State" name="expiryYear" mask="0000" class="form-control" />
+                                                                    <div class="col-sm-6">
+                                                                        <div class="form-group">
+                                                                            <input type="text" formControlName="expiryYear" placeholder="State" name="expiryYear" mask="0000" class="form-control" />
 
-                                                                        <div *ngIf="paymentSubmitted && p.expiryYear?.errors " class="invalid-feedback ">
-                                                                            <div *ngIf="p.expiryYear?.errors.required ">
-                                                                                Expiry Year is required</div>
-                                                                        </div>
-                                                                        <div *ngIf="yearError " class="invalid-feedback-customclass ">
-                                                                            <div *ngIf="yearError ">Year is not valid</div>
-                                                                        </div>
+                                                                            <div *ngIf="paymentSubmitted && p.expiryYear?.errors " class="invalid-feedback ">
+                                                                                <div *ngIf="p.expiryYear?.errors.required ">
+                                                                                    Expiry Year is required</div>
+                                                                            </div>
+                                                                            <div *ngIf="yearError " class="invalid-feedback-customclass ">
+                                                                                <div *ngIf="yearError ">Year is not valid</div>
+                                                                            </div>
 
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
