@@ -35,7 +35,7 @@
                                             </div>
                                             <div class="emailbtns">
                                                 <div class="cancles">
-                                                    <a href="#"> <button class="cancle-btn">Cancel</button></a>
+                                                    <a data-toggle="collapse" href="#promo-sidebar1" role="button" aria-expanded="false" aria-controls="promo-sidebar1"> <button class="cancle-btn">Cancel</button></a>
                                                 </div>
                                                 <div class="saves">
                                                     <a href="#"> <button class="save-btn" (click)="submit('First Name',UserDetails.firstName)">Save</button></a>
@@ -72,7 +72,7 @@
                                             </div>
                                             <div class="emailbtns">
                                                 <div class="cancles">
-                                                    <a href="#"> <button class="cancle-btn">Cancel</button></a>
+                                                    <a data-toggle="collapse" href="#promo-sidebar" role="button" aria-expanded="false" aria-controls="promo-sidebar"> <button class="cancle-btn">Cancel</button></a>
                                                 </div>
                                                 <div class="saves">
                                                     <a href="#"> <button class="save-btn" (click)="submit('login Name',UserDetails.loginName)">Save</button></a>
@@ -114,7 +114,7 @@
                                                             </div>
                                                             <div class="emailbtns">
                                                                 <div class="cancles">
-                                                                    <a href="#"> <button class="cancle-btn">Cancel</button></a>
+                                                                    <a data-toggle="collapse" href="#otp-sidebar2" role="button" aria-expanded="false" aria-controls="otp-sidebar2"> <button class="cancle-btn">Cancel</button></a>
                                                                 </div>
                                                                 <div class="saves">
                                                                     <a href="#"> <button class="save-btn" (click)="submit('password',UserDetails.LoginPassword)">Save</button></a>
@@ -254,8 +254,7 @@
                                     <path id="Path_2161" data-name="Path 2161" d="M14.824,6.42,13.619,7.625,15.825,9.84H7.13v1.71h8.695l-2.206,2.206,1.205,1.214L19.1,10.695ZM3.71,4.71h6.84V3H3.71A1.715,1.715,0,0,0,2,4.71V16.679a1.715,1.715,0,0,0,1.71,1.71h6.84v-1.71H3.71Z" transform="translate(-2 -3)" fill="#333"/>
                                     </svg></span></div>
                                 <div class="svgBtn">
-                                    <button> Sign Out</button></div>
-
+                                    <button (click)="logout()" > Sign Out</button></div>
                             </div>
                         </div>
                     </div>

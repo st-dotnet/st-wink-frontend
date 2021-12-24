@@ -390,18 +390,18 @@ export class EnrollmentInfoComponent implements OnInit {
     this.personalInfo = this.formBuilder.group(
       {
         firstName: ['', [Validators.required]],
-        middleName: ['', [Validators.required]],
+        // middleName: ['', [Validators.required]],
         lastName: ['', [Validators.required]],
         dateOfBirth: ['', [Validators.required]],
-        company: ['', [Validators.required]],
-        officePhone: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(10),
-            Validators.maxLength(15),
-          ],
-        ],
+        // company: ['', [Validators.required]],
+        // officePhone: [
+        //   '',
+        //   [
+        //     Validators.required,
+        //     Validators.minLength(10),
+        //     Validators.maxLength(15),
+        //   ],
+        // ],
         mobileno: [
           '',
           [
@@ -427,7 +427,7 @@ export class EnrollmentInfoComponent implements OnInit {
         address: ['', [Validators.required]],
         city: ['', [Validators.required]],
         zip: ['', [Validators.required]],
-        state: ['', [Validators.required]],
+        state: ['', [Validators.required]]
       },
       {
         validator: MustMatch('password', 'confirmPassword'),
@@ -492,7 +492,7 @@ export class EnrollmentInfoComponent implements OnInit {
     this.shippingAddressPannel = false;
     this.activeIds = ['checkoutstep2'];
     this.spinner.hide();
-
+    this.toastrService.success('Personal Information is Saved ');
   }
 
   changeAddressstate(e) {
@@ -522,7 +522,7 @@ export class EnrollmentInfoComponent implements OnInit {
       !this.f.state.value ||
       !this.f.zip.value
     ) {
-      this.toastrService.error('Plase fill All Address Feilds');
+      this.toastrService.error('Plase fill All Address Fields');
       return;
     }
     let address = {
@@ -555,7 +555,7 @@ export class EnrollmentInfoComponent implements OnInit {
       !this.s.state.value //||
       //!this.s.zip.value
     ) {
-      this.toastrService.error('Plase fill All Address Feilds');
+      this.toastrService.error('Please fill All Address Feilds');
       return;
     }
     let address = {

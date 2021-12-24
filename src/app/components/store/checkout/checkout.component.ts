@@ -183,7 +183,14 @@ export class CheckoutComponent implements OnInit {
     }
     if( this.cartItems==null || this.cartItems.length==0)
         {this.cartItems = this.sessionService.getSessionObject('productCartItems');}
-
+    let onetimeOfferpromo=   this.cartItems.filter(
+          (x) =>
+            x.selectDelivery == CartTypeEnum.OneTimePrice &&
+            x.bundle != 'specialOffer'
+        );
+        if(onetimeOfferpromo.length>0){
+          this.isPromocode =true;
+        }
     this.newAddress = JSON.parse(localStorage.getItem('newShippingAddress'))
       ? JSON.parse(localStorage.getItem('newShippingAddress'))
       : '';

@@ -61,7 +61,6 @@ export class AccountService {
     return this.http.post<any>(`${environment.apiUrl}${this.shoppingEndPoint}UpdateCustomer`,model);
   }
 
-
   getLoyalityPoints() {
     return this.http.get<any>(`${environment.apiUrl}${this.accountEndPoint}Points`);
   }
@@ -101,18 +100,17 @@ export class AccountService {
   getCustomerAutoOrders(){
     return this.http.get<any>(`${environment.apiUrl}${this.accountEndPoint}GetCustomerAutoOrders`);
   }
+
+  getCustomerOrders(){
+    return this.http.get<any>(`${environment.apiUrl}${this.accountEndPoint}ShippedCustomerOrders_SQL`);
+  }
 }
 
 
 
-
-//For Declined : https://localhost:44336/api/Account/DeclinedCustomerOrders_SQL
-//ShipcustomerOrder: https://localhost:44336/api/Account/ShippedCustomerOrders_SQL
-//For Preview Invoice : https://localhost:44336/api/Account/GetOrderInvoice
-
-
-
-
+//DeclinedCustomerOrders_SQL,
+//ShippedCustomerOrders_SQL,
+//CancelledCustomerOrders_SQL
 
 
 
