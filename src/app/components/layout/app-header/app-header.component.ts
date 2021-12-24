@@ -171,6 +171,9 @@ export class AppHeaderComponent implements OnInit {
   }  
   
   getSearchProduct() {
+    if(this.searchText=='' ){
+      this.flag = false;
+    }
     if(this.searchText.length >2){
       this.flag = true; 
       this.products= this.shopProductModels.filter(option => option.itemCode.toLowerCase().includes(this.searchText) ||option.itemDescription.toLowerCase().includes(this.searchText) );    
