@@ -7,9 +7,11 @@ div#main-menu {
 }
 
 div#main-menu li a {
-    font-family: "g-demibold";
-    text-transform: uppercase;
+    font-family: "g-medium";
+    text-transform: capitalize;
     color: #2aa8bf;
+    font-size: 18px;
+    letter-spacing: 1px;
 }
 
 div#main-menu li {

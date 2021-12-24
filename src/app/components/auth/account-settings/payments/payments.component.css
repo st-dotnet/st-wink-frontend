@@ -139,6 +139,17 @@ span.highlight-info {
     pointer-events: none;
 }
 
+.form-group {
+    position: relative;
+}
+
+.lockIcon {
+    position: absolute;
+    top: 4px;
+    right: 9px;
+    opacity: 0.5;
+}
+
 
 /* .custom-control.custom-checkbox {
     padding: 10px 20px;

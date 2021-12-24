@@ -33,10 +33,11 @@ section.account-page.grid-checkout button.cancel-subscrp i {
 section.account-page.grid-checkout button.trck-order-btn {
     width: 100%;
     padding: 6px 36px;
-    background: #1cb1c5;
-    color: white;
+    background: #ffffff;
+    color: #09b6c7;
     border-radius: 30px;
     border: 1px solid #1cb1c5;
+    text-transform: uppercase;
 }
 
 .pagination-points ul.pagination {

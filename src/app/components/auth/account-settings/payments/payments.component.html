@@ -80,6 +80,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <input type="text" formControlName="cardName" placeholder="Name on card" name="card-name" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardName?.errors }" />
+                                                            <div class="lockIcon"><i class="fas fa-lock"></i></div>
                                                             <div *ngIf="paymentSubmitted && p.cardName?.errors" class="invalid-feedback">
                                                                 <div *ngIf="p.cardName?.errors.required">Card Name is required</div>
                                                             </div>
