@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '@app/_helpers/auth.guard';
 import { CanDeactivateGuard } from '@app/_helpers/can-deactivate-guard';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { AddressesComponent } from './account-settings/addresses/addresses.component';
@@ -23,14 +24,13 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent,canDeactivate: [CanDeactivateGuard] },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'forgot-password/:id', component: ForgotPasswordComponent },
-  { path: 'accountSettings', redirectTo: 'profile', component: AccountSettingsComponent,},
-  { path: 'account-settings/profile', component: ProfileComponent },
-  { path: 'account-settings/addresses', component: AddressesComponent },
-  { path: 'account-settings/orders', component: OrdersComponent },
-  { path: 'account-settings/loyaltypoints', component: LoyaltyPointsComponent },
-  { path: 'account-settings/subscriptions', component: SubscriptionsComponent },
-  { path: 'account-settings/payments', component: PaymentsComponent }
-  
+  { path: 'accountSettings', redirectTo: 'profile', component: AccountSettingsComponent,canActivate: [AuthGuard]},
+  { path: 'account-settings/profile', component: ProfileComponent,canActivate: [AuthGuard] },
+  { path: 'account-settings/addresses', component: AddressesComponent,canActivate: [AuthGuard] },
+  { path: 'account-settings/orders', component: OrdersComponent,canActivate: [AuthGuard] },
+  { path: 'account-settings/loyaltypoints', component: LoyaltyPointsComponent,canActivate: [AuthGuard] },
+  { path: 'account-settings/subscriptions', component: SubscriptionsComponent,canActivate: [AuthGuard] },
+  { path: 'account-settings/payments', component: PaymentsComponent,canActivate: [AuthGuard] }
 ];
 
 @NgModule({
