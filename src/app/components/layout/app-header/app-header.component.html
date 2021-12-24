@@ -83,12 +83,12 @@
                 <ul class="right-menu">
                     <li class="Search-demo-tour-class">
                         <div class="searchbar">
-                            <input type="text" class="form-control" *ngIf="flag" [(ngModel)]="searchText"  (keyup)="getSearchProduct(searchText)" placeholder="Search" />
-                            <input class="form-control" [(ngModel)]="searchText" disabled *ngIf="!flag" type="text" />  
+                            <input type="text" class="form-control"  [(ngModel)]="searchText"  (keyup)="getSearchProduct(searchText)" placeholder="Search" />
+                           
                             <i class="fa fa-search"></i>
                         </div>
                      
-                            <ul [className]="flag ?  'subshow search-result' : ' subhide'" *ngIf="flag"  >  
+                            <ul [className]="flag ?  'subshow search-result' : ' subhide  search-result'"  >  
                                 <li class="productlist" *ngFor="let product of products | slice:0:15; let i=index">  
                                     <a (click)="onselectProduct(product)">{{product.itemCode}}</a>  
                                 </li>             

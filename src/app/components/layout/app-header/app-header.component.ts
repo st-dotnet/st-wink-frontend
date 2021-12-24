@@ -96,7 +96,7 @@ export class AppHeaderComponent implements OnInit {
   shopProductModels: any[];
   webCategoryID: number = 3;
   products: any[];
-  flag: boolean=true;
+  flag: boolean=false;
   constructor(private sessionService: SessionService, private guidedTourService: GuidedTourService, private http: HttpClient,
     private router: Router,private shopService: ShopService) {
     this.sessionService.user$.subscribe(x => this.user = x);
