@@ -9,6 +9,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class PaymentsComponent implements OnInit {
 paymentCards: any[]=[];
+  secondaryCards: any[];
+  primaryCards: any[];
+
+
   constructor(private accountService: AccountService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
@@ -19,10 +23,15 @@ paymentCards: any[]=[];
     this.spinner.show();
     this.accountService.GetCustomerBilling().subscribe((response) => {
       //this.UserDetails = response.result.customers[0]
-      debugger;
-      this.paymentCards = response?.result?.filter(x=>x.cardNumber !=null);
+      this.paymentCards = response?.filter(x=>x.cardNumber !=null);
+      this.secondaryCards =   this.paymentCards?.filter(x=>x.type==2);
+      this.primaryCards = this.paymentCards?.filter(x=>x.type==1);
       console.log(response);
       this.spinner.hide();
     });
+  }
+
+  DeleteCard(){
+
   }
 }

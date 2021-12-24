@@ -11,39 +11,44 @@
                             </div>
 
                             <ngb-accordion activeIds="">
-                                <ngb-panel id="promo-sidebar1">
+                                <ngb-panel id="primarycard{{i}}" *ngFor="let item of primaryCards;let i = index" >
                                     <ng-template ngbPanelTitle>
                                         <div class="heading-step1 profile-section">
-                                            <h4> Primary Card</h4>
-                                            <span class="highlight-info">Visa ending in 1111</span>
-                                            <span class="vali-promo"> </span>
-                                            <span class="arrow-stepp">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
-                                                height="11.2" viewBox="0 0 6.6 11.2">
-                                                <path id="Path_2044" data-name="Path 2044"
-                                                    d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
-                                                    transform="translate(-630.6 -4.4)" />
+                                            <h4>Primary Card</h4>
+                                            <span class="highlight-info ">{{item.cardNumber}}</span>
+                                            <span class="vali-promo "> </span>
+                                            <span class="arrow-stepp ">
+                                            <svg xmlns="http://www.w3.org/2000/svg " width="6.6 "
+                                                height="11.2 " viewBox="0 0 6.6 11.2 ">
+                                                <path id="Path_2044 " data-name="Path 2044 "
+                                                    d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z "
+                                                    transform="translate(-630.6 -4.4) " />
                                             </svg>
                                         </span>
                                         </div>
                                     </ng-template>
                                     <ng-template ngbPanelContent>
                                         <div class="addresTwo ">
-                                            <span>Amanda Hall</span><br>
-                                            <span>564 w 700</span><br>
-                                            <span>Orem, UT 84025</span>
+                                            <span>{{item.billingAddress.address1}}</span><br>
+                                            <span>{{item.billingAddress.address2}}</span><br>
+                                            <span>{{item.billingAddress.city}}</span><br>
+                                            <span>{{item.billingAddress.country}}</span><br>
+                                            <span>{{item.billingAddress.state}}</span><br>
+                                            <span>{{item.billingAddress.zip}}</span><br>
+
                                         </div>
                                         <div class="emailbtns secondarybtn">
+                                    
                                             <div class="cancles">
-                                                <a href="#"> <button class="cancle-btn">Edit Address</button></a>
+                                                <a href="#"> <button class="cancle-btn">Edit Card</button></a>
                                             </div>
+
                                             <div class="delete">
                                                 <a href="#"> <i class="fas fa-trash"> <span> Delete</span></i></a>
                                             </div>
                                         </div>
                                     </ng-template>
                                 </ngb-panel>
-
                                 <ngb-panel id="promos-sidebar1">
                                     <ng-template ngbPanelTitle>
                                         <div class="heading-step1 profile-section">
@@ -206,7 +211,7 @@
                                 </ngb-panel>
 
 
-                                <ngb-panel id="secondarycard{{i}}" *ngFor="let item of paymentCards;let i = index" >
+                                <ngb-panel id="secondarycard{{i}}" *ngFor="let item of secondaryCards;let i = index" >
                                     <ng-template ngbPanelTitle>
                                         <div class="heading-step1 profile-section">
                                             <h4> Secondary Card</h4>

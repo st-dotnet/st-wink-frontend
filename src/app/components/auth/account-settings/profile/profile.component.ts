@@ -82,6 +82,7 @@ export class ProfileComponent implements OnInit {
 
 
   getuserdetails(){
+    debugger;
     this.spinner.show();
     this.currentuser = this.sessionService.getSessionObject("user");
     this.accountService.getCustomer(this.currentuser.customerId).subscribe((response) => {
