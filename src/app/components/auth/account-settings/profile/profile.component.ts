@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService, SessionService } from '@app/_services';
 import { ShopService } from '@app/_services/shop.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -14,49 +15,130 @@ export class ProfileComponent implements OnInit {
 
   fieldprofile1: any;
   fieldprofile2: any;
-
   UserDetails: any;
   currentuser: any;
   password: any;
 
+  onFirstNameSubmitForm: FormGroup;
+  onloginNamSubmitForm: FormGroup;
+  onPasswordSubmitForm: FormGroup;
+  onEmailSubmitForm: FormGroup;
+  onPhoneSubmitForm: FormGroup;
 
-  constructor(private accountService: AccountService, private spinner: NgxSpinnerService,
+  firstnameSubmitted: boolean = false;
+  loginNameSubmitted: boolean = false;
+  PasswordSubmitted: boolean = false;
+  emailSubmitted: boolean = false;
+  mobilePhoneSubmitted: boolean = false;
+
+  maskMobileNo = [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+
+
+    constructor(private accountService: AccountService, private spinner: NgxSpinnerService,
     private toastrService: ToastrService,
-    private sessionService: SessionService) { }
+    private sessionService: SessionService,
+    private formBuilder: FormBuilder
+    ) { }
 
   ngOnInit(): void {
-    this.getuserdetails();
+     this.getuserdetails();
+     this.onFirstNameSubmitForm = this.formBuilder.group({
+      firstName: ['', [Validators.required]],
+     });
+     this.onloginNamSubmitForm = this.formBuilder.group({
+      loginName: ['', [Validators.required]],
+    });
+    this.onPasswordSubmitForm = this.formBuilder.group({
+      Password: ['', [Validators.required,Validators.minLength(6)]],
+    });
+    this.onEmailSubmitForm = this.formBuilder.group({
+      email: ['', [Validators.required,
+        Validators.email,
+        Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'),]]
+    });
+    this.onPhoneSubmitForm = this.formBuilder.group({
+      mobilePhone: ['', [Validators.required,Validators.minLength(10),
+        Validators.maxLength(15)]],
+      phone: ['', [Validators.required,Validators.minLength(10),
+        Validators.maxLength(15),]]
+    });
   }
+
+  get f() {
+    return this.onFirstNameSubmitForm.controls;
+  }
+  get l() {
+    return this.onloginNamSubmitForm.controls;
+  }
+  get p() {
+    return this.onPasswordSubmitForm.controls;
+  }
+  get e() {
+    return this.onEmailSubmitForm.controls;
+  }
+  get m() {
+    return this.onPhoneSubmitForm.controls;
+  }
+
+
   getuserdetails(){
     this.spinner.show();
     this.currentuser = this.sessionService.getSessionObject("user");
     this.accountService.getCustomer(this.currentuser.customerId).subscribe((response) => {
-      this.UserDetails = response.result.customers[0];
-      console.log(this.UserDetails);
+      this.UserDetails = response.customers[0];
       this.spinner.hide();
     });
   }
-  submit(fieldName: string,feildname:string) {
-    if(feildname=='' || feildname==null){
-      this.toastrService.error(`${fieldName} is required.`);
-      return;
-    }
 
-   if(fieldName=='email'){
-    if(!this.validateEmail(this.UserDetails.email))
-    {
-      this.toastrService.error(`email format is not valid.`);
+
+  updateFirstName(){
+    this.firstnameSubmitted=true;
+    if (this.onFirstNameSubmitForm.invalid) {
       return;
     }
-   }
-     this.spinner.show();
-    this.accountService.updateCustomer(this.UserDetails).subscribe((Response) => {
-    console.log(Response);
-     this.toastrService.success(`${fieldName} is updated successfully.`);
-     this.getuserdetails();
-     this.spinner.hide();
-   });
+    this.submit('First Name');
+  }
+
+  updateLoginName(){
+    this.loginNameSubmitted = true;
+    if (this.onloginNamSubmitForm.invalid) {
+      return;
+    }
+    this.submit('login Name');
+  }
+
+  updatePassword(){
+    this.PasswordSubmitted = true;
+    if (this.onPasswordSubmitForm.invalid) {
+      return;
+    }
+    this.submit('password');
 }
+
+  updateEmail(){
+    this.emailSubmitted = true;
+    if (this.onEmailSubmitForm.invalid) {
+      return;
+    }
+    this.submit('email');
+ }
+  updatemobilePhone(){
+    this.mobilePhoneSubmitted = true;
+    if (this.onPhoneSubmitForm.invalid) {
+      return;
+    }
+    this.submit('mobilePhone and Phone');
+  }
+
+     submit(feildname:string){
+     this.spinner.show();
+     this.accountService.updateCustomer(this.UserDetails).subscribe((Response) => {
+     console.log(Response);
+     this.toastrService.success(`${feildname} is updated successfully.`);
+     this.getuserdetails();
+      this.spinner.hide();
+     });
+  }
   validateEmail(email: string) {
     const re =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
