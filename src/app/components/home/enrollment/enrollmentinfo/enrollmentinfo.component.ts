@@ -522,7 +522,7 @@ export class EnrollmentInfoComponent implements OnInit {
       !this.f.state.value ||
       !this.f.zip.value
     ) {
-      this.toastrService.error('Plase fill All Address Fields');
+      this.toastrService.error('Please fill All Address Fields');
       return;
     }
     let address = {
