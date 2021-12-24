@@ -72,7 +72,7 @@
                                     </span>
                                 </div>
                             </ng-template>
-                            <ng-template ngbPanelContent>
+                            <ng-template ngbPanelContent *ngIf="isPromocode">
                                 <div class="content-card steps-inner shipping-address-form">
                                     <div class="col-md-12 loyalty-form p-0 mb-3">
                                         <div [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
@@ -318,7 +318,7 @@
                                 </div>
                             </ng-template>
                         </ngb-panel>
-                        <ngb-panel id="promo-sidebar">
+                        <ngb-panel id="promo-sidebar" *ngIf="isPromocode">
                             <ng-template ngbPanelTitle>
                                 <div class="heading-step1">
                                     <h4>Promo Code</h4>
@@ -333,7 +333,7 @@
                                     </span>
                                 </div>
                             </ng-template>
-                            <ng-template ngbPanelContent>
+                            <ng-template ngbPanelContent *ngIf="isPromocode">
 
                                 <div class="content-card steps-inner shipping-address-form">
                                     <div class="col-md-12 loyalty-form p-0 mb-3">
@@ -758,7 +758,7 @@
                             <ng-template ngbPanelContent>
                                 <form [formGroup]="onPaymentSubmitForm" (ngSubmit)="onPaymentSubmit()">
                                     <ngb-accordion activeIds="promo-code,loyalty-info,cards-selection,card-info,billing-method">
-                                        <ngb-panel id="promo-code">
+                                        <ngb-panel id="promo-code" *ngIf="isPromocode">
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
                                                     <h4>Promo Code</h4>
@@ -773,7 +773,7 @@
                                                     </span>
                                                 </div>
                                             </ng-template>
-                                            <ng-template ngbPanelContent>
+                                            <ng-template ngbPanelContent >
                                                 <div class="content-card steps-inner shipping-address-form">
                                                     <div class="col-md-12 loyalty-form p-0 mb-3">
                                                         <div [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
@@ -1158,7 +1158,7 @@
                                         </ng-template>
                                     </ngb-panel>
 
-                                    <ngb-panel id="promo-code">
+                                    <ngb-panel id="promo-code" *ngIf="isPromocode">
                                         <ng-template ngbPanelTitle>
                                             <div class="heading-step1">
                                                 <h4>Have a promo code?</h4>
@@ -1173,7 +1173,7 @@
                                                 </span>
                                             </div>
                                         </ng-template>
-                                        <ng-template ngbPanelContent>
+                                        <ng-template ngbPanelContent *ngIf="isPromocode">
                                             <div class="content-card steps-inner shipping-address-form">
                                                 <div class="col-md-12 loyalty-form p-0 mb-3">
                                                     <div [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">

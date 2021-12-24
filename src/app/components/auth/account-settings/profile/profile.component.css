@@ -30,12 +30,6 @@ section.account-page.profile-page.grid-checkout {
     margin-bottom: 0px;
 }
 
-section.account-page.grid-checkout .emailbtns {
-    display: flex;
-    justify-content: end;
-    padding-bottom: 20px;
-}
-
 section.account-page.grid-checkout button.cancle-btn,
 button.save-btn {
     border: 1px solid #1cb1c5;
@@ -52,7 +46,7 @@ section.account-page.grid-checkout button.save-btn {
     padding: 6px 50px;
     background: #1cb1c5;
     color: white;
-    margin: 0px 10px;
+    margin: 10px 0px;
 }
 
 section.account-page.grid-checkout small#emailHelp {
@@ -133,8 +127,7 @@ section.account-page.grid-checkout {
 
 svg {
     float: right;
-    margin-top: -30px;
-    margin-top: 4px;
+    margin-top: 0px;
 }
 
 .totalAmount {
@@ -289,10 +282,6 @@ section.account-page.profile-page.grid-checkout button.btn.btn-link.ng-star-inse
     margin-bottom: 20px;
 }
 
-.emailbtns .saves {
-    margin: 0px 24px;
-}
-
 section.account-page.profile-page.grid-checkout .heading-step1 {
     position: relative;
 }
@@ -331,10 +320,30 @@ button.btn.btn-link.ng-star-inserted {
 h1.profileField {
     padding-bottom: 20px;
 }
+
+.enrollment-righ .emailbtns .saves {
+    margin: 12px 0px;
+}
+
+section.account-page.grid-checkout .emailbtns {
+    padding: 0px 0px;
+}
+
+@media (min-width: 768px) {
+    section.account-page.grid-checkout .emailbtns {
+        display: flex;
+        justify-content: end;
+        padding-bottom: 20px;
+        align-items: center;
+    }
+    section.account-page.grid-checkout .emailbtns .saves {
+        margin: 0px 20px;
+    }
 .signoutBtn button {
     border: none;
     background: transparent;
     font-family: 'g-regular';
     font-weight: 600;
     color: #1cb1c5;
+}
 }

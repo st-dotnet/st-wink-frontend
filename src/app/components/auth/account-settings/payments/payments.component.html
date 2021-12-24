@@ -137,7 +137,7 @@
                                                             <div class="req">
                                                                 <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
                                                             </div>
-                                                            <input type="text" formControlName="cardCVV" placeholder="Street Address" name="cardCVV" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardCVV?.errors }" />
+                                                            <input type="text" formControlName="cardCVV" placeholder="Street address" name="cardCVV" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardCVV?.errors }" />
                                                             <div *ngIf="paymentSubmitted && p.cardCVV?.errors" class="invalid-feedback">
                                                                 <div *ngIf="p.cardCVV?.errors.required">Street Address</div>
 
@@ -193,11 +193,11 @@
                                                 </div>
                                             </div>
                                             <div class="primaryBtn">
-                                                <input type="checkbox"> <strong>Make  Primary Card</strong>
+                                                <input type="checkbox"> <span>Make  Primary Card</span>
                                             </div>
 
                                             <div class="saveWraper">
-                                                <div class="saves">
+                                                <div class="savesChanges">
                                                     <a href="#"> <button class="save-btn">Save Changes</button></a>
                                                 </div>
                                             </div>
@@ -233,11 +233,11 @@
 
                                         </div>
                                         <div class="emailbtns secondarybtn">
-                                            <div class="saves">
-                                                <a href="#"> <button class="save-btn"> Make Primary</button></a>
+                                            <div class="saveses">
+                                                <a href="#"> <button class="save-btns"> Make Primary</button></a>
                                             </div>
                                             <div class="cancles">
-                                                <a href="#"> <button class="cancle-btn">Edit Address</button></a>
+                                                <a href="#"> <button class="cancle-btn">Edit Card</button></a>
                                             </div>
 
                                             <div class="delete">

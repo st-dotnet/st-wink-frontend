@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from '@app/_services';
+import { ShopService } from '@app/_services/shop.service';
 import { GuidedTour, Orientation } from 'src/lib/guided-tour.constants';
 import { GuidedTourService } from 'src/lib/guided-tour.service';
 import Swal from 'sweetalert2';
@@ -92,9 +93,12 @@ export class AppHeaderComponent implements OnInit {
   cartItems: any = 0;
   searchText: any;
   ipAddress = '';
-
+  shopProductModels: any[];
+  webCategoryID: number = 3;
+  products: any[];
+  flag: boolean=true;
   constructor(private sessionService: SessionService, private guidedTourService: GuidedTourService, private http: HttpClient,
-    private router: Router) {
+    private router: Router,private shopService: ShopService) {
     this.sessionService.user$.subscribe(x => this.user = x);
     this.windowWidth = window.innerWidth;
   }
@@ -103,6 +107,7 @@ export class AppHeaderComponent implements OnInit {
     // localStorage.setItem("IsVisted","");
     this.ChecktourSession();
     this.sessionService.cart$.subscribe(x => this.cartItems = x.length);
+    this.GetProductsList();
     if (this.windowWidth > 992) {
       this.isDesktopMenu = true;
       this.isMobileMenu = false;
@@ -152,10 +157,35 @@ export class AppHeaderComponent implements OnInit {
   }
 
   searchProduct() {
-    //this.sessionService.setSessionItem("searchItem", this.searchText);
     this.router.navigate(["/store/search-products"]);
   }
-
+  onselectProduct(productobj) {     
+    if (productobj.itemCode != 0) {  
+      this.router.navigate(['/store/product', productobj.itemCode]).then(() => { 
+        this.flag = true; 
+        window.location.reload();});
+    }  
+    else {  
+      return false;  
+    }  
+  }  
+  
+  getSearchProduct() {
+    if(this.searchText.length >2){
+      this.flag = true; 
+      this.products= this.shopProductModels.filter(option => option.itemCode.toLowerCase().includes(this.searchText) ||option.itemDescription.toLowerCase().includes(this.searchText) );    
+    }
+    else{
+      return;
+    }
+    }
+  GetProductsList() {
+    this.shopProductModels = [];
+    this.shopService.GetProductsList(this.webCategoryID, 0).subscribe(result => {
+      this.shopProductModels = result;
+   
+    })
+  }
   showSearchbar() {
     this.isSearchshow = true;
   }
@@ -180,3 +210,7 @@ export class AppHeaderComponent implements OnInit {
   }
 
 }
+function categoryId(categoryId: any, arg1: number) {
+  throw new Error('Function not implemented.');
+}
+

@@ -5,16 +5,16 @@
                 <div class="enrollment-righ">
                     <div class="enrollment-main-div">
                         <div class="enrollment-steps-5">
-                            <h1 class="profileField">Loyal Points</h1>
+                            <h1 class="profileField">Loyalty Points</h1>
                             <div class="table-loyal card">
                                 <div class="head-loyal-info card-header">
-                                    <h4 class="title-points">Points Total</h4>
+                                    <h4 class="title-points">Point Total</h4>
                                     <h3 class="value-points">${{total|number:'.1-2'}}</h3>
                                 </div>
                                 <div class="content-points card-body">
                                     <table class="table">
                                         <tbody>
-                                            <tr  *ngFor="let item of loyalityData">
+                                            <tr *ngFor="let item of loyalityData">
                                                 <td>
                                                     <h4 class="title-data-points">Order:{{item.orderID}}</h4>
                                                     <p class="summary-points">
@@ -27,7 +27,7 @@
                                                     <p *ngIf="item.pointTransactionType.pointTransactionTypeDescription=='Adjustment' || item.pointTransactionType.pointTransactionTypeDescription=='Point Redemption'" class="price-data cut-bonus">-{{item.formattedAmount}}</p>
                                                     <!-- <p *ngIf="item.pointTransactionType.pointTransactionTypeDescription=='Point Redemption'" class="price-data cut-bonus">-{{item.formattedAmount}}</p> -->
                                                 </td>
-                                            </tr>                                    
+                                            </tr>
 
                                         </tbody>
                                     </table>

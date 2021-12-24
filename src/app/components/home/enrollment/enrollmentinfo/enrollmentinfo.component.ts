@@ -427,8 +427,7 @@ export class EnrollmentInfoComponent implements OnInit {
         address: ['', [Validators.required]],
         city: ['', [Validators.required]],
         zip: ['', [Validators.required]],
-        state: ['', [Validators.required]],
-        country:['',[Validators.required]]
+        state: ['', [Validators.required]]
       },
       {
         validator: MustMatch('password', 'confirmPassword'),
@@ -523,7 +522,7 @@ export class EnrollmentInfoComponent implements OnInit {
       !this.f.state.value ||
       !this.f.zip.value
     ) {
-      this.toastrService.error('Plase fill All Address Fields');
+      this.toastrService.error('Please fill All Address Fields');
       return;
     }
     let address = {
