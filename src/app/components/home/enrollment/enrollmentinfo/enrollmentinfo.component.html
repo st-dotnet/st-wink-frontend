@@ -31,14 +31,14 @@
                                     <ng-template ngbPanelTitle>
                                         <span>Your Enroller</span>
 
-                                        <span class="arrow-stepp">
+                                        <!-- <span class="arrow-stepp">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
                                                 viewBox="0 0 6.6 11.2">
                                                 <path id="Path_2044" data-name="Path 2044"
                                                     d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
                                                     transform="translate(-630.6 -4.4)" />
                                             </svg>
-                                        </span>
+                                        </span> -->
                                     </ng-template>
                                 </ngb-panel>
 
@@ -99,17 +99,16 @@
                                                                                     <!-- <label class="control-label required" for="Customer_FirstName">First
                                                                                 Name</label> -->
 
-                                                                                    <input class="form-control personalInfo" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName?.errors }" placeholder="First name" />
+                                                                                    <input class="form-control personalInfo" formControlName="firstname" [ngClass]="{ 'is-invalid': submitted && f.firstName?.errors }" placeholder="First name" />
                                                                                     <div *ngIf="submitted && f.firstName?.errors" class="invalid-feedback">
                                                                                         <div *ngIf="f.firstName?.errors.required">
                                                                                             First Name is required</div>
                                                                                     </div>
-                                                                                    <div class="req">
-                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                                </div>
                                                                                     <!-- <span class="field-validation-valid" data-valmsg-for="Customer.FirstName" data-valmsg-replace="true"></span> -->
                                                                                 </div>
-                                                                                
+                                                                                <div class="req">
+                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                                </div>
                                                                             </div>
 
                                                                             <div class="col-sm-12 pinfo">
@@ -117,17 +116,16 @@
                                                                                     <!-- <label class="control-label" for="Customer_MiddleName">Middle -->
                                                                                     <!-- Name</label> -->
 
-                                                                                    <input class="form-control personalInfo" placeholder="Middle name" type="text" />
+                                                                                    <input class="form-control personalInfo" formControlName="middleName" [ngClass]="{ 'is-invalid': submitted && f.middleName?.errors }" placeholder="Middle name" type="text" />
                                                                                     <!-- <div *ngIf="submitted && f.middleName?.errors" class="invalid-feedback">
                                                                                         <div *ngIf="f.middleName?.errors.required">
                                                                                             Midddle Name is required</div>
                                                                                     </div> -->
                                                                                     <!-- <span class="field-validation-valid" data-valmsg-for="Customer.MiddleName" data-valmsg-replace="true"></span> -->
-                                                                                    <div class="req">
-                                                                                        <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                                                    </div>
                                                                                 </div>
-                                                                               
+                                                                                <div class="req">
+                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
+                                                                                </div>
                                                                             </div>
 
                                                                             <div class="col-sm-12 pinfo">
@@ -136,16 +134,15 @@
                                                                                 Name</label> -->
                                                                                     <input aria-required="true" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName?.errors }" class="form-control personalInfo" placeholder="Last name" type="text" />
                                                                                     <div *ngIf="submitted && f.lastName?.errors" class="invalid-feedback">
-                                                                                        <div *ngIf="f.lastName?.errors.required">
+                                                                                        <div *ngIf="f.middleName?.errors.required">
                                                                                             Last Name is required</div>
-                                                                                    </div>
-                                                                                    <div class="req">
-                                                                                        <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
                                                                                     </div>
                                                                                     <!-- <span class="field-validation-valid" data-valmsg-for="Customer.LastName" data-valmsg-replace="true"></span> -->
                                                                                 </div>
 
-                                                                              
+                                                                                <div class="req">
+                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
 
@@ -157,13 +154,10 @@
                                                                                     <!-- <div [className]="startDate ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'" id="subscr-schedule"> -->
                                                                                     <input type="text" formControlName="dateOfBirth" [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth?.errors }" readonly class="form-control personalInfo" placeholder="Birthday " bsDatepicker [minDate]="minDate" [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }"
                                                                                     />
-                                                                                    <div *ngIf="submitted && f.dateOfBirth?.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="submitted && f.lastName?.errors" class="invalid-feedback">
                                                                                         <div *ngIf="f.dateOfBirth?.errors.required">
                                                                                             Date Of Birth is required
                                                                                         </div>
-                                                                                    </div>
-                                                                                    <div class="req">
-                                                                                        <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
                                                                                     </div>
                                                                                     <span class="btn-add-promo">
                                                                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -194,7 +188,9 @@
                                                                                         </svg>
                                                                                     </span>
                                                                                 </div>
-                                                                               
+                                                                                <div class="req">
+                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
 
@@ -203,7 +199,7 @@
                                                                                 <div class="form-group">
                                                                                     <!-- <label class="control-label" for="Customer_Company">Company</label> -->
 
-                                                                                    <input class="form-control personalInfo"  placeholder="Company" type="text" />
+                                                                                    <input class="form-control personalInfo" formControlName="company" [ngClass]="{ 'is-invalid': submitted && f.company?.errors }" placeholder="Company" type="text" />
                                                                                     <!-- <div *ngIf="submitted && f.company?.errors" class="invalid-feedback">
                                                                                         <div *ngIf="f.company?.errors.required">
                                                                                             Company is required</div>
@@ -221,7 +217,7 @@
                                                                                     <!-- <label class="control-label" for="Customer_SecondaryPhone">Office
                                                                                 Phone</label> -->
 
-                                                                                    <input class="form-control personalInfo"  [textMask]="{mask: maskMobileNo}" placeholder="Office phone" role="textbox" type="tel" value="" maxlength="13" />
+                                                                                    <input class="form-control personalInfo" formControlName="officePhone" [ngClass]="{ 'is-invalid': submitted && f.officePhone?.errors }" [textMask]="{mask: maskMobileNo}" placeholder="Office phone" role="textbox" type="tel" value="" maxlength="13" />
 
                                                                                     <!-- <div *ngIf="submitted && f.officePhone?.errors" class="invalid-feedback">
                                                                                         <div *ngIf="f.officePhone?.errors.required">
@@ -237,19 +233,19 @@
                                                                                 <div class="form-group">
                                                                                     <!-- <label class="control-label required" for="Customer_MobilePhone" aria-required="true">Mobile
                                                                                 Phone</label> -->
-                                                                                    <input aria-required="true" formControlName="mobileno" [ngClass]="{ 'is-invalid': submitted && f.mobileno?.errors }" class="form-control personalInfo" [textMask]="{mask: maskMobileNo}" id="Customer_MobilePhone" name="Customer.MobilePhone" placeholder="Mobile phone"
+                                                                                    <input aria-required="true" formControlName="mobileno" [ngClass]="{ 'is-invalid': submitted && f.mobileno?.errors }" class="form-control personalInfo" [textMask]="{mask: maskMobileNo}" id="Customer_MobilePhone" name="Customer.MobilePhone" placeholder="Mobile Phone"
                                                                                         required="true" role="textbox" type="tel" value="" maxlength="13" />
                                                                                     <div *ngIf="submitted && f.mobileno?.errors" class="invalid-feedback">
                                                                                         <div *ngIf="f.mobileno?.errors.required">
                                                                                             Mobile Number is required
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="req">
-                                                                                        <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                                    </div>
+
                                                                                     <!-- <span class="field-validation-valid" data-valmsg-for="Customer.MobilePhone" data-valmsg-replace="true"></span> -->
                                                                                 </div>
-                                                                             
+                                                                                <div class="req">
+                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="space-5"></div>
@@ -265,9 +261,6 @@
                                                                                                 TaxId Number is required
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="req">
-                                                                                            <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                                        </div>
                                                                                     </div>
                                                                                     <script>
                                                                                         require([
@@ -280,12 +273,14 @@
 
                                                                                     <!-- <span class="field-validation-valid" data-valmsg-for="Customer.TaxID" data-valmsg-replace="true"></span> -->
                                                                                 </div>
-                                                                               
+                                                                                <div class="req">
+                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                                </div>
                                                                             </div>
                                                                             <div class="col-sm-12 pinfo">
                                                                                 <div class="form-group">
                                                                                     <span class="ssnId">In order to be
-                                                                                        paid commissions, you must provide
+                                                                                        paid commision, you must provide
                                                                                         your SSN/Tax ID</span>
                                                                                     <input aria-required="true" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email?.errors }" class="form-control personalInfo" placeholder="Email" type="email" />
                                                                                     <div *ngIf="submitted && f.email?.errors" class="invalid-feedback">
@@ -298,12 +293,12 @@
                                                                                             Email format is not vaild
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="req">
-                                                                                        <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                                    </div>
+
                                                                                     <!-- <span class="field-validation-valid" data-valmsg-for="Customer.Email" data-valmsg-replace="true"></span> -->
                                                                                 </div>
-                                                                               
+                                                                                <div class="req">
+                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -363,15 +358,15 @@
                                                                                                 Address is required
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="req">
-                                                                                            <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                                        </div>
+
                                                                                         <div class="space-5"></div>
                                                                                         <div class="form-group" style="display: none">
                                                                                             <input class="form-control" data-role="Address2" id="Customer_MainAddress_Address2_ffefb3da-6e6d-4ed5-96e0-18b4850ed599" name="Customer.MainAddress.Address2" placeholder="Apartment, suite, unit, building, floor, etc." type="text" value="" />
                                                                                             <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.Address2" data-valmsg-replace="true"></span>
                                                                                         </div>
-                                                                                       
+                                                                                        <div class="req">
+                                                                                            <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                                        </div>
                                                                                     </div>
 
 
@@ -386,11 +381,10 @@
                                                                                                         City is required
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="req">
-                                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                                                                </div>
                                                                                             </div>
-                                                                                          
+                                                                                            <div class="req">
+                                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
+                                                                                            </div>
                                                                                         </div>
 
                                                                                         <div class="col-sm-6 sepratePart pinfo">
@@ -414,11 +408,11 @@
                                                                                                             State is required
                                                                                                         </div>
                                                                                                     </div>
-                                                                                                    <div class="req">
-                                                                                                        <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                                                                    </div>
+                                                                                                    <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.State" data-valmsg-replace="true"></span>
                                                                                                 </div>
-                                                                                               
+                                                                                                <div class="req">
+                                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
 
@@ -428,16 +422,14 @@
                                                                                             <div class="form-group">
 
                                                                                                 <input class="form-control personalInfo" formControlName="zip" [ngClass]="{ 'is-invalid': submitted && f.zip?.errors }" data-role="Zip" data-val="true" data-val-required="Zipcode is required" id="Customer_MainAddress_Zip" name="Customer.MainAddress.Zip"
-                                                                                                    placeholder="Zip" type="text" value="" />
+                                                                                                    placeholder="ZIP" type="text" value="" />
 
                                                                                                 <div *ngIf="submitted && f.zip?.errors" class="invalid-feedback">
                                                                                                     <div *ngIf="f.zip.errors.required">
-                                                                                                        Zip is required
+                                                                                                        City is required
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="req">
-                                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                                                                </div>
+                                                                                                <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.Zip" data-valmsg-replace="true"></span>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -482,7 +474,7 @@
                                                                     <div class="row margin-5">
                                                                         <div id="webalias-preview-container" class="title-yw" style="overflow-x: visible;">
                                                                             <span>
-                                                                                <p>Your Website: </p>
+                                                                                Your Website: 
                                                                             </span>
                                                                             <p> <a href="winknaturals.com">winknaturals.com</a>
                                                                             </p>
@@ -498,11 +490,11 @@
                                                                                     <div *ngIf="f.userName?.errors.required">
                                                                                         User name is required</div>
                                                                                 </div>
-                                                                                <div class="req">
-                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                                </div>
+
                                                                             </div>
-                                                                          
+                                                                            <div class="req">
+                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                            </div>
                                                                         </div>
 
                                                                     </div>
@@ -524,12 +516,12 @@
                                                                                             Password must be at least 6 characters
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="req">
-                                                                                        <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                                    </div>
+
                                                                                 </div>
                                                                             </div>
-                                                                          
+                                                                            <div class="req">
+                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="col-sm-12 pinfo">
                                                                             <div class="form-group">
@@ -544,11 +536,11 @@
                                                                                     <div *ngIf="f.confirmPassword.errors.mustMatch">
                                                                                         Passwords must match</div>
                                                                                 </div>
-                                                                                <div class="req">
-                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                                </div>
+
                                                                             </div>
-                                                                          
+                                                                            <div class="req">
+                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="space-5"></div>
@@ -750,25 +742,11 @@
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                             <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.Zip" data-valmsg-replace="true"></span>
+
+
                                                                                                         </div>
                                                                                                     </div>
 
-                                                                                                    <div class="col-sm-12 sepratePart pinfo">
-                                                                                                        <div class="req">
-                                                                                                            <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                                                                        </div>
-                                                                                                        <div class="form-group seprate3">
-
-                                                                                                            <input formControlName="country" [ngClass]="{ 'is-invalid': addressSubmitted && s.country?.errors }" class="form-control personalInfo cityDiv" data-role="Zip" data-val="true" data-val-required="Country is required" id="Customer_MainAddress_Country" name="Customer.MainAddress.Country"
-                                                                                                                placeholder="Country" type="text" value="" />
-                                                                                                            <div *ngIf="addressSubmitted && s.country.errors" class="invalid-feedback">
-                                                                                                                <div *ngIf="s.country.errors.required">
-                                                                                                                    Country is required
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                            <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.Country" data-valmsg-replace="true"></span>
-                                                                                                        </div>
-                                                                                                    </div>
                                                                                                 </div>
                                                                                                 <div class="row margin-5">
                                                                                                     <div class="col-xs-12 verifibtn">
@@ -978,7 +956,7 @@
                                                                     </div>
 
                                                                 </div>
-                                                                <!-- <div class="row">
+                                                                <div class="row">
                                                                     <div class="col-md-12">
                                                                         <ul class="conv-products mk-primary">
                                                                             <li>
@@ -991,7 +969,7 @@
                                                                             </li>
                                                                         </ul>
                                                                     </div>
-                                                                </div> -->
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </ng-template>
@@ -1129,10 +1107,10 @@
 
                                                                     <tr>
                                                                         <td>
-                                                                            <p class="you-pay"><strong>You Pay</strong></p>
+                                                                            <p class="you-pay">You pay</p>
                                                                         </td>
                                                                         <td>
-                                                                            <p class="you-pay"><strong>${{cartSummaryTotal | number:'.1-2'}}</strong>
+                                                                            <p class="you-pay">${{cartSummaryTotal | number:'.1-2'}}
                                                                             </p>
                                                                         </td>
                                                                     </tr>
@@ -1204,9 +1182,6 @@
                                                             transform="translate(-144.853 -1.052)" />
                                                     </svg>
                                                 </span>
-                                                <div class="req">
-                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                </div>
                                             </div>
                                             <span class="text-value">Customer ID, First or Last Name</span>
                                         </div>

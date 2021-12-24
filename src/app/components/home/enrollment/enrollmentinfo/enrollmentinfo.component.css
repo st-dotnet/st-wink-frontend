@@ -208,6 +208,7 @@ button.btn.btn-info.verify-btn {
     border-radius: 30px;
     font-size: 18px;
     width: 100%;
+    text-transform: uppercase;
 }
 
 .enrollment-main-div .saveprocessed1.continuebtn button {
@@ -489,13 +490,13 @@ span.search {
     border-color: #dc3545 !important;
 }
 
-.invalid-feedback+.req {
-    display: none;
+.enrollment-steps-5 a {
+    color: #282727;
+    text-decoration: none;
+    background-color: transparent;
 }
 
-.invalid-feedback {
-    margin-bottom: 12px;
-}
+
 /* media  css */
 
 @media (min-width: 992px) {
