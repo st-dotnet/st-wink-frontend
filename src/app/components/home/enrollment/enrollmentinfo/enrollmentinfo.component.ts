@@ -534,7 +534,7 @@ export class EnrollmentInfoComponent implements OnInit {
     };
     this.spinner.show();
     this.enrollmentService.verifyAddress(address).subscribe((response: any) => {
-      this.verifyAddressResponse = response.result;
+      this.verifyAddressResponse = response;
       console.log(response);
       console.log(this.verifyAddressResponse);
       if (this.verifyAddressResponse.address) {
@@ -567,7 +567,7 @@ export class EnrollmentInfoComponent implements OnInit {
     };
     this.spinner.show();
     this.enrollmentService.verifyAddress(address).subscribe((response: any) => {
-      this.verifyAddressResponse = response.result;
+      this.verifyAddressResponse = response;
       console.log(response);
       console.log(this.verifyAddressResponse);
       if (this.verifyAddressResponse.address) {
