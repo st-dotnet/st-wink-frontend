@@ -19,6 +19,9 @@ import { LoyaltyPointsComponent } from './account-settings/loyalty-points/loyalt
 import { AddressesComponent } from './account-settings/addresses/addresses.component';
 import { PaymentsComponent } from './account-settings/payments/payments.component';
 
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 
 @NgModule({
@@ -40,6 +43,7 @@ import { PaymentsComponent } from './account-settings/payments/payments.componen
     AuthRoutingModule,
     RecaptchaFormsModule,
     RecaptchaModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [CanDeactivateGuard,
     {

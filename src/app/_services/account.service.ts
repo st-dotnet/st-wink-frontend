@@ -5,17 +5,21 @@ import { environment } from 'src/environments/environment';
 import { SessionService } from './session.service';
 import { map } from 'rxjs/operators';
 
+
 @Injectable({ providedIn: 'root' })
 export class AccountService {
   private readonly authenticationEndpoint = 'authentication/';
   private readonly shoppingEndPoint = 'shopping/';
   private readonly accountEndPoint = 'Account/';
+  private readonly customerEndPoint = 'Customers/';
+  private readonly paymentEndPoint = 'Payment/';
+
 
 
   constructor(
     private http: HttpClient,
     private sessionService: SessionService
-  ) { }
+  ) {}
 
   register(model: any) {
     return this.http.post<any>(`${environment.apiUrl}${this.authenticationEndpoint}createCustomer`, model)
@@ -104,13 +108,15 @@ export class AccountService {
   getCustomerOrders(){
     return this.http.get<any>(`${environment.apiUrl}${this.accountEndPoint}ShippedCustomerOrders_SQL`);
   }
+
+  deleteCustomerCard(CreditCardType:any){
+    return this.http.delete<any>(`${environment.apiUrl}${this.customerEndPoint}DeleteCreditCard/${CreditCardType}`);
+  }
+
+  saveCustomerCard(model:any){
+    return this.http.post<any>(`${environment.apiUrl}${this.paymentEndPoint}SaveCreditCard`,model);
+  }
 }
-
-
-
-//DeclinedCustomerOrders_SQL,
-//ShippedCustomerOrders_SQL,
-//CancelledCustomerOrders_SQL
 
 
 
