@@ -116,7 +116,7 @@
                                                                 <input type="password" formControlName="Password" [ngClass]="{ 'is-invalid': PasswordSubmitted && p.Password?.errors }" class="form-control" [(ngModel)]="UserDetails.LoginPassword" [ngModelOptions]="{standalone: true}" id="exampleInputPassword1">
                                                                 <div *ngIf="PasswordSubmitted && p.Password?.errors" class="invalid-feedback">
                                                                   <div *ngIf="p.Password?.errors.required">
-                                                                      password Name is required</div>
+                                                                      password is required</div>
                                                                       <div *ngIf="p.Password.errors.minlength">Password must be at least 6 characters</div>
                                                                 </div>
 
