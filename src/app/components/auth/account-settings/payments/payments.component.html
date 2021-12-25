@@ -144,7 +144,7 @@
                                                             </div>
                                                             <input type="text" formControlName="newStreetAddress" placeholder="Street address" name="cardCVV"  class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.newStreetAddress?.errors }" />
                                                             <div *ngIf="paymentSubmitted && p.newStreetAddress?.errors" class="invalid-feedback">
-                                                                <div *ngIf="p.cardCVV?.errors.required">Street Address is Required</div>
+                                                                <div *ngIf="p.newStreetAddress?.errors.required">Street Address is Required</div>
 
                                                             </div>
                                                             <div class="req">
@@ -179,9 +179,9 @@
                                                             </div>
 
 
-                                                            <input type="text " formControlName="newZip " placeholder="ZIP " name="cardCVV" class="form-control " [ngClass]="{
+                                                            <input type="text " formControlName="newZip" placeholder="ZIP " name="cardCVV" class="form-control " [ngClass]="{
                                                                             'is-invalid': paymentSubmitted && p.newZip?.errors } " />
-                                                            <div *ngIf="paymentSubmitted && p.newZip?.errors " class="invalid-feedback ">
+                                                            <div *ngIf="paymentSubmitted && p.newZip?.errors" class="invalid-feedback ">
                                                                 <div *ngIf="p.newZip?.errors.required ">zip is required.</div>
 
                                                             </div>
@@ -190,7 +190,7 @@
                                                                 <label class="control-label visible-xs required requiredField " for="Customer_MainAddress_City "></label>
                                                             </div>
 
-                                                            <input type="text " formControlName="newCountry " placeholder="Country " name="cardCVV "   class="form-control " [ngClass]="{
+                                                            <input type="text " formControlName="newCountry" placeholder="Country " name="cardCVV "   class="form-control " [ngClass]="{
                                                                             'is-invalid': paymentSubmitted && p.newCountry?.errors } " />
                                                             <div *ngIf="paymentSubmitted && p.newCountry?.errors " class="invalid-feedback ">
                                                                 <div *ngIf="p.newCountry?.errors.required ">country is required.</div>

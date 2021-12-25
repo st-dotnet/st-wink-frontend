@@ -109,8 +109,8 @@ export class AccountService {
     return this.http.get<any>(`${environment.apiUrl}${this.accountEndPoint}ShippedCustomerOrders_SQL`);
   }
 
-  deleteCustomerCard(CreditCardType:any){
-    return this.http.delete<any>(`${environment.apiUrl}${this.customerEndPoint}DeleteCreditCard/${CreditCardType}`);
+  deleteCustomerCard(CreditCardType:string){
+    return this.http.delete<any>(`${environment.apiUrl}${this.customerEndPoint}DeleteCreditCard?type=${CreditCardType}`);
   }
 
   saveCustomerCard(model:any){
@@ -119,7 +119,7 @@ export class AccountService {
 }
 
 
-
+//For Preview Invoice : https://localhost:44336/api/Account/GetOrderInvoice
 
 
 

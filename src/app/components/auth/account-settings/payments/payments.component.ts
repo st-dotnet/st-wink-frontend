@@ -45,7 +45,7 @@ export class PaymentsComponent implements OnInit {
       expiryMonth: ['', [Validators.required]],
       expiryYear: ['', [Validators.required]],
       cardCVV: ['', [Validators.required]],
-      isMakePrimaryCard: ['',[Validators.required]],
+      //isMakePrimaryCard: ['',[Validators.required]],
       newStreetAddress: ['',[Validators.required]],
       newCity: ['',[Validators.required]],
       newState: ['',[Validators.required]],
@@ -88,63 +88,77 @@ export class PaymentsComponent implements OnInit {
     return this.onPaymentSubmitForm.controls;
   }
   onPaymentSubmit(){
+    debugger;
     this.paymentSubmitted=true;
     if (this.onPaymentSubmitForm.invalid || this.monthError || this.yearError) {
       return;
     }
     this.spinner.show();
     const address={
-      addressType:1,
-      address1:'',
+      addressType:'',
+      address1:this.p.newStreetAddress.value,
       address2:'',
-      city:'',
-      state:'',
-      zip:'',
-      country:''
+      city:this.p.newCity.value,
+      state:this.p.newState.value,
+      zip:this.p.newZip.value,
+      country:this.p.newCountry
     //public string AddressDisplay { get; }
     //public string Error { get; set; }
     //public bool IsComplete { get; }
    }
+   const card={
+    billingAddress: address,
+    expirationMonth:this.p.expiryMonth.value,
+    expirationYear:this.p.expiryYear.value,
+    autoOrderIDs:null,
+    Type :1,
+    token:'',//this.cardToken,
+    nameOnCard:this.p.cardName.value
+   }
+
+   this.spinner.show();
      this.shopService
       .generateCreditCardToken(this.p.cardNumber.value.replace(/ /g, ''))
       .subscribe((result: any) => {
         if (result.errorMessage == '') {
           console.log(result);
           this.cardToken = result.token;
-          const card={
-            billingAddress: address,
-            expirationMonth:'',
-            expirationYear:'',
-            autoOrderIDs:'',
-            Type :'1',
-            token:this.cardToken,
-            nameOnCard:''
-           }
-          this.accountService.saveCustomerCard(card).subscribe((response)=>{
-
-            this.toastrService.success('Payment Card save successfuly.');
-          });
         } else {
-
           this.spinner.hide();
-          this.toastrService.error('Payment card is save successfuly.');
+          this.toastrService.error('Invalid Token.');
         }
+        card.token=this.cardToken;
+        this.accountService.saveCustomerCard(card).subscribe((response)=>{
+        this.toastrService.success('Payment Card save successfuly.');
+        this.spinner.hide();
       });
+  });
+
 
    }
 
   deleteCard(cardtype:number){
-
-    // enum CreditCardType {
-    //   New = 0,
-    //   Primary = 1,
-    //   Secondary = 2
-    // }
-    this.spinner.show();
-     this.accountService.deleteCustomerCard(cardtype).subscribe((response) => {
-      this.toastrService.success("card  deleted successfully.");
-        this.spinner.hide();
-     });
+    this.toastrService.error('This credit Card Cannot be Deleted While it is Still beign used by Prefered Subscription.');
+    // var type="";
+    //   if(cardtype==0)
+    //  {
+    //   type="New";
+    //  }
+    //  else if(cardtype==1)
+    //  {
+    //   type="Primary";
+    //  }
+    //  else if(cardtype==2)
+    //  {
+    //   type="Secondary";
+    //  }
+    // debugger;
+    // this.spinner.show();
+    //  this.accountService.deleteCustomerCard(type).subscribe((response) => {
+    //    console.log(response);
+    //   this.toastrService.success("card  deleted successfully.");
+    //     this.spinner.hide();
+    //  });
   }
 
   creditCardValidator(control: any) {
