@@ -113,7 +113,14 @@ export class ProfileComponent implements OnInit {
     if (this.onPasswordSubmitForm.invalid) {
       return;
     }
-    this.submit('password');
+
+    this.spinner.show();
+     this.accountService.updateCustomer(this.UserDetails).subscribe((Response) => {
+     console.log(Response);
+     this.toastrService.success('password is updated successfully.');
+     });
+      this.spinner.hide();
+
 }
 
   updateEmail(){
