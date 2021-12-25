@@ -146,10 +146,9 @@ export class CheckoutComponent implements OnInit {
      if(items==null)
      var items =this.sessionService.getSessionObject('productCartItems');
       if(items ==null || items.length<0){
-        toastrService.error("please Add product from Shopping page");
+       // toastrService.error("please Add product from Shopping page");
         this.router.navigate(["/store"]);
       }
-    
   }
 
   ngOnInit(): void {
@@ -1016,7 +1015,7 @@ export class CheckoutComponent implements OnInit {
 
     chargeCreditCardTokenRequest.maxAmount = this.cartSummaryTotal;
     chargeCreditCardTokenRequest.otherData10 = '';
-    
+
     if (this.addrnew) {
       chargeCreditCardTokenRequest.billingZip = this.p.newZip.value;
       chargeCreditCardTokenRequest.billingCity = this.p.newCity.value;
@@ -1053,10 +1052,10 @@ export class CheckoutComponent implements OnInit {
       .subscribe((result: any) => {
         if (result == null) {
           this.toastrService.success('Payment failed');
-        } else { 
+        } else {
           this.sessionService.removeSessionItem('productCartItems-'+this.user.loginName);
           this.sessionService.removeSessionItem('productCartItems');
-       
+
           this.router.navigate(['/store/thankyou']); }
 
         this.spinner.hide();
