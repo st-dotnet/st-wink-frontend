@@ -48,7 +48,8 @@
                                 <ng-template #produt_view let-modal>
                                   <div id="view-logininformation-798275e4-d1dd-4d37-a977-497293c0fe5d">
                                     <form [formGroup]="editShippingAddressForm" (ngSubmit)="oneEditAddressSubmit()">
-                                    <div class="row ">
+                                    <div class="row row mt-4 pl-4 pr-4 mb-4">
+                                        <div class=" col-sm-12 pinfo text-center mb-3"><strong>Edit Address</strong></div>
                                         <div class=" col-sm-12 pinfo">
                                                     <input formControlName="streetAddress1" [(ngModel)]="address.mainAddress1" placeholder="Street address" [ngClass]="{ 'is-invalid': editShippingAddressForm && e.streetAddress1?.errors }" class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required" id="Shippi" name="ShippingAddr" type="text" value="">
                                                     <!-- <span class="field-validation-valid" data-valmsg-for="ShippingAddress.Address1" data-valmsg-replace="true"></span> -->

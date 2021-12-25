@@ -78,8 +78,8 @@ export class PaymentsComponent implements OnInit {
     this.accountService.GetCustomerBilling().subscribe((response) => {
       //this.UserDetails = response.result.customers[0]
       this.paymentCards = response?.filter(x=>x.cardNumber !=null);
-      this.secondaryCards =   this.paymentCards?.filter(x=>x.type==2);
-      this.primaryCards = this.paymentCards?.filter(x=>x.type==1);
+      this.secondaryCards =   this.paymentCards?.filter(x=>x.type==2 && x.cardNumber!="");
+      this.primaryCards = this.paymentCards?.filter(x=>x.type==1 && x.cardNumber!="");
       console.log(response);
       this.spinner.hide();
     });
