@@ -95,13 +95,13 @@ export class PaymentsComponent implements OnInit {
     }
     this.spinner.show();
     const address={
-      addressType:'',
+      addressType:1,
       address1:this.p.newStreetAddress.value,
       address2:'',
       city:this.p.newCity.value,
       state:this.p.newState.value,
       zip:this.p.newZip.value,
-      country:this.p.newCountry
+      country:this.p.newCountry.value
     //public string AddressDisplay { get; }
     //public string Error { get; set; }
     //public bool IsComplete { get; }
@@ -110,30 +110,35 @@ export class PaymentsComponent implements OnInit {
     billingAddress: address,
     expirationMonth:this.p.expiryMonth.value,
     expirationYear:this.p.expiryYear.value,
-    autoOrderIDs:null,
+    autoOrderIDs:50256,
+    autoOrderPaymentType:1,
     Type :1,
     token:'',//this.cardToken,
-    nameOnCard:this.p.cardName.value
+    nameOnCard:this.p.cardName.value,
+    cardNumber:this.p.cardNumber.value.replace(/ /g, "")
    }
 
    this.spinner.show();
      this.shopService
-      .generateCreditCardToken(this.p.cardNumber.value.replace(/ /g, ''))
+      .generateCreditCardToken(card.cardNumber)
       .subscribe((result: any) => {
         if (result.errorMessage == '') {
           console.log(result);
           this.cardToken = result.token;
-        } else {
+          card.token=this.cardToken;
+          this.accountService.saveCustomerCard(card).subscribe((response)=>{
+            if(response){
+              this.toastrService.success('Payment Card save successfuly.');
+              this.spinner.hide();
+            }
+            this.spinner.hide();
+        });
+        }
+        else {
           this.spinner.hide();
           this.toastrService.error('Invalid Token.');
         }
-        card.token=this.cardToken;
-        this.accountService.saveCustomerCard(card).subscribe((response)=>{
-        this.toastrService.success('Payment Card save successfuly.');
-        this.spinner.hide();
-      });
   });
-
 
    }
 
