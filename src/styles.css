@@ -1868,6 +1868,11 @@ section.account-page.profile-page ngb-accordion.accordion.panel-stepbar .card {
     max-width: 49%;
 }
 
+section.account-page.grid-checkout .emailbtns {
+    display: flex;
+    align-items: center;
+}
+
 
 /* Account page -profile */
 
@@ -1907,7 +1912,7 @@ section.account-page.profile-page ngb-accordion.accordion.panel-stepbar .card {
 }
 
 .account-paged .card-body {
-    padding: 15px 32px 0;
+    padding: 15px 20px 0;
 }
 
 .account-paged .card button[aria-expanded="true"] span.arrow-stepp {
@@ -2433,11 +2438,13 @@ table.table.order-summary td {
     button.toggleclicked i.fa-bars:before {
         content: "\f00d";
     }
-    div#main-menu.showmenu li a.nav-link {
+    div#main-menu .showmenu ul.navbar-nav li a.nav-link {
         font-size: 26px;
         padding-bottom: 4px !important;
         padding-top: 4px !important;
-        text-transform: capitalize !important;
+    }
+    ul.navbar-nav.other-links {
+        text-transform: uppercase;
     }
     ul.navbar-nav.other-links li a {
         font-size: 18px !important;
@@ -2629,6 +2636,9 @@ table.table.order-summary td {
         z-index: 2;
         width: 100%;
     }
+    .cityndState {
+        width: 100%;
+    }
     .main-content {
         padding-top: 120px;
     }
@@ -2655,9 +2665,9 @@ table.table.order-summary td {
     .enrollment-steps-5 .card-header {
         padding: 0.55rem 0.25rem;
     }
-    section.account-page.grid-checkout .emailbtns {
+    /* section.account-page.grid-checkout .emailbtns {
         flex-direction: column;
-    }
+    } */
     /* 12/23/21 */
     .subsc-cta {
         max-width: 320px;
@@ -2776,4 +2786,8 @@ table.table.order-summary td {
 
 button.btn.btn-link.ng-star-inserted {
     border-radius: unset;
+}
+
+.cityndState {
+    display: flex;
 }

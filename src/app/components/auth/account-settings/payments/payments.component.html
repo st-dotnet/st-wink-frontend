@@ -11,7 +11,7 @@
                             </div>
 
                             <ngb-accordion activeIds="">
-                                <ngb-panel id="primarycard{{i}}" *ngFor="let item of primaryCards;let i = index" >
+                                <ngb-panel id="primarycard{{i}}" *ngFor="let item of primaryCards;let i = index">
                                     <ng-template ngbPanelTitle>
                                         <div class="heading-step1 profile-section">
                                             <h4>Primary Card</h4>
@@ -42,7 +42,7 @@
                                                 <a href="#"> <button class="cancle-btn">Edit Card</button></a>
                                             </div>
                                             <div class="delete">
-                                                <i class="fas fa-trash" (click)="deleteCard(item.type)"> <span  > Delete</span></i>
+                                                <a> <i class="fas fa-trash" (click)="deleteCard(item.type)"> <span  > Delete</span></i></a>
                                             </div>
                                         </div>
                                     </ng-template>
@@ -64,141 +64,147 @@
                                         </div>
                                     </ng-template>
                                     <ng-template ngbPanelContent>
-                                      <form [formGroup]="onPaymentSubmitForm" (ngSubmit)="onPaymentSubmit()">
-                                        <div class="content-card steps-inner shipping-address-form">
-                                            <ul class="card-mat">
-                                                <li><img src="../../assets/card-ui-1.png" /></li>
-                                                <li><img src="../../assets/card-ui-2.png" /></li>
-                                                <li><img src="../../assets/card-ui-3.png" /></li>
-                                                <li><img src="../../assets/card-ui-4.png" /></li>
-                                                <li><span class="more-card">and more</span></li>
-                                            </ul>
-                                            <div class="card-infoo">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <input type="text" formControlName="cardName" placeholder="Name on card" name="card-name" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardName?.errors }" />
-                                                            <div *ngIf="paymentSubmitted && p.cardName?.errors" class="invalid-feedback">
-                                                                <div *ngIf="p.cardName?.errors.required">Card Name is required</div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <input type="text" formControlName="cardNumber" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="0000 0000 0000 0000" (change)="creditCardValidator($event)" placeholder="Card number" name="cardNumber" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardNumber?.errors }"
-                                                            />
-                                                            <div *ngIf="paymentSubmitted && p.cardNumber?.errors" class="invalid-feedback">
-                                                                <div *ngIf="p.cardNumber?.errors.required">Card Number is required</div>
-                                                                <div *ngIf="p.cardNumber.errors.minlength">Card Number must be at least 14 numbers </div>
-                                                            </div>
-                                                            <div *ngIf="cardvalidate" class="invalid-feedback-customclass">
-                                                                <div *ngIf="cardvalidate">Card Number is not valid
+                                        <form [formGroup]="onPaymentSubmitForm" (ngSubmit)="onPaymentSubmit()">
+                                            <div class="content-card steps-inner shipping-address-form">
+                                                <ul class="card-mat">
+                                                    <li><img src="../../assets/card-ui-1.png" /></li>
+                                                    <li><img src="../../assets/card-ui-2.png" /></li>
+                                                    <li><img src="../../assets/card-ui-3.png" /></li>
+                                                    <li><img src="../../assets/card-ui-4.png" /></li>
+                                                    <li><span class="more-card">and more</span></li>
+                                                </ul>
+                                                <div class="card-infoo">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <input type="text" formControlName="cardName" placeholder="Name on card" name="card-name" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardName?.errors }" />
+                                                                <div *ngIf="paymentSubmitted && p.cardName?.errors" class="invalid-feedback">
+                                                                    <div *ngIf="p.cardName?.errors.required">Card Name is required</div>
                                                                 </div>
+
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <input type="text" formControlName="expiryMonth" [(ngModel)]="checkMonth" (change)="validateCard()"  [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="00" placeholder="Month" name="expiryMonth" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryMonth?.errors }"/>
-                                                            <div *ngIf="paymentSubmitted && p.expiryMonth?.errors" class="invalid-feedback">
-                                                                <div *ngIf="p.expiryMonth?.errors.required">
-                                                                    Expiry Month is required</div>
-                                                                <div *ngIf="p.expiryMonth.errors.pattern">
-                                                                    Invalid Month
-                                                                  </div>
-                                                            </div>
-                                                            <div *ngIf="monthError" class="invalid-feedback-customclass">
-                                                                <div *ngIf="monthError">Month is not valid</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <input type="text" formControlName="expiryYear" [(ngModel)]="checkYear" (change)="validateCard()" placeholder="Year" name="expiryYear" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="0000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryYear?.errors }"
-                                                            />
-                                                            <div *ngIf="paymentSubmitted && p.expiryYear?.errors" class="invalid-feedback">
-                                                                <div *ngIf="p.expiryYear?.errors.required">
-                                                                    Expiry Year is required</div>
-                                                            </div>
-                                                            <div *ngIf="yearError" class="invalid-feedback-customclass">
-                                                                <div *ngIf="yearError">Year is not valid</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-12">
-                                                        <div class="form-group">
-                                                            <input type="text" formControlName="cardCVV" placeholder="CVV" name="cardCVV" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardCVV?.errors }" />
-                                                            <div *ngIf="paymentSubmitted && p.cardCVV?.errors" class="invalid-feedback">
-                                                                <div *ngIf="p.cardCVV?.errors.required">card CVV is required</div>
-
-                                                            </div>
-                                                            <div class="req">
-                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                            </div>
-                                                            <input type="text" formControlName="newStreetAddress" placeholder="Street address" name="cardCVV"  class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.newStreetAddress?.errors }" />
-                                                            <div *ngIf="paymentSubmitted && p.newStreetAddress?.errors" class="invalid-feedback">
-                                                                <div *ngIf="p.newStreetAddress?.errors.required">Street Address is Required</div>
-
-                                                            </div>
-                                                            <div class="req">
-                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                            </div>
-
-
-                                                            <div class="row">
-                                                                <div class="col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <input type="text" [ngClass]="{'is-invalid': paymentSubmitted && p.newCity?.errors } " formControlName="newCity"  placeholder="City" name="expiryMonth" class="form-control" />
-
-                                                                        <div *ngIf="paymentSubmitted && p.newCity?.errors " class="invalid-feedback ">
-                                                                          <div *ngIf="p.newCity?.errors.required ">
-                                                                              city is required.</div>
-                                                                      </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <input type="text" formControlName="cardNumber" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="0000 0000 0000 0000" (change)="creditCardValidator($event)" placeholder="Card number" name="cardNumber" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardNumber?.errors }"
+                                                                />
+                                                                <div *ngIf="paymentSubmitted && p.cardNumber?.errors" class="invalid-feedback">
+                                                                    <div *ngIf="p.cardNumber?.errors.required">Card Number is required</div>
+                                                                    <div *ngIf="p.cardNumber.errors.minlength">Card Number must be at least 14 numbers </div>
+                                                                </div>
+                                                                <div *ngIf="cardvalidate" class="invalid-feedback-customclass">
+                                                                    <div *ngIf="cardvalidate">Card Number is not valid
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <input type="text" formControlName="newState" [ngClass]="{
-                                                                          'is-invalid': paymentSubmitted && p.newState?.errors } " placeholder="State" name="expiryYear"  class="form-control" />
-                                                                        <div *ngIf="paymentSubmitted && p.newState?.errors " class="invalid-feedback ">
-                                                                            <div *ngIf="p.newState?.errors.required ">
-                                                                                state  is required</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="cityndState">
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <input type="text" formControlName="expiryMonth" [(ngModel)]="checkMonth" (change)="validateCard()" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="00" placeholder="Month" name="expiryMonth" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryMonth?.errors }"
+                                                                    />
+                                                                    <div *ngIf="paymentSubmitted && p.expiryMonth?.errors" class="invalid-feedback">
+                                                                        <div *ngIf="p.expiryMonth?.errors.required">
+                                                                            Expiry Month is required</div>
+                                                                        <div *ngIf="p.expiryMonth.errors.pattern">
+                                                                            Invalid Month
                                                                         </div>
-                                                                        <div *ngIf="yearError " class="invalid-feedback-customclass ">
-                                                                            <div *ngIf="yearError ">Year is not valid</div>
-                                                                        </div>
+                                                                    </div>
+                                                                    <div *ngIf="monthError" class="invalid-feedback-customclass">
+                                                                        <div *ngIf="monthError">Month is not valid</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
 
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <input type="text" formControlName="expiryYear" [(ngModel)]="checkYear" (change)="validateCard()" placeholder="Year" name="expiryYear" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="0000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.expiryYear?.errors }"
+                                                                    />
+                                                                    <div *ngIf="paymentSubmitted && p.expiryYear?.errors" class="invalid-feedback">
+                                                                        <div *ngIf="p.expiryYear?.errors.required">
+                                                                            Expiry Year is required</div>
+                                                                    </div>
+                                                                    <div *ngIf="yearError" class="invalid-feedback-customclass">
+                                                                        <div *ngIf="yearError">Year is not valid</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-                                                            <input type="text " formControlName="newZip" placeholder="ZIP " name="cardCVV" class="form-control " [ngClass]="{
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <input type="text" formControlName="cardCVV" placeholder="CVV" name="cardCVV" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardCVV?.errors }" />
+                                                                <div *ngIf="paymentSubmitted && p.cardCVV?.errors" class="invalid-feedback">
+                                                                    <div *ngIf="p.cardCVV?.errors.required">card CVV is required</div>
+
+                                                                </div>
+                                                                <div class="req">
+                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
+                                                                </div>
+                                                                <input type="text" formControlName="newStreetAddress" placeholder="Street address" name="cardCVV" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.newStreetAddress?.errors }" />
+                                                                <div *ngIf="paymentSubmitted && p.newStreetAddress?.errors" class="invalid-feedback">
+                                                                    <div *ngIf="p.newStreetAddress?.errors.required">Street Address is Required</div>
+
+                                                                </div>
+                                                                <div class="req">
+                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
+                                                                </div>
+
+
+                                                                <div class="row">
+                                                                    <div class="cityndState">
+                                                                        <div class="col-sm-6">
+                                                                            <div class="form-group">
+                                                                                <input type="text" [ngClass]="{'is-invalid': paymentSubmitted && p.newCity?.errors } " formControlName="newCity" placeholder="City" name="expiryMonth" class="form-control" />
+
+                                                                                <div *ngIf="paymentSubmitted && p.newCity?.errors " class="invalid-feedback ">
+                                                                                    <div *ngIf="p.newCity?.errors.required ">
+                                                                                        city is required.</div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="form-group">
+                                                                                <input type="text" formControlName="newState" [ngClass]="{
+                                                                          'is-invalid': paymentSubmitted && p.newState?.errors } " placeholder="State" name="expiryYear" class="form-control" />
+                                                                                <div *ngIf="paymentSubmitted && p.newState?.errors " class="invalid-feedback ">
+                                                                                    <div *ngIf="p.newState?.errors.required ">
+                                                                                        state is required</div>
+                                                                                </div>
+                                                                                <div *ngIf="yearError " class="invalid-feedback-customclass ">
+                                                                                    <div *ngIf="yearError ">Year is not valid</div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <input type="text " formControlName="newZip" placeholder="ZIP " name="cardCVV" class="form-control " [ngClass]="{
                                                                             'is-invalid': paymentSubmitted && p.newZip?.errors } " />
-                                                            <div *ngIf="paymentSubmitted && p.newZip?.errors" class="invalid-feedback ">
-                                                                <div *ngIf="p.newZip?.errors.required ">zip is required.</div>
+                                                                <div *ngIf="paymentSubmitted && p.newZip?.errors" class="invalid-feedback ">
+                                                                    <div *ngIf="p.newZip?.errors.required ">zip is required.</div>
 
-                                                            </div>
+                                                                </div>
 
-                                                            <div class="req ">
-                                                                <label class="control-label visible-xs required requiredField " for="Customer_MainAddress_City "></label>
-                                                            </div>
+                                                                <div class="req ">
+                                                                    <label class="control-label visible-xs required requiredField " for="Customer_MainAddress_City "></label>
+                                                                </div>
 
-                                                            <input type="text " formControlName="newCountry" placeholder="Country " name="cardCVV "   class="form-control " [ngClass]="{
+                                                                <input type="text " formControlName="newCountry" placeholder="Country " name="cardCVV " class="form-control " [ngClass]="{
                                                                             'is-invalid': paymentSubmitted && p.newCountry?.errors } " />
-                                                            <div *ngIf="paymentSubmitted && p.newCountry?.errors " class="invalid-feedback ">
-                                                                <div *ngIf="p.newCountry?.errors.required ">country is required.</div>
+                                                                <div *ngIf="paymentSubmitted && p.newCountry?.errors " class="invalid-feedback ">
+                                                                    <div *ngIf="p.newCountry?.errors.required ">country is required.</div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="primaryBtn">
-                                                <input type="checkbox"  (change)="checkCardType($event)"> <span>Make  Primary Card</span>
+                                                <input type="checkbox" (change)="checkCardType($event)"> <span>Make  Primary Card</span>
                                             </div>
 
                                             <div class="saveWraper">
@@ -206,13 +212,13 @@
                                                     <a href="#"> <button class="save-btn" type="submit">Save Changes</button></a>
                                                 </div>
                                             </div>
-                                        </div>
+
                                         </form>
                                     </ng-template>
                                 </ngb-panel>
 
 
-                                <ngb-panel id="secondarycard{{i}}" *ngFor="let item of secondaryCards;let i = index" >
+                                <ngb-panel id="secondarycard{{i}}" *ngFor="let item of secondaryCards;let i = index">
                                     <ng-template ngbPanelTitle>
                                         <div class="heading-step1 profile-section">
                                             <h4> Secondary Card</h4>
@@ -243,11 +249,11 @@
                                                 <a href="#"> <button class="save-btns"> Make Primary</button></a>
                                             </div>
                                             <div class="cancles">
-                                                <a> <button class="cancle-btn" >Edit Card</button></a>
+                                                <a> <button class="cancle-btn">Edit Card</button></a>
                                             </div>
 
                                             <div class="delete">
-                                                <a > <i class="fas fa-trash" (click)="deleteCard(item.type)"> <span> Delete</span></i></a>
+                                                <a> <i class="fas fa-trash" (click)="deleteCard(item.type)"> <span> Delete</span></i></a>
 
                                             </div>
                                         </div>
@@ -258,7 +264,7 @@
                                 <h4>Your Wallets</h4>
                             </div>
 
-                            <ngb-accordion activeIds=" "  >
+                            <ngb-accordion activeIds=" ">
                                 <ngb-panel id="promo-sidebar1">
                                     <ng-template ngbPanelTitle>
                                         <div class="heading-step1 profile-section ">

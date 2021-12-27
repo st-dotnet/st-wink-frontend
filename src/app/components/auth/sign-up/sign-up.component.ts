@@ -176,7 +176,7 @@ export class SignUpComponent implements OnInit {
           } else {
             this.form.reset();
             this.router.navigate([''], { relativeTo: this.route });
-            this.toastrService.success('User registration successfully');
+            this.toastrService.success('User has Registered Successfully');
             this.spinner.hide();
           }
           // this.toastrService.success('Please check your email in order to verify the registration');

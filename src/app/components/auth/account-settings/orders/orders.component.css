@@ -44,3 +44,9 @@ section.account-page.grid-checkout button.trck-order-btn {
 .pagination-points ul.pagination li a {
     background: transparent;
 }
+
+.trackOrder.ng-star-inserted {
+    display: block !important;
+}
+
+@media screen and (max-width: 700px) {}

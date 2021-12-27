@@ -42,6 +42,10 @@ button.save-btn {
 }
 
 section.account-page.grid-checkout button.save-btn {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+section.account-page.grid-checkout button.save-btn {
     width: 100%;
     padding: 6px 50px;
     background: #1cb1c5;
@@ -51,7 +55,16 @@ section.account-page.grid-checkout button.save-btn {
 
 section.account-page.grid-checkout small#emailHelp {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
+}
+
+.special-field.datafilled.form-group p {
+    padding-left: 10px;
+    opacity: 0.8;
+}
+
+.enrollment-steps-5 .custom-control.custom-checkbox.mycheckbox {
+    margin-top: 3px;
 }
 
 section.account-page.grid-checkout .form-group.numbersection {
@@ -315,6 +328,8 @@ button.btn.btn-link.ng-star-inserted {
 
 .account-paged form input {
     height: 50px;
+    font-family: 'g-regular';
+    color: gray;
 }
 
 h1.profileField {
@@ -322,7 +337,7 @@ h1.profileField {
 }
 
 .enrollment-righ .emailbtns .saves {
-    margin: 12px 0px;
+    margin: 12px 10px;
 }
 
 section.account-page.grid-checkout .emailbtns {
@@ -336,6 +351,11 @@ section.account-page.grid-checkout .emailbtns {
     font-weight: 600;
     color: #000000;
     text-decoration: underline;
+}
+
+span.emailText {
+    font-family: 'g-regular';
+    font-size: 15px;
 }
 
 @media (min-width: 768px) {

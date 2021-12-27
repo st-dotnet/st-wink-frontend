@@ -38,8 +38,8 @@
                                             <div class="emailbtns">
                                                 <div class="cancles">
 
-                                                  <a> <button type="button" class="cancle-btn" (click)="acc.toggle('promo-sidebar1')">Cancel</button></a>
-                                                     <!-- <a data-toggle="collapse" href="#promo-sidebar1" role="button" aria-expanded="false" aria-controls="promo-sidebar1"> <button class="cancle-btn">Cancel</button></a> -->
+                                                    <a> <button type="button" class="cancle-btn" (click)="acc.toggle('promo-sidebar1')">Cancel</button></a>
+                                                    <!-- <a data-toggle="collapse" href="#promo-sidebar1" role="button" aria-expanded="false" aria-controls="promo-sidebar1"> <button class="cancle-btn">Cancel</button></a> -->
                                                 </div>
                                                 <div class="saves">
                                                     <!-- <a href="#"> <button class="save-btn" (click)="submit('First Name',UserDetails.firstName)">Save</button></a> -->
@@ -79,7 +79,7 @@
                                             </div>
                                             <div class="emailbtns">
                                                 <div class="cancles">
-                                                  <a> <button type="button" class="cancle-btn" (click)="acc.toggle('promo-sidebar')">Cancel</button></a>
+                                                    <a> <button type="button" class="cancle-btn" (click)="acc.toggle('promo-sidebar')">Cancel</button></a>
                                                     <!-- <a data-toggle="collapse" href="#promo-sidebar" role="button" aria-expanded="false" aria-controls="promo-sidebar"> <button class="cancle-btn">Cancel</button></a> -->
                                                 </div>
                                                 <div class="saves">
@@ -128,7 +128,7 @@
                                                             </div>
                                                             <div class="emailbtns">
                                                                 <div class="cancles">
-                                                                  <a> <button type="button" class="cancle-btn" (click)="acc.toggle('otp-sidebar2')">Cancel</button></a>
+                                                                    <a> <button type="button" class="cancle-btn" (click)="acc.toggle('otp-sidebar2')">Cancel</button></a>
                                                                     <!-- <a data-toggle="collapse" href="#otp-sidebar2" role="button" aria-expanded="false" aria-controls="otp-sidebar2"> <button class="cancle-btn">Cancel</button></a> -->
                                                                 </div>
                                                                 <div class="saves">
@@ -172,12 +172,13 @@
                                                                 <input type="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': emailSubmitted && e.email?.errors }" [(ngModel)]="UserDetails.email" [ngModelOptions]="{standalone: true}" id="exampleInputEmail1" aria-describedby="emailHelp">
                                                                 <div *ngIf="emailSubmitted && e.email?.errors" class="invalid-feedback">
                                                                     <div *ngIf="e.email?.errors.required">
-                                                                        Email is required</div>
+                                                                        Email address is required</div>
                                                                     <div *ngIf="e.email.errors.email">Please enter vaild email address</div>
                                                                     <div *ngIf="e.email.errors.pattern">Email format is not vaild</div>
                                                                 </div>
 
                                                                 <label class="emailLable" for="exampleInputEmail1">Email* </label>
+                                                                <p>Required*</p>
                                                                 <small id="emailHelp" class="form-text text-muted">
                                                                   <div
                                                                       class="custom-control custom-checkbox mycheckbox">
@@ -186,13 +187,13 @@
                                                                           id="defaultCheckedDisabled21" >
                                                                       <label class="custom-control-label"
                                                                           for="defaultCheckedDisabled21"></label>
-                                                                  </div>Yes, I would like to receive notifications via email.
+                                                                  </div> <span class="emailText"> Yes,I would like to receive notifications via email</span>
                                                               </small>
                                                             </div>
                                                             <div class="emailbtns">
                                                                 <div class="cancles">
-                                                                  <a> <button type="button" class="cancle-btn" (click)="acc.toggle('otp-sidebar')">Cancel</button></a>
-                                                                  <!-- <a data-toggle="collapse" href="#otp-sidebar" role="button" aria-expanded="false" aria-controls="otp-sidebar"> <button class="cancle-btn">Cancel</button></a> -->
+                                                                    <a> <button type="button" class="cancle-btn" (click)="acc.toggle('otp-sidebar')">Cancel</button></a>
+                                                                    <!-- <a data-toggle="collapse" href="#otp-sidebar" role="button" aria-expanded="false" aria-controls="otp-sidebar"> <button class="cancle-btn">Cancel</button></a> -->
                                                                 </div>
                                                                 <div class="saves">
                                                                     <a href="#"> <button class="save-btn" type="submit">Save</button></a>
@@ -253,17 +254,20 @@
                                                                     </div>
                                                                 </div>
                                                                 <label class="emailLable number home" for="exampleInputPassword1">Home Phone*</label>
+                                                                <p>Required*</p>
+
                                                             </div>
                                                             <div class="custom-control custom-checkbox">
                                                                 <input type="checkbox" class="custom-control-input" id="defaultCheckedDisabled2">
-                                                                <label class="custom-control-label" for="defaultCheckedDisabled2">
-                                                                  Yes, I would like to receive notifications via text message
-                                                                   </label>
+
+                                                                <label class="custom-control-label" for="defaultCheckedDisabled2">Yes, I would
+                                                                  like to receive notifications via text
+                                                                  message </label>
                                                             </div>
                                                             <div class="emailbtns">
                                                                 <div class="cancles">
-                                                                  <a> <button type="button" class="cancle-btn" (click)="acc.toggle('otp-sidebar3')">Cancel</button></a>
-                                                                  <!-- <a data-toggle="collapse" href="#otp-sidebar3" role="button" aria-expanded="false" aria-controls="otp-sidebar"> <button class="cancle-btn">Cancel</button></a> -->
+                                                                    <a> <button type="button" class="cancle-btn" (click)="acc.toggle('otp-sidebar3')">Cancel</button></a>
+                                                                    <!-- <a data-toggle="collapse" href="#otp-sidebar3" role="button" aria-expanded="false" aria-controls="otp-sidebar"> <button class="cancle-btn">Cancel</button></a> -->
                                                                 </div>
                                                                 <div class="saves">
                                                                     <a href="#"> <button class="save-btn" type="submit">Save</button></a>

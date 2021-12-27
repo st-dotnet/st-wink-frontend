@@ -557,7 +557,7 @@ export class EnrollmentInfoComponent implements OnInit {
       !this.s.state.value //||
       //!this.s.zip.value
     ) {
-      this.toastrService.error('Please fill All Address Feilds');
+      this.toastrService.error('Please fill all address fields');
       return;
     }
     let address = {

@@ -66,7 +66,7 @@ button.save-btn {
 
 .saveses button.save-btns {
     border-radius: 30px;
-    width: auto;
+    width: 100%;
     padding: 5px 66px;
     background: #1cb1c5;
     color: white;
@@ -76,16 +76,15 @@ button.save-btn {
 }
 
 .paymentPage button.save-btn {
-    width: auto;
+    width: 100%;
     padding: 6px 36px;
-    /* background: #0070BA; */
     color: white;
-    /* text-transform: capitalize; */
 }
 
 .paymentPage .primaryBtn span {
     font-size: 20px;
-    color: black;
+    color: #000000d1;
+    font-family: 'g-demibold';
 }
 
 .paymentPage .saves.paypal button.save-btn {
@@ -438,6 +437,8 @@ section.address-page .delete a {
     margin-right: 10px;
     width: 17px;
     height: 17px;
+    outline: auto;
+    opacity: 0.8;
 }
 
 .paymentPage button.save-btn {
@@ -485,11 +486,19 @@ section.address-page .delete a {
     .addresses-page .cancles {
         margin: 0px 12px;
     }
+    .saveses button.save-btns {
+        width: auto;
+    }
+    .paymentPage button.save-btn {
+        width: auto;
+        padding: 6px 36px;
+        color: white;
+    }
 }
 
 .invalid-feedback-customclass {
-  width: 100%;
-  margin-top: 0.25rem;
-  font-size: 80%;
-  color: #dc3545;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #dc3545;
 }

@@ -365,10 +365,19 @@ section.address-page .delete a {
 .addresses-page .cancles {
     margin: 20px 0px;
 }
+
 .field-validation-valid {
     color: #dc3545 !important;
-    }
+}
+
+.addressed .cityndState {
+    display: flex;
+}
+
 @media (min-width: 992px) {
+    .addressed .cityndState {
+        width: 100%;
+    }
     span.arrow-stepp {
         display: block;
     }

@@ -121,7 +121,7 @@ export class AddressesComponent implements OnInit {
     };
      this.accountService.SaveAddress(address).subscribe((Response) => {
       //console.log(Response);
-      this.toastrService.success('Address update Successfully.');
+      this.toastrService.success('Address updated Successfully.');
       this.getAddressByCustomerId(this.user.customerId);
       this.modalService.dismissAll();
        this.spinner.hide();
