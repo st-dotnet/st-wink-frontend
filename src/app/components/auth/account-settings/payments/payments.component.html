@@ -44,7 +44,7 @@
                                             </div>
 
                                             <div class="delete">
-                                                <a  > <i class="fas fa-trash" (click)="deleteCard(item.type)"> <span  > Delete</span></i></a>
+                                                <i class="fas fa-trash" (click)="deleteCard(item.type)"> <span  > Delete</span></i>
                                             </div>
                                         </div>
                                     </ng-template>
@@ -245,11 +245,11 @@
                                                 <a href="#"> <button class="save-btns"> Make Primary</button></a>
                                             </div>
                                             <div class="cancles">
-                                                <a> <button class="cancle-btn" (click)="deleteCard(item.type)">Edit Card</button></a>
+                                                <a> <button class="cancle-btn">Edit Card</button></a>
                                             </div>
 
                                             <div class="delete">
-                                                <a href="#"> <i class="fas fa-trash"> <span> Delete</span></i></a>
+                                               <i class="fas fa-trash" (click)="deleteCard(item.type)" > <span> Delete</span></i>
                                             </div>
                                         </div>
                                     </ng-template>
