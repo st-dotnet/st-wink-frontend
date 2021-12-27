@@ -7,7 +7,7 @@
                         <div class="enrollment-steps-5 addressed">
                             <h1 class="profileField">Addresses</h1>
 
-                            <ngb-accordion activeIds="">
+                            <ngb-accordion activeIds="" #acc="ngbAccordion">
                                 <ngb-panel id="promo-sidebar1"  *ngFor="let address of addressess; let i = index">
                                     <ng-template ngbPanelTitle>
                                         <div class="heading-step1 profile-section">
@@ -33,7 +33,8 @@
                                             </div>
                                             <div class="emailbtns">
                                                 <div class="cancles">
-                                                  <a data-toggle="collapse" href="#promo-sidebar1" role="button" aria-expanded="false" aria-controls="promo-sidebar1"> <button class="cancle-btn">Cancel</button></a>
+                                                  <a> <button type="button" class="cancle-btn" (click)="acc.toggle('promo-sidebar1')">Cancel</button></a>
+                                                  <!-- <a data-toggle="collapse" href="#promo-sidebar1" role="button" aria-expanded="false" aria-controls="promo-sidebar1"> <button class="cancle-btn">Cancel</button></a> -->
                                                     <!-- <a href="#"> <button class="cancle-btn">Cancel</button></a> -->
                                                 </div>
                                                 <div class="saves">

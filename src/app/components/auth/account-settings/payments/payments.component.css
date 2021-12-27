@@ -382,6 +382,7 @@ section.address-page .delete {
     font-family: 'g-regular';
     text-align: center;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 section.address-page .delete span {
