@@ -497,7 +497,24 @@ span.search {
     margin-bottom: 12px;
 }
 /* media  css */
+.col-lg-8.col-md-12.back-link.mb-4 a {
+    display: flex;
+    align-items: center;
+    color: #1cb1c5;
+    font-family: "g-demibold";
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
+section.backlink-header.mob-check.account-setting-upperBar svg.svg-inline--fa.fa-angle-left.fa-w-6.fa-3x {
+    width: 7px;
+    margin: 0px 5px;
+}
+
+section.backlink-header.mob-check.account-setting-upperBar {
+    width: 100%;
+    padding: 30px 0 0;
+}
 @media (min-width: 992px) {
     .enrollment-main-div .saveprocessed1.continuebtn button {
         width: 50%;
