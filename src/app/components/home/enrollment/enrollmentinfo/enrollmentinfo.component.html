@@ -16,7 +16,7 @@
                     <div class="cart-sidebar">
                         <div class="sidebar-head">
                             <h2>Order Summary</h2><span class="amount-summary"></span>
-                            <p>${{cartSummaryTotal | number:'.1-2'}}</p>
+                            <p>${{cartSummaryTotal | number:'.2'}}</p>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                                         <span>Your Enroller <br><p>Amanda Walsh, ID#42</p></span>
                                         <div class="ero">
 
-                                        <span class="arrow-stepp">
+                                            <span class="arrow-stepp">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
                                                 viewBox="0 0 6.6 11.2">
                                                 <path id="Path_2044" data-name="Path 2044"
@@ -113,11 +113,11 @@
                                                                                             First Name is required</div>
                                                                                     </div>
                                                                                     <div class="req">
-                                                                                    <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
-                                                                                </div>
+                                                                                        <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
+                                                                                    </div>
                                                                                     <!-- <span class="field-validation-valid" data-valmsg-for="Customer.FirstName" data-valmsg-replace="true"></span> -->
                                                                                 </div>
-                                                                                
+
                                                                             </div>
 
                                                                             <div class="col-sm-12 pinfo">
@@ -135,7 +135,7 @@
                                                                                         <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
                                                                                     </div>
                                                                                 </div>
-                                                                               
+
                                                                             </div>
 
                                                                             <div class="col-sm-12 pinfo">
@@ -153,7 +153,7 @@
                                                                                     <!-- <span class="field-validation-valid" data-valmsg-for="Customer.LastName" data-valmsg-replace="true"></span> -->
                                                                                 </div>
 
-                                                                              
+
                                                                             </div>
                                                                         </div>
 
@@ -202,7 +202,7 @@
                                                                                         </svg>
                                                                                     </span>
                                                                                 </div>
-                                                                               
+
                                                                             </div>
                                                                         </div>
 
@@ -211,7 +211,7 @@
                                                                                 <div class="form-group">
                                                                                     <!-- <label class="control-label" for="Customer_Company">Company</label> -->
 
-                                                                                    <input class="form-control personalInfo"  placeholder="Company" type="text" />
+                                                                                    <input class="form-control personalInfo" placeholder="Company" type="text" />
                                                                                     <!-- <div *ngIf="submitted && f.company?.errors" class="invalid-feedback">
                                                                                         <div *ngIf="f.company?.errors.required">
                                                                                             Company is required</div>
@@ -229,7 +229,7 @@
                                                                                     <!-- <label class="control-label" for="Customer_SecondaryPhone">Office
                                                                                 Phone</label> -->
 
-                                                                                    <input class="form-control personalInfo"  [textMask]="{mask: maskMobileNo}" placeholder="Office phone" role="textbox" type="tel" value="" maxlength="13" />
+                                                                                    <input class="form-control personalInfo" [textMask]="{mask: maskMobileNo}" placeholder="Office phone" role="textbox" type="tel" value="" maxlength="13" />
 
                                                                                     <!-- <div *ngIf="submitted && f.officePhone?.errors" class="invalid-feedback">
                                                                                         <div *ngIf="f.officePhone?.errors.required">
@@ -257,7 +257,7 @@
                                                                                     </div>
                                                                                     <!-- <span class="field-validation-valid" data-valmsg-for="Customer.MobilePhone" data-valmsg-replace="true"></span> -->
                                                                                 </div>
-                                                                             
+
                                                                             </div>
                                                                         </div>
                                                                         <div class="space-5"></div>
@@ -288,7 +288,7 @@
 
                                                                                     <!-- <span class="field-validation-valid" data-valmsg-for="Customer.TaxID" data-valmsg-replace="true"></span> -->
                                                                                 </div>
-                                                                               
+
                                                                             </div>
                                                                             <div class="col-sm-12 pinfo">
                                                                                 <div class="form-group">
@@ -311,7 +311,7 @@
                                                                                     </div>
                                                                                     <!-- <span class="field-validation-valid" data-valmsg-for="Customer.Email" data-valmsg-replace="true"></span> -->
                                                                                 </div>
-                                                                               
+
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -379,12 +379,12 @@
                                                                                             <input class="form-control" data-role="Address2" id="Customer_MainAddress_Address2_ffefb3da-6e6d-4ed5-96e0-18b4850ed599" name="Customer.MainAddress.Address2" placeholder="Apartment, suite, unit, building, floor, etc." type="text" value="" />
                                                                                             <span class="field-validation-valid" data-valmsg-for="Customer.MainAddress.Address2" data-valmsg-replace="true"></span>
                                                                                         </div>
-                                                                                       
+
                                                                                     </div>
 
 
                                                                                     <div class="row margin-5">
-                                                                                        <div class="col-sm-6 sepratePart pinfo">
+                                                                                        <div class="col-sm-5 sepratePart pinfo">
                                                                                             <div class="form-group seprate3">
 
                                                                                                 <input class="form-control personalInfo cityDiv" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city?.errors }" data-role="City" data-val="true" data-val-required="City is required" id="Customer_MainAddress_City" name="Customer.MainAddress.City"
@@ -398,17 +398,17 @@
                                                                                                     <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
                                                                                                 </div>
                                                                                             </div>
-                                                                                          
+
                                                                                         </div>
 
-                                                                                        <div class="col-sm-6 sepratePart pinfo">
+                                                                                        <div class="col-sm-3 sepratePart pinfo">
                                                                                             <div class=" pinfo">
                                                                                                 <div class="form-group">
                                                                                                     <select class="form-control pinfo valid" formControlName="state" (change)="changestate($event)" [ngClass]="{ 'is-invalid': submitted && f.state?.errors }" data-role="State" data-val="true" data-val-required="State is required" id="Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599"
                                                                                                         name="Customer.MainAddress.State" aria-required="true" aria-invalid="false" aria-describedby="Customer_MainAddress_State_ffefb3da-6e6d-4ed5-96e0-18b4850ed599-error">
                                                                                                         <option disabled
                                                                                                             value="">
-                                                                                                            Select State
+                                                                                                            Select state
                                                                                                         </option>
                                                                                                         <option
                                                                                                             *ngFor="let item of states"
@@ -426,17 +426,17 @@
                                                                                                         <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                               
+
                                                                                             </div>
                                                                                         </div>
 
 
 
-                                                                                        <div class="col-sm-12 pinfo">
+                                                                                        <div class="col-sm-4 pinfo">
                                                                                             <div class="form-group">
 
                                                                                                 <input class="form-control personalInfo" formControlName="zip" [ngClass]="{ 'is-invalid': submitted && f.zip?.errors }" data-role="Zip" data-val="true" data-val-required="Zipcode is required" id="Customer_MainAddress_Zip" name="Customer.MainAddress.Zip"
-                                                                                                    placeholder="Zip" type="text" value="" />
+                                                                                                    placeholder="ZIP" type="text" value="" />
 
                                                                                                 <div *ngIf="submitted && f.zip?.errors" class="invalid-feedback">
                                                                                                     <div *ngIf="f.zip.errors.required">
@@ -472,6 +472,8 @@
                                                         <ng-template ngbPanelTitle>
                                                             <div class="heading-step1">
                                                                 <h4> Personal Site & Login </h4>
+                                                                <span class="websiteUrl-head"> <a href="winknaturals.com">winknaturals.com/useralias</a>
+                                                                </span>
 
                                                                 <span class="arrow-stepp">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
@@ -490,10 +492,10 @@
                                                                     <div class="row margin-5">
                                                                         <div id="webalias-preview-container" class="title-yw" style="overflow-x: visible;">
                                                                             <span>
-                                                                                <p>Your Website: </p>
+                                                                                Your Website: 
+                                                                            </span><br>
+                                                                            <span> <a href="winknaturals.com">winknaturals.com/----</a>
                                                                             </span>
-                                                                            <p> <a href="winknaturals.com">winknaturals.com</a>
-                                                                            </p>
 
                                                                             <span id="webalias-preview">
                                                                                 <svg class="question" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -531,7 +533,7 @@
                                                                                     <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
                                                                                 </div>
                                                                             </div>
-                                                                          
+
                                                                         </div>
 
                                                                     </div>
@@ -558,7 +560,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                          
+
                                                                         </div>
                                                                         <div class="col-sm-12 pinfo">
                                                                             <div class="form-group">
@@ -577,7 +579,7 @@
                                                                                     <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
                                                                                 </div>
                                                                             </div>
-                                                                          
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="space-5"></div>
@@ -638,12 +640,12 @@
                                                                     </span>
                                                             </div>
                                                         </ng-template>
-    
-    
-    
-    
+
+
+
+
                                                         <ng-template ngbPanelContent>
-    
+
                                                             <div class="content-card steps-inner">
                                                                 <div [className]="startDate ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'" id="subscr-schedule">
                                                                     <input type="text" class="form-control" bsDatepicker [minDate]="minDate" [bsConfig]="{ isAnimated: true, adaptivePosition: true, selectFromOtherMonth: true  }" [ngModelOptions]="{standalone: true}" [(ngModel)]="startDate" />
@@ -669,7 +671,7 @@
                                                                     </span>
                                                                 </div>
                                                             </div>
-    
+
                                                         </ng-template>
                                                     </ngb-panel>
                                                     <ngb-panel id="address-shipping">
@@ -798,8 +800,8 @@
                                                                                                                 <option
                                                                                                                     disabled
                                                                                                                     value="">
-                                                                                                                    Select
-                                                                                                                    State
+                                                                                                                  
+                                                                                                                    state
                                                                                                                 </option>
                                                                                                                 <option
                                                                                                                     *ngFor="let item of states"
@@ -825,7 +827,7 @@
                                                                                                         <div class="form-group seprate3">
 
                                                                                                             <input formControlName="zip" [ngClass]="{ 'is-invalid': addressSubmitted && s.zip?.errors }" class="form-control personalInfo cityDiv" data-role="Zip" data-val="true" data-val-required="Zip is required" id="Customer_MainAddress_City" name="Customer.MainAddress.Zip"
-                                                                                                                placeholder="Zip" type="text" value="" />
+                                                                                                                placeholder="ZIP" type="text" value="" />
                                                                                                             <div *ngIf="addressSubmitted && s.zip.errors" class="invalid-feedback">
                                                                                                                 <div *ngIf="s.zip.errors.required">
                                                                                                                     Zip is required
@@ -1192,11 +1194,11 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Order Total</td>
-                                                                        <td>${{cartSummaryTotal | number:'.1-2'}}</td>
+                                                                        <td>${{cartSummaryTotal | number:'.2'}}</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Subtotal</td>
-                                                                        <td>${{cartSummaryTotal | number:'.1-2'}}</td>
+                                                                        <td>${{cartSummaryTotal | number:'.2'}}</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Shipping</td>
@@ -1214,7 +1216,7 @@
                                                                             <p class="you-pay"><strong>You Pay</strong></p>
                                                                         </td>
                                                                         <td>
-                                                                            <p class="you-pay"><strong>${{cartSummaryTotal | number:'.1-2'}}</strong>
+                                                                            <p class="you-pay"><strong>${{cartSummaryTotal | number:'.2'}}</strong>
                                                                             </p>
                                                                         </td>
                                                                     </tr>
@@ -1251,7 +1253,7 @@
             </div>
 
             <div class="col-sm-4 enrollment-pages  col-lg-pull-4 ">
-                <div class="enrollment-page">
+                <div class="enrollment-page todayOffer">
                     <div class="showsidebar toggle-sidebar hidden-lg">
                         <div class="cart-sidebar sidebar-collapse">
                         </div>
@@ -1299,7 +1301,26 @@
                                 <ng-template ngbPanelTitle>
                                     <div class="heading-step1">
                                         <h4>Today's Order</h4>
-                                        <p>{{itemDescription}}</p>
+                                        <!-- <p>{{itemDescription}}</p> -->
+                                        <div class="content-card steps-inner today-order">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{itemDescription}}</td>
+                                                        <td>${{cartSummaryTotal | number:'.2'}}</td>
+                                                    </tr>
+                                                    <hr>
+                                                </tbody>
+                                                <tfoot>
+
+
+                                                    <tr>
+                                                        <td>Total</td>
+                                                        <td>${{cartSummaryTotal | number:'.2'}}</td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
                                         <span class="arrow-stepp">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
                                                 viewBox="0 0 6.6 11.2">
@@ -1316,7 +1337,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>{{itemDescription}}</td>
-                                                    <td>${{cartSummaryTotal | number:'.1-2'}}</td>
+                                                    <td>${{cartSummaryTotal | number:'.2'}}</td>
                                                 </tr>
                                                 <hr>
                                             </tbody>
@@ -1325,7 +1346,7 @@
 
                                                 <tr>
                                                     <td>Total</td>
-                                                    <td>${{cartSummaryTotal | number:'.1-2'}}</td>
+                                                    <td>${{cartSummaryTotal | number:'.2'}}</td>
                                                 </tr>
                                             </tfoot>
                                         </table>

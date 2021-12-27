@@ -22,7 +22,7 @@
                                                   transform="translate(-630.6 -4.4)" />
                                           </svg>
                                       </span>
-                                    </div>
+                                        </div>
                                     </ng-template>
                                     <ng-template ngbPanelContent>
                                         <form [formGroup]="onFirstNameSubmitForm" (ngSubmit)="updateFirstName()">
@@ -30,8 +30,8 @@
                                                 <!-- <label for="text">Name</label> -->
                                                 <input type="text" class="form-control" formControlName="firstName" [ngClass]="{ 'is-invalid': firstnameSubmitted && f.firstName?.errors }" [(ngModel)]="UserDetails.firstName" [ngModelOptions]="{standalone: true}">
                                                 <div *ngIf="firstnameSubmitted && f.firstName?.errors" class="invalid-feedback">
-                                                  <div *ngIf="f.firstName?.errors.required">
-                                                      First Name is required</div>
+                                                    <div *ngIf="f.firstName?.errors.required">
+                                                        First Name is required</div>
                                                 </div>
                                                 <label class="form-label">Name</label>
                                             </div>
@@ -41,7 +41,7 @@
                                                 </div>
                                                 <div class="saves">
                                                     <!-- <a href="#"> <button class="save-btn" (click)="submit('First Name',UserDetails.firstName)">Save</button></a> -->
-                                                    <a href="#"> <button type="submit" class="save-btn" >Save</button></a>
+                                                    <a href="#"> <button type="submit" class="save-btn">Save</button></a>
                                                 </div>
                                             </div>
                                         </form>
@@ -70,8 +70,8 @@
                                             <div ormControlName="loginName" [ngClass]="{ 'is-invalid': onloginNamSubmitForm && l.loginName?.errors }" [className]="UserDetails.loginName?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
                                                 <input type="text" formControlName="loginName" [ngClass]="{ 'is-invalid': loginNameSubmitted && l.loginName?.errors }" class="form-control" [(ngModel)]="UserDetails.loginName" [ngModelOptions]="{standalone: true}">
                                                 <div *ngIf="loginNameSubmitted && l.loginName?.errors" class="invalid-feedback">
-                                                  <div *ngIf="l.loginName?.errors.required">
-                                                      login Name is required</div>
+                                                    <div *ngIf="l.loginName?.errors.required">
+                                                        login Name is required</div>
                                                 </div>
                                                 <label class="form-label">User Name</label>
                                             </div>
@@ -80,7 +80,7 @@
                                                     <a data-toggle="collapse" href="#promo-sidebar" role="button" aria-expanded="false" aria-controls="promo-sidebar"> <button class="cancle-btn">Cancel</button></a>
                                                 </div>
                                                 <div class="saves">
-                                                  <a href="#"> <button class="save-btn" type="submit">Save</button></a>
+                                                    <a href="#"> <button class="save-btn" type="submit">Save</button></a>
                                                     <!-- <a href="#"> <button class="save-btn" (click)="submit('login Name',UserDetails.loginName)">Save</button></a> -->
                                                 </div>
                                             </div>
@@ -115,9 +115,9 @@
                                                             <div [className]="password?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
                                                                 <input type="password" formControlName="Password" [ngClass]="{ 'is-invalid': PasswordSubmitted && p.Password?.errors }" class="form-control" [(ngModel)]="UserDetails.LoginPassword" [ngModelOptions]="{standalone: true}" id="exampleInputPassword1">
                                                                 <div *ngIf="PasswordSubmitted && p.Password?.errors" class="invalid-feedback">
-                                                                  <div *ngIf="p.Password?.errors.required">
-                                                                      password is required</div>
-                                                                      <div *ngIf="p.Password.errors.minlength">Password must be at least 6 characters</div>
+                                                                    <div *ngIf="p.Password?.errors.required">
+                                                                        password is required</div>
+                                                                    <div *ngIf="p.Password.errors.minlength">Password must be at least 6 characters</div>
                                                                 </div>
 
 
@@ -128,7 +128,7 @@
                                                                     <a data-toggle="collapse" href="#otp-sidebar2" role="button" aria-expanded="false" aria-controls="otp-sidebar2"> <button class="cancle-btn">Cancel</button></a>
                                                                 </div>
                                                                 <div class="saves">
-                                                                  <a href="#"> <button class="save-btn" type="submit">Save</button></a>
+                                                                    <a href="#"> <button class="save-btn" type="submit">Save</button></a>
                                                                     <!-- <a href="#"> <button class="save-btn" (click)="submit('password',UserDetails.LoginPassword)">Save</button></a> -->
                                                                 </div>
 
@@ -167,10 +167,10 @@
 
                                                                 <input type="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': emailSubmitted && e.email?.errors }" [(ngModel)]="UserDetails.email" [ngModelOptions]="{standalone: true}" id="exampleInputEmail1" aria-describedby="emailHelp">
                                                                 <div *ngIf="emailSubmitted && e.email?.errors" class="invalid-feedback">
-                                                                  <div *ngIf="e.email?.errors.required">
-                                                                      Email  is required</div>
-                                                                      <div *ngIf="e.email.errors.email">Please enter vaild email address</div>
-                                                                      <div *ngIf="e.email.errors.pattern">Email format is not vaild</div>
+                                                                    <div *ngIf="e.email?.errors.required">
+                                                                        Email is required</div>
+                                                                    <div *ngIf="e.email.errors.email">Please enter vaild email address</div>
+                                                                    <div *ngIf="e.email.errors.pattern">Email format is not vaild</div>
                                                                 </div>
 
                                                                 <label class="emailLable" for="exampleInputEmail1">Email* </label>
@@ -188,10 +188,10 @@
                                                             </div>
                                                             <div class="emailbtns">
                                                                 <div class="cancles">
-                                                                  <a data-toggle="collapse" href="#otp-sidebar" role="button" aria-expanded="false" aria-controls="otp-sidebar"> <button class="cancle-btn">Cancel</button></a>
+                                                                    <a data-toggle="collapse" href="#otp-sidebar" role="button" aria-expanded="false" aria-controls="otp-sidebar"> <button class="cancle-btn">Cancel</button></a>
                                                                 </div>
                                                                 <div class="saves">
-                                                                  <a href="#"> <button class="save-btn" type="submit">Save</button></a>
+                                                                    <a href="#"> <button class="save-btn" type="submit">Save</button></a>
                                                                     <!-- <a href="#"> <button class="save-btn" (click)="submit('email',UserDetails.email)">Save</button></a> -->
                                                                 </div>
                                                             </div>
@@ -207,7 +207,7 @@
                                 <ngb-panel id="otp-sidebar3">
                                     <ng-template ngbPanelTitle>
                                         <div class="heading-step1">
-                                            <h4>Phone Number </h4>
+                                            <h4>Phone Numbers </h4>
                                             <!-- <span class="highlight-info">{{UserDetails?.mobilePhone}}, {{UserDetails?.mobilePhone}}</span> -->
                                             <span class="highlight-info">Mobile, Home</span>
                                             <span class="arrow-stepp">
@@ -227,13 +227,13 @@
                                                     <div class=" col-sm-12 pinfo">
                                                         <form [formGroup]="onPhoneSubmitForm" (ngSubmit)="updatemobilePhone()">
                                                             <div [className]="UserDetails.mobilePhone?  'special-field datafilled form-group ' : 'special-field dataempty form-group emailsection'">
-                                                                <input  type="tel" formControlName="mobilePhone" [ngClass]="{ 'is-invalid': mobilePhoneSubmitted && m.mobilePhone?.errors }" class="form-control" id="Phone" [(ngModel)]="UserDetails.mobilePhone" [ngModelOptions]="{standalone: true}">
+                                                                <input type="tel" formControlName="mobilePhone" [ngClass]="{ 'is-invalid': mobilePhoneSubmitted && m.mobilePhone?.errors }" class="form-control" id="Phone" [(ngModel)]="UserDetails.mobilePhone" [ngModelOptions]="{standalone: true}">
                                                                 <div *ngIf="mobilePhoneSubmitted && m.mobilePhone?.errors" class="invalid-feedback">
-                                                                  <div *ngIf="m.mobilePhone?.errors.required">
-                                                                    mobile Phone  is required</div>
+                                                                    <div *ngIf="m.mobilePhone?.errors.required">
+                                                                        mobile Phone is required</div>
 
-                                                                    <div *ngIf="m.mobilePhone.errors.minlength">Phone number must be at least 10-12 numbers with country
-                                                                      code</div>
+                                                                    <div *ngIf="m.mobilePhone.errors.minlength">Phone number must be at least 10-12 numbers with country code
+                                                                    </div>
                                                                 </div>
                                                                 <label class="emailLable number" for="exampleInputPassword1">Mobile Phone*
                                                               </label>
@@ -241,12 +241,12 @@
                                                             </div>
                                                             <div [className]="UserDetails.mobilePhone?  'special-field datafilled form-group ' : 'special-field dataempty form-group emailsection numbersection home'">
 
-                                                                <input  type="tel" class="form-control" formControlName="phone" [ngClass]="{ 'is-invalid': mobilePhoneSubmitted && m.phone?.errors }" [(ngModel)]="UserDetails.phone" [ngModelOptions]="{standalone: true}" id="Phone">
+                                                                <input type="tel" class="form-control" formControlName="phone" [ngClass]="{ 'is-invalid': mobilePhoneSubmitted && m.phone?.errors }" [(ngModel)]="UserDetails.phone" [ngModelOptions]="{standalone: true}" id="Phone">
                                                                 <div *ngIf="mobilePhoneSubmitted && m.phone?.errors" class="invalid-feedback">
-                                                                  <div *ngIf="m.phone?.errors.required">
-                                                                     Phone  is required</div>
-                                                                     <div *ngIf="m.phone.errors.minlength">Phone number must be at least 10-12 numbers with country
-                                                                      code</div>
+                                                                    <div *ngIf="m.phone?.errors.required">
+                                                                        Phone is required</div>
+                                                                    <div *ngIf="m.phone.errors.minlength">Phone number must be at least 10-12 numbers with country code
+                                                                    </div>
                                                                 </div>
                                                                 <label class="emailLable number home" for="exampleInputPassword1">Home Phone*</label>
                                                             </div>
@@ -259,10 +259,10 @@
                                                             </div>
                                                             <div class="emailbtns">
                                                                 <div class="cancles">
-                                                                  <a data-toggle="collapse" href="#otp-sidebar3" role="button" aria-expanded="false" aria-controls="otp-sidebar"> <button class="cancle-btn">Cancel</button></a>
+                                                                    <a data-toggle="collapse" href="#otp-sidebar3" role="button" aria-expanded="false" aria-controls="otp-sidebar"> <button class="cancle-btn">Cancel</button></a>
                                                                 </div>
                                                                 <div class="saves">
-                                                                  <a href="#"> <button class="save-btn" type="submit">Save</button></a>
+                                                                    <a href="#"> <button class="save-btn" type="submit">Save</button></a>
                                                                     <!-- <a href="#"> <button class="save-btn" (click)="submit('Mobile Phone and Home Phone',UserDetails.mobilePhone)">Save</button></a> -->
                                                                 </div>
                                                             </div>
@@ -282,7 +282,7 @@
                                     <path id="Path_2161" data-name="Path 2161" d="M14.824,6.42,13.619,7.625,15.825,9.84H7.13v1.71h8.695l-2.206,2.206,1.205,1.214L19.1,10.695ZM3.71,4.71h6.84V3H3.71A1.715,1.715,0,0,0,2,4.71V16.679a1.715,1.715,0,0,0,1.71,1.71h6.84v-1.71H3.71Z" transform="translate(-2 -3)" fill="#333"/>
                                     </svg></span></div>
                                 <div class="svgBtn">
-                                    <button (click)="logout()" > Sign Out</button></div>
+                                    <button (click)="logout()"> Sign Out</button></div>
                             </div>
                         </div>
                     </div>

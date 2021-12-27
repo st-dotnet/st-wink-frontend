@@ -1399,6 +1399,10 @@ div#checkoutstep3 .card-body {
     padding: 20px 10px;
 }
 
+.enrollment-righ div#checkoutstep3 .card-body {
+    padding: 7px 10px !important;
+}
+
 span.ques-ico {
     position: absolute;
     right: 0;
@@ -1545,10 +1549,38 @@ div#card-info form#cardForm footer.panel__footer {
     padding: 20px;
 }
 
+.req {
+    display: block;
+    width: 100%;
+}
+
 
 /* .content-card.steps-inner.promo-checkout {
     padding: 20px;
 } */
+
+.enrollment-steps-5 ngb-accordion .card ngb-accordion.accordion .card .card-header#otp-sidebar-header button[aria-expanded="true"] h4+span {
+    display: none;
+}
+
+.enrollment-page .todayOffer .content-card.steps-inner.today-order table {
+    color: black;
+}
+
+.enrollment-page .todayOffer hr {
+    width: 80%;
+    display: inline-block;
+}
+
+.enrollment-paged span.websiteUrl-head a {
+    font-size: 15px;
+    color: black;
+    font-family: 'g-regular';
+}
+
+.enrollment-page div#otp-sidebar {
+    padding-top: 0px !important;
+}
 
 .enrollment-paged div#checkoutstep3 ngb-accordion.accordion .card-header button {
     padding-bottom: 0px;

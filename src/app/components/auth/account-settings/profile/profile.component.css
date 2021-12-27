@@ -329,6 +329,15 @@ section.account-page.grid-checkout .emailbtns {
     padding: 0px 0px;
 }
 
+.signoutBtn button {
+    border: none;
+    background: transparent;
+    font-family: 'g-regular';
+    font-weight: 600;
+    color: #000000;
+    text-decoration: underline;
+}
+
 @media (min-width: 768px) {
     section.account-page.grid-checkout .emailbtns {
         display: flex;
@@ -339,11 +348,4 @@ section.account-page.grid-checkout .emailbtns {
     section.account-page.grid-checkout .emailbtns .saves {
         margin: 0px 20px;
     }
-.signoutBtn button {
-    border: none;
-    background: transparent;
-    font-family: 'g-regular';
-    font-weight: 600;
-    color: #1cb1c5;
-}
 }
