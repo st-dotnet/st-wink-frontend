@@ -38,11 +38,9 @@
 
                                         </div>
                                         <div class="emailbtns secondarybtn">
-
                                             <div class="cancles">
                                                 <a href="#"> <button class="cancle-btn">Edit Card</button></a>
                                             </div>
-
                                             <div class="delete">
                                                 <i class="fas fa-trash" (click)="deleteCard(item.type)"> <span  > Delete</span></i>
                                             </div>
@@ -200,7 +198,7 @@
                                                 </div>
                                             </div>
                                             <div class="primaryBtn">
-                                                <input type="checkbox"> <span>Make  Primary Card</span>
+                                                <input type="checkbox"  (change)="checkCardType($event)"> <span>Make  Primary Card</span>
                                             </div>
 
                                             <div class="saveWraper">
@@ -245,11 +243,12 @@
                                                 <a href="#"> <button class="save-btns"> Make Primary</button></a>
                                             </div>
                                             <div class="cancles">
-                                                <a> <button class="cancle-btn">Edit Card</button></a>
+                                                <a> <button class="cancle-btn" >Edit Card</button></a>
                                             </div>
 
                                             <div class="delete">
-                                               <i class="fas fa-trash" (click)="deleteCard(item.type)" > <span> Delete</span></i>
+                                                <a > <i class="fas fa-trash" (click)="deleteCard(item.type)"> <span> Delete</span></i></a>
+
                                             </div>
                                         </div>
                                     </ng-template>
