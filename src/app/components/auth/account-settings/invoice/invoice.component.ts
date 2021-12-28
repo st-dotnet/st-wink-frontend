@@ -23,6 +23,8 @@ export class InvoiceComponent implements OnInit {
     this.accountService.getOrderInvoice(this.orderId).subscribe((response) => {
       console.log(atob(response));
       this.invoiceHtml = atob(response);
+      this.invoiceHtml.replace("unsafe:", "");
+      
       this.spinner.hide();
     });
   }

@@ -455,7 +455,7 @@ select {
 
 .card-infoo .form-group input.form-control {
     height: 50px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .enrollment-main-div .heading-step1.ng-star-inserted p {
@@ -549,11 +549,12 @@ p.doesdiv a {
 }
 
 button {
-    border-radius: 30px;
-    width: 100%;
+    /* border-radius: 30px;
+    width: 100%; */
     background: transparent;
-    border: 1px solid #1cb1c5;
-    padding: 5px;
+    /* border: 1px solid #1cb1c5;
+    padding: 5px; */
+    border:none;
     color: #1cb1c5;
     text-transform: uppercase;
     font-weight: 500;
