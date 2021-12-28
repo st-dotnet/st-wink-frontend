@@ -10,6 +10,7 @@ div#main-menu li a {
     font-family: "g-demibold";
     /* text-transform: uppercase; */
     color: #2aa8bf;
+    cursor: pointer;
 }
 
 div#main-menu li {
@@ -56,7 +57,15 @@ ul.right-menu li {
     position: relative;
 }
 
-ul.right-menu li a {
+span.img-small-prod img {
+    width: 100%;
+    max-width: 30px;
+    position: absolute;
+    left: 8px;
+}
+
+ul.subshow.search-result li.productlist {
+    padding-left: 34px;
     position: relative;
 }
 
@@ -178,10 +187,6 @@ ul.search-result.hide {
     display: none;
 }
 
-li.productlist.ng-star-inserted {
-    min-width: 200px;
-}
-
 ul.subhide.search-result {
     display: none;
 }
@@ -194,10 +199,11 @@ ul.search-result {
     top: 47px;
     border-bottom-right-radius: 6px;
     padding: 8px 0;
+    min-width: 290px;
 }
 
 ul.search-result li a {
-    padding: 4px 10px;
+    padding: 0px 10px;
     display: block;
 }
 
@@ -278,6 +284,8 @@ a.nav-link.active {
         padding: 10px 10px;
         border-radius: 0px;
         color: #2aa8bf !important;
+        font-size: 30px;
+        line-height: 30px;
     }
     div#main-menu.showmenu ul li a.active {
         color: #1cb1c5 !important;
@@ -304,6 +312,10 @@ a.nav-link.active {
     .searchOptionsbox .close-ico a {
         display: block;
     }
+}
+
+span.mobSign {
+    font-size: 22px;
 }
 
 @media screen and (min-width: 992px) {
@@ -345,6 +357,9 @@ a.nav-link.active {
 span.profil-mob-icon svg {
     overflow: hidden;
     vertical-align: sub;
+    width: 25px;
+    height: 25px;
+    margin-right: 7px;
 }
 
 @media screen and (max-width: 700px) {

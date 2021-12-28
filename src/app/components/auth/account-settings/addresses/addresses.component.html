@@ -32,15 +32,17 @@
                                                 <span>{{address.mainState}}{{ address.mainCounty}} {{address.mainZip}}</span>
                                             </div>
                                             <div class="emailbtns">
+                                                <div class="saves">
+                                                    <a href="#"> <button class="save-btn" (click)="open(produt_view,address)">Edit</button></a>
+                                                </div>
                                                 <div class="cancles">
-                                                    <a> <button type="button" class="cancle-btn" (click)="acc.toggle('promo-sidebar1')">Cancel</button></a>
+                                                    <a href="#"> <button class="cancel-subscrp"><i class="fa fa-trash"></i>Delete</button></a>
+                                                    <!-- <a> <button type="button" class="cancle-btn" (click)="acc.toggle('promo-sidebar1')">Cancel</button></a> -->
                                                     <!-- <a data-toggle="collapse" href="#promo-sidebar1" role="button" aria-expanded="false" aria-controls="promo-sidebar1"> <button class="cancle-btn">Cancel</button></a> -->
 
                                                     <!-- <a href="#"> <button class="cancle-btn">Cancel</button></a> -->
                                                 </div>
-                                                <div class="saves">
-                                                    <a href="#"> <button class="save-btn" (click)="open(produt_view,address)">Edit</button></a>
-                                                </div>
+
 
                                             </div>
                                         </form>

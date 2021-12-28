@@ -100,11 +100,11 @@ div#main-menu ul.right-menu li a:focus {
 .theme-green .bs-datepicker-body table td.selected span,
 .theme-green .bs-datepicker-body table td span[class*="select-"]:after,
 .theme-green .bs-datepicker-body table td[class*="select-"] span:after {
-    background-color: #2196f3 !important;
+    background-color: #1280c4 !important;
 }
 
 .theme-green .bs-datepicker-body table td.week span {
-    color: #2196f3 !important;
+    color: #1280c4 !important;
 }
 
 .swal2-styled.swal2-confirm {
@@ -656,7 +656,7 @@ section.account-page.profile-page .card {
 .panel-stepbar #contactInfo-header.card-header .btn[aria-expanded="true"],
 .panel-stepbar #checkoutstep5-header.card-header .btn[aria-expanded="true"] {
     color: #fff;
-    background-color: #2196f3;
+    background-color: #1280c4;
     padding: 15px 15px;
     display: flex;
     width: 100%;
@@ -689,7 +689,7 @@ section.account-page.profile-page .card {
 .panel-stepbar #checkoutstep4-header.card-header .btn[aria-expanded="true"]:before {
     width: 30px;
     height: 30px;
-    border-top: solid 20px rgb(33 150 243);
+    border-top: solid 20px #1280c4;
     border-left: solid 14px transparent;
     border-right: solid 14px transparent;
     position: absolute;
@@ -1871,6 +1871,7 @@ section.account-page.profile-page ngb-accordion.accordion.panel-stepbar .card {
 section.account-page.grid-checkout .emailbtns {
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 
 
@@ -2079,6 +2080,7 @@ ngb-accordion.accordion.order-listing .card-body {
     float: right;
     font-family: 'g-regular';
     font-size: 16px;
+    margin-right: 17px;
 }
 
 .billing-to label {

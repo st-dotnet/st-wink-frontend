@@ -66,7 +66,7 @@ section.backlink-header .back-link a svg {
 }
 
 .method-shipp ul li {
-    margin-bottom: 20px;
+    margin-bottom: 8px;
 }
 
 .method-shipp ul li .custom-control {
@@ -657,15 +657,12 @@ Media Queries
     }
 }
 
-
 .invalid-feedback-customclass {
-
-  width: 100%;
-  margin-top: 0.25rem;
-  font-size: 80%;
-  color: #dc3545;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #dc3545;
 }
-
 
 button.simplelink {
     display: inline-block !important;
