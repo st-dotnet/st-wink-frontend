@@ -91,7 +91,7 @@ div#main-menu ul.right-menu li a:focus {
 
 .main-content {
     width: 100%;
-    min-height: 370px;
+    min-height: 530px;
     background-color: #f7f7f7;
 }
 
@@ -1546,7 +1546,7 @@ div#card-info form#cardForm footer.panel__footer {
 }
 
 .enrollment-page div#otp-sidebar {
-    padding: 20px;
+    padding: 0 5px;
 }
 
 .req {
@@ -1716,7 +1716,7 @@ ul.conv-products.styl-check {
 
 .birthday-holder span.btn-add-promo {
     position: absolute;
-    top: 40%;
+    top: 28px;
     right: 10px;
     transform: translateY(-50%);
 }
@@ -1767,11 +1767,20 @@ section.reviews-yotpo yotpo-reviews-widget h2.yotpo-main-title {
 
 .enrollment-paged ngb-accordion .card .card-header+div ngb-accordion.accordion .card .card-header+div {
     background: #fff;
-    padding: 5px 19px;
+    padding: 5px 0px;
 }
 
 section.account-page .card-body div#promo-code {
     padding: 0px !important;
+}
+
+.enrollment-righ div#checkoutstep3 div#card-info .card-body {
+    padding: 0px 20px !important;
+}
+
+.enrollment-righ div#checkoutstep3 .card-body .card-infoo .req {
+    position: absolute;
+    bottom: -5px;
 }
 
 .enrollment-paged .card {
@@ -1794,6 +1803,26 @@ section.account-page .card-body div#promo-code {
 
 .enrollment-paged .card .card-header button {
     background: #fff;
+}
+
+button.simplelink {
+    background: transparent;
+    border: none;
+    display: contents;
+    text-transform: capitalize;
+    font-family: 'g-medium';
+}
+
+div#notifi-review-header button.btn-link {
+    padding-bottom: 0px;
+}
+
+div#notifi-review .card-body {
+    padding-top: 0px !important;
+}
+
+span.batch-icon {
+    margin-right: 10px;
 }
 
 .enrollment-paged .card-header {
@@ -2163,6 +2192,18 @@ ngb-accordion.accordion.order-listing div#order-listing-header button:focus {
 
 
 /* css for address page */
+
+.addressed div#otp-sidebar2-header button[aria-expanded="true"] span.highlight-info,
+.addressed.paymentPage div#promos-sidebar1-header button[aria-expanded="true"] span.highlight-info,
+.addressed.paymentPage div#promo-sidebar1-header button[aria-expanded="true"] span.highlight-info {
+    display: none;
+}
+
+.addressed div#otp-sidebar2-header button[aria-expanded="true"] span.arrow-stepp,
+.addressed.paymentPage div#promos-sidebar1-header button[aria-expanded="true"] span.arrow-stepp,
+.addressed.paymentPage div#promo-sidebar1-header button[aria-expanded="true"] span.arrow-stepp {
+    top: 55px;
+}
 
 .addresses-page button.btn.btn-link {
     width: 100%;
@@ -2650,6 +2691,10 @@ table.table.order-summary td {
     .desk-show {
         display: block;
     }
+    /* .enrollment-paged ngb-accordion .card .card-header+div ngb-accordion.accordion .card .card-header+div {
+        background: #fff;
+        padding: 10px 0px !important;
+    } */
 }
 
 @media (min-width:768px) and (max-width:1199px) {

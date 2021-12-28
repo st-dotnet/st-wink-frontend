@@ -6,11 +6,6 @@ section.enrollment-upperBar {
     margin-top: 50px;
 }
 
-
-/* span.arrow-stepp {
-    display: none;
-} */
-
 section.enrollment-upperBar a {
     display: flex;
     align-items: center;
@@ -43,7 +38,7 @@ section.enrollment-upperBar a {
 }
 
 .enrollment-righ .heading-step1.ng-star-inserted {
-    padding-left: 20px;
+    padding-left: 0px;
 }
 
 .enrollment-righ .heading-step1.ng-star-inserted h4 {

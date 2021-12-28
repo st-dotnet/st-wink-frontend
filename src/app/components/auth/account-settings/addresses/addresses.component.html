@@ -32,8 +32,11 @@
                                                 <span>{{address.mainState}}{{ address.mainCounty}} {{address.mainZip}}</span>
                                             </div>
                                             <div class="emailbtns">
-                                                <div class="saves">
-                                                    <a href="#"> <button class="save-btn" (click)="open(produt_view,address)">Edit</button></a>
+                                                <div class=" primary">
+                                                    <a href="#"> <button class="primary-btn" (click)="open(produt_view,address)">Make Primary</button></a>
+                                                </div>
+                                                <div class="edit">
+                                                    <a href="#"> <button class="edit-btn" (click)="open(produt_view,address)">Edit Address</button></a>
                                                 </div>
                                                 <div class="cancles">
                                                     <a href="#"> <button class="cancel-subscrp"><i class="fa fa-trash"></i>Delete</button></a>
@@ -111,7 +114,7 @@
                                                 <div class=" col-sm-12 pinfo">
                                                     <div class="emailbtns">
 
-                                                        <div class="saves">
+                                                        <div class="savesBtn">
                                                             <button class="save-btn" type="submit">Save Changes</button>
                                                         </div>
                                                     </div>
@@ -127,7 +130,7 @@
 
                                 <ngb-panel id="otp-sidebar2">
                                     <ng-template ngbPanelTitle>
-                                        <div class="heading-step1 profile-section">
+                                        <div class="heading-step1 profile-section addNew-adress">
                                             <h4>Add New Address </h4>
                                             <span class="highlight-info">Click to add</span>
 
@@ -205,7 +208,7 @@
                                                         <div class=" col-sm-12 pinfo">
                                                             <div class="emailbtns">
 
-                                                                <div class="saves">
+                                                                <div class="savesBtn">
                                                                     <button class="save-btn">Save Changes</button>
                                                                 </div>
 

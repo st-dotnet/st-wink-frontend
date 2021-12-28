@@ -88,6 +88,7 @@
                                                             <div class="form-group">
                                                                 <input type="text" formControlName="cardNumber" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="0000 0000 0000 0000" (change)="creditCardValidator($event)" placeholder="Card number" name="cardNumber" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardNumber?.errors }"
                                                                 />
+                                                                <span><i class="fas fa-lock"></i></span>
                                                                 <div *ngIf="paymentSubmitted && p.cardNumber?.errors" class="invalid-feedback">
                                                                     <div *ngIf="p.cardNumber?.errors.required">Card Number is required</div>
                                                                     <div *ngIf="p.cardNumber.errors.minlength">Card Number must be at least 14 numbers </div>
