@@ -47,7 +47,7 @@
                                                     <!-- <span>Amanda Hall</span>
                                                     <span>1455 S State St</span>
                                                     <span>Orem, UT 84097, US</span> -->
-                                                    <span>{{item.address1}}</span>
+                                                     <span>{{item.address1}}</span>
                                                     <span>{{item.address2}}</span>
                                                 </p>
                                             </div>
@@ -62,7 +62,7 @@
                                                     <h4>Order Summary:</h4>
                                                     <table class="table order-summary">
                                                         <tbody>
-                                                            <tr *ngFor="let detail of item.details">
+                                                             <tr *ngFor="let detail of item.details">
                                                                 <td style="width:40px;">
                                                                     <img src="/assets/product-ordered.png" />
                                                                 </td>
@@ -101,7 +101,11 @@
                                             </div>
 
                                             <div class="view-invoice">
-                                                <a href="#"> <button class="view-invoice-btn">View Invoice</button></a>
+                                                <button class="view-invoice-btn" (click)="viewInvoice(268128)">View Invoice</button>
+                                            </div>
+
+                                            <div [innerHTML]="invoiceHtml">
+                                                <!-- {{this.invoiceHtml}} -->
                                             </div>
 
 

@@ -4,6 +4,7 @@ import { AuthGuard } from '@app/_helpers/auth.guard';
 import { CanDeactivateGuard } from '@app/_helpers/can-deactivate-guard';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { AddressesComponent } from './account-settings/addresses/addresses.component';
+import { InvoiceComponent } from './account-settings/invoice/invoice.component';
 
 import { LoyaltyPointsComponent } from './account-settings/loyalty-points/loyalty-points.component';
 import { OrdersComponent } from './account-settings/orders/orders.component';
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'account-settings/orders', component: OrdersComponent,canActivate: [AuthGuard] },
   { path: 'account-settings/loyaltypoints', component: LoyaltyPointsComponent,canActivate: [AuthGuard] },
   { path: 'account-settings/subscriptions', component: SubscriptionsComponent,canActivate: [AuthGuard] },
-  { path: 'account-settings/payments', component: PaymentsComponent,canActivate: [AuthGuard] }
+  { path: 'account-settings/payments', component: PaymentsComponent,canActivate: [AuthGuard] },
+  { path: 'invoice/:id', component: InvoiceComponent,canActivate: [AuthGuard]},
 ];
 
 @NgModule({
