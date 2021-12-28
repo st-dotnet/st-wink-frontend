@@ -50,9 +50,9 @@ export class EnrollmentInfoComponent implements OnInit {
   cartItems: any[]=[];
   user: any;
   personalInfoPannel: boolean = false;
-  shippingAddressPannel: boolean = false;
-  paymentPannel: boolean = false;
-  reviewOrderPannel: boolean = false;
+  shippingAddressPannel: boolean = true;
+  paymentPannel: boolean = true;
+  reviewOrderPannel: boolean = true;
 
   activeIds: string[] = ['checkoutstep1'];
   enrollmentdata: any;
