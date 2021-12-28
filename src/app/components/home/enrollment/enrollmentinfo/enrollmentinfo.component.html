@@ -524,7 +524,7 @@
                                                                     <div class="row">
                                                                         <div class=" col-sm-12 pinfo">
                                                                             <div class="form-group">
-                                                                                <input class="form-control personalInfo" placeholder="Username" formControlName="userName" [ngClass]="{ 'is-invalid': submitted && f.userName?.errors }" type="text">
+                                                                                <input class="form-control personalInfo" placeholder="Username" formControlName="userName" [ngClass]="{ 'is-invalid': submitted && f.userName?.errors }" type="text"  (keypress)="keyPressAlphanumeric($event)" >
                                                                                 <div *ngIf="submitted && f.userName?.errors" class="invalid-feedback">
                                                                                     <div *ngIf="f.userName?.errors.required">
                                                                                         User name is required</div>
@@ -773,8 +773,6 @@
                                                                                                 <div class="req">
                                                                                                     <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
                                                                                                 </div>
-
-
                                                                                                 <div class="row margin-5">
 
                                                                                                     <div class="col-sm-6 sepratePart pinfo">

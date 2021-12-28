@@ -817,4 +817,13 @@ export class EnrollmentInfoComponent implements OnInit {
       return null;
     } else this.cardvalidate = true;
   }
+
+  keyPressAlphanumeric(event) {
+    if (/[a-zA-Z0-9]/.test(String.fromCharCode(event.keyCode))) {
+      return true;
+    } else {
+      event.preventDefault();
+      return false;
+    }
+  }
 }
