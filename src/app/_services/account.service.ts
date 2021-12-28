@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { SessionService } from './session.service';
 import { map } from 'rxjs/operators';
@@ -15,7 +15,7 @@ export class AccountService {
   private readonly paymentEndPoint = 'Payment/';
 
 
-
+  private options = { headers: new HttpHeaders().set('Content-Type', 'application/pdf') };
   constructor(
     private http: HttpClient,
     private sessionService: SessionService
@@ -115,6 +115,10 @@ export class AccountService {
 
   saveCustomerCard(model:any){
     return this.http.post<any>(`${environment.apiUrl}${this.paymentEndPoint}SaveCreditCard`,model);
+  }
+
+  getOrderInvoice(model:any){
+    return this.http.get<any>(`${environment.apiUrl}${this.accountEndPoint}GetOrderInvoice/${model}`,this.options);
   }
 }
 

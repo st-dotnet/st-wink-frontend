@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AccountService } from '@app/_services';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +11,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class OrdersComponent implements OnInit {
   customerOrderData:any;
-  constructor(private accountService: AccountService, private spinner: NgxSpinnerService){
+  invoiceHtml:any;
+  constructor(private accountService: AccountService, private spinner: NgxSpinnerService,private router: Router){
+    
  }
 
   ngOnInit(): void {
@@ -24,5 +27,12 @@ export class OrdersComponent implements OnInit {
      // console.log(response);
       this.spinner.hide();
    });
+  }
+
+  viewInvoice(orderId:any){
+    debugger;
+    this.router.navigate(['/invoice', orderId]);
+    
+ 
   }
 }

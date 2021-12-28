@@ -524,7 +524,7 @@
                                                                     <div class="row">
                                                                         <div class=" col-sm-12 pinfo">
                                                                             <div class="form-group">
-                                                                                <input class="form-control personalInfo" placeholder="Username" formControlName="userName" [ngClass]="{ 'is-invalid': submitted && f.userName?.errors }" type="text">
+                                                                                <input class="form-control personalInfo" placeholder="Username" formControlName="userName" [ngClass]="{ 'is-invalid': submitted && f.userName?.errors }" type="text" (keypress)="keyPressAlphanumeric($event)">
                                                                                 <div *ngIf="submitted && f.userName?.errors" class="invalid-feedback">
                                                                                     <div *ngIf="f.userName?.errors.required">
                                                                                         User name is required</div>
@@ -773,8 +773,6 @@
                                                                                                 <div class="req">
                                                                                                     <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
                                                                                                 </div>
-
-
                                                                                                 <div class="row margin-5">
 
                                                                                                     <div class="cityndState">
@@ -994,8 +992,9 @@
                                                                                     Card Name is required</div>
                                                                             </div>
                                                                             <div class="req">
-                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
+                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
                                                                             </div>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-12">
@@ -1013,7 +1012,7 @@
                                                                                 </div>
                                                                             </div>
                                                                             <div class="req">
-                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
+                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -1056,13 +1055,14 @@
 
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
-                                                                            <div class="req">
-                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City"></label>
-                                                                            </div>
+
                                                                             <input type="text" formControlName="cardCVV" placeholder="CVV" name="cardCVV" [showMaskTyped]="false" [dropSpecialCharacters]="false" mask="000" class="form-control" [ngClass]="{ 'is-invalid': paymentSubmitted && p.cardCVV?.errors }" />
                                                                             <div *ngIf="paymentSubmitted && p.cardCVV?.errors" class="invalid-feedback">
                                                                                 <div *ngIf="p.cardCVV?.errors.required">
                                                                                     card CVV is required</div>
+                                                                            </div>
+                                                                            <div class="req">
+                                                                                <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -1308,7 +1308,7 @@
                                     <div class="heading-step1">
                                         <h4>Today's Order</h4>
                                         <!-- <p>{{itemDescription}}</p> -->
-                                        <div class="content-card steps-inner today-order">
+                                        <!-- <div class="content-card steps-inner today-order">
                                             <table>
                                                 <tbody>
                                                     <tr>
@@ -1326,7 +1326,7 @@
                                                     </tr>
                                                 </tfoot>
                                             </table>
-                                        </div>
+                                        </div> -->
                                         <span class="arrow-stepp">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="6.6" height="11.2"
                                                 viewBox="0 0 6.6 11.2">

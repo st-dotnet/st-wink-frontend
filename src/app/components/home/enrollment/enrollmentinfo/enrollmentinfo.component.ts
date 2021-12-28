@@ -649,18 +649,19 @@ export class EnrollmentInfoComponent implements OnInit {
     const payment = new Payment();
     payment.name = this.f.firstName.value;
     if (!this.addrnew) {
+      (payment.address1 = this.s.streetAddress.value),
+      (payment.city = this.s.city.value),
+      (payment.state = this.s.state.value),
+      (payment.zip = this.s.zip.value),
+      payment.country = 'US';
+ 
+    } else {
       payment.address1 = this.p.newStreetAddress.value;
       payment.state = this.p.newState.value;
       payment.phone = '';
       payment.city = this.p.newCity.value;
       payment.country = 'US';
       payment.zip = this.p.newZip.value;
-    } else {
-      (payment.address1 = this.f.streetAddress.value),
-        (payment.city = this.f.city.value),
-        (payment.state = this.f.state.value),
-        (payment.zip = this.f.zip.value),
-        (payment.country = 'US');
     }
     payment.amount = this.cartSummaryTotal;
     payment.cardNumber = this.p.cardNumber.value.replace(/ /g, '');
@@ -815,5 +816,14 @@ export class EnrollmentInfoComponent implements OnInit {
       this.cardvalidate = false;
       return null;
     } else this.cardvalidate = true;
+  }
+
+  keyPressAlphanumeric(event) {
+    if (/[a-zA-Z0-9]/.test(String.fromCharCode(event.keyCode))) {
+      return true;
+    } else {
+      event.preventDefault();
+      return false;
+    }
   }
 }

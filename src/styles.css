@@ -2375,6 +2375,177 @@ table.table.order-summary td {
 }
 
 
+/************* INVOICE *********/
+div#data-invoice {
+    padding-top: 50px;
+}
+#data-invoice td,
+#data-invoice input,
+#data-invoice select,
+#data-invoice th,
+#data-invoice textarea {
+    font-family: verdana;
+    font-size: 8pt;
+    color: #393939;
+}
+#data-invoice h5 {
+    page-break-after: always;
+}
+#data-invoice a {
+    text-decoration: none;
+}
+#data-invoice a:hover {
+    text-decoration: underline;
+}
+#data-invoice a,
+#data-invoice a:visited,
+#data-invoice a:hover {
+    color: #003399;
+}
+#data-invoice Table.ActionGridBar,
+#data-invoice Table.ActionGridBar TD {
+    border: 1px solid #6699cc;
+    background-color: #E6EEF7;
+    font-weight: bold;
+    cursor: hand;
+}
+#data-invoice Table.ActionGridHeader {
+    background-color: #E6EEF7;
+}
+#data-invoice Table.ActionGridData {
+    border: none;
+}
+#data-invoice Table.ActionGridData TD {
+    border: 1px solid #E6EEF7;
+}
+#data-invoice Table.ActionGridFooter {
+    border: 1px solid #6699cc;
+    background-color: #E6EEF7;
+}
+#data-invoice Table.ActionGridFooter TD,
+#data-invoice Table.ActionGridFooter A:hover,
+#data-invoice Table.ActionGridFooter A:visited,
+#data-invoice Table.ActionGridFooter A {
+    font-size: 10pt;
+    font-weight: normal;
+}
+#data-invoice TABLE.clsReport {
+    border-collapse: collapse;
+    table-layout: fixed;
+    overflow: auto;
+}
+#data-invoice TABLE.clsReport TH {
+    border: 1px solid #4791C5;
+    padding: 5px;
+    font-weight: normal;
+    background-color: #ECF4F9;
+}
+#data-invoice TABLE.clsReport TH:first-child {
+    border-left: 1px solid #4791C5;
+}
+#data-invoice TABLE.clsReport TD {
+    padding: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+#data-invoice .deeptree span {
+    padding: 2px 2px;
+    position: relative;
+    display: inline;
+    top: 0px;
+    height: 17px;
+    margin: 1px;
+    cursor: hand;
+}
+#data-invoice .clsSpace {
+    position: relative;
+    width: 10px;
+    cursor: hand;
+    overflow: hidden;
+    margin-left: -6px;
+    margin-top: -11px;
+    padding-left: 0px;
+}
+#data-invoice SPAN.clsMouseOver {
+    background-color: #F2F8FC;
+    border: 1px solid #EAF3FA;
+    margin: 0px;
+}
+#data-invoice SPAN.clsMouseDown {
+    background-color: #EAF3FA;
+    color: black;
+    border: 1px solid #EAF3FA;
+    margin: 0px;
+}
+#data-invoice SPAN.clsCurrentHasFocus {
+    background-color: #EAF3FA;
+    color: black;
+    border: 1px solid #B4D9F1;
+    margin: 0px;
+}
+#data-invoice span.clsUnavailable {
+    height: 0px;
+    padding: 0px;
+    top: 0px;
+    border: none;
+    color: #888888;
+}
+#data-invoice .hide {
+    display: none;
+}
+#data-invoice .shown {
+    display: block;
+    margin-left: 15px;
+}
+#data-invoice Table.Grid {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-left: 1px solid #6699cc;
+    border-right: 1px solid #6699cc;
+    border-bottom: 1px solid #6699cc;
+}
+#data-invoice Table.Grid TH {
+    color: Black;
+    border-left: 1px solid #6699cc;
+    border-right: 1px solid #6699cc;
+    border-bottom: 1px solid #6699cc;
+    background-color: #99CCFF;
+    background-image: url(data:image/gif;base64,R0lGODlhAQAUAMQAAEeRxaXP67jc8rDW8J/K6avT7oW23LLY8bba8pHA4pjF5TB8sL3f9ICz2rTZ8Ym63svo+Iu737ze87rd8wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAABABQAAAURIAAx0iQgzjEUAaEkkdE8SwgAOw==);
+    padding: 3px;
+    font-weight: normal;
+    font-size: 11px;
+}
+#data-invoice Table.Grid TD {
+    color: Black;
+    border: 1px solid #D0E5F5;
+    padding: 3px;
+    white-space: nowrap;
+    font-size: 11px;
+}
+#data-invoice Table.Grid TR {
+    background-color: white;
+}
+#data-invoice Table.Grid TR.even {
+    background-color: #F2F8FC;
+}
+#data-invoice TABLE.clsBorder TH {
+    border: 1px solid #4791C5;
+    background-color: #ECF4F9;
+}
+#data-invoice TABLE.clsBorderTop TH {
+    border: 1px solid #4791C5;
+    background-color: #ECF4F9;
+}
+#data-invoice TABLE.clsBorderTop TH TH {
+    border: none;
+}
+#data-invoice H5 {
+    PAGE-BREAK-AFTER: always;
+}
+/*********** END CSS INVOICE *******/
+
+
 /* MEDIA */
 
 @media (min-width: 1367px) {

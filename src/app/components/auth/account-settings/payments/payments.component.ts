@@ -159,7 +159,7 @@ export class PaymentsComponent implements OnInit {
           this.accountService.saveCustomerCard(craddetails).subscribe((response)=>{
             console.log(response);
             if(response.success==true){
-              this.toastrService.success('Payment Card save successfuly.');
+              this.toastrService.success('Payment Card save successfully.');
               this.spinner.hide();
             }
             else{
