@@ -1,0 +1,808 @@
+<section class="edit-subcrip">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-xl-8">
+                <div class="topbar-edit">
+                    <span class="edit-tick-top">
+                    <svg id="Icon_Check_Circle_Rounded" data-name="Icon / Check Circle / Rounded" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <rect id="Box" width="24" height="24" fill="none"/>
+                    <path id="Path_2034" data-name="Path 2034" d="M247.2,14.3l-3.6-3.6a.967.967,0,0,1,0-1.4.967.967,0,0,1,1.4,0l2.9,2.9,6.9-6.9a.99.99,0,0,1,1.4,1.4l-7.6,7.6A.967.967,0,0,1,247.2,14.3ZM249.9,0a10,10,0,1,0,10,10A10.029,10.029,0,0,0,249.9,0Z" transform="translate(-238 2)" fill="#1280c4"/>
+                    </svg>
+                </span>
+                    <span class="ed-top-tittle">
+                    You are editing your subscription
+                </span>
+                </div>
+
+
+            </div>
+            <div class="col-lg-4 col-xl-4">
+                <a href="" class="back-link">GO Back</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="shop-banner">
+    <div class="container-banner">
+        <div class="content-banner">
+            <h3>bath Sale Today Only!</h3>
+            <p>Dolor sit amet, consetetur sadipscing elitr, sed diam</p>
+            <p><a href="#" class="btn btn-blue">Learn More</a></p>
+        </div>
+    </div>
+    <div class="product-filters">
+        <form class="form-inline">
+            <div class="form-group">
+                <i class="fas fa-caret-down"></i>
+                <select class="custom-select" [(ngModel)]="category" [ngModelOptions]="{standalone: true}" (change)="onCategoryChange()">
+            <option *ngFor="let category of categoryModels" [value]="category.webCategoryID">
+              {{ category.webCategoryDescription }}
+            </option>
+          </select>
+            </div>
+            <div class="form-group select-filters">
+                <i class="svg-ico">
+            <svg id="filter_list-24px" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path id="Path_2090" data-name="Path 2090" d="M0,0H24V24H0Z" fill="none" />
+              <path id="Path_2091" data-name="Path 2091"
+                d="M11,18h2a1,1,0,0,0,0-2H11a1,1,0,0,0,0,2ZM3,7A1,1,0,0,0,4,8H20a1,1,0,0,0,0-2H4A1,1,0,0,0,3,7Zm4,6H17a1,1,0,0,0,0-2H7a1,1,0,0,0,0,2Z"
+                fill="rgba(0,0,0,0.87)" />
+            </svg>
+          </i>
+                <select class="form-control" (change)="onProductFilter($event)">
+            <option [value]="1">Filter By</option>
+            <option [value]="2">Price: $ - $$</option>
+            <option [value]="3">Price: $$ - $</option>
+            <option [value]="4">Name: A - Z</option>
+          </select>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+
+<section class="edit-subscrip-table mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-xl-9">
+                <div class="grid-box-shadow">
+                    <div class="subsc-head">
+                        <h3>Subscriptions</h3>
+                    </div>
+                    <div class="details-subscriptions-loop">
+                        <div class="table-subsc-details ">
+                            <div class="cart-singleitem ">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a target="_blank" href="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/products/03-BD-DRYSHP-002.jpg"><img alt="..." class="media-object" src="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/products/03-BD-DRYSHP-002.jpg"></a>
+                                        <span class="remove-product"><a _ngcontent-vsp-c168=""><svg aria-hidden="true" focusable="false"
+                                                            data-prefix="far" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 320 512" class="svg-inline--fa fa-times fa-w-10 fa-3x">
+                                                            <path fill="currentColor"
+                                                                d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z">
+                                                            </path>
+                                                        </svg></a></span>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="data-cart">
+                                            <div class="cart-details">
+                                                <h4 class="media-heading"> Reset Dry Shampoo (2-Pack) </h4>
+                                                <p _ngcontent-vsp-c168="">BD-DRYSHP-002</p>
+                                                <div class="prod-quant mob-show">
+                                                    <div class="form-group"><select class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-model="1" ng-reflect-is-disabled="false">
+                                                                    <option value="1" ng-reflect-value="1" class=""> Qty 1 </option>
+                                                                    <option value="2" ng-reflect-value="2" class=""> Qty 2 </option>
+                                                                    <option value="3" ng-reflect-value="3" class=""> Qty 3 </option>
+                                                                    <option value="4" ng-reflect-value="4" class=""> Qty 4 </option>
+                                                                    <option value="5" ng-reflect-value="5" class=""> Qty 5 </option>
+                                                                    <option value="6" ng-reflect-value="6" class=""> Qty 6 </option>
+                                                                    <option value="7" ng-reflect-value="7" class=""> Qty 7 </option>
+                                                                    <option value="8" ng-reflect-value="8" class=""> Qty 8 </option>
+                                                                    <option value="9" ng-reflect-value="9" class=""> Qty 9 </option>
+                                                                    <option value="10" ng-reflect-value="10" class=""> Qty 10 </option>
+                                                                    <option value="0" ng-reflect-value="0" class=""> Custom </option>
+                                                                    
+                                                                </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="cart-quantity des-sec">
+                                                <div class="prod-quant">
+                                                    <div class="form-group quant-field"><select class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-model="1" ng-reflect-is-disabled="false">
+                                                                    <option value="1" ng-reflect-value="1" class=""> Qty 1 </option>
+                                                                    <option value="2" ng-reflect-value="2" class=""> Qty 2 </option>
+                                                                    <option value="3" ng-reflect-value="3" class=""> Qty 3 </option>
+                                                                    <option value="4" ng-reflect-value="4" class=""> Qty 4 </option>
+                                                                    <option value="5" ng-reflect-value="5" class=""> Qty 5 </option>
+                                                                    <option value="6" ng-reflect-value="6" class=""> Qty 6 </option>
+                                                                    <option value="7" ng-reflect-value="7" class=""> Qty 7 </option>
+                                                                    <option value="8" ng-reflect-value="8" class=""> Qty 8 </option>
+                                                                    <option value="9" ng-reflect-value="9" class=""> Qty 9 </option>
+                                                                    <option value="10" ng-reflect-value="10" class=""> Qty 10 </option>
+                                                                    <option value="0" ng-reflect-value="0" class=""> Custom </option>
+                                                                    
+                                                                </select>
+
+                                                    </div>
+                                                    <div class="price">
+                                                        <p class="price-product">$37.98</p>
+                                                    </div>
+                                                </div>
+                                                <div class="prod-discount">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="table-subsc-details ">
+                            <div class="cart-singleitem ">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a target="_blank" href="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/products/03-BD-DRYSHP-002.jpg"><img alt="..." class="media-object" src="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/products/03-BD-DRYSHP-002.jpg"></a>
+                                        <span class="remove-product"><a _ngcontent-vsp-c168=""><svg aria-hidden="true" focusable="false"
+                                                            data-prefix="far" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 320 512" class="svg-inline--fa fa-times fa-w-10 fa-3x">
+                                                            <path fill="currentColor"
+                                                                d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z">
+                                                            </path>
+                                                        </svg></a></span>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="data-cart">
+                                            <div class="cart-details">
+                                                <h4 class="media-heading"> Reset Dry Shampoo (2-Pack) </h4>
+                                                <p _ngcontent-vsp-c168="">BD-DRYSHP-002</p>
+                                                <div class="prod-quant mob-show">
+                                                    <div class="form-group"><select class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-model="1" ng-reflect-is-disabled="false">
+                                                                    <option value="1" ng-reflect-value="1" class=""> Qty 1 </option>
+                                                                    <option value="2" ng-reflect-value="2" class=""> Qty 2 </option>
+                                                                    <option value="3" ng-reflect-value="3" class=""> Qty 3 </option>
+                                                                    <option value="4" ng-reflect-value="4" class=""> Qty 4 </option>
+                                                                    <option value="5" ng-reflect-value="5" class=""> Qty 5 </option>
+                                                                    <option value="6" ng-reflect-value="6" class=""> Qty 6 </option>
+                                                                    <option value="7" ng-reflect-value="7" class=""> Qty 7 </option>
+                                                                    <option value="8" ng-reflect-value="8" class=""> Qty 8 </option>
+                                                                    <option value="9" ng-reflect-value="9" class=""> Qty 9 </option>
+                                                                    <option value="10" ng-reflect-value="10" class=""> Qty 10 </option>
+                                                                    <option value="0" ng-reflect-value="0" class=""> Custom </option>
+                                                                    
+                                                                </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="cart-quantity des-sec">
+                                                <div class="prod-quant">
+                                                    <div class="form-group quant-field"><select class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-model="1" ng-reflect-is-disabled="false">
+                                                                    <option value="1" ng-reflect-value="1" class=""> Qty 1 </option>
+                                                                    <option value="2" ng-reflect-value="2" class=""> Qty 2 </option>
+                                                                    <option value="3" ng-reflect-value="3" class=""> Qty 3 </option>
+                                                                    <option value="4" ng-reflect-value="4" class=""> Qty 4 </option>
+                                                                    <option value="5" ng-reflect-value="5" class=""> Qty 5 </option>
+                                                                    <option value="6" ng-reflect-value="6" class=""> Qty 6 </option>
+                                                                    <option value="7" ng-reflect-value="7" class=""> Qty 7 </option>
+                                                                    <option value="8" ng-reflect-value="8" class=""> Qty 8 </option>
+                                                                    <option value="9" ng-reflect-value="9" class=""> Qty 9 </option>
+                                                                    <option value="10" ng-reflect-value="10" class=""> Qty 10 </option>
+                                                                    <option value="0" ng-reflect-value="0" class=""> Custom </option>
+                                                                    
+                                                                </select>
+
+                                                    </div>
+                                                    <div class="price">
+                                                        <p class="price-product">$37.98</p>
+                                                    </div>
+                                                </div>
+                                                <div class="prod-discount">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="table-subsc-details ">
+                            <div class="cart-singleitem ">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a target="_blank" href="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/products/03-BD-DRYSHP-002.jpg"><img alt="..." class="media-object" src="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/products/03-BD-DRYSHP-002.jpg"></a>
+                                        <span class="remove-product"><a _ngcontent-vsp-c168=""><svg aria-hidden="true" focusable="false"
+                                                            data-prefix="far" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 320 512" class="svg-inline--fa fa-times fa-w-10 fa-3x">
+                                                            <path fill="currentColor"
+                                                                d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z">
+                                                            </path>
+                                                        </svg></a></span>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="data-cart">
+                                            <div class="cart-details">
+                                                <h4 class="media-heading"> Reset Dry Shampoo (2-Pack) </h4>
+                                                <p _ngcontent-vsp-c168="">BD-DRYSHP-002</p>
+                                                <div class="prod-quant mob-show">
+                                                    <div class="form-group"><select class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-model="1" ng-reflect-is-disabled="false">
+                                                                    <option value="1" ng-reflect-value="1" class=""> Qty 1 </option>
+                                                                    <option value="2" ng-reflect-value="2" class=""> Qty 2 </option>
+                                                                    <option value="3" ng-reflect-value="3" class=""> Qty 3 </option>
+                                                                    <option value="4" ng-reflect-value="4" class=""> Qty 4 </option>
+                                                                    <option value="5" ng-reflect-value="5" class=""> Qty 5 </option>
+                                                                    <option value="6" ng-reflect-value="6" class=""> Qty 6 </option>
+                                                                    <option value="7" ng-reflect-value="7" class=""> Qty 7 </option>
+                                                                    <option value="8" ng-reflect-value="8" class=""> Qty 8 </option>
+                                                                    <option value="9" ng-reflect-value="9" class=""> Qty 9 </option>
+                                                                    <option value="10" ng-reflect-value="10" class=""> Qty 10 </option>
+                                                                    <option value="0" ng-reflect-value="0" class=""> Custom </option>
+                                                                    
+                                                                </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="cart-quantity des-sec">
+                                                <div class="prod-quant">
+                                                    <div class="form-group quant-field"><select class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-model="1" ng-reflect-is-disabled="false">
+                                                                    <option value="1" ng-reflect-value="1" class=""> Qty 1 </option>
+                                                                    <option value="2" ng-reflect-value="2" class=""> Qty 2 </option>
+                                                                    <option value="3" ng-reflect-value="3" class=""> Qty 3 </option>
+                                                                    <option value="4" ng-reflect-value="4" class=""> Qty 4 </option>
+                                                                    <option value="5" ng-reflect-value="5" class=""> Qty 5 </option>
+                                                                    <option value="6" ng-reflect-value="6" class=""> Qty 6 </option>
+                                                                    <option value="7" ng-reflect-value="7" class=""> Qty 7 </option>
+                                                                    <option value="8" ng-reflect-value="8" class=""> Qty 8 </option>
+                                                                    <option value="9" ng-reflect-value="9" class=""> Qty 9 </option>
+                                                                    <option value="10" ng-reflect-value="10" class=""> Qty 10 </option>
+                                                                    <option value="0" ng-reflect-value="0" class=""> Custom </option>
+                                                                    
+                                                                </select>
+
+                                                    </div>
+                                                    <div class="price">
+                                                        <p class="price-product">$37.98</p>
+                                                    </div>
+                                                </div>
+                                                <div class="prod-discount">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="table-subsc-details ">
+                            <div class="cart-singleitem ">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a target="_blank" href="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/products/03-BD-DRYSHP-002.jpg"><img alt="..." class="media-object" src="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/products/03-BD-DRYSHP-002.jpg"></a>
+                                        <span class="remove-product"><a _ngcontent-vsp-c168=""><svg aria-hidden="true" focusable="false"
+                                                            data-prefix="far" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 320 512" class="svg-inline--fa fa-times fa-w-10 fa-3x">
+                                                            <path fill="currentColor"
+                                                                d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z">
+                                                            </path>
+                                                        </svg></a></span>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="data-cart">
+                                            <div class="cart-details">
+                                                <h4 class="media-heading"> Reset Dry Shampoo (2-Pack) </h4>
+                                                <p _ngcontent-vsp-c168="">BD-DRYSHP-002</p>
+                                                <div class="prod-quant mob-show">
+                                                    <div class="form-group"><select class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-model="1" ng-reflect-is-disabled="false">
+                                                                    <option value="1" ng-reflect-value="1" class=""> Qty 1 </option>
+                                                                    <option value="2" ng-reflect-value="2" class=""> Qty 2 </option>
+                                                                    <option value="3" ng-reflect-value="3" class=""> Qty 3 </option>
+                                                                    <option value="4" ng-reflect-value="4" class=""> Qty 4 </option>
+                                                                    <option value="5" ng-reflect-value="5" class=""> Qty 5 </option>
+                                                                    <option value="6" ng-reflect-value="6" class=""> Qty 6 </option>
+                                                                    <option value="7" ng-reflect-value="7" class=""> Qty 7 </option>
+                                                                    <option value="8" ng-reflect-value="8" class=""> Qty 8 </option>
+                                                                    <option value="9" ng-reflect-value="9" class=""> Qty 9 </option>
+                                                                    <option value="10" ng-reflect-value="10" class=""> Qty 10 </option>
+                                                                    <option value="0" ng-reflect-value="0" class=""> Custom </option>
+                                                                    
+                                                                </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="cart-quantity des-sec">
+                                                <div class="prod-quant">
+                                                    <div class="form-group quant-field"><select class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-model="1" ng-reflect-is-disabled="false">
+                                                                    <option value="1" ng-reflect-value="1" class=""> Qty 1 </option>
+                                                                    <option value="2" ng-reflect-value="2" class=""> Qty 2 </option>
+                                                                    <option value="3" ng-reflect-value="3" class=""> Qty 3 </option>
+                                                                    <option value="4" ng-reflect-value="4" class=""> Qty 4 </option>
+                                                                    <option value="5" ng-reflect-value="5" class=""> Qty 5 </option>
+                                                                    <option value="6" ng-reflect-value="6" class=""> Qty 6 </option>
+                                                                    <option value="7" ng-reflect-value="7" class=""> Qty 7 </option>
+                                                                    <option value="8" ng-reflect-value="8" class=""> Qty 8 </option>
+                                                                    <option value="9" ng-reflect-value="9" class=""> Qty 9 </option>
+                                                                    <option value="10" ng-reflect-value="10" class=""> Qty 10 </option>
+                                                                    <option value="0" ng-reflect-value="0" class=""> Custom </option>
+                                                                    
+                                                                </select>
+
+                                                    </div>
+                                                    <div class="price">
+                                                        <p class="price-product">$37.98</p>
+                                                    </div>
+                                                </div>
+                                                <div class="prod-discount">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="table-subsc-details ">
+                            <div class="cart-singleitem ">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a target="_blank" href="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/products/03-BD-DRYSHP-002.jpg"><img alt="..." class="media-object" src="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/products/03-BD-DRYSHP-002.jpg"></a>
+                                        <span class="remove-product"><a _ngcontent-vsp-c168=""><svg aria-hidden="true" focusable="false"
+                                                            data-prefix="far" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 320 512" class="svg-inline--fa fa-times fa-w-10 fa-3x">
+                                                            <path fill="currentColor"
+                                                                d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z">
+                                                            </path>
+                                                        </svg></a></span>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="data-cart">
+                                            <div class="cart-details">
+                                                <h4 class="media-heading"> Reset Dry Shampoo (2-Pack) </h4>
+                                                <p _ngcontent-vsp-c168="">BD-DRYSHP-002</p>
+                                                <div class="prod-quant mob-show">
+                                                    <div class="form-group"><select class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-model="1" ng-reflect-is-disabled="false">
+                                                                    <option value="1" ng-reflect-value="1" class=""> Qty 1 </option>
+                                                                    <option value="2" ng-reflect-value="2" class=""> Qty 2 </option>
+                                                                    <option value="3" ng-reflect-value="3" class=""> Qty 3 </option>
+                                                                    <option value="4" ng-reflect-value="4" class=""> Qty 4 </option>
+                                                                    <option value="5" ng-reflect-value="5" class=""> Qty 5 </option>
+                                                                    <option value="6" ng-reflect-value="6" class=""> Qty 6 </option>
+                                                                    <option value="7" ng-reflect-value="7" class=""> Qty 7 </option>
+                                                                    <option value="8" ng-reflect-value="8" class=""> Qty 8 </option>
+                                                                    <option value="9" ng-reflect-value="9" class=""> Qty 9 </option>
+                                                                    <option value="10" ng-reflect-value="10" class=""> Qty 10 </option>
+                                                                    <option value="0" ng-reflect-value="0" class=""> Custom </option>
+                                                                    
+                                                                </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="cart-quantity des-sec">
+                                                <div class="prod-quant">
+                                                    <div class="form-group quant-field"><select class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-model="1" ng-reflect-is-disabled="false">
+                                                                    <option value="1" ng-reflect-value="1" class=""> Qty 1 </option>
+                                                                    <option value="2" ng-reflect-value="2" class=""> Qty 2 </option>
+                                                                    <option value="3" ng-reflect-value="3" class=""> Qty 3 </option>
+                                                                    <option value="4" ng-reflect-value="4" class=""> Qty 4 </option>
+                                                                    <option value="5" ng-reflect-value="5" class=""> Qty 5 </option>
+                                                                    <option value="6" ng-reflect-value="6" class=""> Qty 6 </option>
+                                                                    <option value="7" ng-reflect-value="7" class=""> Qty 7 </option>
+                                                                    <option value="8" ng-reflect-value="8" class=""> Qty 8 </option>
+                                                                    <option value="9" ng-reflect-value="9" class=""> Qty 9 </option>
+                                                                    <option value="10" ng-reflect-value="10" class=""> Qty 10 </option>
+                                                                    <option value="0" ng-reflect-value="0" class=""> Custom </option>
+                                                                    
+                                                                </select>
+
+                                                    </div>
+                                                    <div class="price">
+                                                        <p class="price-product">$37.98</p>
+                                                    </div>
+                                                </div>
+                                                <div class="prod-discount">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="table-subsc-details ">
+                            <div class="cart-singleitem ">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a target="_blank" href="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/products/03-BD-DRYSHP-002.jpg"><img alt="..." class="media-object" src="https://winkcloudfront.s3-us-west-1.amazonaws.com/content/images/products/03-BD-DRYSHP-002.jpg"></a>
+                                        <span class="remove-product"><a _ngcontent-vsp-c168=""><svg aria-hidden="true" focusable="false"
+                                                            data-prefix="far" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 320 512" class="svg-inline--fa fa-times fa-w-10 fa-3x">
+                                                            <path fill="currentColor"
+                                                                d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z">
+                                                            </path>
+                                                        </svg></a></span>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="data-cart">
+                                            <div class="cart-details">
+                                                <h4 class="media-heading"> Reset Dry Shampoo (2-Pack) </h4>
+                                                <p _ngcontent-vsp-c168="">BD-DRYSHP-002</p>
+                                                <div class="prod-quant mob-show">
+                                                    <div class="form-group"><select class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-model="1" ng-reflect-is-disabled="false">
+                                                                    <option value="1" ng-reflect-value="1" class=""> Qty 1 </option>
+                                                                    <option value="2" ng-reflect-value="2" class=""> Qty 2 </option>
+                                                                    <option value="3" ng-reflect-value="3" class=""> Qty 3 </option>
+                                                                    <option value="4" ng-reflect-value="4" class=""> Qty 4 </option>
+                                                                    <option value="5" ng-reflect-value="5" class=""> Qty 5 </option>
+                                                                    <option value="6" ng-reflect-value="6" class=""> Qty 6 </option>
+                                                                    <option value="7" ng-reflect-value="7" class=""> Qty 7 </option>
+                                                                    <option value="8" ng-reflect-value="8" class=""> Qty 8 </option>
+                                                                    <option value="9" ng-reflect-value="9" class=""> Qty 9 </option>
+                                                                    <option value="10" ng-reflect-value="10" class=""> Qty 10 </option>
+                                                                    <option value="0" ng-reflect-value="0" class=""> Custom </option>
+                                                                    
+                                                                </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="cart-quantity des-sec">
+                                                <div class="prod-quant">
+                                                    <div class="form-group quant-field"><select class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-model="1" ng-reflect-is-disabled="false">
+                                                                    <option value="1" ng-reflect-value="1" class=""> Qty 1 </option>
+                                                                    <option value="2" ng-reflect-value="2" class=""> Qty 2 </option>
+                                                                    <option value="3" ng-reflect-value="3" class=""> Qty 3 </option>
+                                                                    <option value="4" ng-reflect-value="4" class=""> Qty 4 </option>
+                                                                    <option value="5" ng-reflect-value="5" class=""> Qty 5 </option>
+                                                                    <option value="6" ng-reflect-value="6" class=""> Qty 6 </option>
+                                                                    <option value="7" ng-reflect-value="7" class=""> Qty 7 </option>
+                                                                    <option value="8" ng-reflect-value="8" class=""> Qty 8 </option>
+                                                                    <option value="9" ng-reflect-value="9" class=""> Qty 9 </option>
+                                                                    <option value="10" ng-reflect-value="10" class=""> Qty 10 </option>
+                                                                    <option value="0" ng-reflect-value="0" class=""> Custom </option>
+                                                                    
+                                                                </select>
+
+                                                    </div>
+                                                    <div class="price">
+                                                        <p class="price-product">$37.98</p>
+                                                    </div>
+                                                </div>
+                                                <div class="prod-discount">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-5 col-xl-3">
+                <div class="grid-box-shadow" id="stickysidebarz">
+                    <h3>Delivery Details</h3>
+                    <div class="form-deilivery">
+                        <div [className]="selectfrequency ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'" id="subscr-schedule1">
+                            <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectfrequency">
+                                <option> </option>
+                                <option>1</option>
+                                <option>2</option>
+                            </select>
+                            <label class="form-label">Select delivery frequency</label>
+                            <span class="btn-add-promo downarrow">
+                                <svg id="Icon_Arrow_Drop_Down_Rounded" data-name="Icon / Arrow Drop Down / Rounded" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <g id="Icon_Arrow_Drop_Down_Rounded-2" data-name="Icon / Arrow Drop Down / Rounded" opacity="0.5">
+                                    <rect id="Box" width="24" height="24" fill="none"/>
+                                    <path id="Path_2028" data-name="Path 2028" d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z" transform="translate(-334 2)"/>
+                                    </g>
+                                    </svg>
+                            </span>
+                        </div>
+
+
+                        <div [className]="nextdelivery ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'" id="subscr-schedule">
+                            <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="nextdelivery" />
+                            <label class="form-label">Select next delivery</label>
+                            <span class="btn-add-promo">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
+                                    height="24" viewBox="0 0 24 24">
+                                    <defs>
+                                        <clipPath id="clip-path">
+                                            <rect width="24" height="24" fill="none" />
+                                        </clipPath>
+                                    </defs>
+                                    <g id="Icon_Event_Rounded"
+                                        data-name="Icon / Event / Rounded" opacity="0.5"
+                                        clip-path="url(#clip-path)">
+                                        <rect id="Box" width="24" height="24" fill="none" />
+                                        <path id="Path_2017" data-name="Path 2017"
+                                            d="M879.9,18h-12a1.075,1.075,0,0,1-1-1V7h14V17A1,1,0,0,1,879.9,18Zm-2-17V2h-8V1a1,1,0,0,0-2,0V2h-1a2.006,2.006,0,0,0-2,2V18a2.006,2.006,0,0,0,2,2h14a2.006,2.006,0,0,0,2-2V4a2.006,2.006,0,0,0-2-2h-1V1a1,1,0,0,0-2,0Zm0,10h-3a1.075,1.075,0,0,0-1,1v3a1.075,1.075,0,0,0,1,1h3a1.075,1.075,0,0,0,1-1V12A1,1,0,0,0,877.9,11Z"
+                                            transform="translate(-862 2)" />
+                                    </g>
+                                     </svg>
+                                  </span>
+                        </div>
+
+
+                    </div>
+                    <div class="footer-detail-delivery">
+                        <p class="price-delivery-subtotal"><span>Subtotal</span><span>$99.96</span></p>
+                    </div>
+                    <div class="btn-save-continue">
+                        <button type="submit">Save & Continue</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+<section class="products">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>{{productNameTitle}}</h3>
+            </div>
+        </div>
+        <div class="row special-row">
+            <div class="col-md-9 special-9">
+                <div class="row prod-wrapp Product-demo-tour-class">
+                    <div class="col-md-4 prod-list-item " *ngFor="let product of shopProductModels">
+                        <div class="card">
+                            <!-- <img src="../../assets/products-sample.png" class="card-img-top" alt="products-sample"> -->
+                            <!-- <img [src]="'data:image/jpg;base64,'+data.productImage.fileContents" class="card-img-top" alt="products-sample"/> -->
+                            <a (click)="RedirectToProduct(adult_check,product,'')"><img [src]="product.image_03" class="card-img-top" alt="products-sample" /></a>
+                            <div class="card-body">
+                                <div class="product-details">
+                                    <a (click)="RedirectToProduct(adult_check, product,'')">
+                                        <h5 class="card-title">{{ product.itemDescription }}</h5>
+                                        <h6 class="small">Perfect for ages 3+</h6>
+                                        <div class="reviews-product">
+                                            <div [attr.data-product-id]="product.itemID" class="yotpo bottomLine">
+                                            </div>
+                                            <yotpo-star-rating [productId]="product.itemID" class="yotpo bottomLine" style="display:none;">
+                                            </yotpo-star-rating>
+
+
+
+                                        </div>
+                                        <div class="prod-price">
+                                            <span class="price-value">${{ product.price }}</span>
+                                        </div>
+                                    </a>
+                                    <div class="product-calculation">
+                                        <span class="more-info-minus">
+                                        <a class="btn btn-add minus-btn"><i class="fas fa-minus"></i></a>
+                                    </span>
+                                        <span class="value-calc">
+                                        0
+                                    </span>
+                                        <span class="more-info">
+                                        <a (click)="open(produt_view, product,adult_check)" class="btn btn-add"><i class="fas fa-plus"></i></a>
+                                    </span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+
+            </div>
+        </div>
+
+    </div>
+</section>
+<!--- Shop Modal --->
+<ng-template #produt_view let-modal>
+    <div class="model-productview">
+        <form>
+            <div class="modal-body">
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click');closeTooltip()">
+            <svg id="Icon_Close_Rounded" data-name="Icon / Close / Rounded" xmlns="http://www.w3.org/2000/svg" width="24"
+              height="24" viewBox="0 0 24 24">
+              <g id="Icon_Close_Rounded-2" data-name="Icon / Close / Rounded">
+                <rect id="Box" width="24" height="24" fill="none" />
+                <path id="Path_2016" data-name="Path 2016"
+                  d="M111.8,3.3a.967.967,0,0,0-1.4,0l-4.9,4.9-4.9-4.9a.99.99,0,0,0-1.4,1.4l4.9,4.9-4.9,4.9a.99.99,0,0,0,1.4,1.4l4.9-4.9,4.9,4.9a.99.99,0,1,0,1.4-1.4l-4.9-4.9,4.9-4.9A.967.967,0,0,0,111.8,3.3Z"
+                  transform="translate(-94 2)" fill="#fff" />
+              </g>
+            </svg>
+          </button>
+                <div class="card">
+                    <div class="product-view-image">
+                        <!-- <img src="../../assets/product-view-sample.png" class="card-img-top" alt="products-sample"> -->
+                        <img [src]="product.image_03" class="card-img-top" alt="products-sample" />
+                        <a routerLinkActive="active" (click)="RedirectToProduct(adult_check,product,'learnMore')" class="btn btn-learn">Learn More</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="product-details">
+                            <h5 class="card-title">{{ product?.itemDescription }}</h5>
+                            <div class="reviews-product">
+
+                                <div [attr.data-product-id]="product.itemID" class="yotpo bottomLine">
+                                </div>
+                                <yotpo-star-rating [productId]="product.itemID" style="display: none;">
+                                </yotpo-star-rating>
+                                <!-- <ul>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                  </ul>
+                                  <p>704 REVIEWS</p> -->
+                            </div>
+                            <h6 class="small">Perfect for ages 3+</h6>
+                            <div class="product-info">
+                                <p>
+                                    Take the battle out of bedtime! Our Kids Sleep Melts are formulated with high-quality melatonin and natural ingredients to help your little one get the kind of sleep they need.
+                                </p>
+                            </div>
+                            <div class="prod-bundle-select">
+                                <h3>Select Bundle</h3>
+                                <!-- <div *ngFor="let bundle of bundles" class="radio-bundle">
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions"
+                        id="{{bundle.id}}"
+                        value="{{bundle.value}}"
+                        (change)="checkBundle(bundle.value,product.price)"
+                        checked
+                      />
+                      <label class="form-check-label" for="{{bundle.id}}"
+                        >{{bundle.name}}</label
+                      >
+                    </div>
+                  </div> -->
+
+                                <div class="radio-bundle">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="1" value="single" (change)="checkBundle('single',product.price)" checked />
+                                        <label class="form-check-label" for="1">Single</label>
+                                    </div>
+                                </div>
+                                <div class="radio-bundle">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="2" value="multiple" (change)="checkBundle('multiple',product.price)" />
+                                        <label class="form-check-label" for="2">2-pk (Save 5%)</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="prod-bundle-select mt-0 delivery-radio">
+                                <h3>Select Delivery</h3>
+                                <!-- <div *ngFor="let type of cartTypes; let i = index" class="radio-bundle">
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptionsdelivery"
+                        id="{{i}}{{type}}"
+                        value="{{type}}"
+                        (change)="checkDelivery(type)"
+                      />
+                      <label class="form-check-label" for="{{i}}{{type}}"
+                        >{{type == 0 ? 'Single Delivery' : 'Subscribe & Save 15%'}}</label>
+                    </div>
+                  </div> -->
+                                <div class="radio-bundle">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptionsdelivery" id="3" value="0" (change)="checkDelivery(0)" />
+                                        <label class="form-check-label" for="3">Single Delivery</label>
+                                    </div>
+                                </div>
+
+                                <div class="radio-bundle">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptionsdelivery" id="4" value="1" checked (change)="checkDelivery(1)" />
+                                        <label class="form-check-label" for="4">Subscribe & Save 15%</label>
+                                    </div>
+                                </div>
+                                <div> <span class="ques-ico"><a (click)="showTooltip()"><i class="fas fa-question"
+                          aria-hidden="true"></i></a></span></div>
+                            </div>
+                            <div class="custom-shiping">
+                                <div [className]="tooltipData ? 'tooltipcontent show' : 'tooltipcontent hide'">
+                                    <p style="font-size: 14px;" (click)="closeTooltip()">
+                                        <p class="sec-title" style="font-size: 14px;font-weight: 700; font-size: 18px;">
+                                            Here’s how it works: </p>
+                                        <p style="font-size: 14px;"> - Schedule your deliveries however you see fit. It is completely customizable.
+                                        </p>
+                                        <p style="font-size: 14px;"> - Do you need to skip a shipment or adjust your next shipment date? Just edit your recurring order in your account or give us a call.
+                                            <p style="font-size: 14px;">
+                                                <p style="font-size: 14px;"> - You get FREE 1st Class Shipping & 15% off every order.</p>
+                                                <p style="font-size: 14px;"> - Setting up your Preferred Subscription Account automatically lets you start earning rewards. Earn up to 20% of your order value each month in store credit paid out in Loyalty Points directly into your
+                                                    account just for having an active subscription.</p>
+                                                <p><a (click)="closeTooltip()" class="btnclose">Go Back</a></p>
+
+                                </div>
+                                <h3>Customize Shipment
+                                </h3>
+                                <div class="choose-shipping">
+                                    <div class="form-group">
+                                        <select id="islectedval" (change)="quantityForOneTime(product, $event.target.value)" class="form-control">
+                          <option class="dropdown-item" disabled selected  value="undefined">Select
+                          Quantity</option>
+                        <option *ngFor="let qty of quantity"  [value]="qty.value">
+                          {{qty.name}}
+                        </option>
+                      </select>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
+                        <path id="Path_2028" data-name="Path 2028"
+                          d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
+                          transform="translate(-342.315 -7.7)" />
+                      </svg>
+                                    </div>
+
+                                    <div *ngIf="showSubscription" class="form-group">
+                                        <select (change)="getYearValue($event.target.value)" class="form-control">
+  
+                        <option [value]="undefined" selected="true">Select</option>
+                        <option *ngFor="let year of years" [value]="year.value">
+                          {{year.name}}
+                        </option>
+                      </select>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.171 4.6">
+                        <path id="Path_2028" data-name="Path 2028"
+                          d="M342.6,9.4l2.6,2.6a.967.967,0,0,0,1.4,0l2.6-2.6a1,1,0,0,0-.7-1.7h-5.2A1,1,0,0,0,342.6,9.4Z"
+                          transform="translate(-342.315 -7.7)" />
+                      </svg>
+                                    </div>
+                                </div>
+
+                                <div class="custom-field">
+                                    <input type="number" id="showinput{{product.itemCode}}" [(ngModel)]="product.extraQuantity" *ngIf="product.quantityModel == '0' || product.quantityModel >10" (change)="quantitychanged(product, $event.target.value)" class="form-control" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="cart-btn">
+                                <button type="submit" (click)="addToCart(product)" class="btn btn-cart">
+                    ${{showActualPrice == true ? bundlePrice : product.price}} ADD
+                  </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<ng-template #adult_check let-modal>
+    <div class="model-proo">
+        <div class="modal-body">
+            <div class="header18">
+                <h3>Are you over 18?</h3>
+            </div>
+            <div class="content18plus">
+                <div class="btn-same18">
+                    <button class="btn btn-no" (click)="closeModal()">NO</button>
+                    <button class="btn btn-yes" (click)="modal.dismiss('Cross click');nextToMove(produt_view)">YES</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
