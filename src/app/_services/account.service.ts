@@ -85,6 +85,11 @@ export class AccountService {
     return this.http.post<any>(`${environment.apiUrl}${this.accountEndPoint}SaveAddress`,model);
   }
 
+  
+  EditAddress(model:any) {
+    return this.http.post<any>(`${environment.apiUrl}${this.accountEndPoint}UpdateAddress`,model);
+  }
+
   GetshippingAddress() {
     return this.http.get<any>(`${environment.apiUrl}${this.shoppingEndPoint}GetshippingAddress`);
   }
@@ -127,7 +132,20 @@ export class AccountService {
   getOrderInvoice(model:any){
     return this.http.get<any>(`${environment.apiUrl}${this.accountEndPoint}GetOrderInvoice/${model}`,this.options);
   }
+
+  makeAddressPrimary(type: any) { 
+    return this.http.get<any>(`${environment.apiUrl}${this.accountEndPoint}SetPrimaryAddress/${type}`);
+
+  }
+  deleteCustomerAddress(type: any) {
+    return this.http.delete<any>(`${environment.apiUrl}${this.shoppingEndPoint}DeleteCustomer?type=${type}`);
+  }
+
+  makeCreditCardPrimary(model:any){
+    return this.http.post<any>(`${environment.apiUrl}${this.accountEndPoint}MakeCreditCardPrimary`,model);
+  }
 }
+
 
 
 //For Preview Invoice : https://localhost:44336/api/Account/GetOrderInvoice
