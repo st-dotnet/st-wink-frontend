@@ -95,7 +95,7 @@
                                             </div>
 
                                             <div class="view-invoice cancelsubscribe">
-                                                <a href="#"> <button class="cancel-subscrp"><i class="fa fa-trash"></i>Cancel Subscription</button></a>
+                                                <button class="cancel-subscrp" (click)="openModal(adult_check,item.autoOrderID)"><i class="fa fa-trash"></i>Cancel Subscription</button>
                                             </div>
                                         </div>
 
@@ -137,3 +137,21 @@
         </div>
     </div>
 </section>
+
+<ng-template #adult_check let-modal>
+    <div class="model-proo">
+      <div class="modal-body">
+        <div class="header18">
+          <h3>Cancel this subscription?</h3>
+        </div>
+        <div class="content18plus">
+            This action can not be undo.
+          <div class="btn-same18">
+            <button class="btn btn-no" (click)="closeModal()">NO</button>
+            <button class="btn btn-yes" (click)="deleteSubscription()">YES</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  

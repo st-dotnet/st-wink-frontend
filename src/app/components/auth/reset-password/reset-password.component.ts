@@ -75,7 +75,6 @@ export class ResetPasswordComponent implements OnInit {
           }
         },
         error: (error) => {
-          debugger;
           this.toastrService.error('Sorry your email has not been found within our system.');
           this.spinner.hide();
           this.loading = false;

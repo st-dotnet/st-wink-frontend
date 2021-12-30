@@ -169,7 +169,7 @@ export class SignUpComponent implements OnInit {
             setTimeout(() => {
               this.form.reset();
               this.router.navigate(["/store/checkout"]);
-              this.toastrService.success('User has Registered Successfully');
+              this.toastrService.success('User has registered successfully');
               this.spinner.hide();
             }, 1000);
           } else if (res.errorMessage != null && res.errorMessage != "") {
@@ -177,7 +177,7 @@ export class SignUpComponent implements OnInit {
           } else {
             this.form.reset();
             this.router.navigate([''], { relativeTo: this.route });
-            this.toastrService.success('User has Registered Successfully');
+            this.toastrService.success('User has registered successfully');
             this.spinner.hide();
           }
           // this.toastrService.success('Please check your email in order to verify the registration');

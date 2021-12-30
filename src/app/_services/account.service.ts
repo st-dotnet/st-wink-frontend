@@ -112,7 +112,9 @@ export class AccountService {
   deleteCustomerCard(CreditCardType:string){
     return this.http.delete<any>(`${environment.apiUrl}${this.customerEndPoint}DeleteCreditCard?type=${CreditCardType}`);
   }
-
+  deleteSubscription(subscribeId:any){
+    return this.http.delete<any>(`${environment.apiUrl}${this.customerEndPoint}DeleteAutoOrder?id=${subscribeId}`);
+  }
   saveCustomerCard(model:any){
     return this.http.post<any>(`${environment.apiUrl}${this.paymentEndPoint}SaveCreditCard`,model);
   }

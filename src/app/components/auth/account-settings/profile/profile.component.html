@@ -73,7 +73,7 @@
                                                 <input type="text" formControlName="loginName" [ngClass]="{ 'is-invalid': loginNameSubmitted && l.loginName?.errors }" class="form-control" [(ngModel)]="UserDetails.loginName" [ngModelOptions]="{standalone: true}">
                                                 <div *ngIf="loginNameSubmitted && l.loginName?.errors" class="invalid-feedback">
                                                     <div *ngIf="l.loginName?.errors.required">
-                                                        login Name is required</div>
+                                                        User Name is required</div>
                                                 </div>
                                                 <label class="form-label">User Name</label>
                                             </div>
