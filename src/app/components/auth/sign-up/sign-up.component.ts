@@ -169,6 +169,7 @@ export class SignUpComponent implements OnInit {
             setTimeout(() => {
               this.form.reset();
               this.router.navigate(["/store/checkout"]);
+              this.toastrService.success('User has Registered Successfully');
               this.spinner.hide();
             }, 1000);
           } else if (res.errorMessage != null && res.errorMessage != "") {
