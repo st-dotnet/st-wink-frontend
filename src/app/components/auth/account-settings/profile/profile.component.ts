@@ -82,11 +82,10 @@ export class ProfileComponent implements OnInit {
 
 
   getuserdetails(){
-    debugger;
     this.spinner.show();
     this.currentuser = this.sessionService.getSessionObject("user");
     this.accountService.getCustomer(this.currentuser.customerId).subscribe((response) => {
-      this.UserDetails = response.customers[0];
+      this.UserDetails = response[0];
       this.spinner.hide();
     });
   }

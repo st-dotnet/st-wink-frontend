@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AccountService } from '@app/_services';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
@@ -11,22 +13,45 @@ import { ToastrService } from 'ngx-toastr';
 export class SubscriptionsComponent implements OnInit {
 
 customerOrderData:any;
+  subscribeId: number;
 
-  constructor(private accountService: AccountService, private spinner: NgxSpinnerService,
-    private toastrService: ToastrService){
+  constructor(private accountService: AccountService, private spinner: NgxSpinnerService,   private modalService: NgbModal,
+    private toastrService: ToastrService,private router: Router){
  }
 
+ 
   ngOnInit(): void {
   this.getCustomerAutoOrders();
   }
   getCustomerAutoOrders(){
     this.spinner.show();
     this.accountService.getCustomerAutoOrders().subscribe((response)=>{
+      debugger;
       this.customerOrderData=response;
      
       this.spinner.hide();
    });
   }
 
+  viewEditDetail(subscriptionId:any){
+    this.router.navigate(['/edit-subscriptions', subscriptionId]);
+  }
 
+  deleteSubscription(){
+    this.spinner.show();
+    this.accountService.deleteSubscription(this.subscribeId).subscribe((response)=>{
+      this.modalService.dismissAll();
+   this.getCustomerAutoOrders();
+      this.spinner.hide();
+   });
+  }
+
+  openModal(id: any,subscribeId:any){
+      this.subscribeId=subscribeId;
+      this.modalService.open(id);
+  };
+  closeModal(){
+    this.subscribeId=0;
+    this.modalService.dismissAll();
+  }
 }

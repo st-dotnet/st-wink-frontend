@@ -15,8 +15,8 @@ import { CartTypeEnum, ShoppingCartItemType } from '@app/_models/cart-type-enum'
   styleUrls: ['./edit-subscriptions.component.css']
 })
 export class EditSubscriptionsComponent implements OnInit {
-  selectfrequency: any;
-  nextdelivery: any;
+  selectfrequency: string;
+  nextdelivery: string;
   title = '';
   closeResult: string;
   webCategoryID: number = 3;
@@ -179,6 +179,7 @@ export class EditSubscriptionsComponent implements OnInit {
       if (this.type == "Comfort Patch") {
         this.showAgePopUp = true;
       }
+      debugger;
       if (this.type != null) {
         this.getAllCategoryById();
       } else {
@@ -192,16 +193,17 @@ export class EditSubscriptionsComponent implements OnInit {
 
   getAllCategoryById() {
     this.spinner.show();
+    debugger;
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
       this.categoryModels = result;
-      this.categoryModels?.forEach(element => {
+      this.categoryModels.forEach(element => {
         this.categoryTitle.push({
           webCategoryID: element.webCategoryID,
           webCategoryDescription: element.webCategoryDescription
         });
       });
-      const category = this.categoryModels?.find(x => x.webCategoryDescription == this.type);
-      this.category = category != null ? category.webCategoryID : 0;
+      const categry = this.categoryModels.find(x => x.webCategoryDescription == this.type);
+      this.category = categry != null ? categry.webCategoryID : 0;
       this.shopService.GetProductsList(this.category, this.filterValue).subscribe(result => {
         this.shopProductModels = result;
         this.spinner.hide();
@@ -218,6 +220,7 @@ export class EditSubscriptionsComponent implements OnInit {
   }
 
   GetDDLCategoryById() {
+    debugger;
     this.spinner.show();
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
       this.categoryModels = result;
@@ -227,7 +230,7 @@ export class EditSubscriptionsComponent implements OnInit {
           webCategoryDescription: element.webCategoryDescription
         });
       });
-      var data = this.categoryModels?.find(x => x.webCategoryDescription.toString() === "All Products");
+      var data = this.categoryModels.find(x => x.webCategoryDescription.toString() === "All Products");
       if (data) {
         data.webCategoryDescription = "Select Category";
       }
@@ -243,8 +246,8 @@ export class EditSubscriptionsComponent implements OnInit {
     if (this.categoryId == 39) {
       this.showAgePopUp = true;
     }
-    const category = this.categoryModels.find(x => x.webCategoryID == this.categoryId);
-    const categoryName = category.webCategoryDescription.replace(new RegExp(' ', 'g'), '-');
+    const categoies = this.categoryModels.find(x => x.webCategoryID == this.categoryId);
+    const categoryName = categoies.webCategoryDescription.replace(new RegExp(' ', 'g'), '-');
     this.productNameTitle = categoryName;
     this.sessionService.setSessionItem('categoryDescription', categoryName);
     this.router.navigate([`store/products/${categoryName}`])
