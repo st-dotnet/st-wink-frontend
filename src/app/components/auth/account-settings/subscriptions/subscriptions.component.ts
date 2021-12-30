@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AccountService } from '@app/_services';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +14,7 @@ export class SubscriptionsComponent implements OnInit {
 customerOrderData:any;
 
   constructor(private accountService: AccountService, private spinner: NgxSpinnerService,
-    private toastrService: ToastrService){
+    private toastrService: ToastrService,private router: Router){
  }
 
   ngOnInit(): void {
@@ -28,5 +29,8 @@ customerOrderData:any;
    });
   }
 
+  viewEditDetail(subscriptionId:any){
+    this.router.navigate(['/edit-subscriptions', subscriptionId]);
+  }
 
 }

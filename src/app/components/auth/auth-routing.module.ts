@@ -11,6 +11,7 @@ import { OrdersComponent } from './account-settings/orders/orders.component';
 import { PaymentsComponent } from './account-settings/payments/payments.component';
 
 import { ProfileComponent } from './account-settings/profile/profile.component';
+import { EditSubscriptionsComponent } from './account-settings/subscriptions/edit-subscriptions/edit-subscriptions.component';
 import { SubscriptionsComponent } from './account-settings/subscriptions/subscriptions.component';
 // auth components
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -31,8 +32,10 @@ const routes: Routes = [
   { path: 'account-settings/orders', component: OrdersComponent,canActivate: [AuthGuard] },
   { path: 'account-settings/loyaltypoints', component: LoyaltyPointsComponent,canActivate: [AuthGuard] },
   { path: 'account-settings/subscriptions', component: SubscriptionsComponent,canActivate: [AuthGuard] },
+  { path: 'edit-subscriptions/:id', component: EditSubscriptionsComponent,canActivate: [AuthGuard] },
   { path: 'account-settings/payments', component: PaymentsComponent,canActivate: [AuthGuard] },
   { path: 'invoice/:id', component: InvoiceComponent,canActivate: [AuthGuard]},
+  
 ];
 
 @NgModule({

@@ -34,11 +34,11 @@
         <form class="form-inline">
             <div class="form-group">
                 <i class="fas fa-caret-down"></i>
-                <select class="custom-select" [(ngModel)]="category" [ngModelOptions]="{standalone: true}" (change)="onCategoryChange()">
+                 <select class="custom-select" (change)="onCategoryChange()">
             <option *ngFor="let category of categoryModels" [value]="category.webCategoryID">
               {{ category.webCategoryDescription }}
             </option>
-          </select>
+          </select> 
             </div>
             <div class="form-group select-filters">
                 <i class="svg-ico">
@@ -495,7 +495,7 @@
                     <h3>Delivery Details</h3>
                     <div class="form-deilivery">
                         <div [className]="selectfrequency ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'" id="subscr-schedule1">
-                            <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectfrequency">
+                            <select class="form-control">
                                 <option> </option>
                                 <option>1</option>
                                 <option>2</option>
@@ -513,7 +513,7 @@
 
 
                         <div [className]="nextdelivery ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'" id="subscr-schedule">
-                            <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="nextdelivery" />
+                            <input type="text" class="form-control" />
                             <label class="form-label">Select next delivery</label>
                             <span class="btn-add-promo">
                                 <svg xmlns="http://www.w3.org/2000/svg"
