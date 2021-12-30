@@ -75,7 +75,7 @@ export class ForgotPasswordComponent implements OnInit {
           this.spinner.hide();
         },
         error: (error) => {
-          this.toastrService.error(error);
+          this.toastrService.error('Sorry your email has not been found within our system.');
           this.spinner.hide();
           this.loading = false;
         },
