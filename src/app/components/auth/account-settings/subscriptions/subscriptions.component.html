@@ -9,8 +9,9 @@
                             <div class="subsc-cta">
                                 <h4><button class="btn bta-subsc">Create Subscription</button></h4>
                             </div>
+                            <h3 class="mb-3">Active Subscriptions</h3>
                             <ngb-accordion activeIds="" *ngFor="let item of customerOrderData" class="order-listing">
-                                <h3>Active Subscriptions</h3>
+
                                 <ngb-panel id="order-listing">
                                     <ng-template ngbPanelTitle>
 
@@ -93,7 +94,7 @@
 
                                         <div class="emailbtns subscribe">
                                             <div class="trck-order editsubscribe">
-                                                <a href="#"> <button class="trck-order-btn">Edit Subscription</button></a>
+                                                <a [routerLink]="['/account-settings/subscriptions/edit-subscription']"> <button class="trck-order-btn">Edit Subscription</button></a>
                                             </div>
 
                                             <div class="view-invoice cancelsubscribe">
@@ -113,7 +114,7 @@
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <li class="page-item">
-                                <a class="page-link"  aria-label="Previous">
+                                <a class="page-link" aria-label="Previous">
                                     <i class="fa fa-angle-left"></i>
                                 </a>
                             </li>

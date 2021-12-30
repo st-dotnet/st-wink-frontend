@@ -758,7 +758,7 @@ div#checkoutstep4 ngb-accordion .card-header p {
 
 div#checkoutstep4 ngb-accordion .card-header h4 {
     font-family: g-medium;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 22px;
     margin-top: 0;
     font-weight: 500;
@@ -1716,7 +1716,7 @@ ul.conv-products.styl-check {
 
 .birthday-holder span.btn-add-promo {
     position: absolute;
-    top: 28px;
+    top: 25px;
     right: 10px;
     transform: translateY(-50%);
 }
@@ -1778,10 +1778,11 @@ section.account-page .card-body div#promo-code {
     padding: 0px 20px !important;
 }
 
-.enrollment-righ div#checkoutstep3 .card-body .card-infoo .req {
+
+/* .enrollment-righ div#checkoutstep3 .card-body .card-infoo .req {
     position: absolute;
     bottom: -5px;
-}
+} */
 
 .enrollment-paged .card {
     background: none !important;
@@ -2376,9 +2377,11 @@ table.table.order-summary td {
 
 
 /************* INVOICE *********/
+
 div#data-invoice {
     padding-top: 50px;
 }
+
 #data-invoice td,
 #data-invoice input,
 #data-invoice select,
@@ -2388,20 +2391,25 @@ div#data-invoice {
     font-size: 8pt;
     color: #393939;
 }
+
 #data-invoice h5 {
     page-break-after: always;
 }
+
 #data-invoice a {
     text-decoration: none;
 }
+
 #data-invoice a:hover {
     text-decoration: underline;
 }
+
 #data-invoice a,
 #data-invoice a:visited,
 #data-invoice a:hover {
     color: #003399;
 }
+
 #data-invoice Table.ActionGridBar,
 #data-invoice Table.ActionGridBar TD {
     border: 1px solid #6699cc;
@@ -2409,19 +2417,24 @@ div#data-invoice {
     font-weight: bold;
     cursor: hand;
 }
+
 #data-invoice Table.ActionGridHeader {
     background-color: #E6EEF7;
 }
+
 #data-invoice Table.ActionGridData {
     border: none;
 }
+
 #data-invoice Table.ActionGridData TD {
     border: 1px solid #E6EEF7;
 }
+
 #data-invoice Table.ActionGridFooter {
     border: 1px solid #6699cc;
     background-color: #E6EEF7;
 }
+
 #data-invoice Table.ActionGridFooter TD,
 #data-invoice Table.ActionGridFooter A:hover,
 #data-invoice Table.ActionGridFooter A:visited,
@@ -2429,25 +2442,30 @@ div#data-invoice {
     font-size: 10pt;
     font-weight: normal;
 }
+
 #data-invoice TABLE.clsReport {
     border-collapse: collapse;
     table-layout: fixed;
     overflow: auto;
 }
+
 #data-invoice TABLE.clsReport TH {
     border: 1px solid #4791C5;
     padding: 5px;
     font-weight: normal;
     background-color: #ECF4F9;
 }
+
 #data-invoice TABLE.clsReport TH:first-child {
     border-left: 1px solid #4791C5;
 }
+
 #data-invoice TABLE.clsReport TD {
     padding: 2px;
     padding-left: 8px;
     padding-right: 8px;
 }
+
 #data-invoice .deeptree span {
     padding: 2px 2px;
     position: relative;
@@ -2457,6 +2475,7 @@ div#data-invoice {
     margin: 1px;
     cursor: hand;
 }
+
 #data-invoice .clsSpace {
     position: relative;
     width: 10px;
@@ -2466,23 +2485,27 @@ div#data-invoice {
     margin-top: -11px;
     padding-left: 0px;
 }
+
 #data-invoice SPAN.clsMouseOver {
     background-color: #F2F8FC;
     border: 1px solid #EAF3FA;
     margin: 0px;
 }
+
 #data-invoice SPAN.clsMouseDown {
     background-color: #EAF3FA;
     color: black;
     border: 1px solid #EAF3FA;
     margin: 0px;
 }
+
 #data-invoice SPAN.clsCurrentHasFocus {
     background-color: #EAF3FA;
     color: black;
     border: 1px solid #B4D9F1;
     margin: 0px;
 }
+
 #data-invoice span.clsUnavailable {
     height: 0px;
     padding: 0px;
@@ -2490,13 +2513,16 @@ div#data-invoice {
     border: none;
     color: #888888;
 }
+
 #data-invoice .hide {
     display: none;
 }
+
 #data-invoice .shown {
     display: block;
     margin-left: 15px;
 }
+
 #data-invoice Table.Grid {
     width: 100%;
     table-layout: fixed;
@@ -2505,6 +2531,7 @@ div#data-invoice {
     border-right: 1px solid #6699cc;
     border-bottom: 1px solid #6699cc;
 }
+
 #data-invoice Table.Grid TH {
     color: Black;
     border-left: 1px solid #6699cc;
@@ -2516,6 +2543,7 @@ div#data-invoice {
     font-weight: normal;
     font-size: 11px;
 }
+
 #data-invoice Table.Grid TD {
     color: Black;
     border: 1px solid #D0E5F5;
@@ -2523,26 +2551,43 @@ div#data-invoice {
     white-space: nowrap;
     font-size: 11px;
 }
+
 #data-invoice Table.Grid TR {
     background-color: white;
 }
+
 #data-invoice Table.Grid TR.even {
     background-color: #F2F8FC;
 }
+
 #data-invoice TABLE.clsBorder TH {
     border: 1px solid #4791C5;
     background-color: #ECF4F9;
 }
+
 #data-invoice TABLE.clsBorderTop TH {
     border: 1px solid #4791C5;
     background-color: #ECF4F9;
 }
+
 #data-invoice TABLE.clsBorderTop TH TH {
     border: none;
 }
+
 #data-invoice H5 {
     PAGE-BREAK-AFTER: always;
 }
+
+.steps-inner.today-order tbody tr td:last-child,
+.steps-inner.today-order tfoot tr td:last-child,
+#subsc-purchse tbody tr td:last-child,
+#subsc-purchse tfoot tr td:last-child,
+#otp-sidebar tbody tr td:last-child,
+#otp-sidebar tfoot tr td:last-child {
+    text-align: right;
+}
+
+
 /*********** END CSS INVOICE *******/
 
 
@@ -2661,7 +2706,7 @@ div#data-invoice {
         text-transform: uppercase;
     }
     ul.navbar-nav.other-links li a {
-        font-size: 18px !important;
+        font-size: 20px !important;
     }
     ul.navbar-nav.other-links:before {
         content: '';
@@ -2678,7 +2723,8 @@ div#data-invoice {
         position: relative;
     }
     ul.navbar-nav {
-        padding-top: 15px;
+        /* padding-top: 15px 20px !important; */
+        padding: 20px;
     }
     .table-loyal.card .content-points.card-body {
         padding: 0 10px;
@@ -2724,13 +2770,13 @@ div#data-invoice {
         padding-top: 0px !important;
     }
     .mob-check .show-deskk .showsidebar.toggle-sidebar .sidebar-head span.arrow-down {
-        top: -2px;
+        top: 7px;
     }
     .mob-check .show-deskk .showsidebar.toggle-sidebar .sidebar-head span.arrow-down svg {
         transform: rotate(0deg);
     }
     .mob-check .show-deskk .hidesidebar.toggle-sidebar .sidebar-head span.arrow-down {
-        top: -2px;
+        top: 7px;
     }
     .mob-check .show-deskk .hidesidebar.toggle-sidebar .sidebar-head span.arrow-down svg {
         transform: rotate(180deg);

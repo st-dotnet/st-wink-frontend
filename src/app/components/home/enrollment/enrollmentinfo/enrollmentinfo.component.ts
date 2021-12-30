@@ -30,6 +30,7 @@ export class EnrollmentInfoComponent implements OnInit {
   onPaymentSubmitForm: FormGroup;
   submitted: boolean = false;
   addressSubmitted: boolean = false;
+  sidebartoggle1: boolean = false;
   paymentSubmitted = false;
   states: any[] = [];
   isShipmentMethod: any;
@@ -47,7 +48,7 @@ export class EnrollmentInfoComponent implements OnInit {
   UserDetails: any;
   cardToken: string;
   cartSummaryTotal: number = 0;
-  cartItems: any[]=[];
+  cartItems: any[] = [];
   user: any;
   personalInfoPannel: boolean = false;
   shippingAddressPannel: boolean = true;
@@ -379,14 +380,14 @@ export class EnrollmentInfoComponent implements OnInit {
   ngOnInit(): void {
     this.isShipmentMethod = 1;
     this.enrollmentdata = this.sessionService.getSessionObject("enrollmentPacksData");
-    if(this.enrollmentdata ){
-      this.enrollmentdata.productImage =null;
+    if (this.enrollmentdata) {
+      this.enrollmentdata.productImage = null;
       this.itemDescription = this.enrollmentdata?.itemDescription;
       this.cartItems.push(this.enrollmentdata);
       this.cartSummaryTotal = this.enrollmentdata.price;
     }
- 
-       
+
+
     this.UserDetails = JSON.parse(localStorage.getItem('user'));
     // this.customerId = this.UserDetails.customerId;
     this.personalInfo = this.formBuilder.group(
@@ -650,11 +651,11 @@ export class EnrollmentInfoComponent implements OnInit {
     payment.name = this.f.firstName.value;
     if (!this.addrnew) {
       (payment.address1 = this.s.streetAddress.value),
-      (payment.city = this.s.city.value),
-      (payment.state = this.s.state.value),
-      (payment.zip = this.s.zip.value),
-      payment.country = 'US';
- 
+        (payment.city = this.s.city.value),
+        (payment.state = this.s.state.value),
+        (payment.zip = this.s.zip.value),
+        payment.country = 'US';
+
     } else {
       payment.address1 = this.p.newStreetAddress.value;
       payment.state = this.p.newState.value;
@@ -689,7 +690,7 @@ export class EnrollmentInfoComponent implements OnInit {
           this.spinner.hide();
           this.toastrService.error('Payment card is not declined');
         }
-       
+
       });
   }
 
@@ -777,7 +778,7 @@ export class EnrollmentInfoComponent implements OnInit {
       .subscribe((Response: any) => {
         console.log(Response);
       });
-      this.router.navigate(['/store/thankyou']); 
+    this.router.navigate(['/store/thankyou']);
   }
 
   validateEmail(email: string) {
@@ -825,5 +826,9 @@ export class EnrollmentInfoComponent implements OnInit {
       event.preventDefault();
       return false;
     }
+  }
+  toggleShow()
+  {
+    this.sidebartoggle1= !this.sidebartoggle1;
   }
 }

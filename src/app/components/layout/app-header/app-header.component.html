@@ -162,27 +162,24 @@
                 </ul>
                 <ul class="navbar-nav other-links shortMenu" *ngIf="user">
                     <li class="nav-item Shop-demo-tour">
-                        <a class="nav-link" [routerLink]="['account-settings/profile']" [routerLinkActive]="['active']">Profile</a>
+                        <a class="nav-link" [routerLink]="['account-settings/profile']" [routerLinkActive]="['active']" (click)="isMobileMenu=false;">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['account-settings/orders']" [routerLinkActive]="['active']">Orders</a>
+                        <a class="nav-link" [routerLink]="['account-settings/orders']" [routerLinkActive]="['active']" (click)="isMobileMenu=false;">Orders</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['account-settings/subscriptions']" [routerLinkActive]="['active']">Subscriptions</a>
+                        <a class="nav-link" [routerLink]="['account-settings/subscriptions']" [routerLinkActive]="['active']" (click)="isMobileMenu=false;">Subscriptions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['account-settings/loyaltypoints']" [routerLinkActive]="['active']">Loyalty Points</a>
+                        <a class="nav-link" [routerLink]="['account-settings/loyaltypoints']" [routerLinkActive]="['active']" (click)="isMobileMenu=false;">Loyalty Points</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['account-settings/addresses']" [routerLinkActive]="['active']">Addresses</a>
+                        <a class="nav-link" [routerLink]="['account-settings/addresses']" [routerLinkActive]="['active']" (click)="isMobileMenu=false;">Addresses</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['account-settings/payments']" [routerLinkActive]="['active']">Payments</a>
+                        <a class="nav-link" [routerLink]="['account-settings/payments']" [routerLinkActive]="['active']" (click)="isMobileMenu=false;">Payments</a>
                     </li>
-
-
-
                 </ul>
                 <div class="logo-center">
                     <a class="navbar-brand" [routerLink]="['']" [routerLinkActive]="['active']"><img src="../../assets/logo-wink.png" /></a>

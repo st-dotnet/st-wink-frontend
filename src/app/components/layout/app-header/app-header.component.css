@@ -284,8 +284,9 @@ a.nav-link.active {
         padding: 10px 10px;
         border-radius: 0px;
         color: #2aa8bf !important;
-        font-size: 30px;
-        line-height: 30px;
+        font-size: 34px;
+        line-height: normal;
+        font-family: 'g-medium';
     }
     div#main-menu.showmenu ul li a.active {
         color: #1cb1c5 !important;
