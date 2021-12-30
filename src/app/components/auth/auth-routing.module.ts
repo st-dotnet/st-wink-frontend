@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'account-settings/orders', component: OrdersComponent,canActivate: [AuthGuard] },
   { path: 'account-settings/loyaltypoints', component: LoyaltyPointsComponent,canActivate: [AuthGuard] },
   { path: 'account-settings/subscriptions', component: SubscriptionsComponent,canActivate: [AuthGuard] },
-  { path: 'account-settings/subscriptions/edit-subscription', component: EditSubscriptionsComponent },
+  { path: 'edit-subscription/:id', component: EditSubscriptionsComponent },
   { path: 'account-settings/payments', component: PaymentsComponent,canActivate: [AuthGuard] },
   { path: 'invoice/:id', component: InvoiceComponent,canActivate: [AuthGuard]},
 ];

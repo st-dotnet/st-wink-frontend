@@ -94,11 +94,11 @@
 
                                         <div class="emailbtns subscribe">
                                             <div class="trck-order editsubscribe">
-                                                <a [routerLink]="['/account-settings/subscriptions/edit-subscription']"> <button class="trck-order-btn">Edit Subscription</button></a>
+                                             <button class="trck-order-btn" (click)="viewEditDetail(item.autoOrderID)">Edit Subscription</button>
                                             </div>
 
                                             <div class="view-invoice cancelsubscribe">
-                                                <a href="#"> <button class="cancel-subscrp"><i class="fa fa-trash"></i>Cancel Subscription</button></a>
+                                                <button class="cancel-subscrp" (click)="openModal(adult_check,item.autoOrderID)"><i class="fa fa-trash"></i>Cancel Subscription</button>
                                             </div>
 
 

@@ -115,6 +115,11 @@ export class AccountService {
   deleteSubscription(subscribeId:any){
     return this.http.delete<any>(`${environment.apiUrl}${this.customerEndPoint}DeleteAutoOrder?id=${subscribeId}`);
   }
+
+  getSubscriptionbyId(subscribeId:any){
+    return this.http.get<any>(`${environment.apiUrl}${this,this.accountEndPoint}EditSubcription/${subscribeId}`);
+  }
+
   saveCustomerCard(model:any){
     return this.http.post<any>(`${environment.apiUrl}${this.paymentEndPoint}SaveCreditCard`,model);
   }

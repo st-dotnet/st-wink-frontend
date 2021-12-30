@@ -34,7 +34,7 @@ customerOrderData:any;
   }
 
   viewEditDetail(subscriptionId:any){
-    this.router.navigate(['/edit-subscriptions', subscriptionId]);
+    this.router.navigate(['/edit-subscription', subscriptionId]);
   }
 
   deleteSubscription(){

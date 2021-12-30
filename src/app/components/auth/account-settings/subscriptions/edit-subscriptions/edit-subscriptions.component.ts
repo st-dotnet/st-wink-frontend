@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap'
-import { SessionService } from '@app/_services';
+import { AccountService, SessionService } from '@app/_services';
 import { ShopService } from '@app/_services/shop.service';
 import { CategoryModel, ShopProductModel } from '@app/_models/shop';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -56,12 +56,15 @@ export class EditSubscriptionsComponent implements OnInit {
   showActualPrice: boolean = false;
   tooltipData: boolean = false;
   orderType: any;
+  autoOrders:any[]=[];
   cartItems: any[] = [];
   showOtherTextbox = null;
   selectedval: any;
+  autoorderId: number;
 
   constructor(
     private sessionService: SessionService,
+    private accountService: AccountService,
     private modalService: NgbModal, private shopService: ShopService,
     private spinner: NgxSpinnerService, private router: Router,
     private toastrService: ToastrService,
@@ -171,6 +174,8 @@ export class EditSubscriptionsComponent implements OnInit {
     this.filterTitle = this.sessionService.getSessionItem("categorySelect");
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.route.params.subscribe(params => {
+     this.autoorderId = params['id'];
+     this.getAutoOrderById();
       if (params['type']) {
         const type = params['type'];
         this.type = type.replace(new RegExp('-', 'g'), ' ');
@@ -185,12 +190,22 @@ export class EditSubscriptionsComponent implements OnInit {
       } else {
         this.GetDDLCategoryById();
       }
+   
       this.bundle = 'single';
       this.selectDelivery = 0;
       this.subscriptionModel = 'singleDelivery';
     });
   }
 
+  getAutoOrderById(){
+    //this.spinner.show();
+    debugger;
+    this.accountService.getSubscriptionbyId(this.autoorderId).subscribe((response)=>{
+     this.autoOrders=response;
+      this.modalService.dismissAll();
+      this.spinner.hide();
+   });
+  }
   getAllCategoryById() {
     this.spinner.show();
     debugger;
