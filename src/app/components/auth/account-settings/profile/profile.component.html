@@ -31,7 +31,7 @@
                                                 <input type="text" class="form-control" formControlName="firstName" [ngClass]="{ 'is-invalid': firstnameSubmitted && f.firstName?.errors }" [(ngModel)]="UserDetails.firstName" [ngModelOptions]="{standalone: true}">
                                                 <div *ngIf="firstnameSubmitted && f.firstName?.errors" class="invalid-feedback">
                                                     <div *ngIf="f.firstName?.errors.required">
-                                                        First Name is required</div>
+                                                        Name is required</div>
                                                 </div>
                                                 <label class="form-label">Name</label>
                                             </div>
