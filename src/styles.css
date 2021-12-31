@@ -295,11 +295,11 @@ section.testimonial-home .owl-nav .owl-next {
 
 .slider-whylove {
     background-color: rgba(80 112 201/0.9);
-    max-width: 340px;
+    max-width: 399px;
     position: absolute;
-    top: 50%;
+    top: 58%;
     transform: translateY(-50%);
-    left: 100px;
+    left: 204px;
     width: 100%;
     border-radius: 6px;
     -webkit-transform: translateY(-50%);
@@ -319,10 +319,10 @@ section.testimonial-home .owl-nav .owl-next {
 }
 
 .slider-whylove owl-carousel-o owl-stage .text-slider {
-    max-width: 70%;
+    max-width: 71%;
     text-align: center;
-    margin: 0 auto;
-    min-height: 200px;
+    margin: -15px 21px 10px 61px;
+    min-height: 296px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2611,6 +2611,12 @@ div#data-invoice {
     .container-sm,
     .container-xl {
         max-width: 1300px !important;
+    }
+    .grid-box-shadow.Subscription-box .prod-discount .subtotal p {
+        font-weight: 600;
+        color: #3e3e3e;
+        font-size: 20px;
+        margin-bottom: 0px;
     }
 }
 

@@ -32,9 +32,9 @@ section.cart-header .grid-box-shadow {
 }
 
 section.cart-header .grid-box-shadow h3 {
-    font-size: 24px;
-    font-family: 'g-medium';
-    margin-bottom: 30px;
+    font-size: 26px;
+    font-family: 'g-demibold';
+    margin-bottom: 15px;
 }
 
 section.cart-header .grid-box-shadow .cart-singleitem {
@@ -237,8 +237,8 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-quantity 
 }
 
 .sidebar-head h2 {
-    font-size: 22px;
-    font-family: 'g-medium';
+    font-size: 26px;
+    font-family: 'g-demibold';
     margin: 0;
 }
 
@@ -1041,12 +1041,11 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart {
 }
 
 .additional-div {
-  display: block;
-  width: 100%;
-  float: left;
-  margin: 40px 0 0 0;
+    display: block;
+    width: 100%;
+    float: left;
+    margin: 40px 0 0 0;
 }
-
 
 @media (max-width:767px) {
     .cart-quantity.mob-sec .form-group:last-child {
@@ -1057,5 +1056,21 @@ section.cart-header .grid-box-shadow .cart-singleitem .data-cart {
     }
     .Subscription-box .data-cart .cart-quantity.mob-sec .form-group {
         margin-right: 10px !important;
+    }
+}
+
+@media (max-width:1366px) {
+    section.cart-header .grid-box-shadow .cart-singleitem .data-cart .cart-quantity .form-group {
+        margin-right: 36px;
+    }
+    .grand-total .total-grand {
+        font-size: 20px;
+        font-family: 'g-demibold';
+    }
+    .save-you {
+        font-size: 20px;
+    }
+    .save-you p {
+        margin-bottom: 0px;
     }
 }
