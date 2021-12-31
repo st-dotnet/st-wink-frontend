@@ -355,7 +355,7 @@ export class CheckoutComponent implements OnInit {
     this.shippingAddressParam = this.getShippingAddressParam(1);
     this.shopService.postAddress(this.customerId, this.shippingAddressParam)
       .subscribe((result: any) => {
-        debugger;
+        
         if (result) {
           this.spinner.hide();
           this.showPanel2 = false;

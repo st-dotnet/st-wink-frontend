@@ -284,7 +284,7 @@ export class SearchproductComponent implements OnInit {
     // this.sessionService.setSessionObject('productCartItems', this.cartItems);
   }
   addToCart(product: any) {
-    debugger;
+    
     if (this.sessionService.getSessionItem('user')) {
       this.productItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
     }

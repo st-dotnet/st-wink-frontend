@@ -477,7 +477,7 @@ export class EnrollmentInfoComponent implements OnInit {
   newAddress: any;
 
   onpersonalInfoSubmit() {
-    debugger;
+    
     this.submitted = true;
     this.spinner.show();
     if (this.personalInfo.invalid) {
@@ -584,7 +584,7 @@ export class EnrollmentInfoComponent implements OnInit {
     });
   }
   onAddressSubmit() {
-    debugger;
+    
     this.addressSubmitted = true;
     this.spinner.show();
     if (this.shippingAddressForm.invalid) {
@@ -696,7 +696,7 @@ export class EnrollmentInfoComponent implements OnInit {
 
   //Place my order
   onSubmit() {
-    debugger;
+    
     const createCustomerRequest = new CreateCustomerRequest();
     createCustomerRequest.loginName = '';
     createCustomerRequest.firstName = this.f.firstName.value;

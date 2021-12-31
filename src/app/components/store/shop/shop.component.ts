@@ -351,7 +351,7 @@ export class ShopComponent implements OnInit {
     //   this.toastrService.error('Sorry You are Under 18.');
     //   return;
     // }
-    debugger;
+    
     if (product.quantityModel == 0 || product.quantityModel == undefined)
       return this.toastrService.error("Please select the quantity");
 

@@ -78,7 +78,7 @@ export class PaymentsComponent implements OnInit {
   getCustomerCardDetails() {
     this.spinner.show();
     this.accountService.GetCustomerBilling().subscribe((response) => {
-      debugger;
+      
       //this.UserDetails = response.result.customers[0]
       this.paymentCards = response.filter(x => x.cardNumber != null);
       this.secondaryCards = this.paymentCards.filter(x => x.type == 2 && x.cardNumber != "");
@@ -93,7 +93,7 @@ export class PaymentsComponent implements OnInit {
   }
 
   checkCardType(event) {
-    debugger;
+    
     if (event.target.checked) {
       this.cardType = 1;
     }
@@ -103,7 +103,7 @@ export class PaymentsComponent implements OnInit {
   }
 
   onPaymentSubmit() {
-    debugger;
+    
     console.log(this.cardType);
     this.paymentSubmitted = true;
     if (this.onPaymentSubmitForm.invalid || this.monthError || this.yearError) {
@@ -180,7 +180,7 @@ export class PaymentsComponent implements OnInit {
     else if (cardtype == 2) {
       type = "Secondary";
     }
-    debugger;
+    
     this.spinner.show();
     this.accountService.deleteCustomerCard(type).subscribe((response) => {
       console.log(response);
@@ -191,10 +191,10 @@ export class PaymentsComponent implements OnInit {
 
   //Make credit card primary
   makeCreditCardPrimary(item: any) {
-    debugger;
+    
           this.spinner.show();
           this.accountService.makeCreditCardPrimary(item).subscribe((response) => {
-            debugger;
+            
             console.log("response", response);
             this.spinner.hide(); 
       });
