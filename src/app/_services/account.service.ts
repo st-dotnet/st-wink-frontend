@@ -12,7 +12,7 @@ export class AccountService {
   private readonly shoppingEndPoint = 'shopping/';
   private readonly accountEndPoint = 'Account/';
   private readonly customerEndPoint = 'Customers/';
-  private readonly paymentEndPoint = 'Payment/';
+  private readonly paymentEndPoint = 'Enrollment/';
 
 
   private options = { headers: new HttpHeaders().set('Content-Type', 'application/pdf') };

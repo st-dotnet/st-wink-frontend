@@ -26,7 +26,7 @@ customerOrderData:any;
   getCustomerAutoOrders(){
     this.spinner.show();
     this.accountService.getCustomerAutoOrders().subscribe((response)=>{
-      debugger;
+      
       this.customerOrderData=response;
      
       this.spinner.hide();

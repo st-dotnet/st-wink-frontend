@@ -65,7 +65,7 @@ export class AddressesComponent implements OnInit {
 
 
   deleteCustomerAddress(type: string) {
-    debugger;
+    
     // New = 0,
     // Main = 1,
     //Mailing = 2,
@@ -79,7 +79,7 @@ export class AddressesComponent implements OnInit {
   }
 
   getAddressByCustomerId(id, spinner) {
-    debugger;
+    
     if (spinner) {
       this.spinner.show();
     }
@@ -120,7 +120,7 @@ export class AddressesComponent implements OnInit {
   }
 
   makeCardPrimary(data: any, type: any) {
-    debugger;
+    
     // let addressdata = {
     //   addressType: 0,
     //   address1: '',
@@ -163,7 +163,7 @@ export class AddressesComponent implements OnInit {
 
 
   onAddressSubmit(isEdit: any) {
-    debugger;
+    
     this.addressSubmitted = true;
     if (this.shippingAddressForm.invalid) {
       this.spinner.hide();
@@ -182,7 +182,7 @@ export class AddressesComponent implements OnInit {
       console.log(response);
       console.log(this.verifyAddressResponse);
       if (this.verifyAddressResponse.address) {
-        debugger;
+        
         if (this.filterAddress(3).length == 0) {
           let address = {
             addressType: 0,
@@ -194,7 +194,7 @@ export class AddressesComponent implements OnInit {
             country: 'United States',
             saveType: 'Other'
           };
-          debugger;
+          
           this.accountService.SaveAddress(address).subscribe((Response) => {
             console.log(Response);
             this.toastrService.success('Address save Successfully.');
@@ -212,7 +212,7 @@ export class AddressesComponent implements OnInit {
             country: 'United States',
             saveType: 'Mail'
           };
-          debugger;
+          
           this.accountService.SaveAddress(address).subscribe((Response) => {
             console.log(Response);
             this.toastrService.success('Address save Successfully.');
@@ -232,7 +232,7 @@ export class AddressesComponent implements OnInit {
             country: 'United States',
             saveType: 'Other'
           };
-          debugger;
+          
           this.accountService.SaveAddress(address).subscribe((Response) => {
             console.log(Response);
             this.toastrService.success('Address save Successfully.');
@@ -248,7 +248,7 @@ export class AddressesComponent implements OnInit {
   }
 
   oneEditAddressSubmit() {
-    debugger;
+    
     this.editAddressSubmitted = false;
     if (this.shippingAddressForm.invalid) {
       return;
@@ -337,7 +337,7 @@ export class AddressesComponent implements OnInit {
   }
 
   editAddress(address: any) {
-    debugger;
+    
     this.isEdit = true;
     switch (address?.addressType) {
       case 1:
