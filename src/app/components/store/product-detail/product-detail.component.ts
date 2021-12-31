@@ -647,16 +647,31 @@ export class ProductDetailComponent implements OnInit {
   }
 
   quantitychanged(cartitem: any, selectedvalue: number) {
-    // if (selectedvalue <= 10) {
-    //   $("#islectedvalchanged").val(selectedvalue);
-    // }
+    if (selectedvalue <= 10) {
+     $("#islectedvalchanged").val(selectedvalue);
+     }
     this.quantityCalculation(cartitem, selectedvalue);
-    const item = this.cartItems.find((x) => x.itemCode == cartitem.itemCode);
 
-    if (item && selectedvalue > 10) {
-     // item.quantityModel = item.quantityModel + item.extraQuantity;
-      this.productDetail.quantityModel = item.quantityModel;
+    if (this.cartItems) {
+      const item = this.cartItems.find((x) => x.itemCode == cartitem.itemCode);
+
+      if (item && selectedvalue > 10) {
+        item.quantityModel = item.quantityModel + item.extraQuantity;
+        item.extraQuantity =  item.quantityModel;
+      }
     }
+    else {
+      this.productDetail.quantityModel = selectedvalue;
+    }
+    // const item = this.cartItems?.find((x) => x.itemCode == cartitem.itemCode);
+
+    // if (item && selectedvalue > 10) {
+    //  // item.quantityModel = item.quantityModel + item.extraQuantity;
+    //   this.productDetail.quantityModel = item.quantityModel;
+    // }
+    // else{
+    //   this.productDetail.quantityModel = selectedvalue;
+    // }
   }
 
   quantityCalculation(productDetail: any, selectedvalue: number) {
@@ -664,11 +679,13 @@ export class ProductDetailComponent implements OnInit {
     if (this.sessionService.getSessionItem('user')) {
       this.cartItems = this.sessionService.getSessionObject('productCartItems-' + this.user.loginName);
     }
+    debugger;
     if( this.cartItems==null || this.cartItems.length==0)
     {this.cartItems = this.sessionService.getSessionObject('productCartItems');}
 
     if (selectedvalue <= 10) {
       productDetail.extraQuantity = null;
+     // productDetail.quantityModel = selectedvalue;
     }
     if (selectedvalue != null && selectedvalue != undefined) {
       if (selectedvalue == 0 || selectedvalue > 10) {
@@ -685,7 +702,7 @@ export class ProductDetailComponent implements OnInit {
         }
       }
     }
-    this.productDetail.quantityModel = +selectedvalue;
+    this.productDetail.quantityModel = selectedvalue;
     // this.sessionService.setSessionObject('productCartItems', this.cartItems);
   }
 }
