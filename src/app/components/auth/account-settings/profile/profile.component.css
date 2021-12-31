@@ -35,7 +35,7 @@ button.save-btn {
     border: 1px solid #1cb1c5;
     border-radius: 30px;
     width: 100%;
-    padding: 5px 40px;
+    padding: 5px 50px;
     background: transparent;
     color: #1cb1c5;
     text-transform: uppercase;
@@ -47,7 +47,7 @@ section.account-page.grid-checkout button.save-btn {
 
 section.account-page.grid-checkout button.save-btn {
     width: 100%;
-    padding: 6px 50px;
+    padding: 6px 60px;
     background: #1cb1c5;
     color: white;
     margin: 10px 0px;
@@ -347,10 +347,10 @@ section.account-page.grid-checkout .emailbtns {
 .signoutBtn button {
     border: none;
     background: transparent;
-    font-family: 'g-regular';
-    font-weight: 600;
-    color: #000000;
+    color: rgba(0, 0, 0, 0.87);
     text-decoration: underline;
+    letter-spacing: 1px;
+    font-family: 'g-light';
 }
 
 span.emailText {

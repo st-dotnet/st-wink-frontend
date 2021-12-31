@@ -642,18 +642,19 @@
                                                                 <div *ngIf="submitted && f.state?.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.state?.errors.required">
                                                                         State is required</div>
-                                                                        <div *ngIf="f.state?.errors.pattern">
-                                                                            only alphabetic  allowed</div>
+                                                                    <div *ngIf="f.state?.errors.pattern">
+                                                                        only alphabetic allowed</div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="number" class="form-control" placeholder="Zip" formControlName="zip" [ngClass]="{ 'is-invalid': submitted && f.zip?.errors }"  maxlength="8"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  />
+                                                                <input type="number" class="form-control" placeholder="Zip" formControlName="zip" [ngClass]="{ 'is-invalid': submitted && f.zip?.errors }" maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                />
                                                                 <div *ngIf="submitted && f.zip?.errors" class="invalid-feedback">
                                                                     <div *ngIf="f.zip?.errors.required">
                                                                         Zip is required</div>
-                                                                    
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -773,7 +774,7 @@
                                                     </span>
                                                 </div>
                                             </ng-template>
-                                            <ng-template ngbPanelContent >
+                                            <ng-template ngbPanelContent>
                                                 <div class="content-card steps-inner shipping-address-form">
                                                     <div class="col-md-12 loyalty-form p-0 mb-3">
                                                         <div [className]="promocode_onetime ?  'special-field datafilled form-group ' : 'special-field dataempty form-group'">
@@ -1041,7 +1042,7 @@
                                             <ng-template ngbPanelTitle>
                                                 <div class="heading-step1">
                                                     <h4>Billing Address</h4>
-                                                    <p>Same as shipping Address</p>
+
                                                     <span class="arrow-stepp">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
                                                             height="11.2" viewBox="0 0 6.6 11.2">
@@ -1336,7 +1337,24 @@
                                         </ng-template>
                                     </ngb-panel>
                                 </ngb-accordion>
+
+                                <div class="wraper-congoto">
+                                    <div class="row  congoPara ">
+                                        <div class="col-sm-3 congratssRow">
+                                            <div class="congrats">
+                                                <input type="checkbox">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <span>Congratulations on saving money with your subscription Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, aliquam?</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="final-cta-bottom">
+
                                     <div class="plce-order-cta">
                                         <button type="submit" (click)="onSubmit()">Place My Order</button>
                                     </div>

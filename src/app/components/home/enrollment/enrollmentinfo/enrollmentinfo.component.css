@@ -6,11 +6,6 @@ section.enrollment-upperBar {
     margin-top: 50px;
 }
 
-
-/* span.arrow-stepp {
-    display: none;
-} */
-
 section.enrollment-upperBar a {
     display: flex;
     align-items: center;
@@ -43,7 +38,7 @@ section.enrollment-upperBar a {
 }
 
 .enrollment-righ .heading-step1.ng-star-inserted {
-    padding-left: 20px;
+    padding-left: 0px;
 }
 
 .enrollment-righ .heading-step1.ng-star-inserted h4 {
@@ -188,6 +183,7 @@ p.you-pay {
     padding: 14px 10px;
     height: 56px;
     border: 1.5px solid #3c3a3ae3;
+    font-family: 'g-medium';
 }
 
 span.ssnId {
@@ -205,6 +201,7 @@ button.btn.btn-info.verify-btn {
     border-radius: 30px;
     font-size: 18px;
     width: 100%;
+    border: 1px solid #1cb1c5;
 }
 
 .enrollment-main-div .saveprocessed1.continuebtn button {
@@ -222,6 +219,7 @@ label.control-label.visible-xs.required.requiredField {
     padding: 0px 5px;
     color: gray;
     font-size: 12px;
+    font-family: 'g-medium';
 }
 
 .saveprocessed.continuebtn.ng-star-inserted {
@@ -403,6 +401,14 @@ select {
 .form-group {
     margin-bottom: unset !important;
     width: 100%;
+    position: relative;
+}
+
+.form-group span.search {
+    position: absolute;
+    top: 3px;
+    right: 8px;
+    opacity: 0.3;
 }
 
 .enrollment-main-div .row.different-billing .form-group {
@@ -548,15 +554,18 @@ p.doesdiv a {
     padding: 20px 20px;
 }
 
+.content-card.steps-inner.shipping-address-form p {
+    font-size: 18px;
+}
+
 button {
-     border-radius: 30px;
-    width: 100%; 
+    border-radius: 30px;
+    width: 100%;
     background: transparent;
-     border: 1px solid #1cb1c5;
-    padding: 5px; 
-    border:none;
+    border: 1px solid #1cb1c5;
+    padding: 5px;
+    border: none;
     color: #1cb1c5;
-    text-transform: uppercase;
     font-weight: 500;
 }
 

@@ -30,7 +30,7 @@ export class OrdersComponent implements OnInit {
   }
 
   viewInvoice(orderId:any){
-    debugger;
+    
     this.router.navigate(['/invoice', orderId]);
     
  

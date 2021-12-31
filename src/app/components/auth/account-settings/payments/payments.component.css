@@ -370,6 +370,15 @@ button.btn.btn-link.ng-star-inserted {
 
 .address-paged form input {
     height: 50px;
+    position: relative;
+}
+
+.paymentPage .form-group span i.fas.fa-lock {
+    position: absolute;
+    top: 15px;
+    right: 28px;
+    opacity: 0.5;
+    font-size: 20px;
 }
 
 h1.profileField {

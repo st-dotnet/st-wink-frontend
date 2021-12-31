@@ -21,6 +21,7 @@ import { PaymentsComponent } from './account-settings/payments/payments.componen
 
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { InvoiceComponent } from './account-settings/invoice/invoice.component';
+import { EditSubscriptionsComponent } from './account-settings/subscriptions/edit-subscriptions/edit-subscriptions.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -38,7 +39,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     LoyaltyPointsComponent,
     AddressesComponent,
     PaymentsComponent,
-    InvoiceComponent
+    InvoiceComponent,
+    EditSubscriptionsComponent
   ],
   imports: [
     SharedModule,

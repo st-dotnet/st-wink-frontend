@@ -31,7 +31,7 @@
                                                 <input type="text" class="form-control" formControlName="firstName" [ngClass]="{ 'is-invalid': firstnameSubmitted && f.firstName?.errors }" [(ngModel)]="UserDetails.firstName" [ngModelOptions]="{standalone: true}">
                                                 <div *ngIf="firstnameSubmitted && f.firstName?.errors" class="invalid-feedback">
                                                     <div *ngIf="f.firstName?.errors.required">
-                                                        First Name is required</div>
+                                                        Name is required</div>
                                                 </div>
                                                 <label class="form-label">Name</label>
                                             </div>
@@ -73,7 +73,7 @@
                                                 <input type="text" formControlName="loginName" [ngClass]="{ 'is-invalid': loginNameSubmitted && l.loginName?.errors }" class="form-control" [(ngModel)]="UserDetails.loginName" [ngModelOptions]="{standalone: true}">
                                                 <div *ngIf="loginNameSubmitted && l.loginName?.errors" class="invalid-feedback">
                                                     <div *ngIf="l.loginName?.errors.required">
-                                                        login Name is required</div>
+                                                        User Name is required</div>
                                                 </div>
                                                 <label class="form-label">User Name</label>
                                             </div>
@@ -119,7 +119,7 @@
                                                                 <input type="password" formControlName="Password" [ngClass]="{ 'is-invalid': PasswordSubmitted && p.Password?.errors }" class="form-control" [(ngModel)]="UserDetails.LoginPassword" [ngModelOptions]="{standalone: true}" id="exampleInputPassword1">
                                                                 <div *ngIf="PasswordSubmitted && p.Password?.errors" class="invalid-feedback">
                                                                     <div *ngIf="p.Password?.errors.required">
-                                                                        password is required</div>
+                                                                        Password is required</div>
                                                                     <div *ngIf="p.Password.errors.minlength">Password must be at least 6 characters</div>
                                                                 </div>
 
@@ -235,7 +235,7 @@
                                                                 <input type="tel" formControlName="mobilePhone" [ngClass]="{ 'is-invalid': mobilePhoneSubmitted && m.mobilePhone?.errors }" class="form-control" id="Phone" [(ngModel)]="UserDetails.mobilePhone" [ngModelOptions]="{standalone: true}">
                                                                 <div *ngIf="mobilePhoneSubmitted && m.mobilePhone?.errors" class="invalid-feedback">
                                                                     <div *ngIf="m.mobilePhone?.errors.required">
-                                                                        mobile Phone is required</div>
+                                                                        Mobile Phone is required</div>
 
                                                                     <div *ngIf="m.mobilePhone.errors.minlength">Phone number must be at least 10-12 numbers with country code
                                                                     </div>
@@ -249,7 +249,7 @@
                                                                 <input type="tel" class="form-control" formControlName="phone" [ngClass]="{ 'is-invalid': mobilePhoneSubmitted && m.phone?.errors }" [(ngModel)]="UserDetails.phone" [ngModelOptions]="{standalone: true}" id="Phone">
                                                                 <div *ngIf="mobilePhoneSubmitted && m.phone?.errors" class="invalid-feedback">
                                                                     <div *ngIf="m.phone?.errors.required">
-                                                                        Phone is required</div>
+                                                                      Home Phone is required</div>
                                                                     <div *ngIf="m.phone.errors.minlength">Phone number must be at least 10-12 numbers with country code
                                                                     </div>
                                                                 </div>

@@ -678,3 +678,28 @@ button.simplelink {
 button.simplelink:hover {
     cursor: pointer;
 }
+
+.checkout-steps-3 .wraper-congoto {
+    display: none;
+}
+
+@media (min-width: 1366px) {
+    .checkout-steps-3 .wraper-congoto {
+        display: flex;
+    }
+    .checkout-page .congrats {
+        text-align: end;
+        align-items: center;
+        padding-top: 17px;
+    }
+    .checkout-page input[type="checkbox"] {
+        width: 25px;
+        height: 20px;
+    }
+    .checkout-page .congrats span {
+        font-family: 'g-medium';
+    }
+    .row.congratssRow .col-sm-8 {
+        padding: 0px !important;
+    }
+}

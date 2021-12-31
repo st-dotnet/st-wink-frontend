@@ -38,6 +38,7 @@ section.address-page.grid-checkout .emailbtns {
     justify-content: center;
     padding-bottom: 20px;
     padding-top: 20px;
+    text-align: center;
 }
 
 section.address-page.grid-checkout button.cancle-btn,
@@ -46,16 +47,52 @@ button.save-btn {
     border-radius: 30px;
     width: 100%;
     padding: 5px 33px;
-    background: transparent;
-    color: #1cb1c5;
+    background: #1cb1c5;
+    color: #ffffff;
     text-transform: uppercase;
+    width: 100%;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
 }
 
-section.address-page.grid-checkout button.save-btn {
+
+/* section.address-page.grid-checkout button.save-btn {
     width: 100%;
     padding: 6px 36px;
     background: #1cb1c5;
     color: white;
+} */
+
+
+/* section.address-page .primary {
+    border-radius: 30px;
+    width: 100%;
+    padding: 5px 33px;
+    color: #1cb1c5;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+} */
+
+.addressed .emailbtns .primary button.primary-btn {
+    width: 100%;
+    padding: 8px 50px;
+    background: #1cb1c5;
+    color: white;
+    margin: 10px 0px;
+    border: navajowhite;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.addressed .emailbtns .edit button.edit-btn {
+    border: 1px solid #1cb1c5;
+    border-radius: 30px;
+    padding: 5px 88px;
+    background: transparent;
+    color: #1cb1c5;
+    text-transform: uppercase;
+    width: 100%;
 }
 
 section.address-page.grid-checkout small#emailHelp {

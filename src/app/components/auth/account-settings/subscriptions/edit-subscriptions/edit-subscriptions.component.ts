@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap'
-import { SessionService } from '@app/_services';
+import { AccountService, SessionService } from '@app/_services';
 import { ShopService } from '@app/_services/shop.service';
 import { CategoryModel, ShopProductModel } from '@app/_models/shop';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -10,11 +10,13 @@ import { ToastrService } from 'ngx-toastr';
 import { CartTypeEnum, ShoppingCartItemType } from '@app/_models/cart-type-enum';
 
 @Component({
-  selector: 'app-shop',
-  templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.css']
+  selector: 'app-edit-subscriptions',
+  templateUrl: './edit-subscriptions.component.html',
+  styleUrls: ['./edit-subscriptions.component.css']
 })
-export class ShopComponent implements OnInit {
+export class EditSubscriptionsComponent implements OnInit {
+  selectfrequency: string;
+  nextdelivery: string;
   title = '';
   closeResult: string;
   webCategoryID: number = 3;
@@ -54,12 +56,15 @@ export class ShopComponent implements OnInit {
   showActualPrice: boolean = false;
   tooltipData: boolean = false;
   orderType: any;
+  autoOrders:any[]=[];
   cartItems: any[] = [];
   showOtherTextbox = null;
   selectedval: any;
+  autoorderId: number;
 
   constructor(
     private sessionService: SessionService,
+    private accountService: AccountService,
     private modalService: NgbModal, private shopService: ShopService,
     private spinner: NgxSpinnerService, private router: Router,
     private toastrService: ToastrService,
@@ -169,6 +174,8 @@ export class ShopComponent implements OnInit {
     this.filterTitle = this.sessionService.getSessionItem("categorySelect");
     this.cartTypes = Object.values(CartTypeEnum).filter(x => !isNaN(Number(x)));
     this.route.params.subscribe(params => {
+     this.autoorderId = params['id'];
+     this.getAutoOrderById();
       if (params['type']) {
         const type = params['type'];
         this.type = type.replace(new RegExp('-', 'g'), ' ');
@@ -177,29 +184,41 @@ export class ShopComponent implements OnInit {
       if (this.type == "Comfort Patch") {
         this.showAgePopUp = true;
       }
+      debugger;
       if (this.type != null) {
         this.getAllCategoryById();
       } else {
         this.GetDDLCategoryById();
       }
+   
       this.bundle = 'single';
       this.selectDelivery = 0;
       this.subscriptionModel = 'singleDelivery';
     });
   }
 
+  getAutoOrderById(){
+    //this.spinner.show();
+    debugger;
+    this.accountService.getSubscriptionbyId(this.autoorderId).subscribe((response)=>{
+     this.autoOrders=response;
+      this.modalService.dismissAll();
+      this.spinner.hide();
+   });
+  }
   getAllCategoryById() {
     this.spinner.show();
+    debugger;
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
       this.categoryModels = result;
-      this.categoryModels?.forEach(element => {
+      this.categoryModels.forEach(element => {
         this.categoryTitle.push({
           webCategoryID: element.webCategoryID,
           webCategoryDescription: element.webCategoryDescription
         });
       });
-      const category = this.categoryModels?.find(x => x.webCategoryDescription == this.type);
-      this.category = category != null ? category.webCategoryID : 0;
+      const categry = this.categoryModels.find(x => x.webCategoryDescription == this.type);
+      this.category = categry != null ? categry.webCategoryID : 0;
       this.shopService.GetProductsList(this.category, this.filterValue).subscribe(result => {
         this.shopProductModels = result;
         this.spinner.hide();
@@ -216,6 +235,7 @@ export class ShopComponent implements OnInit {
   }
 
   GetDDLCategoryById() {
+    debugger;
     this.spinner.show();
     this.shopService.GetCategoryForShopById(this.webCategoryID).subscribe(result => {
       this.categoryModels = result;
@@ -225,7 +245,7 @@ export class ShopComponent implements OnInit {
           webCategoryDescription: element.webCategoryDescription
         });
       });
-      var data = this.categoryModels?.find(x => x.webCategoryDescription.toString() === "All Products");
+      var data = this.categoryModels.find(x => x.webCategoryDescription.toString() === "All Products");
       if (data) {
         data.webCategoryDescription = "Select Category";
       }
@@ -241,8 +261,8 @@ export class ShopComponent implements OnInit {
     if (this.categoryId == 39) {
       this.showAgePopUp = true;
     }
-    const category = this.categoryModels.find(x => x.webCategoryID == this.categoryId);
-    const categoryName = category.webCategoryDescription.replace(new RegExp(' ', 'g'), '-');
+    const categoies = this.categoryModels.find(x => x.webCategoryID == this.categoryId);
+    const categoryName = categoies.webCategoryDescription.replace(new RegExp(' ', 'g'), '-');
     this.productNameTitle = categoryName;
     this.sessionService.setSessionItem('categoryDescription', categoryName);
     this.router.navigate([`store/products/${categoryName}`])
@@ -351,7 +371,7 @@ export class ShopComponent implements OnInit {
     //   this.toastrService.error('Sorry You are Under 18.');
     //   return;
     // }
-    
+    debugger;
     if (product.quantityModel == 0 || product.quantityModel == undefined)
       return this.toastrService.error("Please select the quantity");
 
@@ -645,4 +665,20 @@ export class ShopComponent implements OnInit {
     this.product.quantityModel = +selectedvalue;
     // this.sessionService.setSessionObject('productCartItems', this.cartItems);
   }
+
+
+  onWindowScroll(e) {
+    alert('Hello');
+    debugger;
+    if (window.pageYOffset > 750) {
+      let element = document.getElementById('stickysidebarz');
+      element.classList.add('sticky');
+      debugger
+    } else {
+     let element = document.getElementById('stickysidebarz');
+       element.classList.remove('sticky'); 
+    }
+ }
+
+
 }

@@ -61,4 +61,40 @@
         display: block !important;
     }
     
+    .model-proo {
+        padding: 25px 25px;
+    }
+    
+    .content18plus .btn-same18 {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin: 25px 0 0 0;
+    }
+    
+    .content18plus .btn-same18 button {
+        background-color: #1cb1c5;
+        color: #fff;
+        font-size: 17px;
+        padding: 6px 40px;
+        text-transform: uppercase;
+        border-radius: 30px;
+    }
+    
+    .content18plus .btn-same18 button.btn-no {
+        background: transparent !important;
+        border: 1px solid #1cb1c5;
+        color: #1cb1c5 !important;
+    }
+    
+    .content18plus .btn-same18 button.btn-no:hover {
+        background-color: #1cb1c5 !important;
+        color: #fff !important;
+    }
+    
+    .content18plus .btn-same18 button.btn-yes {
+        background-color: #1cb1c5;
+        margin-left: 10px;
+    }
+    
     @media (min-width: 768px) {}

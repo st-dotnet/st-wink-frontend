@@ -92,7 +92,7 @@ div#main-menu ul.right-menu li a:focus {
 
 .main-content {
     width: 100%;
-    min-height: 370px;
+    min-height: 530px;
     background-color: #f7f7f7;
 }
 
@@ -295,11 +295,11 @@ section.testimonial-home .owl-nav .owl-next {
 
 .slider-whylove {
     background-color: rgba(80 112 201/0.9);
-    max-width: 340px;
+    max-width: 399px;
     position: absolute;
-    top: 50%;
+    top: 58%;
     transform: translateY(-50%);
-    left: 100px;
+    left: 204px;
     width: 100%;
     border-radius: 6px;
     -webkit-transform: translateY(-50%);
@@ -319,10 +319,10 @@ section.testimonial-home .owl-nav .owl-next {
 }
 
 .slider-whylove owl-carousel-o owl-stage .text-slider {
-    max-width: 70%;
+    max-width: 71%;
     text-align: center;
-    margin: 0 auto;
-    min-height: 200px;
+    margin: -15px 21px 10px 61px;
+    min-height: 296px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -759,7 +759,7 @@ div#checkoutstep4 ngb-accordion .card-header p {
 
 div#checkoutstep4 ngb-accordion .card-header h4 {
     font-family: g-medium;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 22px;
     margin-top: 0;
     font-weight: 500;
@@ -1547,7 +1547,7 @@ div#card-info form#cardForm footer.panel__footer {
 }
 
 .enrollment-page div#otp-sidebar {
-    padding: 20px;
+    padding: 0 5px;
 }
 
 .req {
@@ -1717,7 +1717,7 @@ ul.conv-products.styl-check {
 
 .birthday-holder span.btn-add-promo {
     position: absolute;
-    top: 40%;
+    top: 25px;
     right: 10px;
     transform: translateY(-50%);
 }
@@ -1768,12 +1768,22 @@ section.reviews-yotpo yotpo-reviews-widget h2.yotpo-main-title {
 
 .enrollment-paged ngb-accordion .card .card-header+div ngb-accordion.accordion .card .card-header+div {
     background: #fff;
-    padding: 5px 19px;
+    padding: 5px 0px;
 }
 
 section.account-page .card-body div#promo-code {
     padding: 0px !important;
 }
+
+.enrollment-righ div#checkoutstep3 div#card-info .card-body {
+    padding: 0px 20px !important;
+}
+
+
+/* .enrollment-righ div#checkoutstep3 .card-body .card-infoo .req {
+    position: absolute;
+    bottom: -5px;
+} */
 
 .enrollment-paged .card {
     background: none !important;
@@ -1795,6 +1805,26 @@ section.account-page .card-body div#promo-code {
 
 .enrollment-paged .card .card-header button {
     background: #fff;
+}
+
+button.simplelink {
+    background: transparent;
+    border: none;
+    display: contents;
+    text-transform: capitalize;
+    font-family: 'g-medium';
+}
+
+div#notifi-review-header button.btn-link {
+    padding-bottom: 0px;
+}
+
+div#notifi-review .card-body {
+    padding-top: 0px !important;
+}
+
+span.batch-icon {
+    margin-right: 10px;
 }
 
 .enrollment-paged .card-header {
@@ -2165,6 +2195,18 @@ ngb-accordion.accordion.order-listing div#order-listing-header button:focus {
 
 /* css for address page */
 
+.addressed div#otp-sidebar2-header button[aria-expanded="true"] span.highlight-info,
+.addressed.paymentPage div#promos-sidebar1-header button[aria-expanded="true"] span.highlight-info,
+.addressed.paymentPage div#promo-sidebar1-header button[aria-expanded="true"] span.highlight-info {
+    display: none;
+}
+
+.addressed div#otp-sidebar2-header button[aria-expanded="true"] span.arrow-stepp,
+.addressed.paymentPage div#promos-sidebar1-header button[aria-expanded="true"] span.arrow-stepp,
+.addressed.paymentPage div#promo-sidebar1-header button[aria-expanded="true"] span.arrow-stepp {
+    top: 55px;
+}
+
 .addresses-page button.btn.btn-link {
     width: 100%;
     text-align: left;
@@ -2336,9 +2378,11 @@ table.table.order-summary td {
 
 
 /************* INVOICE *********/
+
 div#data-invoice {
     padding-top: 50px;
 }
+
 #data-invoice td,
 #data-invoice input,
 #data-invoice select,
@@ -2348,20 +2392,25 @@ div#data-invoice {
     font-size: 8pt;
     color: #393939;
 }
+
 #data-invoice h5 {
     page-break-after: always;
 }
+
 #data-invoice a {
     text-decoration: none;
 }
+
 #data-invoice a:hover {
     text-decoration: underline;
 }
+
 #data-invoice a,
 #data-invoice a:visited,
 #data-invoice a:hover {
     color: #003399;
 }
+
 #data-invoice Table.ActionGridBar,
 #data-invoice Table.ActionGridBar TD {
     border: 1px solid #6699cc;
@@ -2369,19 +2418,24 @@ div#data-invoice {
     font-weight: bold;
     cursor: hand;
 }
+
 #data-invoice Table.ActionGridHeader {
     background-color: #E6EEF7;
 }
+
 #data-invoice Table.ActionGridData {
     border: none;
 }
+
 #data-invoice Table.ActionGridData TD {
     border: 1px solid #E6EEF7;
 }
+
 #data-invoice Table.ActionGridFooter {
     border: 1px solid #6699cc;
     background-color: #E6EEF7;
 }
+
 #data-invoice Table.ActionGridFooter TD,
 #data-invoice Table.ActionGridFooter A:hover,
 #data-invoice Table.ActionGridFooter A:visited,
@@ -2389,25 +2443,30 @@ div#data-invoice {
     font-size: 10pt;
     font-weight: normal;
 }
+
 #data-invoice TABLE.clsReport {
     border-collapse: collapse;
     table-layout: fixed;
     overflow: auto;
 }
+
 #data-invoice TABLE.clsReport TH {
     border: 1px solid #4791C5;
     padding: 5px;
     font-weight: normal;
     background-color: #ECF4F9;
 }
+
 #data-invoice TABLE.clsReport TH:first-child {
     border-left: 1px solid #4791C5;
 }
+
 #data-invoice TABLE.clsReport TD {
     padding: 2px;
     padding-left: 8px;
     padding-right: 8px;
 }
+
 #data-invoice .deeptree span {
     padding: 2px 2px;
     position: relative;
@@ -2417,6 +2476,7 @@ div#data-invoice {
     margin: 1px;
     cursor: hand;
 }
+
 #data-invoice .clsSpace {
     position: relative;
     width: 10px;
@@ -2426,23 +2486,27 @@ div#data-invoice {
     margin-top: -11px;
     padding-left: 0px;
 }
+
 #data-invoice SPAN.clsMouseOver {
     background-color: #F2F8FC;
     border: 1px solid #EAF3FA;
     margin: 0px;
 }
+
 #data-invoice SPAN.clsMouseDown {
     background-color: #EAF3FA;
     color: black;
     border: 1px solid #EAF3FA;
     margin: 0px;
 }
+
 #data-invoice SPAN.clsCurrentHasFocus {
     background-color: #EAF3FA;
     color: black;
     border: 1px solid #B4D9F1;
     margin: 0px;
 }
+
 #data-invoice span.clsUnavailable {
     height: 0px;
     padding: 0px;
@@ -2450,13 +2514,16 @@ div#data-invoice {
     border: none;
     color: #888888;
 }
+
 #data-invoice .hide {
     display: none;
 }
+
 #data-invoice .shown {
     display: block;
     margin-left: 15px;
 }
+
 #data-invoice Table.Grid {
     width: 100%;
     table-layout: fixed;
@@ -2465,6 +2532,7 @@ div#data-invoice {
     border-right: 1px solid #6699cc;
     border-bottom: 1px solid #6699cc;
 }
+
 #data-invoice Table.Grid TH {
     color: Black;
     border-left: 1px solid #6699cc;
@@ -2476,6 +2544,7 @@ div#data-invoice {
     font-weight: normal;
     font-size: 11px;
 }
+
 #data-invoice Table.Grid TD {
     color: Black;
     border: 1px solid #D0E5F5;
@@ -2483,26 +2552,43 @@ div#data-invoice {
     white-space: nowrap;
     font-size: 11px;
 }
+
 #data-invoice Table.Grid TR {
     background-color: white;
 }
+
 #data-invoice Table.Grid TR.even {
     background-color: #F2F8FC;
 }
+
 #data-invoice TABLE.clsBorder TH {
     border: 1px solid #4791C5;
     background-color: #ECF4F9;
 }
+
 #data-invoice TABLE.clsBorderTop TH {
     border: 1px solid #4791C5;
     background-color: #ECF4F9;
 }
+
 #data-invoice TABLE.clsBorderTop TH TH {
     border: none;
 }
+
 #data-invoice H5 {
     PAGE-BREAK-AFTER: always;
 }
+
+.steps-inner.today-order tbody tr td:last-child,
+.steps-inner.today-order tfoot tr td:last-child,
+#subsc-purchse tbody tr td:last-child,
+#subsc-purchse tfoot tr td:last-child,
+#otp-sidebar tbody tr td:last-child,
+#otp-sidebar tfoot tr td:last-child {
+    text-align: right;
+}
+
+
 /*********** END CSS INVOICE *******/
 
 
@@ -2525,6 +2611,12 @@ div#data-invoice {
     .container-sm,
     .container-xl {
         max-width: 1300px !important;
+    }
+    .grid-box-shadow.Subscription-box .prod-discount .subtotal p {
+        font-weight: 600;
+        color: #3e3e3e;
+        font-size: 20px;
+        margin-bottom: 0px;
     }
 }
 
@@ -2621,7 +2713,7 @@ div#data-invoice {
         text-transform: uppercase;
     }
     ul.navbar-nav.other-links li a {
-        font-size: 18px !important;
+        font-size: 20px !important;
     }
     ul.navbar-nav.other-links:before {
         content: '';
@@ -2638,7 +2730,8 @@ div#data-invoice {
         position: relative;
     }
     ul.navbar-nav {
-        padding-top: 15px;
+        /* padding-top: 15px 20px !important; */
+        padding: 20px;
     }
     .table-loyal.card .content-points.card-body {
         padding: 0 10px;
@@ -2684,13 +2777,13 @@ div#data-invoice {
         padding-top: 0px !important;
     }
     .mob-check .show-deskk .showsidebar.toggle-sidebar .sidebar-head span.arrow-down {
-        top: -2px;
+        top: 7px;
     }
     .mob-check .show-deskk .showsidebar.toggle-sidebar .sidebar-head span.arrow-down svg {
         transform: rotate(0deg);
     }
     .mob-check .show-deskk .hidesidebar.toggle-sidebar .sidebar-head span.arrow-down {
-        top: -2px;
+        top: 7px;
     }
     .mob-check .show-deskk .hidesidebar.toggle-sidebar .sidebar-head span.arrow-down svg {
         transform: rotate(180deg);
@@ -2834,6 +2927,10 @@ div#data-invoice {
     .desk-show {
         display: block;
     }
+    /* .enrollment-paged ngb-accordion .card .card-header+div ngb-accordion.accordion .card .card-header+div {
+        background: #fff;
+        padding: 10px 0px !important;
+    } */
 }
 
 @media (min-width:768px) and (max-width:1199px) {

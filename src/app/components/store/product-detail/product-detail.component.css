@@ -268,6 +268,7 @@ section.why_love_it h3.head-ylove {
     margin-bottom: 30px;
     font-size: 32px;
     color: rgba(0 0 0/0.8);
+    font-family: 'g-demibold';
 }
 
 section.deep-info .img-side {
@@ -356,6 +357,8 @@ section.deep-info .content-card-deepinfo p.info-ingred {
     padding: 20px 20px;
     position: relative;
     border-radius: 5px;
+    max-width: 620px;
+    margin: 0 auto;
 }
 
 .ingred-selection .toggl-btn {
@@ -388,7 +391,7 @@ section.how-use-section h3.title-head {
     text-align: center;
     margin: 0 0 40px;
     font-size: 32px;
-    font-family: 'g-regular';
+    font-family: 'g-demibold';
 }
 
 .how-use-listing {
@@ -398,10 +401,10 @@ section.how-use-section h3.title-head {
 }
 
 .how-use-listing ul li {
-    font-family: 'g-light';
+    font-family: 'g-medium';
     color: rgba(0 0 0/0.8);
     margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 20px;
     list-style-type: none;
     position: relative;
     padding-left: 25px;
@@ -437,7 +440,7 @@ section.product-detail {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 20%;
+    bottom: 32%;
 }
 
 .info-details h4 {
@@ -1042,23 +1045,28 @@ div#questions-ask .no-question a.be-post {
 .faq-data h4 {
     font-family: 'g-demibold';
 }
+
 .prod-bundle-select.mt-0.delivery-radio div {
     position: relative;
 }
+
 div span.ques-ico {
-float: right;
-position: absolute;
-bottom: 9px;
+    float: right;
+    position: absolute;
+    bottom: 9px;
 }
+
 .tooltipcontent {
     background-color: #f2f2f2;
 }
+
+
 /* MEDIA QUERIES CSS */
 
 @media (min-width:1024px) and (max-width:1366px) {
     section.product-detail {
-        background-position: 0 0px !important;
-        min-height: 600px !important;
+        /* background-position: 0 0px !important; */
+        min-height: 647px !important;
     }
 }
 

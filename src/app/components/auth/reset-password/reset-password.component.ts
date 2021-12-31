@@ -70,12 +70,12 @@ export class ResetPasswordComponent implements OnInit {
             this.spinner.hide();
             this.toastrService.success('Password Reset Link has been sent to your registered email.');
           }else{
-            this.toastrService.error(result.errorMessage);
+            this.toastrService.error('Sorry your email has not been found within our system.');
             this.spinner.hide();
           }
         },
         error: (error) => {
-          this.toastrService.error(error);
+          this.toastrService.error('Sorry your email has not been found within our system.');
           this.spinner.hide();
           this.loading = false;
         },

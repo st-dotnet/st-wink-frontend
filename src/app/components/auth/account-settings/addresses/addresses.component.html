@@ -7,12 +7,13 @@
                         <div class="enrollment-steps-5 addressed">
                             <h1 class="profileField">Addresses</h1>
 
-                            <ngb-accordion activeIds="" #acc="ngbAccordion">
-                                <ngb-panel id="promo-sidebar1" *ngFor="let address of addressess; let i = index">
+                            <ngb-accordion activeIds="otp-sidebar2" #acc="ngbAccordion">
+                                <!--primary Address-->
+                                <ngb-panel id="promo-sidebar1" *ngFor="let address of filterAddress(1); let i = index">
                                     <ng-template ngbPanelTitle>
                                         <div class="heading-step1 profile-section">
                                             <h4> Primary Address</h4>
-                                            <span class="highlight-info">{{ address.mainAddress1 }} {{ address.mainAddress2 }}</span>
+                                            <span class="highlight-info">{{ address.address1 }} {{ address.address2 }}</span>
                                             <span class="vali-promo"> </span>
                                             <span class="arrow-stepp">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
@@ -27,16 +28,16 @@
                                     <ng-template ngbPanelContent>
                                         <form>
                                             <div class="addresTwo">
-                                                <span> {{ address.mainAddress1 }} {{ address.mainAddress2 }}</span><br>
-                                                <span>{{address.mainCity}}</span><br>
-                                                <span>{{address.mainState}}{{ address.mainCounty}} {{address.mainZip}}</span>
+                                                <span> {{ address.address1 }} {{ address.address2 }}</span><br>
+                                                <span>{{address.city}}</span><br>
+                                                <span>{{address.state}} {{ address.country}} {{address.zip}}</span>
                                             </div>
                                             <div class="emailbtns">
                                                 <div class="saves">
                                                     <a href="#"> <button class="save-btn" (click)="open(produt_view,address)">Edit</button></a>
                                                 </div>
                                                 <div class="cancles">
-                                                    <a href="#"> <button class="cancel-subscrp"><i class="fa fa-trash"></i>Delete</button></a>
+                                                    <!-- <a href="#"> <button class="cancel-subscrp"><i class="fa fa-trash"></i>Delete</button></a> -->
                                                     <!-- <a> <button type="button" class="cancle-btn" (click)="acc.toggle('promo-sidebar1')">Cancel</button></a> -->
                                                     <!-- <a data-toggle="collapse" href="#promo-sidebar1" role="button" aria-expanded="false" aria-controls="promo-sidebar1"> <button class="cancle-btn">Cancel</button></a> -->
 
@@ -48,6 +49,111 @@
                                         </form>
                                     </ng-template>
                                 </ngb-panel>
+
+                                <!--mail Address-->
+
+                                <ngb-panel id="promo-sidebar12" *ngFor="let address of filterAddress(2); let i = index">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="heading-step1 profile-section">
+                                            <h4> Mail address</h4>
+                                            <span class="highlight-info">{{ address.mailingAddress1 }} {{ address.mailingAddress2 }}</span>
+                                            <span class="vali-promo"> </span>
+                                            <span class="arrow-stepp">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                              height="11.2" viewBox="0 0 6.6 11.2">
+                                              <path id="Path_2044" data-name="Path 2044"
+                                                  d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                  transform="translate(-630.6 -4.4)" />
+                                          </svg>
+                                      </span>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <form>
+                                            <div class="addresTwo">
+                                                <span> {{ address.mailingAddress1 }} {{ address.mailingAddress2 }}</span><br>
+                                                <span>{{address.city}}</span><br>
+                                                <span>{{address.state}} {{ address.country}} {{address.zip}}</span>
+                                            </div>
+                                            <div class="emailbtns">
+                                                <!-- <div class="cancles">
+                                                <a> <button type="button" class="cancle-btn" (click)="acc.toggle('promo-sidebar12')">Cancel</button></a>
+
+                                              </div> -->
+                                                <!-- <div class="saves">
+                                                 <a > <button class="save-btn" (click)="open(produt_view,address)">Edit</button></a>
+                                              </div> -->
+
+                                                <div class=" primary">
+                                                    <a> <button class="primary-btn" (click)="makeCardPrimary(address,2)">Make Address Primary</button></a>
+                                                </div>
+
+                                                <div class="edit">
+                                                    <!-- <a (click)="acc.toggle('otp-sidebar2');editAddress(address, 2)"><button class="edit-btn">Edit</button></a> -->
+                                                    <a (click)="editAddress(address, 2)"><button class="edit-btn">Edit</button></a>
+                                                </div>
+                                                <div class="cancles">
+                                                    <a> <button class="save-btn" class="cancel-subscrp" (click)="deleteCustomerAddress('Mailing')"><i class="fa fa-trash"></i>Delete</button></a>
+                                                </div>
+
+
+
+                                            </div>
+                                        </form>
+                                    </ng-template>
+                                </ngb-panel>
+
+
+
+                                <!--other Address-->
+
+                                <ngb-panel id="promo-sidebar123" *ngFor="let address of filterAddress(3); let i = index">
+                                    <ng-template ngbPanelTitle>
+                                        <div class="heading-step1 profile-section">
+                                            <h4> Other address</h4>
+                                            <span class="highlight-info">{{ address.otherAddress1 }} {{ address.otherAddress2 }}</span>
+                                            <span class="vali-promo"> </span>
+                                            <span class="arrow-stepp">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="6.6"
+                                            height="11.2" viewBox="0 0 6.6 11.2">
+                                            <path id="Path_2044" data-name="Path 2044"
+                                                d="M630.9,4.7a.967.967,0,0,0,0,1.4l3.9,3.9-3.9,3.9a.99.99,0,0,0,1.4,1.4l4.6-4.6a.967.967,0,0,0,0-1.4l-4.6-4.6A.967.967,0,0,0,630.9,4.7Z"
+                                                transform="translate(-630.6 -4.4)" />
+                                        </svg>
+                                    </span>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <form>
+                                            <div class="addresTwo">
+                                                <span> {{ address.otherAddress1 }} {{ address.otherAddress2 }}</span><br>
+                                                <span>{{address.city}}</span><br>
+                                                <span>{{address.state}}{{ address.country}} {{address.zip}}</span>
+                                            </div>
+                                            <div class="emailbtns">
+
+                                                <div class="primary">
+                                                    <a> <button class="primary-btn" (click)="makeCardPrimary(address,3)">Make Address Primary</button></a>
+                                                </div>
+                                                <!-- <div class="cancles">
+                                              <a> <button type="button" class="cancle-btn" (click)="acc.toggle('promo-sidebar123')">Cancel</button></a>
+                                            </div> -->
+                                                <div class="edit">
+                                                    <!-- <a (click)="acc.toggle('otp-sidebar2');editAddress(address, 3)"><button class="edit-btn">Edit</button></a> -->
+                                                    <a (click)="editAddress(address, 3)"><button class="edit-btn">Edit</button></a>
+                                                </div>
+
+                                                <div class="cancles">
+                                                    <a> <button class="save-btn" class="cancel-subscrp" (click)="deleteCustomerAddress('Other')"><i class="fa fa-trash"></i>Delete</button></a>
+                                                </div>
+
+
+                                            </div>
+                                        </form>
+                                    </ng-template>
+                                </ngb-panel>
+
+
 
                                 <ng-template #produt_view let-modal>
                                     <div id="view-logininformation-798275e4-d1dd-4d37-a977-497293c0fe5d">
@@ -121,10 +227,6 @@
                                     </div>
                                 </ng-template>
 
-
-
-
-
                                 <ngb-panel id="otp-sidebar2">
                                     <ng-template ngbPanelTitle>
                                         <div class="heading-step1 profile-section">
@@ -145,7 +247,7 @@
                                     <ng-template ngbPanelContent>
                                         <div class="panel-body">
                                             <div id="view-logininformation-798275e4-d1dd-4d37-a977-497293c0fe5d">
-                                                <form [formGroup]="shippingAddressForm" (ngSubmit)="onAddressSubmit()">
+                                                <form [formGroup]="shippingAddressForm" (ngSubmit)="isEdit ?oneEditAddressSubmit() : onAddressSubmit()">
                                                     <div class="row ">
                                                         <div class="col-sm-12 pinfo">
                                                             <input formControlName="streetAddress" placeholder="Street address" [ngClass]="{ 'is-invalid': addressSubmitted && s.streetAddress?.errors }" class="form-control personalInfo" data-role="Address1" data-val="true" data-val-required="Street Address is required"
@@ -216,6 +318,7 @@
                                             </div>
                                         </div>
                                     </ng-template>
+
                                 </ngb-panel>
                             </ngb-accordion>
                         </div>
