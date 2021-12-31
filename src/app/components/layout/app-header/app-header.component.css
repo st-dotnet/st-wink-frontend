@@ -227,6 +227,12 @@ div#main-menu li ul.search-result li a:hover {
     #main-menu.show-mob {
         display: none;
     }
+    a.nav-link,
+    .Login-demo-tour-class a,
+    .LogOut-demo-tour-class a{
+        font-size: 20px;
+        text-transform: uppercase;
+    }
 }
 
 a.nav-link.active {

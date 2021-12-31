@@ -2794,6 +2794,18 @@ div#data-invoice {
     section.checkout-page.grid-checkout {
         overflow: hidden;
     }
+    section.testimonial-home.testi-home-wrap .testimonial-outer{
+        padding: 25px;
+    }
+  
+    section.best-selller .owl-nav .owl-prev,
+    section.best-selller .owl-nav .owl-next,
+    section.best-selller .owl-nav .owl-next:hover, 
+    section.best-selller .owl-nav .owl-next:focus{
+        font-size: 56px;
+        padding: 0px;
+        top: -29px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -2964,4 +2976,24 @@ button.btn.btn-link.ng-star-inserted {
 
 .cityndState {
     display: flex;
+}
+
+.testimonial-home.testi-home-wrap .owl-nav .owl-next  .arrow-right {
+    width: 50px;
+    height: 70px;
+    background-size: cover;
+}
+.testimonial-home.testi-home-wrap .owl-nav .owl-prev .arrow-left {
+    height: 70px;
+    background-size: cover;
+    width: 50px;
+}
+
+section.testimonial-home.testi-home-wrap .owl-nav .owl-prev{
+    left: 0px;
+    margin: 0;
+}        
+section.testimonial-home.testi-home-wrap .owl-nav .owl-next{
+    right:0px;
+    margin: 0;
 }

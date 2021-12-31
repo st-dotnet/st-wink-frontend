@@ -37,14 +37,14 @@
 </section>
 
 <section class="best-selller">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
+  <div class="custom-container">
+    <div class="sec-heading-title">
+      <!-- <div class="col-md-12"> -->
         <h3>Best Sellers</h3>
-      </div>
+      <!-- </div> -->
     </div>
-    <div class="row">
-      <div class="col-md-12">
+    <div class="best-selller-slider-row">
+      <div class="best-selller-slider">
         <owl-carousel-o [options]="bestsellers">
           <ng-template carouselSlide>
             <div class="seller-wrapper">
@@ -118,14 +118,14 @@
 <section class="impact-strengthen">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 align-self-center">
         <div class="content-safe">
-          <h3>To Impact, Strengthen & Protect Families</h3>
-          <p>This is the driving force behind everything we do, from the ingredients we choose and the products we develop, to the relationships we build with our customers, our sellers and within our communities</p>
+          <h3>To Impact, <br /> Strengthen & Protect <br /> Families</h3>
+          <p class="sec-content">This is the driving force behind everything we do, from the ingredients we choose and the products we develop, to the relationships we build with our customers, our sellers and within our communities</p>
           <p><a [routerLink]="['/store']" class="btn btn-learnmore">Learn More</a></p>
         </div>
         </div>
-      <div class="col-md-6">
+      <div class="col-md-6  align-self-center">
         <div class="img-set-safe">
             <img src="../../../assets/home-impact.png"/>
         </div>
@@ -134,15 +134,15 @@
         </div>
 </section>
 
-<section class="testimonial-home">
-  <div class="container">
+<section class="testimonial-home testi-home-wrap">
+  <div class="testi-sec-home">
+    <div class="container">
     <div class="row">
       <div class="col-md-12">
         <h3>What are people saying?</h3>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
+    </div></div>
+  
         <owl-carousel-o [options]="home_testimonials">
           <ng-template carouselSlide   *ngFor="let reviews of Review, let i = index">
             <div class="testimonial-outer">
@@ -189,8 +189,7 @@
             </div>
           </ng-template>
         </owl-carousel-o>
-      </div>
-    </div>
+      
   </div>
 </section>
 
@@ -205,7 +204,7 @@
       <div class="col-md-6">
         <div class="content-safe">
           <h3>FREE Gift With $75+ Subscriptions</h3>
-          <p>Each month we give our active qualified Subscribers a gift + Free Shipping + 15% off</p>
+          <p class="sec-content">Each month we give our active qualified Subscribers a gift + Free Shipping + 15% off</p>
           <a [routerLink]="['/store']" class="btn btn-shop">Shop Now</a>
         </div>
         </div>

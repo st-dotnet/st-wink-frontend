@@ -6,7 +6,7 @@ footer {
 footer .footer-menus h4 {
   color: #fff;
   font-family: "g-demibold";
-  margin: 0 0 20px 0;
+  margin: 0 0 5px 0;
   font-size: 18.5px;
 }
 
@@ -27,6 +27,8 @@ footer .footer-menus p {
   color: #fff;
   font-family: 'g-regular';
   font-size: 14px;
+  opacity: .8;
+  margin-bottom:10px;
 }
 
 ul.social-ico li {
@@ -126,4 +128,8 @@ ul.social-ico li a i {
 
 ul.social-ico li a:hover i {
   color: #1cb1c5;
+}
+.footer-menus .info-refered{
+  margin-bottom: 30px;
+  opacity: 0.8;
 }

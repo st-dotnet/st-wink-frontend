@@ -56,13 +56,20 @@ export class HomeComponent implements OnInit {
     navText: ['<i class="fas fa-chevron-left"></i>', '<i class="fas fa-chevron-right"></i>'],
     responsive: {
       0: {
-        items: 1
+        items: 1,
+        center: true
       },
       400: {
-        items: 2
+        items: 2,
+        center: true
       },
-      740: {
-        items: 3
+      768: {
+        items: 2,
+        center: true
+      },
+      769: {
+        items: 3,
+        center: true
       },
       940: {
         items: 4
@@ -76,7 +83,9 @@ export class HomeComponent implements OnInit {
     mouseDrag: false,
     touchDrag: true,
     pullDrag: false,
+    center: true,
     dots: true,
+
     navSpeed: 700,
     navText: ['<div class="arrow-left"></div>', '<div class="arrow-right"></div>'],
     responsive: {
@@ -84,10 +93,10 @@ export class HomeComponent implements OnInit {
         items: 1
       },
       400: {
-        items: 2
+        items: 1
       },
       740: {
-        items: 3
+        items: 2
       },
       940: {
         items: 4
