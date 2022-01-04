@@ -14,7 +14,7 @@ import { AppHeaderComponent } from './components/layout/app-header/app-header.co
 import { AppFooterComponent } from './components/layout/app-footer/app-footer.component';
 import { AppNotificationBarComponent } from './components/layout/app-notification-bar/app-notification-bar.component';
 import { AppLayoutComponent } from './components/layout/app-layout/app-layout.component';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { GuidedTourModule } from 'src/lib/guided-tour.module';
 import {JwtInterceptor} from'./_helpers/jwt.interceptor';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
@@ -38,7 +38,7 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
     GuidedTourModule.forRoot()
   ],
   providers: [
-    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    {provide: LocationStrategy, useClass: PathLocationStrategy},
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
