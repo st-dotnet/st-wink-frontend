@@ -578,7 +578,7 @@
                                                                                     <div class="row margin-5">
                                                                                         <div class="col-xs-12 verifibtn">
                                                                                             <button type="button" class="btn btn-info verify-btn" (click)="verifyadress()" data-role="verify">
-                                                                                                Verify Address
+                                                                                                VERIFY ADDRESS
                                                                                             </button>
                                                                                         </div>
                                                                                     </div>
@@ -653,9 +653,14 @@
                                                                                     <div *ngIf="f.userName?.errors.required">
                                                                                         User name is required</div>
                                                                                 </div>
+                                                                                <div *ngIf="checkUserNameLength" class="invalid-feedback-customclass">
+                                                                                    <div *ngIf="checkUserNameLength">User name must be at least 3 characters
+                                                                                    </div>
+                                                                                </div>
                                                                                 <div class="req">
                                                                                     <label class="control-label visible-xs required requiredField" for="Customer_MainAddress_City">*Required</label>
                                                                                 </div>
+                                                                              
                                                                             </div>
 
                                                                         </div>
@@ -981,8 +986,7 @@
                                                                                                 <div class="row margin-5">
                                                                                                     <div class="col-xs-12 verifibtn">
                                                                                                         <button type="button" (click)="verifyShippingAddress()" class="btn btn-info verify-btn" data-role="verify">
-                                                                                                            Verify
-                                                                                                            Address
+                                                                                                            VERIFY ADDRESS
                                                                                                         </button>
                                                                                                     </div>
                                                                                                 </div>

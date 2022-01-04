@@ -44,6 +44,7 @@ export class EnrollmentInfoComponent implements OnInit {
   monthError: boolean = false;
   yearError: boolean = false;
   cardvalidate = false;
+  checkUserNameLength =false;
   customerId: number;
   UserDetails: any;
   cardToken: string;
@@ -477,13 +478,20 @@ export class EnrollmentInfoComponent implements OnInit {
   newAddress: any;
 
   onpersonalInfoSubmit() {
-    
-    this.submitted = true;
+    debugger;
+   // this.submitted = true;
     this.spinner.show();
+    if(this.f.userName.value.length<3){
+      this.spinner.hide();
+      this.checkUserNameLength = true;
+      return;
+    }
+   
     if (this.personalInfo.invalid) {
       this.spinner.hide();
       return;
     }
+   
     if (!this.isAddressveify) {
       this.toastrService.error('Please Verify Address');
       this.shippingAddressPannel = true;
@@ -518,7 +526,6 @@ export class EnrollmentInfoComponent implements OnInit {
   }
 
   verifyadress() {
-
     if (
       !this.f.address.value ||
       !this.f.city.value ||
@@ -540,6 +547,8 @@ export class EnrollmentInfoComponent implements OnInit {
       this.verifyAddressResponse = response;
       console.log(response);
       console.log(this.verifyAddressResponse);
+
+
       if (this.verifyAddressResponse.address) {
         this.toastrService.success('Address is Verified');
         this.isAddressveify = true;

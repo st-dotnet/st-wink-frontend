@@ -732,7 +732,7 @@
                                     </ngb-accordion>
                                     <!-- Save Button For Shipping Address -->
                                     <div class="saveprocessed">
-                                        <button type="submit">Save & Continue</button>
+                                        <button type="submit">SAVE AND CONTINUE</button>
                                     </div>
                                 </form>
                             </ng-template>
@@ -1118,7 +1118,7 @@
                                         </ngb-panel>
                                     </ngb-accordion>
                                     <div class="saveprocessed">
-                                        <button type="submit">Save & Continue</button>
+                                        <button type="submit">SAVE AND CONTINUE</button>
                                     </div>
                                 </form>
                             </ng-template>
@@ -1338,7 +1338,7 @@
                                     </ngb-panel>
                                 </ngb-accordion>
 
-                                <div class="wraper-congoto">
+                                <div class="wraper-congoto" *ngIf="subscriptionCartItems.length > 0">
                                     <div class="row  congoPara ">
                                         <div class="col-sm-3 congratssRow">
                                             <div class="congrats">
@@ -1347,7 +1347,7 @@
 
                                         </div>
                                         <div class="col-sm-8">
-                                            <span>Congratulations on saving money with your subscription Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, aliquam?</span>
+                                            <span>Congratulations on saving money with your subscription order! By clicking “Place My Order”, you understand that you will receive a discount on your monthly delivery service. <strong>You are free to modify, postpone or cancel at any time, for any reason!</strong></span>
 
                                         </div>
                                     </div>
